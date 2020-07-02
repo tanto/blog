@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+		>
+<channel>
+	<title>Commenti a: FWTools: un kit di applicazioni GIS irrinunciabile</title>
+	<atom:link href="http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Fri, 04 Nov 2016 08:49:24 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/comment-page-1/#comment-7934</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Sun, 18 Nov 2012 17:23:50 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comment-7934</guid>
+		<description><![CDATA[Ciao stuppolo,
+e benvenuto. Questo post è un po&#039; vecchio e FWTools non è aggiornato da un po&#039; di tempo. In ogni caso dovrebbe essere in grado di leggere le informazioni che chiedi.
+Però non da un kmz, ma da un kml, ovvero la versione non compressa.
+
+Invece di &quot;gdalinfo&quot;, dovrai usare il comando analogo per file vettoriali, ovvero &quot;ogrinfo&quot;. La sintassi è molto simile:
+
+&lt;code&gt;ogrinfo input.kml&lt;/code&gt;
+
+Ti restituirà qualcosa come:
+&lt;code&gt;
+INFO: Open of `input.kml&#039; using driver `KML&#039; successful.
+1: Layer_test (3D Point)
+&lt;/code&gt;
+
+Se vuoi un output, simile a quello che leggi sopra per una tif, dovrai scrivere:
+&lt;code&gt;
+ogrinfo input.kml  &quot;Layer_test&quot;
+&lt;/code&gt;
+
+Avrai
+&lt;code&gt;
+Layer name: Layer_test
+Geometry: 3D Point
+Feature Count: 2
+Extent: (10.325631, 42.442331) - (13.409650, 48.543378)
+Layer SRS WKT:
+GEOGCS[&quot;WGS 84&quot;,
+    DATUM[&quot;WGS_1984&quot;,
+        SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,
+            AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],
+        TOWGS84[0,0,0,0,0,0,0],
+        AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],
+    PRIMEM[&quot;Greenwich&quot;,0,
+        AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+    UNIT[&quot;degree&quot;,0.0174532925199433,
+        AUTHORITY[&quot;EPSG&quot;,&quot;9108&quot;]],
+    AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]
+Name: String (0.0)
+Description: String (0.0)
+OGRFeature(Layer_test):0
+  Name (String) = Segnaposto senza titolo
+  Description (String) =
+  POINT (13.409650063138001 42.442330963104538 0)
+
+OGRFeature(Layer_test):1
+  Name (String) = Segnaposto senza titolo
+  Description (String) =
+  POINT (10.32563140720638 48.543377564231768 0)
+&lt;/code&gt;
+
+Per avere le librerie GDAL OGR aggiornate io di solito uso l&#039;installer &quot;gdal-XX-XXXX-core.msi&quot; che trovi qui: http://goo.gl/0htEj
+
+Alla prossima]]></description>
+		<content:encoded><![CDATA[<p>Ciao stuppolo,<br />
+e benvenuto. Questo post è un po&#8217; vecchio e FWTools non è aggiornato da un po&#8217; di tempo. In ogni caso dovrebbe essere in grado di leggere le informazioni che chiedi.<br />
+Però non da un kmz, ma da un kml, ovvero la versione non compressa.</p>
+<p>Invece di &#8220;gdalinfo&#8221;, dovrai usare il comando analogo per file vettoriali, ovvero &#8220;ogrinfo&#8221;. La sintassi è molto simile:</p>
+<p><code>ogrinfo input.kml</code></p>
+<p>Ti restituirà qualcosa come:<br />
+<code><br />
+INFO: Open of `input.kml' using driver `KML' successful.<br />
+1: Layer_test (3D Point)<br />
+</code></p>
+<p>Se vuoi un output, simile a quello che leggi sopra per una tif, dovrai scrivere:<br />
+<code><br />
+ogrinfo input.kml  "Layer_test"<br />
+</code></p>
+<p>Avrai<br />
+<code><br />
+Layer name: Layer_test<br />
+Geometry: 3D Point<br />
+Feature Count: 2<br />
+Extent: (10.325631, 42.442331) - (13.409650, 48.543378)<br />
+Layer SRS WKT:<br />
+GEOGCS["WGS 84",<br />
+    DATUM["WGS_1984",<br />
+        SPHEROID["WGS 84",6378137,298.257223563,<br />
+            AUTHORITY["EPSG","7030"]],<br />
+        TOWGS84[0,0,0,0,0,0,0],<br />
+        AUTHORITY["EPSG","6326"]],<br />
+    PRIMEM["Greenwich",0,<br />
+        AUTHORITY["EPSG","8901"]],<br />
+    UNIT["degree",0.0174532925199433,<br />
+        AUTHORITY["EPSG","9108"]],<br />
+    AUTHORITY["EPSG","4326"]]<br />
+Name: String (0.0)<br />
+Description: String (0.0)<br />
+OGRFeature(Layer_test):0<br />
+  Name (String) = Segnaposto senza titolo<br />
+  Description (String) =<br />
+  POINT (13.409650063138001 42.442330963104538 0)</p>
+<p>OGRFeature(Layer_test):1<br />
+  Name (String) = Segnaposto senza titolo<br />
+  Description (String) =<br />
+  POINT (10.32563140720638 48.543377564231768 0)<br />
+</code></p>
+<p>Per avere le librerie GDAL OGR aggiornate io di solito uso l&#8217;installer &#8220;gdal-XX-XXXX-core.msi&#8221; che trovi qui: <a href="http://goo.gl/0htEj" rel="nofollow">http://goo.gl/0htEj</a></p>
+<p>Alla prossima</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: stuppolo</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/comment-page-1/#comment-7933</link>
+		<dc:creator>stuppolo</dc:creator>
+		<pubDate>Sun, 18 Nov 2012 16:33:58 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comment-7933</guid>
+		<description><![CDATA[Ciao, interessante blog... mi domandavo se è possibile ricavare le coordinate da un file .kmz analogamente a quanto qui mostrato per i files di estensione .tif]]></description>
+		<content:encoded><![CDATA[<p>Ciao, interessante blog&#8230; mi domandavo se è possibile ricavare le coordinate da un file .kmz analogamente a quanto qui mostrato per i files di estensione .tif</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/comment-page-1/#comment-3547</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Wed, 09 Apr 2008 14:32:59 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comment-3547</guid>
+		<description><![CDATA[Ciao Osvaldo, grazie a te per averci visitato e per le critiche.
+Scrivere un articolo per &quot;tutti&quot; richiede sforzi che è difficile sostenere; se ci riuscissimo, questo blog sarebbe sicuramente migliore.
+Mi dispiace che tu abbia incontrato delle difficoltà, ma non avere alcun timore a scriverci: se saremo in grado di risponderti lo faremo con piacere.
+
+Alla prossima,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Osvaldo, grazie a te per averci visitato e per le critiche.<br />
+Scrivere un articolo per &#8220;tutti&#8221; richiede sforzi che è difficile sostenere; se ci riuscissimo, questo blog sarebbe sicuramente migliore.<br />
+Mi dispiace che tu abbia incontrato delle difficoltà, ma non avere alcun timore a scriverci: se saremo in grado di risponderti lo faremo con piacere.</p>
+<p>Alla prossima,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Osvaldo</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/comment-page-1/#comment-3546</link>
+		<dc:creator>Osvaldo</dc:creator>
+		<pubDate>Wed, 09 Apr 2008 14:18:49 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comment-3546</guid>
+		<description><![CDATA[Grazie tanto per i consigli. Cerca di non dare per scontato tante cose che il principiante non conosce e che talvolta teme di domandare per non far figure]]></description>
+		<content:encoded><![CDATA[<p>Grazie tanto per i consigli. Cerca di non dare per scontato tante cose che il principiante non conosce e che talvolta teme di domandare per non far figure</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: FWTools: convertire in batch da tif, ecw e jpg2000 a tif, ecw e jp2000!! at TANTO</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/comment-page-1/#comment-3325</link>
+		<dc:creator>FWTools: convertire in batch da tif, ecw e jpg2000 a tif, ecw e jp2000!! at TANTO</dc:creator>
+		<pubDate>Sat, 09 Jun 2007 17:37:28 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comment-3325</guid>
+		<description><![CDATA[[...] In pochi secondi avrete così convertito il vostro singolo file GeoTiff in formato ECW, mantenendo inalterate le informazioni geografiche. Lo potrete verificare con il comando gdalinfo. [...]]]></description>
+		<content:encoded><![CDATA[<p>[...] In pochi secondi avrete così convertito il vostro singolo file GeoTiff in formato ECW, mantenendo inalterate le informazioni geografiche. Lo potrete verificare con il comando gdalinfo. [...]</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: FWTools: estrarre le metainformazioni da un file vettoriale at TANTO</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/comment-page-1/#comment-789</link>
+		<dc:creator>FWTools: estrarre le metainformazioni da un file vettoriale at TANTO</dc:creator>
+		<pubDate>Wed, 21 Feb 2007 21:01:26 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comment-789</guid>
+		<description><![CDATA[[...] un post recente, ho parlato di FWTools ed ho introdotto il primo piccolissimo tutorial sul suo utilizzo. In [...]]]></description>
+		<content:encoded><![CDATA[<p>[...] un post recente, ho parlato di FWTools ed ho introdotto il primo piccolissimo tutorial sul suo utilizzo. In [...]</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

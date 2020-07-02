@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; python</title>
+	<atom:link href="http://blog.spaziogis.it/tag/python/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>MetaGETA: per estrarre, raccogliere, e trasformare metadati da dataset raster</title>
+		<link>http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/</link>
+		<comments>http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/#comments</comments>
+		<pubDate>Sun, 26 Jun 2011 19:00:04 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[metadata]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[raster]]></category>
+		<category><![CDATA[remote sensing]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3804</guid>
+		<description><![CDATA[In questo post, viene presentato MetaGETA, un’applicazione scritta in python, per estrarre e raccogliere metadati da dataset raster spaziali.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MetaGETA%3A+per+estrarre%2C+raccogliere%2C+e+trasformare+metadati+da+dataset+raster&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-06-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In un dopocena di un po’ di tempo fa, speso in letture web su <strong>python </strong>e <strong>gdal</strong>, ho &#8220;guardato&#8221; un po’ dentro l’archivio di <a title="Google code" href="http://code.google.com/" target="_blank">Google code</a>, ed in particolare tra i progetti etichettati con “<a title="google code gdal" href="http://code.google.com/hosting/search?q=label:gdal" target="_blank">gdal</a>”. Sono soltanto 17 e tra questi l’occhio mi è “caduto” su <strong><a href="http://code.google.com/p/metageta/">MetaGETA</a></strong>: <strong>Meta</strong>data <strong>G</strong>athering, <strong>E</strong>xtraction and <strong>T</strong>ransformation <strong>A</strong>pplication.<br />
+Si tratta di un’applicazione scritta in python, per estrarre e raccogliere metadati da dataset raster spaziali, in uno di questi formati:</p>
+	<ul>
+	<li>Generic  format (che legge tutti i formati “classici” di GDAL, incluso GDAL Virtual Raster)</li>
+	<li>EO1 ALI (L1G &amp; L1R) e Hyperion (L1R)</li>
+	<li>ACRES ALOS AVNIR-2/PRISM/PALSAR</li>
+	<li>ASTER</li>
+	<li>ACRES Landsat CCRS/SPOT 1-4</li>
+	<li>Digital Globe</li>
+	<li>ECW</li>
+	<li>ECWP</li>
+	<li>ENVI</li>
+	<li>ESRI Bil</li>
+	<li>ESRI GRIDs</li>
+	<li>ACRES Landsat FastL7A</li>
+	<li>JPEG2000</li>
+	<li>Landsat geotiff</li>
+	<li>NetCDF</li>
+	<li>NITF</li>
+	<li>SPOT 1-4</li>
+	<li>SPOT DIMAP</li>
+	</ul>
+	<p>La scelta è molto ampia, con formati “generici” ed altri “specializzati” tipici del mondo del remote sensing. L’architettura a plugin dell’applicazione consente comunque di aggiungere facilmente nuovi driver di lettura di metadati.</p>
+	<p>E’ uno strumento di grande utilità, perché l’estrazione di metadati strutturati consente di conoscere meglio le proprie basi dati e di dargli quindi <strong>più valore</strong>.</p>
+	<p>Si tratta di un software <em><strong>opensource </strong></em>multipiattaforma, installabile da codice sorgente e nel caso di Windows anche tramite un <em>installer</em>. Io ho testato soltanto quest’ultima versione.<br />
+Il lancio si esegue (anche) da riga di comando con questa sintassi tipo:</p>
+	<pre><span style=\"color: #808080;\">&gt;runcrawler.bat/sh arguments</span></pre>
+	<p>Se non vengono forniti argomenti sufficienti, si aprirà la finestra di dialogo sottostante, in cui è possibile scegliere il percorso da analizzare, quello del file di <em>output </em>del processo, ed altre opzioni (tra cui quella di cercare anche nelle sottocartelle).</p>
+	<p><img class="alignnone size-full wp-image-3806 aligncenter" title="metageta_dialog" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog.png" alt="" width="322" height="218" /></p>
+	<div>
+	<p>Gli <strong>output </strong>sono:</p>
+	<ul>
+	<li>un <strong>file .xls</strong> con i metadati raccolti</li>
+	<li>la generazione (opzionale) di un’immagine di <strong>anteprima </strong>e di un <strong>thumbnail </strong>per ogni immagine dell’archivio</li>
+	<li>un <strong>quadro d’unione</strong> in formato ESRI Shapefile in coordinate geografiche (ma <a title="EPSG:4283" href="http://prj2epsg.org/epsg/4283" target="_blank">EPSG:4283</a>, perché gli sviluppatori sono australiani, e gli piacciono i codici EPSG del paese loro), con in il <em>bounding box</em> di ogni immagine associato ai relativi metadati</li>
+	</ul>
+	<p>Se volete un&#8217;idea dei contenuti del <strong>file .xls di output</strong>, potete fare click <strong><a title="MetaGETA xls output" href="https://spreadsheets.google.com/spreadsheet/ccc?key=0AqILXbOb66_kdHdDdnEwZEVwYjJkU0NkekhTZU1xREE&amp;hl=it" target="_blank">qui</a></strong>: le coordinate del <em>bounding box</em>, la risoluzione, il sistema di coordinate, il <em>datatype</em>, il tipo di compressione, le dimensioni, il numero di bande, ecc.. Ma ci sono anche campi tipici (come detto sopra) del <em>remote sensing</em>.</p>
+	<p>Ho invece pubblicato su <strong><a title="MetaGETA geographic output" href="http://geocommons.com/maps/80636" target="_blank">GeoCommons</a></strong> uno shapefile di output di esempio. E&#8217; il classico layer poligonale costituito dai bounding box degli strati informativi processati &#8211; analogo a quello di output di <a title="gdaltindex" href="http://www.gdal.org/gdaltindex.html" target="_blank">gdaltindex</a> &#8211; arricchito dai metadati &#8220;intercettati&#8221; da MetaGETA.</p>
+	<p><a href="http://geocommons.com/maps/80636" target="_blank"><img border="0" class="alignnone size-full wp-image-3812 aligncenter" title="MetaGETA" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/MetaGETA.png" alt="" width="479" height="370" /></a></p>
+	<p>Aggiunti nuovi file nel proprio archivio (e dopo un&#8221;eventuale rimozione di vecchi), possono essere eseguite nuove operazioni di indicizzazione che aggiorneranno i record del file .xls . Questo può essere facilmente convertito in <strong>XML </strong>secondo lo schema <strong>ANZLIC Profile</strong> (ISO 19139) e caricato ad esempio su GeoNetwork. E&#8217; ancora una volta possibile <a href="http://metageta.googlecode.com/svn/trunk/doc/files/transforms-module.html" target="_blank">personalizzare</a> il processo, modificare lo schema di esportazione ed aggiungere anche nuovi campi.</p>
+	<p>MetaGETA però non fa miracoli e potrà estrarre soltanto i metadati associati ai vostri dati; in presenza di una &#8220;povera&#8221; coppia tif/tfw, non sarà in grado di determinarne il sistema di coordinate. Io l&#8217;ho trovato molto utile anche per questo: mi ha fatto scoprire diverse &#8220;falle&#8221; di alcune mie basi dati, ed evidenziato ancora una volta il grande valore del corredo informativo dei dati spaziali. Buon crawling!</p>
+	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/">MetaGETA: per estrarre, raccogliere, e trasformare metadati da dataset raster</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MetaGETA%3A+per+estrarre%2C+raccogliere%2C+e+trasformare+metadati+da+dataset+raster&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-06-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog.png" medium="image">
+			<media:title type="html">metageta_dialog</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/MetaGETA.png" medium="image">
+			<media:title type="html">MetaGETA</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/MetaGETA-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Python e GIS con GDAL/OGR: configurare l&#8217;ambiente di lavoro su windows</title>
+		<link>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/</link>
+		<comments>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/#comments</comments>
+		<pubDate>Sun, 09 Jan 2011 20:00:22 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[ogr]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3161</guid>
+		<description><![CDATA[Python e GIS sono ormai una coppia di fatto. In questo post è descritta la procedura per installare e configurare - in ambiente windows - il binding per Python  di GDAL/OGR. A cose fatte sarà possibile scrivere codice spaziale in Python.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Python+e+GIS+con+GDAL%2FOGR%3A+configurare+l%26%238217%3Bambiente+di+lavoro+su+windows&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>Python </strong>(<a title="Pyhon homepage" href="http://python.org/" target="_blank">http://python.org</a>) è un linguaggio di programmazione di alto livello, adatto ai più svariati obiettivi di programmazione. Viene usato per applicazioni web e desktop, giochi, programmazione scientifica, utility e anche per porzioni di sistemi operativi.<br />
+Anche chi ha la necessità di sviluppare delle applicazioni in grado di leggere, scrivere, analizzare ed elaborare dati ed informazioni spaziali, troverà in Python un compagno di viaggio piacevole, eclettico e ricco di pregi. Chi lavora in questo contesto e segue il mondo della programmazione, sa che si tratta di un linguaggio che sta diventando tra i più diffusi, sia nel mondo proprietario che in quello open-source, con a disposizione numerose librerie ad hoc.<br />
+Anche per questo, penso sia arrivato il momento (anzi mi sento in grande ritardo) di scrivere un post che fornisca gli strumenti per iniziare a “sporcarsi le mani”.<br />
+In linea teorica è possibile scrivere da zero codice Python che consenta di manipolare dati spaziali. Per fortuna esiste &#8211; tra le tante librerie disponibili &#8211;  il <a title="Binding python GDAL/OGE" href="http://trac.osgeo.org/gdal/wiki/GdalOgrInPython" target="_blank"><em>binding</em></a> Python di <strong><a title="Homepage gdal/ogr" href="http://www.gdal.org/" target="_blank">GDAL/OGR</a>;</strong> per iniziare è molto più comodo appoggiarsi sulle spalle di questo gigante.<br />
+Due annotazioni prima di passare agli aspetti pratici:</p>
+	<ul>
+	<li>questo post consentirà di configurare Python e GDAL/OGR in <strong>ambiente Windows</strong>. Confido in qualche collega della redazione per scrivere le istruzioni utili per altri sistemi operativi</li>
+	<li>verrà descritta una delle tante modalità possibili per configurare l’ambiente</li>
+	</ul>
+	<h2>Procedura</h2>
+	<p>Installare GDAL per Python su Windows è un processo semplice, che può essere portato fino in fondo, seguendo la seguente procedura:</p>
+	<ul>
+	<li>Scaricare l&#8217;<strong><em>installer</em></strong> di <strong>Python</strong> dal sito ufficiale &#8211; <a title="Python installer Download" href="http://www.python.org/download/" target="_blank">http://www.python.org/download/</a> &#8211; ed installarlo. E&#8217; possibile scaricare diverse release; noi abbiamo effettuato i nostri test con gli <em>installer</em> della <a title="Python 2.6.x windows installer" href="http://www.python.org/download/releases/2.6.6/" target="_blank"><strong>2.6.x</strong></a></li>
+	<li>Installare <strong>GDAL/OGR</strong> per Windows
+	<ul>
+	<li>Scaricarlo da <a title="GDAL/OGR per Windows" href="http://download.osgeo.org/gdal/win32" target="_blank">http://download.osgeo.org/gdal/win32/</a>. Abbiamo utilizzato il file “gdalwin32exe160.zip” che si trova nella cartella “1.6”.</li>
+	<li>Decomprimere questo file in una cartella del vostro PC. L&#8217;abbiamo estratta in C:\ ed abbiamo quindi creato la cartella C:\gdalwin32-1.6.</li>
+	<li>Aggiungere la cartella di GDAL che contiene gli eseguibili (&#8220;C:\gdalwin32-1.6\bin&#8221; nel nostro caso) alla variabile di ambiente  “Path”.
+	<ul>
+	<li>Aprire il &#8220;Pannello di controllo&#8221; di Windows</li>
+	<li>Fare click su Sistema (se usate la visualizzazione per categorie, “Prestazioni e manutenzione” e poi &#8220;Sistema&#8221;).</li>
+	<li>Fare click su Avanzate</li>
+	<li>Fare click su “Variabili d&#8217;ambiente”.</li>
+	<li>Cercare la voce “Path” tra le “Variabili di sistema” e cliccare su Modifica.</li>
+	<li>Fare click sulla cella “Valore variabile”, andare in fondo alla riga, aggiungere un “;” ed inserire il percorso completo della cartella “bin” della vostra installazione di GDAL (C:\gdalwin32-1.6\bin nel nostro caso).</li>
+	<li>Fare Click su OK.<br />
+<img title="gdal-bin Windows Path" src="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" alt="gdal-bin Windows Path" width="347" height="147" /></li>
+	</ul>
+	</li>
+	</ul>
+	<ul>
+	<li>Aggiungere “GDAL_DATA” come nuova variabile d&#8217;ambiente.
+	<ul>
+	<li>Fare click su &#8220;Nuovo&#8221; nella finestra &#8220;Variabili d&#8217;ambiente&#8221;.</li>
+	<li>Inserire “GDAL_DATA” nel campo “Nome variabile”.</li>
+	<li>Inserire il percorso completo della cartella data di GDAL nel campo “Valore variabile” (nel nostro caso “C:\gdalwin32-1.6\data”).</li>
+	<li>Fare click su &#8220;OK&#8221;. Aggiungeremo più avanti altre variabili d&#8217;ambiente, quindi potete tenere aperta questa finestra di dialogo.<br />
+<img title="gdal-data Windows path" src="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-data.png" alt="" width="347" height="147" /></li>
+	</ul>
+	</li>
+	</ul>
+	</li>
+	</ul>
+	<ul>
+	<li>Installare <strong>PROJ.4 </strong>per Windows. E&#8217; un pacchetto necessario per potere gestire le proiezioni ed i sistemi di coordinate.
+	<ul>
+	<li>Scaricare PROJ.4 da <a title="PROJ.4 per windows" href="http://download.osgeo.org/proj/" target="_blank">http://download.osgeo.org/proj/</a>. Il file binario per Windows – proj446_win32_bin.zip &#8211; non è aggiornatissimo, ma non è un problema.</li>
+	<li>Decomprimere questo file in una cartella del vostro PC, ad esempio in “C:\proj”.</li>
+	<li>Aggiungere la cartella “bin” di PROJ.4 (“C:\proj\bin” nel nostro caso) alla variabile di ambiente &#8220;Path&#8221;. Per farlo dovete seguire gli stessi passi visti sopra per la cartella &#8220;bin&#8221; di GDAL, ed aggiungere stavolta “C:\proj\bin”.</li>
+	<li>Aggiungere “PROJ_LIB” come nuova variabile d&#8217;ambiente. Dovete seguire le stesse istruzioni usate per la variabile &#8220;GDAL_DATA&#8221;, ma il nome della variabile è stavolta “PROJ_LIB”, ed il valore è il percorso completo della cartella “nad” contenuta in  PROJ.4 (C:\proj\nad nel nostro caso).</li>
+	<li>Copiare il file “proj.dll” dalla cartella “bin” di PROJ.4 alla cartella bin di GDAL. Nel nostro caso da &#8220;C:\proj\bin\&#8221; a &#8220;C:\gdalwin32-1.6\bin\&#8221;.</li>
+	</ul>
+	</li>
+	<li>Installare il <strong>binding per Python di GDAL </strong>
+	<ul>
+	<li>Scaricare la versione appropriata alla vostra release di Python da <a title="GDAL/OGR Python binding" href="http://pypi.python.org/simple/GDAL/" target="_blank">http://pypi.python.org/simple/GDAL/</a>.  Il file più aggiornato, compatibile con la versione 2.6.X di Python, è “GDAL-1.6.1.win32-py2.6.exe”.</li>
+	<li>Fare doppio click sul file, e completare la procedura di installazione</li>
+	</ul>
+	</li>
+	<li><strong>Riavviare il sistema</strong>.</li>
+	</ul>
+	<p>Al riavvio avrete a disposizione un sistema in cui sarà possibile scrivere codice SPAZIALE (nel senso di bel codice <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' />   ).</p>
+	<h2>Ciao mondo</h2>
+	<p>Il codice sottostante lo potrete usare come test “Ciao Mondo”, e verificare la procedura seguita.</p>
+	<pre class="brush: python; ">
+# importazione dei moduli
+import sys
+try:
+  from osgeo import ogr
+except:
+  import ogr
+	
+# apertura di uno shapefile in lettura
+driver = ogr.GetDriverByName(&#039;ESRI Shapefile&#039;)
+fn = &#039;C:/nomefile.shp&#039;
+dataSource = driver.Open(fn, 0)
+	
+# verifica dell&#039;esistenza del file
+if dataSource is None:
+  print &#039;Il file &#039; + fn + &#039; non esiste&#039;
+  sys.exit(1)
+	
+# accesso al layer
+layer = dataSource.GetLayer()
+	
+# conteggio delle feature
+numFeatures = layer.GetFeatureCount()
+print &#039;Numero di feature: &#039; + str(numFeatures)
+	
+# estensione del layer
+extent = layer.GetExtent()
+print &#039;Estensione:&#039;, extent
+print &#039;Coordinate vertice in alto a sinistra:&#039;, extent[0], extent[3]
+print &#039;Coordinate vertice in basso a destra:&#039;, extent[1], extent[2]
+</pre>
+	<p>L’output sarà qualcosa di simile a quanto riportato sotto:</p>
+	<pre>Numero di feature: 33
+Estensione: (280151.67957063887, 294843.14350770513, 4210159.3865045626, 4220843.5284850718)
+Coordinate vertice in alto a sinistra: 280151.679571 4220843.52849
+Coordinate vertice in basso a destra: 294843.143508 4210159.3865</pre>
+	<h2>Buone letture</h2>
+	<p>La procedura descritta in questo post è quasi una traduzione dell&#8217;eccellente documento scritto da <strong>Chris Garrard</strong>: “<a title="Installing GDAL manually" href="http://www.gis.usu.edu/~chrisg/python/2009/docs/gdal_win.pdf" target="_blank">Installing GDAL manually</a>”. Il dott. Garrard cura un corso denominato &#8220;<strong><a title="http://www.gis.usu.edu/~chrisg/python/2009/" href="http://www.gis.usu.edu/~chrisg/python/2009/" target="_blank">Geoprocessing with Python using Open Source GIS</a></strong>&#8220;, di cui trovate online il materiale didattico (slide, esercizi e codice); è stato per me illuminante per fare i primi passi e consiglio a tutti i novizi di leggerlo: ASSOLUTAMENTE DA NON PERDERE (si, sto urlando).<br />
+Per chi non ha mai scritto codice Python, e non ne ha alcuna conoscenza, la pietra miliare è (per me) &#8220;<strong><a title="Pensare da informatico - Versione Python  " href="http://www.python.it/doc/Howtothink/Howtothink-html-it/index.htm" target="_blank">Pensare da informatico</a></strong>&#8220;.</p>
+	<h2>Buoni propositi</h2>
+	<p>Il desiderio mio (e credo dei colleghi della redazione) è quello di non lasciare questo post da solo. Nel 2011 vorrei mettergli accanto dei fratellini; non saranno magari dei ricchi tutorial, ma la coppia <strong>GIS &amp; Python</strong> sarà uno dei temi che terremo sotto osservazione e di cui daremo nota nel blog e/o soltanto nei canali Twitter e Facebook.</p>
+	<p>Buona scrittura <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':-D' class='wp-smiley' /> </p>
+	<p><div class="note"><div class="notetip"><br />
+In questi giorni il tema generale dell&#8217;installazione delle librerie <strong>GDAL </strong>su <strong>Windows </strong>è <a target="_blank" href="http://osgeo-org.1803224.n2.nabble.com/gdal-dev-FWTools-and-GDAL-1-7-0-td5887121.html">caldissimo</a>. Sono in preparazione <a target="_blank" href="http://osgeo-org.1803224.n2.nabble.com/gdal-dev-GDAL-windows-installers-available-td5904300.html">nuovi installer</a>, e probabilmente nei prossimi mesi aggiorneremo questo post con una procedura più semplice e diretta.<br />
+</div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/">Python e GIS con GDAL/OGR: configurare l&#8217;ambiente di lavoro su windows</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Python+e+GIS+con+GDAL%2FOGR%3A+configurare+l%26%238217%3Bambiente+di+lavoro+su+windows&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" medium="image">
+			<media:title type="html">gdal-bin Windows Path</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-data.png" medium="image">
+			<media:title type="html">gdal-data Windows path</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

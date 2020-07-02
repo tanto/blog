@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; web</title>
+	<atom:link href="http://blog.spaziogis.it/tag/web/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Le novità di Geoserver 2.1-beta1</title>
+		<link>http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/</link>
+		<comments>http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/#comments</comments>
+		<pubDate>Sun, 14 Nov 2010 23:48:36 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[geoserver]]></category>
+		<category><![CDATA[web]]></category>
+		<category><![CDATA[webgis]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2963</guid>
+		<description><![CDATA[Le novità di Geoserver 2.1beta. WMS a cascta, servizi virtuali, layer SQL e tante altre novità per un'importante release.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+novit%C3%A0+di+Geoserver+2.1-beta1&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-11-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://geoserver.org/" target="_blank"><img class="alignleft" style="margin-left: 10px; margin-right: 10px; border: 0pt none;" title="Geoserver" src="http://geoserver.org/s/1518/25/0.1/_/download/resources/com.atlassian.confluence.themes.geoserver%3Ageoserver/chrome/geoserver-logo.png" alt="" width="212" height="67" /></a></p>
+	<p>Da un po&#8217; di tempo, all&#8217;interno dei miei lavori, ho la fortuna di lavorare con Geoserver. Finora, in ambiente di produzione, ho sempre utilizzato la versione Stable (ad oggi la 2.0.2), ma avendo dovuto aggiornare il sistema per ovviare ad un piccolo problema con il salvataggio di alcune configurazioni tramite l&#8217;interfaccia web, risolto nelle nighlty builds successive, non ho potuto resistere alla tentazione di farmi un giro sulla nuova 2.1-beta1.<br />
+Andando in giro per il web in cerca di recensioni su questo rilascio, non ho trovato notizie in italiano riguardo le sue grandi ed importanti novità della nuova release, nonostante il la notizia sia di Settembre. Ho pensato quindi di riportarne qui una traduzione sintetica e commentata, credendo di fare cosa gradita a chi non avesse avuto modo di seguire gli aggiornamenti di questo software.</p>
+	<p>Sul blog di Geoserver potete leggere la <a href="http://blog.geoserver.org/2010/09/04/geoserver-21-beta-released/" target="_blank">nota di rilascio ufficiale</a>.</p>
+	<h2>WMS a cascata</h2>
+	<p>Fino alla precedente release Geoserver non permetteva di creare un servizio WMS che a suo volta andasse a interrogare altri server WMS. Questa novità permette di connettere, in cascata appunto, un&#8217;istanza di Geoserver con un qualsiasi altro server WMS compliant (es. Mapserver, ArcGIS Server, o un&#8217;altro Geoserver). All&#8217;amministratore del software, questa funzionalità appare come una nuova tipologia di datastore, configurabile da interfaccia web come le altre tipologie di sorgenti dati.</p>
+	<h2>Servizi virtuali</h2>
+	<p>Altra novità di grande importanza sono i servizi virtuali. Finora una singola istanza di Geoserver poteva servire un unico servizio globale. Per il servizio WMS si poteva ovviare usando i gruppi di layer e i layer innestati, ma il servizio appariva sempre come un unico endpoint. Con la 2.1 , sulla stessa singola istanza del server, potranno essere creati più servizi virtuali, che verranno esposti ai client come endpoint diversi.</p>
+	<h2>Livelli SQL</h2>
+	<p>Molto spesso si ha la necessità di esporre i dati presenti nel DB prefiltrati, o messi in join con altre tabelle dati, ecc. La soluzione più comunemente adottata è quella della creazione di viste, e di indirizzare Geoserer a queste piuttosto che alle tabelle originali. Le viste tuttavia richiedono un carico di lavoro aggiunto alla mantunzione dei dati originali. I livelli SQL sollevano l&#8217;utente da questo &#8220;overhead&#8221; offrendo la possibilità di definire, tramite una query SQL, la vista che si vuole avere sui dati.<br />
+La query si selezione (una classica SELECT&#8230;) può essere definita staticamente oppure parametrizzata, ovvero a meno di uno o più parametri che il client potrà passare come chiavi aggiuntive ad una classica richiesta WMS. Per evitare problemi di sicurezza (es. sql injections) o errori nel caso in cui i parametri non siano compatibili con la query, è possibile configurare, tramite la sintassi delle <a id="aptureLink_echgoBdpGs" href="http://en.wikipedia.org/wiki/Regular%20expression">regular expression</a>, un validatore per ogni parametro richiesto.<br />
+Per maggiori informazioni <a href="http://gridlock.openplans.org/geoserver/trunk/doc/en/user/data/sqlview.html" target="_blank">qua</a> trovate una spiegazione estesa.</p>
+	<h2>WPS (Web Processing Service)</h2>
+	<p>Per chi non la conoscesse, la specifica <a id="aptureLink_72Py6j8ea5" href="http://en.wikipedia.org/wiki/Web%20Processing%20Service">WPS</a> definisce un protocollo per i servizi che espongono funzionalità di processamento dati. Tramite questi servizi un client, inviando richieste esprese secondo la sintassi definita dalla specifica, può richiedere al server di eseguire un&#8217;operazione, tra quelle esposte dal servizio, su dati localizzati sul server stesso o raggiungibili via rete.<br />
+Tra le più note implementazioni della specifica troviamo <a href="http://www.zoo-project.org/" target="_blank">Zoo</a>, <a href="http://52north.org/maven/project-sites/wps/52n-wps-webapp/" target="_blank"><span class="external text">52 North WPS</span></a><span class="external text"> e </span><a href="http://pywps.wald.intevation.org/" target="_blank">PyWPS</a>.<br />
+Grazie al lavoro congiunto di Andrea Aime e Victor Olaya, per permettere l&#8217;integrazione di <a href="http://www.sextantegis.com/" target="_blank">SEXTANTE</a> con Geotools, dalla 2.1 anche Geoserver integrerà un servizio WPS.<br />
+Si tratta ancora di un work in progress, ma già funzionante, di cui è disponibile una <a href="http://geoserver.org/display/GEOSDOC/4.+WPS+-+Web+Processing+Service" target="_blank">bozza di documentazione</a>.</p>
+	<h2>Unità di misura</h2>
+	<p>Questa funzionalità potrà sembrare secondaria ma invece risolve tanti problemi nella definizione degli stili tramite SLD. Finora l&#8217;unica unità di misura disponibile era il pixel, per cui ogni valore di misura in un SLD era considerato relativo alla risoluzione dell&#8217;immagine, con la conseguenza di dover, spesso, definire più stilizzazione dipendenti dalla scala. Adesso è possibile indicare nel foglio di stile l&#8217;unità a cui si riferiscono i valori di misura presenti nell&#8217;SLD, come ad esempio la larghezza del tratto con cui disegnare una certa linea.  Anche per questa novità c&#8217;è la relativa <a href="http://docs.geoserver.org/latest/en/user/styling/sld-extensions/uom.html" target="_blank">pagina</a>.</p>
+	<h2>Risoluzione delle immagini</h2>
+	<p>Sempre in tema di renderizzazione, è possibile definire la risoluzione delle immagini generate dal server. Di default Geoserver usa 90 DPI, e finora non era possibile configurarlo diversamente. La possibilità di gestire la risoluzione  è di grande utilità, ad es., per gli output di &#8220;stampa&#8221;, che in genere richiede risoluzioni più elevate. <a href="http://docs.geoserver.org/latest/en/user/services/wms/vendor.html#format-options" target="_blank">Ecco qua come farlo</a>.</p>
+	<p>Queste le principali novità, ma il lavoro alle spalle di questa beta comprende anche  molti bug fix (una cinquantina) e tanti altri miglioramenti minori, che contribuiscono alla crescita di uno dei software più importanti e robusti del panorama GFOSS.  <strong><br />
+Colgo l&#8217;occasione per ringraziare tutto il gruppo di sviluppo di Geoserver ed i vari soggetti finanziatori che hanno reso possibile il rilascio di questa nuova versione.<br />
+</strong>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/">Le novità di Geoserver 2.1-beta1</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+novit%C3%A0+di+Geoserver+2.1-beta1&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-11-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://geoserver.org/s/1518/25/0.1/_/download/resources/com.atlassian.confluence.themes.geoserver%3Ageoserver/chrome/geoserver-logo.png" />
+		<media:content url="http://geoserver.org/s/1518/25/0.1/_/download/resources/com.atlassian.confluence.themes.geoserver%3Ageoserver/chrome/geoserver-logo.png" medium="image">
+			<media:title type="html">Geoserver</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>La carta degli andamenti del world wide web (terza edizione)</title>
+		<link>http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/</link>
+		<comments>http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/#comments</comments>
+		<pubDate>Thu, 24 Jan 2008 21:19:51 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[Cartografia]]></category>
+		<category><![CDATA[map]]></category>
+		<category><![CDATA[trend]]></category>
+		<category><![CDATA[web]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+carta+degli+andamenti+del+world+wide+web+%28terza+edizione%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-01-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/&amp;rft.language=English"></span>
+Anche quest&#8217;anno è stata presentata la carta degli andamenti del web. Siamo già alla terza versione, ed è sempre un piacere darne notizia. E&#8217; un po&#8217; una sintesi di due miei interessi: la cartografia ed il world wide web. C&#8217;è sempre qualcosa da imparare da questa carta, specie in due aspetti importanti per chi produce [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+carta+degli+andamenti+del+world+wide+web+%28terza+edizione%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-01-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Anche quest&#8217;anno è stata presentata la carta degli andamenti del web. Siamo già alla terza versione, ed è sempre un piacere darne notizia. E&#8217; un po&#8217; una sintesi di due miei interessi: la cartografia ed il world wide web.</p>
+	<p>C&#8217;è sempre qualcosa da imparare da questa carta, specie in due aspetti importanti per chi produce cartografia: la leggibilità di una carta, e la capacità di sintetizzare il mondo che ci circonda.</p>
+	<p>La mappa questa volta è in prospettiva, ha al centro (che caso) Google e sempre più in periferia Yahoo (purtroppo); pezzi di Yahoo (come Flickr) sono comunque in zone importanti della mappa, come quella in cui troviamo &#8220;<a href="http://dataportability.org/" title="DataPortability.org - Share and remix data using open standards:" target="_blank">dataportability.org</a>&#8220;.</p>
+	<p>Il lavoro degli autori è ispirato al <a href="http://www.evoq.ch/aktuell/sbb/bhf_gallery_3.html" title="Adrian Schaffner Swiss train stations" target="_blank">fantastico lavoro</a> fatto da Adrian Schaffner per le ferrovie Svizzere.</p>
+	<p><a href="http://www.informationarchitects.jp/web-trend-map-v30-countdown-new-layers" title="Web Trend Map v3.0" target="_blank">Qui</a> e <a href="http://www.informationarchitects.jp/trendmap3-countdown-sneak-peak" title="Web Trend Map v3.0" target="_blank">qui</a> trovate maggiori dettagli. E&#8217; una buona lettura.</p>
+	<p align="center"><a href="http://www.formforce.com/webtrendmap2008A3.pdf" title="La mappa in pdf" target="_blank"><img src="http://blog.spaziogis.it/wp-content/uploads/2008/01/trendmap3-google.png" style="border: 0px none " alt="trendmap3-google" border="0" height="276" width="494" /></a></p>
+	<p>via <a href="http://www.visualcomplexity.com/vc/project.cfm?id=547" title="visualcomplexity" target="_blank">visualcomplexity</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/">La carta degli andamenti del world wide web (terza edizione)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+carta+degli+andamenti+del+world+wide+web+%28terza+edizione%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-01-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/01/trendmap3-google.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/01/trendmap3-google.png" medium="image">
+			<media:title type="html">trendmap3-google</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

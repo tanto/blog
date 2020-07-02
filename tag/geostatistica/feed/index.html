@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; geostatistica</title>
+	<atom:link href="http://blog.spaziogis.it/tag/geostatistica/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Definizione di reti strategiche: analisi di densità edilizia attraverso la banca dati catastale di SIGMATER</title>
+		<link>http://blog.spaziogis.it/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/</link>
+		<comments>http://blog.spaziogis.it/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/#comments</comments>
+		<pubDate>Mon, 27 Sep 2010 11:04:23 +0000</pubDate>
+		<dc:creator>Lorenzo Perone</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[bms]]></category>
+		<category><![CDATA[catasto]]></category>
+		<category><![CDATA[geostatistica]]></category>
+		<category><![CDATA[ponti]]></category>
+		<category><![CDATA[sigmater]]></category>
+		<category><![CDATA[strade]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2676</guid>
+		<description><![CDATA[Per la definizione di una rete strategica delle strade gestite dalla Provincia di Bologna si sono individuati dei poli generatori di domanda/offerta di trasporto. In questo post si illustra come si è definita una mappa della densità edilizia pertendo dai dati censuari del catasto, consultati attraverso la banca dati del progetto SIGMATER.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+reti+strategiche%3A+analisi+di+densit%C3%A0+edilizia+attraverso+la+banca+dati+catastale+di+SIGMATER&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2010-09-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><div id="attachment_2724" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/Panoramica_1.jpg"><img class="size-medium wp-image-2724 " title="Panoramica_1" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/Panoramica_1-300x63.jpg" alt="Strada dell'appennino bolognese - Lorenzo Perone - 16.11.2008" width="300" height="63" /></a><p class="wp-caption-text">Strada dell&#39;appennino bolognese - Lorenzo Perone - 16.11.2008</p></div></p>
+	<p>Lavorare con risorse economiche sempre minori costringe ad operare delle scelte, a volte difficili, nelle strategie da adottare nel servizio manutenzione strade della Provincia di Bologna, ambito professionale nel quale sto operando. Ne scaturisce la consapevolezza che l’individuazione delle priorità degli interventi non può prescindere dalla definizione di una maglia strategica all’interno del complesso delle strade provinciali.</p>
+	<p style="text-align: left;">La rete delle strade gestite dalla Provincia di Bologna si estende per circa 1400 Km, con problematiche specifiche legate alla differenza del contesto tra pianura ed Appennino. La definizione di una maglia strategica è subordinata alle condizioni per le quali viene valutata, nel nostro caso abbiamo definito una maglia strategica in condizioni di esercizio ed una in condizioni di emergenza. Quest&#8217;ultima attualmente è riferita ad uno scenario legato ad eventi di tipo sismico e ad incidenti rilevanti delle industrie definite “a rischio”.</p>
+	<p style="text-align: left;">Gli ambiti applicativi in cui è vantaggioso definire una rete strategica sono molteplici. È utile in applicazioni quali la manutenzione programmata dei ponti (<em>BMS Bridge management system</em>), la gestione e la programmazione del servizio invernale di sgombero neve e risulta essenziale nel verificare il livello di servizio della rete in condizioni di emergenza sismica o idrogeologica.</p>
+	<p>Lo scopo di questo post e dei successivi che intendo scrivere sull&#8217;argomento, è quello di condividere una metodologia di lavoro, cogliendo l&#8217;occasione per migliorarne la qualità attraverso un confronto con la comunità. Data la complessità dell&#8217;analisi e la difficoltà di dettagliarla in un unico post ho scelto di iniziare a scrivere di come abbiamo individuato dei poli generatori di domanda/offerta di trasporto, in seguito definiti <em>target</em>, utilizzati nelle analisi dei percorsi che hanno definito le reti strategiche, in condizioni di emergenza e di esercizio.</p>
+	<blockquote>
+	<p style="text-align: left;"><em>&#8220;La manutenzione delle opere d’arte stradali, e dunque dei ponti, deve essere fondata, oltre che su concezioni tecniche, su diversi concetti di ordine economico, atti a definire i costi che è necessario sostenere durante l’intera vita utile dell&#8217;opera. Compito degli enti gestori della rete stradale risulta quello di programmare su basi razionali e oggettive una politica manutentiva che giunga alla definizione di una classifica delle priorità manutentive e che concili la necessità di mantenere un alto  livello di funzionalità e di servizio della rete con l’esigenza di ottimizzare le risorse. A supporto di tale indirizzo sono stati sviluppati strumenti che in letteratura prendono il nome di Bridge Management System (BMS) e riscontrano una sempre maggiore diffusione. L’applicazione della metodologia proposta prevede l’assegnazione ad ogni ponte ed arco stradale di un punteggio (variabile da 0 a 100) che indica la Valutazione Complessiva (VP) circa la priorità manutentiva del manufatto. L’assegnazione dell’indice VP di un ponte si ottiene tramite la combinazione lineare valori riferiti a tre macroparametri: &#8211; Importanza funzionale &#8211; macroparametro IF &#8211; Condizione strutturale &#8211; macroparametro CS &#8211; Rischio sismico &#8211; macroparametro RS&#8221; </em></p>
+	<p style="text-align: left;"><em>Estratto da : &#8220;I ponti della Provincia di Bologna, un metodo per la valutazione dello stato manutentivo e della vulnerabilità sismica&#8221; &#8211; Ing. Pierluigi Tropea (</em><em>U.O. Progettazione e direzione lavori, Servizio Manutenzione strade, Settore Lavori Pubblici, Provincia di Bologna)</em></p>
+	</blockquote>
+	<p>Per la definizione del macroparametro <em>Importanza funzionale</em> che si riferisce alla funzione che il ponte e il tratto stradale ad esso collegato svolgono in situazione di normale esercizio ed in situazione di emergenza, nell’ambito della mobilità e degli aspetti ad essa collegati, abbiamo effettuato una complessa analisi, basata sullo studio dei percorsi. Per l&#8217;individuazione dei percorsi che concorrono a definire la condizione di esercizio e di emergenza sono stati individuati dei <em>target</em> strategici<em>. </em> Tra questi uno riguarda i baricentri delle aree a maggiore densità edilizia. L&#8217;utilizzo dei dati censuari e di mappa della banca dati catastale, disponibile attraverso i servizi di <a href="http://www.sigmater.it/" target="_blank">SIGMATER</a> (Servizi Integrati Catastali e Geografici per il Monitoraggio Amministrativo del territorio), ha consentito la definizione di una mappa della densità edilizia che verrà aggiornata periodicamente permettendo così una stima aggiornata e coerente dell&#8217;indice di <em>Importanza Funzionale.</em></p>
+	<p style="text-align: left;">La banca dati SIGMATER, utilizzata nelle analisi, presenta una discreta complessità, ma offre numerose possibilità di analisi trasversali. Senza l&#8217;utilizzo dei dati Sigmater un&#8217;analisi &#8220;dinamica&#8221; di questo tipo non avrebbe potuto avere luogo, se non con costi e impegno decisamente maggiori.</p>
+	<p>Partendo dal censuario della banca dati catastale si individuano le categorie catastali appartenenti agli immobili a destinazione ordinaria, da cui in maniera più o meno diretta si può determinare la superficie ralativa ad ogni unità immobiliare, individuata mediante foglio mappale e subalterno. I gruppi di categorie analizzati sono <a title="Categorie catastali" href="http://www.agenziaterritorio.it/sites/territorio/files/agenzia/chi%20siamo/tabella_categorie_catastali.pdf" target="_blank">A, B e C</a>.</p>
+	<p><div id="attachment_2691" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-A.jpg" target="_blank"><img class="size-medium wp-image-2691  " style="border: 1px solid black;" title="Tabella gruppo A" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-A-300x132.jpg" alt="Valori della superficie media di un vano per gli immobili del gruppo A" width="300" height="132" /></a><p class="wp-caption-text">Tabella immobili gruppo A</p></div></p>
+	<p style="text-align: left;">Gli immobili della categoria A (Abitazioni) hanno la <a title="Definizione consistenza catastale" href="http://www.agenziaterritorio.it/?id=1208" target="_blank">consistenza</a> espressa in metri quadri (per gli immobili più recenti) o in vani. Per riportare la consistenza in vani ad una superficie si è stimato un valore medio, per ogni elemento del gruppo A che presentava entrambi i valori.</p>
+	<p style="text-align: left;">Per gli elementi del gruppo B la consistenza è espressa in volume (metri cubi) o, per gli edifici più recenti, in termini di superficie. In questo caso, per riportare la consistenza in volume alla superficie corrispondente, si è calcolata da ogni elemento del gruppo B che presentava entrambi i valori, una stima dell&#8217;altezza media, con i seguenti risultati.</p>
+	<p><div id="attachment_2689" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-B.jpg" target="_blank"><img class="size-medium wp-image-2689 " style="border: 1px solid black;" title="Tabella gruppo B" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-B-300x143.jpg" alt="Valori dell'altezza media per gli immobili del gruppo B" width="300" height="143" /></a> <p class="wp-caption-text">Tabella immobili gruppo B</p></div></p>
+	<p>Gli immobili del gruppo C hanno la consistenza espressa in termini di superficie e quindi non è stato necessario operare nessuna particolare stima. Ottenuti i valori complessivi di superficie per ciascuna particella catastale, si è determinato in centroide della stessa e si è calcolata la densità media di edificato per ettaro. Il metodo utilizzato  è la &#8220;Kernel density&#8221; con un raggio di ricerca di circa 2 Km.</p>
+	<p><div class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/centri-abitati.jpg" target="_blank"><img class="  " style="border: 1px solid black;" title="Densità edilizia" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/centri-abitati-300x300.jpg" alt="Densità dell'edificato dalla banca dati catastale" width="300" height="300" /></a> <p class="wp-caption-text">Densità dell&#39;edificato dalla banca dati catastale</p></div></p>
+	<p>Questo tipo di analisi permette di mantenere alto il valore di densità sul centroide della particella catastale ed al contempo di avere un&#8217;influenza reciproca delle aree edificate in un ambito spaziale più ampio (raggio di ricerca). Se confrontiamo la mappa delle densità ottenute, con i centri abitati derivati dal Piano Territoriale di  Coordinamento Provinciale (PCTP) si nota una sostanziale coerenza.</p>
+	<p><div id="attachment_2684" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/centri-abitati-densita-edilizia1.jpg" target="_blank"><img class="size-medium wp-image-2684 " style="border: 1px solid black;" title="centri abitati-densita edilizia" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/centri-abitati-densita-edilizia1-300x300.jpg" alt="Confronto tra la densità edilizia calcolata dalla banca dati catastale e i centri abitati del PTCP" width="300" height="300" /></a><p class="wp-caption-text">Confronto tra la densità edilizia calcolata dalla banca dati catastale e i centri abitati del PTCP</p></div></p>
+	<p style="text-align: left;">Da una mappa di dettaglio dell&#8217;area sud, si può vedere che esiste una zona con elevata densità edilizia che non risulta perimetrata come centro abitato. Si tratta del <a id="aptureLink_gsGZoFJs6p" href="http://www.brasimone.enea.it/">Centro ricerche ENEA del Brasimone</a>.</p>
+	<p><div id="attachment_2698" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/particolare-ridracoli.jpg" target="_blank"><img class="size-medium wp-image-2698 " style="border: 1px solid black;" title="particolare brasimone" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/particolare-ridracoli-300x300.jpg" alt="Particolare dell'area del Brasimone" width="300" height="300" /></a><p class="wp-caption-text">Particolare dell&#39;area del Brasimone</p></div></p>
+	<p style="text-align: left;"><strong>Questo tipo di analisi permette quindi una lettura del territorio coerente con il nostro scopo, cioè permette di valutare la densità del patrimonio edilizio in maniera complessiva, senza il solo riferimento ai centri abitati.</strong></p>
+	<p style="text-align: left;">Dovendo poi scegliere un numero adeguato di target, cioè di aree ad elevata densità edilizia, rappresentativo della realtà provinciale, abbiamo operato un taglio alla mappa delle densità edilizie alla soglia di 500 mq/ha. Per avere un&#8217;idea dei risultati che si ottengono con valori diversi è riportata una mappa di confronto.</p>
+	<p><div id="attachment_2700" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/confronto-cut-off.jpg" target="_blank"><img class="size-medium wp-image-2718 " style="border: 1px solid black;" title="confronto cut-off" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/confronto-cut-off-300x300.jpg" alt="Confronto tra le soglie minime di densità edilizia" width="300" height="300" /></a><p class="wp-caption-text">Confronto delle aree con soglia a 250, 500 e 750 mq/ha</p></div></p>
+	<p>Dalla mappa di confronto si evidienzia che utilizzando la soglia di 500 mq/ha si ottengono delle aree con isole delimitate, utilizzando la soglia di 250 mq/ha le zone con elevata densità formano degli agglomerati quasi continui. la soglia a 750 mq/ha risulta, secondo la nostra valutazione, non rappresentativa perché esclude tutta l&#8217;area appenninica.</p>
+	<p><div id="attachment_2700" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha.jpg" target="_blank"><img class="size-medium wp-image-2700" style="border: 1px solid black;" title="densita edilizia_filtro 500mqha" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha-300x300.jpg" alt="Mappa della densita edilizia con soglia a 500 mq/ha" width="300" height="300" /></a><p class="wp-caption-text">Mappa della densità edilizia con soglia a 500 mq/ha</p></div></p>
+	<p style="text-align: center;">
+	<p>I target sono definiti dal baricentro dei poligoni con densità edilizia maggiore della soglia, integrati dai baricentri di quelle aree che pur avendo una conformazione circoscritta, appartenevano ad un unico poligono con diverse propaggini.</p>
+	<p><div id="attachment_2701" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha_centroidi.jpg" target="_blank"><img class="size-medium wp-image-2701 " style="border: 1px solid black;" title="densita edilizia_filtro 500mqha_centroidi" src="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha_centroidi-300x300.jpg" alt="Target delle aree a elevata densità edilizia" width="300" height="300" /></a><p class="wp-caption-text">Target delle aree a elevata densità edilizia</p></div></p>
+	<p>I target così ottenuti entreranno a far parte degli elementi funzionali all&#8217;analisi dei percorsi, per la definizione dello scenario di esercizio e di emergenza di cui avremo occasione di parlare prossimamente.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/">Definizione di reti strategiche: analisi di densità edilizia attraverso la banca dati catastale di SIGMATER</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+reti+strategiche%3A+analisi+di+densit%C3%A0+edilizia+attraverso+la+banca+dati+catastale+di+SIGMATER&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2010-09-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/Panoramica_1-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/Panoramica_1.jpg" medium="image">
+			<media:title type="html">Panoramica_1</media:title>
+			<media:description type="html">Strada dell&#039;appennino bolognese - Lorenzo Perone - 16.11.2008</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/Panoramica_1-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-A.jpg" medium="image">
+			<media:title type="html">Tabella gruppo A</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-A-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-B.jpg" medium="image">
+			<media:title type="html">Tabella gruppo B</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/tabella-consistenza-B-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/centri-abitati-300x300.jpg" medium="image">
+			<media:title type="html">Densità edilizia</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/centri-abitati-densita-edilizia1.jpg" medium="image">
+			<media:title type="html">centri abitati-densita edilizia</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/centri-abitati-densita-edilizia1-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/particolare-ridracoli.jpg" medium="image">
+			<media:title type="html">particolare brasimone</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/particolare-ridracoli-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/confronto-cut-off.jpg" medium="image">
+			<media:title type="html">confronto cut-off</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/confronto-cut-off-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha.jpg" medium="image">
+			<media:title type="html">densita edilizia_filtro 500mqha</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha_centroidi.jpg" medium="image">
+			<media:title type="html">densita edilizia_filtro 500mqha_centroidi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/09/densita-edilizia_filtro-500mqha_centroidi-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Comprendere la geostatistica ed il kriging con un ottimo supporto didattico</title>
+		<link>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/</link>
+		<comments>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/#comments</comments>
+		<pubDate>Wed, 28 May 2008 21:57:59 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[geostatistica]]></category>
+		<category><![CDATA[kriging]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+Il primo impatto con la geostatistica può essere molto duro; specie se da un giorno all&#8217;altro si passa dal fare belle carte (false) tematiche ed allestimenti per la stampa, all&#8217;analisi spaziale. Si parte quasi sempre da una &#8220;strana&#8221; nuvola di punti, che rappresenta la distribuzione di una serie di dati noti, e dalla quale si [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il primo impatto con la geostatistica può essere molto duro; specie se da un giorno all&#8217;altro si passa dal fare belle carte (false) tematiche ed allestimenti per la stampa, all&#8217;analisi spaziale.</p>
+	<p>Si parte quasi sempre da una &#8220;strana&#8221; nuvola di punti, che rappresenta la distribuzione di una serie di dati noti, e dalla quale si dovrà eseguire un&#8217;interpolazione. Per fortuna esiste l&#8217;arma segreta: il kriging.</p>
+	<p>E&#8217; uno dei nomi che ti passa più sotto gli occhi, e solo per questo hai il sospetto che sia qualcosa di importante. Ricordi subito di averlo visto citato in quel particolare modulo di quel software, e magari provi subito ad usarlo. Pochi click e produci una bella carta di dispersione di una certa variabile. Spegni subito il cervello e vai ad impaginare la carta prodotta: un reticolato kilometrico, una legenda, una freccia nord ed una scala metrica. Non ti resta che esportare un bel pdf e consegnarlo a chi di dovere. FINITO!!!</p>
+	<p>Ovviamente non ho finito alcunché. L&#8217;esempio di sopra, macchiettistico ma non lontano da diverse realtà, contiene un brutto esempio procedurale. Non bisognerebbe mai limitarsi a fare qualche click su qualche bottone di un&#8217;interfaccia di un software, senza capire i processi che stanno alle spalle.</p>
+	<p>Il kriging è un famosissimo metodo di interpolazione spaziale, con diverse varianti. &#8220;E&#8217; un metodo di regressione usato nell&#8217;ambito dell&#8217;analisi spaziale (geostatistica) che permette di interpolare una grandezza nello spazio, minimizzando l’errore quadratico medio.&#8221; (Kriging &#8211; Wikipedia, da <a href="http://it.wikipedia.org/wiki/Kriging">http://it.wikipedia.org/wiki/Kriging</a>).</p>
+	<p>Ci sono diverse pubblicazioni e libri di testo che ne parlano diffusamente e che ne illustrano i principi su cui si poggia. Per i neofiti sarà di grande aiuto uno strumento didattico come <a href="http://www.ai-geostats.org/index.php?id=114" title="E{Z}-Kriging - Teaching Kriging" target="_blank">E{Z}-Kriging</a>.</p>
+	<p>Consente a studenti con un <em>background </em>matematico di base di esplorare e comprendere il mondo del kriging, ed in particolare quello dell&#8217;<em>ordinary kriging</em>. Si presenta con un&#8217;interfaccia grafica divisa in tre pannelli (vedi figura sottostante):</p>
+	<ol>
+	<li>quello per configurare la base dati</li>
+	<li>quello per la gestione del semivariogramma</li>
+	<li>e quello per il kriging</li>
+	</ol>
+	<p align="center"> <img src="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" style="border: 0px none " alt="ez-kriging" border="0" height="324" width="484" /></p>
+	<p align="left">La semplicità di utilizzo è molto alta. E&#8217; possibile impostare la posizione del punto di cui si vuole stimare il valore interpolato (in rosso e a sinistra, nella figura in alto) e quella dei punti con valori noti, così come variare i parametri del semivariogramma; per ogni modifica potremo valutarne immediatamente le conseguenze:</p>
+	<ul>
+	<li>
+	<p align="left">quanto pesi nel modello un punto al di fuori del range</p>
+	</li>
+	<li>
+	<p align="left">quanto sia ridotta l&#8217;influenza di punti aggregati</p>
+	</li>
+	<li>
+	<p align="left">quanto il variare dei valori dei punti, alteri i valori previsti e la varianza dell&#8217;errore</p>
+	</li>
+	<li>
+	<p align="left">come il modello di forma del semivariogramma, il nugget, il sill ed il range influenzino i risultati del kriging</p>
+	</li>
+	<li>
+	<p align="left">&#8230;</p>
+	</li>
+	</ul>
+	<p align="left">Non è uno strumento per fare vere simulazioni, a partire da dati propri. E&#8217; utile &#8220;soltanto&#8221; per capire come funziona questo famoso metodo di interpolazione, sia che lo si voglia applicare, sia che lo si voglia spiegare a qualcun altro.</p>
+	<p align="left">Segnalo in chiusura due belle letture utili a chi voglia avvicinarsi alla geostatistica ed al kriging:</p>
+	<ul>
+	<li>
+	<p align="left"><a href="http://eusoils.jrc.it/ESDB_Archive/eusoils_docs/other/EUR22904en.pdf" title="Practical Guide to Geostatistical Mapping of Environmental Variables" target="_blank">Practical Guide to Geostatistical Mapping of Environmental Variables</a></p>
+	</li>
+	<li>
+	<p align="left"><a href="http://www.itc.nl/%7Erossiter/teach/stats/ssi_short.pdf" title="Introduction to applied geostatistics" target="_blank">Introduction to applied geostatistics</a></p>
+	</li>
+	</ul>
+	<p>via <a href="http://www.perrygeo.net/wordpress/?p=122" title="So you want to learn to learn about kriging …" target="_blank">Perrygeo</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/">Comprendere la geostatistica ed il kriging con un ottimo supporto didattico</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" medium="image">
+			<media:title type="html">ez-kriging</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

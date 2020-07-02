@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+		>
+<channel>
+	<title>Commenti a: OpenAerialMap: un collezione libera di fotografie aeree</title>
+	<atom:link href="http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Fri, 04 Nov 2016 08:49:24 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+	<item>
+		<title>Di: andrea</title>
+		<link>http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/comment-page-1/#comment-3445</link>
+		<dc:creator>andrea</dc:creator>
+		<pubDate>Fri, 14 Dec 2007 17:03:53 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/#comment-3445</guid>
+		<description><![CDATA[Ciao Tiziano,
+credo tu abbia sbagliato l&#039;ordine della coppia di coordinate.
+Devi inserire prima le coordinate del vertice in alto a sinistra e poi quelle di quello in basso a destra:
+
+gdal_translate -projwin 24.21666 47.10000 24.93333 46.38333 -outsize 5000 5000 -of JP2KAK gdal_wms.xml riyadh.jp2
+
+Prova e fammi sapere.
+
+Ciao,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Tiziano,<br />
+credo tu abbia sbagliato l&#8217;ordine della coppia di coordinate.<br />
+Devi inserire prima le coordinate del vertice in alto a sinistra e poi quelle di quello in basso a destra:</p>
+<p>gdal_translate -projwin 24.21666 47.10000 24.93333 46.38333 -outsize 5000 5000 -of JP2KAK gdal_wms.xml riyadh.jp2</p>
+<p>Prova e fammi sapere.</p>
+<p>Ciao,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Tiziano</title>
+		<link>http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/comment-page-1/#comment-3444</link>
+		<dc:creator>Tiziano</dc:creator>
+		<pubDate>Fri, 14 Dec 2007 16:28:39 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/#comment-3444</guid>
+		<description><![CDATA[Ciao,
+ho provato il tuo script. E&#039; fantastica questa cosa. Tuttavia non appena ho cambiato coordinate non mi ha funzionato. Il comando che ho inserito è:
+
+gdal_translate -projwin 24.93333 46.38333 24.21666 47.10000 -outsize 5000 5000 -of JP2KAK gdal_wms.xml riyadh.jp2
+
+e l&#039;errore che mi ha dato è stato:
+
+Input file size is 1073741824, 536870912
+Computed -srcwin 611237465 130091785 -2137551 -2137551 from projected window.
+-srcwin 611237465 130091785 -2137551 -2137551 falls outside raster size of
+1073741824x536870912
+or is otherwise illegal
+
+Scusa l&#039;ignoranza, ma se mi puoi aiutare te ne sarei grato
+
+Grazie]]></description>
+		<content:encoded><![CDATA[<p>Ciao,<br />
+ho provato il tuo script. E&#8217; fantastica questa cosa. Tuttavia non appena ho cambiato coordinate non mi ha funzionato. Il comando che ho inserito è:</p>
+<p>gdal_translate -projwin 24.93333 46.38333 24.21666 47.10000 -outsize 5000 5000 -of JP2KAK gdal_wms.xml riyadh.jp2</p>
+<p>e l&#8217;errore che mi ha dato è stato:</p>
+<p>Input file size is 1073741824, 536870912<br />
+Computed -srcwin 611237465 130091785 -2137551 -2137551 from projected window.<br />
+-srcwin 611237465 130091785 -2137551 -2137551 falls outside raster size of<br />
+1073741824&#215;536870912<br />
+or is otherwise illegal</p>
+<p>Scusa l&#8217;ignoranza, ma se mi puoi aiutare te ne sarei grato</p>
+<p>Grazie</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

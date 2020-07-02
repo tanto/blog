@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml">
+<channel>
+<link>http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?layer=2</link>
+<title>TANTO - Bolzano chiama Bari</title>
+<managingEditor>admin</managingEditor>
+<guid>TANTO-layer-2</guid>
+<lastBuildDate>2012-06-20T04:06:09+01:00</lastBuildDate>
+<generator>www.mapsmarker.com</generator>
+<description>GeoRSS-feed created with MapsMarker.com WordPress Plugin</description>
+<item>
+<title>Bari</title>
+<link>http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?marker=6</link>
+<guid>TANTO-layer-2-marker-6</guid>
+<pubdate>2012-06-20T04:06:07+01:00</pubdate>
+<author>admin</author>
+<description><![CDATA[Bari è la città di <strong>Vincenzo Barbieri</strong> e della sua <a href="http://www.planetek.it/" target="_blank"><strong>PLANETEK</strong></a>]]></description>
+<image>http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-dist/images/marker.png</image>
+<source>http://blog.spaziogis.it</source>
+<where></where>
+<georss:where>
+<gml:Point>
+<gml:pos>41.120422 16.870537</gml:pos>
+</gml:Point>
+</georss:where>
+</item>
+<item>
+<title>Bolzano</title>
+<link>http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?marker=7</link>
+<guid>TANTO-layer-2-marker-7</guid>
+<pubdate>2012-06-20T04:06:47+01:00</pubdate>
+<author>admin</author>
+<description><![CDATA[Bolzano è la città di <strong>Andrea Antonello</strong> e della sua <a href="http://www.hydrologis.eu/" target="_blank"><strong>HydroloGIS</strong></a>]]></description>
+<image>http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-dist/images/marker.png</image>
+<source>http://blog.spaziogis.it</source>
+<where></where>
+<georss:where>
+<gml:Point>
+<gml:pos>46.496715 11.358005</gml:pos>
+</gml:Point>
+</georss:where>
+</item>
+</channel>
+</rss>

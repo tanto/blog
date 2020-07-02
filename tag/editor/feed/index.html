@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; editor</title>
+	<atom:link href="http://blog.spaziogis.it/tag/editor/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Editing vettoriale con OpenLayers</title>
+		<link>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/</link>
+		<comments>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/#comments</comments>
+		<pubDate>Mon, 21 Sep 2009 07:28:55 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[editor]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[MapFish]]></category>
+		<category><![CDATA[Open-Web-Mapping]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1251</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+Ultimamente mi è stato richiesto un applicativo di webmapping che mettesse chiunque (o quasi&#8230;) in condizione di gestire agevolmente un geodatabase, aggiornando nel tempo le informazioni contenute, comprese le feature geografiche. In due parole: un gestionale web, ma con delle funzionalità proprie dei GIS desktop. Il committente ha richiesto una soluzione open source ed io [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignright size-full wp-image-1235" src="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil.jpg" alt="pencil" width="172" height="216" />Ultimamente mi è stato richiesto un applicativo di webmapping che mettesse chiunque (o quasi&#8230;) in condizione di gestire agevolmente un geodatabase, aggiornando nel tempo le informazioni contenute, comprese le feature geografiche. In due parole: un gestionale web, ma con delle funzionalità proprie dei GIS desktop.<br />
+Il committente ha richiesto una soluzione open source ed io sono stato ben contento di proporre il rodato quartetto composto da <a href="http://mapserver.org" target="_blank">UMN-Mapserver</a>, <a href="http://postgis.refractions.net" target="_blank">PostGIS</a>, <a href="http://php.net" target="_blank">PHP</a> e <a href="http://mapfish.org" target="_blank">MapFish</a>.<br />
+In passato avevo già realizzato qualcosa di simile, ma si trattava di inserire dei punti a partire da una coppia di coordinate, operazione semplicissima grazie a PostGIS. Questa volta era necessario che l&#8217;utente disegnasse le geometrie online, direttamente nella finestra del browser, ed ho colto l&#8217;occasione per dare finalmente un&#8217;occhiata alle funzioni di editing vettoriale di <a href="http://openlayers.org" target="_blank">OpenLayers</a> 2.8. Ne sono rimasto estremamente soddisfatto, come sempre avviene quando si tratta di OpenLayers.<br />
+Scorrendo la <a href="http://openlayers.org/dev/examples/" target="_blank">pagina degli esempi</a> ed inserendo il filtro &#8220;vector&#8221;, ci si rende subito conto della potenza dei controlli dedicati all&#8217;editing.</p>
+	<p>Grazie agli esempi, che coprono quasi tutto lo spettro delle possibilità, è stato facile produrre la parte client del mio lavoro.<br />
+L&#8217;editor ottenuto è adattabile a qualsiasi back-end &#8220;spatial enabled&#8221;, è indipendente dal mapserver scelto per pubblicare i dataset online, dal geodbms usato per contenerli e dal linguaggio di programmazione lato server.<br />
+Il cuore del client è costituito dalle funzioni presentate in <a href="http://openlayers.org/dev/examples/vector-formats.html" target="_blank">questo esempio</a>, che consentono di disegnare una feature da <strong>serializzare</strong> sotto forma di stringa in ben 6 formati standard differenti. Ottenuta la stringa, il gioco è fatto: uno script lato server si occupa di recuperarla e lanciare una query di inserimento nel geodabase (ci sono, come sempre, anche altre soluzioni).<br />
+L&#8217;operazione inversa, vale a dire <strong>deserializzare</strong> una stringa ed ottenere una feature, è ugualmente possibile e può essere molto utile.<br />
+Per esempio, volendo rifinire degli shapefile su una base Google Maps o <a href="http://openstreetmap.org">Openstreetmap</a>, basta trasformarli KML (o in uno degli altri 5 formati supportati), aprire il file con un editor di testo e, infine, copiare ed incollare il contenuto dentro la textarea del nostro editor. A questo punto si è liberi di modificare a piacimento le feature importate.<br />
+Questo è solo un esempio grezzo di import, dispobile &#8220;out of the box&#8221;, ma una volta collegato l&#8217;editor ad un back-end spaziale si può dare sfogo alla fantasia e creare delle funzioni di importazione più raffinate.</p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/static/vectoreditor/"><img border="0" class="aligncenter size-full wp-image-1298" title="vector editing con openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing.png" alt="vector editing con openlayers" width="480" height="426" /></a></p>
+	<p style="text-align: left;">Cliccando <strong><a href="http://blog.spaziogis.it/static/vectoreditor/" target="_blank">qui</a></strong> potete vedere una versione super-generica del client di editing da me realizzato. Ho usato MapFish 1.1<a href="#nota1"><sup>[1]</sup></a> per dare un aspetto un po&#8217; più carino<a href="#nota2"><sup>[2]</sup></a> al tutto ed ho modificato il codice degli esempi affinché le diverse funzioni di editing potessero essere attivate da una toolbar invece che da una serie di checkbox e radiobutton. I commenti nel codice dovrebbero essere abbastanza esplicativi.</p>
+	<p><a name="nota1"><sup>[1]</sup></a> <em>Si tratta di una versione leggermente modificata in cui ho sostituito OpenLayers 2.7 con OpenLayers 2.8</em></p>
+	<p><a name="nota2"><sup>[2]</sup></a> <em>Qualcuno potrebbe cimentarsi con <a href="http://www.dojotoolkit.org/" target="_blank">Dojo</a> o <a href="http://jquery.com/" target="_blank">jQuery</a>&#8230; sono sicuro che non verrebbe affatto male</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p><strong>Nota</strong><br />
+Devo scusarmi con i lettori di TANTO iscritti al feed RSS.<br />
+Stamattina ho accidentalmente cliccato sul bottone &#8220;Pubblica&#8221; mentre scrivevo la bozza e nonostante mi sia precipitato a recuperare, non sono riuscito ad evitare che l&#8217;articolo incompleto finisse nel feed. Per farmi perdonare mi sono incollato al computer ed ho fatto il possibile per finire l&#8217;articolo e la demo alla svelta! In futuro starò più attento a dove clicco e soprattutto non inizierò a scrivere bozze di domenica mattina prima di colazione! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/">Editing vettoriale con OpenLayers</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/feed/</wfw:commentRss>
+		<slash:comments>19</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil.jpg" medium="image">
+			<media:title type="html">pencil</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing.png" medium="image">
+			<media:title type="html">vector editing con openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>QGIS 0.10 &quot;Io&quot; Release</title>
+		<link>http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/</link>
+		<comments>http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/#comments</comments>
+		<pubDate>Fri, 02 May 2008 19:23:37 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[desktop]]></category>
+		<category><![CDATA[editor]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[qgis]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS+0.10+%26quot%3BIo%26quot%3B+Release&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-05-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/&amp;rft.language=English"></span>
+E&#8217; con grande piacere e curiosità che scrivo di questa nuova release di QGIS (la notizia è del 30 aprile scorso). E&#8217; un GIS opensource rilasciato sotto licenza GNU General Public License, disponibile per Linux, Mac e Windows. Questa versione include 140 correzioni di bug, una maggiore stabilità,  e numerose nuove funzionalità. Queste le novità [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS+0.10+%26quot%3BIo%26quot%3B+Release&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-05-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>E&#8217; con grande piacere e curiosità che scrivo di questa nuova release di QGIS (la <a href="http://blog.qgis.org/?q=node/113" title="QGIS 0.10 " target="_blank">notizia</a> è del 30 aprile scorso). E&#8217; un GIS <em>opensource </em>rilasciato sotto licenza <em>GNU General Public License</em>, disponibile per Linux, Mac e Windows.</p>
+	<p>Questa versione include 140 correzioni di bug, una maggiore stabilità,  e numerose nuove funzionalità.</p>
+	<p>Queste le novità principali:</p>
+	<ul>
+	<li>il ridisegno della barra degli strumenti che ne migliora la chiarezza e la consistenza</li>
+	<li>aggiunte nuove funzioni di digitalizzazione</li>
+	<li>supporto per gli stili (ad ogni <em>layer </em>vettoriale sarà possibile associare uno stile grafico)</li>
+	<li>migliore gestione delle raster (trasparenza e classificazione)</li>
+	<li>supporto per il <em>drag and drop</em> dei file dentro il <em>file manager</em></li>
+	<li>creazione di un repository di plugin, diventato abbastanza ricco da quando esiste il supporto per python</li>
+	<li>rotazione e ridimensionamento dei simboli in basi ai valori di un campo selezionato</li>
+	</ul>
+	<p>Lo vado a <a href="http://download.qgis.org/downloads.rhtml" title="QGIS download" target="_blank">scaricare</a> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+	<p align="center"><img src="http://blog.spaziogis.it/wp-content/uploads/2008/05/qgis_io.jpg" alt="QGIS 0.10 “Io” Release Announcement" /></p>
+	<p><a href="http://blog.qgis.org/?q=node/113" title="http://blog.qgis.org/?q=node/113"><br />
+</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/">QGIS 0.10 &quot;Io&quot; Release</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS+0.10+%26quot%3BIo%26quot%3B+Release&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-05-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/05/qgis_io.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/05/qgis_io.jpg" medium="image">
+			<media:title type="html">QGIS 0.10 “Io” Release Announcement</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Rilasciato Quantum GIS 0.8</title>
+		<link>http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/</link>
+		<comments>http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/#comments</comments>
+		<pubDate>Wed, 03 Jan 2007 08:34:38 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[editor]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[wms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Rilasciato+Quantum+GIS+0.8&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2007-01-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/&amp;rft.language=English"></span>
+Il 29 Dicembre 2006 è stato rilasciato Quantum GIS 0.8 Titan. E&#8217; una release molto importante per questo famoso pacchetto GIS opensource, come potrete vedere dalle principali caratteristiche di questa nuova versione: WMS support Improved vector and attribute editing Improved measure tools with area measuring Attribute searching New legend structure Refactoring of API to allow [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Rilasciato+Quantum+GIS+0.8&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2007-01-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il 29 Dicembre 2006 è stato rilasciato Quantum GIS 0.8 Titan. E&#8217; una release molto importante per questo famoso pacchetto GIS opensource, come potrete vedere dalle principali caratteristiche di questa nuova versione:</p>
+	<blockquote>
+	<ul>
+	<li>WMS support</li>
+	<li>Improved vector and attribute editing</li>
+	<li>Improved measure tools with area measuring</li>
+	<li>Attribute searching</li>
+	<li>New legend structure</li>
+	<li>Refactoring of API to allow the use of QGIS libraries in mapping applications</li>
+	<li>Improved MapServer export tool</li>
+	<li>Vector layer transparency and antialiasing</li>
+	<li>GRASS support in all platforms</li>
+	<li>Enhanced GRASS support and toolbox commands</li>
+	<li>Enhanced vector editing, including copy, cut, paste, snapping and vertex editing</li>
+	<li>Shapefile/OGR layer editing</li>
+	</ul>
+	</blockquote>
+	<p>L&#8217;ho provato un po&#8217; e sono rimasto positivamente colpito. <a target="_blank" title="Qgis Download" href="http://download.qgis.org/qgis/">Qui</a> il download (se lo scaricate in bit-torrent è meglio)
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/">Rilasciato Quantum GIS 0.8</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Rilasciato+Quantum+GIS+0.8&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2007-01-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/01/03/rilasciato-quantum-gis-08/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

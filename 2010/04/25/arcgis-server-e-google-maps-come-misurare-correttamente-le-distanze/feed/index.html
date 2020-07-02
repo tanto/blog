@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+		>
+<channel>
+	<title>Commenti a: ArcGIS Server e Google Maps: come misurare correttamente le distanze</title>
+	<atom:link href="http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Fri, 04 Nov 2016 08:49:24 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+	<item>
+		<title>Di: Alessio Di Lorenzo</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/comment-page-1/#comment-4969</link>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+		<pubDate>Sun, 02 May 2010 20:47:36 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997#comment-4969</guid>
+		<description><![CDATA[Ciao Domenico,
+avevo letto anche io di questa novità in ArcGIS 10 ma l&#039;avevo esclusa dal post per &quot;facilità di lettura&quot;. Grazie per l&#039;utile precisazione :)]]></description>
+		<content:encoded><![CDATA[<p>Ciao Domenico,<br />
+avevo letto anche io di questa novità in ArcGIS 10 ma l&#8217;avevo esclusa dal post per &#8220;facilità di lettura&#8221;. Grazie per l&#8217;utile precisazione <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Domenico Ciavarella</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/comment-page-1/#comment-4968</link>
+		<dc:creator>Domenico Ciavarella</dc:creator>
+		<pubDate>Sun, 02 May 2010 20:16:31 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997#comment-4968</guid>
+		<description><![CDATA[Volevo fare una precisazione riprendendo un commento di Melita Kennedy (ESRI).
+La tempistica ha caratterizzato la definizione di &#039;Web Mercator&#039;. L&#039;EPSG aveva aggiunto, nel marzo 2008, il &#039;Popular Visualisation CRS / Mercator&#039; con il codice 3785. Questo è stato deprecato e sostituito con il codice 3857 (WGS 84 / Pseudo-Mercator). Nel frattempo, ESRI aggiunse il 102113, &#039;WGS 1984 Web Mercator&#039;, la cui definizione è molto simile al 3785. In seguito venne aggiunto anche il 102100, (WGS 1984 Web Mercator Auxiliary Sphere) la cui definizione è simile al 3857. Ai tempi della 9.3, non era corretto cambiare l&#039;originale 102113 in 3785, e la sostituzione, 3857, non era ancora stata rilasciata. 
+
+Per ArcGIS 10, il 102100 cambierà in 3857, dal momento che si equivalgono.
+Il vantaggio nell&#039;usare la 102100 (3857) sta nel fatto che il datum è un WGS84 e quindi, se utilizziamo una proiezione ad esempio UTMWGS84, non abbiamo trasformazioni di datum rispetto alla 102113.]]></description>
+		<content:encoded><![CDATA[<p>Volevo fare una precisazione riprendendo un commento di Melita Kennedy (ESRI).<br />
+La tempistica ha caratterizzato la definizione di &#8216;Web Mercator&#8217;. L&#8217;EPSG aveva aggiunto, nel marzo 2008, il &#8216;Popular Visualisation CRS / Mercator&#8217; con il codice 3785. Questo è stato deprecato e sostituito con il codice 3857 (WGS 84 / Pseudo-Mercator). Nel frattempo, ESRI aggiunse il 102113, &#8216;WGS 1984 Web Mercator&#8217;, la cui definizione è molto simile al 3785. In seguito venne aggiunto anche il 102100, (WGS 1984 Web Mercator Auxiliary Sphere) la cui definizione è simile al 3857. Ai tempi della 9.3, non era corretto cambiare l&#8217;originale 102113 in 3785, e la sostituzione, 3857, non era ancora stata rilasciata. </p>
+<p>Per ArcGIS 10, il 102100 cambierà in 3857, dal momento che si equivalgono.<br />
+Il vantaggio nell&#8217;usare la 102100 (3857) sta nel fatto che il datum è un WGS84 e quindi, se utilizziamo una proiezione ad esempio UTMWGS84, non abbiamo trasformazioni di datum rispetto alla 102113.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Alessio</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/comment-page-1/#comment-4967</link>
+		<dc:creator>Alessio</dc:creator>
+		<pubDate>Sat, 01 May 2010 18:03:21 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997#comment-4967</guid>
+		<description><![CDATA[Non sbagli. 
+Sbaglio io quando certe volte utilizzo i due termini come se fossero dei sinonimi.
+Penso che la scelta dell&#039;uno o dell&#039;altro dovrebbe essere basata sulle funzionalità offerte all&#039;utente.
+Un applicativo in grado di eseguire operazioni di analisi spaziale (es:buffer) o query con operatori spaziali è un WebGIS, mentre uno che mostra di una serie di eventi o tematismi, senza grandi possibilità di interagire con quanto mostrato, rientra nella definizione di webmapping.
+Questa è la mia opinione ovviamente... ed ammetto di non essermi documentato chissà quanto sulla specifica questione :)
+
+PS
+grazie per la segnalazione dell&#039;articolo che parla di OL]]></description>
+		<content:encoded><![CDATA[<p>Non sbagli.<br />
+Sbaglio io quando certe volte utilizzo i due termini come se fossero dei sinonimi.<br />
+Penso che la scelta dell&#8217;uno o dell&#8217;altro dovrebbe essere basata sulle funzionalità offerte all&#8217;utente.<br />
+Un applicativo in grado di eseguire operazioni di analisi spaziale (es:buffer) o query con operatori spaziali è un WebGIS, mentre uno che mostra di una serie di eventi o tematismi, senza grandi possibilità di interagire con quanto mostrato, rientra nella definizione di webmapping.<br />
+Questa è la mia opinione ovviamente&#8230; ed ammetto di non essermi documentato chissà quanto sulla specifica questione <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+<p>PS<br />
+grazie per la segnalazione dell&#8217;articolo che parla di OL</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/comment-page-1/#comment-4966</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Sat, 01 May 2010 09:06:44 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997#comment-4966</guid>
+		<description><![CDATA[Ale,
+un altro post che parla di questo tema:
+http://geographika.co.uk/watch-out-for-openlayer-distances
+
+Sbaglio a preferire il termine web-mapping a web-gis?
+
+Questo tuo contributo è di grande utilità.
+
+Ciao,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ale,<br />
+un altro post che parla di questo tema:<br />
+<a href="http://geographika.co.uk/watch-out-for-openlayer-distances" rel="nofollow">http://geographika.co.uk/watch-out-for-openlayer-distances</a></p>
+<p>Sbaglio a preferire il termine web-mapping a web-gis?</p>
+<p>Questo tuo contributo è di grande utilità.</p>
+<p>Ciao,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

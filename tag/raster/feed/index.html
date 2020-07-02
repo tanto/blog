@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; raster</title>
+	<atom:link href="http://blog.spaziogis.it/tag/raster/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>MetaGETA: per estrarre, raccogliere, e trasformare metadati da dataset raster</title>
+		<link>http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/</link>
+		<comments>http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/#comments</comments>
+		<pubDate>Sun, 26 Jun 2011 19:00:04 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[metadata]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[raster]]></category>
+		<category><![CDATA[remote sensing]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3804</guid>
+		<description><![CDATA[In questo post, viene presentato MetaGETA, un’applicazione scritta in python, per estrarre e raccogliere metadati da dataset raster spaziali.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MetaGETA%3A+per+estrarre%2C+raccogliere%2C+e+trasformare+metadati+da+dataset+raster&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-06-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In un dopocena di un po’ di tempo fa, speso in letture web su <strong>python </strong>e <strong>gdal</strong>, ho &#8220;guardato&#8221; un po’ dentro l’archivio di <a title="Google code" href="http://code.google.com/" target="_blank">Google code</a>, ed in particolare tra i progetti etichettati con “<a title="google code gdal" href="http://code.google.com/hosting/search?q=label:gdal" target="_blank">gdal</a>”. Sono soltanto 17 e tra questi l’occhio mi è “caduto” su <strong><a href="http://code.google.com/p/metageta/">MetaGETA</a></strong>: <strong>Meta</strong>data <strong>G</strong>athering, <strong>E</strong>xtraction and <strong>T</strong>ransformation <strong>A</strong>pplication.<br />
+Si tratta di un’applicazione scritta in python, per estrarre e raccogliere metadati da dataset raster spaziali, in uno di questi formati:</p>
+	<ul>
+	<li>Generic  format (che legge tutti i formati “classici” di GDAL, incluso GDAL Virtual Raster)</li>
+	<li>EO1 ALI (L1G &amp; L1R) e Hyperion (L1R)</li>
+	<li>ACRES ALOS AVNIR-2/PRISM/PALSAR</li>
+	<li>ASTER</li>
+	<li>ACRES Landsat CCRS/SPOT 1-4</li>
+	<li>Digital Globe</li>
+	<li>ECW</li>
+	<li>ECWP</li>
+	<li>ENVI</li>
+	<li>ESRI Bil</li>
+	<li>ESRI GRIDs</li>
+	<li>ACRES Landsat FastL7A</li>
+	<li>JPEG2000</li>
+	<li>Landsat geotiff</li>
+	<li>NetCDF</li>
+	<li>NITF</li>
+	<li>SPOT 1-4</li>
+	<li>SPOT DIMAP</li>
+	</ul>
+	<p>La scelta è molto ampia, con formati “generici” ed altri “specializzati” tipici del mondo del remote sensing. L’architettura a plugin dell’applicazione consente comunque di aggiungere facilmente nuovi driver di lettura di metadati.</p>
+	<p>E’ uno strumento di grande utilità, perché l’estrazione di metadati strutturati consente di conoscere meglio le proprie basi dati e di dargli quindi <strong>più valore</strong>.</p>
+	<p>Si tratta di un software <em><strong>opensource </strong></em>multipiattaforma, installabile da codice sorgente e nel caso di Windows anche tramite un <em>installer</em>. Io ho testato soltanto quest’ultima versione.<br />
+Il lancio si esegue (anche) da riga di comando con questa sintassi tipo:</p>
+	<pre><span style=\"color: #808080;\">&gt;runcrawler.bat/sh arguments</span></pre>
+	<p>Se non vengono forniti argomenti sufficienti, si aprirà la finestra di dialogo sottostante, in cui è possibile scegliere il percorso da analizzare, quello del file di <em>output </em>del processo, ed altre opzioni (tra cui quella di cercare anche nelle sottocartelle).</p>
+	<p><img class="alignnone size-full wp-image-3806 aligncenter" title="metageta_dialog" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog.png" alt="" width="322" height="218" /></p>
+	<div>
+	<p>Gli <strong>output </strong>sono:</p>
+	<ul>
+	<li>un <strong>file .xls</strong> con i metadati raccolti</li>
+	<li>la generazione (opzionale) di un’immagine di <strong>anteprima </strong>e di un <strong>thumbnail </strong>per ogni immagine dell’archivio</li>
+	<li>un <strong>quadro d’unione</strong> in formato ESRI Shapefile in coordinate geografiche (ma <a title="EPSG:4283" href="http://prj2epsg.org/epsg/4283" target="_blank">EPSG:4283</a>, perché gli sviluppatori sono australiani, e gli piacciono i codici EPSG del paese loro), con in il <em>bounding box</em> di ogni immagine associato ai relativi metadati</li>
+	</ul>
+	<p>Se volete un&#8217;idea dei contenuti del <strong>file .xls di output</strong>, potete fare click <strong><a title="MetaGETA xls output" href="https://spreadsheets.google.com/spreadsheet/ccc?key=0AqILXbOb66_kdHdDdnEwZEVwYjJkU0NkekhTZU1xREE&amp;hl=it" target="_blank">qui</a></strong>: le coordinate del <em>bounding box</em>, la risoluzione, il sistema di coordinate, il <em>datatype</em>, il tipo di compressione, le dimensioni, il numero di bande, ecc.. Ma ci sono anche campi tipici (come detto sopra) del <em>remote sensing</em>.</p>
+	<p>Ho invece pubblicato su <strong><a title="MetaGETA geographic output" href="http://geocommons.com/maps/80636" target="_blank">GeoCommons</a></strong> uno shapefile di output di esempio. E&#8217; il classico layer poligonale costituito dai bounding box degli strati informativi processati &#8211; analogo a quello di output di <a title="gdaltindex" href="http://www.gdal.org/gdaltindex.html" target="_blank">gdaltindex</a> &#8211; arricchito dai metadati &#8220;intercettati&#8221; da MetaGETA.</p>
+	<p><a href="http://geocommons.com/maps/80636" target="_blank"><img border="0" class="alignnone size-full wp-image-3812 aligncenter" title="MetaGETA" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/MetaGETA.png" alt="" width="479" height="370" /></a></p>
+	<p>Aggiunti nuovi file nel proprio archivio (e dopo un&#8221;eventuale rimozione di vecchi), possono essere eseguite nuove operazioni di indicizzazione che aggiorneranno i record del file .xls . Questo può essere facilmente convertito in <strong>XML </strong>secondo lo schema <strong>ANZLIC Profile</strong> (ISO 19139) e caricato ad esempio su GeoNetwork. E&#8217; ancora una volta possibile <a href="http://metageta.googlecode.com/svn/trunk/doc/files/transforms-module.html" target="_blank">personalizzare</a> il processo, modificare lo schema di esportazione ed aggiungere anche nuovi campi.</p>
+	<p>MetaGETA però non fa miracoli e potrà estrarre soltanto i metadati associati ai vostri dati; in presenza di una &#8220;povera&#8221; coppia tif/tfw, non sarà in grado di determinarne il sistema di coordinate. Io l&#8217;ho trovato molto utile anche per questo: mi ha fatto scoprire diverse &#8220;falle&#8221; di alcune mie basi dati, ed evidenziato ancora una volta il grande valore del corredo informativo dei dati spaziali. Buon crawling!</p>
+	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/">MetaGETA: per estrarre, raccogliere, e trasformare metadati da dataset raster</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MetaGETA%3A+per+estrarre%2C+raccogliere%2C+e+trasformare+metadati+da+dataset+raster&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-06-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/06/26/estrarre-raccogliere-e-trasformare-metadati-da-dataset-raster/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog.png" medium="image">
+			<media:title type="html">metageta_dialog</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/metageta_dialog-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/MetaGETA.png" medium="image">
+			<media:title type="html">MetaGETA</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/MetaGETA-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

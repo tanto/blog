@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; yahoo pipes</title>
+	<atom:link href="http://blog.spaziogis.it/tag/yahoo-pipes/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Generare un GeoRSS in modo automatico</title>
+		<link>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/</link>
+		<comments>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/#comments</comments>
+		<pubDate>Mon, 10 Aug 2009 21:16:25 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[georss]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[terremoti]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[yahoo pipes]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1152</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+Era un pezzo che desideravo sperimentare Yahoo Pipes , dopo esserne venuto a conoscenza grazie ad Andrea (ricorderete il suo precedente geniale post). In effetti ho giocato d’anticipo proprio su di lui, per cimentarmi a produrre un GeoRSS in puro stile web 2.0. Non ho certo intenzione di mettermi qui a tessere le lodi di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era un pezzo che desideravo sperimentare <a href="http://pipes.yahoo.com" target="_blank">Yahoo Pipes</a><strong> </strong>, dopo esserne venuto a conoscenza grazie ad Andrea (ricorderete il suo precedente <a href="http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/" target="_blank">geniale post</a>). In effetti ho giocato d’anticipo <a href="http://blog.spaziogis.it/2009/04/13/dati-pubblici-standard-e-interconnessi-dedicato/" target="_blank">proprio su di lui</a>, per cimentarmi a produrre un GeoRSS in puro stile web 2.0.</p>
+	<p>Non ho certo intenzione di mettermi qui a tessere le lodi di Pipes, sebbene a mio avviso non se ne parli mai abbastanza. Voglio solo ribadire che si tratta di <strong>uno strumento web 2.0 dalle potenzialità pressoché infinite</strong>, che aumentano esponenzialmente in funzione della crescente messe di risorse e fonti di dati disponibili sul web. A patto che, inutile dirlo, lo siano secondo standard aperti, come già Andrea ha molto ben sottolineato proprio nel suo citato articolo.</p>
+	<p>Passiamo ai fatti.</p>
+	<p>Un item <a href="http://en.wikipedia.org/wiki/GeoRSS#Examples_of_GeoRSS_Implementations" target="_blank">GeoRSS</a>, nella codifica W3C ha la seguente struttura:</p>
+	<pre>&lt;?xml version=\"1.0\"?&gt;
+ &lt;?xml-stylesheet href=\"/eqcenter/catalogs/rssxsl.php?feed=eqs7day-M5.xml\" type=\"text/xsl\"
+                  media=\"screen\"?&gt;
+ &lt;rss version=\"2.0\"
+      xmlns:geo=\"http://www.w3.org/2003/01/geo/wgs84_pos#\"
+      xmlns:dc=\"http://purl.org/dc/elements/1.1/\"&gt;
+  &lt;channel&gt;
+     &lt;title&gt;USGS M5+ Earthquakes&lt;/title&gt;
+     &lt;description&gt;Real-time, worldwide earthquake list for the past 7 days&lt;/description&gt;
+     &lt;link&gt;http://earthquake.usgs.gov/eqcenter/&lt;/link&gt;
+     &lt;dc:publisher&gt;U.S. Geological Survey&lt;/dc:publisher&gt;
+     &lt;pubDate&gt;Thu, 27 Dec 2007 23:56:15 PST&lt;/pubDate&gt;
+     <span style=\"color: #ff0000;\">&lt;item&gt; &lt;pubDate&gt;Fri, 28 Dec 2007 05:24:17 GMT&lt;/pubDate&gt; &lt;title&gt;M 5.3, northern Sumatra, Indonesia&lt;/title&gt; &lt;description&gt;December 28, 2007 05:24:17 GMT&lt;/description&gt; &lt;link&gt;http://earthquake.usgs.gov/eqcenter/recenteqsww/Quakes/us2007llai.php&lt;/link&gt; &lt;geo:lat&gt;5.5319&lt;/geo:lat&gt; &lt;geo:long&gt;95.8972&lt;/geo:long&gt; &lt;/item&gt;</span>
+     &lt;/channel&gt;
+   &lt;/rss&gt;</pre>
+	<p>L’obiettivo è <strong>costruire un GeoRSS a partire da una fonte di dati che viene aggiornata in tempo reale</strong>, nella fattispecie &#8211; e tanto per essere originali &#8211; l’elenco dei terremoti rilevati dal <a href="http://cnt.rm.ingv.it/earthquakes_list.php" target="_blank">Centro Nazionale Terremoti</a> dell’INGV, sul cui sito vedrete una pagina html con tutti gli ultimi eventi rilevati.</p>
+	<p>Per il nostro lavoro utilizzeremo sempre le stesse informazioni, ma in formato standard CSV &#8211; <a href="http://openmap.rm.ingv.it/gmaps/rec/files/last90days_events.csv" target="_blank">disponibili qui</a> &#8211; dunque perfettamente importabili pressochè ovunque. Vediamone i contenuti:</p>
+	<ul>
+	<li><strong>Lat</strong> – la latitudine dell’evento in gradi decimali;</li>
+	<li><strong>Lon</strong> – la longitudine dell’evento in gradi decimali;</li>
+	<li><strong>Depth</strong> – la profondità dell’ipocentro in km;</li>
+	<li><strong>UTC_Date</strong> – il momento temporale nel quale l’evento è stato registrato;</li>
+	<li><strong>Magnitude</strong> – la magnitudine Richter dell’evento;</li>
+	<li><strong>Locality</strong> – il distretto sismico nel quale è avvenuto il terremoto;</li>
+	<li><strong>Code</strong> – un codice univoco relativo all’evento;</li>
+	<li><strong>Query_Time</strong> – il tempo di query del file CSV, corrispondente a quello di caricamento della pagina del sito INGV.</li>
+	</ul>
+	<p>In Pipes, il primo passo consiste nell’andare a recuperare (fetch) la fonte dei dati (il <a href="http://openmap.rm.ingv.it/gmaps/rec/files/last90days_events.csv" target="_blank">file CSV</a>) per poterne poi utilizzare il contenuto. Verrà utilizzato il modulo “<a href="http://pipes.yahoo.com/pipes/docs?doc=sources#FetchCSV" target="_blank">Fetch CSV</a>” nel quale andremo ad inserire l’URL del CSV, usando la prima riga come intestazione delle colonne.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" alt="image" width="327" height="199" border="0" /></a>Per poter generare il GeoRSS, Pipes deve “vedere” nei dati recuperati elementi che siano chiaramente riferibili a una coppia di coordinate, pertanto rinomineremo i campi “Lat” e “Lon” del CSV nei prosaici “Latitude” e “Longitude” mediante il modulo “<a href="http://pipes.yahoo.com/pipes/docs?doc=operators#Rename" target="_blank">Rename</a>”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image1.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb1.png" alt="image" width="366" height="123" border="0" /></a>Lo standard GeoRSS prevede alcuni item che consentono di arricchire di informazioni descrittive ogni elemento geotaggato, poi visibili nel “balloon” ad esso associato in fase di visualizzazione su mappa.</p>
+	<p>Naturalmente si tratta di informazioni residenti nel CSV, che noi andremo opportunamente a rinominare in modo da consentire a Pipes di includerle nel singolo elemento del GeoRSS. Si tratta essenzialmente di:</p>
+	<ul>
+	<li><strong>&lt;title&gt;</strong> – il titolo dell’elemento, in questo caso il distretto sismico nel quale è avvenuto l’evento;</li>
+	<li><strong>&lt;link&gt;</strong> – l’URL alla risorsa associata all’elemento, ovvero la pagina dedicata al singolo evento sismico, realizzata dall’INGV;</li>
+	<li><strong>&lt;description&gt;</strong> – la descrizione dell’elemento, con la magnitudine, la profondità dell’ipocentro e la data del terremoto.</li>
+	</ul>
+	<p>Passeremo queste informazioni al Pipe semplicemente usando sempre il modulo “Rename” avendo stavolta l’accortezza di scegliere l’opzione “Copy As”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image2.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb2.png" alt="image" width="467" height="180" border="0" /></a> Qui sopra per <strong>&lt;title&gt;</strong>, con la necessità di sostituire l’antiestetico underscore presente nel campo “Locality” del CSV con uno spazio vuoto (blank) grazie al modulo “<a href="http://pipes.yahoo.com/docs?doc=operators#Regex" target="_blank">Regex</a>”.</p>
+	<p>La <strong>&lt;description&gt;</strong> dell’elemento geotaggato come già detto è costituita da magnitudine, profondità dell’ipocentro e data dell’evento sismico, informazioni presenti in tre differenti campi del CSV, che andremo a comporre in un’unica stringa grazie al modulo “<a href="http://pipes.yahoo.com/docs?doc=string#StringBuilder" target="_blank">String Builder</a>”. Questo verrà utilizzato però nell’ambito di un modulo “<a href="http://pipes.yahoo.com/docs?doc=operators#Loop" target="_blank">Loop</a>”, poichè è un’operazione che va ripetuta per ogni elemento presente nel CSV.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image3.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb3.png" alt="image" width="382" height="283" border="0" /></a></p>
+	<p>Notate come il risultato dello String Builder vada ad essere assegnato all’item &lt;description&gt;.</p>
+	<p>L’INGV, per ogni evento sismico registrato, genera una pagina html che riporta informazioni estremamente dettagliate riguardanti il terremoto, molto preziose per chi si occupa di sismologia, di protezione civile o comunque davvero interessanti anche a scopo didattico. <a href="http://cnt.rm.ingv.it/data_id/2206496920/event.html" target="_blank">Qui</a> quella relativa al famigerato evento del 6 aprile scorso che ha devastato l’Aquilano.</p>
+	<p>Osservando l’URL si nota che la stringa risulta la seguente:</p>
+	<pre>http://cnt.rm.ingv.it/data_id/<strong>[codice evento]</strong>/event.html</pre>
+	<p>dunque ciò che cambia è il codice evento, registrato nel campo “Code” del CSV. Ancora una volta, useremo la combinazione dei moduli “Loop” e “String Builder” per costruire il link alla pagina di ogni evento, assegnando il risultato all’item “eventoURL” che verrà poi rinominato nell’item <strong>&lt;link&gt;</strong>.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image4.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb4.png" alt="image" width="386" height="353" border="0" /></a>Dulcis in fundo… il modulo che genera il vero e proprio GeoRSS… voilà, si tratta di “<a href="http://pipes.yahoo.com/pipes/docs?doc=operators#LocationExtractor" target="_blank">Location Extractor</a>”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image5.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb5.png" alt="image" width="293" height="146" border="0" /></a>Voi direte: “embè, e i parametri dove sono?!?”. E’ quel che mi son chiesto anch’io quando l’ho visto. Ma poi leggendo la descrizione del modulo (cosa che vi consiglio vivamente di fare), si capisce come funziona:</p>
+	<blockquote><p><em>Questo modulo esamina il feed in input, alla ricerca di informazioni che indichino una località geografica. Se trova dati geografici, il modulo crea una y:location che costituisce l’elemento di output. Questo contiene svariati sotto-elementi, in funzione del feed di input.</em></p></blockquote>
+	<p>Dunque fa tutto lui. In pasto possiamo dargli sorgenti <a href="http://it.wikipedia.org/wiki/Geography_Markup_Language" target="_blank">GML</a>, <a href="http://georss.org/w3c" target="_blank">W3C Basic Geo</a>, tags KML e ovviamente GeoRSS, in output fornirà appunto l’elemento <strong>y:location</strong>, che potrà essere visualizzato direttamente su una mappa interattiva Yahoo Map. Qui sotto il risultato…</p>
+	<p><script src="http://l.yimg.com/a/i/us/pps/mapbadge_1.5.js">{"pipe_id":"d58e2af150e9e798e4c593b4c3609dfa","_btype":"map"}</script></p>
+	<p>Ma il vero valore aggiunto del pipe è quello di poter essere impiegato in svariati modi, dal “banale” embedding della mappa in blog e siti web, per finire ad altri davvero potentissimi, riutilizzabili in una miriade di modalità. Solo per citarne alcuni JSON, PHP, KML e ovviamente GeoRSS.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image6.png"><img style="display: inline; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb6.png" alt="image" width="491" height="138" border="0" /></a></p>
+	<p>E proprio il GeoRSS può essere usato ad esempio con OpenLayers, scrivendo un pò di codice html è possibile in pochi minuti importare il feed generato dal pipe come layer grazie alla call <a href="http://dev.openlayers.org/docs/files/OpenLayers/Layer/GeoRSS-js.html" target="_blank">OpenLayers.Layer.GeoRSS</a> ottenendo una mappa semplice ma efficace, come si vede in <a href="http://blog.spaziogis.it/static/ingv_georss/" target="_blank">questo esempio</a>… Altre modalità di fruizione del GeoRSS &#8211; generate sempre in modo automatico &#8211; le riporto qui appresso giusto per coloro che non hanno voglia di andare a consultare la <a href="http://pipes.yahoo.com/loscioccoinblu/d58e2af150e9e798e4c593b4c3609dfa" target="_blank">pagina del pipe</a>:</p>
+	<ul>
+	<li><a href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=http:%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3Dd58e2af150e9e798e4c593b4c3609dfa%26_render%3Drss&amp;aq=&amp;sll=42.065607,13.557129&amp;sspn=12.653211,19.753418&amp;ie=UTF8&amp;t=h&amp;z=2" target="_blank">Direttamente in Google Maps;</a></li>
+	<li>Un <a href="http://pipes.yahoo.com/pipes/pipe.run?_id=d58e2af150e9e798e4c593b4c3609dfa&amp;_render=kml" target="_blank">kml</a> da aprire con Google Earth.</li>
+	</ul>
+	<p>Insomma, a noi Yahoo Pipes ci fa letteralmente sognare… Perchè sapere di avere uno strumento col quale poter attingere, trasformare, plasmare e “ricablare il web” (il loro slogan) e i dati sparsi per il mondo usando la logica ad oggetti, dedicando i propri neuroni solo ed esclusivamente alle idee e al modo di tradurle in fatti… beh, è davvero troppo, troppo entusiasmante.</p>
+	<p>E allora “Yes, we Pipe!”&#8230; ma prima ancora <strong>&#8220;<a id="aptureLink_t9gT6rxX0j" href="http://en.wikipedia.org/wiki/Linked%20Data">Linked Data</a>&#8230; now!!!&#8221;</strong>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/">Generare un GeoRSS in modo automatico</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb1.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb2.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb3.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb4.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb5.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb6.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; JTS</title>
+	<atom:link href="http://blog.spaziogis.it/tag/jts/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>JEQL: un linguaggio di scripting geospaziale con la E maiuscola</title>
+		<link>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/</link>
+		<comments>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/#comments</comments>
+		<pubDate>Mon, 17 Jan 2011 11:20:56 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[JEQL]]></category>
+		<category><![CDATA[JTS]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[regexp]]></category>
+		<category><![CDATA[Scripting]]></category>
+		<category><![CDATA[SQL]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3272</guid>
+		<description><![CDATA[Si presenta il linguaggio di scripting JEQL, caratterizzato da eccezionali potenzialità nel processamento di dati geospaziali, attraverso l'illustrazione di un esempio applicativo.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=JEQL%3A+un+linguaggio+di+scripting+geospaziale+con+la+E+maiuscola&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-01-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Scopo del presente post è presentare un formidabile linguaggio di scripting, in cui io e <a title="Giovanni Allegri" href="http://blog.spaziogis.it/author/giohappy/" target="_blank">Giovanni Allegri</a> ci siamo imbattuti da un po’ di tempo a questa parte, che presenta delle potenzialità davvero eccezionali nel processamento di dati geospaziali. Il pretesto occasionale che ha riacceso il nostro sopito interesse nei confronti di <a title="JEQL" href="http://tsusiatsoftware.net/jeql/main.html" target="_blank">JEQL</a> é un recente post del blog Lin.ear Th.inking, <a title="Lin.ear th.inking: Visualizing geodetic information with JEQL" href="http://lin-ear-th-inking.blogspot.com/2010/12/visualizing-geodetic-information-with.html" target="_blank">Visualizing geodetic information with JEQL</a>, in cui l’autore Martin Davis (aka “Dr JTS”, l’attuale <em>designer</em> e <em>lead developer</em> della fantastica libreria JTS &#8230;e non solo!) introduce delle nuove funzioni geodetiche di calcolo sulle geometrie all&#8217;interno di JTS, illustrandone l&#8217;utilizzo mediante un&#8217;applicazione in JEQL che ripercorreremo nel seguito.</p>
+	<h2>Cos’è JEQL?</h2>
+	<p>JEQL è un <strong>Query Language sviluppato in Java</strong>, dove la <strong>“E”</strong> può assumere i seguenti significati:</p>
+	<ul>
+	<li> <strong>Extended</strong>, poiché implementa un numero sempre crescente di estensioni che lo rende più potente nel processamento dei dati rispetto alle tante versioni e dialetti <a title="SQL - Wikipedia" href="http://it.wikipedia.org/wiki/SQL" target="_blank">SQL</a> esistenti;</li>
+	<li><strong>Embeddable</strong>, in quanto il motore di JEQL può essere integrato all&#8217;interno di altre applicazioni, in modo da essere utilizzato come query language per modelli di dati tabellari;</li>
+	<li><strong>ETL</strong>, essendo l&#8217;<a title="Extract, transform, load - Wikipedia" href="http://it.wikipedia.org/wiki/Extract,_transform,_load" target="_blank">Extract/Transform/Load</a> il caso d&#8217;uso ideale di JEQL;</li>
+	<li><strong>Efficient</strong>, dato che garantisce velocità di sviluppo ed esecuzione.</li>
+	</ul>
+	<p>JEQL è dunque un linguaggio di scripting che consente il processamento di strutture di dati tabellari, compresi quelli geografici vettoriali. Fin qui nulla di nuovo, probabilmente penseranno i lettori esperti dei possenti RDBMS con estensione spaziale (PostgreSQL + PostGIS, Oracle Spatial, MySQL, ecc.) o del più leggero e, al tempo stesso, molto versatile SpatiaLite. Analogamente a quest&#8217;ultimo, <strong>JEQL non richiede l&#8217;installazione di un server database</strong> e ciò, assieme al fatto che è un linguaggio di scripting, rappresenta un grosso vantaggio in termini di portabilità. Si pensi ad esempio alla replicazione della configurazione di un DBMS a distanza di parecchio tempo oppure alla condivisione di uno script con un nostro collega. Inoltre, anche la velocità di sviluppo e di esecuzione rappresentano dei non trascurabili punti di forza. Naturalmente, esistono anche dei task non coperti da JEQL per i quali un RDBMS è insuperabile.<br />
+<strong>Quali tipi di dati è in grado di utilizzare?</strong> Oltre ai classici tipi Java (interi, stringhe, double) e le date, JEQL supporta anche le geometrie JTS e un vasto repertorio in continua crescita di funzioni spaziali, costruttori di predicati e funzioni di aggregazione, che lo rendono uno strumento particolarmente adatto per il processamento di dataset spaziali. Inoltre, è in grado di accedere in lettura e scrittura a diversi formati di dati (CSV, DBF, SHP, KML) e database compatibili con JDBC (Java Data Base Connectivity).<br />
+<strong>L&#8217;installazione di JEQL è molto semplice</strong>: nei sistemi operativi Windows, basta scompattare il <a href="http://tsusiatsoftware.net/jeql/download.html" target="_blank">pacchetto di installazione</a> (è appena stata rilasciata la versione 0.9) in una cartella con percorso non contenente spazi (<em>[JEQL_HOME]</em>) ed aggiungere nella variabile <em>PATH</em> di sistema il percorso <em>[JEQL_HOME]\bin</em>. Manca, tuttavia, uno script shell o qualcosa di analogo per Linux, che tuttavia non dovrebbe essere difficile da produrre.<br />
+<strong>L’apprendimento del linguaggio JEQL è abbastanza rapido</strong>, soprattutto per chi possiede già dei rudimenti di SQL, ed è facilitato dall&#8217;interprete che guida l&#8217;utente nell&#8217;individuazione e nella correzione degli errori. Il pacchetto di installazione è inoltre corredato da una lista di <em>unit test</em>, ovvero gli stessi esempi basilari utilizzati in fase di collaudo del codice. La documentazione rappresenta invece una delle poche note dolenti, essendo ancora un work in progress, nonostante la presenza di alcuni illuminanti <a href="http://tsusiatsoftware.net/jeql/user/examples.html" target="_blank">esempi applicativi</a>, diversi <a href="http://lin-ear-th-inking.blogspot.com/search/label/jeql" target="_blank">post su Lin.ear Th.inking</a> e una <a href="https://groups.google.com/group/jeql-users?hl=en&amp;pli=1" target="_blank">mailing list</a> dedicata, oltre alla indiscutibile cortesia e competenza dello sviluppatore.<br />
+Attualmente JEQL è rilasciato con <strong>doppia licenza</strong>: freeware e &#8220;commerciale&#8221;. Quest&#8217;ultima per consentirne l&#8217;integrazione all&#8217;interno di software commerciali (&#8230;e in quelli open source?).</p>
+	<h2>Un esempio applicativo: worldAirRoutes.jql</h2>
+	<p>Nel seguito, si cercherà di fornire un saggio delle potenzialità di JEQL, proponendoci le stesse finalità del post citato in precedenza, ovvero disegnare le rotte aeree a scala globale secondo <a href="http://web.unife.it/progetti/matematicainsieme/matcart/ortloss.htm" target="_blank">linee ortodromiche</a>, piuttosto che linee rette, con tutti gli accorgimenti del caso al fine di ottenere una buona resa grafica. Ci cimenteremo passo dopo passo con le fasi di importazione e normalizzazione dei dati di interesse fino al raggiungimento dello scopo. I dati utilizzati nell&#8217;applicazione sono:</p>
+	<ul>
+	<li><a href="http://openflights.svn.sourceforge.net/viewvc/openflights/openflights/data/airports.dat" target="_blank">airport.dat</a></li>
+	<li><a href="http://openflights.svn.sourceforge.net/viewvc/openflights/openflights/data/routes.dat" target="_blank">routes.dat</a></li>
+	<li><a href="http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" target="_blank">TM_WORLD_BORDERS_SIMPL-0.3.zip</a></li>
+	</ul>
+	<p>In particolare, i primi due sono parte degli open data del progetto <a title="OpenFlights" href="http://www.openflights.org/" target="_blank">OpenFlights</a>, rilasciati con <a title="Open Database License (Odbl)" href="http://www.opendatacommons.org/licenses/odbl/" target="_blank">Open Database License (Odbl)</a>, mentre lo shapefile semplificato dei <em>world borders</em> (a proposito della loro qualità, si consiglia la lettura di questo <a title="Free Shapefile of Countries of the World" href="http://barendgehrels.blogspot.com/2010/12/free-shapefile-of-countries-of-world.html" target="_blank">post</a> e successivi) è rilasciato da <a href="http://thematicmapping.org/downloads/world_borders.php" target="_blank">thematicmapping.org</a> con licenza <a title="Creative Commons CC-SA" href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Creative Commons CC-SA</a>.<br />
+Dopo aver installato JEQL 0.9, creiamo una cartella, vi collochiamo i dati appena scaricati (scompattando naturalmente lo zip file) e vi definiamo inoltre un semplice file di testo (<em>worldAirRoutes.jql</em>) nel quale andremo a scrivere il nostro codice.<br />
+Il primo passo dell’applicazione consiste nell&#8217;<strong>importazione dei dati relativi agli aeroporti (airport.dat)</strong>, tenendo presente che i file .dat in esame sono in formato CSV:</p>
+	<pre class="brush: java; ">
+// Read data from CSV
+CSVReader airports file: &quot;airports.dat&quot;;
+numAirports = select count(*) from airports;
+Print &quot;Number of airports to clean: &quot; + val(numAirports);
+Print airports limit: 10;
+</pre>
+	<p>Salviamo lo script, apriamo il prompt dei comandi e collochiamoci nella directory che lo contiene. Per eseguirlo occorre digitare <em>jeql worldAirRoutes.jql</em> e premere il tasto Invio. Successivamente, nel prompt dei comandi comparirà qualcosa del genere:</p>
+	<pre>Number of airports to clean: 6344
+col1:String, col2:String, col3:String, col4:String, col5:String, col6:String, col7:String, col8:String, col9:String, col10:String, col11:String
+1 Goroka Goroka Papua New Guinea GKA AYGA -6.081689 145.391881 5282 10 U
+2 Madang Madang Papua New Guinea MAG AYMD -5.207083 145.7887 20 10 U
+3 Mount Hagen Mount Hagen Papua New Guinea HGU AYMH -5.826789 144.295861 5388 10 U
+...</pre>
+	<p>La prima cosa che scopriamo è che le colonne della tabella “airports” sono identificate come “col1, col2 … colN”, sebbene il file CSV sia sprovvisto delle relative intestazioni dei campi (per la descrizione dei quali si rimanda a <a href="http://openflights.org/data.html" target="_blank">questa pagina</a>), e che i campi sono considerati tutti di tipo String. Procediamo quindi con la <strong>normalizzazione dei dati degli aeroporti</strong>, selezionando i dati di nostro interesse:</p>
+	<pre class="brush: java; ">
+// Select airports data with valid IATA airport code
+airports2 = select
+  col2 as name,
+  col3 as city,
+  col4 as country,
+  col5 as code,
+  col7 as lat,
+  col8 as lon
+  from airports
+  where RegEx.matches(col5,&#039;[A-Z]{3}&#039;);
+</pre>
+	<p>E&#8217; interessante notare che:</p>
+	<ul>
+	<li> per definire gli alias dei campi di una tabella è utilizzata la parola chiave <em>as</em>, così come avviene solitamente in molte versioni di SQL, tuttavia si tenga presente che in JEQL il suo uso è a discrezione dell’utente;</li>
+	</ul>
+	<ul>
+	<li> nella clausola <em>where</em> è utilizzata la funzione <em>RegEx.matches (campo, espressione regolare)</em> in modo da selezionare mediante una semplice <a title="Espressione regolare -Wikipedia" href="http://it.wikipedia.org/wiki/Espressione_regolare" target="_blank">espressione regolare</a> tutti e soli gli aeroporti con <a title="International_Air Transport Association airport code - Wikipedia" href="http://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code" target="_blank">codice IATA</a> composto da tre lettere maiuscole, in base allo standard ufficiale dell&#8217;<a title="International Air Transport Association (IATA)" href="http://www.iata.org/" target="_blank">International Air Transport Association (IATA)</a>.</li>
+	</ul>
+	<p>Occorre, inoltre, verificare la presenza di eventuali codici IATA duplicati, in modo da essere certi dell’univocità del campo <em>“code”</em>, al fine di utilizzarlo poi come chiave esterna nelle operazioni di join con la tabella delle rotte aeree (routes.dat), come si vedrà nel seguito.</p>
+	<pre class="brush: java; ">
+// Find duplicate IATA airport codes in airports data
+duplicateCodes = select *
+  from (select code, count(code) as numOccurrences
+    from airports2
+    group by code) as duplicates
+  where numOccurrences &gt; 1;
+Print duplicateCodes;
+</pre>
+	<p>A fronte di tale verifica, si riscontra un unico codice duplicato (<em>“TCG”</em>). Avvalendoci dell’ausilio della <a href="http://www.iata.org/ps/publications/Pages/code-search.aspx" target="_blank">banca dati ufficiale</a> è possibile risolvere tale ambiguità, scartando l&#8217;aeroporto di Tocache (Cina) al quale è stato erroneamente attribuito questo codice. A tal fine, la clausola <em>where</em> della prima <em>select</em> diventa:</p>
+	<pre class="brush: java; ">
+  where RegEx.matches(col5,&#039;[A-Z]{3}&#039;)
+  and col3!=&quot;Tocache&quot;;
+</pre>
+	<p>E’ dunque possibile commentare il codice relativo alla ricerca dei duplicati (<em>“//”</em> commenta una singola riga, mentre <em>“/* &#8230; */”</em> tutto il codice tra essi compreso &#8211; non a caso, come nel linguaggio Java) e verificare la bontà dei risultati fin qui ottenuti, visualizzando eventualmente i primi dieci record della tabella <em>“airports2”</em>.</p>
+	<pre class="brush: java; ">
+// Check intermediate results
+numAirports2 = select count(*) from airports2;
+Print &quot;Number of airports without duplicates: &quot; + val(numAirports2);
+</pre>
+	<p>Omettendo per brevità la visualizzazione del contenuto delle tabelle, otteniamo:</p>
+	<pre>Number of airports without duplicates: 5023</pre>
+	<p>Successivamente, si procede all&#8217;<strong>importazione e normalizzazione dei dati relativi alle rotte aeree (routes.dat)</strong>. In particolare, selezioniamo i codici IATA degli aeroporti di origine e destinazione relativi a ciascuna rotta aerea, e li combiniamo in un&#8217;unica stringa in modo da poter escludere le rotte duplicate mediante l’operazione di raggruppamento (<em>group by</em>). Da queste stringhe è poi possibile recuperare nuovamente i codici dai quali sono stati ottenuti. Inoltre, definiamo una chiave primaria <em>“rid”</em> tramite la funzione <em>rownum()</em> che restituisce il numero di riga.</p>
+	<pre class="brush: java; ">
+// Read data from CSV
+CSVReader routes file: &quot;routes.dat&quot;;
+numRoutes = select count(*) from routes;
+Print &quot;Number of routes to clean: &quot; + val(numRoutes);
+	
+// Select routes data removing duplicates
+routes2 = select
+  rownum() as rid,
+  String.substring(routeCode, 0, 3) as fromCode,
+  String.substring(routeCode, 3, 6) as toCode
+  from (select
+    //col3 as fromCode,
+    //col5 as toCode,
+    col3+col5 as routeCode
+    from routes
+    order by routeCode asc) as routesWithDuplicates
+  group by routeCode;
+	
+// Check intermediate results
+numRoutes2 = select count(*) from routes2;
+Print &quot;Number of routes without duplicates: &quot; + val(numRoutes2);
+</pre>
+	<p>ottenendo:</p>
+	<pre>Number of routes to clean: 64114
+Number of routes without duplicates: 36004</pre>
+	<p>Il task successivo consiste nell&#8217;associare ad ogni rotta aerea le coordinate dell&#8217;aeroporto di partenza e di quello di destinazione, scartando le coordinate con valore <em>null</em> e validando quelle che non lo sono, facendo ancora una volta ricorso alle espressioni regolari.</p>
+	<pre class="brush: java; ">
+// Extract origin airport data
+fromAirport = select
+  rid,
+  fromCode,
+  name as fromName,
+  city as fromCity,
+  country as fromCountry,
+  lat as fromLat,
+  lon as fromLon
+  from routes2
+  left outer join airports2
+  on routes2.fromCode == airports2.code;
+	
+// Extract destination airport data
+toAirport = select
+  rid,
+  toCode,
+  name as toName,
+  city as toCity,
+  country as toCountry,
+  lat as toLat,
+  lon as toLon
+  from routes2
+  left outer join airports2
+  on routes2.toCode == airports2.code;
+	
+// Join the last two tables (removing records with null coords)
+troute = select fromAirport.*, toAirport.* except rid
+  from fromAirport
+  join toAirport
+  on fromAirport.rid==toAirport.rid
+  where not Val.isNull(fromLat) and not Val.isNull(fromLon) and not Val.isNull(toLat) and not Val.isNull(toLon);
+	
+// Check if coords are valid
+troute2 = select *
+  from troute
+  where RegEx.matches(fromLat,&#039;-?((([0-9]|[1-8][0-9])(\.[0-9]*)?)|(90))&#039;)
+  and RegEx.matches(fromLon,&#039;-?((([0-9]|[1-9][0-9]|1[0-7][0-9])(\.[0-9]*)?)|(180))&#039;)
+  and RegEx.matches(toLat,&#039;-?((([0-9]|[1-8][0-9])(\.[0-9]*)?)|(90))&#039;)
+  and RegEx.matches(toLon,&#039;-?((([0-9]|[1-9][0-9]|1[0-7][0-9])(\.[0-9]*)?)|(180))&#039;);
+	
+// Check intermediate result
+numRoutes3 = select count(*) from troute2;
+Print &quot;Number of routes without duplicates and with valid coords: &quot; + val(numRoutes3);
+</pre>
+	<p>che ci restituisce:</p>
+	<pre>Number of routes without duplicates and with valid coords: 35475</pre>
+	<p>Un altro aspetto degno di nota è l’utilizzo della parola chiave <em>except</em> nella <em>select</em> della tabella <em>“troute”</em>. Si tratta di un’estensione solitamente assente nei vari linguaggi SQL che ci consente di selezionare tutti i campi di una particolare tabella ad eccezione di un campo.<br />
+Infine, selezioniamo i dati da cui poter derivare le geometrie delle rotte aeree e rappresentarle graficamente (da qui in poi, il codice è quello del Dr JTS con qualche piccolo adattamento):</p>
+	<pre class="brush: java; ">
+// Convert coords from string to double
+trte = select fromCity, toCity,
+  Val.toDouble(fromLon) fromLon, Val.toDouble(fromLat) fromLat,
+  Val.toDouble(toLon) toLon, Val.toDouble(toLat) toLat
+  from troute2;
+	
+// Split geodetic arcs and calculate lengths
+tlines = select fromCity, toCity, line, len
+  with {
+    line = Geodetic.split180(Geodetic.arc(fromLon, fromLat, toLon, toLat, 2));
+    len = Geom.length(line);
+  }
+  from trte order by len desc;
+	
+// Interpolate line color and fix line width
+tplot = select line,
+  Color.interpolate(&quot;ffffff&quot;, &quot;00aacc&quot;, &quot;0000ff&quot;, len / 50.0 ) lineColor,
+  0.2 lineWidth
+  from tlines;
+	
+// Import shapefile data
+ShapefileReader tworld file: &quot;TM_WORLD_BORDERS_SIMPL-0.3.shp&quot;;
+	
+// Select geometries and define line and fill colors
+tworldLine = select GEOMETRY, &quot;222222&quot; lineColor from tworld;
+tworldFill = select GEOMETRY, &quot;333333&quot; fillColor from tworld;
+	
+// Plot routes with world landmasses
+width = 1800;
+Plot width: width height: width / 2
+  extent: LINESTRING(-180 -90, 180 90)
+  data: tworldFill
+  data: tplot
+  data: tworldLine
+  file: &quot;routes.png&quot;;
+	
+// Plot routes without world landmasses
+Plot width: width height: width / 2
+  extent: LINESTRING(-180 -90, 180 90)
+  data: tplot
+  file: &quot;routes_only.png&quot;;
+</pre>
+	<p><a title="worldAirRoutes.jql" href="http://bit.ly/eTxd2R" target="_blank">Qui</a> è possibile effettuare il download dell&#8217;intero script. Infine, si mostrano le due immagini risultanti in cui sono rappresentate le rotte aeree rispettivamente con e senza i <em>world borders</em>. In particolare, le rotte sono disegnate in ordine di lunghezza decrescente, utilizzando un colore interpolato in base alla lunghezza, per cui spiccano le rotte più brevi con colore più chiaro. Anche nella seconda immagine, è possibile rilevare con buona approssimazione i limiti di molte terre emerse.</p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" target="_blank"><img class="aligncenter size-full wp-image-3308" style="border: 0pt none;" title="routes" src="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" alt="" width="500" height="250" /></a></p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" target="_blank"><img class="aligncenter size-full wp-image-3312" style="border: 0pt none;" title="routes_only" src="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" alt="" width="500" height="250" /></a></p>
+	<p>Come giustamente afferma Martin Davis, dalla densità delle rotte aeree che si percepisce nelle immagini si evince come agli europei piaccia molto volare. Ma neanche quelli delle East Coast scherzano! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+	<h2>Conclusioni</h2>
+	<p>L’esempio applicativo appena mostrato esprime già molte delle potenzialità offerte da JEQL, e i comandi attualmente disponibili sono molto numerosi (basta digitare <em>jeql -man</em> per scoprirlo!). JEQL offre inoltre anche la possibilità di estendere le sue funzionalità tramite un’interfaccia di programmazione (API), non ancora documentata, tramite la quale creare nuovi comandi e funzioni da poter utilizzare all’interno dei nostri script. Non nascondiamo la speranza, in parte malcelata dallo stesso Martin Davis, che un domani si possa usufruire di una doppia licenza open source/commerciale, che permetta di contribuire alla crescita della libreria con nuovi plugin e una migliore documentazione di tutte le caratteristiche offerte.</p>
+	<h2>Ringraziamenti</h2>
+	<p>Desidero ringraziare <strong>Giovanni Allegri</strong>, non solo per il proficuo scambio di idee avvenuto dietro le quinte, ma anche per aver sollecitato il rilascio della nuova release (0.9) di JEQL, senza la quale non sarebbe stato possibile riprodurre l&#8217;applicazione, e naturalmente <strong>Martin Davis</strong>, il padre di questo formidabile linguaggio, per aver ispirato questo post.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/">JEQL: un linguaggio di scripting geospaziale con la E maiuscola</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=JEQL%3A+un+linguaggio+di+scripting+geospaziale+con+la+E+maiuscola&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-01-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" medium="image">
+			<media:title type="html">routes</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" medium="image">
+			<media:title type="html">routes_only</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

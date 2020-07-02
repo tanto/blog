@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+		>
+<channel>
+	<title>Commenti a: GDAL in due clic con Open++</title>
+	<atom:link href="http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Fri, 04 Nov 2016 08:49:24 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+	<item>
+		<title>Di: Ale</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7398</link>
+		<dc:creator>Ale</dc:creator>
+		<pubDate>Fri, 21 Oct 2011 14:09:48 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7398</guid>
+		<description><![CDATA[Ciao a tutti,
+dopo 24 ore  di tribolazioni e tentativi vani di capire quali fossero le difficolta` di ArcGis nel leggere dati in formato tiff, con l&#039;aiuto di Andrea, ho scoperto che il problema che mi affligeva non era affatto legato all’istallazione di GDAL. 
+Pare che inavvertitamente io in qualche momento e non so per quale motivo, abbia cambiato il settaggio del formato dei numeri (Opzioni internazionali del Pannello di Controllo): sostanzialmente, nel caso in cui  il Separatore decimale sia rappresentato dalla virgola e i Simbolo raggruppamento cifre dal punto, ArcGIS va in confusione e non sa piu` interpretare correttamente i numeri in un tiff (in particolare i NoData).
+Insomma una stupidaggine… che mi e` costata ansia e frustrazione…
+Grazie ancora una volta ad Andrea, che ha avuto l’intuizione giusta…
+
+Alessandra]]></description>
+		<content:encoded><![CDATA[<p>Ciao a tutti,<br />
+dopo 24 ore  di tribolazioni e tentativi vani di capire quali fossero le difficolta` di ArcGis nel leggere dati in formato tiff, con l&#8217;aiuto di Andrea, ho scoperto che il problema che mi affligeva non era affatto legato all’istallazione di GDAL.<br />
+Pare che inavvertitamente io in qualche momento e non so per quale motivo, abbia cambiato il settaggio del formato dei numeri (Opzioni internazionali del Pannello di Controllo): sostanzialmente, nel caso in cui  il Separatore decimale sia rappresentato dalla virgola e i Simbolo raggruppamento cifre dal punto, ArcGIS va in confusione e non sa piu` interpretare correttamente i numeri in un tiff (in particolare i NoData).<br />
+Insomma una stupidaggine… che mi e` costata ansia e frustrazione…<br />
+Grazie ancora una volta ad Andrea, che ha avuto l’intuizione giusta…</p>
+<p>Alessandra</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7397</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Thu, 20 Oct 2011 08:23:20 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7397</guid>
+		<description><![CDATA[Ciao Alessandra,
+mi pare una bella cosa che ti sia tornato utile questo post. Che utility hai creato?? Perché non le condividi con noi?
+
+Per poterti aiutare con i &quot;problemi&quot; di cui parli, perché non ci invii in qualche modo il file di input ed il comando che hai utilizzato?
+
+Quando dici problemi, cosa intendi? Visualizzi male i file? ArcGIS non parte?
+
+Saluti,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Alessandra,<br />
+mi pare una bella cosa che ti sia tornato utile questo post. Che utility hai creato?? Perché non le condividi con noi?</p>
+<p>Per poterti aiutare con i &#8220;problemi&#8221; di cui parli, perché non ci invii in qualche modo il file di input ed il comando che hai utilizzato?</p>
+<p>Quando dici problemi, cosa intendi? Visualizzi male i file? ArcGIS non parte?</p>
+<p>Saluti,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Antonio Falciano</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7396</link>
+		<dc:creator>Antonio Falciano</dc:creator>
+		<pubDate>Thu, 20 Oct 2011 08:19:49 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7396</guid>
+		<description><![CDATA[Ciao Alessandra,
+per capire cosa sia potuto accadere occorre che tu ci dica cosa fanno di bello le tue &quot;utilissime utility&quot;. Sembra che si tratti di un problema di conversione di formato. In ogni caso, possiamo escludere a priori il fatto che Open++ possa influire sul comportamento di ArcGIS. Nel frattempo, magari potresti provare a rimuovere GDAL dalla variabile PATH di sistema e a verificare nuovamente il comportamento di ArcGIS, in modo da escludere eventualmente anche l&#039;ipotesi di un conflitto tra le librerie.
+ 
+Antonio]]></description>
+		<content:encoded><![CDATA[<p>Ciao Alessandra,<br />
+per capire cosa sia potuto accadere occorre che tu ci dica cosa fanno di bello le tue &#8220;utilissime utility&#8221;. Sembra che si tratti di un problema di conversione di formato. In ogni caso, possiamo escludere a priori il fatto che Open++ possa influire sul comportamento di ArcGIS. Nel frattempo, magari potresti provare a rimuovere GDAL dalla variabile PATH di sistema e a verificare nuovamente il comportamento di ArcGIS, in modo da escludere eventualmente anche l&#8217;ipotesi di un conflitto tra le librerie.</p>
+<p>Antonio</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Ale</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7395</link>
+		<dc:creator>Ale</dc:creator>
+		<pubDate>Thu, 20 Oct 2011 08:02:04 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7395</guid>
+		<description><![CDATA[Ciao Andrea,
+dopo aver installato GDAL sul mio computer e aver creato alcune utilissime utility, purtroppo ho avuto alcuni problemi con ArcGis 10 che non riesco a risolvere. In particolare non mi legge piu` correttamente alcuni tiff creati precedentemente. Sembra avere dei problemi con i Nodata values e con i numeri decimali.
+Hai qualche suggerimento?
+Grazie mille
+
+Alessandra]]></description>
+		<content:encoded><![CDATA[<p>Ciao Andrea,<br />
+dopo aver installato GDAL sul mio computer e aver creato alcune utilissime utility, purtroppo ho avuto alcuni problemi con ArcGis 10 che non riesco a risolvere. In particolare non mi legge piu` correttamente alcuni tiff creati precedentemente. Sembra avere dei problemi con i Nodata values e con i numeri decimali.<br />
+Hai qualche suggerimento?<br />
+Grazie mille</p>
+<p>Alessandra</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: chiara</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7389</link>
+		<dc:creator>chiara</dc:creator>
+		<pubDate>Sun, 16 Oct 2011 17:55:31 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7389</guid>
+		<description><![CDATA[fantastico, 
+
+grazie a voi per la tempestività e esaustività dei vostri feedback!
+Come temevo ero arrivata abbastanza vicina alla soluzione - tranne che per i parametri batch! - ma perlomeno così mi avete risparmiato ore di inutile frustrazione ;-) 
+Ora non mi resta che scatenare la fantasia e vedere se riesco ad aggiungere alla lista qualche comando di pubblica utilità...nel frattempo ho già cominciato a diffondere l&#039;open++ verbo...
+grazia ancora
+
+chiara]]></description>
+		<content:encoded><![CDATA[<p>fantastico, </p>
+<p>grazie a voi per la tempestività e esaustività dei vostri feedback!<br />
+Come temevo ero arrivata abbastanza vicina alla soluzione &#8211; tranne che per i parametri batch! &#8211; ma perlomeno così mi avete risparmiato ore di inutile frustrazione <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /><br />
+Ora non mi resta che scatenare la fantasia e vedere se riesco ad aggiungere alla lista qualche comando di pubblica utilità&#8230;nel frattempo ho già cominciato a diffondere l&#8217;open++ verbo&#8230;<br />
+grazia ancora</p>
+<p>chiara</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: GDAL in due clic con Open++ &#124; Geomatica in Italia &#124; Scoop.it</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7388</link>
+		<dc:creator>GDAL in due clic con Open++ &#124; Geomatica in Italia &#124; Scoop.it</dc:creator>
+		<pubDate>Fri, 14 Oct 2011 09:48:14 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7388</guid>
+		<description><![CDATA[[...]  GDAL in due clic con Open++           I nostri pi&#249; assidui lettori sicuramente ricorderanno un &#8220;vecchio&#8221; post di Andrea Borruso dal titolo &#8220;Il tasto destro per alleggerire un po&#8217; il lavoro di chi si occupa di GIS (su Windows e su Linux)&#8221;, un evergreen del nostro blog tra i pi&#249; visitati...     Source: blog.spaziogis.it [...]]]></description>
+		<content:encoded><![CDATA[<p>[...]  GDAL in due clic con Open++           I nostri pi&ugrave; assidui lettori sicuramente ricorderanno un &ldquo;vecchio&rdquo; post di Andrea Borruso dal titolo &ldquo;Il tasto destro per alleggerire un po&rsquo; il lavoro di chi si occupa di GIS (su Windows e su Linux)&rdquo;, un evergreen del nostro blog tra i pi&ugrave; visitati&#8230;     Source: blog.spaziogis.it [...]</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Antonio Falciano</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7387</link>
+		<dc:creator>Antonio Falciano</dc:creator>
+		<pubDate>Thu, 13 Oct 2011 19:58:27 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7387</guid>
+		<description><![CDATA[Andrea, hai fatto benissimo...Grazie a te! Se ogni lettore di TANTO ci scrivesse dentro 2-3 comandi alla fine avremmo tutti una gran bella raccolta! Chi offre di più? ;)]]></description>
+		<content:encoded><![CDATA[<p>Andrea, hai fatto benissimo&#8230;Grazie a te! Se ogni lettore di TANTO ci scrivesse dentro 2-3 comandi alla fine avremmo tutti una gran bella raccolta! Chi offre di più? <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/comment-page-1/#comment-7386</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Thu, 13 Oct 2011 17:51:20 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268#comment-7386</guid>
+		<description><![CDATA[Caro Antonio,
+un po&#039; &quot;ce la cantiamo e ce la suoniamo&quot;, ma ho già saccheggiato il file .ini che hai condiviso, ne ho fatto un fork ed fatto due modifiche:
+- aggiunto ogrinfo per file .shp e .dxf
+- modificato il gdalinfo con l&#039;aggiunta del parametro &quot;-noct&quot; (per non avere la stampa della color table)
+
+Ovviamente &lt;i&gt;de gustibus&lt;/i&gt;. La &quot;mia&quot; versione è qui: https://gist.github.com/1284665
+
+Adesso installerò Open++ in ogni PC in cui faccio click, ed anche (a loro insaputa) in quelli dei mie colleghi :)
+
+Molto semplice e molto utile. Grazie]]></description>
+		<content:encoded><![CDATA[<p>Caro Antonio,<br />
+un po&#8217; &#8220;ce la cantiamo e ce la suoniamo&#8221;, ma ho già saccheggiato il file .ini che hai condiviso, ne ho fatto un fork ed fatto due modifiche:<br />
+- aggiunto ogrinfo per file .shp e .dxf<br />
+- modificato il gdalinfo con l&#8217;aggiunta del parametro &#8220;-noct&#8221; (per non avere la stampa della color table)</p>
+<p>Ovviamente <i>de gustibus</i>. La &#8220;mia&#8221; versione è qui: <a href="https://gist.github.com/1284665" rel="nofollow">https://gist.github.com/1284665</a></p>
+<p>Adesso installerò Open++ in ogni PC in cui faccio click, ed anche (a loro insaputa) in quelli dei mie colleghi <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+<p>Molto semplice e molto utile. Grazie</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

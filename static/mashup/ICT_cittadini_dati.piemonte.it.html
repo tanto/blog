@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>
+      Mashup Dotazioni ICT cittadini dati.piemonte.it
+    </title>
+    <link rel="stylesheet" href="style.css" type="text/css" />   
+    <style type="text/css">
+        #map {
+            width: 490px;
+            height: 490px;
+            border: 1px solid #ccc;
+        }
+        #attribution {
+            position:absolute;
+            z-index:10000;
+            left: 250px;
+            top: 455px;
+            font-family: "Lucida Grande", Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+            font-size: smaller;
+        }
+        #controls {
+            margin: 1em 1.5em;
+        }
+        #controlToggle {
+            padding-left: 1em;
+        }
+        #controlToggle li {
+            list-style: none;
+        }      
+    </style>
+    
+    <script type="text/javascript" src="lib/OpenLayers.js"></script>
+    <!-- <script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script> -->
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['imagechart']});
+    </script>
+    <script type="text/javascript">  
+    
+        var map, highlightCtrl, selectCtrl, selectedFeature;
+        var checkedQuery, chartData;
+
+        function init() {
+            var options = {
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326"),
+                units: "m",
+                maxResolution: 156543.0339,
+                maxExtent: new OpenLayers.Bounds(-20037508.34, -20037508.34,
+                                                 20037508.34, 20037508.34)
+            };
+
+            map = new OpenLayers.Map('map', options);
+            
+            var mapnik = new OpenLayers.Layer.TMS(
+                "OpenStreetMap (Mapnik)",
+                "http://tile.openstreetmap.org/",
+                {
+                    type: 'png', getURL: osm_getTileURL,
+                    displayOutsideMaxExtent: false,
+                    attribution: 'Dati <a href="http://www.openstreetmap.org/">OpenStreetMap</a> (CC-By-SA)'
+                }
+            );
+            
+            var layer = new OpenLayers.Layer.GML("Province", "data/province_piemonte.gml",
+               {
+                format: OpenLayers.Format.GML, 
+                projection: map.displayProjection,
+                attribution: '<a href="http://www.istat.it/ambiente/cartografia/">ISTAT</a>, ' + 
+                             '<a href="http://www.dati.piemonte.it">dati.piemonte.it</a> (CC0) via ' +
+                             '<a href="http://code.google.com/apis/chart/">Google Chart Tools</a>',
+                formatOptions: {
+                  extractAttributes: true
+                }
+               });
+            
+            map.addLayers([mapnik, layer]);
+            map.zoomToExtent(new OpenLayers.Bounds(6.60,44.00,9.23,46.50).transform(map.displayProjection, map.projection));
+            
+            highlightCtrl = new OpenLayers.Control.SelectFeature(layer, {
+                hover: true,
+                highlightOnly: true,
+                renderIntent: "temporary"
+                }
+            );
+
+            selectCtrl = new OpenLayers.Control.SelectFeature(layer, {
+                clickout: true,
+                onSelect: onFeatureSelect, 
+                onUnselect: onFeatureUnselect
+                }
+            );
+
+            map.addControl(highlightCtrl);
+            map.addControl(selectCtrl);
+            highlightCtrl.activate();
+            selectCtrl.activate();
+            
+            document.getElementById('radio0').checked = true;
+            getCheckedQuery();
+            google.setOnLoadCallback(chartData);
+            
+        }
+        
+        function getCheckedQuery() {
+            var objName = 'query';  
+            var arr = new Array();
+            arr = document.getElementsByName(objName);
+            for(var i=0; i<arr.length; i++) {
+                var obj = document.getElementsByName(objName).item(i);
+                if(obj.checked) {
+                    checkedQuery = obj.value;
+                }
+            }
+        }
+        
+        function requestData(feature) {
+            // To see the data that this visualization uses, browse to
+            // http://spreadsheets.google.com/ccc?key=tljcqA5jrCZtx8BdFeA5xRw  
+            var query = new google.visualization.Query(
+              'http://spreadsheets.google.com/tq?key=tljcqA5jrCZtx8BdFeA5xRw&range=A1:Z10&headers=1&gid=0&pub=1');
+            var queryExp;
+            var prov = feature.attributes.SIGLA;
+            switch (checkedQuery) {
+                case "0": queryExp = 'select B,G,L,Q,V where A="' + prov +'"'; break;
+                case "1": queryExp = 'select C,H,M,R,W where A="' + prov +'"'; break;
+                case "2": queryExp = 'select D,I,N,S,X where A="' + prov +'"'; break;
+                case "3": queryExp = 'select E,J,O,T,Y where A="' + prov +'"'; break;
+                case "4": queryExp = 'select F,K,P,U,Z where A="' + prov +'"'; break;
+                case "5": queryExp = 'select B,C,D,E,F where A="' + prov +'"'; break;
+                case "6": queryExp = 'select G,H,I,J,K where A="' + prov +'"'; break;
+                case "7": queryExp = 'select L,M,N,O,P where A="' + prov +'"'; break;
+                case "8": queryExp = 'select Q,R,S,T,U where A="' + prov +'"'; break;
+                case "9": queryExp = 'select V,W,X,Y,Z where A="' + prov +'"'; break;
+                default: queryExp = 'select B,G,L,Q,V where A="' + prov +'"'; break;
+            }            
+            query.setQuery(queryExp);
+            query.send(handleQueryResponse);          
+        }
+        
+        function handleQueryResponse(response) {
+          if (response.isError()) {
+            alert('Errore nella query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+          }
+        
+          var data = response.getDataTable(); 
+
+          var options;
+          
+          switch (checkedQuery) {
+                case "0": options = getOptions(-1); break;
+                case "1": options = getOptions(-1); break;
+                case "2": options = getOptions(-1); break;
+                case "3": options = getOptions(-1); break;
+                case "4": options = getOptions(-1); break;
+                case "5": options = getOptions(0); break;
+                case "6": options = getOptions(1); break;
+                case "7": options = getOptions(2); break;
+                case "8": options = getOptions(3); break;
+                case "9": options = getOptions(4); break;
+                default: options = getOptions(-1); break;
+          }
+          
+          chart = new google.visualization.ImageChart(document.getElementById('visualization'));
+          var chartData = transpose(data);
+          chart.draw(chartData, options);
+        }
+        
+        function getOptions(index) {
+            var options;
+            var colors = new Array("FFC6A5",
+                                    "FFFF42",
+                                    "DEF3BD",
+                                    "00A5C6",
+                                    "DEBDDE");
+            var chart_colors = colors.join('|');
+
+            if (index == -1) {
+                options = {cht: 'bvs', chco: chart_colors, chxt: 'y', chxr: '0,0,100',
+                           chm: 'N,000000,0,-1,11', chs: '375x125', chbh: 'a,5,15',
+                           chdl: "Famiglie con PC a casa (%)|Famiglie con internet a casa (%)|" +
+                           "Famiglie con conn. a banda larga (%)|Uso del PC (%)|Uso internet (%)"};
+            } else {
+                options = {cht: 'bvs', chco: colors[index], chxt: 'x,y', chxr: '0,0,100',
+                           chm: 'N,000000,0,-1,11', chs: '175x125', chbh: 'a,5,15',
+                           chxl: '0:|2005|2006|2007|2008|2009'};
+            }
+            return options;
+        }
+        
+        function transpose(oldDataTable) {
+          var newDataTable = new google.visualization.DataTable();
+          newDataTable.addColumn('number');
+          for (j = 0; j < oldDataTable.getNumberOfColumns(); j++) {
+            var addedRow = new Array();
+            for (k = 0; k < oldDataTable.getNumberOfRows(); k++) {
+              addedRow.push(oldDataTable.getValue(k,j));
+            }
+            newDataTable.addRow(addedRow);
+          }            
+          return newDataTable;
+        }
+       
+        function getPopupInfo(feature) {
+            var nome_prov = feature.attributes.NOME_PRO;      
+            var header = "<div align='center'><b>Provincia di " + nome_prov + "</b><br>";
+            var titles = new Array("Dotazioni ICT - Anno 2005<br>", 
+                           "Dotazioni ICT - Anno 2006<br>",
+                           "Dotazioni ICT - Anno 2007<br>",
+                           "Dotazioni ICT - Anno 2008<br>",
+                           "Dotazioni ICT - Anno 2009<br>",
+                           "Famiglie con PC a casa (%) - Anni 2005/2009<br>",
+                           "Famiglie con internet a casa (%) - Anni 2005/2009<br>",
+                           "Famiglie con connessione a banda larga (%)<br>Anni 2005/2009<br>",
+                           "Uso del PC (%) - Anni 2005/2009<br>",
+                           "Uso di internet (%) - Anni 2005/2009<br>");          
+            var chart_code = '<br><div id="visualization" style="height: 125px; width: 375px;"></div></div>';
+                  
+            switch (checkedQuery) {
+                case "0": popupInfo = header + titles[0] + chart_code; break;
+                case "1": popupInfo = header + titles[1] + chart_code; break;
+                case "2": popupInfo = header + titles[2] + chart_code; break;
+                case "3": popupInfo = header + titles[3] + chart_code; break;
+                case "4": popupInfo = header + titles[4] + chart_code; break;
+                case "5": popupInfo = header + titles[5] + chart_code; break;
+                case "6": popupInfo = header + titles[6] + chart_code; break;
+                case "7": popupInfo = header + titles[7] + chart_code; break;
+                case "8": popupInfo = header + titles[8] + chart_code; break;
+                case "9": popupInfo = header + titles[9] + chart_code; break;
+                default: popupInfo = header + titles[0] + chart_code; break;
+            }            
+            return popupInfo;       
+        }        
+        
+        function onFeatureSelect(feature) {
+            requestData(feature);        
+            selectedFeature = feature;                          
+            popup = new OpenLayers.Popup.FramedCloud("featurePopup", 
+                feature.geometry.getBounds().getCenterLonLat(),
+                null,
+                getPopupInfo(feature),
+                null,
+                true,
+                onPopupClose);                                           
+            feature.popup = popup;
+            map.addPopup(popup);
+        }
+        
+        function onPopupClose(evt) {
+            selectCtrl.unselect(selectedFeature);
+        }
+        
+        function onFeatureUnselect(feature) {
+            map.removePopup(feature.popup);
+            feature.popup.destroy();
+            feature.popup = null;
+        }
+        
+        function osm_getTileURL(bounds) {
+            var res = this.map.getResolution();
+            var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
+            var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
+            var z = this.map.getZoom();
+            var limit = Math.pow(2, z);
+            
+            if (y < 0 || y >= limit) {
+                return OpenLayers.Util.getImagesLocation() + "404.png";
+            } else {
+                x = ((x % limit) + limit) % limit;
+                return this.url + z + "/" + x + "/" + y + "." + this.type;
+            }
+        }
+        
+    </script>
+  </head>
+  <body onload="init()">
+      <div id="map">
+      <div id="attribution">realizzato da <a href="mailto:afalciano@yahoo.it">Antonio Falciano</a> per TANTO<br>
+        con licenza <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">Creative Commons BY-NC-SA</a></div>
+      </div>
+      <div id="controls"><br>Selezionare una delle seguenti opzioni:<br>
+        <ul id="controlToggle">
+             <li>
+                 <input type="radio" name="query" value="0" id="radio0"
+                        onclick="getCheckedQuery()" checked="checked" />
+                 <label for="radio0">Dotazioni ICT - Anno 2005</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="1" id="radio1" 
+                        onclick="getCheckedQuery()" />
+                 <label for="radio1">Dotazioni ICT - Anno 2006</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="2" id="radio2" 
+                        onclick="getCheckedQuery()" />
+                 <label for="radio2">Dotazioni ICT - Anno 2007</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="3" id="radio3" 
+                        onclick="getCheckedQuery()" />
+                 <label for="radio3">Dotazioni ICT - Anno 2008</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="4" id="radio4"
+                        onclick="getCheckedQuery()" />
+                 <label for="radio4">Dotazioni ICT - Anno 2009</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="5" id="radio5"
+                        onclick="getCheckedQuery()" />
+                 <label for="radio5">Famiglie con PC a casa - Anni 2005/2009</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="6" id="radio6" 
+                        onclick="getCheckedQuery()" />
+                 <label for="radio6">Famiglie con internet a casa - Anni 2005/2009</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="7" id="radio7" 
+                        onclick="getCheckedQuery()" />
+                 <label for="radio7">Famiglie con connessione a banda larga - Anni 2005/2009</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="8" id="radio8" 
+                        onclick="getCheckedQuery()" />
+                 <label for="radio8">Uso del PC - Anni 2005/2009</label>
+             </li>
+             <li>
+                 <input type="radio" name="query" value="9" id="radio9"
+                        onclick="getCheckedQuery()" />
+                 <label for="radio9">Uso di internet - Anni 2005/2009</label>
+             </li>
+         </ul>
+     </div>
+  </body>
+</html>

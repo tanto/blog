@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Dojo</title>
+	<atom:link href="http://blog.spaziogis.it/tag/dojo/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>ArcGIS Server 9.3: impressioni di utilizzo</title>
+		<link>http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/</link>
+		<comments>http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/#comments</comments>
+		<pubDate>Sun, 02 Aug 2009 20:22:28 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[Dojo]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1028</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+9.3%3A+impressioni+di+utilizzo&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/&amp;rft.language=English"></span>
+Posso dire di essere un sostenitore dell&#8217;open source e senza dubbio preferisco avere a che fare con software, tecnologie e formati aperti. Al movimento del software libero sono molto legato, per alcuni versi ne faccio parte e, quando posso, cerco di dare i miei microscopici contributi qui e la. Il mio mondo (digitale) ideale è [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+9.3%3A+impressioni+di+utilizzo&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img src="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri.jpg" alt="esri" width="171" height="208" class="alignright size-full wp-image-1049" />Posso dire di essere un sostenitore dell&#8217;open source e senza dubbio preferisco avere a che fare con software, tecnologie e formati aperti. Al movimento del software libero sono molto legato, per alcuni versi ne faccio parte e, quando posso, cerco di dare i miei microscopici contributi <a href="http://ka-map.ominiverdi.org/wiki/index.php/Search_By_Filter_Implementation" target="_blank">qui</a> e <a href="http://wiki.ubuntu-it.org/GruppoForum" target="_blank">la</a>.<br />
+Il mio mondo (digitale) ideale è un mondo in cui tutto il software è libero e, soprattutto, in cui le persone si scambiano dati e servizi in formati standard e liberi.<br />
+Il mondo reale, però, è fatto anche di altro e quando c&#8217;è da portare a casa la proverbiale pagnotta è bene tenerlo a mente. Inoltre penso che sia un preciso dovere, per un buon analista, essere sempre aggiornato sulle soluzioni esistenti indipendentemente dalla licenza che le accompagna.<br />
+In questo articolo racconterò quindi le impressioni che ho avuto durante le mie prime due settimane di lavoro con ArcGIS Server 9.3. Inizio subito col dire che partivo prevenuto nei confronti di questa piattaforma, date le allucinanti esperienze con ArcIMS, ma devo ammettere di essere rimasto piacevolmente sorpreso!</p>
+	<h3>Che cos&#8217;è?</h3>
+	<p>Bene, mi tocca entrare nel vivo e dare una definzione di massima che aiuti a capire meglio di cosa stiamo parlando.<br />
+Senza scendere troppo nel dettaglio tecnico, possiamo dire che ArcGIS Server è un ambiente che permette di pubblicare <i>geowebservices</i> sulla base dei quali si potranno poi sviluppare applicazioni di web-mapping.<br />
+Su questo fronte lo spettro di possibilità offerte da ArcGIS Server 9.3 agli sviluppatori GIS è davvero ampio. Si va dagli ADF (Advanced Development Framework) per gli ambienti .NET e Java, alle API Javascript, Flex e &#8211; di recente &#8211; Silverlight.<br />
+C&#8217;è anche un wizard che permette di pubblicare un&#8217;applicazione web senza grosse pretese di originalità e nel giro di qualche click, pur non avendo alcuna conoscenza di programmazione.</p>
+	<h3>Come funziona?</h3>
+	<p>Innanzitutto si deve installare! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /><br />
+Non ho avuto modo di provare l&#8217;installazione in ambiente GNU/Linux, ma in ambiente Windows la procedura non si discosta da quella classica che caratterizza la maggior parte dei programmi. Di certo avete presente il tipico: “Avanti → Avanti → Ok”&#8230;<br />
+Ultimata l&#8217;installazione vera e propria, vengono richieste delle informazioni utili alla configurazione dell&#8217;ambiente e, infine, si procede con l&#8217;autenticazione della licenza.<br />
+Al riavvio potremo finalmente effettuare il login in ArcGIS Server Manager, un applicativo di amministrazione da browser, oppure, se preferiamo, connetterci all&#8217;istanza di ArcGIS Server usando ArcCatalog.</p>
+	<p>A questo punto siamo pronti per tirarci su le maniche e creare <a href="http://resources.esri.com/arcgisserver/index.cfm?fa=services" target="_blank">servizi di vario tipo</a> (mapservice, dataservice, gisservice, geoprocessing e geocoding service).<br />
+Consideriamo per esempio il mapservice, un tipo di servizio che serve ad esporre una mappa composta da uno o più layer, sui quali si possono eseguire delle operazioni (<i>task</i>) come find, query e identify.<br />
+Pubblicare un mapservice è decisamente semplice. Basta avere un progetto redatto in  ArcMap (un normale file .mxd) ed effettuare delle semplici scelte per la configurazione del servizio.<br />
+Oltre al servizio proprietario ESRI, sono a disposizione vari standard: KML, WMS, WFS-T e WCS. </p>
+	<h3>Sviluppo client con REST e Javascript</h3>
+	<p>ArcGIS Server 9.3 offre, out-of-the box, la possibilità di esporre i servizi secondo il paradigma REST.<br />
+Questa, insieme alle <a href="http://resources.esri.com/arcgisserver/index.cfm?fa=JSAPIs" target="_blank">API Javascript</a> basate sull&#8217;ottimo toolkit open source <a href="http://www.dojotoolkit.org/" target="_blank">Dojo</a>, è probabilmente la novità di maggior rilievo di ArcGIS Server 9.3.<br />
+Imparare a sfruttare questi mezzi equivale ad aprirsi la possibilità di sviluppare delle applicazioni web 2.0 che, col solo codice lato-client, offrono la maggior parte delle caratteristiche che normalmente ci si aspetta di trovare in una applicazione di web-mapping.<br />
+<a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/arcgis/help/jssamples_start.htm" target="_blank">Qui</a> ci sono alcuni esempi che sicuramente vale la pena di esplorare per rendersi conto delle potenzialità delle API.</p>
+	<p>E&#8217; interessante, inoltre, che l&#8217;ultima versione di OpenLayers, la 2.8, permetta di utilizzare anche i <a href="http://openlayers.org/dev/examples/arcgis93rest.html" target="_blank">layer REST</a> di ArcGIS Server 9.3.<br />
+Se volete saperne di più sull&#8217;argomento vi consiglio caldamente <a href="http://resources.esri.com/arcgisserver/apis/javascript/arcgis/index.cfm?fa=mediaGalleryDetails&amp;mediaID=8BE10472-1422-2418-A06335EA0FA3EE57" target="_blank">questo</a> video!</p>
+	<h3>Pro e contro</h3>
+	<p>Siamo alla fine del post ed è ora di fare un bilancio.<br />
+Prima le cattive notizie: il supporto, non me ne vogliano in ESRI Italia, è assolutamente inadeguato!<br />
+Se si naviga tra <a href="http://edn.esri.com/" target="_blank">EDN</a> e <a href="http://resources.esri.com/arcgisserver/" target="_blank">Resource Gateway</a> o si bazzica la comunità internazionale sul <a href="http://forums.esri.com" target="_blank">forum</a>, in fin dei conti non è proprio malaccio (anzi, sul forum ci sono utenti molto preparati e dispobili grazie ai quali ho risolto alcuni piccoli intoppi).<br />
+Però chi ha acquistato un prodotto <b>in Italia</b>, pagandolo profumatamente, tollera con un po&#8217; di mal di pancia che il supporto locale non sappia nemmeno dare un aiuto di tipo “getting started” se ci si vuole discostare dall&#8217;uso del wizard o dello sviluppo con l&#8217;ADF Java o .NET.<br />
+Personalmente, ho telefonato 3 volte al supporto ponendo delle domande tecniche precise e non ho mai ricevuto una risposta utile dall&#8217;interlocutore (quasi sempre: &#8220;apra un ticket&#8221;). Oggi, con poche settimane di esperienza di sviluppo con queste API alle spalle, mi rendo conto che le mie domande erano davvero molto semplici, il che mi porta a pensare che quello dello sviluppo con le API Javascript, in ESRI Italia, sia un tema molto trascurato.<br />
+Comunque devo essere onesto e dire che in altre occasioni ho trovato utilissimo (spesso risolutivo) il supporto di ESRI Italia. Questo mi fa ben sperare per il futuro nel caso in cui a Roma decidano di dedicare un po&#8217; di attenzione anche quei balordi (come il sottoscritto) che si sono fissati col Javascript!              </p>
+	<p>Passiamo ai pro che, invece, sono tanti:</p>
+	<ul>
+	<li>scalabilità dell&#8217;architettura</li>
+	<li>semplicità nella configurazione e nello sviluppo degli applicativi</li>
+	<li>versatilità delle API e possibilità di creare Mash-Up praticamente con tutto</li>
+	<li>buon supporto agli standard del settore</li>
+	</ul>
+	<h3>Basta con le chiacchiere!</h3>
+	<p>Cliccando <a href="http://blog.spaziogis.it/static/agsdemo/" target="_blank">qui</a>, potete vedere un piccolo esempio live da me realizzato.<br />
+Divertitevi (si fa per dire&#8230;) a fare lo stesso&#8230; e <a href="http://resources.esri.com/arcgisserver/apis/javascript/arcgis/index.cfm?fa=codeGallery" target="_blank">condividete</a> il risultato! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':D' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/">ArcGIS Server 9.3: impressioni di utilizzo</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/feed/</wfw:commentRss>
+		<slash:comments>27</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+9.3%3A+impressioni+di+utilizzo&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri.jpg" medium="image">
+			<media:title type="html">esri</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri-150x150.jpg" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

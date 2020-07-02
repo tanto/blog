@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; mapping</title>
+	<atom:link href="http://blog.spaziogis.it/tag/mapping/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Il nuovo editor per OpenStreetMap, esempio di un processo virtuoso</title>
+		<link>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/</link>
+		<comments>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/#comments</comments>
+		<pubDate>Tue, 21 May 2013 07:00:28 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[crowdsourcing]]></category>
+		<category><![CDATA[mapping]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5758</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+Da alcuni giorni, come reso noto dalla notizia di lancio, sulle pagine di OpenStreetMap è attivo un nuovo strumento per l’editing online delle mappe. L’ultimo arrivato, nella grande famiglia degli editor per OSM, sia chiama iD e andrà ad affiancare il buon vecchio Potlach, noto a chiunque abbia fatto un po’ di inserimenti e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><div id="attachment_5702" class="wp-caption aligncenter" style="width: 460px"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif"><img class=" wp-image-5702 " src="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif" alt="iD Editor" width="450" height="256" /></a><p class="wp-caption-text">iD Editor</p></div></p>
+	<p>Da alcuni giorni, come reso noto dalla <a href="http://blog.openstreetmap.org/2013/05/07/openstreetmap-launches-all-new-easy-map-editor-and-announces-funding-appeal/" target="_blank">notizia</a> di lancio, sulle pagine di <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> è attivo un nuovo strumento per l’editing online delle mappe. L’ultimo arrivato, nella grande <a href="http://wiki.openstreetmap.org/wiki/Editing" target="_blank">famiglia degli editor</a> per OSM, sia chiama <a href="http://wiki.openstreetmap.org/wiki/ID" target="_blank">iD</a> e andrà ad affiancare il buon vecchio Potlach, noto a chiunque abbia fatto un po’ di inserimenti e di modifiche sui dati OSM.</p>
+	<p>Si tratta di uno strumento che, a fronte della leggerezza e della chiarezza a livello di interfaccia utente, nasconde una discreta dose di tecnologia, tutta <a href="https://github.com/systemed/iD" target="_blank">Open Source</a>, nata dal lavoro volontario di alcuni sviluppatori, e proseguita con un notevole sostegno economico (parte dei 545.000 $ offerti dalla <a href="http://www.knightfoundation.org/press-room/press-release/six-ventures-bring-data-public-winners-knight-news/" target="_blank">Knight Foundation</a>), sotto il coordinamento di <a href="http://mapbox.com/" target="_blank">MapBox</a>.</p>
+	<p>L’aspetto più evidente di iD, e che ne ha motivato la realizzazione, è un approccio “assistito” all’editing. Ogni azione viene guidata tramite suggerimenti e le scelte degli oggetti, e delle relative proprietà, da associare agli elementi geometrici inseriti, viene semplificata con l’ausilio di moduli d’inserimento intuitivi e facilmente comprensibile anche ai meno esperti, lasciando tuttavia la libertà di integrare le informazioni di base con <a href="http://wiki.openstreetmap.org/wiki/Tags" target="_blank">tag</a> più avanzati.</p>
+	<p>Ma cos’è che ha spinto la Knight Foundation e MapBox a finanziare questo progetto? La notizia ha colto l’attenzione anche di testate giornalistiche non del settore quali <a href="http:///mashable.com/2013/05/07/openstreetmap/" target="_blank">Mashable</a> e <a href="http:///techcrunch.com/2013/05/07/openstreetmap-to-give-google-maps-a-run-for-its-money-by-launching-its-new-id-editor/" target="_blank">TechCrunch</a>, ed entrambi hanno voluto sottolineare la sfida alle altre realtà commerciale del mapping online, Google in primis. In effetti la mossa operata con l’introduzione di iD ha reso ancor più evidente il mix di qualità del progetto OpenStreetMap : open data, strumenti tecnologici efficaci e robusti, crowdsourcing a scala globale, opportunità commerciali. Le ho elencate in quest’ordine non per caso.</p>
+	<p>La scelta, operata fin dall’inizio, di associare al dato OSM una licenza aperta (inizialmente CC-BY-SA, poi <a href="http://www.osmfoundation.org/wiki/License/About_The_License_Change" target="_blank">trasformata</a> in ODbL) è stata senz’altro il carburante che ha dato il via al tam-tam globale, garantendo agli utenti una totale trasparenza sull’impiego dei dati liberamente forniti. Questa caratteristica, oltre ad essere motivante per molti utenti, è unica tra i progetti di mapping crowdsourced a scala globale (Google Map Maker, per dirne uno, i dati se li tiene ben stretti!).<br />
+La totale trasparenza e il pubblico dominio hanno fornito una forte spinta motivazionale, tanto all’utente amatore quanto agli sviluppatori e ai sistemisti. Lo sviluppo di un set di tecnologie ben focalizzate ed efficaci in grado di gestire tutte le fasi di vita del dato, e di intercettare e rispondere ad un’utenza estremamente variegata (dall’azienda, all’operatore in aree di emergenza, al byker appassionato), ha avviato il circuito virtuoso. Ecco che dal computer di <a href="http://it.wikipedia.org/wiki/Steve_Coast" target="_blank">Steve Coast</a>, OSM ha invaso il mondo.<br />
+Con quali soldi è stato possibile realizzare tutto ciò, e chi sostiene oggi OSM? Qui sta l’emblematicità di OSM, e che io ritrovo esemplificata nella nascita di iD: un progetto nel quale tutti possono trarre benefici, dagli utenti appassionati alle aziende (fino alla scala di <a href="http://blog.foursquare.com/2012/02/29/foursquare-is-joining-the-openstreetmap-movement-say-hi-to-pretty-new-maps/" target="_blank">Foursquare</a>, <a href="http://mapbox.com/blog/evernote-geocoding-custom-maps/" target="_blank">Evernote</a>, <a href="http://mapquest-openstreetmap-europe/" target="_blank">MapQuest</a>, la stessa MapBox e tante altre). E più tutti ne traggono beneficio, più ognuno è disposto a contribuire: l’utente a mappare, l’azienda a fare il proprio business col supporto dei dati OSM e a sostenere il progetto (se l’azienda è saggia e lungimirante!). OSM sarà un caso un po’ unico, soprattutto di questa portata, ma dimostra, insieme ad altri progetti simili (basta pensare a Wikipedia) che è un processo realizzabile e sostenibile, con un modello di business non utopico.</p>
+	<p>In sintesi, e semplificando un po’, un buon editor rende la vita più semplice all’utente, e magari ne attrae di nuovi -&gt; MapBox può contare su una maggiore base di contributori e di dati -&gt; MapBox sostiene lo sviluppo di iD</p>
+	<p>Chissà se un giorno riusciremo a innescare un processo virtuoso simile anche per gli Open Data in Italia</p>
+	<p>Buona <a href="http://www.openstreetmap.org/edit?editor=id" target="_blank">mappatura</a> a tutti con iD!</p>
+	<p><em>Giovanni Allegri</em><br />
+<a href="https://twitter.com/_giohappy_" class="twitter-follow-button" data-show-count="false" data-lang="it">Segui @_giohappy_</a><br />
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><br />
+
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/">Il nuovo editor per OpenStreetMap, esempio di un processo virtuoso</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated-150x150.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif" medium="image">
+			<media:title type="html">id_animated</media:title>
+			<media:description type="html">iD Editor</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated-150x150.gif" />
+		</media:content>
+	</item>
+		<item>
+		<title>Ushahidi: da gestione delle emergenze a startup di mapping</title>
+		<link>http://blog.spaziogis.it/2012/04/16/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/</link>
+		<comments>http://blog.spaziogis.it/2012/04/16/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/#comments</comments>
+		<pubDate>Mon, 16 Apr 2012 07:00:14 +0000</pubDate>
+		<dc:creator>Lorenzo Perone</dc:creator>
+				<category><![CDATA[Recensioni]]></category>
+		<category><![CDATA[mapping]]></category>
+		<category><![CDATA[Ushahidi]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4768</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Ushahidi%3A+da+gestione+delle+emergenze+a+startup+di+mapping&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2012-04-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/16/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/&amp;rft.language=English"></span>
+Questo articolo è stato pubblicato originariamente sul Blog di Working Capital. Ushahidi, che in Swahili significa testimonianza, è oggi una una società non-profit che sviluppa software libero. Il suo core business è lo sviluppo di software per la raccolta, la visualizzazione e la rappresentazione di informazioni su cartografia interattiva. E’ un valido esempio di come [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Ushahidi%3A+da+gestione+delle+emergenze+a+startup+di+mapping&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2012-04-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/16/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><em>Questo articolo è stato pubblicato <a title="ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping" href="http://www.workingcapital.telecomitalia.it/2012/03/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/" target="_blank">originariamente</a> sul <a title="Working Capital Blog" href="http://www.workingcapital.telecomitalia.it" target="_blank">Blog di Working Capital</a>.</em></p>
+	<p>Ushahidi, che in Swahili significa testimonianza, è oggi una una società <em><strong>non-profit</strong></em> che sviluppa software libero. Il suo <em>core business</em> è lo sviluppo di software per la raccolta, la visualizzazione e la rappresentazione di <strong>informazioni su cartografia interattiva</strong>.</p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/wp-content/uploads//2012/03/ushahidi1.jpg"><img class="aligncenter  wp-image-4770" style="border-image: initial; border-width: 1px; border-color: black; border-style: solid; margin: 5px;" title="ushahidi" src="http://blog.spaziogis.it/wp-content/uploads//2012/03/ushahidi1-300x209.jpg" alt="" width="400" /></a></p>
+	<p>E’ un valido esempio di come una <em>startup</em> possa nascere da un’idea di successo, in una realtà come quella del <strong>Kenya</strong>, che non associamo a incubatore di <em>tech company</em>.</p>
+	<p>Tutto nasce durante le <a href="http://www.geomondo.it/SlideShow/Kenya_project_3/index.html">violenze</a> che si sono verificate in Kenya, nel 2008 a seguito delle elezioni politiche. Un gruppo di persone tra cui l’attivista kenyota <a href="http://bquot.com/agt">Ory Okolloh</a>, si trovarono a documentare sui loro blog, anche attraverso i commenti, le violenze che stavano accadendo nel paese. Qualcuno lanciò l’idea di <strong>mappare i luoghi delle violenze</strong> attraverso Google Maps, e Ory rilanciò la proposta via twitter, chiedendo supporto alla comunità degli sviluppatori software del paese.</p>
+	<p>In tre giorni era <em>online</em> Ushahidi.com, il <a href="http://legacy.ushahidi.com/">sito originale</a>, ancora visibile in una sezione del sito attuale. Ushahidi ebbe una grandissima risposta, ben 45,000 utenti inviarono le loro testimonianze dai luoghi degli scontri, permettendo di seguire l’evoluzione della situazione nel paese in maniera indipendente da quanto riportato dagli organi ufficiali. Un esperimento riuscito di <a href="http://it.wikipedia.org/wiki/Giornalismo_partecipativo"><em>citizen journalism</em></a> e <a href="http://it.wikipedia.org/wiki/Crowdsourcing"><em>crowdsourcing</em></a>.</p>
+	<p>Da allora Ushahidi non rappresenta più solo una piattaforma web ma una realtà aziendale complessa, al cui al nucleo originale dei fondatori <a href="http://bquot.com/agu">Erik Hersman</a>, <a href="http://bquot.com/agv">Juliana Rotich</a>, Ory Okolloh e<a href="http://bquot.com/agx">David Kobia</a> si è affiancato un <a href="http://ushahidi.com/about-us/team/alumni">nutrito gruppo</a> di sviluppatori e di specialisti di tecnologia, attivisti politici, giornalisti ed esperti di comunicazione. La cosa che colpisce, guardando le <a href="http://ushahidi.com/about-us/team">pagine del team</a> è l’estrema distanza geografica che separa queste persone che vivono, in qualche caso, in continenti diversi. Il cuore pulsante del progetto rimane in Kenya anche se, formalmente, la società ha sede ad Orlando in Florida.</p>
+	<p>La piattaforma di Ushahidi dal 2008 ad oggi è stata testimone di numerose emergenze tra cui il<a href="http://haiti.ushahidi.com/">terremoto di Hahiti</a>, la <a href="http://libyacrisismap.net/">crisi libica</a>, il <a href="http://www.sinsai.info/ushahidi/">terremoto in Giappone</a> e l’attualissima <a href="https://syriatracker.crowdmap.com/main">crisi siriana</a>, riuscendo a supportare i cittadini e le organizzazioni che operavano sul campo attraverso la gestione e pubblicazione su mappa delle richieste di soccorso e delle risorse disponibili.</p>
+	<p>La facilità nella diffusione è stata favorita da <a href="http://ushahidi.com/products/crowdmap">Crowdmap</a>, uno dei prodotti creati dalla <em>startup</em> a partire dall’idea originale e che permette di utilizzare le risorse web di Ushahidi per mettere on line, gratuitamente, una versione personalizzata della piattaforma in pochi minuti.</p>
+	<p>Questo ha permesso, anche in Italia, la realizzazione di <a href="https://jenkin.crowdmap.com/reports/">diversi <em>deployment</em></a>, tra cui Rifiutiamoci.</p>
+	<p>Uno dei punti di forza di Ushahidi è senza dubbio la versatilità. <strong>Consente di operare in condizioni logistiche di comunicazione profondamente diverse</strong>, adattandosi a scenari di utilizzo profondamente differenti.</p>
+	<p>La funzionalità di base è quella di rendere disponibili, anche in tempo reale, informazioni geolocalizzate relative a diverse categorie di eventi su una mappa, permettendo di analizzare il flusso temporale degli avvenimenti attraverso una <em>timeline</em> che può essere attivata per rappresentarli dinamicamente.</p>
+	<p>E’ possibile ricevere via email o SMS un messaggio se un evento di determinato tipo si presenta ad una determinata distanza da una posizione prefissata, allertando ad esempio un giornalista o un’unità di soccorso.</p>
+	<p>Le segnalazioni possono essere inviate via SMS o nel caso di uno <em>smartphone</em> con GPS integrato, utilizzando il formato <a href="http://www.opengeospatial.org/standards/opengeosms">GeoSMS</a> che invia automaticamente indicazioni rispetto alla propria posizione. Sono state create specifiche <em>apps</em> per iPhone ed Android ed è prevista un’interfaccia di<em>backoffice</em> per inserire le segnalazioni ricevute telefonicamente oltre che per validare le diverse segnalazioni, provenienti anche da email e da web.</p>
+	<p>Un’altra delle innovazioni legate allo sviluppo della <em>start-up </em>è stata la realizzazione di una innovativa piattaforma: <a href="http://ushahidi.com/products/swiftriver-platform">SwiftRiver</a>, che è attualmente in versione beta, che analizza e verifica in<em>real-time </em>grandi flussi di dati provenienti da diversi canali quali: email, twitter, SMS e <em>feed RSS</em>. Il sistema provvede ad un’analisi semantica del flusso permettendo la l’auto-categorizzazione e classificazione dei dati analizzati sulla base di parole chiave.</p>
+	<p>SwiftRiver è utilizzato anche da <a href="http://ushahidi.com/products/swiftriver-platform/wikisweeper-project"><em>Wikipedia</em></a> per analizzare come gli <em>editor</em> della famosa enciclopedia tracciano, valutano e verificano l’attendibilità delle fonti relative alle voci pubblicate.</p>
+	<p>Ushahidi ha maturato una così grande esperienza sul campo da aver creato anche dei veri e propri<em>how-to</em> per l’<a href="http://community.ushahidi.com/uploads/documents/c_Ushahidi-Election_Monitoring_Quick_Guide.pdf">organizzazione di un sistema di monitoraggio elettorale</a>, per il <a href="http://community.ushahidi.com/uploads/documents/c_Ushahidi-Funding-Guide.pdf"><em>fund raising</em></a><em>e</em> per la <a href="http://blog.ushahidi.com/index.php/2012/02/23/how-to-use-ushahidi-more-securely/">gestione della sicurezza</a> in realtà “democraticamente” difficili.</p>
+	<p>Tra i progetti italiani che lo utilizzano possiamo citare:</p>
+	<div>
+	<ul>
+	<li><a href="https://jenkin.crowdmap.com/reports/?l=12" target="_blank">Crowdmap Italiane</a></li>
+	<li><a href="https://rifiutiamoci.crowdmap.com/main" target="_blank">Rifiutiamoci</a></li>
+	<li><a href="http://mappa.salaoperativaprociv.org/" target="_blank">Sala Operativa 2.0</a></li>
+	<li><a href="http://www.carminedoronzo.it/segnala/main" target="_blank">IndipendenteMente</a></li>
+	<li><a href="http://linkem.crowdmap.com/" target="_blank">WIMAX Monitoring</a></li>
+	<li><a href="http://segnalalivorno.crowdmap.com/" target="_blank">SegnalaLivorno</a></li>
+	</ul>
+	<p>Aggiornamenti:</p>
+	<ul>
+	<li><a title="Crowdsourced Avalanche Incidents" href="http://geoavalanche.org/incident/">Crowdsourced Avalanche Incidents</a> (grazie a <a title="@francbartoli" href="https://twitter.com/francbartoli">@francbartoli</a>)</li>
+	<li><a title="Salvaciclisti" href="https://salvaiciclisti.crowdmap.com/?l=it_IT">Salvaciclisti</a> (grazie a <a title="@julodis" href="https://twitter.com/francbartoli/julodis">@julodis</a>)</li>
+	</ul>
+	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/04/16/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/">Ushahidi: da gestione delle emergenze a startup di mapping</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/04/16/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		<georss:point featurename="Via Castelnuovo 7, Como, Italy">45.8027983 9.093560000000025</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Ushahidi%3A+da+gestione+delle+emergenze+a+startup+di+mapping&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2012-04-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/16/ushahidi-da-gestione-delle-emergenze-a-startup-di-mapping/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/03/ushahidi1-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/03/ushahidi1.jpg" medium="image">
+			<media:title type="html">ushahidi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/03/ushahidi1-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Ancora un paio di guide, anzi non proprio…</title>
+		<link>http://blog.spaziogis.it/2009/04/13/ancora-un-paio-di-guide-anzi-non-proprio/</link>
+		<comments>http://blog.spaziogis.it/2009/04/13/ancora-un-paio-di-guide-anzi-non-proprio/#comments</comments>
+		<pubDate>Mon, 13 Apr 2009 15:19:03 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[advocacy]]></category>
+		<category><![CDATA[design]]></category>
+		<category><![CDATA[guide]]></category>
+		<category><![CDATA[mapping]]></category>
+		<category><![CDATA[neogeography]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=813</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Ancora+un+paio+di+guide%2C+anzi+non+proprio%E2%80%A6&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/13/ancora-un-paio-di-guide-anzi-non-proprio/&amp;rft.language=English"></span>
+Dopo la guida di MapAction, vi segnalo l&#8217;ottimo post su Making Maps riguardante la neogeography al servizio dello advocacy, ovvero il processo di intervenire su questioni di interesse comune al fine di esercitare una pubblica influenza riguardante ideologie o per conto di gruppi di persone. Stiamo parlando di &#8220;nobili&#8221; fini, of course&#8230; non certo interessi [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Ancora+un+paio+di+guide%2C+anzi+non+proprio%E2%80%A6&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/13/ancora-un-paio-di-guide-anzi-non-proprio/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignnone size-full wp-image-816" title="Advocacy Mapping" src="http://blog.spaziogis.it/wp-content/uploads//2009/04/map_design.jpg" alt="Advocacy Mapping" width="492" height="213" /></p>
+	<p>Dopo la <a href="http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/" target="_blank">guida di MapAction</a>, vi segnalo l&#8217;<a href="http://makingmaps.net/2009/04/06/making-advocacy-humanitarian-maps/">ottimo post su Making Maps</a> riguardante la neogeography al servizio dello <a href="http://en.wikipedia.org/wiki/Advocacy"><strong>advocacy</strong></a>, ovvero il processo di intervenire su questioni di interesse comune al fine di esercitare una pubblica influenza riguardante ideologie o per conto di gruppi di persone. Stiamo parlando di &#8220;nobili&#8221; fini, of course&#8230; non certo interessi privati.</p>
+	<p>Si tratta di due brevi pubblicazioni edite da <a href="http://www.tacticaltech.org/" target="_blank"><strong>Tactical Technology Collective</strong></a>:<strong> </strong></p>
+	<ul>
+	<li><em>Visualizing Information for Advocacy: an Introduction to Information Design, </em>scaricabile <a href="http://basil.apperceptio.com/infodesign/final.pdf" target="_blank">qui</a></li>
+	<li><em>Maps for Advocacy: An Introduction to Geographic Mapping Techniques</em>, scaricabile <a href="http://www.tacticaltech.org/files/tacticaltech/images/mapping_booklet.zip" target="_blank">qui</a>.</li>
+	</ul>
+	<p>Consiglio vivamente di leggere il bel post su Making Maps, non voglio dunque aggiungere molto altro se non che le due pubblicazioni non hanno affatto un taglio da &#8220;guide&#8221; nel senso proprio del termine. La prima è piuttosto un bel lavoro sulla &#8220;information design&#8221;, mentre la seconda porta diversi esempi nella realizzazione di applicazioni cartografiche e relativi strumenti utilizzati.</p>
+	<p>Non trascurate poi di dare un&#8217;occhiata alle &#8220;related resources&#8221; del post&#8230; molto illuminanti.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/04/13/ancora-un-paio-di-guide-anzi-non-proprio/">Ancora un paio di guide, anzi non proprio…</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/04/13/ancora-un-paio-di-guide-anzi-non-proprio/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Ancora+un+paio+di+guide%2C+anzi+non+proprio%E2%80%A6&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/13/ancora-un-paio-di-guide-anzi-non-proprio/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/04/map_design-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/04/map_design.jpg" medium="image">
+			<media:title type="html">Advocacy Mapping</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/04/map_design-150x150.jpg" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; metainformazioni</title>
+	<atom:link href="http://blog.spaziogis.it/tag/metainformazioni/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Il tasto destro per alleggerire un po&#8217; il lavoro di chi si occupa di GIS (su Windows e su Linux)</title>
+		<link>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/</link>
+		<comments>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/#comments</comments>
+		<pubDate>Mon, 19 Jan 2009 20:00:07 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[metainformazioni]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[ubuntu]]></category>
+		<category><![CDATA[utilities]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=584</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+Il lavoro di ogni giorno è spesso routinario; spesso anche per chi si occupa di sistemi informativi geografici. Non parlo dell’analisi spaziale, ma di quelle cose che facciamo quasi ogni giorno: leggere le metainfomazioni di un file (e scoprire che sono povere), convertire il formato di un file, estrarre una porzione di una raster, etc. [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il lavoro di ogni giorno è spesso routinario; spesso anche per chi si occupa di sistemi informativi geografici. Non parlo dell’analisi spaziale, ma di quelle cose che facciamo quasi ogni giorno: leggere le metainfomazioni di un file (e scoprire che sono povere), convertire il formato di un file, estrarre una porzione di una raster, etc.</p>
+	<p>Si tratta di operazioni in genere molto semplici, che siamo in grado di portare a termine con molti strumenti. Questo blog parla de “le cose che ci piacciono TANTO”; una di queste sono quelle utility che alleggeriscono il lavoro di ogni giorno, con un click del mouse ed un menu contestuale.</p>
+	<p>Vi parlerò di due applicazioni di questo tipo, una per Windows ed una per Ubuntu (e per tutte le distribuzioni che sfruttano Gnome), che sono in grado di “trasferire” sul tasto destro del mouse alcune comuni operazioni utili ad un utente GIS.</p>
+	<p>Il <strong>prerequisito</strong> è che nel nostro sistema operativo siano installate le librerie <a title="Librerie GDAL" href="http://www.gdal.org/" target="_blank"><strong>GDAL</strong></a>, che sfrutteremo come motore delle operazioni “spaziali”. Per installarle su Windows basterà scaricare ed installare <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">FWTools</a>, mentre su Ubuntu basterà installare <em>gdal-bin</em> tramite synaptic o tramite riga di comando.</p>
+	<p>Alla fine del post saremo in grado di fare click con il destro su una TIFF del nostro hard-disk, ed eseguire queste due semplici (ma comodissime operazioni):</p>
+	<ol>
+	<li>convertirla in un altro formato spaziale (in questo esempio eseguirò la conversione in formato <a title="JPEG2000 su Wikipedia" href="http://it.wikipedia.org/wiki/JPEG_2000" target="_blank">JPG2000</a>, un eccellente formato compresso che può avere attributi geografici)</li>
+	<li>leggerne le metainformazioni (anche quelle spaziali)</li>
+	</ol>
+	<p>Se dovessi ottenere questi due risultati con le librerie GDAL, dovrei aprire il prompt dei comandi e scrivere rispettivamente:</p>
+	<ol>
+	<li>
+	<pre>&gt; gdal_translate -of JP2ECW input.tif output.jp2</pre>
+	</li>
+	<li>
+	<pre>&gt; gdalinfo input.tif</pre>
+	</li>
+	</ol>
+	<p>Vedremo come convertire questi comandi testuali, in operazioni da eseguire con il mouse.</p>
+	<h2>Su Windows</h2>
+	<p>Su Windows sfrutteremo <a title="Open++ help page" href="http://www.freewebs.com/dengdun/en/openxx.htm" target="_blank">Open++</a>, un&#8217;utility di <a title="open++ installer" href="http://www.freewebs.com/dengdun/en/openxx.zip" target="_blank">200kb</a> che consente di personalizzare l’elenco di comandi presenti nel menu contestuale, che si apre quando si clicca con il tasto destro del mouse su un file (o su una cartella).</p>
+	<p>Una volta che lo avrete scaricato ed installato, troverete una nuova voce nel menu che si aprirà al click con il destro su un file; è visibile nella figura sottostante (&#8220;Open++&#8221;).</p>
+	<p><img style="border-top-width: 0px; display: block; border-left-width: 0px; float: none; border-bottom-width: 0px; margin: 3px auto; border-right-width: 0px" title="contextmenu" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" border="0" alt="contextmenu" width="278" height="294" /></p>
+	<p>L’utilizzo è immediato e quasi autoesplicativo, in quanto Open++ è già configurato per eseguire delle comode operazioni di base: ade esempio copiare il percorso assoluto di un file (Copy Path), o  aprire il prompt dei comandi a partire dalla cartella selezionata (Command Prompt). Questi due stupidi comandi, sono già un ottimo esempio di alleggerimento del lavoro.</p>
+	<p>Il primo comando che voglio aggiungere, ci consentirà di convertire in formato JPG2000 un’immagine TIFF. Per inserire questo nuovo comando, tra quelli disponibili in Open++, dovrò cliccare sull’ultima opzione del suo menu a tendina: “Customize” (vedi figura poco sopra).</p>
+	<p>Mi si aprirà la finestra sottostante:</p>
+	<p><img style="border-top-width: 0px; display: block; border-left-width: 0px; float: none; border-bottom-width: 0px; margin-left: auto; margin-right: auto; border-right-width: 0px" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/image.png" border="0" alt="image" width="470" height="386" /></p>
+	<p>Questi i passi da eseguire:</p>
+	<ol>
+	<li>cliccare in alto a destra sul tasto “Add”, e scegliere l’opzione “Command”</li>
+	<li>cliccare sulla cella &#8220;Title&#8221;, ed aggiungere un nome descrittivo al comando che si sta creando (ad esempio “Convert to JPG2000”)</li>
+	<li>inserire nella cella “Program” il programma che si vuole lanciare. Nel nostro caso vogliamo lanciare il <em>prompt dei comandi</em> e basterà scrivere “%ComSpec%”</li>
+	<li>scrivere nella cella “Arguments” gli argomenti che vogliamo passare al nostro comando. Nel nostro caso inseriremo la seguente stringa &#8216;/c &#8220;C:\Programmi\FWTools2.2.6\bin\gdal_translate -of JP2ECW&#8221; $(TargetName)$(TargetExt) $(TargetName).jp2&#8242;
+	<ol>
+	<li>il parametro “/c” fa sì che il <em>prompt dei comandi </em>venga chiuso al termine dell’operazione</li>
+	<li>&#8220;C:\Programmi\FWTools2.2.6\bin\gdal_translate&#8221; è il percorso assoluto (nel mio pc) dell’utility GDAL &#8211; gdal_translate &#8211; che gestisce le conversioni tra formati di file spaziali</li>
+	<li>“-of JP2ECW” è il parametro necessario per impostare JPG2000 come formato di output</li>
+	<li>$(TargetName)$(TargetExt) sono delle variabili che coincidono con il nome e con l’estensione del file su cui cliccheremo con il destro, e che verranno valorizzate dinamicamente al lancio del comando. Se ad esempio il file su cui farò click sarà &#8220;c:\dati\input.tif&#8221;, la variabile “$(TargetName)” verrà sostituito da “c:\dati\input” e “$(TargetExt)” da “.tif”.</li>
+	<li>lo stesso si dica per $(TargetName).jp2, che verrà sostituito da “c:\dati\input.jp2”</li>
+	</ol>
+	</li>
+	<li>cliccare sulla cella &#8220;Associate with Files&#8221; e scrivere *.tif
+	<ol>
+	<li>in questo modo il comando di conversione formato sarà disponibile soltanto per i file con estensione .tif (è possibile aggiungere altre estensioni, separandole tramite &#8220;;&#8221;)</li>
+	</ol>
+	</li>
+	<li>impostare gli altri parametri come nella figura soprastante e cliccare su &#8220;OK&#8221;</li>
+	</ol>
+	<p>A questo punto aprite una cartella in cui avete un file TIFF, fateci click sopra con il destro del mouse, e selezionate Open++/Convert to JPG2000. Si aprirà il prompt dei comandi e verrà lanciato il comando gdal_translate; a comando eseguito il prompt dei comandi si chiuderà automaticamente e troverete il file JPG2000 (con estensione .jp2) nella stessa cartella in cui è presente il file TIFF.</p>
+	<p>Quello di sopra è soltanto un esempio; si può di più, meglio e diversamente. Consideratelo come un primo tutorial, dopo il quale iniziare a dare sfogo alla vostra fantasia ed alla vostra competenza.</p>
+	<p>Per ottenere le metainformazioni spaziali di un file TIFF, utilizzando soltanto il tasto destro del mouse, dovrete un creare un nuovo comando. La procedura è quasi identica alla precedente, salvo per la cella  “Arguments”: dovrete inserire la stringa &#8216;/k &#8220;C:\Programmi\FWTools2.2.6\bin\gdalinfo $(TargetName)$(TargetExt)&#8217;.</p>
+	<p>La differenza più importante è il parametro &#8220;/k&#8221;, che farà in modo che il prompt dei comandi non venga chiuso al termine del comando gdalinfo. Nella finestra del prompt potrete quindi leggere le metainformazioni del file che avrete selezionato.</p>
+	<p>In questo filmato vedrete i due comandi in azione:</p>
+	<p><object width="460" height="365" data="http://www.utipu.com/player/player.swf" type="application/x-shockwave-flash"><br />
+<param name="flashvars" value="&amp;file=http%3A%2F%2Fwww.utipu.com%2Fapp%2Fservice%2Fplaylist%2F%3Ftip%3D6249&amp;callback=http%3A%2F%2Fwww.utipu.com%2Fapp%2Fservice%2Fview" />
+<param name="src" value="http://www.utipu.com/player/player.swf" />
+<param name="allowfullscreen" value="true" /></object></p>
+	<h2>Su Linux</h2>
+	<p>In questo caso sfrutteremo <a title="Nautilus-actions homepage" href="http://www.grumz.net/index.php?q=taxonomy/term/2/9" target="_blank">Nautilus-actions</a>, un&#8217;utility analoga a Open++ in ambiente GNOME e quindi anche in Ubuntu. E&#8217; installabile tramite synaptic o digitando nella shell:</p>
+	<pre>&gt;sudo apt-get install nautilus-action</pre>
+	<p>Una volta installato lo troverete nel menu Sistema/Preferenze/Nautilus Actions Configuration.</p>
+	<p style="text-align: left;"><img class="aligncenter size-full wp-image-588" title="nautilus-actions" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions.png" alt="nautilus-actions" width="310" height="379" /></p>
+	<p style="text-align: left;">Creiamo un&#8217;azione (action) che estragga le metainformazioni da un tif selezionata.</p>
+	<p style="text-align: left;">Questi i passi da seguire:</p>
+	<ol>
+	<li>cliccare su Add</li>
+	<li>inserire nella cella &#8220;Label&#8221; un nome descrittivo del comando (ad esempio &#8220;gdal_info&#8221;)</li>
+	<li>scegliere &#8211; è opzionale &#8211; un tooltip per il comando (ad esempio &#8220;cliccare qui per avere le metainformazioni del file selezionato&#8221;)</li>
+	<li>scegliere &#8211; è opzionale &#8211; un&#8217;icona per il comando</li>
+	<li>definire il comando da lanciare, tramite la cella &#8220;Path&#8221;
+	<ol>
+	<li>inserire la stringa &#8220;bash -c&#8221;</li>
+	</ol>
+	</li>
+	<li>impostarne la stringa &#8220;gdalinfo %d/%f &gt; %d/%f.txt &amp;&amp; gedit %d/%f.txt&#8221; nella cella &#8220;Parameters
+	<ol>
+	<li>&#8220;%d &#8220;e &#8220;%f &#8221; sono delle variabili che verrano sostituite dinamicamente dal percorso (senza estensione) e dall&#8217;estensione del file selezionato</li>
+	<li>il carattere &#8220;&gt;&#8221; farà sì che l&#8217;output del comando &#8211; le metainformazioni &#8211; possano essere scritte e memorizzare in un file di testo</li>
+	<li>&#8220;%d/%f.txt&#8221; faranno si che il file di testo venga salvato nella stessa cartella del file selezionato (%d), con lo stesso nome (%f) e con estensione .txt</li>
+	<li>&#8220;&amp;&amp;&#8221; fa si che venga esguito il comando successivo &#8211; gedit &#8211; ma soltanto dopo la fine del primo</li>
+	<li>&#8220;gedit %d/%f.txt&#8221; per aprire con l&#8217;editor di testo di Ubuntu il file di testo appena creato</li>
+	</ol>
+	</li>
+	<li>cliccare sul Tab &#8220;Conditions&#8221; e scrivere nella cella &#8220;Filenames&#8221; la stringa &#8220;*.tif&#8221; (in questo modo il comando gdal_info sarà visibile soltanto per file con estensione .tif)</li>
+	<li>selezionare il radio botton &#8220;Only files&#8221;</li>
+	<li>e cliccare su OK</li>
+	</ol>
+	<p><img class="aligncenter size-full wp-image-599" title="edit-action-gdal_info" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info.png" alt="edit-action-gdal_info" width="470" height="459" /></p>
+	<p>A questo punto non ci resta che fare click con il destro su un file .tif e provare il comando appena creato. Aggiungo però qualche spiegazione dovuta. Cosa è bash?</p>
+	<blockquote><p>Si tratta di un interprete di comandi che permette all&#8217;utente di comunicare col sistema operativo attraverso una serie di funzioni predefinite, o di eseguire programmi.</p></blockquote>
+	<p>Il parametro &#8220;-c&#8221; forza bash a leggere i comandi dalla stringa di testo che segue, che nel nostro caso è quella del punto 6 di sopra.</p>
+	<p>Nel filmato sottostante vedrete (male, è saltata una parte) il comando in azione:</p>
+	<p><object width="425" height="344" data="http://www.screentoaster.com/swf/STPlayer.swf" type="application/x-shockwave-flash"><br />
+<param name="allowFullScreen" value="true" />
+<param name="flashvars" value="video=stVU5dQ0ZKRFFXRl1ZX1Jc" />
+<param name="src" value="http://www.screentoaster.com/swf/STPlayer.swf" /></object></p>
+	<div style="width: 425px; text-align: right;"><a href="http://www.screentoaster.com/">Record your screencast online</a></div>
+	<p>Nautilus-actions è a mio avviso un gioiellino. Una caratteristica che lo fa brillare è la facilità di condividere i comandi creati. Lo si fa con il tasto &#8220;Import/Export&#8221; presente nella finestra principale. <a title="Nautilus-action lcommand list" href="http://www.grumz.net/?q=configlist&amp;PHPSESSID=77035f138bd2d017058c1b4cb6292b25" target="_blank">Qui</a> ad esempio una serie di &#8220;azioni&#8221; già pronte. Il comando di conversione in JPG2000 è di facile implementazione e non lo svilupperò.</p>
+	<h2>In chiusura</h2>
+	<p>Prendete quanto scritto soltanto come spunto per &#8220;piegare&#8221; (ad esempio) le librerie GDAL/OGR al vostro tasto destro. Sono quasi un&#8217;analfabeta di istruzioni da riga di comando, e quelle che vi ho indicato possono sicuramente essere scritte meglio e più elegantemente. Mi piacerebbe molto che qualcuno condividesse qui la propria esperienza, con qualche comando &#8220;de paura&#8221;.</p>
+	<h2>Software/servizi usati per scrivere il post</h2>
+	<ul>
+	<li><a title="TipCam homepage" href="http://www.utipu.com/app/download" target="_blank">TipCam</a> per registrare il filmato su windows</li>
+	<li><a title="Screentoaster homepage" href="http://www.screentoaster.com" target="_blank">ScreenToaster</a> per farlo su Linux</li>
+	<li><a title="Zotero homepage" href="http://www.zotero.org/" target="_blank">Zotero</a> per gestire e generare la sitografia sottostante</li>
+	</ul>
+	<h2>Sitografia letta, consigliata e disordinata</h2>
+	<ol>
+	<li>“BASH Help &#8211; A Bash Tutorial,” <a href="http://www.hypexr.org/bash_tutorial.php">http://www.hypexr.org/bash_tutorial.php</a>.</li>
+	<li>“Bash &#8211; Wikipedia,” <a href="http://it.wikipedia.org/wiki/Bash">http://it.wikipedia.org/wiki/Bash</a>.</li>
+	<li>“Beginners/BashScripting &#8211; Community Ubuntu Documentation,” <a href="https://help.ubuntu.com/community/Beginners/BashScripting">https://help.ubuntu.com/community/Beginners/BashScripting</a>.</li>
+	<li>“COMMAND.COM, SHELL and COMSPEC,” <a href="http://www.robvanderwoude.com/command.html">http://www.robvanderwoude.com/command.html</a>.</li>
+	<li>“Eseguire programmi e comandi DOS &#8211; Cenati Giovanni VbScript WSH,” <a href="http://digilander.libero.it/Cenati/esegui.htm">http://digilander.libero.it/Cenati/esegui.htm</a>.</li>
+	<li>“Nautilus-actions: GUI è bello! » Ubuntu block notes,” <a href="http://www.aldolat.it/guide-e-howto/nautilus-actions-gui-e-bello/">http://www.aldolat.it/guide-e-howto/nautilus-actions-gui-e-bello/</a>.</li>
+	</ol>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/">Il tasto destro per alleggerire un po&#8217; il lavoro di chi si occupa di GIS (su Windows e su Linux)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" medium="image">
+			<media:title type="html">contextmenu</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/image.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions.png" medium="image">
+			<media:title type="html">nautilus-actions</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info.png" medium="image">
+			<media:title type="html">edit-action-gdal_info</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>FWTools: estrarre le metainformazioni da un file vettoriale</title>
+		<link>http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/</link>
+		<comments>http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/#comments</comments>
+		<pubDate>Wed, 21 Feb 2007 21:01:21 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[geotools]]></category>
+		<category><![CDATA[metainformazioni]]></category>
+		<category><![CDATA[shapefile]]></category>
+		<category><![CDATA[vector]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+estrarre+le+metainformazioni+da+un+file+vettoriale&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/&amp;rft.language=English"></span>
+In un post recente, ho parlato di FWTools ed ho introdotto il primo piccolissimo tutorial sul suo utilizzo. In questo, ci sposteremo dal raster al vector, e vedremo come estrarre le metainformazioni da un file vettoriale. Utilizzerò l’utility ogrinfo, presente nel pacchetto FWTools. E’ un applicazione che va lanciata dal prompt dei comandi. Vediamo una [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+estrarre+le+metainformazioni+da+un+file+vettoriale&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In un <a href="http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/" title="FWTools su TANTO">post</a> recente, ho parlato di FWTools ed ho introdotto il primo piccolissimo tutorial sul suo utilizzo. In questo, ci sposteremo dal raster al vector, e vedremo come estrarre le metainformazioni da un file vettoriale.</p>
+	<p>Utilizzerò l’<em>utility</em> <a href="http://www.gdal.org/ogr/ogrinfo.html" title="ogrinfo" target="_blank"><strong>ogrinfo</strong></a>, presente nel pacchetto FWTools. E’ un applicazione che va lanciata dal prompt dei comandi. Vediamo una serie di esempi applicati a un file con estensione .shp (ArcView shapefile):</p>
+	<pre>&gt;ogrinfo gb_orto.shp</pre>
+	<p>mi restituirà</p>
+	<pre>INFO: Open of `gb_orto.shp'
+using driver `ESRI Shapefile' successful.
+1: gb_orto (Polygon)</pre>
+	<p>Se volessi avere le metainformazioni su questo layer poligonale &#8211; 1: gb_orto (Polygon) &#8211; scriverò</p>
+	<pre>&gt;ogrinfo -summary gb_orto.shp gb_orto</pre>
+	<p>e otterrò</p>
+	<pre>INFO: Open of `gb_orto.shp'
+using driver `ESRI Shapefile' successful.
+	
+Layer name: gb_orto
+Geometry: Polygon
+Feature Count: 698
+Extent: (2244520.000000, 3929160.000000) - (2578399.500000, 4288120.000000)
+Layer SRS WKT:
+(unknown)
+RASTER: String (255.0)</pre>
+	<p>In questo caso ottengo molte più informazioni:</p>
+	<ul>
+	<li>il numero di feature presenti nel layer (698 poligoni)</li>
+	<li>l’estensione geografica del layer (il bounding box)</li>
+	<li>il sistema di coordinate &#8211; SRS Spatial Reference System &#8211; quando è possibile ricavarlo dal file (nel mio esempio non era possibile, come spesso accade con gli shapefile)</li>
+	<li>i campi presenti nel database e la loro tipologia (c’è un solo campo che si chiama “RASTER”, e di tipo String e con una larghezza di 255 caratteri)</li>
+	</ul>
+	<p>Per gli appofondimenti vi lascio alla pagina ufficiale e alla rete.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/">FWTools: estrarre le metainformazioni da un file vettoriale</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+estrarre+le+metainformazioni+da+un+file+vettoriale&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/21/fwtools-estrarre-le-metainformazioni-da-un-file-vettoriale/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>FWTools: un kit di applicazioni GIS irrinunciabile</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/</link>
+		<comments>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comments</comments>
+		<pubDate>Fri, 09 Feb 2007 15:17:15 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[metainformazioni]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[Tutorial]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+un+kit+di+applicazioni+GIS+irrinunciabile&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/&amp;rft.language=English"></span>
+Quando formatto il mio PC, e devo reinstallare tutte le applicazioni, inizio da quelle &#8220;fondamentali ed insostituibili&#8221;. Ognuno ha le proprie, e la scelta si basa su criteri pratici mescolati spesso con pulsazioni da tifoso. Nella mia Top Ten c&#8217;è proprio FWTools, un kit di applicazioni sviluppato da Frank Warmerdam (FW), disponibile sia per Linux [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+un+kit+di+applicazioni+GIS+irrinunciabile&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Quando formatto il mio PC, e devo reinstallare tutte le applicazioni, inizio da quelle &#8220;fondamentali ed insostituibili&#8221;. Ognuno ha le proprie, e la scelta si basa su criteri pratici mescolati spesso con pulsazioni da tifoso. Nella mia <em>Top Ten</em> c&#8217;è proprio <a title="FWTools" href="http://fwtools.maptools.org/">FWTools</a>, un kit di applicazioni sviluppato da <a title="Frank Warmerdam's Home Page" href="http://home.gdal.org/~warmerda/" target="_blank">Frank Warmerdam</a> (FW), disponibile sia per Linux che per Windows, che non può mancare tra le applicazione di chiunque si occupi di GIS e cartografia numerica.</p>
+	<p>E&#8217; composto dai seguenti pacchetti:</p>
+	<blockquote>
+	<ul>
+	<li><strong>OpenEV</strong>: A high performance raster/vector desktop data viewer and analysis tool.</li>
+	<li><strong>MapServer</strong>: A web mapping package.</li>
+	<li><strong>GDAL/OGR</strong>: A library and set of commandline utility applications for reading and writing a variety of geospatial raster (GDAL) and vector (OGR) formats.</li>
+	<li><strong>PROJ.4</strong>: A cartographic projections library with commandline utilities.</li>
+	<li><strong>OGDI</strong>: a multi-format raster and vector reading techology noteworthy for inclusion of support for various military formats including VPF (ie. VMAP, VITD), RPF (ie. CADRG, CIB), and ADRG.</li>
+	<li><strong>Python</strong>: a scripting language.</li>
+	</ul>
+	</blockquote>
+	<p>Con questo <em>post</em>, voglio inaugurare una serie di piccolissimi tutorial dedicata a FWTools ed in particolare alle librerie GDAL/OGR. L&#8217;installazione di FWTools è molto semplice e non ne parlerò. Le operazione che andremo a svolgere, le faremo tutte da &#8220;riga di comando&#8221;.</p>
+	<h2>Come ricavare le metainformazioni disponibili in un file GeoTiff?</h2>
+	<p>Per ottenere queste informazioni utilizzerò le librerie GDAL, ed in particolare l&#8217;utility <a title="gdalinfo" href="http://www.gdal.org/gdalinfo.html" target="_blank"><strong>gdalinfo</strong></a>. Ecco i passi da seguire:</p>
+	<ul>
+	<li>aprire la shell di sistema</li>
+	<li>scrivere un comando con la seguente sintassi <code>"</code><code>gdalinfo /percorso_file_geotiff/file_geottif.tif</code><code>"</code></li>
+	<li>premere invio</li>
+	</ul>
+	<p>Otterrò un&#8217;output di questo tipo:</p>
+	<pre>Driver: GTiff/GeoTIFF
+Size is 7520, 5800
+Coordinate System is:
+PROJCS[\"unnamed\",
+GEOGCS[\"unnamed\",
+DATUM[\"unknown\",
+SPHEROID[\"unnamed\",6378388,297.0000000000014,
+AUTHORITY[\"EPSG\",\"7022\"]],
+AUTHORITY[\"EPSG\",\"6265\"]],
+PRIMEM[\"Greenwich\",0],
+UNIT[\"degree\",0.0174532925199433],
+AUTHORITY[\"EPSG\",\"4265\"]],
+UNIT[\"metre\",1,
+AUTHORITY[\"EPSG\",\"9001\"]],
+AUTHORITY[\"EPSG\",\"3004\"]]
+Origin = (2366320.000000,4218280.000000)
+Pixel Size = (1.00000000,-1.00000000)
+Metadata:
+AREA_OR_POINT=Area
+TIFFTAG_XRESOLUTION=300
+TIFFTAG_YRESOLUTION=300
+TIFFTAG_RESOLUTIONUNIT=2 (pixels/inch)
+Corner Coordinates:
+Upper Left  ( 2366320.000, 4218280.000)
+Lower Left  ( 2366320.000, 4212480.000)
+Upper Right ( 2373840.000, 4218280.000)
+Lower Right ( 2373840.000, 4212480.000)
+Center      ( 2370080.000, 4215380.000)
+Band 1 Block=7520x16 Type=Byte, ColorInterp=Red
+Band 2 Block=7520x16 Type=Byte, ColorInterp=Green
+Band 3 Block=7520x16 Type=Byte, ColorInterp=Blue</pre>
+	<p>Magari a voi non suscita alcun emozione, ma questo semplicissimo comando ci restituisce un&#8217;informazione spaziale strutturata utilissima. Se vorrete creare un file .txt, basterà scrivere sulla <em>shell</em> la seguente stringa:</p>
+	<pre>\"gdalinfo /percorso_file_geotiff/file_geottif.tif &gt; /percorso_export/nomefile.txt\"</pre>
+	<p>Il comando esegue anche operazioni più sofisticate, per le quali troverete informazioni sulla <a title="gdalinfo" href="http://www.gdal.org/gdalinfo.html" target="_blank">pagina ufficiale</a> di questa utility e anche cercando un po&#8217; sul web.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/">FWTools: un kit di applicazioni GIS irrinunciabile</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+un+kit+di+applicazioni+GIS+irrinunciabile&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

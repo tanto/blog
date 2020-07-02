@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Open-Web-Mapping</title>
+	<atom:link href="http://blog.spaziogis.it/tag/open-web-mapping/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Editing vettoriale con OpenLayers</title>
+		<link>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/</link>
+		<comments>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/#comments</comments>
+		<pubDate>Mon, 21 Sep 2009 07:28:55 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[editor]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[MapFish]]></category>
+		<category><![CDATA[Open-Web-Mapping]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1251</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+Ultimamente mi è stato richiesto un applicativo di webmapping che mettesse chiunque (o quasi&#8230;) in condizione di gestire agevolmente un geodatabase, aggiornando nel tempo le informazioni contenute, comprese le feature geografiche. In due parole: un gestionale web, ma con delle funzionalità proprie dei GIS desktop. Il committente ha richiesto una soluzione open source ed io [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignright size-full wp-image-1235" src="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil.jpg" alt="pencil" width="172" height="216" />Ultimamente mi è stato richiesto un applicativo di webmapping che mettesse chiunque (o quasi&#8230;) in condizione di gestire agevolmente un geodatabase, aggiornando nel tempo le informazioni contenute, comprese le feature geografiche. In due parole: un gestionale web, ma con delle funzionalità proprie dei GIS desktop.<br />
+Il committente ha richiesto una soluzione open source ed io sono stato ben contento di proporre il rodato quartetto composto da <a href="http://mapserver.org" target="_blank">UMN-Mapserver</a>, <a href="http://postgis.refractions.net" target="_blank">PostGIS</a>, <a href="http://php.net" target="_blank">PHP</a> e <a href="http://mapfish.org" target="_blank">MapFish</a>.<br />
+In passato avevo già realizzato qualcosa di simile, ma si trattava di inserire dei punti a partire da una coppia di coordinate, operazione semplicissima grazie a PostGIS. Questa volta era necessario che l&#8217;utente disegnasse le geometrie online, direttamente nella finestra del browser, ed ho colto l&#8217;occasione per dare finalmente un&#8217;occhiata alle funzioni di editing vettoriale di <a href="http://openlayers.org" target="_blank">OpenLayers</a> 2.8. Ne sono rimasto estremamente soddisfatto, come sempre avviene quando si tratta di OpenLayers.<br />
+Scorrendo la <a href="http://openlayers.org/dev/examples/" target="_blank">pagina degli esempi</a> ed inserendo il filtro &#8220;vector&#8221;, ci si rende subito conto della potenza dei controlli dedicati all&#8217;editing.</p>
+	<p>Grazie agli esempi, che coprono quasi tutto lo spettro delle possibilità, è stato facile produrre la parte client del mio lavoro.<br />
+L&#8217;editor ottenuto è adattabile a qualsiasi back-end &#8220;spatial enabled&#8221;, è indipendente dal mapserver scelto per pubblicare i dataset online, dal geodbms usato per contenerli e dal linguaggio di programmazione lato server.<br />
+Il cuore del client è costituito dalle funzioni presentate in <a href="http://openlayers.org/dev/examples/vector-formats.html" target="_blank">questo esempio</a>, che consentono di disegnare una feature da <strong>serializzare</strong> sotto forma di stringa in ben 6 formati standard differenti. Ottenuta la stringa, il gioco è fatto: uno script lato server si occupa di recuperarla e lanciare una query di inserimento nel geodabase (ci sono, come sempre, anche altre soluzioni).<br />
+L&#8217;operazione inversa, vale a dire <strong>deserializzare</strong> una stringa ed ottenere una feature, è ugualmente possibile e può essere molto utile.<br />
+Per esempio, volendo rifinire degli shapefile su una base Google Maps o <a href="http://openstreetmap.org">Openstreetmap</a>, basta trasformarli KML (o in uno degli altri 5 formati supportati), aprire il file con un editor di testo e, infine, copiare ed incollare il contenuto dentro la textarea del nostro editor. A questo punto si è liberi di modificare a piacimento le feature importate.<br />
+Questo è solo un esempio grezzo di import, dispobile &#8220;out of the box&#8221;, ma una volta collegato l&#8217;editor ad un back-end spaziale si può dare sfogo alla fantasia e creare delle funzioni di importazione più raffinate.</p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/static/vectoreditor/"><img border="0" class="aligncenter size-full wp-image-1298" title="vector editing con openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing.png" alt="vector editing con openlayers" width="480" height="426" /></a></p>
+	<p style="text-align: left;">Cliccando <strong><a href="http://blog.spaziogis.it/static/vectoreditor/" target="_blank">qui</a></strong> potete vedere una versione super-generica del client di editing da me realizzato. Ho usato MapFish 1.1<a href="#nota1"><sup>[1]</sup></a> per dare un aspetto un po&#8217; più carino<a href="#nota2"><sup>[2]</sup></a> al tutto ed ho modificato il codice degli esempi affinché le diverse funzioni di editing potessero essere attivate da una toolbar invece che da una serie di checkbox e radiobutton. I commenti nel codice dovrebbero essere abbastanza esplicativi.</p>
+	<p><a name="nota1"><sup>[1]</sup></a> <em>Si tratta di una versione leggermente modificata in cui ho sostituito OpenLayers 2.7 con OpenLayers 2.8</em></p>
+	<p><a name="nota2"><sup>[2]</sup></a> <em>Qualcuno potrebbe cimentarsi con <a href="http://www.dojotoolkit.org/" target="_blank">Dojo</a> o <a href="http://jquery.com/" target="_blank">jQuery</a>&#8230; sono sicuro che non verrebbe affatto male</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p><strong>Nota</strong><br />
+Devo scusarmi con i lettori di TANTO iscritti al feed RSS.<br />
+Stamattina ho accidentalmente cliccato sul bottone &#8220;Pubblica&#8221; mentre scrivevo la bozza e nonostante mi sia precipitato a recuperare, non sono riuscito ad evitare che l&#8217;articolo incompleto finisse nel feed. Per farmi perdonare mi sono incollato al computer ed ho fatto il possibile per finire l&#8217;articolo e la demo alla svelta! In futuro starò più attento a dove clicco e soprattutto non inizierò a scrivere bozze di domenica mattina prima di colazione! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/">Editing vettoriale con OpenLayers</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/feed/</wfw:commentRss>
+		<slash:comments>19</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil.jpg" medium="image">
+			<media:title type="html">pencil</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing.png" medium="image">
+			<media:title type="html">vector editing con openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Introduzione a MapFish: OpenLayer e ExtJs “a braccetto”</title>
+		<link>http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/</link>
+		<comments>http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/#comments</comments>
+		<pubDate>Thu, 23 Apr 2009 14:25:08 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ExtJs]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[MapFish]]></category>
+		<category><![CDATA[Open-Web-Mapping]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[wms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=831</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Introduzione+a+MapFish%3A+OpenLayer+e+ExtJs+%E2%80%9Ca+braccetto%E2%80%9D&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/&amp;rft.language=English"></span>
+Come prima cosa vorrei ringraziare Andrea per avermi dato la possibilità di contribuire, nel mio piccolo, a TANTO, scusandomi con lui per tutto il tempo (davvero troppo) passato da quando gli ho promesso questo tutorial ad oggi! In questo breve articolo-tutorial cercherò di fare una panoramica sulla componente client di MapFish, un framework open source [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Introduzione+a+MapFish%3A+OpenLayer+e+ExtJs+%E2%80%9Ca+braccetto%E2%80%9D&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Come prima cosa vorrei ringraziare Andrea per avermi dato la possibilità di contribuire, nel mio piccolo, a TANTO, scusandomi con lui per tutto il tempo (davvero troppo) passato da quando gli ho promesso questo tutorial ad oggi!</p>
+	<p>In questo breve articolo-tutorial cercherò di fare una panoramica sulla componente client di MapFish, un framework open source basato su ExtJs e OpenLayers, grazie al quale è possibile realizzare delle applicazioni webgis in pieno stile web 2.0 con poco sforzo una volta compreso il funzionamento degli “ingranaggi”.</p>
+	<p>Innanzitutto va detto che la parte relativa al mapping vero e proprio può essere gestita esattamente come in OpenLayers che, come già ricordato, è compreso all&#8217;interno di MapFish.<br />
+Si ha quindi a disposizione tutta la flessibilità di OpenLayers (layer WMS, WFS, Google, Yahoo, ecc.) e se si sanno già realizzare mappe online con questa ottima libreria, il passaggio a MapFish consiste semplicemente nel comprendere come gestire layout ed eventi alla maniera di ExtJs (l&#8217;altra componente del framework) e nello scoprire gli utili widget che MapFish mette a disposizione dello sviluppatore.</p>
+	<p>L&#8217;utilizzo di questi widget è simile a quello dei controlli di OpenLayers, con la differenza che in questo caso viene sfruttata la potenza di ExtJs per aggiungere un&#8217;interfaccia utente avanzata al controllo. I widget che necessitano del solo codice lato client sono:</p>
+	<ul>
+	<li><strong>Toolbar</strong> – una barra degli strumenti con dei tasti preimpostati (full-extent, pan, zoombox, zoom out) che è possibile espandere con nuovi bottoni sapendosi muovere un minimo con OL;</li>
+	<li><strong>Layer Tree</strong> – si tratta di una “toc”, simile al layer switcher di OL, ma molto più configurabile, con la possibilità di includere facilmente icone e di annidare e raggruppare i layer a proprio piacimento;</li>
+	<li><strong>Scorciatoie</strong> – liste a discesa con possibilità di autocompletamento del testo inserito (come avviene in Google suggest, per capirci) che centrano la mappa sulle coordinate corrispondenti al luogo/elemento scelto;</li>
+	<li><strong>Stampa</strong> – un semplice controllo da includere per stampare la porzione di mappa visualizzata.</li>
+	</ul>
+	<p>Affinché gli altri widget di MapFish (stampa complessa, ricerca nel db, ecc.) funzionino, è necessario che sia installata la componente server del framework che, però, non tratteremo in questo articolo (anche perché, non avendoci mai lavorato, rischierei di scrivere una montagna di cavolate!).<br />
+ExtJs semplifica la creazione di layout, anche molto complessi, che risultano accattivanti per l&#8217;utente e cross-browser. Con poche righe di codice è possibile creare interfacce a schede (tab), menu accordion, form avanzati, ecc&#8230; avendo la sicurezza che l&#8217;applicazione verrà correttamente visualizzata su tutti i browser più diffusi in circolazione. Con ExtJs possiamo ottenere rapidamente delle belle GUI in cui “infilare” le nostre applicazioni webgis. Insomma, sono assicurati un risultato di tutto rispetto e un bel risparmio di diottrie e bile (è risaputo che quella di rendere cross-browser delle appicazioni web “complesse” sia una delle attività che più contribuiscono alla creazione di nuovi tipi di imprecazioni&#8230; <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  ).</p>
+	<p>Fatta questa introduzione, passiamo al tutorial vero e proprio!</p>
+	<h2>Tutorial MapFish</h2>
+	<p>Creeremo una semplice applicazione webgis, munita di una toolbar e di un layer tree, con cui sarà possibile visualizzare la localizzazione degli utenti GRASS su due mappe di base alternative.<br />
+Le informazioni che mostreremo provengono da diversi server WMS (Nasa, Metacarta, Grass).<br />
+Utilizzeremo la versione 1.1 del framework MapFish, scaricabile da <a href="http://www.mapfish.org/downloads">qui</a> come archivio compresso in formato tar.gz (se state lavorando in ambiente Windows, vi consiglio di procurarvi l&#8217;ottimo <a href="http://www.7-zip.org/">7zip</a> per estrarne il contenuto).</p>
+	<p>Il primo passaggio consiste ovviamente nello scompattare quanto abbiamo scaricato in modo da ottenere una cartella (MapFish-1.1) che contiene tutto il necessario per creare la nostra applicazione d&#8217;esempio.<br />
+Utilizzando la sola parte client non abbiamo bisogno di rendere visibile il tutto ad un eventuale webserver e possiamo posizionare la directory di cui sopra dove più ci aggrada nel filesystem&#8230;<br />
+Tuttavia, per mantenere un certo ordine, consiglio di creare una ulteriore cartella, che chiameremo &#8220;EsempioMF&#8221;, e di lavorare al suo interno.<br />
+Creiamo anche un file <em>index.html</em>, un file <em>myMapFish.js</em> e spostiamo anche loro nella cartella di lavoro &#8220;EsempioMF&#8221;.<br />
+A questo punto, quindi, la situazione dovrebbe essere la seguente:</p>
+	<p>EsempioMF<br />
+|<br />
+ &#8211; MapFish-1.1<br />
+|<br />
+ &#8211; index.html<br />
+|<br />
+ &#8211; myMapfish.js</p>
+	<p>Ora che siamo organizzati in modo più o meno ordinato, è il momento di riempire il file index.html.<br />
+Ecco come:</p>
+	<pre class="brush: html; ">
+	
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Esempio MapFish by TANTO&lt;/title&gt;
+	
+&lt;!-- link ai CSS della componente ExtJS
+(è possibile scaricare temi dal sito di extjs e sostituire default.css con il foglio di stile del tema scaricato... ce ne sono un paio che meritano) --&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/ext-all.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/default.css&quot; /&gt;
+	
+&lt;!-- Inserisco i riferimenti agli script Javascript necessari al funzionamento del framework MapFish --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/openlayers/lib/OpenLayers.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/adapter/ext/ext-base.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/ext-all.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/mapfish/MapFish.js&quot;&gt;&lt;/script&gt;
+	
+&lt;!-- Inserisco il riferimento allo script Javascript myMapFish.js --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;myMapFish.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!-- Nel body creo i div che faranno da contenitori per la mappa vera e propria, per la toolbar e per il layer tree --&gt;
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;buttonbar&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;tree&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+	</pre>
+	<p>I commenti indicano cosa è stato inserito nell&#8217;header.Quindi possiamo chiudere index.html e iniziare a lavorare sullo script myMapFish.js.<br />
+Questo script conterrà due porzioni ben distinte:<br />
+- la prima servirà a definire il layout dell&#8217;applicazione (codice ExtJs);<br />
+- la seconda definirà la mappa vera e propria (codice OpenLayers) ed i widget MapFish che utilizzeremo.</p>
+	<p>Cominciamo, quindi, dalla prima parte dello script ed inseriamo quanto segue:</p>
+	<pre class="brush: javascript; ">
+	
+//Layout dell&#039;applicazione
+//************************
+Ext.onReady(function() {
+    new Ext.Viewport({
+        layout:&#039;border&#039;,
+        items:[{
+                region:&#039;north&#039;,
+                margins:&#039;4 4 4 4&#039;,
+                height: 63,
+                html: &#039;&lt;img src=&quot;http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/TANTO_logo.png&quot;/&gt;&#039;,
+                bodyStyle:&#039;padding:2px;&#039;
+                },{
+                region:&#039;center&#039;,
+                layout:&#039;border&#039;,
+                margins:&#039;0 4 4 4&#039;,
+                items:[{
+                        region:&#039;north&#039;,
+                        border:false,
+                        contentEl:&#039;buttonbar&#039;,
+                        height:26
+                        },{
+                        region:&#039;center&#039;,
+                        contentEl:&#039;map&#039;,
+                        border:false
+                }]
+                },{
+                title:&#039;Layer tree&#039;,
+                region:&#039;east&#039;,
+                margins:&#039;0 4 4 0&#039;,
+                width:350,
+                contentEl:&#039;tree&#039;,
+                collapsible:true
+                },{
+                region:&#039;south&#039;,
+                margins:&#039;0 4 4 4&#039;,
+                height:20,
+                html:&#039;Esempio realizzato per TANTO&#039;,
+                bodyStyle:&#039;padding:2px;font-size:12px;font-family:tahoma,arial,helvetica&#039;
+        }]
+	
+    });
+	
+});
+	</pre>
+	<p>questa porzione di codice definisce completamente la webgui, non c&#8217;è bisogno di altro.<br />
+In sintesi, dopo aver inizializzato ExtJs con il metodo Ext.onReady, abbiamo creato un oggetto Viewport per dire ad ExtJs di utilizzare tutta la finestra del browser (dimenticavo&#8230; vogliamo che la nostra applicazione sia a tutto schermo <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  ) e poi abbiamo inserito un layout di tipo &#8216;border&#8217; all&#8217;interndo del quale (nel pannello &#8216;center&#8217;) abbiamo annidato un secondo layout dello stesso tipo.<br />
+Ogni layout di tipo border può contenere 5 panneli (&#8216;region&#8217;), detti north, center, east, west, south. Di questi solo &#8216;center&#8217; è obbligatorio.<br />
+Ad ogni modo vi rimando all&#8217;esplorazione del <a href="http://extjs.com">sito di ExtJs</a> per scoprire come complicare a piacimento i vostri layout. Il sito è molto ben fatto, pieno di tutorial ed esempi.</p>
+	<p>Passiamo ora alla mappa e ai mapfish widget.<br />
+Sempre all&#8217;interno del file myMapFish.js inseriamo questo pezzo di codice sotto al precedente:</p>
+	<pre class="brush: javascript; ">
+	
+//Mappa e Widget
+//************************
+	
+function initMap(){
+	
+    //Creo la mappa e definisco alcuni controlli di base
+    var map = new OpenLayers.Map(&#039;map&#039;,{controls:[
+        new OpenLayers.Control.Navigation(),
+        new OpenLayers.Control.PanZoomBar()
+    ]});
+	
+    //Definisco l&#039;extent che utilizzerò come vista iniziale
+    var bounds = new OpenLayers.Bounds(5,36,21,50);
+	
+    //Definisco i layer WMS, due di base (alternativi) e uno di overlay
+    var jpl_wms = new OpenLayers.Layer.WMS(&quot;NASA_Global_Mosaic&quot;,
+&quot;http://t1.hypercube.telascience.org/cgi-bin/landsat7&quot;,{layers: &quot;landsat7&quot;});
+	
+    var ol_wms = new OpenLayers.Layer.WMS(&quot;OpenLayers_WMS&quot;,
+&quot;http://labs.metacarta.com/wms/vmap0&quot;,{layers: &#039;basic&#039;});
+	
+    var grass_users = new OpenLayers.Layer.WMS.Untiled(&quot;Utenti_grass&quot;,
+&quot;http://mapserver.gdf-hannover.de/cgi-bin/grassuserwms?&quot;,
+        {layers: &#039;GRASS-Users&#039;,transparent:true, format:&#039;image/png&#039;},
+        {isBaseLayer:false});
+	
+    //Aggiungo i layer alla mappa
+    map.addLayers([jpl_wms,ol_wms,grass_users]);
+	
+    //Aggiungo il toolbar widget di MapFish:
+    //**************************************
+    //Creo la toolbar
+    var toolbar = new mapfish.widgets.toolbar.Toolbar({map: map, configurable:true});
+	
+    //Scelgo di renderizzare la toolbar in un div con id = buttonbar
+    toolbar.render(&#039;buttonbar&#039;);
+	
+    //Aggiungo i bottoni/controlli
+    toolbar.addControl(new OpenLayers.Control.ZoomBox(), {iconCls: &#039;zoomin&#039;,toggleGroup: &#039;map&#039;});
+    toolbar.addControl(new OpenLayers.Control.ZoomOut(), {iconCls: &#039;zoomout&#039;,toggleGroup: &#039;map&#039;});
+    toolbar.addControl(new OpenLayers.Control.DragPan({isDefault: true}),{iconCls: &#039;pan&#039;, toggleGroup: &#039;map&#039;});
+	
+    //Attivo la toolbar
+    toolbar.activate();
+	
+    //Layer tree
+    //***************************************
+    //Creo un modello per il layer tree, distribuendo i layer in due nodi espandibili distinti (Mappe di base e Overlay)
+    var model = [{
+         text: &quot;Mappe di base&quot;,
+         expanded: true,
+         children: [{
+              checked:true,
+              text:&quot;Nasa Global Mosaic&quot;,
+              layerName:&quot;NASA_Global_Mosaic&quot;
+              },{
+              checked:false,
+              text:&quot;OpenLayers WMS&quot;,
+              layerName:&quot;OpenLayers_WMS&quot;
+         }]},{
+         text: &quot;Overlay&quot;,
+         expanded: true,
+         children: [{
+              checked:false,
+              text:&quot;Utenti GRASS&quot;,
+              layerName:&quot;Utenti_grass&quot;
+          }]
+    }];
+	
+    //Inserisco il widget vero e proprio indicando
+    var tree = new mapfish.widgets.LayerTree({
+    map: map, el: &#039;tree&#039;,
+    model: model,
+    border:false, autoHeight:true
+    });
+    tree.render();
+	
+    //Centro la mappa sull&#039;extent definito in precedenza
+    map.zoomToExtent(bounds);
+	
+} //fine della funzione init()
+	</pre>
+	<p>Anche qui i commenti dovrebbero essere abbastanza chiari.<br />
+Abbiamo creato una mappa esattamente come se stessimo lavorando con buon vecchio OpenLayers e, in più, abbiamo inserito nel codice due MapFish widget.</p>
+	<p>Prima di vedere il risultato del nostro lavoro dobbiamo fare due piccole modifica al file index.html:<br />
+- inserire un evento onload a livello del tag  per fare in modo che la mappa venga caricata all&#8217;apertura della pagina (esattamente come in OL);<br />
+- inseire alcune regole CSS necessarie per la corretta visualizzazione dei MapFish widget</p>
+	<p>Ecco come deve apparire index.html modificato a dovere:</p>
+	<pre class="brush: html; ">
+	
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Esempio MapFish by TANTO&lt;/title&gt;
+	
+&lt;!-- link ai CSS della componente ExtJS
+(è possibile scaricare temi dal sito di extjs e sostituire default.css con il foglio di stile del tema scaricato... ce ne sono un paio che meritano) --&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/ext-all.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/default.css&quot; /&gt;
+	
+&lt;!-- Inserisco i riferimenti agli script Javascript necessari al funzionamento del framework MapFish --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/openlayers/lib/OpenLayers.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/adapter/ext/ext-base.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/ext-all.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/mapfish/MapFish.js&quot;&gt;&lt;/script&gt;
+	
+&lt;!-- Inserisco il riferimento allo script Javascript myMapFish.js --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;myMapFish.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;initMap()&quot;&gt;
+&lt;!-- Nel body creo i div che faranno da contenitori per la mappa vera e propria, per la toolbar e per il layer tree --&gt;
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;buttonbar&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;tree&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+	
+&lt;style type=&quot;text/css&quot;&gt;
+/* Icone dei bottoni della toolbar */
+.zoomin {
+background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_zoomin.png) !important;
+height:20px !important;
+width:20px !important;
+}
+.zoomout {
+background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_zoomout.png) !important;
+height:20px !important;
+width:20px !important;
+}
+	
+.pan {
+background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_pan.png) !important;
+height:20px !important;
+width:20px !important;
+}
+	
+/* Dimensioni del Layer tree */
+#tree {
+height: 100%;
+width: 100%;
+}
+&lt;/style&gt;
+	</pre>
+	<p>Adesso apriamo index.html col borwser e il risultato dovrebbe essere <a title="esempio applicazione MapFish" href="http://blog.spaziogis.it/static/esempiomf/" target="_blank">questo</a>.</p>
+	<p> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/">Introduzione a MapFish: OpenLayer e ExtJs “a braccetto”</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/feed/</wfw:commentRss>
+		<slash:comments>19</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Introduzione+a+MapFish%3A+OpenLayer+e+ExtJs+%E2%80%9Ca+braccetto%E2%80%9D&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Un corso sulla cartografia online con strumenti Open</title>
+		<link>http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/</link>
+		<comments>http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/#comments</comments>
+		<pubDate>Thu, 10 May 2007 07:34:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[gml]]></category>
+		<category><![CDATA[ogc]]></category>
+		<category><![CDATA[Open-Web-Mapping]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[wfs]]></category>
+		<category><![CDATA[wms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+corso+sulla+cartografia+online+con+strumenti+Open&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-05-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/&amp;rft.language=English"></span>
+Ecco un&#8217;altra chicca che vi prego di diffondere: un corso online dal titolo &#8220;Open Web Mapping&#8220;. E&#8217; molto ben strutturato e copre gran parte degli argomenti propedutici per chi si voglia avvicinare a questo mondo. Lo trovo utile anche per chi voglia raccogliere del materiale per fare didattica. Questo è l&#8217;indice del corso: Lesson 0: [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+corso+sulla+cartografia+online+con+strumenti+Open&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-05-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ecco un&#8217;altra chicca che vi prego di diffondere: un corso online dal titolo &#8220;<a href="https://courseware.e-education.psu.edu/courses/geog585/content/home.html" title="Open Web Mapping" target="_blank">Open Web Mapping</a>&#8220;. E&#8217; molto ben strutturato e copre gran parte degli argomenti propedutici per chi si voglia avvicinare a questo mondo. Lo trovo utile anche per chi voglia raccogliere del materiale per fare didattica. Questo è l&#8217;indice del corso:</p>
+	<ul>
+	<li>Lesson 0: Orientation</li>
+	<li>Lesson 1: Introduction to Open Web Mapping</li>
+	<li>Lesson 2: Web Map Servers (WMS)</li>
+	<li>Lesson 3: Web Feature Servers (WFS)</li>
+	<li>Lesson 4: Extensible Markup Language (XML)</li>
+	<li>Lesson 5: Advanced Web Map Servers</li>
+	<li>Lesson 6: Geographic Markup Language (GML)</li>
+	<li>Lesson 7: WFS Revisited</li>
+	<li>Lesson 8: Building a Web Mapping Application</li>
+	<li>Lesson 9: Building a Thin Custom Web Mapping Client</li>
+	</ul>
+	<p>Il corso è interamente scaricabile ed io lo sto archiviando con <a href="http://amb.vis.ne.jp/mozilla/scrapbook/" title="ScrapBook - Firefox Extension" target="_blank">ScrapBook</a>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/">Un corso sulla cartografia online con strumenti Open</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+corso+sulla+cartografia+online+con+strumenti+Open&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-05-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/05/10/un-corso-online-sulla-cartografia-online-con-strumenti-open/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,3 @@
+Sitemap: http://blog.spaziogis.it/sitemap.xml# BEGIN XML-SITEMAP-PLUGIN
+Sitemap: http://blog.spaziogis.it/sitemap.xml.gz
+# END XML-SITEMAP-PLUGIN

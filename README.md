@@ -1,2 +1,3 @@
 # blog
-un repo per lavorare insieme sul nostro vecchio blog
+
+Archivio statico devl blog TANTO, basato su Wordpress.

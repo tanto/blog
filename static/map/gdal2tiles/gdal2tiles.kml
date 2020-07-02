@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+  <Document>
+    <name>Pubblicare una Raster</name>
+    <description></description>
+    <Style>
+      <ListStyle id="hideChildren">
+        <listItemType>checkHideChildren</listItemType>
+      </ListStyle>
+    </Style>
+    <Region>
+      <LatLonAltBox>
+        <north>90.00000000000008500000</north>
+        <south>-90.00000000000011400000</south>
+        <east>180.00000000000023000000</east>
+        <west>-180.00000000000017000000</west>
+      </LatLonAltBox>
+    </Region>
+    <NetworkLink>
+      <open>1</open>
+      <Region>
+        <Lod>
+          <minLodPixels>128</minLodPixels>
+          <maxLodPixels>-1</maxLodPixels>
+        </Lod>
+        <LatLonAltBox>
+          <north>90.00000000000008500000</north>
+          <south>-90.00000000000011400000</south>
+          <east>180.00000000000023000000</east>
+          <west>-180.00000000000017000000</west>
+        </LatLonAltBox>
+      </Region>
+      <Link>
+        <href>http://blog.spaziogis.it/static/map/gdal2tiles/gdal2tiles/0/0/0.kml</href>
+        <viewRefreshMode>onRegion</viewRefreshMode>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>

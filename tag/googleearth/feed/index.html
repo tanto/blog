@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; googleearth</title>
+	<atom:link href="http://blog.spaziogis.it/tag/googleearth/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Pubblicare facilmente una carta raster sul web</title>
+		<link>http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/</link>
+		<comments>http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/#comments</comments>
+		<pubDate>Tue, 22 Apr 2008 08:00:58 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[google-maps]]></category>
+		<category><![CDATA[googleearth]]></category>
+		<category><![CDATA[piramidazione]]></category>
+		<category><![CDATA[standard]]></category>
+		<category><![CDATA[tiling]]></category>
+		<category><![CDATA[tms]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Pubblicare+facilmente+una+carta+raster+sul+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/&amp;rft.language=English"></span>
+In un post recente, ho scritto di alcune delle modalità di pubblicazione online di cartografia digitale. Ne sono seguiti dei commenti interessanti, ed alcune email con richieste di consigli e di approfondimento. L&#8217;argomento  mi è sembrato &#8220;caldo&#8221;, e credo valga la pena alimentarlo ulteriormente. Su un blog che vi consiglio di leggere &#8211; thematicmapping blog [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Pubblicare+facilmente+una+carta+raster+sul+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In un <a title="Un’eccellente articolo sulla cartografia online e sulle soluzioni disponibili per produrla (oltre Google Maps)" href="http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/">post</a> recente, ho scritto di alcune delle modalità di pubblicazione online di cartografia digitale. Ne sono seguiti dei commenti interessanti, ed alcune email con richieste di consigli e di approfondimento. L&#8217;argomento  mi è sembrato &#8220;caldo&#8221;, e credo valga la pena alimentarlo ulteriormente.</p>
+	<p>Su un blog che vi consiglio di leggere &#8211; <a title="generating map tiles with gdal2tiles" href="http://blog.thematicmapping.org/2008/03/generating-map-tiles-with-gdal2tiles.html" target="_blank">thematicmapping blog</a> &#8211; ho scoperto dell&#8217;esistenza di <a title="GDAL2Tiles, easy publishing of raster maps on the Internet" href="http://www.klokan.cz/projects/gdal2tiles/" target="_blank">GDAL2Tiles</a>, un software a riga di comando che consente di pubblicare -rapidamente e con efficacia &#8211; una carta raster nelle seguenti modalità: Google Maps, OpenLayers and Google Earth. E&#8217; uno strumento incluso in GDAL/OGR 1.5.0, e quindi anche nell&#8217;ultimo <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">FWTools</a>.</p>
+	<p><img style="border-width: 0px;" src="http://blog.spaziogis.it/wp-content/uploads/2008/04/image-pyramid.jpg" alt="image_pyramid" width="260" height="148" align="left" border="0" /> Il lavoro che fa GDAL2Tiles è quello di leggere un&#8217;immagine georeferenziata, e suddividerla in tasselli da 256 x 256 <em>pixel</em>, con una struttura a piramide (il nome del pacchetto è in qualche modo descrittivo della funzione che svolge). In altre parole a partire da una <em>raster</em>, ne vengono generate diverse a risoluzioni decrescenti, che vengono suddivise in sezioni da 256 <em>pixel</em> (vedi figura).</p>
+	<p>Il tassellamento e la piramidazione sono molto efficienti per distribuire <em>raster</em> sul web, in quanto l&#8217;immagine potrà essere visualizzata direttamente alla risoluzione adatta al livello di zoom attivo, e verranno scaricati soltanto i tasselli dell&#8217;area che stiamo osservando a video. E&#8217; il meccanismo che sta dietro al motore di Google Maps e a quello dei maggiori <em>provider</em> di cartografia <em>online</em>.</p>
+	<p>Andiamo alla parte pratica e proviamo a mettere online una delle fantastiche immagini presenti su <a title="Natural Earth II - World environment map in natural color" href="http://www.shadedrelief.com/natural2/" target="_blank">Natural Earth II</a>. Si tratta di file (qui sotto un esempio) che rappresentano la terra, così come sarebbe senza l&#8217;influenza dell&#8217;uomo (immaginate Parigi coperta da una foresta temperata &#8230;); una rappresentazione del pianeta, precedente all&#8217;era moderna.</p>
+	<p><img style="border: 0px none;" src="http://blog.spaziogis.it/wp-content/uploads/2008/04/natural-earth.jpg" alt="natural_earth" width="500" height="260" border="0" /></p>
+	<p>Per il mio esempio ho scaricato la tavola denominata &#8220;<em><a title="Ocean with layered depth tints" href="http://www.nacis.org/data/NE2/NE2_WDB2.jpg" target="_blank">Ocean with layered depth tints</a></em>&#8220;.</p>
+	<p>La prima cosa che ho fatto è stata georeferenziarla. Conosco le coordinate dei 4 vertici della tavola, ho FWTools installato, e dalla shell FWTools lancio il seguente comando:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdal_translate -a_srs EPSG:4326 -gcp 0 0 -180 90 -gcp 16200 0 180 90</pre>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">-gcp 16200 8100 180 -90 NE2_modis3.jpg NE2_modis3.tif</pre>
+	<p><a title="gdal_translate" href="http://www.gdal.org/gdal_translate.html" target="_blank">gdal_translate</a> è una delle utility presenti in FWTools; questo il significato dei parametri usati:</p>
+	<p><strong>-a_srs</strong> per assegnare il corretto sistema di coordinate (<a title="EPSG:4326" href="http://spatialreference.org/ref/epsg/4326/" target="_blank">EPSG:4326</a>)<br />
+<strong>-gcp </strong>per assegnare i vari punti di controllo (prima le coordinate in pixel, e poi quelle del sistema di coordinate scelto)</p>
+	<p>A partire dalla jpeg scaricata, ho creato un tif georeferenziata, assegnando come punti di controllo i 4 vertici della carta.</p>
+	<p>Dovrò adesso processare l&#8217;immagine con <a title="gdalwarp" href="http://www.gdal.org/gdalwarp.html" target="_blank">gdalwarp</a>:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdalwarp -t_srs EPSG:4326 NE2_modis3.tif NE2_modis3_4326.tif</pre>
+	<p><strong>-t_srs </strong>è il parametro per assegnare il sistema di coordinate.</p>
+	<p>La mia immagine di partenza è di 16200  x 8100 <em>pixel;</em> GDAL2Tiles la tassellerà e la piramiderà. Ogni tassello che andrò a generare sarà di  256 x 256 pixel. I livelli di piramidazione, corrispondenti ai livelli di zoom possibili, rispecchieranno lo schema della tabella sottostante.</p>
+	<table width="480" border="1" cellspacing="2" cellpadding="2">
+	<tbody>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center"><strong>Livello di Zoom</strong></p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center"><strong>Dimensione immagine</strong></p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center"><strong>Tasselli</strong></p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center"><strong>Numero totale di tasselli</strong></p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">1</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">512 x 256</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2 x 1</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">2</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">1024 x 512</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">4 x 2</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">3</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2048 x 1024</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8 x 4</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">32</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">4</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">4096 x 2048</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">16 x 8</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">128</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">5</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8192 x 4096</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">32 x 16</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">512</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">6</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">16384 x 8192</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">64 x 32</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2048</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">7</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">32768 x 16384</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">128 x 64</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8192</p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Per il mio esempio mi &#8220;accontenterò&#8221; di un livello di zoom massimo pari a 5 e, prima di dare in pasto il mio file a GDAL2Tiles, ne ridurrò le dimensioni di conseguenza:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdal_translate -outsize 8192 4096 NE2_modis3_4326.tif</pre>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">NE2_modis3_4326_5.tif</pre>
+	<p><strong>-outsize </strong>per specifcare la larghezza e l&#8217;altezza dell&#8217;immagine di output</p>
+	<p>Non mi resta che &#8220;passare&#8221; a GDAL2Tiles, l&#8217;ultimo file generato:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdal2tiles -title <span style=\"color: #006080;\">\"Pubblicare una Raster\"</span> -publishurl
+http:<span style=\"color: #008000;\">//www.nostroserver.org/maptiles/ -v </span>
+NE2_modis3_4326_5.tif cartella_di_output</pre>
+	<p><strong>-title </strong>per dare un titolo al progetto<br />
+<strong>-publishurl</strong> per definire l&#8217;url delle mappe che pubblicheremo<br />
+<strong>-v </strong>per avere un output &#8220;verboso&#8221; del comando, e leggere a video il dettaglio di tutte le operazioni eseguite da GDAL2Tiles</p>
+	<p>L&#8217;output del processo sarà una cartella con il seguente contenuto:</p>
+	<ul>
+	<li>una sottocartella per ognuno dei livelli di piramidazione (in ognuna di queste diverse altre sottocartelle con i vari tasselli da 256 x 256 pixel)</li>
+	<li>un file denominato &#8220;openlayers.html&#8221;, ovvero un&#8217;interfaccia web basata su <a title="OpenLayers homepage" href="http://openlayers.org/" target="_blank">OpenLayers</a></li>
+	<li>un file denominato &#8220;googlemaps.html&#8221;, ovvero un&#8217;interfaccia web basata su Google Maps</li>
+	<li>un file denominato &#8220;tilemapresource.xml&#8221;, ovvero lo schema della struttura dei tasselli di mappa</li>
+	<li>un file denominato &#8220;cartella_di_output.kml&#8221;, che ci consentirà di visualizzare in Google Earth l&#8217;immagine processata (vedi figura sotto)</li>
+	</ul>
+	<p>Bisognerà fare l&#8217;upload di tutti i file creati da GDAL2Tiles, all&#8217;interno della cartella specificata sopra con il parametro <strong>-publishurl</strong>, e testarne infine il risultato.</p>
+	<p><strong><a title="GDAL2Tiles openlayers" href="http://blog.spaziogis.it/static/map/gdal2tiles/openlayers.html" target="_blank">Qui</a></strong> potete testare la visualizzazione della mappa in <strong>OpenLayers</strong>, <strong><a title="GDAL2Tiles Google Maps" href="http://blog.spaziogis.it/static/map/gdal2tiles/googlemaps.html" target="_blank">qui</a></strong> in <strong>Google Maps</strong> e <strong><a title="GDAL2Tiles Google Earth" href="http://blog.spaziogis.it/static/map/gdal2tiles/gdal2tiles.kml" target="_blank">qui</a></strong> in <strong>Google Earth</strong>.</p>
+	<p><img style="border: 0px none;" src="http://blog.spaziogis.it/wp-content/uploads/2008/04/google-earth.jpg" alt="google_earth" width="484" height="388" border="0" /></p>
+	<p>Il file con l&#8217;interfaccia basata su OpenLayers ha bisogno di una patch. <a title="GDAL2Tiles patch openlayers" href="http://blog.spaziogis.it/static/map/gdal2tiles/openlayers.zip" target="_blank">Qui</a> il file con la patch applicata.</p>
+	<p>Un bravo webmaster è in grado di portare a termine questa procedura, senza sapere nulla di cartografia digitale? Probabilmente si, ma magari soltanto in modo meccanico e pertanto non saprà applicarla ad esempi differenti da quelli descritti (immaginate di partire da un 25000 IGM).</p>
+	<p>Non ci si improvvisa cartografi online, e bisogna sempre documentarsi. Strumenti come questo fanno venire la voglia di farlo e consentono una più rapida valorizzazione e diffusione di queste tematiche. E&#8217; per questo che mi piace GDAL2Tiles.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/">Pubblicare facilmente una carta raster sul web</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Pubblicare+facilmente+una+carta+raster+sul+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/04/image-pyramid.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/image-pyramid.jpg" medium="image">
+			<media:title type="html">image_pyramid</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/natural-earth.jpg" medium="image">
+			<media:title type="html">natural_earth</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/google-earth.jpg" medium="image">
+			<media:title type="html">google_earth</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

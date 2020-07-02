@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenData - Palermo | Strumenti</title>
+  <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Le styles -->
+
+  <style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+  </style>
+  <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <script src="ga.js"></script>
+    </head>
+    <body>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <!-- <a class="brand" href="#">OpenData Palermo</a> -->
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li ><a href="index.html">Home</a></li>
+                <li><a href="mappa.html">Mappa</a></li>
+                <li ><a href="search_engine/index.html">Motore di ricerca</a></li>
+                <li class="active"><a href="strumenti.html">Strumenti</a></li>
+                <li ><a href="dati.html">Dati</a></li>
+                <li><a href="credits.html">Ringraziamenti</a></li>
+              </ul>
+              <ul class="nav pull-right">
+                <li class="dropdown">
+                  <a href="strumenti.html#" class="dropdown-toggle" data-toggle="dropdown">TANTO network</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="../../index.html">Blog</a></li>
+                    <li><a href="http://planetgis.it/">Planet GIS Italia</a></li>
+                    <li><a href="https://plus.google.com/u/0/communities/100473976195153342745">GEO+</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+
+
+        <div class="page-header">
+         <h1>Strumenti utilizzati</h1>
+         <p>Per elaborare i dati pubblicati dal comune e pubblicarli in questo sito sono stati usati soltanto software e librerie <strong>Open Souce</strong>. A seguire i principali.</p>
+       </div>
+
+
+       <ul class="thumbnails">
+        <li class="span3">
+          <div class="thumbnail">
+           <a href="strumenti.html#">
+            <img src="resources/refine.png" alt="" />
+          </a>
+          <h4>OpenRefine</h4>
+          <p>E' stato lo strumento principe: con questo ho <strong>pulito</strong> e <strong>omogeneizzato</strong> i dati ed estrattto nuovi attributi (come la posizione nello spazio).</p>
+          <a class="btn" href="http://openrefine.org/">Homepage »</a>
+        </div><!-- .thumbnail -->
+      </li><!-- .span3 -->
+      <li class="span3">
+        <div class="thumbnail">
+         <a href="strumenti.html#">
+          <img src="resources/gdal.png" alt="" />
+        </a>
+        <h4>GDAL</h4>
+        <p>Ho utilizzato questa libreria per convertire il file <code>.csv</code> - contentente la longitudine e la latitudine dei luoghi - in formato <code>geojson</code>.</p>
+        <a class="btn" href="http://www.gdal.org/">Homepage »</a>
+      </div><!-- .thumbnail -->
+    </li><!-- .span3 -->
+    <li class="span3">
+      <div class="thumbnail">
+       <a href="strumenti.html#">
+        <img src="resources/leaflet.png" alt="" />
+      </a>
+      <h4>Leaflet</h4>
+      <p>Una libreria JavaScript per la pubblicazione di mappe interattive <em>mobile friendly</em>. Per la clusterizzazione ho usato il plugin <a href="https://github.com/Leaflet/Leaflet.markercluster">markercluster</a>.</p>
+      <a class="btn" href="http://leafletjs.com/">Homepage »</a>
+    </div><!-- .thumbnail -->
+  </li><!-- .span3 -->
+  <li class="span3">
+    <div class="thumbnail">
+     <a href="strumenti.html#">
+      <img src="resources/bootstrap.png" alt="" />
+    </a>
+    <h4>Twitter Bootstrap</h4>
+    <p>Un framework JavaScript per lo sviluppo rapido, semplice e di qualità di <strong>front-end</strong> per il web. &Egrave; stato per uniformare lo stile di queste pagine.</p>
+    <a class="btn" href="http://twitter.github.io/bootstrap/index.html">Homepage »</a>
+  </div><!-- .thumbnail -->
+</li><!-- .span3 -->
+
+
+</ul>
+
+
+<hr>
+
+      <footer>
+        <p>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/it/"><img class="pull-left" alt="Licenza Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/it/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">&nbsp;Questo sito e gli elaborati contenuti</span> sono a cura di <strong>Andrea Borruso</strong> di <strong><a xmlns:cc="http://creativecommons.org/ns#" href="../../index.html" property="cc:attributionName" rel="cc:attributionURL">TANTO</a></strong>, e rilasciati sotto licenza <a rel="license" href="http://creativecommons.org/licenses/by/3.0/it/">Creative Commons Attribuzione 3.0 Italia License</a>.
+        </p>
+      </footer>
+
+</div> 
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

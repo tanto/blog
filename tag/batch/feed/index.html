@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; batch</title>
+	<atom:link href="http://blog.spaziogis.it/tag/batch/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>FWTools: convertire in batch da tif, ecw e jpg2000 a tif, ecw e jpg2000!!</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/</link>
+		<comments>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comments</comments>
+		<pubDate>Sat, 09 Jun 2007 17:37:21 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[batch]]></category>
+		<category><![CDATA[cli]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[opensource]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+convertire+in+batch+da+tif%2C+ecw+e+jpg2000+a+tif%2C+ecw+e+jpg2000%21%21&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-06-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/&amp;rft.language=English"></span>
+I gioielli più preziosi spesso stanno nascosti dentro una scatola di latta, sotto un paio di calze, nell&#8217;angolo del cassetto del mobile vecchio della nonna. Non avrei (forse) mai scritto il tutorial che sto per scrivere, se non fossi &#8220;caduto&#8221; per caso in questo sito, un forum italiano dedicato al mondo delle mountain bike. Non [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+convertire+in+batch+da+tif%2C+ecw+e+jpg2000+a+tif%2C+ecw+e+jpg2000%21%21&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-06-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>I gioielli più preziosi spesso stanno nascosti dentro una scatola di latta, sotto un paio di calze, nell&#8217;angolo del cassetto del mobile vecchio della nonna.</p>
+	<p>Non avrei (forse) mai scritto il tutorial che sto per scrivere, se non fossi &#8220;caduto&#8221; per caso in <a title="MTB-forum.it" href="http://www.bike-board.net/" target="_blank">questo sito</a>, un forum italiano dedicato al mondo delle mountain bike. Non ricordo esattamente come ci sia finito, probabilmente mentre facevo ricerche su qualcosa di collegato ad <a title="Portale Cartografico Nazionale" href="http://www.pcn.minambiente.it/pcn/default.htm" target="_blank">Atlante Italiano</a> (il Portale Cartografico Nazionale). Il sito del forum di cui sopra è ovviamente in qualche modo legato al mondo dei GIS &#8211; oggi i ciclisti usano spesso GPS e cartine &#8211; ma non mi sarei mai aspettato di trovare un tutorial su come utilizzare <a title="GDAL: gdal_translate" href="http://www.gdal.org/gdal_translate.html" target="_blank"><em>gdal_translate</em></a> in batch da riga di comando. Ma andiamo al tutorial.</p>
+	<p>Immaginate di avere una cartella con decine di file GeoTiff (o anche delle orribili coppie .tif/.tfw) , ed di volere convertire in batch (ovvero una conversione in blocco di tutti questi file) in un formato raster GIS compresso come il jpg2000 o l&#8217;ECW. Il cuore del processo sarà per l&#8217;appunto <em>gdal_translate</em>, un&#8217;<em>utility</em> che si trova in FWTools, e il cervello saranno i &#8220;cicli for&#8221; a partire dal prompt dei comandi.</p>
+	<p>Il funzionamento di <em>gdal_translate </em>è molto semplice. Immaginiamo di voler convertire un file GeoTiff in formato ECW; questi i passi da seguire:</p>
+	<ul>
+	<li>aprite la shell di FWTools (si trova in Avvio&gt;Tutti i Programmi&gt;FWTools 1.x.x)</li>
+	<li>scrivete un comando di questo tipo</li>
+	</ul>
+	<pre>&gt;gdal_translate -of ECW c:\tanto\tif\topografica1.tif  c:\tanto\ecw\topografica1.ecw</pre>
+	<p>Come vedete è un comando potente e di semplice utilizzo:</p>
+	<ol>
+	<li>prima il nome del comando (gdal_translate)</li>
+	<li>poi bisogna fissare il formato di output con &#8220;-of&#8221; (<em>output format</em>)</li>
+	<li>poi il nome del file di input (metto le virgolette per evitare di avere problemi con nomi di cartelle e file con spazi)</li>
+	<li>ed in fine il nome del file di output (come sopra)</li>
+	</ol>
+	<p>In pochi secondi avrete così convertito il vostro singolo file GeoTiff in formato ECW, mantenendo inalterate le informazioni geografiche. Lo potrete verificare con il comando <a title="Tutorial gdalinfo" href="http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/">gdalinfo</a>.</p>
+	<p>Come faccio a convertirne ad esempio 40 senza scrivere 40 volte il comando di cui sopra? Mi viene in aiuto un &#8220;classico&#8221; ciclo for che eseguirò da riga di comando.</p>
+	<p>Immaginiamo di avere creato due cartelle, una con i file di input (C:\tanto\tif\) ed un&#8217;altra per i file di output (C:\tanto\ecw\). Il comando per convertire in solo colpo le vostre 40 immagini GeoTiff in formato ECW sarà il seguente:</p>
+	<p><strong>&gt;<em><code>for %i in ("c:\tanto\tif\*.tif") do gdal_translate -of ECW "%i" "c:\tanto\ecw\%~ni.ecw"</code></em></strong></p>
+	<p>Anche questo comando lo lancerete dalla shell di FWTools. Anche questo è un comando semplice, ma richiede delle spiegazioni. Il comando di sopra tradotto in lingua italiana, potrebbe suonare così: &#8220;per (<em><strong>for</strong></em>) ogni file (<em><strong>%i</strong></em>) tif (<em><strong>*.tif</strong></em>) contenuto nella cartella <em><strong>c:\tanto\tif\</strong></em>, esegui (<em><strong>do</strong></em>) gdal_translate, e scegli ECW come formato di output (<em><strong>-of ECW</strong></em>)&#8221;. Ecco un esploso dei comandi:</p>
+	<ol>
+	<li>for (dichiarate l&#8217;inizio del ciclo)</li>
+	<li>%i (è una variabile che creerete grazie al ciclo e conterrà, per ogni ciclo, il percorso completo del file della cartella di input)</li>
+	<li>(c:\tanto\tif\*.tif) (specificate quale sia la cartella ed il formato di input)</li>
+	<li>do (è il comando che fa eseguire una determinata operazione)</li>
+	<li>gdal_translate -of ECW (sapete già cosa vuol dire)</li>
+	<li>&#8220;%i&#8221; (il percorso completo del file di input)</li>
+	<li>c:\tanto\ecw\ (la cartella di output)</li>
+	<li>%~ni.ecw (solo il nome del file di input senza estensione, seguito dall&#8217;estensione di output)</li>
+	</ol>
+	<p>Scritto il comando e dato invio, inizierà il processo di conversione; vi andate a fare un caffé ed al ritorno troverete tutti i file ECW nella cartella di output.</p>
+	<p>Ma torniamo al forum sulle mountail bike. Il thread che mi ha stimolato e che mi ha fatto capire diverse cose è <a title=" Ortofoto a colori ad alta risoluzione" href="http://www.bike-board.de/community/forum/showthread.php?t=35134&amp;page=2" target="_blank">questo</a>: è composto da molte pagine, e contiene diverse &#8220;chicche&#8221;. Se ne scoprite qualcuna di interessante, perché non ci scrivete un post e lo pubblichiamo su TANTO. Colgo l&#8217;occasione per fare i complimenti agli utenti di questi forum.</p>
+	<p>Per saperne di più sui &#8220;cicli for&#8221; nel prompt del dos ecco alcuni link:</p>
+	<ul>
+	<li><a title="Windows XP Professional Product Documentation" href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/for.mspx?mfr=true" target="_blank">Windows XP Professional Product Documentation</a></li>
+	<li><a title="Quickly Perform a Function on Several Files" href="http://www.dailycupoftech.com/2007/03/29/quickly-perform-a-function-on-several-files/" target="_blank">Daily Cup of Tech » Quickly Perform a Function on Several Files</a></li>
+	<li><a title="Still More Windows Command Shell Goodies - the FOR Command" href="http://lordkingsquirrel.com/2007/04/24/still-more-windows-command-shell-goodies-the-for-command/" target="_blank">Still More Windows Command Shell Goodies &#8211; the FOR Command</a></li>
+	</ul>
+	<p>Tutte le utility di FWTools, sono opencource e disponibili anche per Linux. Tutto quello di cui abbiamo parlato si può fare anche in Linux, con tutte le possibilità che da in più la riga di comando in questo ambiente. Il mio problema è che non sono tanto bravo con Linux.</p>
+	<p>Tutti i comandi di sopra possono essere raffinati. Si possono scegliere molte cose oltre al formato di output: le dimensioni di output, il tipo di compressione, l&#8217;assegnazione del corretto sistema di coordinate, etc. Per tutte queste opzioni vi rimando alla pagina ufficiale di <a title="GDAL: gdal_translate" href="http://www.gdal.org/gdal_translate.html" target="_blank">gdal_translate</a>.</p>
+	<p>Per convertire in formato jpg2000 basterà scrivere &#8220;-of jp2kak&#8221;. Potrete fare anche conversioni in senso inverso da ECW a GeoTiff, ed in questo caso &#8220;-of Gtiff&#8221;.</p>
+	<p>Buon divertimento!!
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/">FWTools: convertire in batch da tif, ecw e jpg2000 a tif, ecw e jpg2000!!</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/feed/</wfw:commentRss>
+		<slash:comments>42</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+convertire+in+batch+da+tif%2C+ecw+e+jpg2000+a+tif%2C+ecw+e+jpg2000%21%21&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-06-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

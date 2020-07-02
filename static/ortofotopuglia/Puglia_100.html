@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+        <title>Ortofoto Puglia</title>
+        <meta charset="utf-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Puglia_files/leaflet.css">
+        <!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+    <style type="text/css">
+        body {
+            margin:0px;
+            padding:0px;
+            overflow:hidden;
+        }
+        
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #map{
+            width:100%;
+            height:100%;
+        }
+        .layer-buttons {
+    bottom: 0;
+    float: right;
+    margin-bottom: 15px;
+    margin-left: 28px;
+    position: absolute;
+    left: 10;
+    z-index: 100;
+}
+        
+        
+    </style></head>
+    
+    
+    
+    <body class="p180" style="">
+        <div id="map" class=" leaflet-container leaflet-fade-anim" style="position: relative; "><div class="leaflet-map-pane" style="-webkit-transform: translate3d(0px, -22px, 0px); "><div class="leaflet-tile-pane"></div><div class="leaflet-objects-pane"><div class="leaflet-shadow-pane"><img src="http://blog.spaziogis.it/static/ortofotopuglia/Puglia_files/marker-shadow.png" class="leaflet-marker-shadow" style="margin-left: -13px; margin-top: -41px; width: 41px; height: 41px; -webkit-transform: translate3d(683px, 322px, 0px); "></div><div class="leaflet-overlay-pane"></div><div class="leaflet-marker-pane"><img src="http://blog.spaziogis.it/static/ortofotopuglia/Puglia_files/marker.png" class="leaflet-marker-icon leaflet-clickable" style="margin-left: -13px; margin-top: -41px; width: 25px; height: 41px; -webkit-transform: translate3d(683px, 322px, 0px); z-index: 322; "></div><div class="leaflet-popup-pane"></div></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-control"><a href="Puglia.htm#" title="Zoom in" class="leaflet-control-zoom-in"></a><a href="Puglia.htm#" title="Zoom out" class="leaflet-control-zoom-out"></a></div></div><div class="leaflet-top leaflet-right"><div class="leaflet-control-layers leaflet-control"><a class="leaflet-control-layers-toggle" href="Puglia.htm#" title="Layers"></a><form class="leaflet-control-layers-list"><div class="leaflet-control-layers-base"><label><input name="leaflet-base-layers" type="radio"> puglia1</label></div><div class="leaflet-control-layers-separator"></div><div class="leaflet-control-layers-overlays"><label><input type="checkbox"> puglia2</label><label><input type="checkbox"> puglia3</label></div></form></div></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control">Powered by <a href="http://leaflet.cloudmade.com/">Leaflet</a></div></div></div></div>
+		
+				<div class="layer-buttons">
+                            <div class="row layer-button-row">
+							<a class="btn btn-primary" href="http://it.linkedin.com/in/pietroblu" target="_blank">by @pietroblu</a> 
+							</div>
+                </div>
+        
+        <script src="Puglia_files/leaflet.js"></script>
+        <script>
+            var map = new L.Map('map',{
+                crs:L.CRS.EPSG4326,
+				
+				});
+
+map.attributionControl.addAttribution("Ortofoto <a href='http://sit.puglia.it/' target='_blank'>Regione Puglia</a>");				
+            
+            var OSM = new L.TileLayer.WMS("http://irs.gis-lab.info/?", {
+                layers: 'osm',
+                format: 'image/png'
+			});
+            
+            var puglia1 = new L.TileLayer.WMS("http://iws.sit.puglia.it/ecwp/ecw_wms.dll?", {
+                layers: 'IMAGES_PUGLIA_2010.ECW',
+                format: 'image/png'
+            });
+			
+			var puglia2 = new L.TileLayer.WMS("http://iws.sit.puglia.it/ecwp/ecw_wms.dll?", {
+                layers: 'IMAGES_PUGLIACOSTE_2010.ECW',
+                format: 'image/png'
+            });
+			
+            var puglia3 = new L.TileLayer.WMS("http://iws.sit.puglia.it/ecwp/ecw_wms.dll?", {
+                layers: 'IMAGES_PUGLIA_2006.ECW',
+                format: 'image/png'
+            });
+
+            var puglia4 = new L.TileLayer.WMS("http://iws.sit.puglia.it/ecwp/ecw_wms.dll?", {
+                layers: 'ECW_PUGLIA',
+                format: 'image/png'
+            });
+            
+			var pugliaLayer = new L.LayerGroup();
+
+            pugliaLayer.addLayer(puglia1);
+            pugliaLayer.addLayer(puglia2);
+			pugliaLayer.addLayer(puglia3);
+			pugliaLayer.addLayer(puglia4);
+
+            map.addLayer(pugliaLayer);
+
+            var baseMaps = {
+                "OSM mapnik": OSM
+            };
+
+            var overlayMaps = {
+				"Ortofoto 2010": puglia1,
+                "Ortofoto costa 2010": puglia2,
+                "Ortofoto 2006": puglia3,
+				"Ortofoto 2005": puglia4,
+            };
+
+            var layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+
+            map.addControl(layersControl);
+
+            map.setView(new L.LatLng(41.1304, 16.8700), 18).addLayer(cloudmade);
+
+
+            <!-- var markerLocation = new L.LatLng(41.92184, 15.59464), --->
+            <!-- marker = new L.Marker(markerLocation); --->
+
+            map.addLayer(marker);
+            marker.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+
+        
+
+        
+        </script>
+    
+
+<div id="gleeBox" style="display:none" class="GleeThemeDefault gleeMediumSize"><input type="text" id="gleeSearchField" value="" autocomplete="off" class="ac_input GleeThemeDefault gleeMediumSize"><div id="gleeSub"><div id="gleeSubText"></div><div id="gleeSearchActivity"></div><div id="gleeSubURL"></div></div></div><div class="extLives"></div><div style="display: none; " id="hiddenlpsubmitdiv"></div><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); form.lpsubmitorig2(); } } }}catch(e){}</script></body><link rel="stylesheet" type="text/css" href="data:text/css,"><style type="text/css">/*This block of style rules is injected by gleeBox*/.GleeReaped { background-color: #f9f2a5 !important; outline: 1px dotted #818181 !important; } .GleeHL { -webkit-box-shadow: hsla(71, 89%, 70%, 1) -2px -2px 0px, hsla(71, 89%, 70%, 1)  2px -2px 0px, hsla(71, 100%, 45%, 1) -2px  2px 0px, hsla(71, 100%, 45%, 1)  2px  2px 0px, hsla(71, 100%, 80%, 1)  0px 0px 0px 3px, rgba(42, 35, 0, 0.8)  1px  1px 3px 3px !important; border-radius: 3px !important; color: #000 !important; outline: none !important; border: none !important; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, hsla(71, 100%, 47%, 1)), color-stop(1, hsla(71, 89%, 70%, 1))) !important;} a.GleeHL, .GleeHL a {color: #000 !important;} input[type=checkbox].GleeHL, input[type=radio].GleeHL { outline: 5px solid hsla(71, 89%, 70%, 1) !important;}</style></html>

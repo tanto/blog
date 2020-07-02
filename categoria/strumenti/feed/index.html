@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Strumenti</title>
+	<atom:link href="http://blog.spaziogis.it/categoria/strumenti/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>GTFS, pronti, partenza, via &#8230;</title>
+		<link>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/</link>
+		<comments>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/#comments</comments>
+		<pubDate>Wed, 24 Aug 2016 06:00:50 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[bash]]></category>
+		<category><![CDATA[GTFS]]></category>
+		<category><![CDATA[script]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6973</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+Introduzione Il GTFS è un formato nato per definire orari e informazioni geografiche legate a reti pubbliche e private di trasporto. E’ nato in sintesi estrema (qui più dettagli) come side project di un dipendente di Google che nel 2005 stava cercando un modo per standardizzare l’importazione di dati di questo tipo in Google Maps. [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h2 id="introduzione">Introduzione</h2>
+	<p>Il <code>GTFS</code> è un formato nato per definire orari e informazioni geografiche legate a reti pubbliche e private di trasporto. E’ nato in sintesi estrema (<a href="http://sf.streetsblog.org/2010/01/05/how-google-and-portlands-trimet-set-the-standard-for-open-transit-data/" rel="nofollow" >qui</a> più dettagli) come <em>side project</em> di un dipendente di Google che nel 2005 stava cercando un modo per standardizzare l’importazione di dati di questo tipo in Google Maps. Non c’era ancora uno standard in questo settore, e nel tempo il GTFS è diventato il formato di riferimento, grazie anche all’uso diffuso e alla sua documentazione.</p>
+	<p>Si tratta di una collezione di file <code>CSV</code> (con estensione <code>.txt</code>) &#8211; da un minimo di 6 a un massimo di 13 &#8211; archiviati all’interno di un file <code>zip</code>, le cui specifiche sono documentate qui: <a href="https://developers.google.com/transit/gtfs/reference/" rel="nofollow" >https://developers.google.com/transit/gtfs/reference/</a></p>
+	<p>Per varie ragioni è un formato con cui ho spesso a che fare, ed è stato di ispirazione per creare uno <em>script</em> che ho scritto durante le bellissime olimpiadi di Rio e che ho chiamato <strong>GTFS, ready, set, go</strong>.</p>
+	<h2 id="cosa-è-gtfs-ready-set-go">Cosa è GTFS, ready, set, go</h2>
+	<p>È uno script <em>bash</em> che fa essenzialmente una cosa: trasforma i file <code>txt</code> del GTFS in formati <strong>pronti</strong> per essere <strong>usati meglio</strong> e <strong>subito</strong>, sopratutto in <strong>applicazioni spaziali</strong>. Nel dettaglio:</p>
+	<ul>
+	<li>scarica una sorgente dati GTFS e ne converte i file <code>txt</code> in tabelle di un DBMS con estensione spaziale e in particolare in formato <strong><a href="http://www.gaia-gis.it/gaia-sins/" rel="nofollow" >spatialite</a></strong> (evviva <strong>Alessandro Furieri </strong>e tutti quelli che si prendono cura di spatialite);
+	<ul>
+	<li>trasforma in layer cartografici le tabelle delle fermate e delle rotte (<code>stops</code> e <code>routes</code>);</li>
+	<li>genera alcuna tabelle utili a creare un report sul file della reti di trasporti preso in esame;</li>
+	</ul>
+	</li>
+	<li>esporta in formato <code>GeoJSON</code> e <code>KML</code> la tabella delle rotte e quella delle fermate;</li>
+	<li>genera un report in formato <code>HTML</code> e <code>Markdown</code> utili a dare una visione d’insieme dei dati in esame (al momento è ancora minimale e in bozza) .</li>
+	</ul>
+	<p>Nulla di complesso e nulla di nuovo. Ci sono già altre modalità e prodotti per fare cose simili, ma sono scritti in linguaggi che non conosco (ad esempio in <a href="https://github.com/harrytruong/gtfs-sqlite" rel="nofollow" >Go</a>), richiedono l’installazione di un database server o non spazializzano database sqlite (come il mio amato <a href="https://github.com/OpenTransitTools/gtfsdb" rel="nofollow" >GTFSDB</a>) o sono procedure (semplici) da svolgere “a mano” e quindi a rischio sempre di qualche errore e con perdite di tempo (come ad esempio <a href="http://www.stevencanplan.com/2016/02/converting-a-transit-agencys-gtfs-to-shapefile-and-geojson-with-qgis/" rel="nofollow" >questa</a>).</p>
+	<p>Qui il repository su <strong>GitHub</strong>: <a href="https://github.com/ondata/gtfsreadysetgo" rel="nofollow"  target="_blank">https://github.com/ondata/gtfsreadysetgo</a></p>
+	<h2 id="come-funziona">Come funziona</h2>
+	<p>Si tratta di uno script in cui ho messo in fila i comandi utili al mio obiettivo finale, costruendo una (sorta di) macro in cui sfrutto le caratteristiche del <code>bash</code> e alcune <em>utility</em>/applicazioni utili per arrivare al risultato atteso. Queste ultime sono al momento un requisito per lo script, e quindi una piccola barriera ad un utilizzo immediato: le ho utilizzate perché mi hanno consentito di non scrivere “vero” codice, perché “fanno” nella sostanza tutto loro.</p>
+	<h3 id="requisiti">Requisiti</h3>
+	<p>Avere un sistema operativo in cui è possibile lanciare uno script bash, quindi ovviamente i sistemi Linux, quelli Mac e anche quelli Windows. Su quest’ultimo apro una piccola parentesi.</p>
+	<p>Per lanciare uno script bash su Windows &#8211; sino a poco tempo fa &#8211; era necessario installare “cose” come <a href="https://www.cygwin.com/" rel="nofollow" >Cygwin</a>.</p>
+	<blockquote><p>Cygwin è una distribuzione di software libero, sviluppata originariamente da Cygnus Solutions, che consente a diverse versioni di Microsoft Windows di svolgere alcuni compiti in maniera esteticamente e funzionalmente simile ad un sistema Unix (da <a href="https://it.wikipedia.org/wiki/Cygwin" rel="nofollow" >Wikipedia</a>).</p></blockquote>
+	<p>Dall’ultimo aggiornamento di release di Windows 10 (l’<em>anniversary update</em> di agosto 2016) è possibile utilizzare nativamente <em>bash</em> anche in Windows, tramite l’applicazione denominata “<a href="http://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx" rel="nofollow" >Bash in Ubuntu on Windows</a>”; “GTFS ready set go” l’ho scritto e testato per intero in ambiente Windows 10, anche per provare questa novità introdotta in questo recente aggiornamento, che rende la comodità e la potenza di fuoco di <em>bash</em> sempre più trasversali.</p>
+	<p><img class="alignnone size-full wp-image-6976 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash.png" alt="bash" width="500" height="217" /></p>
+	<p>Lo script sfrutta queste applicazioni:</p>
+	<ul>
+	<li><a href="http://www.gdal.org/" rel="nofollow" >GDAL</a> &#8211; Geospatial Data Abstraction Library &gt;= 2.1, che viene usato essenzialmente per le operazioni di creazione, importazione e esportazione delle risorse;</li>
+	<li><a href="https://www.gaia-gis.it/fossil/spatialite-tools/index" rel="nofollow" >spatialite</a>, che viene sfruttato per fare query spaziali e come uno dei formati di archiviazione e output;</li>
+	<li>unzip, per decomprimere il GTFS sorgente;</li>
+	<li><a href="https://curl.haxx.se/" rel="nofollow" >curl</a>, per il download del file GTFS;</li>
+	<li><a href="https://github.com/shenwei356/csvtk" rel="nofollow" >csvtk</a>, per convertire in formato Markdown alcune delle tabelle create;</li>
+	<li><a href="http://pandoc.org/" rel="nofollow" >pandoc</a>, per convertire il report Markdown anche in formato HTML.</li>
+	</ul>
+	<p>E infine vengono utilizzate gli straordinari <code>grep</code> e <code>sed</code>, che sono sempre presenti in ambienti in cui è possibile lanciare uno script <code>bash</code>.</p>
+	<h3 id="usare-lo-script">Usare lo script</h3>
+	<p>Questa la modalità attuale di utilizzo:</p>
+	<ul>
+	<li><a href="https://codeload.github.com/ondata/gtfsreadysetgo/zip/master" rel="nofollow" >scaricare</a> (o clonare) il <em>repository</em> e decomprimere in una cartella il file zip scaricato;</li>
+	<li>dare allo script <code>.sh</code> i permessi di esecuzione;</li>
+	<li>aprirlo con un editor di testo e cercare la variabile <code>URLGTFS</code>;</li>
+	<li>sostituire l’URL presente con l’URL di un feed GTFS di proprio interesse (un comodo archivio di GTFS è <a href="https://transitfeeds.com/l/60-europe" rel="nofollow" >TransitFeeds</a>) come ad esempio quello di Madrid <a href="https://servicios.emtmadrid.es:8443/gtfs/transitemt.zip;" rel="nofollow" >https://servicios.emtmadrid.es:8443/gtfs/transitemt.zip;</a></li>
+	<li>salvare e lanciare lo script via shell.</li>
+	</ul>
+	<p>Qui sotto la replica di quanto descritto nei punti di sopra.</p>
+	<p><a href="https://www.youtube.com/watch?v=rkC4r_BwXI4" rel="nofollow"  target="_blank"><img class="alignnone size-full wp-image-6978 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39.png" alt="2016-08-23_10h31_39" width="500" height="283" /></a></p>
+	<h3 id="alcune-note">Alcune note</h3>
+	<p>Lo script può essere migliorato e di molto. Per questa ragione inserisco alcune importanti note:</p>
+	<ul>
+	<li>lo script <strong>non fa la verifica dei requisiti software</strong> (vedi sopra), quindi se non soddisfatti andrà in errore;</li>
+	<li>lo script è utilizzabile al momento soltanto con i <strong>GTFS</strong> che <strong>contengono</strong> anche la <strong>tabella</strong> <a href="https://developers.google.com/transit/gtfs/reference/shapes-file" rel="nofollow"  target="_blank"><code>shapes</code></a>, che è opzionale per il formato GTFS, quindi non sempre presente;</li>
+	<li>lo script non fa alcuna <strong>verifica</strong> di <strong>consistenza</strong> dei <strong>dati</strong> (per la quale è possibile utilizzare <a href="https://github.com/google/transitfeed/wiki/FeedValidator" rel="nofollow" >FeedValidator</a>;</li>
+	<li>lo script crea e cancella file e cartelle nella cartella in cui viene eseguito.</li>
+	</ul>
+	<h2 id="gli-output">Gli output</h2>
+	<p>Sopra ho già fatto riferimento agli output. Nel <em>repository</em> oltre allo script è stata creata la cartella <code>output_example_folder</code> per mostrare nel concreto quali siano gli output prodotti. A seguire l’elenco dei vari output con i relativi URL, in modo da potersi fare un’idea più concreta:</p>
+	<ul>
+	<li><code>feed_gtfs.sqlite</code> <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/feed_gtfs.sqlite" rel="nofollow" >download</a>, ovvero il file GTFS trasformato in formato SpatiaLite, in cui le tabelle <code>stops</code> e <code>routes</code> sono state trasformate in layer spaziali;</li>
+	<li><code>routes.geojson</code> (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/routes.geojson" rel="nofollow" >visualizzazione</a> e <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/routes.geojson" rel="nofollow" >download</a>), il file in formato GeoJSON per le rotte;</li>
+	<li><code>routes.kml</code> (<a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/routes.kml" rel="nofollow" >download</a>), file in formato KML per le rotte, visualizzabile in Google Earth (ed in altri client);</li>
+	<li><code>stops.geojson</code> (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/stops.geojson" rel="nofollow" >visualizzazione</a> e <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/stops.geojson" rel="nofollow" >download</a>), il file in formato GeoJSON per le fermate;</li>
+	<li><code>stops.kml</code> (<a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/stops.kml" rel="nofollow" >download</a>), file in formato KML per le fermate, visualizzabile in Google Earth (ed in altri client);</li>
+	<li>la cartella <code>report</code>(<a href="https://github.com/ondata/gtfsreadysetgo/tree/master/output_example_folder/report" rel="nofollow" >visualizza</a>), che a sua volta contiene:
+	<ul>
+	<li><code>report.md</code>, il file con il report in formato Markdown (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/report/report.md" rel="nofollow" >visualizza</a>)</li>
+	<li><code>report.html</code>, il file con il report in formato HTML (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/report/report.html" rel="nofollow" >vista codice</a> e <a href="https://ondata.github.io/gtfsreadysetgo/report.html" rel="nofollow" >rendering HTML</a>);</li>
+	<li>tutte le tabelle usate per costruire i report, in formato CSV e Markdown.</li>
+	</ul>
+	</li>
+	</ul>
+	<h2 id="perché">Perché</h2>
+	<p><strong>GTFS, ready, set, go</strong> nasce come conseguenza di <a href="https://www.facebook.com/groups/openamat" rel="nofollow" >#openamat</a>, un’iniziativa civica (ancora in corso) per chiedere a AMAT (la municipalizzata comunale di Palermo che gestisce il trasporto pubblico) di pubblicare i dati relativi ai trasporti pubblici in formato aperto ed in tempo reale.</p>
+	<p>Dopo 6 mesi senza aggiornare i dati, AMAT ha pubblicato a luglio del 2016 tre aggiornamenti di GTFS in 15 giorni e avevo bisogno di uno script per poter usare e visualizzare subito questi dati.</p>
+	<p>Lo rendo pubblico perché penso possa essere utile anche ad altri.</p>
+	<h2 id="url-che-mi-sono-stati-utili">URL (che mi sono stati) utili</h2>
+	<ul>
+	<li><a href="http://blog.openplans.org/2012/08/the-openplans-guide-to-gtfs-data/" rel="nofollow" >The OpenPlans Guide to GTFS Data</a>;</li>
+	<li><a href="https://github.com/napo/osm_users_stats_italian_province" rel="nofollow" >osm_users_stats_italian_province</a>;</li>
+	<li><a href="https://github.com/WorldBank-Transport/GTFS-Training-Materials" rel="nofollow" >GTFS-Training-Materials</a>;</li>
+	<li><a href="https://github.com/OpenTransitTools/gtfsdb" rel="nofollow" >GTFSDB</a>;</li>
+	<li><a href="http://lin-ear-th-inking.blogspot.it/2011/10/extracting-gtfs-data-using-jeql.html" rel="nofollow" >Extracting GTFS data using JEQL</a>;</li>
+	<li><a href="https://github.com/google/transitfeed/wiki" rel="nofollow" >TransitFeed library</a>.</li>
+	</ul>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/">GTFS, pronti, partenza, via &#8230;</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash.png" medium="image">
+			<media:title type="html">bash</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39.png" medium="image">
+			<media:title type="html">2016-08-23_10h31_39</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Transitland, per mettere insieme e &#8220;dare vita&#8221; ai dati sui trasporti</title>
+		<link>http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/</link>
+		<comments>http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/#comments</comments>
+		<pubDate>Wed, 02 Mar 2016 15:23:02 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[GTFS]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[trasporti]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6857</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Transitland%2C+per+mettere+insieme+e+%26%238220%3Bdare+vita%26%238221%3B+ai+dati+sui+trasporti&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/&amp;rft.language=English"></span>
+Da novembre è attivo Transit.land, un progetto sponsorizzato da Mapzen che ha come obiettivo quello di creare un catalogo “integrato” di dati sulle reti di trasporto di tutto il mondo. Nasce da una sperimentazione fatta a San Francisco, città con più di 30 agenzie di trasporto pubblico, un numero crescente di servizi privati, il carpooling, [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Transitland%2C+per+mettere+insieme+e+%26%238220%3Bdare+vita%26%238221%3B+ai+dati+sui+trasporti&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Da novembre è attivo <a href="https://transit.land/" rel="nofollow" ><strong>Transit.land</strong></a>, un progetto sponsorizzato da <a href="https://mapzen.com/" rel="nofollow" ><strong>Mapzen</strong></a> che ha come obiettivo quello di creare un <strong>catalogo</strong> “integrato” di dati sulle <strong>reti di trasporto</strong> di <strong>tutto il mondo</strong>.</p>
+	<p>Nasce da una sperimentazione fatta a San Francisco, città con <strong>più di 30 agenzie di trasporto pubblico</strong>, un numero crescente di servizi privati, il carpooling, ecc.. L&#8217;obiettivo era proprio quello di <strong>mettere a rete</strong> tutti questi dati e catalogare le informazioni su autobus, treni, tram, traghetti anche le funivie e renderli interrogabili come se fossero in <strong>un unico database</strong>.</p>
+	<p><img class="aligncenter size-full wp-image-6858" src="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale.png" alt="multi_modale" width="500" height="378" /></p>
+	<p>Tutto talmente bello, che dopo la sperimentazione &#8220;locale&#8221; è partito il progetto globale, con l&#8217;obiettivo di mettere a catalogo file <strong>GTFS</strong> da tutto il mondo.<br />
+La scelta del formato file di input è caduta proprio su <a href="http://www.transitwiki.org/TransitWiki/index.php?title=General_Transit_Feed_Specification" rel="nofollow" >General Transit Feed Specification</a>, oggi lo standard di fatto per questo tipo di dati, usato da Google Maps, Microsoft Bing Maps, Apple Maps, ecc. Molti operatori di servizi di trasporto pubblicano i dati in questo formato, e molti innovatori civici hanno creato questi file per le loro città.</p>
+	<p>Ma si tratta di risorse che per lo più fluttuano nel web spesso come elementi separati. Transitlad, ancora invero in uno stato iniziale, mira a diventare un <strong>centro di gravità</strong> per questi <strong>dataset</strong>, completamente <strong>aperto</strong> in termini di licenza di <a href="https://github.com/transitland" rel="nofollow" ><strong>software</strong></a> e di <strong>dati</strong>.</p>
+	<h2 id="contribuire">Contribuire</h2>
+	<p>Uno dei modi per contribuire al progetto, lanciato da poco, è quello di <strong>inviare una nuova sorgente di dati GTFS</strong>, in modo che possa essere integrata al <a href="https://transit.land/feed-registry/" rel="nofollow" ><strong>catalogo generale</strong></a>, che oggi comprende più di 70 risorse.<br />
+Farlo è molto semplice: a partire da <a href="https://transit.land/feed-registry/feeds/new" rel="nofollow" ><strong>questo wizard</strong></a> dove viene richiesto essenzialmente di inserire l&#8217;<strong>URL</strong> della sorgente dati, il tipo di <strong>licenza</strong> con cui sono pubblicati ed alcune informazioni anagrafiche del mittente.<br />
+Il dataset, a quel punto, viene sottoposto ad una verifica e dopo qualche giorno verrà inserito in catalogo.</p>
+	<p>Un po&#8217; per testare l&#8217;oggetto, un po&#8217; perché mi sembra un gran bella idea &#8211; non nuova, ma mai pienamente realizzata &#8211; mi sono messo all&#8217;opera e nel catalogo Trantit.land oggi sono in eleno le &#8220;nostre&#8221;:</p>
+	<ul>
+	<li><a href="https://transit.land/feed-registry/operators/o-sqc2-amatpalermospa" rel="nofollow" >Palermo</a>;</li>
+	<li><a href="https://transit.land/feed-registry/operators/o-s-aziendanapoletanamobilit" rel="nofollow" >Napoli</a>;</li>
+	<li><a href="https://transit.land/feed-registry/operators/o-sr2-romaserviziperlamobilitsrl" rel="nofollow" >Roma</a>;</li>
+	<li><a href="https://transit.land/feed-registry/operators/o-u0pv-trentinotrasportieserciziospa" rel="nofollow" >Trento</a>.</li>
+	</ul>
+	<h2 id="le-api-e-la-vita-dei-dati">Le API e la &#8220;vita&#8221; dei dati</h2>
+	<p>I dati, come dice spesso chi fa didattica su questi temi, sono come la farina e l&#8217;acqua: materia prima con cui c&#8217;è chi farà torte e chi &#8220;busiate&#8221; (io non ho dubbi).</p>
+	<p><img class="size-full wp-image-6859 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/03/busiate.png" alt="busiate" width="500" height="323" /></p>
+	<p>A Transit.land hanno impastato tutto e invece hanno tirato fuori delle <strong>API</strong>, rendendo l&#8217;interrogazione del loro catalogo un processo semplice, comodo e che potenzialmente potrà produrre diversi effetti a cascata.</p>
+	<p>Qualche esempio di query:</p>
+	<ul>
+	<li>Tutte le <strong>fermate</strong> di un <strong>operatore</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?servedBy=o-s-aziendanapoletanamobilit" rel="nofollow"  target="_blank">https://transit.land/api/v1/stops?servedBy=o-s-aziendanapoletanamobilit</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>rotte</strong> di un <strong>operatore</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/routes?operatedBy=o-s-aziendanapoletanamobilit" rel="nofollow"  target="_blank">https://transit.land/api/v1/routes?operatedBy=o-s-aziendanapoletanamobilit</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> nel <strong>raggio</strong> di 500 metri da un punto di <strong>coordinate note</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?lon=14.231413&amp;lat=40.835970&amp;r=500" rel="nofollow"  target="_blank">https://transit.land/api/v1/stops?lon=14.231413&amp;lat=40.835970&amp;r=500</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> comprese in un <strong>rettangolo</strong> di <strong>coordinate note</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?bbox=14.231413,40.835970,14.239355,40.842158" rel="nofollow"  target="_blank">https://transit.land/api/v1/stops?bbox=14.231413,40.835970,14.239355,40.842158</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> in cui un certo <strong>tag</strong> è valorizzato (in questo caso ingresso con sedia a rotelle) in <strong>una certa area</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?tag_key=wheelchair_boarding&amp;bbox=-122.4183,37.7758,-122.4120,37.7808" rel="nofollow"  target="_blank">https://transit.land/api/v1/stops?tag_key=wheelchair_boarding&amp;bbox=-122.4183,37.7758,-122.4120,37.7808</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> che ricadono nella <strong>via</strong> che ha come <strong>OSM ID </strong>il valore 395047052 (Corso Vittorio Emanuele a Napoli)
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?tag_key=osm_way_id&amp;tag_value=395047052" rel="nofollow"  target="_blank">https://transit.land/api/v1/stops?tag_key=osm_way_id&amp;tag_value=395047052</a></li>
+	</ul>
+	</li>
+	<li>Tutti i <strong>dati</strong> su una determinata <strong>rotta</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/routes?identifier=gtfs://f-s-anm~it/r/100475194" rel="nofollow"  target="_blank">https://transit.land/api/v1/routes?identifier=gtfs://f-s-anm~it/r/100475194</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>rotte</strong> comprese in un <strong>rettangolo</strong> di <strong>coordinate note</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/routes?bbox=14.231413,40.835970,14.239355,40.842158" rel="nofollow"  target="_blank">https://transit.land/api/v1/routes?bbox=14.231413,40.835970,14.239355,40.842158</a></li>
+	</ul>
+	</li>
+	<li>Tutti i dati di un <strong>oggetto</strong> con un determinato<strong> Onestop ID</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/onestop_id/r-sr607-c18" rel="nofollow"  target="_blank">https://transit.land/api/v1/onestop_id/r-sr607-c18</a></li>
+	</ul>
+	</li>
+	</ul>
+	<p>Ma sono solo alcuni esempi e le <strong>chiamate disponibili</strong> sono molte di più:<br />
+<a href="https://github.com/transitland/transitland-datastore#api-endpoints" rel="nofollow" class="uri" >https://github.com/transitland/transitland-datastore#api-endpoints</a></p>
+	<p>I risultati sono esposti con una paginazione di 50 in 50.</p>
+	<h2 id="open-data-day">Open Data Day</h2>
+	<p>Sabato 5 marzo 2016 è l&#8217;<a href="http://opendataday.org/" rel="nofollow" ><strong>Open Data Day</strong></a>, e una delle sedi sarà la città di Napoli.</p>
+	<p>Il bello è che sino a 15 giorni fa i dati sui trasporti di questo comune non erano disponibili ed oggi, solo per il fatto di essere <a href="http://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/29233" rel="nofollow" >stati pubblicati</a> in <strong>formato aperto</strong> e <strong>documentato</strong> sono pure accessibili tramite API. Questo è stato possibile grazie anche a <a href="https://www.facebook.com/ilaria.vitellio" rel="nofollow" ><strong>Ilaria Vitellio</strong></a> che si è spesa personalmente con la pubblica amministrazione locale, che ha risposto prontamente ed ha pubblicato questi dati.</p>
+	<p><strong>In bocca al lupo</strong> allora a Ilaria ed a tutti i presenti a <strong>Napoli</strong>, che avranno a disposizione nuova farina e nuovi mattarelli.</p>
+	<p>In chiusura una nota personale. Anche i dati sulla mia città, <strong>Palermo</strong>, sono presenti nel catalogo e quindi accessibili via API, ma purtroppo<strong> valgono per fare qualche demo</strong> di qualità.<br />
+Si tratta di dati aggiornati a fine dicembre, in cui non è contemplata la nuova rete tranviaria e tutti i grossi cambiamenti che la rete ha subito tra fine 2015 e inizio 2016.<br />
+E&#8217; un fatto grave, specie per una città ricca di turisti come Palermo e con grossi problemi di traffico autoveicolare, che non siano ancora disponibili dati aggiornati sui trasporti pubblici.</p>
+	<p>Ne riparlerò in un altro post.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/">Transitland, per mettere insieme e &#8220;dare vita&#8221; ai dati sui trasporti</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Transitland%2C+per+mettere+insieme+e+%26%238220%3Bdare+vita%26%238221%3B+ai+dati+sui+trasporti&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale.png" medium="image">
+			<media:title type="html">multi_modale</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/03/busiate.png" medium="image">
+			<media:title type="html">busiate</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/03/busiate-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Raccolta dati per tutti: GeoODK e smartphones per sensori urbani (parte II)</title>
+		<link>http://blog.spaziogis.it/2016/02/08/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-ii/</link>
+		<comments>http://blog.spaziogis.it/2016/02/08/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-ii/#comments</comments>
+		<pubDate>Mon, 08 Feb 2016 08:06:06 +0000</pubDate>
+		<dc:creator>guest</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[citizen science]]></category>
+		<category><![CDATA[data collection]]></category>
+		<category><![CDATA[mobile]]></category>
+		<category><![CDATA[smart cities]]></category>
+		<category><![CDATA[VGI]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6834</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccolta+dati+per+tutti%3A+GeoODK+e+smartphones+per+sensori+urbani+%28parte+II%29&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/02/08/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-ii/&amp;rft.language=English"></span>
+NdR: questa è la seconda parte del post pubblicato qui. Impostazione lato server: ona.io Giuseppe: Proponiamo di partire da qui, dal “lato server”, dal momento che è la prima cosa che si va a vedere perché bisogna registrarsi: https://ona.io/join Una volta registrati, si può impostare un nuovo progetto e scegliere il livello di &#8216;privacy&#8217;. La [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccolta+dati+per+tutti%3A+GeoODK+e+smartphones+per+sensori+urbani+%28parte+II%29&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/02/08/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-ii/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: questa è la <strong>seconda parte</strong> del post pubblicato <a href="http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/" target="_blank">qui</a>.</p>
+	<h2 id="impostazione-lato-server-ona.io">Impostazione lato server: ona.io</h2>
+	<p><em><strong>Giuseppe</strong>:</em> Proponiamo di partire da qui, dal “lato server”, dal momento che è la prima cosa che si va a vedere perché bisogna registrarsi: <a href="https://ona.io/join" rel="nofollow" ><em>https://ona.io/join</em></a></p>
+	<p><img class="aligncenter size-full wp-image-6836" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image02.png" alt="image02" width="500" height="510" /></p>
+	<p>Una volta registrati, si può impostare un nuovo progetto e scegliere il livello di &#8216;privacy&#8217;. La pagina iniziale è la seguente (con il nome che avete scelto al posto di triestegeo, ovviamente).</p>
+	<p><img class="aligncenter size-full wp-image-6837" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image05.png" alt="image05" width="500" height="339" /></p>
+	<p>Dal sito alla voce &#8216;add form&#8217; è possibile caricare il questionario/form impostato come file XLS, che nelle righe sotto vi spieghiamo come preparare.</p>
+	<p><strong>Le &#8216;form&#8217; saranno i questionari e la scheda di acquisizione dati,</strong> che successivamente verrà visualizzata sul vostro smartphone o tablet.</p>
+	<p><img class="aligncenter size-full wp-image-6838" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image04.png" alt="image04" width="500" height="186" /></p>
+	<p>Sarà possibile preparare più progetti e specificare il livello di &#8216;<strong>privacy</strong>&#8216;, ovvero se progetto &#8216;pubblico&#8217; o &#8216;privato&#8217;. Ona.io consente diverse possibilità: nel caso di un profilo &#8216;pubblico&#8217; non vi sono fee da pagare, mentre per alcuni profili privati o con più restrizioni all&#8217;utilizzo, è prevista una quota da versare.</p>
+	<p>Il &#8216;lato server&#8217; sarà il &#8216;<strong>contenitore&#8217; dei dati</strong>, il luogo dove questi saranno conservati una volta caricati, e dove sarà possibile effettuare delle operazioni, quali visualizzazione tabulare o sotto forma di mappa, dove sarà possibile caricare eventuali file multimediali (come ad esempio immagini o video registrati) nonché dei report sulle attività (es. delle statistiche sulle acquisizioni di dati, ecc.) e scaricare i dati in vari formati una volta raccolti.</p>
+	<p><img class="aligncenter size-full wp-image-6839" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image07.png" alt="image07" width="500" height="329" /></p>
+	<p>Dal &#8216;lato server&#8217; è possibile anche accedere alla <strong>WebForm</strong>, ovvero dalla finestra (su pagina web) da cui caricare i dati (qualora non si disponga di un dispositivo mobile adatto).</p>
+	<p>Ovviamente il passaggio necessario, prima di tutto ciò, è l&#8217;impostazione del questionario o form, ovvero il &#8216;cuore&#8217; di tutto il sistema di raccolta dati!</p>
+	<h2 id="impostazione-del-questionarioform-con-un-file-excel">Impostazione del questionario/form con un file Excel</h2>
+	<p><strong><em>Viola</em></strong>: la form contenente il questionario da caricare sul server per cominciare la raccolta è un <strong>file Excel</strong> (quindi con estensione .xls) che deve essere <strong>formato obbligatoriamente da due fogli di lavoro</strong>, denominati &#8216;survey&#8217; e &#8216;choices&#8217;, cui si può affiancare a discrezione dell&#8217;utente un ulteriore foglio di lavoro rinominato &#8216;settings&#8217;. Nel foglio &#8216;<strong>survey</strong>&#8216; c&#8217;è la griglia di domande e informazioni da raccogliere, impostate in ordine ben preciso. Sono presenti varie colonne, di cui le principali (ed obbligatorie) sono:</p>
+	<ul>
+	<li>Type</li>
+	<li>Name</li>
+	<li>Label</li>
+	</ul>
+	<p>In ‘<strong>type’</strong> si individua il tipo di inserimento (output) richiesto all&#8217;utente che compila la form relativa ad ogni domanda: testo, orario, numeri interi, coordinate, selezionare una o più opzioni da una scelta di risposte, coordinate GPS, immagini, audio, video e così via.</p>
+	<table border="1">
+	<tbody>
+	<tr>
+	<td rowspan="1" colspan="2">Nel foglio di lavoro rinominato “survey”.Possibili tipologie di output richiesti all&#8217;utente da specificare nella colonna &#8216;type&#8217;</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Text</td>
+	<td rowspan="1" colspan="1">Testo</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Integer</td>
+	<td rowspan="1" colspan="1">Numeri interi</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Decimal</td>
+	<td rowspan="1" colspan="1">Numeri decimali</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">select_one [nome della lista di possibili risposte, che si esplicitano nel secondo foglio]es. select_one affluenza_evento</td>
+	<td rowspan="1" colspan="1">Per le domande a risposta multipla, dove è possibile selezionare solo una riposta</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">select_multiple seguito dal nome della lista di possibili risposte che si esplicitano nel secondo foglio]es. select_multiple nome_wifi</td>
+	<td rowspan="1" colspan="1">Per le domande a risposta multipla dove si consente di selezionare varie risposte</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Note</td>
+	<td rowspan="1" colspan="1">È un campo che non ha bisogno di input da parte dell&#8217;utente, è una schermata normalmente utilizzata all&#8217;inizio o alla fine della survey per presentare il questionario o per ringraziare l&#8217;utente per l&#8217;inserimento</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Geopoint</td>
+	<td rowspan="1" colspan="1">Rileva le coordinate GPS</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Geotrace</td>
+	<td rowspan="1" colspan="1">Rileva le coordinate di una polinea</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Geoshape</td>
+	<td rowspan="1" colspan="1">Rileva le coordinate di un poligono</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Image</td>
+	<td rowspan="1" colspan="1">Si chiede all&#8217;utente di caricare o scattare una foto</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Barcode</td>
+	<td rowspan="1" colspan="1">Permette di leggere un codice a barre qualora sia installata sul telefono una applicazione in grado di leggere il codice.</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Date</td>
+	<td rowspan="1" colspan="1">Rileva la data in automatico</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Datetime</td>
+	<td rowspan="1" colspan="1">Permette di rilevare data e ora della compilazione del questionario in automatico</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Audio</td>
+	<td rowspan="1" colspan="1">Si può registrare un audio</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Video</td>
+	<td rowspan="1" colspan="1">Si richiede di fare un video o caricarlo dalla galleria</td>
+	</tr>
+	<tr>
+	<td rowspan="1" colspan="1">Calculate</td>
+	<td rowspan="1" colspan="1">Permette di fare un calcolo</td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Nella colonna &#8216;<strong>name</strong>&#8216; si inserisce un nome con cui poter identificare la singola domanda, specificata poi per esteso come si vuole venga visualizzata nella compilazione del questionario colonna &#8216;label&#8217;. I dati verranno visualizzati con questo nome identificativo quando li si andrà a sfogliare dal sito internet.</p>
+	<p>Qualora si vogliano porre domande con risposte già preimpostate, è necessario inserire “<strong>select_one</strong>” se l&#8217;utente ha la possibilità di selezionare solo una risposta, oppure “<strong>select_multiple</strong>” se può sceglierne più di una, seguito dal &#8216;nome&#8217; che identifica il gruppo di domande. Nel nostro caso si era deciso di avere informazioni sull&#8217;affluenza all&#8217;evento o nel locale di riferimento, con possibilità di scegliere tra ottima, buona, discreta o scarsa, e per quanto riguarda la presenza di free wifi si poteva di selezionare tra le due reti pubbliche, Eduroam e TriesteFreeSpots, oppure la presenza di una rete aperta del locale in cui ci si trova.</p>
+	<p>Spesso le immagini valgono più di mille parole e quindi guardate un po&#8217; come abbiamo impostato noi il primo foglio di lavoro.</p>
+	<p><img class="aligncenter size-full wp-image-6840" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image06.png" alt="image06" width="500" height="323" /></p>
+	<p>Il <strong>campo &#8216;type&#8217;</strong> per inserire il &#8216;datetime&#8217; o solo &#8216;time&#8217; o &#8216;date&#8217; per permettere di capire gli orari e le date in cui si compila il questionario è molto comodo perchè questa informazione viene rilevata in maniera automatica.</p>
+	<p>Nel momento in cui si inserisce &#8216;<strong>geopoint&#8217;</strong> per rilevare la propria posizione GPS, l&#8217;operazione può richiedere anche un paio di minuti (all&#8217;inizio) per essere abbastanza accurata, è normale. Se avete fretta, potete attendere che il fumetto vi dia indicazioni sulla precisione della rilevazione, cliccare su Registra Localizzazione e continuare a compilare il modulo fino a salvarlo; poi l&#8217;applicazione permette di modificare in seguito la posizione semplicemente spostando un puntino sulla mappa andando su “<strong>Edit data</strong>”.</p>
+	<p>È possibile anche impostare delle domande concatenate con una delle domande precedenti, ma questa funzione è stata assimilata solo dopo. Esempio: nel nostro caso era possibile fare le domande in riga 9 e 10 di specificazione su nome e copertura wi-fi solo se prima l&#8217;utente aveva selezionato &#8216;si&#8217; alla domanda in riga 8, che richiedeva di dire se c&#8217;era un free wi-fi nelle vicinanze. Bisognava allora inserire una colonna denominata &#8216;<strong>Relevant&#8217;</strong> accanto a &#8216;Label&#8217; in corrispondenza di tali righe con campo ${si_no} = &#8216;si&#8217;, dove $ sta per &#8216;selected&#8217; seguito tra parentesi graffe il nome della lista di risposte relative alla domanda (nel nostro caso si_no) seguito da un simbolo di “uguale” (‘=’) e dalla risposta tra apici singoli (&#8221;).</p>
+	<p>Nel secondo foglio di lavoro vanno inserite le griglie di risposte possibili alle varie domande a risposta multipla: il link con il primo foglio è dato dal nome della lista delle risposte inserito nella colonna &#8216;type&#8217; dopo la dicitura select_one (oppure multiple), che viene ripetuto nel secondo foglio in prima colonna, chiamata &#8216;list name&#8217;.</p>
+	<p>È utile anche perché <strong>è possibile così evitare di riscrivere opzioni di risposta inserite già in altre liste</strong>, potendo riferirsi alla stessa: il più semplice esempio è dato dalle risposte come “si” o “no”. Se la lista di risposte si chiama si_no, è possibile inserire due domande del tipo select_one [si_no], con nome ed etichetta diverse, scrivendole nel foglio choices una volta sola.</p>
+	<p><img class="aligncenter size-full wp-image-6841" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image09.png" alt="image09" width="497" height="458" /></p>
+	<p>A questo punto, se si vuole è possibile aggiungere un altro foglio denominato &#8216;<strong>settings</strong>&#8216;, dove inserire due colonna, &#8216;form_title&#8217; e &#8216;form ID&#8217;, tramite cui è possibile denominare il questionario: in assenza il questionario avrà lo stesso nome dato al file xls che verrà caricato sul sito.</p>
+	<p><img class="aligncenter size-full wp-image-6842" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image08.png" alt="image08" width="398" height="163" /></p>
+	<h2 id="lato-applicazione-mobile-geoodk-collect-e-webform">&#8216;Lato applicazione mobile&#8217;: GeoODK Collect e WebForm</h2>
+	<p><em><strong>Giuseppe</strong>:</em> Il terzo componente del sistema è quello &#8216;<strong>mobile</strong>&#8216;, ovvero relativo alla raccolta vera e propria dei dati.</p>
+	<p>Una volta scaricata l&#8217;applicazione GeoODK Collect, ricordiamoci che è solo nel Play Store, la schermata iniziale è la seguente.</p>
+	<p><img class="aligncenter size-full wp-image-6843" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image11.png" alt="image11" width="500" height="719" /></p>
+	<p>Per partire con la raccolta bisogna <strong>modificare le impostazioni preimpostate</strong> e caricare la form che ormai abbiamo già messo sul server. E&#8217; necessario innanzitutto premere l&#8217;icona delle impostazioni (<strong>Settings</strong>) e poi General Settings, selezionare &#8216;altro server&#8217;, modificando l&#8217;URL preesistente con il server utilizzato per caricare i dati sul web, <a href="https://ona.io/nome_progetto/" rel="nofollow" ><em>https://ona.io/nome_progetto/</em></a>.</p>
+	<p>Tornando nelle impostazioni precedenti è necessario poi cliccare su <strong>&#8216;form management&#8217;</strong>, dove compariranno tutte le form create dal proprio account nel server e selezionare quella che ci interessa. Dopo aver premuto “<strong>prendi selezionato</strong>” e aver dato l&#8217;invio cliccando su “ok”, si ha in memoria la form “vuota” e si possono raccogliere i dati andando sull&#8217;icona &#8216;collect data&#8217; e selezionando la form appena scaricata.</p>
+	<p>La app dà la possibilità di fare una serie di operazioni: modificare i dati delle form già compilati e salvati (edit data), spostare la posizione dei rilevamenti qualora non fossero abbastanza accurati, eliminare form (delete data) e, infine, inviare i dati al server (send data). Quest&#8217;ultima operazione è quella che &#8216;vuota&#8217; dei dati il nostro dispositivo mobile: ricordiamo, infatti, che l&#8217;iniziativa ODK nasce per scopi &#8216;sociali&#8217; e umanitari, ed è pensata pertanto per raccogliere dati anche in assenza di una copertura di rete, con pertanto la possibilità di inviare i dati soltanto una volta in cui questa sia resa disponibile.</p>
+	<p><em><strong>Viola</strong>:</em> Gli stessi dati possono essere raccolti anche tramite una <strong>webform</strong>, ovvero una pagina web dove sono riportate i medesimi quesiti della form, solo organizati ovviamente con un layout diverso. Perché usare questo strumento anziché l&#8217;app? per 3 motivi:</p>
+	<ol style="list-style-type: decimal;">
+	<li>Per i pigri che non vogliono installare l&#8217;app ma operare da browser;</li>
+	<li>Per i possessori di dispositivi non-Android (Windows Phone e iPhone)</li>
+	<li>Più semplicemente per chi ha magari acquisito dei dati &#8216;su carta&#8217; e vuole &#8216;buttarli dentro&#8217; a una banca dati comodamente seduto alla scrivania.</li>
+	</ol>
+	<p>Attenzione che però non tutti i browser funzionano bene! <strong>Se vi interessa acquisire immagini, video o audio ci sono alcune limitazioni: serve il browser Chrome</strong>, se poi avete un iOS potete averle solo tramite un browser che si chiama Puffin! Comunque la rilevazione di tutti gli altri campi sarà possibile <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p><img class="aligncenter size-full wp-image-6844" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image00.png" alt="image00" width="500" height="411" /></p>
+	<p><strong><em>Giuseppe</em></strong>: Se siete curiosi di provare GeoODK e a inserire qualche dato, provate con il progetto &#8216;Trieste Free Wifi Movida&#8217;! Si è concentrato sulla città di Trieste e per ora è terminato (Viola ha finito la tesi di laurea magistrale, e quello era l&#8217;oggetto della ricerca!), però potete provare a inserire dei dati sul wifi e sull&#8217;affollamento dei locali nella vostra città (magari mandateci un&#8217;email così mostriamo qualche elaborazione!). Potete farlo tramite la webform su Enketo qui sotto:Anche in questo caso è possibile sia inviare i dati immediatamente (&#8216;<strong>submit</strong>&#8216; a fine acquisizione) o rimandare in un secondo tempo (e selezionare &#8216;<strong>save as draft</strong>&#8216;).</p>
+	<p><a href="https://rmvfk.enketo.org/webform" rel="nofollow" ><em>https://rmvfk.enketo.org/webform</em></a></p>
+	<p>&nbsp;</p>
+	<p>Oppure, dopo essersi installati GeoODK, andare su “Settings”, sotto “General Settings” scegliere il server “Altro” e inserire <a href="https://ona.io/triestegeo" rel="nofollow" ><em>https://ona.io/triestegeo</em></a>.</p>
+	<p>Su “Form Management” (sempre sotto &#8216;settings&#8217;) selezionare la form “Trieste_FreeWiFi_Movida”</p>
+	<p>A questo punto è possibile raccogliere dati e inserirli nel database creato per questa form (ovviamente la procedura sarà la medesima quando avrete creato il vostro progetto in Ona e caricato una o più form)!</p>
+	<p>La nostra Viola ha preparato anche un video su Youtube con una panoramica su come impostare la form su GeoODK e iniziare ad acquisire i dati! <a href="https://www.youtube.com/watch?v=EP2PA5ysyEk" rel="nofollow" ><em>https://www.youtube.com/watch?v=EP2PA5ysyEk</em></a></p>
+	<h2 id="altre-applicazioni">Altre applicazioni</h2>
+	<p><strong><em>Viola</em></strong>: Questa applicazione è stata utilizzata anche per <strong>raccogliere dati sull&#8217;affluenza</strong> <strong>a due eventi cittadini</strong>, TriesteNext (weekend dedito alla divulgazione scientifica e dimostrazioni nell&#8217;ambito accademico organizzati dall&#8217;Università di Trieste) e FuoriRegata (serie di eventi lato terra che si svolgono la settimana precedente alla Barcolana). Con uno stand di &#8216;geografi&#8217; capeggiati dal qui presente Giuseppe, sempre a Trieste Next 2015, abbiamo poi presentato due attività permesse dalla customizzazione di questa applicazione: una per &#8216;mappare&#8217; la provenienza dei visitatori a Trieste Next e un&#8217;altra per la mappatura delle zone problematiche legate all&#8217;accessibilità e alle barriere architettoniche della città di Trieste.</p>
+	<p><img class="aligncenter size-full wp-image-6845" src="http://blog.spaziogis.it/wp-content/uploads//2016/02/image12.png" alt="image12" width="500" height="375" /></p>
+	<p>Appena pronti vi segnaleremo i collegamenti ai lavori che sono stati realizzati su questi progetti!</p>
+	<h2 id="conclusioni-altri-sviluppi">Conclusioni – altri sviluppi</h2>
+	<p>Per i nostri progetti di mobile data collection abbiamo scelto la base di Open Data Kit per strutturare il sistema di raccolta dati, accompagnato all&#8217;app per dispositivo mobile GeoODK. In realtà GeoODK non è l&#8217;unica app che lavora in questo sistema. ODK Collect e Kobo sono due app che si basano sulla medesima architettura per la raccolta dei dati, consentendo anche la gestione di dati geolocalizzati.</p>
+	<p>(<a href="https://play.google.com/store/apps/details?id=org.odk.collect.android&amp;hl=it" rel="nofollow" ><em>https://play.google.com/store/apps/details?id=org.odk.collect.android&amp;hl=it</em></a>; <a href="https://play.google.com/store/apps/details?id=org.koboc.collect.android&amp;hl=it" rel="nofollow" ><em>https://play.google.com/store/apps/details?id=org.koboc.collect.android&amp;hl=it</em></a>)</p>
+	<p>L&#8217;unico problema in questi due esempi è dato dal fatto che solo dati puntuali possono essere acquisiti durante una &#8216;campagna&#8217; e possono essere visualizzati e modificati solo dopo averli scaricati su server.</p>
+	<p>Nel caso di GeoODK invece funzioni di visualizzazione e di editing dei dati possono essere fatte già da dispositivo mobile prima di caricarli sul server.</p>
+	<p>Un altro elemento importante, che tuttavia stiamo appena testando, è dato dal fatto che GeoODK consente di <strong>acquisire dati anche sotto forma di polilinea o poligono</strong>, oltre che punti (v. sopra il riferimento alle funzioni Geopoint, Geotrace e Geoshape). In questo caso, tuttavia, al momento le soluzioni lato server come ona.io non supportano la gestione di tale dato, per cui si rende necessario installare localmente <strong>ODK Aggregate</strong>, ovvero il server di aggregazione dei dati da dispositivo mobile. Siamo in fase &#8216;work in progress&#8217; anche noi, speriamo di riuscire a testare anche questa soluzione! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p>Per qualsiasi approfondimento non esitate a contattarci! Saremo felici di rispondere e approfondire gli argomenti!</p>
+	<div class="postauthorsingle">
+	<div><span class="postauthorpre">Pensato e scritto da </span><span class="postauthorsign"><a href="http://blog.spaziogis.it/author/gborruso/"title="Articoli scritti da: Giuseppe Borruso"  rel="author">Giuseppe Borruso</a></span></div>
+	<p><img class="avatar avatar-80 photo" src="http://1.gravatar.com/avatar/7eb5109c1de3d69f04cb3113a634b921?s=80&amp;d=retro&amp;r=G" alt="" width="80" height="80" /> Nasco geografo economico, mi interesso di Geographic Information e di Smart Cities. Attratto dalle tecnologie ICT e dall’innovazione, ma sempre con l’uomo al centro. Professore di Economic Geogrphy, GIS e Geografia delle Reti. Presidente del Comitato Scientifico dell’Associazione Italiana di Cartografia. Nel tempo libero, poco, running o MTB</p>
+	<div class="postauthorsingletwitter"></div>
+	<div class="authosn"><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=jpsan72@gmail.com" rel="nofollow"  target="_blank"><img title="jpsan72@gmail.com" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" alt="jpsan72@gmail.com" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://www.facebook.com/gborruso" rel="nofollow"  target="_blank"><img title="Giuseppe Borruso su facebook" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/facebook-32x32.png" alt="Giuseppe Borruso su facebook" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://twitter.com/gborruso" rel="nofollow"  target="_blank"><img title="Giuseppe Borruso su twitter" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" alt="Giuseppe Borruso su twitter" width="32" height="32" border="0" hspace="6" vspace="2" /></a></div>
+	</div>
+	<div class="postauthorsingle">
+	<div><span class="postauthorpre">Pensato e scritto da </span><span class="postauthorsign"><a href="http://blog.spaziogis.it/author/vdefend/"title="Articoli scritti da: Viola Defend"  rel="author">Viola Defend</a></span></div>
+	<p><img class="avatar avatar-80 photo" src="http://1.gravatar.com/avatar/1bc1a77e4320d1881079c471a028f203?s=80&amp;d=retro&amp;r=G" alt="" width="80" height="80" /> Fresca fresca di laurea magistrale in Scienze Aziendali, ho scoperto “all’ultimo minuto” una passione per Smart Cities, GIS e Citizen science, di cui ho scritto per il lavoro di tesi. Sono fermamente convinta che non esistano Smart Cities senza Smart Citizens e che la tecnologia sia un mezzo e non un fine per migliorare le città.</p>
+	<div class="postauthorsingletwitter"></div>
+	<div class="authosn"><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=viola.defend@outlook.it" rel="nofollow"  target="_blank"><img title="viola.defend@outlook.it" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" alt="viola.defend@outlook.it" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://it.linkedin.com/in/violadefend" rel="nofollow"  target="_blank"><img title="Viola Defend su linkedin" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/linkedin-32x32.png" alt="Viola Defend su linkedin" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://twitter.com/Violetta_Defend" rel="nofollow"  target="_blank"><img title="Viola Defend su twitter" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" alt="Viola Defend su twitter" width="32" height="32" border="0" hspace="6" vspace="2" /></a></div>
+	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2016/02/08/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-ii/">Raccolta dati per tutti: GeoODK e smartphones per sensori urbani (parte II)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2016/02/08/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-ii/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccolta+dati+per+tutti%3A+GeoODK+e+smartphones+per+sensori+urbani+%28parte+II%29&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/02/08/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-ii/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image02-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image02.png" medium="image">
+			<media:title type="html">image02</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image02-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image05.png" medium="image">
+			<media:title type="html">image05</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image05-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image04.png" medium="image">
+			<media:title type="html">image04</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image04-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image07.png" medium="image">
+			<media:title type="html">image07</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image07-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image06.png" medium="image">
+			<media:title type="html">image06</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image06-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image09.png" medium="image">
+			<media:title type="html">image09</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image09-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image08.png" medium="image">
+			<media:title type="html">image08</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image08-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image11.png" medium="image">
+			<media:title type="html">image11</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image11-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image00.png" medium="image">
+			<media:title type="html">image00</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image00-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image12.png" medium="image">
+			<media:title type="html">image12</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/02/image12-150x150.png" />
+		</media:content>
+		<media:content url="http://1.gravatar.com/avatar/7eb5109c1de3d69f04cb3113a634b921?s=80&amp;d=retro&amp;r=G" medium="image" />
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" medium="image">
+			<media:title type="html">jpsan72@gmail.com</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/facebook-32x32.png" medium="image">
+			<media:title type="html">Giuseppe Borruso su facebook</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" medium="image">
+			<media:title type="html">Giuseppe Borruso su twitter</media:title>
+		</media:content>
+		<media:content url="http://1.gravatar.com/avatar/1bc1a77e4320d1881079c471a028f203?s=80&amp;d=retro&amp;r=G" medium="image" />
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" medium="image">
+			<media:title type="html">viola.defend@outlook.it</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/linkedin-32x32.png" medium="image">
+			<media:title type="html">Viola Defend su linkedin</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" medium="image">
+			<media:title type="html">Viola Defend su twitter</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Raccolta dati per tutti: GeoODK e smartphones per sensori urbani (parte I)</title>
+		<link>http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/</link>
+		<comments>http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/#comments</comments>
+		<pubDate>Thu, 21 Jan 2016 12:00:55 +0000</pubDate>
+		<dc:creator>guest</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[citizen science]]></category>
+		<category><![CDATA[data collection]]></category>
+		<category><![CDATA[mobile]]></category>
+		<category><![CDATA[smart cities]]></category>
+		<category><![CDATA[VGI]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6786</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccolta+dati+per+tutti%3A+GeoODK+e+smartphones+per+sensori+urbani+%28parte+I%29&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-01-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/&amp;rft.language=English"></span>
+Giuseppe: Oggi parliamo tanto di &#8220;cittadini sensori&#8220;, di Citizen Science, di crowdsourcing e, in poche parole, del coinvolgimento attivo da parte dei cittadini in progetti di raccolta dati (georeferenziati) sul terreno, per progetti di ricerca o di pubblica utilità. Sappiamo che tali iniziative sono possibili in misura sempre maggiore grazie a delle &#8220;rivoluzioni&#8221; che ci hanno coinvolto molto da vicino [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccolta+dati+per+tutti%3A+GeoODK+e+smartphones+per+sensori+urbani+%28parte+I%29&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-01-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><em><strong>Giuseppe</strong>: </em>Oggi parliamo tanto di &#8220;<strong>cittadini sensori</strong>&#8220;, di <strong>Citizen Science</strong>, di <strong>crowdsourcing </strong>e, in poche parole, del coinvolgimento attivo da parte dei cittadini in progetti di raccolta dati (georeferenziati) sul terreno, per progetti di ricerca o di pubblica utilità.</p>
+	<p>Sappiamo che tali iniziative sono possibili in misura sempre maggiore grazie a delle &#8220;rivoluzioni&#8221; che ci hanno coinvolto molto da vicino e relativamente molto recenti. L&#8217;aumento della velocità di trasmissione dati su Internet, l&#8217;abbassamento dei costi legati alle tecnologie ICT, la disponibilità di sistemi di localizzazione GNSS (GPS e altri) a basso costo e di buona precisione (almeno per applicazioni diverse da quelle geodetiche!) e lo sviluppo di smartphone e Social Network hanno senz&#8217;altro reso <strong>più facile e veloce</strong> <strong>l&#8217;interazione tra individui dotati di dispositivi &#8220;smart&#8221;</strong>, tra loro e con piattaforme di condivisione di dati e informazioni.</p>
+	<p>Questo è senz&#8217;altro vero, ma iniziare a <strong>raccogliere dati geolocalizzati</strong> in maniera ordinata e sistematica e c <strong>ondividerli</strong> alla fine del processo richiede nella maggior parte dei casi un po&#8217; di doti di programmazione o quanto meno di familiarità avanzata con strumenti di tipo informatico.</p>
+	<p>Tale premessa è alla base di quanto abbiamo cercato di sviluppare, a partire dall&#8217;estate del 2015, con i ragazzi dell&#8217;insegnamento di Geografia delle Reti, nell&#8217;ambito dei Corsi di Laurea Magistrali in &#8220;Scienze Economiche&#8221; e &#8220;Scienze Aziendali &#8221; dell&#8217;Università di Trieste.</p>
+	<p>L&#8217;idea di partenza era quella di sperimentare modalità di crowdsourcing nell&#8217;acquisizione di dati geografici relativi a fenomeni urbani su piattaforme una soluzione senza costi di licenza e con un limitato ricorso a doti di programmazione.</p>
+	<p><strong><em>Viola</em></strong>: Oltre ad una soluzione a basso <strong>costo </strong>e di relativa semplicità nell&#8217;impostazione del questionario, volevamo uno strumento che, oltre<br />
+a poter registrare dati sotto forma di punti, polilinee o poligoni, avesse queste caratteristiche:</p>
+	<ul>
+	<li>relativa applicazione scaricabile (gratuitamente) su smartphone;</li>
+	<li>permettesse la compilazione del questionario anche in caso di assenza di rete;</li>
+	<li>permettesse di caricare un numero molto elevato di risposte da vari dispositivi (o comunque un numero in linea con le nostre esigenze);</li>
+	<li>fosse compilabile via sito web (in caso di problemi di compatibilità con il sistema operativo del telefono o in presenza di qualche buon&#8217;anima ancora dotata di Nokia 3310 come arma di battaglia!)</li>
+	</ul>
+	<p>Potrebbero sembrare delle premesse un po&#8217; pretenziose ma dopo varie ricerche, qualche decina di download (wi-fi permettendo) a causa di una rete casalinga un po&#8217; ballerina, qualcosa abbiamo trovato.</p>
+	<p>Ci siamo imbattuti nella &#8220;galassia&#8221; di <strong>Open Data Kit</strong>, un progetto &#8220;open&#8221; che consente l&#8217;impostazione di sistemi client-server di raccolta<br />
+e archiviazione di dati da parte di operatori sul campo tramite dispositivi mobili.</p>
+	<p>Dal sito (<a href="https://opendatakit.org/" rel="nofollow" ><span style="text-decoration: underline;">https://opendatakit.org/</span></a>) si legge che ODK (dove ODK sta per Open Data Kit, nel caso ve lo stiate chiedendo) è un &#8220;<em>free and open-source set of tools which helps organizations author, field, and manage mobile data collection solutions</em>&#8220;, che consente di:</p>
+	<ul>
+	<li><em>costruire </em>una <em>form</em> (o &#8220;questionario&#8221;) di raccolta dati;</li>
+	<li><em>raccogliere </em>dati su di un dispositivo mobile;</li>
+	<li><em>aggregare </em>i dati raccolti su di un server ed estrarli in formati utilizzabili.</li>
+	</ul>
+	<p><strong><em>Giuseppe</em></strong>: Open Data Kit inizialmente si è sviluppato basando su Google la gestione del proprio &#8220;lato server&#8221;, dopodiché si è affrancato dal mondo &#8221;commerciale&#8221; basandosi soprattutto su architetture <em>open source</em>.</p>
+	<p>Il sistema richiede diversi elementi, esemplificati nell&#8217;immagine qui sotto, da integrare.</p>
+	<p>Innanzitutto una <em>form</em>, ovvero<strong> il questionario </strong>da sviluppare.</p>
+	<p>Una <strong>&#8216;piattaforma&#8217; per la raccolta dei dati</strong>: qui ci viene in aiuto enketo.org per la realizzazione di una <strong>webform </strong>compilabile da (virtualmente) qualsiasi dispositivo, oppure un&#8217;<strong>app</strong> da caricare su dispositivo mobile. Diverse app sono state sviluppate: ODK Collect e KoBo Collect, solo per citarne un paio, soprattutto nell&#8217;ambito di progetti a contenuto umanitario o sviluppati apposta per scopi educativi.</p>
+	<p>Un server, ovvero un sistema centralizzato in cui salvare i dati immessi. Senza ricorrere a un nostro server si può fare riferimento alle piattaforme ODK aggregate e Ona.io.</p>
+	<p>Viste le applicazioni alternative basate sulla stessa base ODK, <strong>abbiamo scelto GeoODK perché ci è sembrata la più semplice e completa, </strong><strong>perché consente anche la modifica dei dati prima dell&#8217;upload</strong> su una base cartografica digitale e <strong>di caricare sul dispositivo dei layer geografici ad hoc </strong> (non necessariamente le basi di sfondo tipo OpenStreetMap) &#8211; funzionalità non implementata nell&#8217;esempio che abbiamo riportato in questo report.</p>
+	<p><img class="aligncenter size-full wp-image-6825" src="http://blog.spaziogis.it/wp-content/uploads//2016/01/image001.png" alt="image00" width="500" height="321" /></p>
+	<p style="text-align: center;">Il Sistema ODK (Open Data Kit) e le sue componenti</p>
+	<p>Inutile dire che, per i nostri scopi, l&#8217;attenzione era rivolta alla raccolta di dati georeferenziati, sfruttando il GPS interno per geolocalizzarsi. Il<br />
+sistema &#8216;ODK&#8217; offre numerose app già pronte utili per la raccolta dei dati, come ODK Collect e KoBo collect. Queste tuttavia consentono soltanto di caricare dati geografici sotto forma di punti (coppie di coordinate) e hanno un&#8217;interfaccia molto semplice e tutto sommato limitata, senza grandi possibilità di editing e visualizzazione dei dati sul dispositivo mobile.</p>
+	<p><strong><em>Viola</em></strong>: L&#8217;applicazione scelta è stata GeoODK, dove il &#8220;Geo&#8221; sta per Geographical (Open Data Kit), sviluppata sempre a partire dalla piattaforma ODK, ma con un&#8217;attenzione maggiore al lato geografico.</p>
+	<p>In particolare consente varie cose in più rispetto a ODK, ovvero:</p>
+	<ul>
+	<li>è più semplice;</li>
+	<li>consente di visualizzare e modificare i dati prima dell&#8217;upload su una base digitale sullo smartphone o tablet;</li>
+	<li>consente di caricare localmente dei layer geografici ad hoc (non necessariamente le basi di sfondo tipo OpenStreetMap) &#8211; funzionalità non implementata nell&#8217;esempio riportato;</li>
+	<li>consente di registrare, anche tramite form, dati sotto forma di <strong>punti, polilinee o poligoni </strong>(funzioni &#8220;geopoint&#8221;, &#8220;geotrace&#8221; e &#8221;geoshape&#8221;).</li>
+	</ul>
+	<p><img class="aligncenter size-full wp-image-6817" src="http://blog.spaziogis.it/wp-content/uploads//2016/01/image02.png" alt="image02" width="500" height="287" /></p>
+	<p>GeoODK permette di strutturare un questionario tramite un <strong>semplice file Excel </strong>(se vedete la parola &#8220;form&#8221; più avanti non vi spaventate, ci riferiamo a questo) e qualche piccola accortezza, fornendo già sia la propria applicazione mobile sia una soluzione &#8220;lato server&#8221; per l&#8217;aggregazione dei dati, individuata inizialmente in Formhub, dopodiché (a causa della sua lentezza e dell&#8217;abbandono da parte degli sviluppatori) trovata nella piattaforma ona.io (anche questa in seguito non più disponibile completamente free). L&#8217;alternativa &#8220;locale&#8221; rimane sempre ODK Aggregate, da installare su di un proprio server.</p>
+	<p>Mentre la seconda soluzione è più laboriosa, richiedendo di caricare ODK Collect sul proprio server (per il momento ci stiamo pensando ma non abbiamo ancora messo in pratica di sfruttare il server dell&#8217;Università di Trieste e il nostro adorato informatico A.P.), Formhub era già bello e pronto e richiedeva solo l&#8217;iscrizione (ovviamente gratuita) dell&#8217;utente. Problema incontrato già al momento della scelta di utente e password: il server faceva venire i sudori freddi. Era in sovraccarico un buon 70-80% delle volte in cui ci si connetteva e si aveva bisogno di lui. Qualche settimana fa poi il server non è definitivamente più aggiornato dall&#8217;organizzazione che se ne occupava quindi ve lo sconsigliamo proprio.</p>
+	<p>Il sito web <a href="http://geoodk.com/tutorials.php" rel="nofollow" ><span style="text-decoration: underline;">http://geoodk.com/tutorials.php</span></a> contiene un buon videotutorial su come impostare i diversi elementi di un progetto di Mobile Data Collection, presentati al GIS Day 2014. Da quello siamo partiti per il nostro lavoro, e qui sotto cerchiamo di sintetizzarlo un po&#8217; a un pubblico italiano.</p>
+	<p>Dopo un paio di mesi di stress ed incubi causati dai continui problemi di sovraccarico di Formhub, a settembre il magico prof (Giuseppe) ha trovato un <strong>nuovo server</strong> su cui caricare i dati. Stesso layout di Formhub, stesse funzioni… la copia conforme ma rapidissima: <strong>Ona.io.</strong></p>
+	<p>Così, un&#8217;altra registrazione più in là siamo finiti su un altro server felici e contenti come pasque. Escludendo il fatto che il primo ottobre hanno rilasciato una nuova piattaforma dal diverso layout per cui abbiamo avuto entrambi un colpo al cuore…temevamo di aver perso tutto!</p>
+	<p>In realtà abbiamo scoperto che dal 21 ottobre cambiano i termini di utilizzo e, in verità, il sito è stato migliorato e con le attuali condizioni è possibile avere un account gratuito caricando fino a 15 questionari e ricevendo fino a 500 risposte al mese, che tutto sommato &#8211; poi dipende dall&#8217;uso che si vuole fare- sono un buon numero.</p>
+	<p style="text-align: center;">LA SETTIMANA PROSSIMA IL SEGUITO &#8230;</p>
+	<div class="postauthorsingle">
+	<div><span class="postauthorpre">Pensato e scritto da </span><span class="postauthorsign"><a href="http://blog.spaziogis.it/author/gborruso/"title="Articoli scritti da: Giuseppe Borruso"  rel="author">Giuseppe Borruso</a></span></div>
+	<p><img class="avatar avatar-80 photo" src="http://1.gravatar.com/avatar/7eb5109c1de3d69f04cb3113a634b921?s=80&amp;d=retro&amp;r=G" alt="" width="80" height="80" /> Nasco geografo economico, mi interesso di Geographic Information e di Smart Cities. Attratto dalle tecnologie ICT e dall’innovazione, ma sempre con l’uomo al centro. Professore di Economic Geogrphy, GIS e Geografia delle Reti. Presidente del Comitato Scientifico dell’Associazione Italiana di Cartografia. Nel tempo libero, poco, running o MTB</p>
+	<div class="postauthorsingletwitter"></div>
+	<div class="authosn"><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=jpsan72@gmail.com" rel="nofollow"  target="_blank"><img title="jpsan72@gmail.com" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" alt="jpsan72@gmail.com" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://www.facebook.com/gborruso" rel="nofollow"  target="_blank"><img title="Giuseppe Borruso su facebook" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/facebook-32x32.png" alt="Giuseppe Borruso su facebook" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://it.gravatar.com/gborruso" rel="nofollow"  target="_blank"><img title="Giuseppe Borruso su twitter" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" alt="Giuseppe Borruso su twitter" width="32" height="32" border="0" hspace="6" vspace="2" /></a></div>
+	</div>
+	<div class="postauthorsingle">
+	<div><span class="postauthorpre">Pensato e scritto da </span><span class="postauthorsign"><a href="http://blog.spaziogis.it/author/vdefend/"title="Articoli scritti da: Viola Defend"  rel="author">Viola Defend</a></span></div>
+	<p><img class="avatar avatar-80 photo" src="http://1.gravatar.com/avatar/1bc1a77e4320d1881079c471a028f203?s=80&amp;d=retro&amp;r=G" alt="" width="80" height="80" /> Fresca fresca di laurea magistrale in Scienze Aziendali, ho scoperto “all’ultimo minuto” una passione per Smart Cities, GIS e Citizen science, di cui ho scritto per il lavoro di tesi. Sono fermamente convinta che non esistano Smart Cities senza Smart Citizens e che la tecnologia sia un mezzo e non un fine per migliorare le città.</p>
+	<div class="postauthorsingletwitter"></div>
+	<div class="authosn"><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=viola.defend@outlook.it" rel="nofollow"  target="_blank"><img title="viola.defend@outlook.it" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" alt="viola.defend@outlook.it" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://it.linkedin.com/in/violadefend" rel="nofollow"  target="_blank"><img title="Viola Defend su linkedin" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/linkedin-32x32.png" alt="Viola Defend su linkedin" width="32" height="32" border="0" hspace="6" vspace="2" /></a><a href="https://twitter.com/Violetta_Defend" rel="nofollow"  target="_blank"><img title="Viola Defend su twitter" src="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" alt="Viola Defend su twitter" width="32" height="32" border="0" hspace="6" vspace="2" /></a></div>
+	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/">Raccolta dati per tutti: GeoODK e smartphones per sensori urbani (parte I)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccolta+dati+per+tutti%3A+GeoODK+e+smartphones+per+sensori+urbani+%28parte+I%29&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-01-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/01/21/raccolta-dati-per-tutti-geoodk-e-smartphones-per-sensori-urbani-parte-i/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/01/image001-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/01/image001.png" medium="image">
+			<media:title type="html">image00</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/01/image001-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/01/image02.png" medium="image">
+			<media:title type="html">image02</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/01/image02-150x150.png" />
+		</media:content>
+		<media:content url="http://1.gravatar.com/avatar/7eb5109c1de3d69f04cb3113a634b921?s=80&amp;d=retro&amp;r=G" medium="image" />
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" medium="image">
+			<media:title type="html">jpsan72@gmail.com</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/facebook-32x32.png" medium="image">
+			<media:title type="html">Giuseppe Borruso su facebook</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" medium="image">
+			<media:title type="html">Giuseppe Borruso su twitter</media:title>
+		</media:content>
+		<media:content url="http://1.gravatar.com/avatar/1bc1a77e4320d1881079c471a028f203?s=80&amp;d=retro&amp;r=G" medium="image" />
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/mail-32x32.png" medium="image">
+			<media:title type="html">viola.defend@outlook.it</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/linkedin-32x32.png" medium="image">
+			<media:title type="html">Viola Defend su linkedin</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/twitter-32x32.png" medium="image">
+			<media:title type="html">Viola Defend su twitter</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>GDAL-OGR per accedere a cataloghi geografici (CSW)</title>
+		<link>http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/</link>
+		<comments>http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/#comments</comments>
+		<pubDate>Fri, 31 Jul 2015 07:47:11 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[cataloghi]]></category>
+		<category><![CDATA[csw]]></category>
+		<category><![CDATA[gdal/ogr]]></category>
+		<category><![CDATA[ogr]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6710</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL-OGR+per+accedere+a+cataloghi+geografici+%28CSW%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2015-07-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/&amp;rft.language=English"></span>
+Il 18 giugno 2015 è stata rilasciata la versione 2.0.0 di GDAL/OGR. Una delle novità è legata a un nuovo driver di OGR “Catalog Service for the Web (CSW)”, che consente di accedere a cataloghi di risorse cartografiche esposti sul web. La sintassi di base per leggere le informazioni da queste fonti è: ogrinfo -ro [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL-OGR+per+accedere+a+cataloghi+geografici+%28CSW%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2015-07-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p dir="ltr">Il 18 giugno 2015 è stata rilasciata la versione 2.0.0 di GDAL/OGR. Una delle novità è legata a un nuovo driver di OGR “Catalog Service for the Web (CSW)”, che consente di accedere a cataloghi di risorse cartografiche esposti sul web.</p>
+	<p dir="ltr">La sintassi di base per leggere le informazioni da queste fonti è:</p>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http//catalogo.it/csw</pre>
+	<p dir="ltr">L&#8217;utility di riferimento è <a href="http://www.gdal.org/1.11/ogrinfo.html" rel="nofollow"  target="_blank">ogrinfo</a>, e sono a disposizione quindi tutte le altre opzioni del <a href="http://www.gdal.org/1.11/ogrinfo.html" rel="nofollow" >comando</a>.</p>
+	<p dir="ltr">I cataloghi CSW sono un po&#8217; come quei cassetti pieni di calzini in cui, in occasione di una importante ricorrenza, cerchiamo quelli lilla a pois bianchi (sono an pendant con l&#8217;ultima nostra meravigliosa giacca), ma per troppa abbondanza e varietà non riusciremo mai a trovare. Bisogna anche saper cercare <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p dir="ltr">OGR è l&#8217;ultimo arrivato tra gli strumenti di accesso e ricerca. Ecco qualche semplice esempio, basato sul <a href="http://www.rndt.gov.it/RNDT/home/index.php?option=com_content&amp;view=article&amp;id=88&amp;Itemid=229" rel="nofollow"  target="_blank">catalogo</a> del Repertorio Nazionale dei Dati Territoriali (RNDT).</p>
+	<h2 id="avere-l'elenco-di-tutti-i-record-del-server">Avere l&#8217;elenco di tutti i record del server</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -oo MAX_RECORDS=100</pre>
+	<p>Sul catalogo RNDT sono presenti più di 17000 record, quindi la risposta al comando sarà &#8220;lunga&#8221;. L&#8217;opzione MAX_RECORDS fissa il numero massimo di record che è possibile ricevere ciclicamente durante una chiamata. Nell’esempio di sopra, per 17000 record quindi 170 cicli, ognuno composto da 100 record di output.</p>
+	<h2 id="tutti-i-record-all'interno-di-una-determinata-area">Tutti i record all&#8217;interno di una determinata area</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -spat 12 35 15 38 -oo MAX_RECORDS=100</pre>
+	<p>Ogni record di un catalogo CSW è associato ad un’estensione geografica. Inserendo il parametro -spat si impostano le coordinate del boundig box (xmin ymin xmax ymax, in EPSG:4326) all’interno del quale si vuole eseguire la ricerca: in risposta si avranno tutti i record ricadenti in quell’area.</p>
+	<h2 id="tutti-i-record-che-contengono-una-determinata-parola-(stringa-di-testo)-in-uno-dei-campi-esposti-dal-catalogo">Tutti i record che contengono una determinata parola (stringa di testo) in uno dei campi esposti dal catalogo</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -where \"abstract LIKE '%geologia%'\" -oo MAX_RECORDS=100</pre>
+	<p>In questo modo si cercheranno tutti i record che contengono la parola &#8220;geologia&#8221; nel campo &#8220;abstract&#8221;. Ad oggi sono 31.</p>
+	<p><img class="aligncenter size-full wp-image-6727" src="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06.png" alt="2015-07-31_11h57_06" width="421" height="95" /></p>
+	<p>Gli altri campi che è possibile sfruttare per fare ricerche sono:</p>
+	<ul id="draft_check_box_list_0">
+	<li>identifier (String)</li>
+	<li>other_identifiers (StringList)</li>
+	<li>type (String)</li>
+	<li>subject (String)</li>
+	<li>other_subjects (StringList)</li>
+	<li>references (String)</li>
+	<li>other_references (StringList)</li>
+	<li>modified (String)</li>
+	<li>abstract (String)</li>
+	<li>date (String)</li>
+	<li>language (String)</li>
+	<li>rights (String)</li>
+	<li>format (String)</li>
+	<li>other_formats (StringList)</li>
+	<li>creator (String)</li>
+	<li>source (String)</li>
+	</ul>
+	<h2 id="tutti-i-record-che-contengono-una-determinata-stringa-in-un-campo-qualsiasi">Tutti i record che contengono una determinata stringa in un campo qualsiasi</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -where \"anytext LIKE '%frane%'\" -oo MAX_RECORDS=100</pre>
+	<p>La stringa cercata è &#8220;frane&#8221;, e si ottengono 52 record.</p>
+	<h2 id="tutti-i-record-della-ricerca-precedente-ma-in-formato-iso-19115/19119">Tutti i record della ricerca precedente ma in formato ISO 19115/19119</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -where \"anytext LIKE '%frane%'\" -oo OUTPUT_SCHEMA=gmd -oo MAX_RECORDS=100</pre>
+	<p>L&#8217;output in questo caso è secondo lo schema descritto qui <a href="http://www.isotc211.org/2005/gmd" rel="nofollow"  target="_blank">http://www.isotc211.org/2005/gmd</a>. Se invece si scrive OUTPUT_SCHEMA=csw, sarà secondo queste specifiche <a href="http://www.opengis.net/cat/csw/2.0.2" rel="nofollow"  target="_blank">http://www.opengis.net/cat/csw/2.0.2</a>.</p>
+	<hr />
+	<p>Tutte le altre novità su GDAL/OGR 2.0.0 le trovate sintetizzate nel <a href="http://erouault.blogspot.it/2015/06/gdalogr-200-released.html" rel="nofollow" >post</a> di Even Rouault e purtroppo<strong> il catalogo RNDT non è ancora nel registro INSPIRE!</strong> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_sad.gif' alt=':(' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/">GDAL-OGR per accedere a cataloghi geografici (CSW)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL-OGR+per+accedere+a+cataloghi+geografici+%28CSW%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2015-07-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06-150x95.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06.png" medium="image">
+			<media:title type="html">2015-07-31_11h57_06</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06-150x95.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Geopaparazzi e il turismo fai da te</title>
+		<link>http://blog.spaziogis.it/2013/11/11/geopaparazzi-e-il-turismo-fai-da-te/</link>
+		<comments>http://blog.spaziogis.it/2013/11/11/geopaparazzi-e-il-turismo-fai-da-te/#comments</comments>
+		<pubDate>Mon, 11 Nov 2013 07:15:20 +0000</pubDate>
+		<dc:creator>Giancarlo Antonello</dc:creator>
+				<category><![CDATA[GuestPost]]></category>
+		<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[geopaparazzi]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5944</guid>
+		<description><![CDATA[Geopaparazzi e il turismo fai da te - Erano le tre del pomeriggio e c'era il sole, ma ... fortunatamente avevo scattato molte foto e aiutandomi un po' con le immagini e un po' con il ricordo dell'orografia del luogo riuscimmo, per altra via e con tre ore aggiuntive, a ritornare al luogo di partenza. Mi dissi: mai più dovrà ripetersi un caso analogo!]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Geopaparazzi+e+il+turismo+fai+da+te&amp;rft.aulast=Antonello&amp;rft.aufirst=Giancarlo&amp;rft.subject=GuestPost&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-11-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/11/11/geopaparazzi-e-il-turismo-fai-da-te/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ho molto pensato se scrivere o no queste poche righe, perché potrebbe sembrare che lo facessi per &#8220;sponsorizzare&#8221; un progetto che a me piace; alla fine ho deciso che in ogni occasione ci sono i maligni e quelli in buona fede e così vi invio queste mie considerazioni, pensando che apparteniate alla seconda categoria.</p>
+	<p dir="ltr">Sono più di tre anni che uso <a href="http://www.geopaparazzi.eu/" rel="nofollow" >geopaparazzi</a>, cioè fin dalla sua nascita con i suoi bachi e i suoi problemi. Mi sento onorato di aver contribuito allo sviluppo di questo software, sia pure in modo passivo, nel senso che non ho scritto neppure una linea di programma ma ho testato il software in lungo e in largo per i miei bisogni di turista fai da te.</p>
+	<p dir="ltr">Due anni fa, durante una vacanza in un&#8217;isola greca con mia moglie, seguendo con la cartina del luogo un sentiero segnato male ci siamo persi.</p>
+	<p><div id="attachment_5946" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/11/01_grecia.jpg"><img class="size-medium wp-image-5946" src="http://blog.spaziogis.it/wp-content/uploads//2013/11/01_grecia-300x225.jpg" alt="Fortezza di Antimachia a Karadameno, Isola di Kos. Geopaparazzi su HTC Wildfire." width="300" height="225" /></a><p class="wp-caption-text">Fortezza di Antimachia a Karadameno, Isola di Kos. Geopaparazzi su HTC Wildfire.</p></div></p>
+	<p dir="ltr">Erano le tre del pomeriggio e c&#8217;era il sole, ma &#8230; fortunatamente avevo scattato molte foto e aiutandomi un po&#8217; con le immagini e un po&#8217; con il ricordo dell&#8217;orografia del luogo riuscimmo, per altra via e con tre ore aggiuntive, a ritornare al luogo di partenza. Mi dissi: mai più dovrà ripetersi un caso analogo!</p>
+	<p dir="ltr">E da quel giorno geopaparazzi mi segue ovunque.</p>
+	<p dir="ltr">Vi scrivo alcuni accadimenti banali, ma credo significativi, per far capire ai vostri lettori eventualmente interessati come sia utile questo strumento.</p>
+	<ul>
+	<li dir="ltr">Mia moglie ed io per i nostri viaggi ci affidiamo regolarmente al sito booking.com. Di solito sono abbastanza precisi, ma&#8230; vi lascio intendere dalla email che mia moglie ha mandato al sito durante le vacanze:</li>
+	</ul>
+	<p style="padding-left: 90px;">&#8220;Gentili Signori, siamo utenti di booking.com e abbastanza soddisfatti del servizio che viene riservato. Tuttavia abbiamo un&#8217;osservazione da fare: essendo dotati di GPS per rintracciare agevolmente la struttura dove andremo a pernottare, abbiamo rilevato che le strutture alberghiere a Kalymnos -vedi hotel Panorama- ed a Astypalaia  -vedi studio Ixthioessa- ma anche altre di cui abbiamo verificato la posizione (vista mare studios: sulla vostra mappa è segnalato in collina ed invece è a un centinaio di metri dal porto), sono segnalate nelle vostre mappe a distanze variabili da 500 a 1000 metri rispetto alla posizione reale. E&#8217; importante che le coordinate GPS corrispondano alla posizione reale della struttura perchè è anche in base alla posizione della stessa che si fa la scelta.<br />
+Ixthioessa ad Astypalaia: sulla Vs. mappa: lat 36.54874  lon 26.35278  a noi risulta lat: 36.54978 lon: 26.35557<br />
+Vi chiediamo di verificare e rettificare le posizioni.<br />
+Cordiali saluti luciana a.&#8221;</p>
+	<ul>
+	<li dir="ltr">
+	<p dir="ltr">Quest&#8217;estate ero a cercar funghi con un gruppo di amici; all&#8217;ora di tornare alla base l&#8217;opinione sulla via del ritorno da prendere non era esattamente condivisa: alcuni dicevano &#8220;di qua&#8221; altri &#8220;di là&#8221;. Prendemmo una delle due direzioni e, fatti pochi metri, il mio amico geopaparazzi mi mostrò che la direzione era sbagliata. Ovviamente la rettifica fu immediata e alcuni amici si mostrarono interessati a quello strumento.</p>
+	</li>
+	</ul>
+	<p><div id="attachment_5947" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/11/02_barcellona.jpg"><img class="size-medium wp-image-5947" src="http://blog.spaziogis.it/wp-content/uploads//2013/11/02_barcellona-300x225.jpg" alt="Al ritorno verso l'albergo, guidati da geopaparazzi, nella Barcellona notturna." width="300" height="225" /></a><p class="wp-caption-text">Al ritorno verso l&#8217;albergo, guidati da geopaparazzi, nella Barcellona notturna.</p></div></p>
+	<ul>
+	<li dir="ltr">Ero in ferie con mia moglie a Barcellona (ebbene sì, sono spesso in giro perchè sono in pensione da dodici anni ormai) per la prima volta, e visitando la città è difficile rendersi conto di quanto passi velocemente il tempo se non quando si accendono le illuminazioni stradali e improvvisamente ci si sente sperduti. Naturalmente in una città non c&#8217;è rischio di perdersi (taxi e indirizzo dell&#8217;albergo risolvono tutti i casi) ma l&#8217;idea di vedere anche aspetti della città notturna ci piaceva e così ci permettemmo una serata tarda in luoghi qualsiasi con la certezza che geopaparazzi ci avrebbe riportati a casa. In albergo mia moglie mi disse &#8220;regala 50€ per una pizza a chi ha sviluppato quel marchingegno (proprio così disse: marchingegno!)&#8221; e così feci: non succede spesso che una donna apprezzi così apertamente certa tecnologia &#8230;.</li>
+	<li dir="ltr">
+	<p style="text-align: left;" dir="ltr">Un amico camminatore con poca esperienza delle montagne del meranese mi chiese un giorno di indicargli un bel percorso in alta quota. Stavo per raccontargli una delle mie gite, quando mi venne l&#8217;illuminazione. &#8220;che cellulare hai?&#8221; gli chiesi. Mi fece vedere un HTC. &#8220;Magnifico&#8221; dissi. E gli spiegai come scaricare Geopaparazzi, come vedere i percorsi in Google Earth, ecc. ecc.. &#8220;Ti manderò via e-mail le istruzioni per usare quel software insieme al file del percorso che stavo per raccontarti. Se avrai problemi, telefonami&#8221;. Ci lasciammo così e gli inviai quanto promesso. Era un mercoledì (lo ricordo perchè la storia è recente) e il lunedì successivo mi arrivò una sua e-mail carica d&#8217;entusiasmo sia per il luogo visto che, soprattutto, per la semplicità con cui aveva potuto seguire il percorso.</p>
+	</li>
+	</ul>
+	<p dir="ltr">Potrei raccontare ancora per molto, ma credo di aver superato il limite di tolleranza di ogni buon lettore &#8220;scientifico&#8221;.</p>
+	<p dir="ltr">Nel frattempo il mio hardware si è evoluto. L&#8217;HTC era troppo lento e spesso “crashava” per la mia impazienza a spostare le mappe sul monitor. In giugno 2013 mi sono regalato un Samsung Galaxy Note2 N7100: una bomba!!! Ci ha accompagnati ad Astypalea (Grecia) senza un attimo di incertezza. Sarà la ns. guida fino a quando&#8230; non sarà diventato troppo lento anche lui.</p>
+	<p dir="ltr">Ci sono ancora alcune cose che mi piacerebbe veder fare a geopaparazzi ma mi rendo conto che non posso sempre chiedere e mai dare. Sono sicuro, tuttavia, che l&#8217;autore di geopaparazzi continuerà, come nel passato, a curare lo sviluppo e la manutenzione di questo software che ormai chiamo &#8220;geofriend&#8221; e prima o poi i miei desideri saranno esauditi perchè saranno diventati necessità per molti.</p>
+	<p dir="ltr">Per finire un consiglio ai turisti fai da te: è sempre bene viaggiare anche con una cartina della zona, oltre che con geopaparazzi: qualche volta batterie e/o satelliti giocano brutti scherzi&#8230;</p>
+	<p dir="ltr">Grazie per l&#8217;ospitalità sul Vostro guest post e per la vostra attività su TANTO.</p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/11/11/geopaparazzi-e-il-turismo-fai-da-te/">Geopaparazzi e il turismo fai da te</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/11/11/geopaparazzi-e-il-turismo-fai-da-te/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Geopaparazzi+e+il+turismo+fai+da+te&amp;rft.aulast=Antonello&amp;rft.aufirst=Giancarlo&amp;rft.subject=GuestPost&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-11-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/11/11/geopaparazzi-e-il-turismo-fai-da-te/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/11/01_grecia-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/11/01_grecia.jpg" medium="image">
+			<media:title type="html">01_grecia</media:title>
+			<media:description type="html">Fortezza di Antimachia a Karadameno, Isola di Kos. Geopaparazzi su HTC Wildfire.</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/11/01_grecia-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/11/02_barcellona.jpg" medium="image">
+			<media:title type="html">02_barcellona</media:title>
+			<media:description type="html">Al ritorno verso l&#039;albergo, guidati da geopaparazzi, nella Barcellona notturna.</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/11/02_barcellona-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il nuovo editor per OpenStreetMap, esempio di un processo virtuoso</title>
+		<link>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/</link>
+		<comments>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/#comments</comments>
+		<pubDate>Tue, 21 May 2013 07:00:28 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[crowdsourcing]]></category>
+		<category><![CDATA[mapping]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5758</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+Da alcuni giorni, come reso noto dalla notizia di lancio, sulle pagine di OpenStreetMap è attivo un nuovo strumento per l’editing online delle mappe. L’ultimo arrivato, nella grande famiglia degli editor per OSM, sia chiama iD e andrà ad affiancare il buon vecchio Potlach, noto a chiunque abbia fatto un po’ di inserimenti e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><div id="attachment_5702" class="wp-caption aligncenter" style="width: 460px"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif"><img class=" wp-image-5702 " src="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif" alt="iD Editor" width="450" height="256" /></a><p class="wp-caption-text">iD Editor</p></div></p>
+	<p>Da alcuni giorni, come reso noto dalla <a href="http://blog.openstreetmap.org/2013/05/07/openstreetmap-launches-all-new-easy-map-editor-and-announces-funding-appeal/" rel="nofollow"  target="_blank">notizia</a> di lancio, sulle pagine di <a href="http://www.openstreetmap.org/" rel="nofollow"  target="_blank">OpenStreetMap</a> è attivo un nuovo strumento per l’editing online delle mappe. L’ultimo arrivato, nella grande <a href="http://wiki.openstreetmap.org/wiki/Editing" rel="nofollow"  target="_blank">famiglia degli editor</a> per OSM, sia chiama <a href="http://wiki.openstreetmap.org/wiki/ID" rel="nofollow"  target="_blank">iD</a> e andrà ad affiancare il buon vecchio Potlach, noto a chiunque abbia fatto un po’ di inserimenti e di modifiche sui dati OSM.</p>
+	<p>Si tratta di uno strumento che, a fronte della leggerezza e della chiarezza a livello di interfaccia utente, nasconde una discreta dose di tecnologia, tutta <a href="https://github.com/systemed/iD" rel="nofollow"  target="_blank">Open Source</a>, nata dal lavoro volontario di alcuni sviluppatori, e proseguita con un notevole sostegno economico (parte dei 545.000 $ offerti dalla <a href="http://www.knightfoundation.org/press-room/press-release/six-ventures-bring-data-public-winners-knight-news/" rel="nofollow"  target="_blank">Knight Foundation</a>), sotto il coordinamento di <a href="http://mapbox.com/" rel="nofollow"  target="_blank">MapBox</a>.</p>
+	<p>L’aspetto più evidente di iD, e che ne ha motivato la realizzazione, è un approccio “assistito” all’editing. Ogni azione viene guidata tramite suggerimenti e le scelte degli oggetti, e delle relative proprietà, da associare agli elementi geometrici inseriti, viene semplificata con l’ausilio di moduli d’inserimento intuitivi e facilmente comprensibile anche ai meno esperti, lasciando tuttavia la libertà di integrare le informazioni di base con <a href="http://wiki.openstreetmap.org/wiki/Tags" rel="nofollow"  target="_blank">tag</a> più avanzati.</p>
+	<p>Ma cos’è che ha spinto la Knight Foundation e MapBox a finanziare questo progetto? La notizia ha colto l’attenzione anche di testate giornalistiche non del settore quali <a href="http:///mashable.com/2013/05/07/openstreetmap/" rel="nofollow"  target="_blank">Mashable</a> e <a href="http:///techcrunch.com/2013/05/07/openstreetmap-to-give-google-maps-a-run-for-its-money-by-launching-its-new-id-editor/" rel="nofollow"  target="_blank">TechCrunch</a>, ed entrambi hanno voluto sottolineare la sfida alle altre realtà commerciale del mapping online, Google in primis. In effetti la mossa operata con l’introduzione di iD ha reso ancor più evidente il mix di qualità del progetto OpenStreetMap : open data, strumenti tecnologici efficaci e robusti, crowdsourcing a scala globale, opportunità commerciali. Le ho elencate in quest’ordine non per caso.</p>
+	<p>La scelta, operata fin dall’inizio, di associare al dato OSM una licenza aperta (inizialmente CC-BY-SA, poi <a href="http://www.osmfoundation.org/wiki/License/About_The_License_Change" rel="nofollow"  target="_blank">trasformata</a> in ODbL) è stata senz’altro il carburante che ha dato il via al tam-tam globale, garantendo agli utenti una totale trasparenza sull’impiego dei dati liberamente forniti. Questa caratteristica, oltre ad essere motivante per molti utenti, è unica tra i progetti di mapping crowdsourced a scala globale (Google Map Maker, per dirne uno, i dati se li tiene ben stretti!).<br />
+La totale trasparenza e il pubblico dominio hanno fornito una forte spinta motivazionale, tanto all’utente amatore quanto agli sviluppatori e ai sistemisti. Lo sviluppo di un set di tecnologie ben focalizzate ed efficaci in grado di gestire tutte le fasi di vita del dato, e di intercettare e rispondere ad un’utenza estremamente variegata (dall’azienda, all’operatore in aree di emergenza, al byker appassionato), ha avviato il circuito virtuoso. Ecco che dal computer di <a href="http://it.wikipedia.org/wiki/Steve_Coast" rel="nofollow"  target="_blank">Steve Coast</a>, OSM ha invaso il mondo.<br />
+Con quali soldi è stato possibile realizzare tutto ciò, e chi sostiene oggi OSM? Qui sta l’emblematicità di OSM, e che io ritrovo esemplificata nella nascita di iD: un progetto nel quale tutti possono trarre benefici, dagli utenti appassionati alle aziende (fino alla scala di <a href="http://blog.foursquare.com/2012/02/29/foursquare-is-joining-the-openstreetmap-movement-say-hi-to-pretty-new-maps/" rel="nofollow"  target="_blank">Foursquare</a>, <a href="http://mapbox.com/blog/evernote-geocoding-custom-maps/" rel="nofollow"  target="_blank">Evernote</a>, <a href="http://mapquest-openstreetmap-europe/" rel="nofollow"  target="_blank">MapQuest</a>, la stessa MapBox e tante altre). E più tutti ne traggono beneficio, più ognuno è disposto a contribuire: l’utente a mappare, l’azienda a fare il proprio business col supporto dei dati OSM e a sostenere il progetto (se l’azienda è saggia e lungimirante!). OSM sarà un caso un po’ unico, soprattutto di questa portata, ma dimostra, insieme ad altri progetti simili (basta pensare a Wikipedia) che è un processo realizzabile e sostenibile, con un modello di business non utopico.</p>
+	<p>In sintesi, e semplificando un po’, un buon editor rende la vita più semplice all’utente, e magari ne attrae di nuovi -&gt; MapBox può contare su una maggiore base di contributori e di dati -&gt; MapBox sostiene lo sviluppo di iD</p>
+	<p>Chissà se un giorno riusciremo a innescare un processo virtuoso simile anche per gli Open Data in Italia</p>
+	<p>Buona <a href="http://www.openstreetmap.org/edit?editor=id" rel="nofollow"  target="_blank">mappatura</a> a tutti con iD!</p>
+	<p><em>Giovanni Allegri</em><br />
+<a href="https://twitter.com/_giohappy_" rel="nofollow"  class="twitter-follow-button" data-show-count="false" data-lang="it">Segui @_giohappy_</a><br />
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><br />
+
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/">Il nuovo editor per OpenStreetMap, esempio di un processo virtuoso</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated-150x150.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif" medium="image">
+			<media:title type="html">id_animated</media:title>
+			<media:description type="html">iD Editor</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated-150x150.gif" />
+		</media:content>
+	</item>
+		<item>
+		<title>Parlando di INSPIRE: di Humboldt &amp; Hale</title>
+		<link>http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/</link>
+		<comments>http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/#comments</comments>
+		<pubDate>Mon, 18 Feb 2013 07:00:32 +0000</pubDate>
+		<dc:creator>Andrea Antonello</dc:creator>
+				<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[dati]]></category>
+		<category><![CDATA[hale]]></category>
+		<category><![CDATA[humboldt]]></category>
+		<category><![CDATA[inspire]]></category>
+		<category><![CDATA[mappatura schemi]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5480</guid>
+		<description><![CDATA[La mappatura dei dati fra i propri schemi (se esistono) e quelli di INSPIRE e' a poco dall'essere dichiarata magia nera. A livello europeo sono state create soluzioni atte a facilitarne la comprensione e supportarne l'implementazione. Hale e' una di queste soluzioni. ]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parlando+di+INSPIRE%3A+di+Humboldt+%26amp%3B+Hale&amp;rft.aulast=Antonello&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Nel corso del 2012 ho avuto il piacere di collaborare al progetto <a href="http://www.freegis.net" rel="nofollow"  target="_blank">FreeGIS</a>. Il mio compito è stato quello di testare l&#8217;usabilità di un particolare software di <strong>mappatura di schemi di dati</strong> per mappare e successivamente convertire un set di dati della provincia di Bolzano verso lo schema di dati <strong>INSPIRE</strong>.</p>
+	<p>Considerato che ogni volta che scrivo la parola INSPIRE mi tremano le mani e ogni volta che ne parlo mi trema la voce, è stata un&#8217;esperienza interessante, anche al fine di smitizzare e abbattere alcuni muri, nonché confermare alcune assurdità che la complessità degli standard porta inevitabilmente con sé.</p>
+	<p>La certezza che ora ho è che la migrazione di dati verso gli schemi INSPIRE è una procedura molto complessa, ma non impossibile, e che richiede freddezza nella preparazione e personale capace e aggiornato da un punto di vista tecnico.</p>
+	<p><strong>Io in generale non credo ai software dall&#8217;unico pulsante magico.</strong></p>
+	<p>Credo però nel senso di una procedura guidata. Credo in un software che possa semplificare i passaggi importanti di tale procedura, supportando soprattutto la leggibilità degli schemi di dati e la consistenza delle mappature che si vanno ad operare.</p>
+	<p>&nbsp;</p>
+	<h1>Humboldt &amp; Hale</h1>
+	<p>Il software che ho avuto modo di testare (e poi anche estendere) si chiama <strong>Humboldt Alignment Editor</strong> (<strong>Hale</strong> per gli amici) e nasce da un progetto europeo che ha coinvolto 26 partner fra il 2006 e il 2011 (fra i quali gli italiani di <a href="http://milano.irea.cnr.it/" rel="nofollow"  target="_blank">CNR-IREA</a>, <a href="http://www.gisig.it/" rel="nofollow"  target="_blank">GISIG</a>, <a href="http://www.telespazio.it" rel="nofollow"  target="_blank">Telespazio</a> e dell&#8217;<a href="http://www.uniroma1.it/" rel="nofollow"  target="_blank">Università di Roma</a>). Il <strong>progetto Humboldt</strong> si è occupato principalmente <strong>dell&#8217;armonizzazione dei dati a livello europeo</strong>. Data la moltitudine e diversità dei dati presenti nelle varie organizzazioni europee, naturalmente non si trattava di re-inventare la magia nera, bensì di creare strumenti che potessero <strong>supportare il processo</strong> di implementazione.</p>
+	<p>Dal progetto Humboldt è nato il <strong>Data Harmonization Panel </strong>(DHP), una piattaforma di esperti nell&#8217;armonizzazione dei dati spaziali. Lo stesso DHP si pone tutt&#8217;oggi due importanti obiettivi:</p>
+	<ul>
+	<li>lo sviluppo ed il supporto degli strumenti sviluppati in Humboldt</li>
+	<li>il supporto di un framework di formazione</li>
+	</ul>
+	<p>Del progetto Humboldt oggi viene sviluppato in modo attivo praticamente solo la componente Hale. Il progetto è rilasciato con <strong>licenza Free ed Open Source </strong>alla community per facilitarne l&#8217;interazione ed il miglioramento.</p>
+	<p>E&#8217; proprio la natura open del progetto che mi ha portato prima ad avvicinarmi a Hale attraverso FreeGIS e poi, in un secondo momento, quando ho avuto il piacere di essere chiamato a svilupparne alcune funzionalità nel team geospaziale del <a href="http://www.igd.fraunhofer.de/en/Institut/Abteilungen/GEO" rel="nofollow"  target="_blank">Fraunhofer IGD</a> (attuale centro di coordinamento del progetto).<br />
+E&#8217; stata questa collaborazione che mi ha ispirato a scrivere un articolo riguardante Hale in modo da renderlo un pochino più noto al di fuori della cerchia accademica e dei progetti europei.</p>
+	<p>Ma bando alla storia e passiamo alla parte pratica.</p>
+	<p>&nbsp;</p>
+	<h1>Utilizzare Hale</h1>
+	<p>Per mostrare il funzionamento di base di Hale mi rifarò in parte al progetto FreeGIS usando i dati della Provincia di Bolzano e descritti nel eGeo, il geoportale della provincia. Mi riferirò in particolare <a href="http://sdi.provinz.bz.it/geonetwork/srv/de/metadata.show?uuid=597897c6-17c2-48a9-8442-7a89de80c381" rel="nofollow"  target="_blank">al set di dati</a> di quello che è definito in INSPIRE <strong>RoadLink</strong> dello schema dei <strong>TransportNetwork</strong>.</p>
+	<p>Per chi volesse cimentarsi, è possibile scaricare Hale <a href="http://www.esdi-community.eu/projects/hale/files" rel="nofollow"  target="_blank">dall&#8217;area di download</a> del sito del progetto per i sistemi operativi più diffusi.</p>
+	<p>Una volta lanciato, Hale si presenta in questo modo:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main.png"><img class="aligncenter size-medium wp-image-5492" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main-300x225.png" alt="01_hale_main" width="300" height="225" /></a></p>
+	<p>&nbsp;</p>
+	<p>Le parti più importanti sono indubbiamente le viste dello <strong>Schema explorer</strong> e dell&#8217;<strong>Alignment</strong>.</p>
+	<p>Hale è stato concepito per mappatura di strutture di dati molto complesse, fra schemi di dati xml come lo possono essere ad esempio gli schemi CityGML. Il nostro esempio non renderà onore a questo potenziale, in questa sede si vuole piuttosto introdurre lo strumento in generale.</p>
+	<p>&nbsp;</p>
+	<h2>Definire lo schema di arrivo</h2>
+	<p>La prima cosa da definire, è lo <strong>schema verso il quale si desidera mappare</strong> lo schema dei dati originali. Nel nostro caso si parla di dati del TransportNetwork, quindi è necessario caricare lo schema xml del <strong>RoadTransportNetwork</strong> di INSPIRE. Tale schema <a href="http://inspire.jrc.ec.europa.eu/index.cfm/pageid/541/downloadid/1698" rel="nofollow"  target="_blank">è scaricabile qui</a>.</p>
+	<p>Una volta scaricato sul proprio disco rigido, è possibile importarne la definizione dal menu di import attraverso l&#8217;operazione <strong>target schema</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema.png"><img class="aligncenter size-medium wp-image-5493" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema-300x132.png" alt="01_import_target_schema" width="300" height="132" /></a></p>
+	<p>definendo poi nella procedura guidata il file da importare:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard.png"><img class="aligncenter size-medium wp-image-5494" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard-300x175.png" alt="02_import_target_schema_wizard" width="300" height="175" /></a></p>
+	<p>per poi trovarsi lo schema visualizzato nella sua struttura ad albero in Hale:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork.png"><img class="aligncenter size-medium wp-image-5496" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork-300x209.png" alt="03_target_schema_roadnetwork" width="300" height="209" /></a></p>
+	<p>Da poco sono stati aggiunti alcuni schemi preconfigurati legati a INSPIRE, che si possono trovare nella tab denominata <strong>presets</strong>. Nel nostro caso lo schema di interesse è presente:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset.png"><img class="aligncenter size-medium wp-image-5495" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset-300x225.png" alt="02_import_target_schema_wizard_preset" width="300" height="225" /></a></p>
+	<h2></h2>
+	<h2>Definire lo schema di partenza</h2>
+	<p>La <strong>definizione dello schema di partenza </strong>può essere una procedura semplice o molto complessa, dipendentemente dal formato in cui si sono mantenuti i propri dati (e questa è indubbiamente una scienza a parte). Hale <strong>permette l&#8217;import dello schema da file</strong>, ma anche da servizi WFS. Per set di dati molto semplici è possibile generare uno schema <strong>estraendolo da shapefile</strong>.</p>
+	<p>Come per il <strong>target schema</strong>, partendo nuovamente dal menu di import, procediamo ad importare il <strong>source schema</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file.png"><img class="aligncenter size-medium wp-image-5497" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file-300x187.png" alt="11_import_source_schema_file" width="300" height="187" /></a></p>
+	<p>per trovarci con la seguente situazione:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported.png"><img class="aligncenter size-medium wp-image-5498" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported-300x211.png" alt="12_source_schema_imported" width="300" height="211" /></a></p>
+	<p>Nell&#8217;immagine la selezione è stata poi posizionata sui due tipi da mappare.</p>
+	<p>&nbsp;</p>
+	<h2>Come mappare gli schemi</h2>
+	<h3>Mappatura del tipo</h3>
+	<p>La prima operazione da fare, è quella della <strong>mappatura dei tipi principali</strong>, in questo caso V_WEGE_IMS_TUN_FREEGIS verso il RoadLink INSPIRE.<br />
+Il dato di partenza pero&#8217; contiene tutto il transport network (strade, ferrovie, etc), quindi bisogna procedere a creare una regola per estrarre solo le strade.</p>
+	<p>Con un GIS questa operazione è abbastanza triviale. In <a href="http://udig.refractions.net&gt;" rel="nofollow"  target="_blank">uDig</a> l&#8217;operazione può essere fatta con il linguaggio CQL (<a href="http://udig.refractions.net/confluence/display/EN/Constraint+Query+Language" rel="nofollow"  target="_blank">Constraint Query Language</a>).</p>
+	<p>Ad esempio ponendo delle condizioni sul campo giusto possiamo isolare le ferrovie:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails.png"><img class="aligncenter size-medium wp-image-5500" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails-300x213.png" alt="14_cql_select_rails" width="300" height="213" /></a></p>
+	<p>oppure, cosa necessaria al nostro esempio, le strade:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads.png"><img class="aligncenter size-medium wp-image-5499" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads-300x213.png" alt="13_cql_select_roads" width="300" height="213" /></a></p>
+	<p>Il motivo per il quale vi cito uDig è duplice. Perché è il GIS con il quale lavoro e che supporto in modo attivo, ma anche perché Hale supporta lo stesso identico linguaggio CQL.</p>
+	<p>E&#8217; quindi possibile creare un <strong>condition context</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu.png"><img class="aligncenter size-medium wp-image-5501" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu-300x128.png" alt="16_main_retype_filter_menu" width="300" height="128" /></a><a href="16_main_retype_filter_menu" target="_blank"><br />
+</a></p>
+	<p>usando come condizione esattamente la stringa testata in uDig:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel.png"><img class="aligncenter size-medium wp-image-5502" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel-300x184.png" alt="17_main_retype_filter_panel" width="300" height="184" /></a></p>
+	<p>A questo punto Hale crea un nuovo tipo in base alla condizione imposta e sarà quello che verrà mappato attraverso un&#8217;operazione di <strong>Retype</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu.png"><img class="aligncenter size-medium wp-image-5503" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu-300x208.png" alt="19_main_retype_menu" width="300" height="208" /></a></p>
+	<p>Una volta conclusa la procedura guidata, la mappatura sarà visualizzata nello schema explorer e nella vista dell&#8217;Alignment:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment.png"><img class="aligncenter size-medium wp-image-5504" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment-300x300.png" alt="22_main_retype_alignment" width="300" height="300" /></a></p>
+	<h3>Mappatura degli attributi</h3>
+	<p>Non voglio tediarvi con la descrizione dei vari attributi, quindi riassumerò solo alcune operazioni che si possono applicare per la mappatura degli attributi</p>
+	<h4>Formattazione di stringhe</h4>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu.png"><img class="aligncenter size-medium wp-image-5505" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu-300x225.png" alt="23_mapp_id_menu" width="300" height="225" /></a></p>
+	<p>Permette di concatenare le stringhe dei diversi campi dello schema di partenza e delle costanti aggiunte manualmente per creare una stringa nello schema di arrivo:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2.png"><img class="aligncenter size-medium wp-image-5506" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2-300x258.png" alt="25_mapp_id_wizard2" width="300" height="258" /></a></p>
+	<p>Appena applicata la mappatura, viene visualizzata nella <em>Alignment View </em>e la vista delle proprietà ci fornisce una descrizione dell&#8217;operazione applicata:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result.png"><img class="aligncenter size-medium wp-image-5481" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result-300x262.png" alt="26_mapp_id_result" width="300" height="262" /></a></p>
+	<h4>Classificazione</h4>
+	<p>La classificazione è forse una delle operazioni più importanti, permette di mappare classi di valori.</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu.png"><img class="aligncenter size-medium wp-image-5482" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu-300x227.png" alt="27_mapp_fictitious_menu" width="300" height="227" /></a></p>
+	<p>Un esempio molto semplice è la mappature fra dei valori interi 0/1 al loro booleano nello schema di arrivo:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result.png"><img class="aligncenter size-medium wp-image-5483" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result-300x225.png" alt="32_mapp_fictitious_result" width="300" height="225" /></a></p>
+	<h4>Mappatura della geometria</h4>
+	<p>E&#8217; possibile eseguire la mappatura di geometrie:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu.png"><img class="aligncenter size-medium wp-image-5484" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu-300x227.png" alt="33_mapp_geometry_menu" width="300" height="227" /></a></p>
+	<p>Il tipo nel nostro caso è lo stesso, quindi una operazione di <strong>rename</strong> è sufficiente:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result.png"><img class="aligncenter size-medium wp-image-5485" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result-300x180.png" alt="35_mapp_geometry_result" width="300" height="180" /></a></p>
+	<p>Non mi spingo oltre con la descrizione del processo di mappatura. Accenno solo al fatto che <strong>è possibile utilizzare anche degli script</strong>, cioè dei frammenti semplificati di programmi, che rendono possibili trasformazioni personalizzate molto complesse.</p>
+	<h3>Controllo mappatura e trasformazione dati</h3>
+	<p>Una volta conclusa la mappatura, la <strong>vista delle trasformazioni</strong> è quello che fa per noi. Ci permette di dare una <strong>controllata finale al grafico della trasformazione</strong></p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view.png"><img class="aligncenter size-medium wp-image-5486" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view-300x257.png" alt="42_transform_main_view" width="300" height="257" /></a></p>
+	<p>e la possibilità di caricare un set di dati per eseguire una trasformazione secondo la mappatura precedentemente prodotta.</p>
+	<p>La procedura di import dei dati è simile a quella degli schemi, selezionando <strong>source data</strong> come tipo di import:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu.png"><img class="aligncenter size-medium wp-image-5487" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu-300x95.png" alt="43_transform_import_menu" width="300" height="95" /></a></p>
+	<p>Il file da importare nel caso di questo esempio è lo stesso usato per definire lo schema:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard.png"><img class="aligncenter size-medium wp-image-5488" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard-300x169.png" alt="44_transform_import_wizard" width="300" height="169" /></a></p>
+	<p>Una volta importato il dato, viene visualizzato nella parte bassa dell&#8217;applicativo un <strong>set di esempio di dati originali e trasformati</strong>. Questo è molto utile per avere un <strong>idea dell&#8217;effettiva bontà della mappatura</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result.png"><img class="aligncenter size-medium wp-image-5489" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result-300x137.png" alt="45_transform_import_result" width="300" height="137" /></a></p>
+	<p>E&#8217; infine possibile esportare il dato trasformato <strong>in formato GML</strong>, come richiesto da INSPIRE. Dal menu di export</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu.png"><img class="aligncenter size-medium wp-image-5490" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu-300x117.png" alt="46_transform_export_menu" width="300" height="117" /></a></p>
+	<p>è possibile accedere alla procedura guidata che definisce il formato di output e poi esegue <strong>l&#8217;operazione di export</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard.png"><img class="aligncenter size-medium wp-image-5491" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard-300x257.png" alt="47_transform_export_wizard" width="300" height="257" /></a></p>
+	<h1>Conclusioni</h1>
+	<p>Non è facile scrivere un breve articolo riguardante strumenti così complessi. Me ne sono reso conto in modo sempre più decisivo durante la stesura di questo articolo.</p>
+	<p>Spero comunque di essere riuscito a suscitare <strong>interesse per Hale</strong>.</p>
+	<p>Spero che sia evidente l&#8217;importanza di avere uno <strong>strumento aperto e trasparente in processi di questo tipo.</strong> Personalmente starei attento a generare dipendenze da software chiusi e proprietari in processi complessi quali la migrazione dei dati. Queste procedure infatti si protraggono anche per parecchio tempo; non di rado passano per sperimentazioni, tentativi e possibili cambi di attori. Un software aperto a tutti &#8211; invece &#8211; permette maggiore autonomia e dà la possibilità, volendo, di seguire i processi a tutti i livelli desiderati. Non va dimenticato che in questi contesti è spesso necessario adattare lo strumento a casi specifici, quindi <strong>avere la possibilità di estenderlo e modificarlo</strong> può essere una carta vincente.</p>
+	<p>Spero infine che sia chiaro che la<strong> trasformazione di dati fra schemi non è una cosa impossibile</strong> (in caso la fatica sta nell&#8217;apprendere gli schemi INSPIRE). Ci sono <strong>strumenti validi a supporto e Hale - </strong>a mio avviso -<strong> è uno fra questi</strong>. Esorto le amministrazioni a cercare gli esperti dei dati sul proprio territorio e non affidarsi a softwarehouse che promettono il fatidico pulsante magico&#8230; non è realistico. I professionisti locali del settore conoscono bene lo stato dei dati e le reali problematiche ad essi legati e nessuno più di loro desidera che i dati migrati siano della giusta qualità.</p>
+	<p>Infine, ai temerari e amanti del genere lascio il <a href="http://www.dhpanel.eu/humboldt-framework/hale-tutorial.html" rel="nofollow"  target="_blank">link al video informativo</a> reso disponibile dal DHP, nel quale vengono introdotti i tutorial inseriti dentro a Hale sotto forma di procedure guidate, che ne facilitano l&#8217;apprendimento.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/">Parlando di INSPIRE: di Humboldt &amp; Hale</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parlando+di+INSPIRE%3A+di+Humboldt+%26amp%3B+Hale&amp;rft.aulast=Antonello&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main.png" medium="image">
+			<media:title type="html">01_hale_main</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema.png" medium="image">
+			<media:title type="html">01_import_target_schema</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard.png" medium="image">
+			<media:title type="html">02_import_target_schema_wizard</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork.png" medium="image">
+			<media:title type="html">03_target_schema_roadnetwork</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset.png" medium="image">
+			<media:title type="html">02_import_target_schema_wizard_preset</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file.png" medium="image">
+			<media:title type="html">11_import_source_schema_file</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported.png" medium="image">
+			<media:title type="html">12_source_schema_imported</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails.png" medium="image">
+			<media:title type="html">14_cql_select_rails</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads.png" medium="image">
+			<media:title type="html">13_cql_select_roads</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu.png" medium="image">
+			<media:title type="html">16_main_retype_filter_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel.png" medium="image">
+			<media:title type="html">17_main_retype_filter_panel</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu.png" medium="image">
+			<media:title type="html">19_main_retype_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment.png" medium="image">
+			<media:title type="html">22_main_retype_alignment</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu.png" medium="image">
+			<media:title type="html">23_mapp_id_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2.png" medium="image">
+			<media:title type="html">25_mapp_id_wizard2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result.png" medium="image">
+			<media:title type="html">26_mapp_id_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu.png" medium="image">
+			<media:title type="html">27_mapp_fictitious_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result.png" medium="image">
+			<media:title type="html">32_mapp_fictitious_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu.png" medium="image">
+			<media:title type="html">33_mapp_geometry_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result.png" medium="image">
+			<media:title type="html">35_mapp_geometry_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view.png" medium="image">
+			<media:title type="html">42_transform_main_view</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu.png" medium="image">
+			<media:title type="html">43_transform_import_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard.png" medium="image">
+			<media:title type="html">44_transform_import_wizard</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result.png" medium="image">
+			<media:title type="html">45_transform_import_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu.png" medium="image">
+			<media:title type="html">46_transform_export_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard.png" medium="image">
+			<media:title type="html">47_transform_export_wizard</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Rilasciato Geopaparazzi 3.4.0! Diamo il benvenuto ai fratelli di Spatialite</title>
+		<link>http://blog.spaziogis.it/2012/12/11/rilasciato-geopaparazzi-3-4-0-diamo-il-benvenuto-ai-fratelli-di-spatialite/</link>
+		<comments>http://blog.spaziogis.it/2012/12/11/rilasciato-geopaparazzi-3-4-0-diamo-il-benvenuto-ai-fratelli-di-spatialite/#comments</comments>
+		<pubDate>Tue, 11 Dec 2012 17:34:52 +0000</pubDate>
+		<dc:creator>Andrea Antonello</dc:creator>
+				<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Strumenti]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5309</guid>
+		<description><![CDATA[E' stata rilasciata la versione 3.4.0 di Geopaparazzi. Le maggiori novita' sono il supporto per database di tipo Spatialite e la lettura di tag RFID nelle schede personalizzate.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Rilasciato+Geopaparazzi+3.4.0%21+Diamo+il+benvenuto+ai+fratelli+di+Spatialite&amp;rft.aulast=Antonello&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-12-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/12/11/rilasciato-geopaparazzi-3-4-0-diamo-il-benvenuto-ai-fratelli-di-spatialite/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>All&#8217;inizio di novembre mi arrivo&#8217; una comunicazione riguardante il rilascio di <a href="https://www.gaia-gis.it/fossil/libspatialite/wiki?name=splite-android" rel="nofollow" >SpatiaLite per Android</a>. Il mittente era Sandro Furieri, ben noto per essere il padre di <em>SpatiaLite</em>, nonché il presidente di GFOSS.</p>
+	<p>Era un periodo tutt&#8217;altro che ideale, stavo faticando a preparare la presentazione per il <a href="http://gfoss.it/drupal/gfossday2012" rel="nofollow" >GFOSS day</a>, che si sarebbe tenuto solo pochi giorni dopo.</p>
+	<p>Ma considerato che la mia presentazione avrebbe tentato di fare una sorta di cronologia del mercato mobile e il punto riguardo alla questione Android e GFOSS, non potevo ignorare una questione che ritengo cambierà le sorti dello <em>spatial</em> sul mobile. Quindi passai qualche notte a integrare <em>SpatiaLite</em> in <em>Geopaparazzi</em>.</p>
+	<p>Durante la presentazione  che diedi alla conferenza:<br />
+<iframe style="border: 1px solid #CCC; border-width: 1px 1px 0; margin-bottom: 5px;" src="http://www.slideshare.net/slideshow/embed_code/15204711" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="427" height="356"></iframe></p>
+	<p>mostrai solo una schermata nella quale <em>Geopaparazzi</em> dialogava con papà Furieri, chiedendogli delle trasformazioni di coordinate (si veda slide 50).</p>
+	<p>Ma da quel momento in poi non sono più riuscito a smettere di pensare al formato raster+vettoriale per lo scambio di dati fra sistemi operativi e dispositivi diversi.</p>
+	<p>Con <em>SpatiaLite</em> sarebbe stato finalmente possibile visualizzare nelle mappe di <em>Geopaparazzi</em> non solo punti e linee semplici, ma anche poligoni e grandi set di dati. Gli indici spaziali sarebbero stati d&#8217;aiuto, ne ero sicuro.</p>
+	<p>Quindi iniziammo ad implementare un nuovo piano in <em>Geopaparazzi</em>: il piano dei dati di tipo <em>SpatiaLite</em>.</p>
+	<p>E i primi risultati, usando i dati del progetto <em><a href="http://www.naturalearthdata.com/" rel="nofollow"  data-blogger-escaped-target="_blank">Natural Earth</a></em> erano promettenti:</p>
+	<p><div id="attachment_5327" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2012/12/geopap_spatialite2.png"><img class="size-medium wp-image-5327" title="Natural Earth in Geopaparazzi" src="http://blog.spaziogis.it/wp-content/uploads//2012/12/geopap_spatialite2-300x187.png" alt="Natural Earth in Geopaparazzi" width="300" height="187" /></a><p class="wp-caption-text">Natural Earth in Geopaparazzi</p></div></p>
+	<p>&nbsp;</p>
+	<p>In itinere producemmo anche un breve tutorial per sviluppatori che volessero cimentarsi. <a href="https://www.gaia-gis.it/fossil/libspatialite/wiki?name=spatialite-android-tutorial" rel="nofollow" >Lo potete trovare qui</a>.</p>
+	<p>Testammo la nuova versione su diversi dispositivi e in campo per un lavoro nelle paludi finlandesi, mentre validavamo i limiti dei bacini estratti durante le analisi idrolo-geomorfologiche. E visto che funziono&#8217; cosi&#8217; bene, decidemmo di rilasciare la versione, anche se non la si può ancora definire ottimizzata.</p>
+	<p>La seguente schermata mostra la sovrapposizione di una mappa di o<em>rienteering</em> finlandese con i risultati delle analisi idrologiche: i limiti del bacino e i corsi d&#8217;acqua vecchi, nuovi e quelli estratti:</p>
+	<p><div id="attachment_5328" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_data.png"><img class="size-medium wp-image-5328" title="Mappe raster e vettoriali finlandesi" src="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_data-300x187.png" alt="Mappe raster e vettoriali finlandesi" width="300" height="187" /></a><p class="wp-caption-text">Mappe raster e vettoriali finlandesi</p></div></p>
+	<p>Avete notato la nuova icona sotto le icone di zoom? Quello e&#8217; il pulsante per interrogare i dati. E&#8217; possibile tracciare un rettangolo con le dita e l&#8217;applicazione mostra gli attributi degli oggetti compresi:</p>
+	<p><div id="attachment_5329" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_query.png"><img class="size-medium wp-image-5329" title="Interrogazione degli attributi su dati vettoriali" src="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_query-300x187.png" alt="Interrogazione degli attributi su dati vettoriali" width="300" height="187" /></a><p class="wp-caption-text">Interrogazione degli attributi su dati vettoriali</p></div></p>
+	<p>&nbsp;</p>
+	<p>Questo ovviamente apre un nuovo mondo per <em>Geopaparazzi</em> ma in generale per lo sviluppo mobile geospaziale.</p>
+	<p>Un ringraziamento speciale va a Sandro per l&#8217;aiuto con l&#8217;ottimizzazione delle query spaziali e il supporto nello sviluppo praticamente in tempo reale.</p>
+	<p>Questa indubbiamente e&#8217; la novità maggiore di <em>Geopaparazzi</em> 3.4.0, ma in realtà ve ne e&#8217; una seconda abbastanza importante. In questa release e&#8217; supportata anche la lettura di <em>tag</em> <em>RFID</em> via tecnologia <em>NFC</em> oppure bluetooth. La funzionalità e&#8217; stata esposta all&#8217;utente all&#8217;interno delle schede personalizzate:</p>
+	<p><div id="attachment_5330" class="wp-caption aligncenter" style="width: 178px"><a href="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_f_form_detail.png"><img class="size-medium wp-image-5330" title="Scheda di rilevamento di tag RFID" src="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_f_form_detail-168x300.png" alt="Scheda di rilevamento di tag RFID" width="168" height="300" /></a><p class="wp-caption-text">Scheda di rilevamento di tag RFID</p></div></p>
+	<p>E&#8217; possibile inserire nelle schede un pulsante per la lettura del <em>tag</em>. Premendo il pulsante, si apre la schermata di scansione:</p>
+	<p><div id="attachment_5331" class="wp-caption aligncenter" style="width: 178px"><a href="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_c_found.png"><img class="size-medium wp-image-5331" title="Schermata di scansione tag RFID via NFC oppure bluetooth" src="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_c_found-168x300.png" alt="Schermata di scansione tag RFID via NFC oppure bluetooth" width="168" height="300" /></a><p class="wp-caption-text">Schermata di scansione tag RFID via NFC oppure bluetooth</p></div></p>
+	<p>E&#8217; possibile leggere i <em>tag RFID</em> sia attraverso la funzionalità <em>NFC</em> del dispositivo, ma anche attraverso antenne esterne collegate via bluetooth.</p>
+	<p>Una volta che l&#8217;id del <em>tag</em> e&#8217; stato letto, il campo della scheda verrà compilato.</p>
+	<p>&nbsp;</p>
+	<p>Una nota dolente dell&#8217;aggiunta di <em>Spatialite</em> deriva dal fatto che il pacchetto <em>Geopaparazzi</em> cresce da meno di 2 megabyte a più o meno 9 megabyte. Non abbiamo dubbi riguardo al fatto che tutti gli utenti saranno comunque contenti, vista la fantastica aggiunta.</p>
+	<p>Credo sia tutto per questa release. Speriamo possiate apprezzarla!</p>
+	<p>E&#8217; possibile scaricare Geopaparazzi da:</p>
+	<p align="center"><a href="http://play.google.com/store/apps/details?id=eu.hydrologis.geopaparazzi"><br />
+<img src="http://developer.android.com/images/brand/en_app_rgb_wo_60.png" alt="Android app on Google Play" /><br />
+</a></p>
+	<p>&nbsp;</p>
+	<p>la documentazione utente per questa versione e&#8217; disponibile <a href="http://code.google.com/p/geopaparazzi/wiki/UserGuide3" rel="nofollow" title="Guide utente di Geopaparazzi"  target="_blank">nel WIKI del sito principale.</a></p>
+	<p>&nbsp;</p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/12/11/rilasciato-geopaparazzi-3-4-0-diamo-il-benvenuto-ai-fratelli-di-spatialite/">Rilasciato Geopaparazzi 3.4.0! Diamo il benvenuto ai fratelli di Spatialite</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/12/11/rilasciato-geopaparazzi-3-4-0-diamo-il-benvenuto-ai-fratelli-di-spatialite/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Rilasciato+Geopaparazzi+3.4.0%21+Diamo+il+benvenuto+ai+fratelli+di+Spatialite&amp;rft.aulast=Antonello&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-12-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/12/11/rilasciato-geopaparazzi-3-4-0-diamo-il-benvenuto-ai-fratelli-di-spatialite/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/12/geopap_spatialite2-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/12/geopap_spatialite2.png" medium="image">
+			<media:title type="html">Natural Earth in Geopaparazzi</media:title>
+			<media:description type="html">Natural Earth in Geopaparazzi</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/12/geopap_spatialite2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_data.png" medium="image">
+			<media:title type="html">Mappe raster e vettoriali finlandesi</media:title>
+			<media:description type="html">Mappe raster e vettoriali finlandesi</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_data-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_query.png" medium="image">
+			<media:title type="html">Interrogazione degli attributi su dati vettoriali</media:title>
+			<media:description type="html">Interrogazione degli attributi su dati vettoriali</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/12/finland_query-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_f_form_detail.png" medium="image">
+			<media:title type="html">Scheda di rilevamento di tag RFID</media:title>
+			<media:description type="html">Scheda di rilevamento di tag RFID</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_f_form_detail-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_c_found.png" medium="image">
+			<media:title type="html">Schermata di scansione tag RFID via NFC oppure bluetooth</media:title>
+			<media:description type="html">Schermata di scansione tag RFID via NFC oppure bluetooth</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/12/07_nexus_rfid_c_found-150x150.png" />
+		</media:content>
+		<media:content url="http://developer.android.com/images/brand/en_app_rgb_wo_60.png" medium="image">
+			<media:title type="html">Android app on Google Play</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>OpenStreetMap come compagno di lavoro</title>
+		<link>http://blog.spaziogis.it/2012/09/07/openstreetmap-come-compagno-di-lavoro/</link>
+		<comments>http://blog.spaziogis.it/2012/09/07/openstreetmap-come-compagno-di-lavoro/#comments</comments>
+		<pubDate>Fri, 07 Sep 2012 10:00:43 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5138</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=OpenStreetMap+come+compagno+di+lavoro&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-09-07&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/09/07/openstreetmap-come-compagno-di-lavoro/&amp;rft.language=English"></span>
+Qualche settimana fa mi trovavo in campagna con i miei colleghi per svolgere un rilievo con minidrone su un traliccio dell’alta tensione. Prima di partire facciamo sempre una serie di verifiche sulla completezza e sullo stato delle attrezzature, così come individuiamo su mappa il luogo in cui recarci. Cosa fatta anche in quest’occasione. Si trattava di un [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=OpenStreetMap+come+compagno+di+lavoro&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-09-07&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/09/07/openstreetmap-come-compagno-di-lavoro/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Qualche settimana fa mi trovavo in campagna con i miei colleghi per svolgere un <strong>rilievo</strong> con <strong>minidrone</strong> su un traliccio dell’alta tensione. Prima di partire facciamo sempre una serie di verifiche sulla completezza e sullo stato delle attrezzature, così come individuiamo su mappa il luogo in cui recarci. Cosa fatta anche in quest’occasione.<br />
+Si trattava di un solo traliccio, di cui avevo una coppia di coordinate, che avevo (un po’ di fretta) visualizzato su Google Maps. L’obiettivo era quello di ricavare rapidamente il percorso per arrivare a destinazione e nel contempo “leggere” rapidamente il territorio sfruttando la vista Satellite e quella Rilievo. A cosa fatta mi sembrava di avere un quadro completo.</p>
+	<p><img class="alignnone size-full wp-image-5139 aligncenter" title="traliccio" src="http://blog.spaziogis.it/wp-content/uploads//2012/09/traliccio.jpg" alt="" width="500" height="332" /></p>
+	<p>Arrivati sul luogo, inizio però a sudare freddo: in prossimità del punto in questione ci sono infatti non uno, ma quattro tralicci. Su quale eseguire il rilievo? Non avevamo infatti informazioni sulla precisione delle coordinate ed inoltre sulla base fotografica che avevo consultato prima di partire i 4 tralicci erano pressoché invisibili. Ho provato quindi a rileggere la base fotografica sul campo e &#8211; a ben guardare &#8211; qualche pixel grigio che rappresentava i tralicci lo vedevo, ma le mie coordinate non corrispondevano in modo inequivocabile con nessuno di questi. Ne potevamo scartare certamente due su quattro, ma non c’era da stare allegri.<br />
+Decido allora, per disperazione e senza alcuna vera idea alle spalle, di lanciare geopaparazzi sul mio smartphone Android, e di leggere la base <strong>OpenStreetMap</strong> in corrispondenza della mia coppia di coordinate. Ingrandisco un po’ la vista e ”<em>Resta</em><em> </em><em>di</em><em> </em><em>stucco</em><em>: </em><em>è</em><em> </em><em>un</em><em></em><em>barbatrucco</em>”, sulla base OSM sono presenti i tralicci dell’alta tensione. Guardo un po’ meglio e le mie coordinate corrispondono esattamente ad uno dei 4 tralicci (sono i 4 quadratini bianchi che ho cerchiato in rosso). A quel punto è tornata la serenità e ci siamo messi a lavorare!!</p>
+	<p><img class="alignnone size-full wp-image-5140 aligncenter" title="osm_vettoriale" src="http://blog.spaziogis.it/wp-content/uploads//2012/09/osm_vettoriale.png" alt="" width="490" height="386" /></p>
+	<p>Sto un po’ semplificando, ma non romanzando. Quanto visto sulla base OpenStreetMap non ci dava infatti alcuna vera certezza, perché non avevamo informazioni su precisione ed accuratezza delle coordinate a disposizione e la corrispondenza del punto mappa con la base OSM poteva essere assolutamente casuale. Di più, non avevamo sul campo nemmeno il tempo di verificare la bontà del dato vettoriale riportato su OSM. Avevamo però finalmente un riferimento di massima confortante, da usare per fare altre verifiche che ci dessero la certezza dell’oggetto da rilevare.<br />
+<strong>OpenStreetMap</strong> è stato quindi uno degli <strong>strumenti</strong> <strong>di</strong> <strong>lavoro</strong> di quella giornata.</p>
+	<p>Tutto questo è avvenuto grazie a diversi fattori, resi possibili e/o in qualche modo alimentati dalla cultura e dalla comunità che sta dietro ad OSM e da alcuni dei pilastri su cui si poggiano il mondo dell’open-data e dell’open-source.<br />
+OpenStreetMap è infatti “un progetto che crea e fornisce dati cartografici [...] <strong>liberi</strong> e <strong>gratuiti</strong> a <strong>chiunque</strong> <strong>ne</strong> <strong>abbia</strong> <strong>bisogno</strong>. Il progetto è stato avviato perché <strong>la</strong> <strong>maggior</strong> <strong>parte</strong> <strong>delle</strong> <strong>mappe</strong> che si credono liberamente utilizzabili, <strong>hanno</strong> <strong>invece</strong> <strong>restrizioni</strong> <strong>legali</strong> o<strong>tecniche</strong> al loro utilizzo e ciò ne impedisce l&#8217;uso per scopi produttivi, creativi o <a href="http://bquot.com/e8g" rel="nofollow"  target="_blank"><strong>inattesi</strong></a>.”<br />
+Oggi sembra tutto un po’ scontato, ma è stato il prerequisito che mi ha fatto pensare che potesse avere un senso leggere la base OSM; soprattutto per ciò che riguarda l’inatteso. Che cosa ci fanno infatti i tralicci dell’alta tensione in una base cartografica globale e non specialistica?<br />
+Una delle cose belle di OpenStreetMap è la libertà di inserire teoricamente qualsiasi strato informativo. I grossi provider di web-mapping forniscono dei servizi eccellenti da molti punti vista, ma gli strati informativi (tolti quelli di base) sono pochi. Ci sono infatti numerose informazioni sulle attività commerciali sparse nel territorio, perché si tratta di servizi orientati al business e alla pubblicità (delle Pagine Gialle globali) ed è raro trovare layer che non producano per gli stessi fornitori &#8211; in modo diretto o indiretto &#8211; un tornaconto economico. <strong>Su</strong><strong>OSM</strong> <strong>invece</strong> <strong>chiunque</strong> <strong>può</strong> <strong>aggiungere</strong> <strong>qualcosa</strong>: <a href="http://www.openstreetmap.org/?lat=46.943117&amp;lon=7.451533&amp;zoom=18&amp;layers=M" rel="nofollow" title="Alberi delle strade di Berna in OpenStreetMap"  target="_blank">gli alberi</a> delle strade di Berna, sapere dove sono le Antilopi allo <a href="http://www.openstreetmap.org/?lat=52.50765&amp;lon=13.33826&amp;zoom=17&amp;layers=M" rel="nofollow" title="zoo di Berlino su OpenStreetMap"  target="_blank">zoo di Berlino</a> o per l’appunto i tralicci dell’alta tensione in <a href="http://www.openstreetmap.org/?lat=37.69462&amp;lon=12.85421&amp;zoom=16&amp;layers=M" rel="nofollow" title="Tralicci alta tensione su OpenStreetMap"  target="_blank">provincia di Trapani</a>. Ma bisogna essere un po’ fissati!<br />
+Scherzo, ma quando ho visto apparire i tralicci sulla mappa mi sono chiesto cosa porti un utente a mappare cose come queste. La risposta non è semplice e le ragioni possono essere le più varie. Sicuramente in OpenStreetMap viene sollecitata l’attitudine ad occuparsi del proprio “quartiere”, inserendo ad esempio i giornalai, le panchine, i cinema, i monumenti, i giardini pubblici, i sensi di marcia delle strade, ecc., delle aeree che si conoscono meglio; è un po’ come riempire di fiori le aride aiuole sotto casa. Tutto questo quasi sempre con il desiderio di eguagliare o superare altri utenti. Alle volte è soltanto il piacere di derivare dei dati (ad esempio da una foto aerea): si inizia da un traliccio, ci si prende gusto e si continua perché è molto piacevole “disegnare il mondo” e buttare un sassolino (anche molto più di uno) nel più grosso progetto di cartografia partecipata al mondo. Gli utenti attivi di OpenStreetMap sono pochi rispetto al numero totale, ma quando si inizia a mappare è difficile non essere presi da istinti monomaniaci. <strong>Cartografare</strong> <strong>su</strong> <strong>OSM</strong> <strong>è</strong> <em><strong>addictive</strong></em>, <a href="http://wiki.openstreetmap.org/wiki/IT:Getting_Involved" rel="nofollow" >provate</a>.<br />
+Dovevo anche, per la mia serenità, verificare qualità ed accuratezza del dato di quello specifico traliccio. Il database di OpenStreetMap non solo è predisposto per archiviare numerose informazioni sui dati inseriti, ma consente a chiunque di accedervi e di consultare alcuni metadati, come il nome dell’autore. Ed allora scoprire ad esempio che il traliccio in questione era stato caricato da <a href="http://www.openstreetmap.org/user/David%20Paleino" rel="nofollow" title="Profilo David Paleino su OpenStreetMap"  target="_blank"><strong>David</strong> <strong>Paleino</strong></a> è stato un attimo. Gli ho scritto per saperne di più, soprattutto sapere da dove avesse derivato i dati. Mi ha risposto immediatamente e con la disponibilità e gentilezza che conoscevo già, fornendo informazioni per me fondamentali. Tutto questo è stato possibile soltanto perché il dato era corredato da <strong>informazioni</strong> <strong>liberamente</strong> <strong>accessibili</strong>.<br />
+L’entusiasmo e la competenza di David da soli non sarebbero bastati per tracciare i tralicci. Ha potuto farlo perché aveva le foto aeree di base da cui ricavare queste informazioni, ed in particolare perché il <a href="http://www.sitr.regione.sicilia.it/" rel="nofollow" title="sitr sicilia"  target="_blank"><strong>S</strong><strong>.</strong><strong>I</strong><strong>.</strong><strong>T</strong><strong>.</strong><strong>R</strong><strong>. </strong><strong>Sicilia</strong></a> consente di derivare dati dalle ortofoto regionali fornite in WMS. Queste foto hanno una risoluzione di 0.25 m. ed i tralicci si vedono molto bene (vedi foto sotto). Senza cartografia di base è molto difficile produrre dati derivati, e per fortuna l’attenzione al tema degli <strong>opendata</strong> <strong>geografici</strong> e sempre maggiore. In questo campo il movimento OpenStreetMap è sicuramente tra i pionieri.</p>
+	<p><img class="alignnone size-full wp-image-5151 aligncenter" title="ortofoto_sitr_sicilia" src="http://blog.spaziogis.it/wp-content/uploads//2012/09/ortofoto_sitr_sicilia.jpg" alt="" width="494" height="413" /></p>
+	<p>Ho voluto raccontarvi questa storia, per le sue dimensioni e per la sua concretezza. Si tratta infatti di qualcosa di piccolo, nulla rispetto (ad esempio) all’adozione di OSM da parte di <a href="http://blog.foursquare.com/2012/02/29/foursquare-is-joining-the-openstreetmap-movement-say-hi-to-pretty-new-maps/" rel="nofollow" title="Foursquare e OpenStreetMap"  target="_blank">foursquare</a>, ma che mi ha cambiato una giornata di lavoro.</p>
+	<p><div class="note"><div class="notetip">Ringrazio la comunità OpenStreetMap, in particolare <strong>David</strong>, per ciò che fanno. Se volete un’idea di quello che è capace di fare un utente come lui, guardate le sue statistiche OSM <a href="http://hdyc.neis-one.org/?David%2520Paleino" rel="nofollow" >qui</a> o ancora meglio la sua <a href="http://yosmhm.neis-one.org/?David%20Paleino=&amp;zoom=8&amp;lat=37.62363&amp;lon=13.53312&amp;layers=B0T&amp;u=David%20Paleino" rel="nofollow" title="David Palerino OSM Heat Map"  target="_blank">Heat Map</a>: senza parole! </div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/09/07/openstreetmap-come-compagno-di-lavoro/">OpenStreetMap come compagno di lavoro</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/09/07/openstreetmap-come-compagno-di-lavoro/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=OpenStreetMap+come+compagno+di+lavoro&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-09-07&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/09/07/openstreetmap-come-compagno-di-lavoro/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/09/traliccio-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/09/traliccio.jpg" medium="image">
+			<media:title type="html">traliccio</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/09/traliccio-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/09/osm_vettoriale.png" medium="image">
+			<media:title type="html">osm_vettoriale</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/09/osm_vettoriale-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/09/ortofoto_sitr_sicilia.jpg" medium="image">
+			<media:title type="html">ortofoto_sitr_sicilia</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/09/ortofoto_sitr_sicilia-150x150.jpg" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

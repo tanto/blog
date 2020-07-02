@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Esempio di pubblicazione servizi WMS S.I.T.R. Sicilia</title>
+        <meta name="author" content="Andrea Borruso">
+        <meta name="description" content="I primi layer WMS pubblicati dal S.I.T.R. Sicilia" /> 
+        <meta name="keywords" content="WMS, Sicilia,S.I.T.R. Sicilia, CTR, IT2000, Ortofoto" /> 
+        
+        <style type="text/css">
+            body {
+                padding: 0px;
+                margin: 0px;
+                font-family: sans-serif;
+                
+            }
+            #contenitore {
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                margin: 0px;
+            }			
+            #map {
+                width: 100%;
+                height: 85%;
+            }
+            #header {
+                padding: 0px;
+                margin: 0px;
+                width: 100%;
+                height: 15%;
+            }
+            h3 {
+                padding: 0px;
+                margin: 0px;
+                
+                
+            }
+            .tanto {
+                font-size: small;
+                margin: 0px 0px 0px 5px;
+            }
+            .credits {
+                font-size: small;
+                margin: 0px 0px 0px 5px;
+            }
+            #diritti {
+                position:absolute;
+                right:5px;
+                top:5px;
+            }
+            
+            
+        </style>
+        
+        <script src="http://openlayers.org/api/OpenLayers.js"></script>
+        <script type="text/javascript">
+    OpenLayers.ProxyHost = "http://blog.spaziogis.it/cgi-bin/proxy.cgi?url=";
+		
+            var lon = 355364;
+            var lat = 4221506;
+            var zoom = 10;
+            var map,CTR,IT2000,ve,info;
+
+            function init(){
+                map = new OpenLayers.Map( 'map' );
+                IT2000 = new OpenLayers.Layer.WMS( "Ortofoto ATA 2007-2008",
+                "http://88.53.214.52/sitr/services/WGS84_F33/Ortofoto_ATA20072008_f33/MapServer/WMSServer", {layers: '0'},{units: 'meters', projection: "EPSG:32633",'maxExtent': new OpenLayers.Bounds(250000,3800000,430000,4500000),'maxResolution': "auto" });
+                   
+                map.addLayer(IT2000);
+                CTR = new OpenLayers.Layer.WMS( "CTR",
+                "http://esempi.mapserver.it/mapservers/mapserv.exe?map=/Siti/mapserver/esempi/wms/sicilia.map&", {layers: 'WMS Sicilia',transparent: 'true'},{units: 'meters', projection: "EPSG:32633",'maxExtent': new OpenLayers.Bounds(250000,3800000,430000,4500000),'maxResolution': "auto" } );
+                map.addLayer(CTR);
+				
+				
+				info = new OpenLayers.Control.WMSGetFeatureInfo({
+            url: 'http://88.53.214.52/arcgis/services/OrtofotoIT_2000_f33/MapServer/WMSServer', 
+            title: 'Identify features by clicking',
+            queryVisible: true,
+            eventListeners: {
+                getfeatureinfo: function(event) {
+                    map.addPopup(new OpenLayers.Popup.FramedCloud(
+                        "chicken", 
+                        map.getLonLatFromPixel(event.xy),
+                        null,
+                        event.text,
+                        null,
+                        true
+                    ));
+                }
+            }
+        });
+        /*map.addControl(info);
+        info.activate();*/
+				
+
+				
+                map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
+                //map.zoomToMaxExtent();
+                map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));
+                map.addControl(new OpenLayers.Control.MousePosition());
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        
+        <div id="contenitore">
+            <div id="header">
+                <h3>Esempio di pubblicazione layer WMS SITR Sicilia</h3>
+                <div class="tanto">realizzato da Andrea Borruso di <b><a href="../../index.html" title="TANTO, le cose che ci piacciono ..." alt="TANTO, le cose che ci piacciono ...">TANTO</a></b> (usando <b><a href="http://openlayers.org/" title="OpenLayers" alt="OpenLayers">OpenLayers</a></b>)</div>
+                <div class="credits">a partire dai dati pubblicati dal <b><a href="http://www.sitr.regione.sicilia.it/" title="S.I.T.R. Sicilia" alt="S.I.T.R. Sicilia">S.I.T.R. Sicilia</a></b></div>
+                
+                
+            </div>
+            
+            <div id="map"></div>
+            
+        </div>
+    </body>
+</html>

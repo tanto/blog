@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; gvSIG</title>
+	<atom:link href="http://blog.spaziogis.it/tag/gvsig/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Sistemi di trasformazione di coordinate e grigliati NTv2</title>
+		<link>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/</link>
+		<comments>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/#comments</comments>
+		<pubDate>Fri, 08 Feb 2013 07:00:05 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Basilicata]]></category>
+		<category><![CDATA[coordinate]]></category>
+		<category><![CDATA[GN]]></category>
+		<category><![CDATA[grigliati]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[NTv2]]></category>
+		<category><![CDATA[SEXTANTE]]></category>
+		<category><![CDATA[trasformazioni]]></category>
+		<category><![CDATA[WCTS]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5439</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+Una novità che sta circolando da poco più di un mese a questa parte e che, in pratica, interessa tutta la comunità italiana di fruitori dell&#8217;informazione geografica, consiste nella recentissima attivazione del servizio di trasformazione di coordinate ad opera del Geoportale Nazionale (ex Portale Cartografico Nazionale). Tale tipologia di servizio rientra tra gli adempimenti previsti [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Una novità che sta circolando da poco più di un mese a questa parte e che, in pratica, interessa tutta la comunità italiana di fruitori dell&#8217;informazione geografica, consiste nella <strong>recentissima attivazione del servizio di trasformazione di coordinate ad opera del Geoportale Nazionale</strong> (ex Portale Cartografico Nazionale). Tale tipologia di servizio rientra tra gli adempimenti previsti dalle <a title="INSPIRE Implementing Rules" href="http://inspire.jrc.ec.europa.eu/index.cfm/pageid/47" target="_blank"><em>Implementing Rules</em></a> della <a title="Direttiva 2007/2/CE" href="http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2007:108:0001:01:IT:HTML" target="_blank"><strong>Direttiva europea INSPIRE (2007/2/EC)</strong></a>, al fine di assicurare la condivisione e l&#8217;interoperabilità di dataset e servizi, adottando formati e specifiche comuni, tra tutti i nodi dell&#8217;infrastruttura di dati spaziali europea. In particolare, l&#8217;implementazione di tale servizio da parte del GN consiste in:</p>
+	<ul>
+	<li>un&#8217;applicazione web: <a href="http://www.pcn.minambiente.it/wctsclient/">http://www.pcn.minambiente.it/wctsclient/</a></li>
+	<li>un servizio WCTS: <a href="http://www.pcn.minambiente.it/GN/wps.php?lan=it">http://www.pcn.minambiente.it/GN/wps.php?lan=it</a></li>
+	</ul>
+	<p>Per ulteriori approfondimenti circa le premesse e i dettagli tecnici, si consiglia la lettura di <a title="Interoperabilità dei dati territoriali: il GN si dota di un nuovo servizio per la trasformazione di coordinate per l’intero territorio italiano" href="http://www.rivistageomedia.it/201212314770/GEOmedia-No-5-2012/interoperabilita-dei-dati-territoriali-il-gn-si-dota-di-un-nuovo-servizio-per-la-trasformazione-di-coordinate-per-lintero-territorio-italiano.html" target="_blank">questo articolo</a> sulla rivista Geomedia.</p>
+	<p>Benissimo! “<em>Lasciamoci INSPIR(ar)E</em>” dunque, parafrasando il titolo di un gran bel <a title="Lasciamo INSPIR(ar)E" href="http://blog.planetek.it/2010/04/13/lasciamoci-inspirare/" target="_blank">post</a> di Pietro Blu Giandonato di qualche anno fa&#8230; E cosa avviene a livello regionale? In verità, esiste già qualche servizio analogo, tra cui:</p>
+	<ul>
+	<li><strong>Regione Lombardia:</strong> <a href="http://www.cartografia.regione.lombardia.it/geoportale/ptk">http://www.cartografia.regione.lombardia.it/geoportale/ptk</a></li>
+	<li><strong>Regione Liguria:</strong> <a href="http://www.cartografia.regione.liguria.it/template4.asp?itemID=4005&amp;level=2&amp;label=Trasformazione%20coordinate">http://www.cartografia.regione.liguria.it/template4.asp?itemID=4005&amp;level=2&amp;label=Trasformazione%20coordinate</a></li>
+	<li><strong>Regione Sardegna:</strong> <a href="http://www.sardegnageoportale.it/strumenti/conversionecoordinate.html">http://www.sardegnageoportale.it/strumenti/conversionecoordinate.html</a></li>
+	<li><strong>Regione Basilicata:</strong> <a href="http://rsdi.regione.basilicata.it/web/guest/servizio-wcts">http://rsdi.regione.basilicata.it/web/guest/servizio-wcts</a></li>
+	<li><strong>Regione Emilia-Romagna:</strong> <a href="http://geoportale.regione.emilia-romagna.it/it/services/servizi%20tecnici/servizio-di-conversione">http://geoportale.regione.emilia-romagna.it/it/services/servizi%20tecnici/servizio-di-conversione</a></li>
+	</ul>
+	<p>Per curiosità, dopo aver letto un <a href="http://gfoss-geographic-free-and-open-source-software-italian-mailing.3056002.n2.nabble.com/Fwd-Il-Geoportale-Nazionale-ha-realizzato-il-servizio-di-trasformazione-WCTS-tp7580861p7580885.html" target="_blank">post</a> nella lista GFOSS in cui erano segnalate delle inaspettate anomalie, ho deciso di impiegare qualche ritaglio di tempo libero per verificare la bontà del servizio WCTS della mia regione, la Basilicata, rispetto a quello appena reso disponibile dal GN. Nel seguito, non mi addentrerò nella descrizione qualitativa dei servizi (della serie &#8230;è più bello, è più brutto, è più veloce, mi chiede l&#8217;indirizzo email, ecc.), poiché esula completamente dai miei scopi.</p>
+	<p>In pratica, ho effettuato le seguenti operazioni:</p>
+	<ul>
+	<li>ho scaricato i confini amministrativi regionali dal <a title="ISTAT - Cartografia: confini amministrativi e dei sistemi locali del lavoro" href="http://www3.istat.it/ambiente/cartografia/" target="_blank">sito dell&#8217;ISTAT</a>, definiti in <a href="http://www.spatialreference.org/ref/epsg/23032/"><strong>EPSG:23032</strong></a>, e li ho caricati in una vista di <strong>gvSIG 1.12</strong>, definita nello stesso sistema;</li>
+	<li>ho poi selezionato solo la mia regione e applicato l&#8217;algoritmo di SEXTANTE <em>“Adjust n points to polygon”</em>, in modo tale da generare un set di 100 punti scelti in maniera casuale contenuti in Basilicata, utilizzando i parametri rappresentati in <em>Figura 1</em> e ottenendo il risultato in <em>Figura 2</em>;</li>
+	</ul>
+	<p><div id="attachment_5453" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5453" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-e1360243542704.png" alt="Figura 1 - Adjust n points to polygon" width="480" height="271" /><p class="wp-caption-text">Figura 1 &#8211; Adjust n points to polygon</p></div></p>
+	<p><div id="attachment_5455" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5455" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-e1360243851330.png" alt="Figura 2 - Layer di punti casuali" width="480" height="274" /><p class="wp-caption-text">Figura 2 &#8211; Layer di punti casuali</p></div></p>
+	<ul>
+	<li>ho quindi trasformato il layer di punti precedentemente ottenuto, utilizzando sia l&#8217;applicazione web del Geoportale Nazionale che quella della Regione Basilicata, rispettivamente dal sistema EPSG:23032 (ereditato dal layer dei confini amministrativi ISTAT) verso <a href="http://www.spatialreference.org/ref/epsg/3004/"><strong>EPSG:3004</strong></a> e <a href="http://www.spatialreference.org/ref/epsg/32633/"><strong>EPSG:32633</strong></a>, assumendo per buona ad occhi chiusi la conversione dovuta al passaggio di fuso/zona contenuta in maniera implicita in entrambe le trasformazioni, in quanto si tratta di un&#8217;operazione di coordinate che i software e le librerie GIS generalmente affrontano in maniera rigorosa e quindi fuori di discussione. Inoltre, ho trasformato &#8211; sempre utilizzando entrambi i servizi &#8211; il layer dei punti definito in EPSG:32633 ottenuto dal GN verso EPSG:3004. In definitiva, ho ottenuto <strong>tre coppie di layer, ognuna corrispondente ad ogni trasformazione possibile tra i tre sistemi citati e definita in un preciso sistema di destinazione</strong>. In <em>Figura 3</em> sono rappresentate schematicamente le singole trasformazioni realizzate.</li>
+	</ul>
+	<p><div id="attachment_5458" class="wp-caption aligncenter" style="width: 388px"><img class="size-full wp-image-5458" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS.png" alt="Figura 3 - Trasformazioni realizzate" width="378" height="352" /><p class="wp-caption-text">Figura 3 &#8211; Trasformazioni realizzate (Autore: Andrea Borruso)</p></div></p>
+	<ul>
+	<li>Il passo successivo è stato quello di definire e calcolare dei nuovi campi nelle tabelle associate ai layer ottenuti al punto precedente, contenenti le coordinate nei rispettivi sistemi di appartenenza (esistono diversi modi di farlo in gvSIG: con il “Calcolatore di campo”, con lo strumento “Aggiungi informazioni geometriche”, con “<em>Add coordinates to points</em>” di SEXTANTE &#8230;e tanti altri). Ho rinominato tali campi di coordinate in modo da poterli rapidamente associare al CRS di appartenenza, oltre che allo specifico servizio utilizzato. Ad esempio, <em>X3004GN</em> rappresenta la coordinata Est nel sistema EPSG:3004 trasformata dal Geoportale Nazionale, mentre <em>X3004BAS</em> è la corrispondente coordinata trasformata tramite il geoportale lucano.</li>
+	<li>A questo punto, essendomi dimenticato di definire un campo identificativo da utilizzare come chiave esterna (in questo caso poco male, essendo i punti reciprocamente abbastanza distanti tra loro), ho eseguito il geoprocesso <em>“Spatial join”</em> per ogni coppia di layer definiti nello stesso CRS, selezionando l&#8217;opzione “Usa la geometria più prossima”, in alternativa al classico join tra tabelle. Il risultato di tale operazione è praticamente equivalente a quello del join, ad eccezione del fatto che gvSIG restituisce un campo DIST delle distanze tra le geometrie poste in relazione e, inoltre, il layer ottenuto è salvato su disco.</li>
+	<li>Dulcis in fundo, ho calcolato le differenze tra coordinate omologhe al fine di verificare la bontà della trasformazione dei due servizi, assumendo quelle del GN come capisaldi in quanto dovrebbero essere quelle “ufficiali”.</li>
+	</ul>
+	<p>I risultati di tutto l&#8217;ambaradan appena descritto, sperando di non avervi fin qui annoiato, sono riportati nella tabella seguente:</p>
+	<p><div id="attachment_5456" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5456" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-e1360245448479.png" alt="Tabella 1 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata" width="480" height="133" /><p class="wp-caption-text">Tabella 1 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN)</p></div></p>
+	<p>A quanto pare, <strong>gli scostamenti tra le trasformazioni operate dai due servizi sono piuttosto importanti e, talvolta, addirittura superano il metro e mezzo!</strong> Se fossi un topografo, nel dubbio, mi guarderei bene dall&#8217;usare uno o l&#8217;altro servizio per trasformare i dati di un rilievo ad alta precisione. Ma anche un operatore GIS potrebbe imbattersi in qualche strana incongruenza topologica accostando dati provenienti da fonti (e quindi trasformazioni) diverse. Personalmente mi sarei aspettato differenze al più dell&#8217;ordine di un paio di decimetri per coordinata, ipotizzando dietro l&#8217;applicazione web del GN l&#8217;utilizzo di un unico grigliato comprendente tutta l&#8217;Italia a maglia più larga rispetto a quella dei singoli grigliati IGM, piuttosto che un numero elevato di griglie a passo fitto, decisamente più oneroso da gestire lato server.</p>
+	<p>Dalle statistiche di <em>Tabella 1</em> chiaramente non si evince quale dei due servizi sia il meno accurato rispetto ai grigliati IGM. Eppure entrambi i servizi dichiarano di utilizzarli! Sarebbe utile, a mio avviso, ripetere lo stesso test con altri servizi WCTS regionali, magari utilizzando i grigliati come termine di confronto.</p>
+	<p>E&#8217; lecito quindi chiedersi come mai la gestione informatica dei grigliati IGM all&#8217;interno di differenti applicazioni web porta a risultati diversi. E&#8217; chiaro che occorrerebbe disporre di un <strong>riferimento ufficiale, unico ed inequivocabile</strong>.</p>
+	<p>A tal fine, per fugare ogni dubbio,<strong> sarebbe auspicabile il rilascio di un grigliato NTv2</strong>, formato ormai gestibile da molti desktop GIS, <strong>per ognuna delle possibili trasformazioni che interessano il nostro territorio nazionale.</strong> Non parlo necessariamente di quelli che utilizzano i topografi, ma anche solo una versione opportunamente semplificata che consenta di riunificare l&#8217;Italia intera, senza perdere eccessivamente in accuratezza. <strong>L&#8217;esempio lungimirante offerto da <a href="http://lambert93.ign.fr/index.php?id=30#c71">Francia</a>, <a href="http://www.ign.es/ign/layoutIn/herramientas.do#DATUM">Spagna</a>, <a href="http://www.igeo.pt/produtos/geodesia/Grelhas_NTv2.htm">Portogallo</a>, <a href="http://www.swisstopo.admin.ch/internet/swisstopo/en/home/products/software/products/chenyx06.html">Svizzera</a> e <a href="http://crs.bkg.bund.de/crseu/crs/descrtrans/BeTA/de_dhdn2etrs_beta.php">Germania</a> dovrà pur significare qualcosa nell&#8217;epoca di INSPIRE!</strong></p>
+	<p>&nbsp;</p>
+	<h2>Aggiornamento del 09/02/2013</h2>
+	<p>A seguito dell&#8217;aggiornamento ufficioso del servizio di trasformazione di coordinate del GN di cui si è avuta notizia ieri, i contenuti di questo post sono già obsoleti (forse, si tratta di un record per questo blog&#8230; ma siam contenti così! )<br />
+Ho quindi ricalcolato le medie degli scostamenti tra le trasformazioni dei due geoportali utilizzando lo stesso set di punti casuali. Il risultato è che le medie degli scostamenti sono stavolta sempre inferiori ai 3 cm. Restano tuttavia degli scostamenti max e min ancora consistenti (fino a 85 cm) per la coordinata Est. I valori estremi della coordinata Nord si aggirano invece attorno ai 20 cm, fatta eccezione per la trasformazione da EPSG:23032 a EPSG:32633, dove si superano i 30 cm.</p>
+	<p><div id="attachment_5476" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5476" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-e1360406215995.png" alt="Tabella 2 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) - agg. 09/02/2013" width="480" height="132" /><p class="wp-caption-text">Tabella 2 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) &#8211; agg. 09/02/2013</p></div></p>
+	<p>Resta, a mio modesto avviso, la necessità di dover rendere congruenti e quindi interoperabili i vari servizi di trasformazione di coordinate regionali con quello nazionale, evitando così l&#8217;eventuale disorientamento degli utenti. Inoltre, eviterei l&#8217;ulteriore proliferazione di servizi WCTS regionali, a questo punto ridondanti, e favorirei il rilascio e la diffusione dei grigliati NTv2, standard de facto a livello internazionale, almeno relativamente alla componente planimetrica.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/">Sistemi di trasformazione di coordinate e grigliati NTv2</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/feed/</wfw:commentRss>
+		<slash:comments>16</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-e1360243542704.png" medium="image">
+			<media:title type="html">Figura 1 &#8211; Adjust n points to polygon</media:title>
+			<media:description type="html">Figura 1 - Adjust n points to polygon</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-e1360243851330.png" medium="image">
+			<media:title type="html">Figura 2 &#8211; Layer di punti casuali</media:title>
+			<media:description type="html">Figura 2 - Layer di punti casuali</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS.png" medium="image">
+			<media:title type="html">Figura 3 &#8211; Trasformazioni realizzate</media:title>
+			<media:description type="html">Figura 3 - Trasformazioni realizzate</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-e1360245448479.png" medium="image">
+			<media:title type="html">Tabella 1 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata</media:title>
+			<media:description type="html">Tabella 1 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-e1360406215995.png" medium="image">
+			<media:title type="html">Tabella 2 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) &#8211; agg. 09/02/2013</media:title>
+			<media:description type="html">Tabella 2 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) - agg. 09/02/2013</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Quinte Giornate Italiane di gvSIG a Como</title>
+		<link>http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/</link>
+		<comments>http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/#comments</comments>
+		<pubDate>Wed, 09 May 2012 06:00:15 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[2012]]></category>
+		<category><![CDATA[Como]]></category>
+		<category><![CDATA[gvSIG]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4919</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quinte+Giornate+Italiane+di+gvSIG+a+Como&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2012-05-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/&amp;rft.language=English"></span>
+Le Giornate Italiane di gvSIG, giunte alla quinta edizione, si svolgeranno dal 27 al 29 giugno 2012, presso l&#8217;Aula Magna del Politecnico di Milano &#8211; Polo Territoriale di Como, via Castelnuovo, 7 a Como. L&#8217;evento è organizzato dal Laboratorio di Geomatica del Politecnico di Milano &#8211; Polo Territoriale di Como e dall&#8217;Associazione gvSIG, e rappresenta [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quinte+Giornate+Italiane+di+gvSIG+a+Como&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2012-05-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://www.gvsig.org/web/community/events/giornate-italia/2012"><img class="wp-image-4920 alignleft" style="border: 0pt none; margin: 0px;" title="Logo Quinte Giornate Italiane gvSIG Como" src="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como-280x300.jpg" alt="logosmall_como" width="140" height="150" /></a>Le <strong>Giornate Italiane di gvSIG</strong>, giunte alla quinta edizione, si svolgeranno dal 27 al 29 giugno 2012, presso l&#8217;Aula Magna del Politecnico di Milano &#8211; Polo Territoriale di Como, via Castelnuovo, 7 a Como. L&#8217;evento è organizzato dal <a href="http://geomatica.como.polimi.it/"><strong>Laboratorio di Geomatica del Politecnico di Milano &#8211; Polo Territoriale di Como</strong></a> e dall&#8217;<a href="http://www.gvsig.com/inizio?set_language=it"><strong>Associazione gvSIG</strong></a>, e rappresenta l&#8217;ormai classico punto d&#8217;incontro e di scambio di esperienze tra utenti e sviluppatori italiani di gvSIG.</p>
+	<p>Sono ancora aperte le iscrizioni alle <a href="http://www.gvsig.org/web/community/events/giornate-italia/2012"><strong>Quinte Giornate Italiane di gvSIG</strong></a>, completamente gratuite, ed è richiesta solo la compilazione dell&#8217;apposito <a href="http://www.gvsig.org/web/community/events/giornate-italia/2012/iscrizione/formulario-d-iscrizione">formulario</a>. E&#8217; possibile condividere le vostre esperienze professionali partecipando anche come relatori. Occorre semplicemente inviare un riassunto (abstract) al seguente indirizzo email: <a href="mailto:giornate.italiane@gvsig.org">giornate.italiane@gvsig.org</a> entro il 23 maggio 2012 (consultare le <a href="http://www.gvsig.org/web/community/events/giornate-italia/2012/comunicazioni%20">norme per le presentazioni</a>). Affrettatevi!</p>
+	<p style="text-align: center;">
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/">Quinte Giornate Italiane di gvSIG a Como</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		<georss:point featurename="Via Castelnuovo 7, Como, Italy">45.8027983 9.093560000000025</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quinte+Giornate+Italiane+di+gvSIG+a+Como&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2012-05-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como.jpg" medium="image">
+			<media:title type="html">Logo Quinte Giornate Italiane gvSIG Como</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Lo spettro di TANTO si aggirerà per il GfossDay di Foggia</title>
+		<link>http://blog.spaziogis.it/2011/11/09/lo-spettro-di-tanto-si-aggirera-per-il-gfossday-di-foggia/</link>
+		<comments>http://blog.spaziogis.it/2011/11/09/lo-spettro-di-tanto-si-aggirera-per-il-gfossday-di-foggia/#comments</comments>
+		<pubDate>Wed, 09 Nov 2011 15:46:58 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[gfoss]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[italia]]></category>
+		<category><![CDATA[Ushahidi]]></category>
+		<category><![CDATA[VGI]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4419</guid>
+		<description><![CDATA[Il 24 e 25 Novembre l'Università degli Studi di Foggia ospiterà la quarta conferenza italiana sul software geografico e sui dati geografici liberi. Ci saremo anche noi di TANTO.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Lo+spettro+di+TANTO+si+aggirer%C3%A0+per+il+GfossDay+di+Foggia&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-11-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/11/09/lo-spettro-di-tanto-si-aggirera-per-il-gfossday-di-foggia/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2011/11/gfoss_logo.png"><img class="size-full wp-image-4421 alignright" title="gfoss_logo" src="http://blog.spaziogis.it/wp-content/uploads//2011/11/gfoss_logo.png" alt="" width="144" height="108" /></a>Il titolo è &#8220;stupidottero&#8221; ma è l&#8217;occasione per dare notizia di tre cose. La prima è che sono aperte le <strong><a title="registrazione GFOSS DAY 2011" href="http://www.gfoss.it/drupal/gfossday2011/registrazione" target="_blank">iscrizioni</a></strong> per il <a title="gfossday 2011" href="http://www.gfoss.it/drupal/gfossday2011" target="_blank"><strong>GfossDay</strong> <strong>2011</strong></a> che si terrà a Foggia.</p>
+	<p>La seconda è che è stato pubblicato il <strong><a title="programma gfossday 2011" href="http://www.gfoss.it/drupal/gfossday2011/programma" target="_blank">programma</a></strong> &#8220;definitivo&#8221;.</p>
+	<p>La terza &#8211; che mi fa molto piacere &#8211; è che TANTO sarà da quelli parti:</p>
+	<ul>
+	<li><strong><a title="Pietro Blu Giandonato su TANTO" href="http://blog.spaziogis.it/author/pietroblu/" target="_blank">Pietro</a> </strong>infatti il <a href="http://bquot.com/7nb" target="_blank">25 novembre</a> &#8211; tra le 9.30 e le 11.25 &#8211; sarà uno dei relatori della sessione tematica &#8220;<strong>VGI &#8220;Volunteered Geographic Information&#8221;</strong>&#8220;, ed in particolare racconterà dei nostri amati <a title="ushahidi" href="http://ushahidi.com/" target="_blank">Ushahidi</a> e <a title="crowdmap" href="https://crowdmap.com/mhi" target="_blank">Crowdmap</a></li>
+	<li><strong><a title="Antonio Falciano" href="http://blog.spaziogis.it/author/afalciano/">Antonio</a></strong> curerà il laboratorio su gvSIG del <a href="http://bquot.com/7nc" target="_blank">24 Novembre</a></li>
+	<li>ed <strong><a title="Andrea Antonello" href="http://blog.spaziogis.it/author/aantonello/">Andrea</a> -</strong> insieme a Silvia Franceschi &#8211; illustrerà il caso studio degli &#8220;Strumenti open source per la gestione delle reti urbane&#8221;, il <a href="http://bquot.com/7n9" target="_blank">25 novembre</a></li>
+	</ul>
+	<p>Si mormora, che altri di <a title="TANTO" href="http://blog.spaziogis.it/questo-sito/">noi</a> saranno pericolosamente in giro, indecisi ancora se portare con sé anche la loro chitarra.</p>
+	<p>Io purtroppo non ci sarò, faccio un grande in bocca al lupo a tutti!</p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/11/09/lo-spettro-di-tanto-si-aggirera-per-il-gfossday-di-foggia/">Lo spettro di TANTO si aggirerà per il GfossDay di Foggia</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/11/09/lo-spettro-di-tanto-si-aggirera-per-il-gfossday-di-foggia/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		<georss:point featurename="via Arpi 176, Foggia">41.4626568 15.5401843</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Lo+spettro+di+TANTO+si+aggirer%C3%A0+per+il+GfossDay+di+Foggia&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-11-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/11/09/lo-spettro-di-tanto-si-aggirera-per-il-gfossday-di-foggia/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/11/gfoss_logo.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/11/gfoss_logo.png" medium="image">
+			<media:title type="html">gfoss_logo</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Programma delle Quarte Giornate Italiane di gvSIG</title>
+		<link>http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/</link>
+		<comments>http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/#comments</comments>
+		<pubDate>Wed, 30 Mar 2011 08:00:20 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[udine]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3568</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Programma+delle+Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-03-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+E&#8217; stato pubblicato il programma delle &#8220;Quarte Giornate Italiane di gvSIG&#8221; che, ricordiamo, si terranno dal 19 al 21 aprile presso l&#8217;Auditorium della Regione Autonoma Friuli Venezia Giulia, Udine. E&#8217; possibile consultarlo sul portale gvsig.org. &#160; [ buy cheap viagra online uk &#124; cefadroxil 200mg pills $269.00 &#124; atarax 25mg pills $90.00 &#124; atacand 4mg [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Programma+delle+Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-03-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="text-align: left;">E&#8217; stato pubblicato il programma delle <strong>&#8220;Quarte Giornate Italiane di gvSIG&#8221;</strong> che, ricordiamo, si terranno dal 19 al 21 aprile presso l&#8217;Auditorium della Regione Autonoma Friuli Venezia Giulia, Udine. E&#8217; possibile consultarlo sul portale <a title="Programma Quarte Giornate Italiane di gvSIG" href="http://www.gvsig.org/web/community/events/giornate-italia/2011/Programa" target="_blank">gvsig.org</a>.</p>
+	<p style="text-align: center;"><a href="http://www.gvsig.org/web/community/events/giornate-italia/2011" target="_blank"><img class="aligncenter size-full wp-image-3570" style="border: 0pt none;" title="Quarte Giornate Italiane di gvSIG" src="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord.jpg" alt="" width="215" height="230" /></a></p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/">Programma delle Quarte Giornate Italiane di gvSIG</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		<georss:point featurename="udine">46.0649418 13.2307247</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Programma+delle+Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-03-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord.jpg" medium="image">
+			<media:title type="html">Quarte Giornate Italiane di gvSIG</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Quarte Giornate Italiane di gvSIG</title>
+		<link>http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/</link>
+		<comments>http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/#comments</comments>
+		<pubDate>Fri, 11 Feb 2011 08:50:16 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[gfoss]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[italia]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3458</guid>
+		<description><![CDATA[Dal 19 al 21 aprile 2011, si terranno le "Quarte Giornate Italiane di gvSIG" presso l'Auditorium della Regione Autonoma Friuli Venezia Giulia, in via Volturno a Udine.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-02-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Dopo il successo di pubblico delle <a title="Giornate Triestine gvSIG" href="http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/" target="_blank">“Terze Giornate Triestine degli utenti di gvSIG”</a>, tenutesi nel 2010 nella splendida cornice di San Dorligo della Valle/Dolina a pochi passi da Trieste, quest&#8217;anno il classico incontro annuale degli utenti e sviluppatori italiani di gvSIG cambia pelle: assume la nuova denominazione di “Giornate Italiane di gvSIG”, durerà tre giorni invece di due (come in passato) e avrà luogo a Udine, segno che gvSIG è ormai una realtà consolidata nel panorama molto variegato dei software GFOSS e che un numero sempre maggiore di amministrazioni, università e professionisti lo utilizza quotidianamente. Nel seguito, si riporta integralmente il comunicato ufficiale del Comitato organizzatore:</p>
+	<blockquote><p>Dal 19 al 21 aprile 2011, si terranno le <a title="Quarte Giornate Italiane di gvSIG" href="http://www.gvsig.org/web/community/events/giornate-italia/2011/" target="_blank"><strong>&#8220;Quarte Giornate Italiane di gvSIG&#8221;</strong></a> presso l&#8217;Auditorium della Regione Autonoma Friuli Venezia Giulia, in via Volturno a Udine.</p>
+	<p>L&#8217;incontro, organizzato dalla Direzione centrale delle risorse rurali, agroalimentari e forestali della Regione Autonoma Friuli Venezia Giulia, dal Dipartimento di Scienze della Vita dell&#8217;Università degli Studi di Trieste e dall&#8217;Associazione gvSIG, con il patrocinio di Cartesio dell&#8217;Università degli Studi di Udine, dell&#8217;Istituto Nazionale di Oceanografia e di Geofisica Sperimentale &#8211; OGS, della Provincia Autonoma di Bolzano/Bozen, della Comunità Montana della Carnia e del Comune di Tavagnacco, è un interessante punto d&#8217;incontro e di scambio di esperienze tra gli utilizzatori italiani e quelli dell&#8217;Europa centrale. Sono infatti previste numerose presentazioni internazionali.</p>
+	<p>E&#8217; già possibile inviare le proposte di comunicazione presso il seguente indirizzo email: <a title="giornate.italiane@gvsig.org " href="mailto:giornate.italiane@gvsig.org " target="_blank">giornate.italiane@gvsig.org </a>(consultare le <a title="Norme per le presentazioni" href="http://www.gvsig.org/web/community/events/giornate-italia/2011/Comunicaciones" target="_blank">Norme per le presentazioni</a>). Termine per il ricevimento dei riassunti delle presentazioni: mercoledì 16 marzo 2011.</p>
+	<p>L&#8217;iscrizione alle Quarte Giornate Italiane di gvSIG potrà avvenire a partire dal 16 febbraio 2011.</p>
+	<p>Saranno illustrate le novità della versione desktop 1.11, delle estensioni per il laser scanning e 3D, e della versione 1.0 per palmare, come nel corso delle 6e Giornate tenutesi a Valencia nel dicembre 2010.</p>
+	<p>Saranno inoltre presentate applicazioni di interesse regionale, nazionale ed europeo in materia di urbanistica, telerilevamento, idrologia, didattica&#8230;</p></blockquote>
+	<p><div id="attachment_3459" class="wp-caption aligncenter" style="width: 278px"><img class="size-medium wp-image-3459 " style="border: 0pt none;" title="logosmall_400" src="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400-268x300.jpg" alt="" width="268" height="300" /><p class="wp-caption-text">Giornate Italiane di gvSIG</p></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/">Quarte Giornate Italiane di gvSIG</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-02-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400.jpg" medium="image">
+			<media:title type="html">logosmall_400</media:title>
+			<media:description type="html">Giornate Italiane di gvSIG</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>giornate triestine gvSIG</title>
+		<link>http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/</link>
+		<comments>http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/#comments</comments>
+		<pubDate>Thu, 18 Feb 2010 19:21:08 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[italia]]></category>
+		<category><![CDATA[Trieste]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1739</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=giornate+triestine+gvSIG&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2010-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/&amp;rft.language=English"></span>
+Ricevo da Claudio Schifani la comunicazione sottostante  di Alessandro Sgambati,  che pubblico con molto piacere, ma anche con un po&#8217; di sensi di colpa: in questo blog infatti non abbiamo (credo) mai parlato di gvSIG. E&#8217; avvenuto per la semplice ragione che noi autori, senza alcuna ragione particolare, non lo usiamo nella vita professionale di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=giornate+triestine+gvSIG&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2010-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ricevo da <strong>Claudio Schifani</strong> la comunicazione sottostante  di <strong>Alessandro Sgambati</strong>,  che pubblico con molto piacere, ma anche con un po&#8217; di sensi di colpa: in questo blog infatti non abbiamo (credo) mai parlato di <strong>gvSIG</strong>. E&#8217; avvenuto per la semplice ragione che noi autori, senza alcuna ragione particolare, non lo usiamo nella vita professionale di ogni giorno (<em>Excusatio non petita, accusatio manifesta</em>??). Speriamo che questo possa essere il primo di altri post (credo che fischieranno le orecchie a qualcuno).</p>
+	<blockquote><p>Il 13 e 14 aprile 2010 si svolgerà a Trieste il terzo incontro  degli utilizzatori di gvSIG.</p>
+	<p>Tutte le informazioni sono disponibili all&#8217;indirizzo:<a href="http://www.gvsig.org/web/community/events/trieste/2010/" target="_blank"></p>
+	<p>http://www.gvsig.org/web/community/events/trieste/2010/</a></p>
+	<p>Le terze Giornate triestine sono organizzate dall&#8217;Ispettorato Ripartimentale Foreste di Trieste e Gorizia, dal Dipartimento di Scienze della Vita dell&#8217;Università degli Studi di Trieste, dal Comune di San Dorligo della Valle &#8211; Obcina Dolina e dall&#8217; Ente forestale sloveno Ufficio di Sežana (Zavod za gozdove Slovenije, OE Sežana).<br />
+È prevista la partecipazione degli esperti dell&#8217;Asociación gvSIG che illustreranno le novità delle versioni per scrivania 1.9 e 2.0 e delle versioni 0.2 e 0.3 per palmare, rilasciate nel corso delle 5e Giornate, nel dicembre 2009 a Valencia.<br />
+Verranno presentate alcune esperienze di interesse locale, la comunità regionale IRDAT (Inspire), applicazioni riguardanti la Rete Natura2000, l&#8217;antincendio, l&#8217;urbanistica. Sono inoltre previste una serie di presentazioni di paesi vicini. Ci sarà una sezione dedicata al mondo di OpenStreetMap. Il programma è ancora in fase di definizione.</p>
+	<p>É già possibile iscriversi alle Giornate mediante la compilazione dell&#8217;<a href="http://www.gvsig.org/web/community/events/trieste/2010/Inscripcion/formulario-de-inscripcion" target="_blank">apposito formulario</a>.<br />
+Le iscrizioni sono gratuite.</p>
+	<p>Chi volesse proporre una propria presentazione relativa ad esperienze realizzate preferibilmente con gvSIG o con altro Open GIS, può inviare un riassunto (abstract) entro il 9 marzo 2010.<br />
+Le istruzioni su come redigere le presentazioni si possono consultare nella sezione <a href="http://www.gvsig.org/web/community/events/trieste/2010/Comunicaciones" target="_blank">Norme per le presentazioni</a>.</p>
+	<p>Per il Comitato organizzatore<br />
+Alessandro Sgambati</p></blockquote>
+	<p style="text-align: center;"><a href="http://www.gvsig.org/web/community/events/trieste/2010/" target="_blank"><img class="size-full wp-image-1742 aligncenter" style="border: 0pt none;" title="gvSIG" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/gvSIG.png" alt="gvSIG" width="490" height="190" /></a></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/">giornate triestine gvSIG</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=giornate+triestine+gvSIG&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2010-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/gvSIG-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/gvSIG.png" medium="image">
+			<media:title type="html">gvSIG</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/gvSIG-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

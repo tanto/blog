@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; apache</title>
+	<atom:link href="http://blog.spaziogis.it/tag/apache/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Installare MapServer su Windows con Apache (riveduto e corretto)</title>
+		<link>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/</link>
+		<comments>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/#comments</comments>
+		<pubDate>Sat, 09 Jan 2010 12:58:43 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1602</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+Introduzione A Febbraio del 2006 &#8211; tantissimo tempo fa &#8230; &#8211; ho scritto un piccolo post sull&#8217;installazione di MapServer in ambiente Windows su un sistema in cui fosse già installato un webserver (Apache in particolare). E&#8217; stato un post che ha ricevuto molte letture, ma che ha anche subito qualche &#8220;legnata tecnologica&#8221;. Lo avevo scritto [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h2>Introduzione</h2>
+	<p>A Febbraio del 2006 &#8211; tantissimo tempo fa &#8230; &#8211; ho scritto un <a title="Installare MapServer su Windows con Apache" href="http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/" target="_blank">piccolo post</a> sull&#8217;installazione di <strong>MapServer</strong> in ambiente <strong>Windows </strong> su un sistema in cui fosse già installato un webserver (<strong>Apache</strong> in particolare).</p>
+	<p>E&#8217; stato un post che ha ricevuto molte letture, ma che ha anche subito qualche &#8220;legnata tecnologica&#8221;. Lo avevo scritto infatti non dentro il motore di questo blog (WordPress), ma dentro <strong>Writely</strong>.<br />
+Cosa è Writely? E&#8217; nientepopodimeno che l&#8217;applicazione online su cui è basato l&#8217;editor di testo di <a title="Google Docs" href="http://docs.google.com/" target="_blank">Google Docs</a>, comprata per l&#8217;appunto da Google proprio in quell&#8217;anno.<br />
+Ho scritto l&#8217;articolo, ho inserito anche delle immagini d&#8217;aiuto alla comprensione del testo, ed ho pubblicato tutto su questo blog con un click; il testo è stato contestualmente archiviato sui server di TANTO, mentre le immagini sono rimaste sui server di Writely. Questi non sono stati spenti subito e, per diverso tempo, questo vecchio glorioso articolo non ha subito alcuna conseguenza dal passaggio di Writely a Google. Spenti i server, sono sparite le immagini ed in qualche modo anche la leggibilità del post in oggetto. Ho provato a ripescarle dall&#8217;<a title="Internet Archive Wayback Machine" href="http://web.archive.org/web/*/http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache" target="_blank"><em><strong>Internet Archive Wayback Machine</strong></em></a>, ma senza fortuna.</p>
+	<p>In ogni caso dovevo rimediare da tempo. Avevo rimosso dalla memoria il problema (<em>sorry</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  ), e un commento recente mi ha messo nuovamente davanti alla cruda realtà (grazie riccardo). L&#8217;articolo inoltre è datato anche nei contenuti, e valeva la pena dargli una rinfrescata.</p>
+	<h2><span id="more-1602"></span>MapServer su Windows</h2>
+	<p>Installare MapServer è cosa semplice in qualsiasi ambiente (forse il massimo è su Linux); può sembrare meno semplice farlo su server in produzione con diversi servizi già installati e configurati, specie se vogliamo usare degli <em>installer</em> grafici e magari chiudere gli occhi.</p>
+	<p>I file binari per Windows sono contenuti in questi tre pacchetti:</p>
+	<ul>
+	<li><a href="http://trac.osgeo.org/osgeo4w/">OSGeo4W</a></li>
+	<li><a href="http://maptools.org/ms4w/">MS4W</a></li>
+	<li><a href="http://fwtools.maptools.org/">FWTools</a></li>
+	</ul>
+	<p>In questa guida sfrutteremo <strong>FWTools</strong>, di cui abbiamo parlato <a title="FWTools su TANTO" href="http://www.google.com/cse?cx=015822840187590198668%3Advzakmzb60k&amp;ie=UTF-8&amp;q=fwtools&amp;sa=Cerca&amp;siteurl=www.google.com%2Fcse%2Fhome%3Fcx%3D015822840187590198668%3Advzakmzb60k" target="_blank">diverse volte</a>.</p>
+	<h2>Installazione passo passo di MapServer</h2>
+	<p>Il prerequisito è quello di installare e scaricare FWTools per Windows dal <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">sito ufficiale</a>, e poi lanciarne l&#8217;installazione. Io di solito lo faccio scegliendo le opzioni visibili in figura.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1609 aligncenter" title="install fwtools on windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows.png" alt="install fwtools on windows" width="426" height="295" /></p>
+	<p style="text-align: left;">I file vengono estratti di default nella cartella &#8220;<strong><span style="color: #000000;">C:\Programmi\FWToolsx.x.x</span></strong>&#8220;. L&#8217;eseguibile di MapServer &#8211; mapserv.exe &#8211; è uno dei file a corredo di FWTools e lo troverete nella cartella &#8220;<span style="color: #000000;"><strong>C:\Programmi\FWToolsx.x..x\bin</strong></span>&#8220;.<br />
+Copiatelo nella<strong> cartella CGI di Apache</strong> (o in una qualsiasi cartella in cui il web server può lanciare applicazioni di questo tipo). Sul PC da cui scrivo la cartella è &#8220;C:\Programmi\Apache Software Foundation\Apachex.x\cgi-bin&#8221;
+</p>
+	<p style="text-align: left;">Copiare l&#8217;eseguibile non basta perché ci sono diverse dipendenze da rispettare. Per soddisfarle basterebbe copiare tutti i file contenuti in &#8220;<span style="color: #000000;">C:\Programmi\FWToolsx.x..x\bin</span>&#8221; nella cartella CGI, ma non è una procedura &#8220;pulita&#8221;. E&#8217; più corretto impostare delle <strong>variabili d&#8217;ambiente</strong>.</p>
+	<p style="text-align: left;">La prima è il PATH, in cui inseriremo proprio la cartella &#8220;<span style="color: #000000;">C:\Programmi\FWToolsx.x..x\bin</span>&#8220;. Per farlo basta aprire le &#8220;Proprietà del sistema&#8221; di Windows  e cliccare su &#8220;Variabili d&#8217;ambiente&#8221;.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1612 aligncenter" title="variabili ambiente windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows.png" alt="variabili ambiente windows" width="419" height="534" /></p>
+	<p style="text-align: left;">Tra quelle già definite troverete proprio PATH. Modificatela inserendo nel campo &#8220;Valore variabile&#8221;, a fine riga, il percorso della cartella bin di FWTools: <strong>inserite prima un &#8220;;&#8221;</strong>.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1614 aligncenter" title="windows path variabile 2" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2.png" alt="windows path variabile 2" width="384" height="430" /></p>
+	<p><span style="color: #000000;">C&#8217;è da impostare ancora una variabile d&#8217;ambiente in quanto MapServer deve &#8220;sapere&#8221; dove sono i file in cui sono definiti i sistemi di proiezione. La cartella in questo caso è </span>&#8220;<strong>C:\Programmi\FWToolsx.x.x\proj_lib</strong>&#8221; e la variabile  è <strong>PROJ_LIB</strong>.</p>
+	<p>Questa (di solito) non è &#8211; come PATH &#8211; già esistente e la dovrete creare cliccando sul tasto &#8220;Nuovo&#8221; ed inserire i valori come nella figura sottostante.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1615 aligncenter" title="PROJ_LIB MapServer Windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows.png" alt="PROJ_LIB MapServer Windows" width="384" height="430" /></p>
+	<p style="text-align: left;">A questo punto riavviate il PC, aprite il <em>browser</em> e lanciate un URL di questo tipo: <strong>http://vostrosito/cgi-bin/mapserv.exe</strong></p>
+	<p style="text-align: left;">Se avrete come risposta la stringa &#8220;<strong>No query information to decode. QUERY_STRING is set, but empty.</strong>&#8220;, vorrà dire che tutto è andato a buon fine.</p>
+	<p style="text-align: left;">Non vi resta che creare delle belle applicazioni di web-mapping.</p>
+	<p style="text-align: left;">
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/">Installare MapServer su Windows con Apache (riveduto e corretto)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/feed/</wfw:commentRss>
+		<slash:comments>21</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows.png" medium="image">
+			<media:title type="html">install fwtools on windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows.png" medium="image">
+			<media:title type="html">variabili ambiente windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2.png" medium="image">
+			<media:title type="html">windows path variabile 2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows.png" medium="image">
+			<media:title type="html">PROJ_LIB MapServer Windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Installare MapServer su Windows con Apache</title>
+		<link>http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/</link>
+		<comments>http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/#comments</comments>
+		<pubDate>Sat, 18 Feb 2006 09:55:12 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[wamp]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/&amp;rft.language=English"></span>
+Aggiornamento: è stato scritto un post che funge da aggiornamento di questo. Lo trovate qui. MapServerè l&#8217;applicazione di webmapping opensource oggi più diffusa e con una lunga storia alle spalle; a mio avviso è anche la migliore. Per portare a buon fine questo tutorial avremo bisogno anche di un&#8217;installazione di Apache funzionante e configurata. Questo [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><span style="color: #ff6600;"><strong>Aggiornamento:</strong> è stato scritto un post che funge da aggiornamento di questo. Lo trovate <a title="Installare MapServer su Windows con Apache (riveduto e corretto)" href="http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/">qui</a>.</span></p>
+	<hr size="1/" />
+	<p><a title="MapServer" href="http://mapserver.gis.umn.edu/">MapServer</a>è l&#8217;applicazione di webmapping opensource oggi più diffusa e con una lunga storia alle spalle; a mio avviso è anche la migliore.</p>
+	<p>Per portare a buon fine questo tutorial avremo bisogno anche di un&#8217;installazione di Apache funzionante e configurata.</p>
+	<p>Questo è il primo piccolo tutorial che sto inserendo nel mio Blog, sperando che sia il primo di molti. E&#8217; dedicato all&#8217;installazione di MapServer in un ambiente Windows; lo so, sembra un controsenso, ma è la prima cosa che ho imparato a fare e da qui voglio iniziare.</p>
+	<p><span id="more-127"></span></p>
+	<h2>Guida passo passo</h2>
+	<ul>
+	<li>scaricate dal sito <a title="MapTools" href="http://www.maptools.org/php_mapscript/index.phtml?page=downloads.html">MapTools</a> il file zip che contiene il binario dell&#8217;ultima versione stabile di MapServer per piattaforma Win32 (oggi è la 4.8.1)</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb3ptf6jznh" alt="" border="0" hspace="5" /></p>
+	<ul>
+	<li>scaricate il web server Apache o dal <a title="sito ufficiale" href="http://httpd.apache.org/">sito ufficiale</a> , o scaricate un pacchetto <a title="WAMP" href="http://en.wikipedia.org/wiki/WAMP">WAMP</a> – con Apache, MySQL e PHP – come <a title="Uniform Server" href="http://www.uniformserver.com/">Uniform Server</a>. Un pacchetto “completo” come questo vi darà la possibilità di testare anche funzioni più avanzate di MapServer (i.e. phpmapscritpt)</li>
+	<li>Assicuratevi che il web server sia attivo (do per scontato che lo sappiate fare)</li>
+	<li>Estraete il file mapserv.exe (è un&#8217;applicazione cgi) contenuto nel file zip scaricato dal sito MapTools (vedi sotto), nella cartella “cgi” del web-server (se avrete installato Uniform Server, la cartella sarà “W:\cgi-bin”). La cartella cgi è “speciale”, in quanto è una cartella in cui i file possono essere “eseguiti”</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb3swd8p22c" alt="" border="0" hspace="5" /></p>
+	<ul>
+	<li>Estraete il contenuto dei file zip evidenziati nella figura sottostante, in una cartella presente nel PATH del vostro sistema operativo. Se avete Windows XP, potrete estrarre il tutto in &#8220;C:\WINDOWS\system32&#8243;. Questi file zip contengono delle DLL necessarie al corretto funzionamento di MapServer</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb3wdnvmhxb" alt="" hspace="5" /></p>
+	<ul>
+	<li>Non vi resta che lanciare il vostro browser e puntare al file &#8220;mapserv.exe&#8221;: tipicamente &#8220;http://localhost/cgi-bin/mapserv.exe&#8221;. Se avrete come risposta &#8220;No query information to decode. QUERY_STRING is set, but empty&#8221;, vorrà dire che l&#8217;installazione è andata a buon fine. Il messaggio che vi ha restituito MapServer, è una segnalazione del fatto che non avete fornito a MapServer alcun file da processare</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb4w7k6bbhs" alt="" hspace="5" />Un&#8217;altra verifica che potrete fare, al fine di accertarvi della correttezza dell&#8217;installazione di MapServer, è quella di aprire il prompt dei comandi sulla cartella cgi e scrivere la seguente stringa: &#8220;mapserv.exe -v&#8221;. Se tutto va bene avrete un risultato come quello sottostante, in cui potrete leggere quale versione di MapServer state utilizzando (in questo caso la 4.8.1) ma anche con quali feature è stato compilato (i.e. supporto in output di jpeg, png, svg, etc etc)<br />
+<img src="http://www.writely.com/File.aspx?id=bccb4jfd6wc5d" alt="" hspace="5" /></p>
+	<h2>Riassumendo</h2>
+	<p>Se siete arrivati sino a qui, probabilmente avete un sistema con mapserver 4.8.1 installato e configurato in ambiente Windows sotto un web server Apache. Se il server web fosse IIS, cambierebbe poco: dovrete estrarre il file mapserv.exe nella cartella cgi che avete configurato in IIS, ed assicurarvi che lo IUSR abbia il permesso di esecuzione del file mapserv.exe.<br />
+Nel prossimo tutorial (lontano nelle mie previsioni), creeremo una semplicissima applicazione MapServer.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/">Installare MapServer su Windows con Apache</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/feed/</wfw:commentRss>
+		<slash:comments>29</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://www.writely.com/File.aspx?id=bccb3ptf6jznh" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb3ptf6jznh" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb3swd8p22c" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb3wdnvmhxb" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb4w7k6bbhs" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb4jfd6wc5d" medium="image" />
+	</item>
+	</channel>
+</rss>

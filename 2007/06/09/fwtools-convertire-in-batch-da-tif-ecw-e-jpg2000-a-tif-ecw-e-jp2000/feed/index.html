@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+		>
+<channel>
+	<title>Commenti a: FWTools: convertire in batch da tif, ecw e jpg2000 a tif, ecw e jpg2000!!</title>
+	<atom:link href="http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Fri, 04 Nov 2016 08:49:24 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+	<item>
+		<title>Di: Giovanni Allegri</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7665</link>
+		<dc:creator>Giovanni Allegri</dc:creator>
+		<pubDate>Wed, 04 Jul 2012 06:03:27 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7665</guid>
+		<description><![CDATA[Se vuoi ottenere il tfw, puoi aggiungere al comando l&#039;opzione per la sua creazione:
+
+&lt;code&gt;gdal_translate &lt;strong&gt;-co &quot;TFW=YES&quot;&lt;/strong&gt; -a_srs epsg:32633 immagine.jpg immagine.tif&lt;/code&gt;
+
+Ciao,
+Giovanni]]></description>
+		<content:encoded><![CDATA[<p>Se vuoi ottenere il tfw, puoi aggiungere al comando l&#8217;opzione per la sua creazione:</p>
+<p><code>gdal_translate <strong>-co "TFW=YES"</strong> -a_srs epsg:32633 immagine.jpg immagine.tif</code></p>
+<p>Ciao,<br />
+Giovanni</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7664</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Tue, 03 Jul 2012 19:56:28 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7664</guid>
+		<description><![CDATA[Ciao Rosy,
+devi in un certo senso replicare il comando &quot;classico&quot; cambiando il file sorgente e assegnando il sistema di coordinate. 
+Se il tuo file si chiamasse ad esempio &quot;immagine.jpg&quot;, e la sua proiezione fosse ad esempio la UTM 33 Nord datum WGS84, dovresti scrivere:
+&lt;code&gt;gdal_translate -a_srs epsg:32633 immagine.jpg immagine.tif&lt;/code&gt;
+
+L&#039;immagine di output sarà una geotiff e con &quot;-a_srs&quot; avrai associato lo &lt;i&gt;spatial refernce system&lt;/i&gt; corretto (&lt;a href=&quot;http://spatialreference.org/ref/epsg/32633/&quot; rel=&quot;nofollow&quot;&gt;epsg:32633&lt;/a&gt;).
+
+Fammi sapere se ho compreso la tua richiesta.
+
+Grazie a te,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Rosy,<br />
+devi in un certo senso replicare il comando &#8220;classico&#8221; cambiando il file sorgente e assegnando il sistema di coordinate.<br />
+Se il tuo file si chiamasse ad esempio &#8220;immagine.jpg&#8221;, e la sua proiezione fosse ad esempio la UTM 33 Nord datum WGS84, dovresti scrivere:<br />
+<code>gdal_translate -a_srs epsg:32633 immagine.jpg immagine.tif</code></p>
+<p>L&#8217;immagine di output sarà una geotiff e con &#8220;-a_srs&#8221; avrai associato lo <i>spatial refernce system</i> corretto (<a href="http://spatialreference.org/ref/epsg/32633/" rel="nofollow">epsg:32633</a>).</p>
+<p>Fammi sapere se ho compreso la tua richiesta.</p>
+<p>Grazie a te,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: rosy</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7662</link>
+		<dc:creator>rosy</dc:creator>
+		<pubDate>Tue, 03 Jul 2012 18:03:30 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7662</guid>
+		<description><![CDATA[salve,
+come creare un geotiff che associ un file jpg e un file jgw? grazie!]]></description>
+		<content:encoded><![CDATA[<p>salve,<br />
+come creare un geotiff che associ un file jpg e un file jgw? grazie!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Luci</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7430</link>
+		<dc:creator>Andrea Luci</dc:creator>
+		<pubDate>Sat, 19 Nov 2011 13:45:19 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7430</guid>
+		<description><![CDATA[Ok ho provato: RISOLTO, era una questione di libreria. In FWTools le librerie gdal erano relative alla relase 1.7. Grazie.]]></description>
+		<content:encoded><![CDATA[<p>Ok ho provato: RISOLTO, era una questione di libreria. In FWTools le librerie gdal erano relative alla relase 1.7. Grazie.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7429</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Sat, 19 Nov 2011 13:20:46 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7429</guid>
+		<description><![CDATA[Ciao Andrea,
+FWTools è &quot;soltanto&quot; un installer per le utility GDAL/OGR e tra l&#039;altro credo che non venga aggiornato da molto tempo.
+
+Io ti ho segnalato un altro installer delle librerie GDAL/OGR, che contiene però una versione molto più aggiornata.
+Ho fatto il test proprio con quest&#039;ultimo, altrimenti non te le avrei segnalato. Se guardi bene infatti in quella pagina c&#039;è anche l&quot;Installer for the GDAL ECW plugin&quot;
+
+Grazie a te,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Andrea,<br />
+FWTools è &#8220;soltanto&#8221; un installer per le utility GDAL/OGR e tra l&#8217;altro credo che non venga aggiornato da molto tempo.</p>
+<p>Io ti ho segnalato un altro installer delle librerie GDAL/OGR, che contiene però una versione molto più aggiornata.<br />
+Ho fatto il test proprio con quest&#8217;ultimo, altrimenti non te le avrei segnalato. Se guardi bene infatti in quella pagina c&#8217;è anche l&#8221;Installer for the GDAL ECW plugin&#8221;</p>
+<p>Grazie a te,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Luci</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7428</link>
+		<dc:creator>Andrea Luci</dc:creator>
+		<pubDate>Sat, 19 Nov 2011 09:55:12 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7428</guid>
+		<description><![CDATA[Niente, stesso errore utilizzando FWTools, le librerie gdal non le ho utilizzate perché devo attivare il formato ECW. Anche secondo me è meglio liberarsi dai formati propietari a favore di quelli open source. Leggerò con attenzione l&#039;articolo che mi hai postato e continuerò per quella strada.
+
+Grazie ancora, e continuate così, ottimo BLOG.]]></description>
+		<content:encoded><![CDATA[<p>Niente, stesso errore utilizzando FWTools, le librerie gdal non le ho utilizzate perché devo attivare il formato ECW. Anche secondo me è meglio liberarsi dai formati propietari a favore di quelli open source. Leggerò con attenzione l&#8217;articolo che mi hai postato e continuerò per quella strada.</p>
+<p>Grazie ancora, e continuate così, ottimo BLOG.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7427</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Fri, 18 Nov 2011 21:21:57 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7427</guid>
+		<description><![CDATA[Ciao Andrea,
+il formato ECW è comodo per mille motivi ma porta con se tutto il peso dei formati proprietari. Ci sono diversi modi in cui te ne puoi liberare. Alessandro Furieri, ha scritto un documento molto bello che ti invito a leggere anche soltanto come cultura personale:
+http://www.gaia-gis.it/raster_benchmark/index.html
+
+Ma andiamo alla tua domanda. Se io lancio lo stesso tuo comando e non cancello nulla ottengo questo:
+https://gist.github.com/1377773
+
+C&#039;è il sistema di riferimento e le coordinate metriche.
+
+Se cancello il file .xml, perdo tutte le info su proiezione e datum, ma mantengo le coordinate metriche:
+https://gist.github.com/1377783
+
+Se vuoi invece inserire datum e proiezione all&#039;interno del file ECW, dovrai usare alcune delle opzioni del formato, che trovi qui:
+http://www.gdal.org/frmt_ecw.html
+
+La conversione che tu vuoi effettuare andrà fatta in particolare così:
+&lt;code&gt;gdal_translate -of &quot;ECW&quot; -co &quot;PROJ=TMBOAGA2&quot; -co &quot;DATUM=MONTROME&quot;  551092.tif output4.ecw &lt;/code&gt;
+
+Io uso le librerie GDAL/OGR per windows, scaricabili da qui:
+http://vbkto.dyndns.org/sdk/PackageList.aspx?file=release-1600-gdal-1-8-mapserver-6-0.zip
+
+Fammi sapere.]]></description>
+		<content:encoded><![CDATA[<p>Ciao Andrea,<br />
+il formato ECW è comodo per mille motivi ma porta con se tutto il peso dei formati proprietari. Ci sono diversi modi in cui te ne puoi liberare. Alessandro Furieri, ha scritto un documento molto bello che ti invito a leggere anche soltanto come cultura personale:<br />
+<a href="http://www.gaia-gis.it/raster_benchmark/index.html" rel="nofollow">http://www.gaia-gis.it/raster_benchmark/index.html</a></p>
+<p>Ma andiamo alla tua domanda. Se io lancio lo stesso tuo comando e non cancello nulla ottengo questo:<br />
+<a href="https://gist.github.com/1377773" rel="nofollow">https://gist.github.com/1377773</a></p>
+<p>C&#8217;è il sistema di riferimento e le coordinate metriche.</p>
+<p>Se cancello il file .xml, perdo tutte le info su proiezione e datum, ma mantengo le coordinate metriche:<br />
+<a href="https://gist.github.com/1377783" rel="nofollow">https://gist.github.com/1377783</a></p>
+<p>Se vuoi invece inserire datum e proiezione all&#8217;interno del file ECW, dovrai usare alcune delle opzioni del formato, che trovi qui:<br />
+<a href="http://www.gdal.org/frmt_ecw.html" rel="nofollow">http://www.gdal.org/frmt_ecw.html</a></p>
+<p>La conversione che tu vuoi effettuare andrà fatta in particolare così:<br />
+<code>gdal_translate -of "ECW" -co "PROJ=TMBOAGA2" -co "DATUM=MONTROME"  551092.tif output4.ecw </code></p>
+<p>Io uso le librerie GDAL/OGR per windows, scaricabili da qui:<br />
+<a href="http://vbkto.dyndns.org/sdk/PackageList.aspx?file=release-1600-gdal-1-8-mapserver-6-0.zip" rel="nofollow">http://vbkto.dyndns.org/sdk/PackageList.aspx?file=release-1600-gdal-1-8-mapserver-6-0.zip</a></p>
+<p>Fammi sapere.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Luci</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7425</link>
+		<dc:creator>Andrea Luci</dc:creator>
+		<pubDate>Fri, 18 Nov 2011 20:35:07 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7425</guid>
+		<description><![CDATA[Il link dove scaricare i file è:
+http://ge.tt/9XGPd8A
+Per effettuare la trasformazione faccio:
+gdal_translate -of ECW FileInput.tif FileOutput.ecw
+Per verificare che tutto sia andato a buon fine:
+gdalinfo FileOutput.ecw
+e mi da l&#039;errore che ti ho descritto prima, c&#039;è il sistema di riferimento ma manca la georeferenziazione, se cancello il file con estensiope aux.xml i vertici sono georeferenziati ma manca il sistema di riferimento.]]></description>
+		<content:encoded><![CDATA[<p>Il link dove scaricare i file è:<br />
+<a href="http://ge.tt/9XGPd8A" rel="nofollow">http://ge.tt/9XGPd8A</a><br />
+Per effettuare la trasformazione faccio:<br />
+gdal_translate -of ECW FileInput.tif FileOutput.ecw<br />
+Per verificare che tutto sia andato a buon fine:<br />
+gdalinfo FileOutput.ecw<br />
+e mi da l&#8217;errore che ti ho descritto prima, c&#8217;è il sistema di riferimento ma manca la georeferenziazione, se cancello il file con estensiope aux.xml i vertici sono georeferenziati ma manca il sistema di riferimento.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7423</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Fri, 18 Nov 2011 16:41:20 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7423</guid>
+		<description><![CDATA[Ciao Andrea,
+non riesco a riprodurre il tuo errore.
+Mi scrivi il comando che lanci, e mi mandi un tuo file di esempio su cui testare la cosa?
+
+Io per inviare file uso spesso questo servizio:
+http://ge.tt/
+
+Grazie a te,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Andrea,<br />
+non riesco a riprodurre il tuo errore.<br />
+Mi scrivi il comando che lanci, e mi mandi un tuo file di esempio su cui testare la cosa?</p>
+<p>Io per inviare file uso spesso questo servizio:<br />
+<a href="http://ge.tt/" rel="nofollow">http://ge.tt/</a></p>
+<p>Grazie a te,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Luci</title>
+		<link>http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/comment-page-1/#comment-7422</link>
+		<dc:creator>Andrea Luci</dc:creator>
+		<pubDate>Fri, 18 Nov 2011 13:52:46 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/09/fwtools-convertire-in-batch-da-tif-ecw-e-jpg2000-a-tif-ecw-e-jp2000/#comment-7422</guid>
+		<description><![CDATA[Ciao Andrea, ho letto la tua guida e mi è stata molto utile per cominciare a conoscere gdal. Adesso però ho un problema, quando converto da tif ad ECW,se do gdalinfo file.ecw non è georeferenziato, ma mi appare
+
+Corner Coordinates:
+Upper Left  (    0.0,    0.0)
+Lower Left  (    0.0, 3494.0)
+Upper Right ( 4421.0,    0.0)
+Lower Right ( 4421.0, 3494.0)
+Center      ( 2210.5, 1747.0)
+ovvero le coordinate in pixel dell&#039;immagine. Come posso risolvere? L&#039;immagine tif originaria è georeferenziata.
+Grazie.]]></description>
+		<content:encoded><![CDATA[<p>Ciao Andrea, ho letto la tua guida e mi è stata molto utile per cominciare a conoscere gdal. Adesso però ho un problema, quando converto da tif ad ECW,se do gdalinfo file.ecw non è georeferenziato, ma mi appare</p>
+<p>Corner Coordinates:<br />
+Upper Left  (    0.0,    0.0)<br />
+Lower Left  (    0.0, 3494.0)<br />
+Upper Right ( 4421.0,    0.0)<br />
+Lower Right ( 4421.0, 3494.0)<br />
+Center      ( 2210.5, 1747.0)<br />
+ovvero le coordinate in pixel dell&#8217;immagine. Come posso risolvere? L&#8217;immagine tif originaria è georeferenziata.<br />
+Grazie.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

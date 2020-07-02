@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; earthquakes</title>
+	<atom:link href="http://blog.spaziogis.it/tag/earthquakes/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Excel può essere molto utile a chi si occupa di GIS</title>
+		<link>http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/</link>
+		<comments>http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/#comments</comments>
+		<pubDate>Wed, 31 May 2006 22:29:13 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[earthquakes]]></category>
+		<category><![CDATA[excel]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[usgs]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Excel+pu%C3%B2+essere+molto+utile+a+chi+si+occupa+di+GIS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-05-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/&amp;rft.language=English"></span>
+Microsoft Excel è un software molto diffuso, ma sfruttato spesso per non più del 20% delle funzionalità che mette a disposizione; questo è vero per gran parte dei programmi che abbiamo installato sul nostro PC. Oggi ho scoperto una funzione molto utile a chiunque abbia la necessità di estrapolare dati da una tabella presente su [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Excel+pu%C3%B2+essere+molto+utile+a+chi+si+occupa+di+GIS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-05-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Microsoft Excel è un software molto diffuso, ma sfruttato spesso per non più del 20% delle funzionalità che mette a disposizione; questo è vero per gran parte dei programmi che abbiamo installato sul nostro PC. Oggi ho scoperto una funzione molto utile a chiunque abbia la necessità di estrapolare dati da una tabella presente su un sito web, ed in particolare da una tabella con dati di natura geografica.</p>
+	<p>Immaginiamo ad esempio di voler estrapolare dalla sezione sito dello <a title="usgs earthquake" target="_blank" href="http://earthquake.usgs.gov/eqcenter/recenteqsww/Quakes/quakes_all.php">USGS</a> dedicata ai terremoti, la lista degli ultimi eventi con <a title="Scala Richter" target="_blank" href="http://it.wikipedia.org/wiki/Scala_Richter">magnitudo</a> maggiore di 2.5 registrati nell&#8217;ultima settimana. Il sito ci presenta una tabella come quella sottostante.</p>
+	<p align="center"><img title="tabella 1" id="image181" alt="tabella 1" src="http://blog.spaziogis.it/wp-content/uploads/2006/05/table.png" /></p>
+	<p align="left">Di norma proviamo a fare un copia e incolla dalla pagina web a excel, ma i risultati non sono sempre soddisfacenti. Due risultati fastidiosi tipici sono una formattazione troppo ricca (che si porta dietro link, colori di sfondo, immagini di sfondo, etc.), o peggio ancora una struttura tabellare completamente modificata come quella sottostante.</p>
+	<p align="center"><img alt="paste" id="image183" title="paste" src="http://blog.spaziogis.it/wp-content/uploads/2006/05/paste1.png" /></p>
+	<p align="left">C&#8217;è un&#8217;alternativa che sconoscevo e che ho scoperto nel manuale di <a target="_blank" href="http://www.manifold.net/">Manifold</a>:la query web. Più facile a farsi che a dirsi:</p>
+	<ul>
+	<li>aprire excel</li>
+	<li>andare nel menu Dati>>Importa Dati Esterni>>Nuova query Web</li>
+	<li>si aprirà una finestra come quella in basso, in cui inserire l&#8217;indirizzo della pagina web da cui estrarre i dati tabellari</li>
+	<li>cliccare su Vai e scorrere la pagina sino a trovare la tabella da importare</li>
+	<li>cliccare sulla freccia che si trova alla sinistra della tabella di cui sopra (il quadrato attorno la freccia cambierà il proprio colore da giallo a verde)</li>
+	<li>ed infine cliccare sul tasto importa</li>
+	</ul>
+	<div align="center"><img title="query_web.png" id="image184" alt="query_web.png" src="http://blog.spaziogis.it/wp-content/uploads/2006/05/query_web.png" /></div>
+	<div align="left">Nella finestra di dialogo che si aprirà, c&#8217;è un tasto proprietà che da la possibilità di impostare numerosi parametri. Tra questi segnalo l&#8217;opportunità di impostare l&#8217;aggiornamento dei dati in background: ad esempio il foglio excel verrà aggiornato in automatico ogni qual volta che sul sito dello USGS verrà archiviato un nuovo evento sismico.</div>
+	<div align="left">Da questa tabella in pochi minuti è facile creare una mappa della distrubuzione degli ultimi terremoti.</p>
+	<div align="center"><img alt="last earthquakes" id="image185" title="last earthquakes" src="http://blog.spaziogis.it/wp-content/uploads/2006/05/earth.png" /></div>
+	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/">Excel può essere molto utile a chi si occupa di GIS</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Excel+pu%C3%B2+essere+molto+utile+a+chi+si+occupa+di+GIS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-05-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/05/31/excel-puo-essere-molto-utile-a-chi-si-occupa-gis/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2006/05/table.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2006/05/table.png" medium="image">
+			<media:title type="html">tabella 1</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2006/05/paste1.png" medium="image">
+			<media:title type="html">paste</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2006/05/query_web.png" medium="image">
+			<media:title type="html">query_web.png</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2006/05/earth.png" medium="image">
+			<media:title type="html">last earthquakes</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

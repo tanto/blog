@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; kriging</title>
+	<atom:link href="http://blog.spaziogis.it/tag/kriging/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Comprendere la geostatistica ed il kriging con un ottimo supporto didattico</title>
+		<link>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/</link>
+		<comments>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/#comments</comments>
+		<pubDate>Wed, 28 May 2008 21:57:59 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[geostatistica]]></category>
+		<category><![CDATA[kriging]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+Il primo impatto con la geostatistica può essere molto duro; specie se da un giorno all&#8217;altro si passa dal fare belle carte (false) tematiche ed allestimenti per la stampa, all&#8217;analisi spaziale. Si parte quasi sempre da una &#8220;strana&#8221; nuvola di punti, che rappresenta la distribuzione di una serie di dati noti, e dalla quale si [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il primo impatto con la geostatistica può essere molto duro; specie se da un giorno all&#8217;altro si passa dal fare belle carte (false) tematiche ed allestimenti per la stampa, all&#8217;analisi spaziale.</p>
+	<p>Si parte quasi sempre da una &#8220;strana&#8221; nuvola di punti, che rappresenta la distribuzione di una serie di dati noti, e dalla quale si dovrà eseguire un&#8217;interpolazione. Per fortuna esiste l&#8217;arma segreta: il kriging.</p>
+	<p>E&#8217; uno dei nomi che ti passa più sotto gli occhi, e solo per questo hai il sospetto che sia qualcosa di importante. Ricordi subito di averlo visto citato in quel particolare modulo di quel software, e magari provi subito ad usarlo. Pochi click e produci una bella carta di dispersione di una certa variabile. Spegni subito il cervello e vai ad impaginare la carta prodotta: un reticolato kilometrico, una legenda, una freccia nord ed una scala metrica. Non ti resta che esportare un bel pdf e consegnarlo a chi di dovere. FINITO!!!</p>
+	<p>Ovviamente non ho finito alcunché. L&#8217;esempio di sopra, macchiettistico ma non lontano da diverse realtà, contiene un brutto esempio procedurale. Non bisognerebbe mai limitarsi a fare qualche click su qualche bottone di un&#8217;interfaccia di un software, senza capire i processi che stanno alle spalle.</p>
+	<p>Il kriging è un famosissimo metodo di interpolazione spaziale, con diverse varianti. &#8220;E&#8217; un metodo di regressione usato nell&#8217;ambito dell&#8217;analisi spaziale (geostatistica) che permette di interpolare una grandezza nello spazio, minimizzando l’errore quadratico medio.&#8221; (Kriging &#8211; Wikipedia, da <a href="http://it.wikipedia.org/wiki/Kriging">http://it.wikipedia.org/wiki/Kriging</a>).</p>
+	<p>Ci sono diverse pubblicazioni e libri di testo che ne parlano diffusamente e che ne illustrano i principi su cui si poggia. Per i neofiti sarà di grande aiuto uno strumento didattico come <a href="http://www.ai-geostats.org/index.php?id=114" title="E{Z}-Kriging - Teaching Kriging" target="_blank">E{Z}-Kriging</a>.</p>
+	<p>Consente a studenti con un <em>background </em>matematico di base di esplorare e comprendere il mondo del kriging, ed in particolare quello dell&#8217;<em>ordinary kriging</em>. Si presenta con un&#8217;interfaccia grafica divisa in tre pannelli (vedi figura sottostante):</p>
+	<ol>
+	<li>quello per configurare la base dati</li>
+	<li>quello per la gestione del semivariogramma</li>
+	<li>e quello per il kriging</li>
+	</ol>
+	<p align="center"> <img src="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" style="border: 0px none " alt="ez-kriging" border="0" height="324" width="484" /></p>
+	<p align="left">La semplicità di utilizzo è molto alta. E&#8217; possibile impostare la posizione del punto di cui si vuole stimare il valore interpolato (in rosso e a sinistra, nella figura in alto) e quella dei punti con valori noti, così come variare i parametri del semivariogramma; per ogni modifica potremo valutarne immediatamente le conseguenze:</p>
+	<ul>
+	<li>
+	<p align="left">quanto pesi nel modello un punto al di fuori del range</p>
+	</li>
+	<li>
+	<p align="left">quanto sia ridotta l&#8217;influenza di punti aggregati</p>
+	</li>
+	<li>
+	<p align="left">quanto il variare dei valori dei punti, alteri i valori previsti e la varianza dell&#8217;errore</p>
+	</li>
+	<li>
+	<p align="left">come il modello di forma del semivariogramma, il nugget, il sill ed il range influenzino i risultati del kriging</p>
+	</li>
+	<li>
+	<p align="left">&#8230;</p>
+	</li>
+	</ul>
+	<p align="left">Non è uno strumento per fare vere simulazioni, a partire da dati propri. E&#8217; utile &#8220;soltanto&#8221; per capire come funziona questo famoso metodo di interpolazione, sia che lo si voglia applicare, sia che lo si voglia spiegare a qualcun altro.</p>
+	<p align="left">Segnalo in chiusura due belle letture utili a chi voglia avvicinarsi alla geostatistica ed al kriging:</p>
+	<ul>
+	<li>
+	<p align="left"><a href="http://eusoils.jrc.it/ESDB_Archive/eusoils_docs/other/EUR22904en.pdf" title="Practical Guide to Geostatistical Mapping of Environmental Variables" target="_blank">Practical Guide to Geostatistical Mapping of Environmental Variables</a></p>
+	</li>
+	<li>
+	<p align="left"><a href="http://www.itc.nl/%7Erossiter/teach/stats/ssi_short.pdf" title="Introduction to applied geostatistics" target="_blank">Introduction to applied geostatistics</a></p>
+	</li>
+	</ul>
+	<p>via <a href="http://www.perrygeo.net/wordpress/?p=122" title="So you want to learn to learn about kriging …" target="_blank">Perrygeo</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/">Comprendere la geostatistica ed il kriging con un ottimo supporto didattico</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" medium="image">
+			<media:title type="html">ez-kriging</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

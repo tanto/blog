@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; projection</title>
+	<atom:link href="http://blog.spaziogis.it/tag/projection/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>ArcGIS Server e Google Maps: come misurare correttamente le distanze</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/</link>
+		<comments>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/#comments</comments>
+		<pubDate>Sun, 25 Apr 2010 22:29:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[projection]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+Tempo fa scrissi un articolo su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps. Ultimamente ho lavorato un po&#8217; con le prime e ne ho avuto complessivamente una buona [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Tempo fa scrissi <a href="http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/">un articolo</a> su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps.<br />
+Ultimamente ho lavorato un po&#8217; con <a href="http://resources.esri.com/arcgisserver/apis/javascript/gmaps/index.cfm?fa=home" target="_blank">le prime</a> e ne ho avuto complessivamente una buona impressione. Tuttavia, durante lo sviluppo, ho riscontrato un problema nella misurazione delle distanze e delle aree che merita di essere messo in evidenza, soprattutto perché gli esempi della documentazione ESRI non lo fanno a dovere ed anzi, secondo me, risultano leggermente fuorvianti.<br />
+Terminata la premessa, prima di andare avanti con l&#8217;articolo, voglio ringraziare <a href="http://www.nicogis.blogspot.com/" target="_blank">Domenico Ciavarella</a>, che mi ha dato un supporto fondamentale per arrivare ad una soluzione che altrimenti starei ancora cercando.</p>
+	<h2>La proiezione di Google Maps</h2>
+	<p><div id="attachment_2018" class="wp-caption alignright" style="width: 273px"><br />
+<img class="size-full wp-image-2018" style="border: 0pt none;" title="mercator" src="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" alt="mercator" width="263" height="244" /><p class="wp-caption-text">Effetto di distorsione delle aree</p></div></p>
+	<p>Google Maps, Bing Maps ed altri provider (come OpenStreetMap, Yahoo e, di recente, <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2009/11/20/ArcGIS-Online-moving-to-Google-_2F00_-Bing-tiling-scheme_3A00_-What-does-this-mean-for-you_3F00_.aspx" target="_blank">la stessa ESRI</a>) utilizzano una proiezione nota come <strong>Spherical Mercator</strong>, derivata dalla proiezione di <a href="http://it.wikipedia.org/wiki/Proiezione_cilindrica_centrografica_modificata_di_Mercatore" target="_blank">Mercatore</a>. Il codice <a href="http://www.epsg.org/" target="_blank">EPSG</a> ufficiale è 3785, anche se prima della sua definizione molti software hanno utilizzato l&#8217;ufficioso 900913. L&#8217;identificativo per i software ESRI, tra cui ovviamente ArcGIS Server, è invece 102113.<br />
+Questa proiezione considera la Terra come una sfera e consente di includerne completamente la superficie all&#8217;interno di un quadrato.<br />
+Quando però si rappresenta una superficie curva su di un piano, come un foglio di carta o il monitor di un computer, si introducono delle deformazioni. In questo caso, man mano che ci si allontana dall&#8217;equatore le aree cartografate subiscono un pesante stiramento sia in senso verticale che orizzontale e diventano, quindi, via via più esagerate verso i poli (la Groenlandia, per esempio, sembra più grande dell&#8217;Africa). Questa proiezione evidentemente non è fatta per minimizzare la deformazione delle aree (la proiezione di Mercatore è <a href="http://it.wikipedia.org/wiki/Proiezione_conforme" target="_blank">conforme</a> infatti), ma risulta vantaggiosa per l&#8217;uso attraverso il web perché consente di applicare un modello efficiente di tassellamento e caching.</p>
+	<h2>Il problema&#8230;</h2>
+	<p>Ammettiamo di voler creare un&#8217;applicazione di webmapping con le sopracitate estensioni delle API Javascript di ArcGIS Server per Google Maps.<br />
+La prima cosa da fare è creare un mapservice in grado di esporre i nostri dati spaziali con la medesima proiezione delle basi cartografiche di Google. Come spiegato nel post dedicato ad ArcGIS Server (linkato all&#8217;inizio di questo articolo) un mapservice &#8220;aggancia&#8221; e pubblica un progetto redatto in ArcMap (il classico .mxd), quindi basta assegnare al dataframe del progetto il sistema di riferimento appropriato (che si trova nella lista dei sistemi proiettati, alla voce WGS 84 Web Mercator, con identificativo 102113), salvare il tutto e pubblicarlo con ArcGIS Server. Niente di difficile insomma.<br />
+Focalizziamoci ora sullo sviluppo del client: tra i tanti strumenti che oggi ci si aspetta di trovare in una applicazione WebGIS ci sono i &#8220;righelli&#8221; che consentono di disegnare spezzate e poligoni e di misurarne poi lunghezza ed area. ESRI lo sa, ed ha giustamente incluso un <a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/gmaps/samples/utilities/util_measureline.html" target="_blank">esempio</a> per mostrare come creare questi tool nella documentazione delle sue API.<br />
+Abbiamo detto però che l&#8217;uso della proiezione Spherical Mercator provoca una deformazione crescente man mano che ci si spinge verso i poli e, tracciando una spezzata per misurare un oggetto al suolo di dimensioni note, come uno stadio di calcio, ci si accorge dell&#8217;inghippo: è più lungo di quanto dovrebbe essere (circa 146 metri invece di 105-110).<br />
+L&#8217;esempio fornito da ESRI non considera la deformazione e può indurre gli sviluppatori all&#8217;errore. E&#8217; vero che una persona con le adeguate conoscenze di geomatica può arrivare ad intuire il rischio insito nell&#8217;uso della proiezione di Google, ma è anche vero che il webmapping è terra di confine tra &#8220;gissologi&#8221; e sviluppatori informatici &#8220;puri&#8221;, senza particolari cognizioni tipiche del mondo gis. Non è per nulla detto, quindi, che chi sviluppa abbia i mezzi per immaginare il problema prima di averci sbattuto il muso e personalmente credo che aver pubblicato un esempio del genere nella documentazione ufficiale, senza neanche accennare alla questione della deformazione, sia stata una leggerezza.</p>
+	<h2>&#8230;e la soluzione</h2>
+	<p>Non molto tempo fa sul blog di ArcGIS Server è comparso un interessante <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2010/03/05/Measuring-distances-and-areas-when-your-map-uses-the-Mercator-projection.aspx">post</a> che mette in evidenza il problema della misurazione delle distanze e spiega come comportarsi per risolverlo.<br />
+Il servizio che in ArcGIS Server è incaricato di calcolare lunghezze ed aree, il <a href="http://webhelp.esri.com/arcgisserver/9.3/Java/index.htm#geometry_service.htm">Geometry Service</a>, è in grado di svolgere diverse altre operazioni, tra cui la <strong>proiezione al volo</strong> delle geometrie.<br />
+Il &#8220;trucco&#8221; consiste nel riproiettare la geometria tracciata dall&#8217;utente nel sistema di riferimento più adatto alla zona mappata prima di effettuarne la misurazione e stampare a schermo il risultato.<br />
+Purtroppo lo snippet di codice fornito da ESRI è pronto all&#8217;uso solo per le API Javascript, mentre per le estensioni di Google Maps bisogna fare da soli e il discorso è un po&#8217; meno semplice.<br />
+Al posto di questa funzione:</p>
+	<pre class="brush: javascript; ">
+var sr = new esri.SpatialReference({wkid:32610});
+geometryService.project([graphic], sr, function(projectedGraphic) {
+geometryService.areasAndLengths(projectedGraphic, function(result) {
+var perimeter = result.lengths[0];
+var area = result.areas[0];
+});
+});
+</pre>
+	<p>abbiamo bisogno di questa:</p>
+	<pre class="brush: javascript; ">
+var geometryService = new esri.arcgis.gmaps.Geometry(&quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer&quot;);
+function calculateLengths() {
+//Parametri per la riproiezione
+var params = new esri.arcgis.gmaps.ProjectParameters();
+params.geometries = [polyline];
+params.inSpatialReference  = 4326;
+params.outSpatialReference = 3004; //Gauss-Boaga fuso Est
+//Riproiezione e funzione di callback
+geometryService.project(params, getLengths);
+}
+function getLengths(projectResults){
+var url = &quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/lengths&quot;;
+var parameters = {
+polylines: projectResults.geometries,
+sr: 3004
+};
+esri.arcgis.gmaps.JSONRequest(url, test, parameters);
+}
+function test(result) {
+alert(result.lengths[0]+&quot; m&quot;);
+}
+</pre>
+	<p>Ho realizzato un veloce <a href="http://dl.dropbox.com/u/1070973/Riproiezione_e_misura/index.html" target="blank">esempio</a> che mostra i risultati ottenuti dal codice proposto da ESRI nella propria documentazione a confronto con quelli ottenuti dalla riproiezione con il Geometry Service e dalle semplici API di Google Maps, che hanno dei metodi propri per la misura di linee e poligoni.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/">ArcGIS Server e Google Maps: come misurare correttamente le distanze</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" medium="image">
+			<media:title type="html">mercator</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Un filmato d&#8217;epoca sui sistemi di proiezione</title>
+		<link>http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/</link>
+		<comments>http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/#comments</comments>
+		<pubDate>Tue, 18 Jul 2006 21:37:59 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[maps]]></category>
+		<category><![CDATA[projection]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+filmato+d%26%238217%3Bepoca+sui+sistemi+di+proiezione&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-07-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/&amp;rft.language=English"></span>
+Ho trovato un filmato del 1947, che illustra in modo molto didattico come sia difficile rappresentare su un piano il globo terrestre. Un pompelmo fa le veci della terra; da vedere!! [ tenormin 50mg pills $174.00 &#124; propranolol 20mg pills $142.00 &#124; acyclovir 800mg pills $90.00 &#124; recreational viagra use &#124; how to buy viagra [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+filmato+d%26%238217%3Bepoca+sui+sistemi+di+proiezione&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-07-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ho trovato un filmato del 1947, che illustra in modo molto didattico come sia difficile rappresentare su un piano il globo terrestre. Un pompelmo fa le veci della terra; da <a title="map projection" href="http://www.nfb.ca/animation/objanim/en/films/film.php?sort=title&#038;id=14229">vedere</a>!!</p>
+	<p align="center"><img alt="map projection video" id="image201" title="map projection video" src="http://blog.spaziogis.it/wp-content/uploads/2006/07/map.png" /></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/">Un filmato d&#8217;epoca sui sistemi di proiezione</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+filmato+d%26%238217%3Bepoca+sui+sistemi+di+proiezione&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-07-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/07/18/un-filmato-depoca-sui-sistemi-di-proiezione/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2006/07/map.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2006/07/map.png" medium="image">
+			<media:title type="html">map projection video</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

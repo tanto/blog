@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+        <meta name="author" content="Alessio Di Lorenzo">
+        <meta name="description" content="Un esempio di webmapping basato su ArcGIS Server ed sul toolkit javascript Dojo" /> 
+        <meta name="keywords" content="ESRI, ArcGIS Server, Dojo, geowebservices , Javascript, Web 2.0, webmapping" /> 
+
+    <title>ArcGIS Server 9.3 Javascript</title>
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/1.4/js/dojo/resources/dojo.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/1.4/js/dojo/dijit/themes/tundra/tundra.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/1.4/js/dojo/dojox/grid/resources/Grid.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/1.4/js/dojo/dojox/grid/resources/tundraGrid.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+
+	<script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=1.4"></script>
+	<script type="text/javascript" src= "funzioni/toc.js"></script>
+
+
+    <script type="text/javascript" language="Javascript">
+		<!--
+		dojo.require("dojo.parser");
+		dojo.require("dijit.TitlePane");
+        dojo.require("dijit.layout.ContentPane");
+        dojo.require("dijit.layout.BorderContainer");
+		dojo.require("dijit.layout.AccordionContainer");
+		dojo.require("dijit.layout.AccordionPane");
+		dojo.require("dojox.grid.DataGrid");
+		dojo.require("dojo.data.ItemFileReadStore");
+		dojo.require("dijit.form.ValidationTextBox");
+		dojo.require("dijit.form.TextBox");
+		dojo.require("dijit.form.ComboBox");
+		dojo.require("dijit.form.Button");
+		dojo.require("dijit.ProgressBar");
+		dojo.require("dijit.Toolbar");
+		dojo.require("esri.toolbars.navigation");
+		dojo.require("dijit.Dialog");
+		dojo.require("esri.map");
+		dojo.require("esri.tasks.query");
+		dojo.require("esri.tasks.identify");
+		dojo.require("esri.tasks.geometry");
+    
+		djConfig = {
+			parseOnLoad:true
+		}
+		
+		var hideLoader = function(){
+			dojo.fadeOut({
+				node:"preloader",
+				duration:700,
+				onEnd: function(){
+					dojo.style("preloader", "display", "none");
+					
+				}
+			}).play();
+		}
+
+		dojo.addOnLoad(function(){
+				dojo.parser.parse();
+				hideLoader();
+			
+		});
+		-->
+    </script>
+
+	<style> 
+    html, body, #main { 
+		height: 100%; 
+		width: 100%; 
+		margin: 0; 
+		padding: 0; 
+	}
+
+	#preloader {
+		width:100%; height:100%; margin:0; padding:0;
+		background:#fff 
+		url('http://o.aolcdn.com/dojo/1.2/dojox/image/resources/images/loading.gif')
+		no-repeat center center;
+		position:absolute;
+		z-index:999;
+	}
+	</style>
+
+    <script type="text/javascript" language="Javascript">
+	<!-- 
+    /*
+	 * VARIABILI GLOBALI
+	 * *****************
+	*/
+	var map, startExtent, navToolbar,
+		infoTemplate, queryTask, query, 
+		state_name, grid, store;
+	
+    /*
+     * CREAZIONE DELLA MAPPA
+	 * *********************
+	*/
+    function init(){
+	
+		dojo.connect(grid, "onRowClick", onRowClickHandler);
+		dojo.connect(grid, "onRowMouseOver", onRowHoverHandler);
+		dojo.connect(grid, "onRowMouseOut", onRowHoverHandlerOut);
+		
+		dojo.connect(navToolbar, "onExtentHistoryChange", extentHistoryChangeHandler);
+			
+		startExtent = new esri.geometry.Extent({ "xmin":-180, "ymin":3, "xmax":-50, "ymax":80  });
+		map = new esri.Map("map", { extent: startExtent });
+		
+		//Dopo il caricamento della mappa resta in attessa degli eventi legati al movimento del mouse
+		dojo.connect(map, "onLoad", function() {
+          dojo.connect(map, "onMouseMove", showCoordinates);
+          dojo.connect(map, "onMouseDrag", showCoordinates);
+        });
+		
+		var Street = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer", {id:"Street map", visible:true});
+		map.addLayer(Street);
+		addToTOC(Street,false);
+		
+		var Shaded = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_ShadedRelief_World_2D/MapServer", {id:"Shaded relief", visible:false});
+		map.addLayer(Shaded);
+		addToTOC(Shaded,false);
+		
+		var Imagery = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_Imagery_World_2D/MapServer", {id:"Satellite",visible:false});
+		map.addLayer(Imagery);
+		addToTOC(Imagery,false);
+				
+		//Aggiungo una Toolbar di navigazione
+		navToolbar = new esri.toolbars.Navigation(map);
+		
+    }
+	
+	/*
+     * STORICO ZOOM/PAN
+	 * ****************
+	*/
+	function extentHistoryChangeHandler() {
+        dijit.byId("zoomprev").disabled = navToolbar.isFirstExtent();
+        dijit.byId("zoomnext").disabled = navToolbar.isLastExtent();
+		
+	}
+	
+	/*
+     * MOSTRA LE COORDINATE CORRISPONDENTI ALLA POSIZIONE DEL MOUSE
+	 * ************************************************************
+	*/
+	function showCoordinates(evt) {
+        var mp = evt.mapPoint;
+        dojo.byId("info").innerHTML = "<b>Lon:&nbsp;</b>" + mp.x.toFixed(5) + ", <b>Lat:&nbsp;</b>" + mp.y.toFixed(5);
+    }
+	  
+	
+	/*
+     * DEFINIZIONI PER LA SIMBOLOGIA
+	 * *****************************
+	*/
+	var symbol 			= 	new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, 
+							new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, 
+							new dojo.Color([100,100,100]), 2), new dojo.Color([0,0,255,0.20]));
+	
+	var highlightSymbol = 	new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, 
+							new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, 
+							new dojo.Color([255,102,0]), 2), new dojo.Color([255,0,0,0.20]));  
+	
+	/*
+     * QUERY
+	 * *****
+	*/
+    function executeQuery() {
+	
+		map.graphics.clear();
+		
+		//recupero i valori dalla form
+		state_name = dojo.byId('stateName').value;
+		sub_region = dojo.byId('subRegion').value;
+
+        //creo il nuovo task query
+        queryTask = new esri.tasks.QueryTask("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/5");
+
+        //definisco dei criteri di ricerca e scelgo quali campi estrarre
+        query = new esri.tasks.Query();
+        query.returnGeometry = true;
+		query.where = "   STATE_NAME like '%"+ state_name +"%' AND SUB_REGION = '" + sub_region + "'   ";
+        query.outFields = ["ObjectID","SQMI","STATE_NAME","STATE_FIPS","POP00_SQMI","POP07_SQMI","WHITE","BLACK","HISPANIC","ASIAN"];
+		
+		var infoTemplate = new esri.InfoTemplate();
+        infoTemplate.setTitle("${STATE_NAME}");
+        infoTemplate.setContent( "<b>White: </b>${WHITE}<br/>"
+								+"<b>Black: </b>${BLACK}<br/>"
+								+"<b>Hispanic: </b>${HISPANIC}<br/>"
+								+"<b>Asian: </b>${ASIAN}");
+
+		
+        //eseguo la query
+		queryTask.execute(query,showResults);
+				
+		// MOSTRA IL RISULTATO SULLA MAPPA EVIDENZIANDO I POLIGONI
+		/* Queste espressioni si occupano anche di verificare se la ricerca ritorna 0 record.
+		 * In tal caso viene mostrato una finestra dialog di notifica
+		 */
+		
+		queryTask.execute(query, function(fset) {
+			if (fset.features.length !== 0) {
+				map.infoWindow.hide();
+				map.graphics.clear();
+				
+				var resultFeatures = fset.features;
+				
+				for (var i=0, il=resultFeatures.length; i<il; i++) {
+				var graphic = resultFeatures[i];
+				graphic.setSymbol(symbol);
+				map.graphics.add(graphic);
+				graphic.setInfoTemplate(infoTemplate);
+				}
+				
+				var resultExtent = graphic.geometry.getExtent();
+				var centerPt = resultExtent.getCenter();
+				map.centerAt(centerPt);
+				
+			} else {
+				dijit.byId('dialog1').show(); 
+				map.graphics.clear();
+			}
+		});
+		
+	}
+	
+	
+	/*
+	 * CREO E POPOLO UNA GRID DI DOJO
+	 * ******************************
+	 */
+	
+    function showResults(results) {
+		  
+			//1 - Creo l'array di elementi per il data store
+			var items = []; 										//creo l'array di items per il datastore
+			for (var i=0, il=results.features.length; i<il; i++) {
+			  items.push(results.features[i].attributes);  			//inserisco gli attributi nell'array items creato in precedenza
+			  dojo.byId('grid').style.visibility="visible";			//Rende visibile la grid inizialmente nascosta
+			} 
+		   
+		    //2 - Creo l'oggetto data da usare nello store
+			var data = {
+			  identifier: "ObjectID",  								//Questo campo deve avere valori univoci
+			  items: items											//Inserisco l'array items come valore per il datastore
+			};
+
+			//3 - Creo il data store e lo collego alla grid.
+			store = new dojo.data.ItemFileReadStore({ data:data });
+			grid.setStore(store);
+			grid.setQuery({ ObjectID: '*' });
+      }
+	  
+	/*
+	 * ZOOM/PAN SUL POLIGONO CORRISPONDENTE ALLA RIGA CLICCATA NELLA GRID
+	 * ******************************************************************
+	 */
+    function onRowClickHandler(evt){
+	  
+        var clickedRowId = grid.getItem(evt.rowIndex).ObjectID;
+        var selectedRow;
+        for (var i=0, il=map.graphics.graphics.length; i<il; i++) {
+          var currentGraphic = map.graphics.graphics[i];
+          if ((currentGraphic.attributes) && currentGraphic.attributes.ObjectID == clickedRowId){
+          selectedRow = currentGraphic;
+          break;
+          }
+        }
+        var RowExtent = selectedRow.geometry.getExtent();
+        map.setExtent(RowExtent);
+      }
+	  
+
+	/*
+	 * EVIDENZIA UN POLIGONO AL PASSAGGIO DEL MOUSE SULLA RIGA CORRISPONDENTE
+	 * **********************************************************************
+	 */							
+	function onRowHoverHandler(e){
+        var clickedRowId = grid.getItem(e.rowIndex).ObjectID;
+        var selectedRow;
+        for (var i=0, il=map.graphics.graphics.length; i<il; i++) {
+          var currentGraphic = map.graphics.graphics[i];
+          if ((currentGraphic.attributes) && currentGraphic.attributes.ObjectID == clickedRowId){
+            currentGraphic.setSymbol(highlightSymbol);
+                return
+          }
+        }
+      }
+	  
+	/*
+	 * RIMUOVE L'EVIDENZIATORE PRECEDENTE
+	 * **********************************
+	 */
+	function onRowHoverHandlerOut(e){
+        var clickedRowId = grid.getItem(e.rowIndex).ObjectID;
+        var selectedRow;
+        for (var i=0, il=map.graphics.graphics.length; i<il; i++) {
+          var currentGraphic = map.graphics.graphics[i];
+          if ((currentGraphic.attributes) && currentGraphic.attributes.ObjectID == clickedRowId){
+            currentGraphic.setSymbol(symbol);
+                return
+          }
+        }
+      }
+	
+	
+	/*
+	 * PULIZIA RISPOSTA QUERY
+	 * **********************
+	 */
+    function executeClear() {
+		map.graphics.clear();
+		dojo.byId('grid').style.visibility="hidden";
+	}
+	
+    dojo.addOnLoad(init);
+	-->
+    </script>
+  </head>
+
+  <body class="tundra" style="font-family:tahoma,arial,helvetica;font-size:12px;">
+	<div id="preloader"></div>
+
+	<div id="mainWindow" dojotype="dijit.layout.BorderContainer" design="headline" gutters="true" style="width:100%; height:100%;">
+		<div id="header" dojoType="dijit.layout.ContentPane" region="top" style="height:60px;">
+			<img src="../../wp-content/themes/blacknwhite/blacknwhite/images/TANTO_logo.png"/>
+		</div>
+		
+		<div id="map" dojoType="dijit.layout.ContentPane" region="center" >
+		</div>
+		<div id="left" dojotype="dijit.layout.BorderContainer" region="left" style="width:500px;"> 
+		<div id="toolbar" dojotype="dijit.Toolbar" region="top" style="height:24px;">
+			<div dojoType="dijit.form.Button" id="zoomfullext" iconClass="zoomfullextIcon" onClick="navToolbar.zoomToFullExtent();"></div>
+			<div dojoType="dijit.form.Button" id="pan" iconClass="panIcon" onClick="navToolbar.activate(esri.toolbars.Navigation.PAN);"></div>
+			<div dojoType="dijit.form.Button" id="zoomin" iconClass="zoominIcon" onClick="navToolbar.activate(esri.toolbars.Navigation.ZOOM_IN);"></div>
+			<div dojoType="dijit.form.Button" id="zoomout" iconClass="zoomoutIcon" onClick="navToolbar.activate(esri.toolbars.Navigation.ZOOM_OUT);"></div>
+			<div dojoType="dijit.form.Button" id="zoomprev" iconClass="zoomprevIcon" onClick="navToolbar.zoomToPrevExtent();"></div>
+			<div dojoType="dijit.form.Button" id="zoomnext" iconClass="zoomnextIcon" onClick="navToolbar.zoomToNextExtent();"></div>
+			<div dojoType="dijit.form.Button" id="deactivate" iconClass="deactivateIcon" onClick="navToolbar.deactivate()"></div>
+		</div>
+		<div id="accCont" dojotype="dijit.layout.AccordionContainer" region="center" gutters="true">
+			<div id="qBuilderAcc" dojoType="dijit.layout.AccordionPane" title="Query builder">
+				<div id="qBuilder" dojotype="dijit.layout.BorderContainer" gutters="true" style="border:none;">
+						<div id="formFilters" dojoType="dijit.layout.ContentPane" region="top" style="height:130px;">
+						<table>
+						<tr>
+							<td>US Subregion: </td>
+							<td>
+							<select id="subRegion" dojoType="dijit.form.ComboBox">
+							  <option>East North Central</option>
+							  <option>East South Central</option>
+							  <option>Middle Atlantic</option>
+							  <option>Mountain</option>
+							  <option>New England</option>
+							  <option>Pacific</option>
+							  <option>South Atlantic</option>
+							  <option>West North Central</option>
+							  <option>West South Central</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td>US State name:</td>
+							<td><input id="stateName" dojoType="dijit.form.ValidationTextBox" promptMessage="Inserisci il nome di uno Stato.<br/>Lasciando il campo vuoto ignorerai questo criterio di ricerca"/></td>
+						</tr>
+						<tr>
+							<td><button dojoType="dijit.form.Button" onclick="executeQuery();">Interroga</button></td>
+							<td><button dojoType="dijit.form.Button" onclick="executeClear();">Pulisci</button></td>
+						</tr>
+						</table>
+						</div>
+						<div id="qResponse" dojoType="dijit.layout.ContentPane" region="center">
+						<table dojoType="dojox.grid.DataGrid" jsid="grid" id="grid" columnReordering="true" style="width:100%;font-family:tahoma,sans,helvetica;font-size:12px;visibility:hidden">
+						  <thead>
+							<tr>
+							  <th width="35px" field="ObjectID">Id</th>
+							  <th width="35px" field="STATE_FIPS">Fips</th>
+							  <th width="75px" field="SQMI">Square Mile</th>
+							  <th width="75px" field="STATE_NAME">State name</th>
+							  <th width="102px" field="POP00_SQMI">SM Population 2000</th>
+							  <th width="102px" field="POP07_SQMI">SM Population 2007</th>
+							</tr>
+						  </thead>
+						</table>
+						</div>
+					</div>
+			</div>
+				
+			<div id="tree" dojoType="dijit.layout.AccordionPane" title="Layer tree">
+						Elenco layer:
+						<div id="toc" align="left">
+						</div>
+						<br>
+    
+						Attiva layer:
+						
+						<select name="transparencyList" id="transparencyList" onChange="updateTransparencyLayer(this.value)">
+							<option value="" selected></option>
+						</select>
+						&nbsp;<br>
+						<br>
+						<button dojoType="dijit.form.Button" onclick='zoomToLayer(dojo.byId("transparencyList").value);'>Zoom al layer</button>
+						<br>
+						<br>
+						Modifica trasparenza del layer attivo:<br>
+					  
+						<div id="slider" dojoType="dijit.form.HorizontalSlider" name="slider"
+								onChange="changeTransparency(arguments[0]/100);"
+								value="100"
+								maximum="100"
+								minimum="0"
+								pageIncrement="100"
+								showButtons="true"
+								intermediateChanges="true"
+								slideDuration="500"
+								style="width:200px; height: 20px;"
+								>		
+						</div>
+			</div>
+				
+			<div id="desc" dojoType="dijit.layout.AccordionPane" title="Questa mappa">
+				L'esempio utilizza dei mapservice disponibili su uno dei <a href="http://sampleserver1.arcgisonline.com/arcgis/rest/services" target="_blank">sample server</a> di ESRI e mostra alcune delle capacit&agrave; di mapping e creazione di layout delle API Javascript.<br/>
+				<ul>
+					<li>
+						<b>Lancio di un <a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/arcgis/help/jshelp_start.htm" target="_blank">queryTask</a> su un mapservice di arcgisonline:</b><br/>
+						compaiono in mappa i poligoni corrispondenti ai criteri di ricerca selezionati aggiungendo un overlay grafico (<a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/arcgis/help/jshelp_start.htm" target="_blank">GraphicsLayer</a>).<br/>
+						Gli attributi alfanumerici correlati ai poligoni estratti vengono usati per popolare una griglia (<a href="http://docs.dojocampus.org/dojox/grid" target="_blank">DojoX Grid</a>).
+					</li>
+					<br/>
+					<li>
+						<b>Layer tree:</b><br/>
+						accende e spegne i layer e ne regola la trasparenza grazie a uno slider(codice integrato da un <a href="http://resources.esri.com/arcgisserver/apis/javascript/arcgis/index.cfm?fa=codeGalleryDetails&scriptID=16193">esempio</a> della Code Gallery di ArcGIS Server).
+					</li>
+					<br/>
+					<li>
+						<b>Highlight e "Zoom To":</b><br/>
+						al passaggio del mouse sulle diverse righe della griglia, vengono evidenziati i rispettivi poligoni.<br/>
+						Al click del mouse su una riga, la mappa effettua lo zoom sul poligono corrispondente.
+					</li>
+					<br/>
+					<li>
+						<b>InfoWindow:</b><br/>
+						ogni poligono &egrave; interrogabile tramite il semplice click.<br/>
+						Una InfoWindow compare e mostra le informazioni associate.
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<div id="info" dojoType="dijit.layout.ContentPane" region="bottom" style="height:15px;">
+		</div>
+		</div>
+		<div id="footer" dojoType="dijit.layout.ContentPane" region="bottom" style="height:15px; text-align:right;">
+			Esempio realizzato da <a href="http://www.alessiodilorenzo.it/" target="_blank">Alessio Di Lorenzo</a> per <a href="../../index.html" target="_blank">TANTO</a>
+		</div>
+		<!-- Questo div contiene il dialog che si apre nel caso la ricerca non ritorni risultati -->
+			<div id="dialog1" dojoType="dijit.Dialog" title="Ricerca infruttuosa!!!">
+					<div>Non sono stati trovati risultati per la ricerca effettuata.<br/>
+					Si consiglia di modificare le proprie selezioni e ritentare!</div>
+			</div>
+		<!-- -->
+	</div> <!-- fine mainWindow -->
+  </body>
+  
+</html>

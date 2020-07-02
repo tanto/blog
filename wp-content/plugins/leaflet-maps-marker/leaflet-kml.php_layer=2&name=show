@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2">
+<Document>
+<description><![CDATA[powered by <a href="http://www.wordpress.org">WordPress</a> &amp; <a href="http://www.mapsmarker.com">MapsMarker.com</a>]]></description>
+<open>1</open>
+<Style id="default"><IconStyle><Icon><href>http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-dist/images/marker.png</href></Icon></IconStyle></Style>
+<Folder>
+<name>Bolzano chiama Bari</name>
+<Placemark id="marker-6">
+<styleUrl>#default</styleUrl>
+<name>Bari</name>
+<TimeStamp><when>2012-06-20T04:06:07+01:00</when></TimeStamp>
+<atom:author><atom:name>admin</atom:name></atom:author>
+<atom:link rel="related" href="http://blog.spaziogis.it" />
+<description><![CDATA[Bari è la città di <strong>Vincenzo Barbieri</strong> e della sua <a href="http://www.planetek.it/" target="_blank"><strong>PLANETEK</strong></a>]]></description>
+<address><![CDATA[]]></address>
+<Point>
+<coordinates>16.870537,41.120422</coordinates>
+</Point>
+</Placemark>
+<Placemark id="marker-7">
+<styleUrl>#default</styleUrl>
+<name>Bolzano</name>
+<TimeStamp><when>2012-06-20T04:06:47+01:00</when></TimeStamp>
+<atom:author><atom:name>admin</atom:name></atom:author>
+<atom:link rel="related" href="http://blog.spaziogis.it" />
+<description><![CDATA[Bolzano è la città di <strong>Andrea Antonello</strong> e della sua <a href="http://www.hydrologis.eu/" target="_blank"><strong>HydroloGIS</strong></a>]]></description>
+<address><![CDATA[]]></address>
+<Point>
+<coordinates>11.358005,46.496715</coordinates>
+</Point>
+</Placemark>
+</Folder>
+<ScreenOverlay>
+<name><![CDATA[powered by WordPress & MapsMarker.com]]></name>
+<Icon>
+<href>http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/kml-overlay-powered-by.png</href>
+</Icon>
+<overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+<screenXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+<rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+<size x="0" y="0" xunits="fraction" yunits="fraction"/>
+</ScreenOverlay>
+</Document>
+</kml>

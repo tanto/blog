@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; mysql</title>
+	<atom:link href="http://blog.spaziogis.it/tag/mysql/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</title>
+		<link>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/</link>
+		<comments>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/#comments</comments>
+		<pubDate>Thu, 03 Oct 2013 05:53:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[open source]]></category>
+		<category><![CDATA[spatialite]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[sqlite]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5837</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+MySQL è uno dei più diffusi database server, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di default). Mi stupisce però che le funzioni per testare le relazioni spaziali tra oggetti siano limitate. Mi spiego con un esempio classico: selezionare tutti i punti di un layer che cadono all&#8217;interno del perimetro di un poligono [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>MySQL</strong> è uno dei più diffusi <em>database server</em>, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di <em>default</em>). Mi stupisce però che le funzioni per testare le<strong> relazioni spaziali</strong> tra oggetti siano limitate.</p>
+	<p>Mi spiego con un esempio classico: selezionare tutti i punti di un <em>layer</em> che cadono all&#8217;interno del perimetro di un poligono presente in un altro <em>layer</em>. E&#8217; un&#8217;operazione tipica dei GIS, e presente in tutti database con estensione spaziale.</p>
+	<p>In MySQL basta lanciare una <em>query </em>spaziale<em> </em>di questo tipo:</p>
+	<pre class="brush: css; ">
+SELECT * FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1
+</pre>
+	<p>Purtroppo però l&#8217;<em>output</em> non è costituito da tutti i punti contenuti nel perimetro di mio interesse, ma da tutti quelli contenuti nel rettangolo che lo include. Quest&#8217;ultimo è il classico <strong><em>Bounding</em> <em>Box</em></strong>, o come si definisce in ambiente MySQL<em> Minimal Bounding Rectangles </em>(MBR)<span style="color: #000000;">.</span> Nel manuale online è riportato:</p>
+	<blockquote><p>The OpenGIS specification defines the following functions. They test the relationship between two geometry values g1 and g2.</p></blockquote>
+	<p>Questo dovrebbe garantire che l&#8217;output della funzione <em>Contains() </em>sia relativo al perimetro dell&#8217;oggetto &#8220;target&#8221;, ma poco più avanti si legge:</p>
+	<blockquote><p>Currently, <strong>MySQL does not implement these functions according to the specification</strong>. Those that are implemented return the same result as the corresponding MBR-based functions.</p></blockquote>
+	<p>Immagino che i <em>GeoSpatial Developers </em>abbiano diverse frecce al loro arco per superare questo problema, così come ne esisteranno diverse lato utente. Una potrebbe essere quella di non usare questo <em>database server</em> e fare tutto con <em>PostGIS</em>, <em>Oracle Spatial, Spatialite</em>, ecc., ma è troppo facile e non sempre si può scegliere.</p>
+	<p>Io ho pensato a <strong>GDAL/OGR</strong> ed alle sue <a title="OGR Utility Programs" href="http://www.gdal.org/ogr_utilities.html" target="_blank">utility</a> per oggetti vettoriali, ed alla possibilità (che esiste dalla versione 1.10 della libreria) di usare il <a title="SQLite SQL dialect" href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" target="_blank">dialetto </a><strong><a title="SQLite SQL dialect" href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" target="_blank">SQLite/Spatialite</a></strong>. Questo dialetto estende di molto quello che queste utility fanno (egregiamente) di default, ovvero eseguire delle <em>query</em> sql all&#8217;interno di un comando; ad esempio:</p>
+	<pre>ogrinfo province.shp province -sql &quot;SELECT nome FROM province WHERE ID_PRO = 2&quot;</pre>
+	<p>Con il dialetto SQLite/Spatialite ho a disposizione anche le <a title="SQL functions that test spatial relationships" href="http://www.gaia-gis.it/gaia-sins/spatialite-sql-4.0.0.html#p12" target="_blank">funzioni</a> per verificare relazioni spaziali tra oggetti, anche per quelle basi dati che non prevedono intrinsecamente la possibilità di farlo, proprio come MySQL <em>spatial</em>.</p>
+	<p>Andando nel concreto dovrei scrivere una cosa di questo tipo:</p>
+	<pre>ogrinfo MYSQL:&quot;mydb,user=myuse,password=mypwd,port=3306&quot; -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>La sorpresa è che, nonostante si dichiari nella stringa il &#8220;dialetto&#8221; <em>sqlite</em>, si ottiene sempre come output quello relativo ai punti contenuti nel <em>bounding box</em> del perimetro di interesse. E&#8217; un baco? Nella <a href="http://www.gdal.org/ogr/ogr_sql.html" target="_blank">documentazione</a> di OGR si legge:</p>
+	<blockquote><p><strong>All OGR drivers for database systems</strong>: MySQL, PostgreSQL and PostGIS (PG), Oracle (OCI), SQLite, ODBC, ESRI Personal Geodatabase (PGeo) and MS SQL Spatial (MSSQLSpatial), <strong>override the OGRDataSource::ExecuteSQL() function</strong> with dedicated implementation and, by default, pass the SQL statements directly to the underlying RDBMS. In these cases the SQL syntax varies in some particulars from OGR SQL. Also, anything possible in SQL can then be accomplished for these particular databases. Only the result of SQL WHERE statements will be returned as layers.</p></blockquote>
+	<p>Ma si legge anche:</p>
+	<blockquote><p><strong>The SQLite dialect may be used with any OGR datasource</strong>, like the OGR SQL dialect. It is available through the OGRDataSource::ExecuteSQL() method by specifying the pszDialect to &#8220;SQLITE&#8221;. For the ogrinfo or ogr2ogr utility, you must specify the &#8220;-dialect SQLITE&#8221; option.</p></blockquote>
+	<p>La soluzione l&#8217;ho trovata in un test stupido che ho voluto fare: accedere alla fonte MySQL non direttamente, ma tramite il <a href="http://www.gdal.org/ogr/drv_vrt.html" target="_blank"><strong>Virtual Format</strong></a> di OGR, che in qualche modo astrae l&#8217;accesso al formato di input.</p>
+	<p>A partire quindi da una fonte MySQL costruita secondo le specifiche del Virtual Format e salvata come &#8220;test.vrt&#8221;:</p>
+	<pre class="brush: xml; ">
+&lt;ogrvrtdatasource&gt;
+&lt;ogrvrtlayer name=&quot;poligoni&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;poligoni&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPolygon&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;ogrvrtlayer name=&quot;punti&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;punti&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPoint&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;/ogrvrtdatasource&gt;
+</pre>
+	<p>Posso ad esempio lanciare:</p>
+	<pre>ogrinfo test.vrt -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>Il risultato ottenuto sarà così quello desiderato e l&#8217;output corrisponderà a tutti i punti che ricadono nel perimetro di interesse. Nell&#8217;immagine di sotto, ho raccontato il tutto in modo visuale.</p>
+	<p>Concludo sottolineando  quanto siano interessanti, utili, belle e di al<span style="color: #ff0000;"><span style="color: #000000;">t</span></span>o livello professionale alcune delle dinamiche delle <strong>comunità <em>open source</em></strong>. Ho <a title="GDAL - Dev mailing list" href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-td5080909.html" target="_blank">segnalato</a> quello che a me sembrava un baco alla lista GDAL &#8211; DEV. Non solo ho ottenuto subito delle risposte che mi hanno consentito di capirne molto di più, ma si sono messi già al lavoro sia in termini di codice che di documentazione. Un semplice &#8220;grazie&#8221; sembra veramente poco.</p>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" alt="sqlite dialect vs MySQL source" width="496" height="514" /></p>
+	<p>Questo post è dedicato a <strong>Flaviano</strong>, un mio amico che grazie anche ad alcuni <em>tips &amp; tricks</em> su GDAL/OGR ha trovato un bel posto di lavoro in Qatar <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p><div class="note"><div class="noteclassic"></p>
+	<p><strong>NDR</strong>: Jukka Rahkonen, uno sviluppatore di GDAL/OGR, mi fa <a href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-tp5080909p5081551.html" target="_blank">notare</a> che dalla release in trunk r26506 di GDAL e a partire dalle future release stabili ufficiali, non sarà necessario creare alcun file virtuale. Si potrà accedere direttamente alla sorgente MySQL e impostare la proprietà &#8220;-dialect&#8221; al valore &#8220;SQLITE&#8221;.</p>
+	<p></div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/">Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" medium="image">
+			<media:title type="html">sqlite dialect vs MySQL source</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

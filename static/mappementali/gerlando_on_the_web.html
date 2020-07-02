@@ -1,0 +1,419 @@
+<HTML>
+<HEAD>
+  <TITLE>gerlando ond the web.html</TITLE>
+  <meta NAME = "GENERATOR"          CONTENT = "IHMC CmapTools v4.18 ">
+  <meta NAME = "KEYWORDS"           CONTENT = "Gerlando gibilaro, Mappa Concettuale, cmap, CmapTools, IHMC, gerlando ond the web,  Storytlr,  Google Reader,  Flickr,  TANTO,  Twitter,  Sorsetti,  Tumblr,  inDiritto,  Delicious,  Gerlando,  il Grande CoComero,  YouTube">
+  <meta NAME = "DESCRIPTION"        CONTENT = "Questa Cmap, creata con IHMC CmapTools, contiene informazioni relative a: gerlando ond the web, Gerlando condivide YouTube, Gerlando condivide Delicious, Gerlando pubblica e condivide Tumblr, Tumblr aggrega Storytlr, Google Reader pubblica notizie il Grande CoComero, Gerlando condivide Twitter, Google Reader pubblica notizie inDiritto, inDiritto condivide Twitter, Gerlando pubblica il Grande CoComero, inDiritto aggrega Storytlr, Twitter aggrega Storytlr, Tumblr condivide Twitter, Flickr pubblica il Grande CoComero, Delicious aggrega Storytlr, Google Reader pubblica notizie Sorsetti, Gerlando condivide Flickr, Flickr aggrega Storytlr, Gerlando pubblica TANTO, Gerlando pubblica Sorsetti, YouTube aggrega Storytlr">
+  <meta NAME = "AUTHOR"             CONTENT = "IHMC CmapTools">
+  <meta HTTP-EQUIV = "Content-Type" CONTENT = "text/html; charset = UTF-8">
+  <script LANGUAGE="JavaScript1.2">
+  <!--
+    //  PopUp --
+    //  Institute for Human and Machine Cognition, http://www.ihmc.us/
+    //  CmapTools, Version 4.15, http://cmap.ihmc.us/
+    //  Modify by: CmapTools Developers, cmapsupport@ihmc.us
+    //  Date: 02/05/2008
+
+    var IE = 0;
+    var IE4PC = 0;
+    var NS = 0;
+    var GECKO = 0;
+
+    var openpopups = new Array();
+
+    if (document.all) {                 // Internet Explorer Detected
+	   IE = true;	
+    }
+    else if (document.layers) {         // Netscape Navigator Detected
+	   NS = true;	
+    }
+    else if (document.getElementById) { // Netscape 6 Detected
+       GECKO = true;
+    }
+    else {
+	   alert("Unrecognized Browser Detected::\nSorry, your browser is not compatible.");
+    }
+
+    if (IE)
+    {
+	   OS = navigator.platform;
+	   VER = new String(navigator.appVersion);
+	   VER = VER.substr (0, VER.indexOf(" "));
+	   if ((VER < 4.8) && (OS == "Win32")) 
+	   {
+	       IE4PC = 1;
+	   }
+    }
+
+    function handleResize() {
+	    location.reload();
+	    return false;
+    }
+
+
+    if ((NS) && (navigator.platform == "MacPPC")) {
+	   window.captureEvents (Event.RESIZE);
+	   window.onresize = handleResize;
+    }
+
+    function openResource(event, resourcePath, resourceName, resourceType)
+    {
+	   var newwindow;
+
+       // Resource MIMETypes are enumerated as follows: 
+       // cMap     = Undefined
+       // Image    = 0
+       // Video    = 1
+       // Text     = 2
+       // Audio    = 3
+
+       popDown();
+
+	   switch (resourceType) 
+	   {
+	    case 0:     //Image
+                    newwindow = window.open (resourcePath,resourceName);
+                    newwindow.onBlur = newwindow.focus()
+                    var text ='<center><img src=\"';
+                    text += resourcePath;
+                    text +='\"> </center>';
+             break;
+		
+	    case 1:  text   // Video
+		     newwindow = window.open (resourcePath,resourceName);
+                     newwindow.onBlur = newwindow.focus()
+                     var text ='<embed src=\"';
+                     text += resourcePath;
+                     text +='\" autostart=true> </embed> ';
+             break;
+
+	    case 2:      // Text or Unknown 
+		     newwindow = window.open(resourcePath,resourceName);
+                     newwindow.onBlur = newwindow.focus()
+              break;
+
+	    case 3:       // Audio
+                    newwindow = window.open (resourcePath,resourceName);
+                    newwindow.onBlur = newwindow.focus()
+                    var text ='<embed src=\"';
+                    text += resourcePath;
+                    text +='\" autoplay=true> </embed> ';
+             break;
+
+	    case 4:
+                    newwindow = window.open(resourcePath,resourceName);
+                    newwindow.onBlur = newwindow.focus()
+	     break;
+	    }
+        return;
+    }
+
+
+
+    function popUpEvt(event, popupName)
+    {
+	popDown();
+
+	if (GECKO)
+	{
+	    document.getElementById(popupName).style.left = event.layerX;
+	    document.getElementById(popupName).style.top = event.layerY;
+	    document.getElementById(popupName).style.background = "#B3B3B3";
+	    document.getElementById(popupName).style.visibility = "visible";
+	    openpopups.push(popupName);
+	}
+	else if (NS) 
+	{
+	    document.layers[popupName].moveTo (event.pageX, event.pageY);
+	    document.layers[popupName].bgColor = "#B3B3B3";
+	    document.layers[popupName].visibility = "show";
+	    openpopups.push(popupName);
+	}
+	else // if (IE)
+	{
+	    window.event.cancelBubble = true;
+	    if (!IE4PC) {
+		document.all[popupName].style.backgroundColor = "#B3B3B3";
+	    }	
+	    document.all[popupName].style.left = window.event.clientX + document.body.scrollLeft;
+	    document.all[popupName].style.top = window.event.clientY + document.body.scrollTop;
+	    document.all[popupName].style.visibility = "visible";
+	    openpopups[openpopups.length] = popupName;
+	}
+	return false;
+    }
+
+    function popDown()
+    {
+	var popupname;
+	
+	for (var i = 0; i < openpopups.length; i++) 
+	{
+	    popupname = new String (openpopups[i]);      
+	    if (GECKO) {
+		document.getElementById(popupname).style.visibility = "hidden";
+	    }
+	    else if (NS) {
+		document.layers[popupname].visibility = "hide";
+	    }
+	    else {
+		document.all[popupname].style.visibility = "hidden";
+	    }
+	}
+	openpopups = new Array();
+	return;
+    }
+
+    function popDownNoGecko() 
+    {
+	var popupname;
+	for (var i = 0; i < openpopups.length; i++) 
+	{
+	    popupname = new String (openpopups[i]);      
+	    if (GECKO) {
+           //  document.getElementById(popupname).style.visibility = "hidden"; 
+	        return;   // erased for test purposes
+	    }  
+	    else if (NS) {
+	        document.layers[popupname].visibility = "hide";
+	    }
+	    else {
+	        document.all[popupname].style.visibility = "hidden";
+	    }
+	}
+	openpopups = new Array();
+        return;
+    }
+  //-->
+  </script>
+</HEAD>
+<BODY bgcolor="#FFFFFF" leftmargin="0" topmargin="0">
+  <noscript>    <table width=90% cellpadding=10>      <tr>	<td bgcolor=ff4444>	  <font color=000000 size=+1 face="helvetica">	    <h1>Warning:</h1>	    <b>JavaScript is turned OFF.  None of the links on this page will work until it is reactivated.	      <p>		<a href="http://cmap.ihmc.us/docs/EnablingJavaScript.html">		  If you need help turning JavaScript On, click here.		</a>	      </p>	    </b>	</td>      </tr>    </table>
+Questa Cmap, creata con IHMC CmapTools, contiene informazioni relative a: gerlando ond the web, Gerlando condivide YouTube, Gerlando condivide Delicious, Gerlando pubblica e condivide Tumblr, Tumblr aggrega Storytlr, Google Reader pubblica notizie il Grande CoComero, Gerlando condivide Twitter, Google Reader pubblica notizie inDiritto, inDiritto condivide Twitter, Gerlando pubblica il Grande CoComero, inDiritto aggrega Storytlr, Twitter aggrega Storytlr, Tumblr condivide Twitter, Flickr pubblica il Grande CoComero, Delicious aggrega Storytlr, Google Reader pubblica notizie Sorsetti, Gerlando condivide Flickr, Flickr aggrega Storytlr, Gerlando pubblica TANTO, Gerlando pubblica Sorsetti, YouTube aggrega Storytlr
+
+</noscript>
+
+<map name="gerlando ond the web.html">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492670062I424967239I1271ItextIhtml"
+        onClick="popUpEvt(event,'1235492670062I424967239I1271ItextIhtml'); return false;"
+        coords="756,414,774,432">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492715171I1802943967I1330ItextIhtml"
+        onClick="popUpEvt(event,'1235492715171I1802943967I1330ItextIhtml'); return false;"
+        coords="702,253,720,271">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492615625I22545263I1221ItextIhtml"
+        onClick="popUpEvt(event,'1235492615625I22545263I1221ItextIhtml'); return false;"
+        coords="837,223,855,241">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492993109I2051833590I1588ItextIhtml"
+        onClick="popUpEvt(event,'1235492993109I2051833590I1588ItextIhtml'); return false;"
+        coords="578,704,596,722">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492157468I609687137I848ItextIhtml"
+        onClick="popUpEvt(event,'1235492157468I609687137I848ItextIhtml'); return false;"
+        coords="703,345,721,363">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235493537265I858630863I1925ItextIhtml"
+        onClick="popUpEvt(event,'1235493537265I858630863I1925ItextIhtml'); return false;"
+        coords="77,681,95,699">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235491868921I64131581I524ItextIhtml"
+        onClick="popUpEvt(event,'1235491868921I64131581I524ItextIhtml'); return false;"
+        coords="161,170,179,188">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492821687I1709320641I1418ItextIhtml"
+        onClick="popUpEvt(event,'1235492821687I1709320641I1418ItextIhtml'); return false;"
+        coords="615,507,633,525">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492039546I1520248072I739ItextIhtml"
+        onClick="popUpEvt(event,'1235492039546I1520248072I739ItextIhtml'); return false;"
+        coords="701,192,719,210">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492107625I920012045I791ItextIhtml"
+        onClick="popUpEvt(event,'1235492107625I920012045I791ItextIhtml'); return false;"
+        coords="382,522,400,540">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235491968421I549177832I672ItextIhtml"
+        onClick="popUpEvt(event,'1235491968421I549177832I672ItextIhtml'); return false;"
+        coords="854,517,872,535">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235492964265I471168008I1539ItextIhtml"
+        onClick="popUpEvt(event,'1235492964265I471168008I1539ItextIhtml'); return false;"
+        coords="160,613,178,631">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235491914375I1271204851I572ItextIhtml"
+        onClick="popUpEvt(event,'1235491914375I1271204851I572ItextIhtml'); return false;"
+        coords="837,91,855,109">
+  <area shape="rect"
+        href="http://blog.spaziogis.it/static/mappementali/1235496063843I1691240434I699ItextIhtml"
+        onClick="popUpEvt(event,'1235496063843I1691240434I699ItextIhtml'); return false;"
+        coords="232,549,250,567">
+</map>
+
+<center>
+  <table width=* height=* cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td valign=center align=center>
+      <img USEMAP="#gerlando ond the web.html"
+           SRC="gerlando&#32;ond&#32;the&#32;web.jpg"
+           ALIGN=middle
+           BORDER=0
+           onClick=popDown();>
+      </td>    </tr>    <tr>      <td VALIGN=top ALIGN=right>      <table>	<tr>             <td ALIGN=right VALIGN=middle>                 <map NAME="CmapToolsTrademark">                     <area SHAPE="rect"                           href="http://cmap.ihmc.us/"                           onClick="openResource(event,'http://cmap.ihmc.us/', 0, 2); return false;"                           coords="1,1,210,50">                 </map>	<tr>	  <td  ALIGN=right VALIGN=middle>               <img USEMAP="#CmapToolsTrademark"                    SRC="CmapToolsTrademark.gif"                     ALT="IHMC Cmap Tools Trademark" width="210" height="50"                    ALIGN=middle                    BORDER=0>	   </td>	     <td VALIGN=middle>         </td>	</tr>      </table>    </td>  </tr></table></center></body></html>
+<div id="1235492670062I424967239I1271ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://www.google.it/reader/shared/user%2F13241494707552734893%2Flabel%2Findiritto?hl=it&hl=it "TITLE="">
+      indiritto RSS
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492715171I1802943967I1330ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://www.google.it/reader/shared/user%2F13241494707552734893%2Flabel%2Fvino?hl=it "TITLE="">
+      sorsetti RSS
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492615625I22545263I1221ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://www.google.it/reader/shared/user%2F13241494707552734893%2Flabel%2Fcoco?hl=it&hl=it "TITLE="">
+      CoCo RSS
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492993109I2051833590I1588ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://gerlando.storytlr.com/ "TITLE="aggrgatore">
+      storytlr
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492157468I609687137I848ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://www.google.it/reader/shared/13241494707552734893?hl=it "TITLE="">
+      reader
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235493537265I858630863I1925ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://www.flickr.com/photos/47645371@N00 "TITLE="">
+      flickr
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235491868921I64131581I524ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="../../index.html"TITLE="">
+      tanto
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492821687I1709320641I1418ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://twitter.com/neldrago "TITLE="">
+      twitter
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492039546I1520248072I739ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="gerlando_on_the_web.html"TITLE="">
+      sorsetti
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492107625I920012045I791ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://neldrago.tumblr.com/ "TITLE="">
+      tumblr
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235491968421I549177832I672ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://www.indiritto.it/ "TITLE="">
+      indiritto
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235492964265I471168008I1539ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://delicious.com/neldrago "TITLE="">
+      delicious
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235491914375I1271204851I572ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://ilgrandecocomero.wordpress.com/ "TITLE="">
+      igc
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="1235496063843I1691240434I699ItextIhtml" style="POSITION: absolute; Z-INDEX: 20; VISIBILITY: hidden; left: 0; top: 0;">
+  <table border=1 cellpadding=1 cellspacing=0 bgcolor="#dddddd">
+    <tr>
+      <td nowrap><font face="Geneva, Arial" size=2>
+      <a href="http://www.youtube.com/neldrago "TITLE="">
+      youtube
+      </a>
+      </td>
+    </tr>
+  </table>
+</div>
+

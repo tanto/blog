@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; gdal_translate</title>
+	<atom:link href="http://blog.spaziogis.it/tag/gdal_translate/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>GDAL in due clic con Open++</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/</link>
+		<comments>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/#comments</comments>
+		<pubDate>Thu, 13 Oct 2011 07:00:58 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[gdalinfo]]></category>
+		<category><![CDATA[gdal_translate]]></category>
+		<category><![CDATA[open++]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+I nostri più assidui lettori sicuramente ricorderanno un &#8220;vecchio&#8221; post di Andrea Borruso dal titolo &#8220;Il tasto destro per alleggerire un po’ il lavoro di chi si occupa di GIS (su Windows e su Linux)&#8221;, un evergreen del nostro blog tra i più visitati di sempre. Ebbene, in accordo con la postilla che scriviamo in [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="text-align: left;">I n<a href="http://dengdun.webs.com/en/openxx.htm" target="_blank"><img class="alignleft" style="border: 0pt none; margin: 5px;" title="Open++" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" alt="Open++" width="32" height="32" /></a>ostri più assidui lettori sicuramente ricorderanno un &#8220;vecchio&#8221; post di Andrea Borruso dal titolo<strong> <a title="Il tasto destro per alleggerire un po' il lavoro di chi si occupa di GIS (su Windows e su Linux)" href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/" target="_blank">&#8220;Il tasto destro per alleggerire un po’ il lavoro di chi si occupa di GIS (su Windows e su Linux)&#8221;</a></strong>, un evergreen del nostro blog tra i più visitati di sempre. Ebbene, in accordo con la postilla che scriviamo in calce ai nostri post dopo un anno dalla loro pubblicazione (ci teniamo a ricordarlo!), il post di Andrea, pur sempre attualissimo, merita un aggiornamento in virtù del fatto che il software <a title="Open++" href="http://dengdun.webs.com/en/openxx.htm" target="_blank"><strong>Open++</strong></a> da lui brillantemente recensito ha subito di recente alcune evoluzioni significative tali da rendere inefficaci le istruzioni scritte all&#8217;epoca (&#8230;ben due anni e mezzo fa!).</p>
+	<p style="text-align: left;">In particolare, Andrea ci mostrava come configurare Open++ in modo da “automatizzare” l&#8217;utilizzo di alcune utility dello <em>swiss kn</em><em>ife</em> geospaziale per eccellenza: <a title="GDAL - Geospatial Data Abstraction Library" href="http://www.gdal.org/" target="_blank"><strong>la libreria GDAL</strong></a>. Cercheremo pertanto di ottenere lo stesso risultato di allora, utilizzando stavolta l&#8217;ultima release di Open++ (v. 1.5.1).</p>
+	<p style="text-align: left;">Partiamo innanzitutto dal notare che la struttura della finestra di dialogo di Open++ è leggermente cambiata rispetto al passato. In luogo della scheda <em>Language</em>, ora ne sono presenti altre due: <em>Install/Uninstall</em> e <em>About</em>. Tralasciando l&#8217;ovvio significato di quest&#8217;ultima, la scheda <em>Install/Uninstall </em>è stata introdotta in sostituzione del vecchio installer, rendendo quindi l&#8217;applicazione portabile (può essere eseguita su una semplice chiavetta USB). La scheda principale (<em>Commands</em>) è apparentemente rimasta invariata rispetto al passato. Tuttavia, come ci fa notare Chiara (una lettrice che di recente ha <a title="Commento di Chiara al post di Andrea" href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/comment-page-1/#comment-7297" target="_blank">commentato il post di Andrea</a>, sollevando il problema), qualcosa è cambiato nella versione 1.5.1 (probabilmente anche prima): si tratta essenzialmente delle variabili utilizzabili nella casella di testo in cui andiamo a configurare i nostri comandi e, in particolare, quella degli argomenti (<em>Arguments</em>), come mostrato nella figura seguente.</p>
+	<p style="text-align: center;"><img class="aligncenter" title="Open++ - opzioni Arguments" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/1.png" alt="Open++ - opzioni Arguments" width="501" height="380" /></p>
+	<p style="text-align: left;" align="JUSTIFY">Tali variabili, per quanto siano di una chiarezza quasi disarmante, risultano però meno flessibili da gestire rispetto alle versioni precedenti specie quando, come nel caso delle utility della libreria GDAL, il nostro comando accetta due o più parametri basati sul nome del file in ingresso. Fortunatamente, ci viene in soccorso l&#8217;unica FAQ presente nell&#8217;help file di Open++ (abbastanza criptico, in verità&#8230;) in cui è mostrato l&#8217;utilizzo di un ciclo <em>for</em> in linguaggio batch all&#8217;interno degli argomenti. Dunque, se è possibile usare il linguaggio batch, è altrettanto possibile usare anche i <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/percent.mspx?mfr=true">parametri batch</a> e trarne così beneficio nel gestire i nomi dei file con o senza le loro estensioni. Ovviamente un ciclo <em>for</em> è applicabile anche su un singolo file e quindi il gioco è fatto!</p>
+	<p style="text-align: left;" align="JUSTIFY">Andando al sodo, per prima cosa consiglio di aggiungere la cartella dei binari di GDAL (o di FWTools, se preferite) all&#8217;interno della variabile PATH di sistema. Così potrete facilmente eseguire qualsiasi tool di GDAL all&#8217;interno di una qualsivoglia cartella, senza la necessità di dover riscrivere il suo percorso. In questo altro <a href="../2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/">post</a> sempre di Andrea (lo &#8220;<em>swiss knife</em>&#8221; di TANTO <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' />  ) è descritto come fare. Nel seguito, assumerò che lo abbiate fatto.</p>
+	<p style="text-align: left;" align="JUSTIFY">Quindi aggiungiamo un separatore delle opzioni di menù nella scheda <em>Commands</em> di Open++ e proviamo a configurare l&#8217;utility relativamente più semplice tra quelle trattate da Andrea: <em>gdalinfo</em>. Per prima cosa, scriviamo <em>&#8220;GDALinfo&#8221; </em>come titolo. Poi, trattandosi di una utility che si esegue da riga di comando, il programma da utilizzare sarà <em>%ComSpec%</em>, ovvero il nome della variabile di ambiente usata da Windows per indicare l&#8217;interprete da linea di comando (CLI), solitamente <em>cmd.exe</em>. Fin qui nulla di nuovo rispetto al post di Andrea. Negli argomenti, invece, scriveremo:</p>
+	<pre>/k gdalinfo %FilePaths%</pre>
+	<p style="text-align: left;" align="JUSTIFY">La spiegazione è piuttosto semplice: <em>/k</em> significa che vogliamo mantenere la finestra aperta dopo l&#8217;esecuzione del comando (altrimenti non riusciremmo a leggere le informazioni), <em>gdalinfo</em> è il nome dell&#8217;eseguibile dell&#8217;utility e, quindi, <em>%FilePaths%</em> è una variabile che rappresenta il vettore dei percorsi dei file passati come parametro. La directory di lavoro coincide con la directory del file stesso (<em>%FileDir%</em>), scegliamo eventualmente un&#8217;icona per rappresentare il comando, associamo il comando al singolo file e, infine, esplicitiamo le estensioni possibili del file in ingresso. Nulla di trascendentale, verrebbe da pensare.</p>
+	<p style="text-align: center;"><img class="aligncenter" title="Open++ - gdalinfo" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/2.png" alt="Open++ - gdalinfo" width="486" height="510" /></p>
+	<p style="text-align: left;" align="JUSTIFY">Le cose si complicano, invece, quando andiamo a mettere in pratica l&#8217;esempio di Andrea relativo a <em>gdal_translate</em>. La procedura è sostanzialmente identica al caso precedente, ad eccezione dell&#8217;argomento. Tuttavia, come anticipavo in precedenza, ci viene ottimamente in soccorso l&#8217;unica FAQ a disposizione. E, pertanto, l&#8217;argomento da scrivere per convertire in formato JPEG sarà:</p>
+	<pre>/c for %i in (%FilePaths%) do start gdal_translate -of JPEG %~nxi %~ni.jpg</pre>
+	<p style="text-align: left;" align="JUSTIFY">che, in pratica, significa che per tutti i file contenuti nel vettore dei percorsi <em>%FilePaths%</em> (nel nostro caso, contiene un unico percorso in quanto selezioneremo un unico file) esegue il comando <em>gdal_translate -of JPEG %~nxi %~ni.jpg, </em>dove <em>%~nxi </em>è il nome <span style="text-decoration: underline;">compreso di estensione</span> del raster sorgente, mentre <em>%~ni </em>è il nome <span style="text-decoration: underline;">privo di estensione</span> del raster di destinazione, seguito poi da <em>.jpg</em>.</p>
+	<p style="text-align: left;" align="JUSTIFY"><img class="aligncenter size-full wp-image-4275" title="Open++ - gdal_translate" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/3.png" alt="Open++ - gdal_translate" width="486" height="510" /></p>
+	<p>E non è ancora tutto! Visto che usiamo un ciclo <em>for</em> come argomento e che Open++ prevede l&#8217;associazione dei suoi comandi anche ad un insieme di file, possiamo quindi rendere la conversione in JPEG in modalità batch. A tal fine, creeremo sostanzialmente una copia del <em>Convert to JPEG</em> in cui aggiungeremo solo il termine <em>(batch)</em> alla fine del titolo e poi cambieremo l&#8217;opzione <em>Associate with</em> da <em>Single File</em> a <em>Multiple File</em>. Possiamo quindi selezionare più file raster e da menù contestuale scegliere l&#8217;opzione <em>Convert to JPEG (batch)</em> per avere la conversione in blocco di tutti i file selezionati. E&#8217; quindi adesso facile definire altri comandi di conversione verso altri <a title="GDAL Raster Formats" href="http://www.gdal.org/formats_list.html" target="_blank">formati raster supportati da GDAL</a> &#8230;e non solo! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-4296" title="open++ menù" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg.png" alt="" width="469" height="251" /></p>
+	<p>Per i più pigri, ecco il file di configurazione <a title="Sample OpenXX initialization file showing how to use GDAL utilities" href="https://gist.github.com/1273596" target="_blank"><strong>OpenXX.ini</strong></a> dei comandi descritti in precedenza. Basta copiarlo nella cartella contenente Open++, eseguirlo &#8230;<em>et voilà</em> &#8230;si otterrà la stessa identica configurazione. Si tratta di un metodo semplice e rapido per condividere le proprie raccolte di comandi con i colleghi.</p>
+	<p><strong>Una nota a margine:</strong> in caso si decida di definire comandi per effettuare operazioni di coordinate, occorre aggiungere alla variabile PATH di sistema anche il percorso della cartella di GDAL (o eventualmente della libreria proj.4) che contiene le definizioni dei vari sistemi cartografici definiti da EPSG.</p>
+	<p>Infine, <strong>un grosso ringraziamento a Chiara</strong> per averci costretti a rivalutare un post obsoleto.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/">GDAL in due clic con Open++</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" medium="image">
+			<media:title type="html">Open++</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/1.png" medium="image">
+			<media:title type="html">Open++ - opzioni Arguments</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/2.png" medium="image">
+			<media:title type="html">Open++ - gdalinfo</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/3.png" medium="image">
+			<media:title type="html">Open++ &#8211; gdal_translate</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/3-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg.png" medium="image">
+			<media:title type="html">open++ menù</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>OpenAerialMap: un collezione libera di fotografie aeree</title>
+		<link>http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/</link>
+		<comments>http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/#comments</comments>
+		<pubDate>Mon, 10 Dec 2007 07:00:24 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[gdal_translate]]></category>
+		<category><![CDATA[geodata]]></category>
+		<category><![CDATA[wms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=OpenAerialMap%3A+un+collezione+libera+di+fotografie+aeree&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2007-12-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/&amp;rft.language=English"></span>
+OpenAerialMap è un bel progetto con un obiettivo interessante: raccogliere foto aeree di dominio pubblico fatte in tutto il mondo, e renderle consultabili tramite un&#8217;unica interfaccia coerente. Chiunque abbia a disposizione dati di questo tipo, li potrà caricare sul sito e rendere disponibili al mondo. Il catalogo è ancora limitato, ma negli stati uniti la [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=OpenAerialMap%3A+un+collezione+libera+di+fotografie+aeree&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2007-12-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://openaerialmap.org" title="OpenAerialMap home page" target="_blank">OpenAerialMap</a> è un bel progetto con un obiettivo interessante: raccogliere foto aeree di dominio pubblico fatte in tutto il mondo, e renderle consultabili tramite un&#8217;unica interfaccia coerente. Chiunque abbia a disposizione dati di questo tipo, li potrà <a href="http://openaerialmap.org/tutorial/" title="OpenAerialMap upload tutorial" target="_blank">caricare sul sito</a> e rendere disponibili al mondo.</p>
+	<p>Il catalogo è ancora limitato, ma negli stati uniti la copertura è buona anche ad una <a href="http://openaerialmap.org/map/?lat=44.99109&amp;lon=-93.16432&amp;zoom=16&amp;layers=BF" title="OpenAerialMap esempio USA buona risoluzione" target="_blank">certa risoluzione</a>.  Per l&#8217;Italia ancora nulla ad alta risoluzione, ma c&#8217;è del materiale utile per carte regionali. Si tratta di immagini <a href="http://openaerialmap.hypercube.telascience.org/datasource/1/" title="OpenAerialMap, immagini i-Cubed Landsat " target="_blank">i-Cubed Landsat</a>, sulle quali purtroppo cade (al momento) quanto detto in premessa, in quanto non è chiaro con che tipo di licenza vengano rilasciate. Si legge infatti:</p>
+	<blockquote><p>[...]<br />
+it is best to assume that this imagery can not be used outside of OpenAerialMap<br />
+[...]</p></blockquote>
+	<p>Tutto il catalogo è accessibile tramite WMS, e quindi potrete anche scaricare le immagini sul vostro PC e farne l&#8217;uso che la licenza vi consente. Per fare il download dell&#8217;immagini potrete ancora una volta usare FWTools:</p>
+	<ol>
+	<li>scaricate FWTools: <a href="http://home.gdal.org/fwtools/FWTools-linux-2.0.0.tar.gz">Linux</a>, <a href="http://home.gdal.org/fwtools/FWTools202.exe">Windows</a></li>
+	<li>installatelo</li>
+	<li>scaricate il file xml che descrive il servizio WMS di OpenAerialMap (http://openaerialmap.org/static/gdal_wms.xml) e salvatelo nella cartella in cui avete installato FWTools</li>
+	<li>aprite la shell di FWTools</li>
+	<li>scrivete un comando con questa sintassi: <a href="http://www.gdal.org/gdal_translate.html" title="Comando gdal_translate" target="_blank">gdal_translate</a> -projwin 12.06979 38.59784  15.86623 36.0124  -outsize 5000 5000 -of JP2KAK gdal_wms.xml palermo.jp2</li>
+	</ol>
+	<p>FWTools è onnivoro in questo contesto e può quindi gestire come source fonti WMS. Con questa sintassi scaricherò una foto che copre la Sicilia in formato <a href="http://it.wikipedia.org/wiki/JPEG_2000" title="Formato JPEG2000" target="_blank">JPEG2000</a>, che potrei usare per una carta al 250.000 (qui sotto uno screenshot dell&#8217;area). Le coordinate che leggete nel comando sono quelle del vertice in alto a sinistra e di quello in basso a destra.</p>
+	<p align="center"><img src="http://blog.spaziogis.it/wp-content/uploads/2007/12/openaerialmap.jpg" alt="OpenAerialMap" /></p>
+	<p>Il post è (quasi) una traduzione molto veloce di un <a href="http://crschmidt.net/blog/archives/285/producing-a-large-image-from-openaerialmap/" title="Producing a Large Image from OpenAerialMap" target="_blank">post</a> del bravissimo Christopher Schmidt.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/">OpenAerialMap: un collezione libera di fotografie aeree</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=OpenAerialMap%3A+un+collezione+libera+di+fotografie+aeree&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2007-12-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/10/openaerialmap-un-collezione-libera-di-fotografie-aeree/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/12/openaerialmap.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/12/openaerialmap.jpg" medium="image">
+			<media:title type="html">OpenAerialMap</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

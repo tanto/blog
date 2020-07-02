@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Sviluppo</title>
+	<atom:link href="http://blog.spaziogis.it/tag/sviluppo/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>ArcGIS Server e Google Maps: come misurare correttamente le distanze</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/</link>
+		<comments>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/#comments</comments>
+		<pubDate>Sun, 25 Apr 2010 22:29:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[projection]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+Tempo fa scrissi un articolo su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps. Ultimamente ho lavorato un po&#8217; con le prime e ne ho avuto complessivamente una buona [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Tempo fa scrissi <a href="http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/">un articolo</a> su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps.<br />
+Ultimamente ho lavorato un po&#8217; con <a href="http://resources.esri.com/arcgisserver/apis/javascript/gmaps/index.cfm?fa=home" target="_blank">le prime</a> e ne ho avuto complessivamente una buona impressione. Tuttavia, durante lo sviluppo, ho riscontrato un problema nella misurazione delle distanze e delle aree che merita di essere messo in evidenza, soprattutto perché gli esempi della documentazione ESRI non lo fanno a dovere ed anzi, secondo me, risultano leggermente fuorvianti.<br />
+Terminata la premessa, prima di andare avanti con l&#8217;articolo, voglio ringraziare <a href="http://www.nicogis.blogspot.com/" target="_blank">Domenico Ciavarella</a>, che mi ha dato un supporto fondamentale per arrivare ad una soluzione che altrimenti starei ancora cercando.</p>
+	<h2>La proiezione di Google Maps</h2>
+	<p><div id="attachment_2018" class="wp-caption alignright" style="width: 273px"><br />
+<img class="size-full wp-image-2018" style="border: 0pt none;" title="mercator" src="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" alt="mercator" width="263" height="244" /><p class="wp-caption-text">Effetto di distorsione delle aree</p></div></p>
+	<p>Google Maps, Bing Maps ed altri provider (come OpenStreetMap, Yahoo e, di recente, <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2009/11/20/ArcGIS-Online-moving-to-Google-_2F00_-Bing-tiling-scheme_3A00_-What-does-this-mean-for-you_3F00_.aspx" target="_blank">la stessa ESRI</a>) utilizzano una proiezione nota come <strong>Spherical Mercator</strong>, derivata dalla proiezione di <a href="http://it.wikipedia.org/wiki/Proiezione_cilindrica_centrografica_modificata_di_Mercatore" target="_blank">Mercatore</a>. Il codice <a href="http://www.epsg.org/" target="_blank">EPSG</a> ufficiale è 3785, anche se prima della sua definizione molti software hanno utilizzato l&#8217;ufficioso 900913. L&#8217;identificativo per i software ESRI, tra cui ovviamente ArcGIS Server, è invece 102113.<br />
+Questa proiezione considera la Terra come una sfera e consente di includerne completamente la superficie all&#8217;interno di un quadrato.<br />
+Quando però si rappresenta una superficie curva su di un piano, come un foglio di carta o il monitor di un computer, si introducono delle deformazioni. In questo caso, man mano che ci si allontana dall&#8217;equatore le aree cartografate subiscono un pesante stiramento sia in senso verticale che orizzontale e diventano, quindi, via via più esagerate verso i poli (la Groenlandia, per esempio, sembra più grande dell&#8217;Africa). Questa proiezione evidentemente non è fatta per minimizzare la deformazione delle aree (la proiezione di Mercatore è <a href="http://it.wikipedia.org/wiki/Proiezione_conforme" target="_blank">conforme</a> infatti), ma risulta vantaggiosa per l&#8217;uso attraverso il web perché consente di applicare un modello efficiente di tassellamento e caching.</p>
+	<h2>Il problema&#8230;</h2>
+	<p>Ammettiamo di voler creare un&#8217;applicazione di webmapping con le sopracitate estensioni delle API Javascript di ArcGIS Server per Google Maps.<br />
+La prima cosa da fare è creare un mapservice in grado di esporre i nostri dati spaziali con la medesima proiezione delle basi cartografiche di Google. Come spiegato nel post dedicato ad ArcGIS Server (linkato all&#8217;inizio di questo articolo) un mapservice &#8220;aggancia&#8221; e pubblica un progetto redatto in ArcMap (il classico .mxd), quindi basta assegnare al dataframe del progetto il sistema di riferimento appropriato (che si trova nella lista dei sistemi proiettati, alla voce WGS 84 Web Mercator, con identificativo 102113), salvare il tutto e pubblicarlo con ArcGIS Server. Niente di difficile insomma.<br />
+Focalizziamoci ora sullo sviluppo del client: tra i tanti strumenti che oggi ci si aspetta di trovare in una applicazione WebGIS ci sono i &#8220;righelli&#8221; che consentono di disegnare spezzate e poligoni e di misurarne poi lunghezza ed area. ESRI lo sa, ed ha giustamente incluso un <a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/gmaps/samples/utilities/util_measureline.html" target="_blank">esempio</a> per mostrare come creare questi tool nella documentazione delle sue API.<br />
+Abbiamo detto però che l&#8217;uso della proiezione Spherical Mercator provoca una deformazione crescente man mano che ci si spinge verso i poli e, tracciando una spezzata per misurare un oggetto al suolo di dimensioni note, come uno stadio di calcio, ci si accorge dell&#8217;inghippo: è più lungo di quanto dovrebbe essere (circa 146 metri invece di 105-110).<br />
+L&#8217;esempio fornito da ESRI non considera la deformazione e può indurre gli sviluppatori all&#8217;errore. E&#8217; vero che una persona con le adeguate conoscenze di geomatica può arrivare ad intuire il rischio insito nell&#8217;uso della proiezione di Google, ma è anche vero che il webmapping è terra di confine tra &#8220;gissologi&#8221; e sviluppatori informatici &#8220;puri&#8221;, senza particolari cognizioni tipiche del mondo gis. Non è per nulla detto, quindi, che chi sviluppa abbia i mezzi per immaginare il problema prima di averci sbattuto il muso e personalmente credo che aver pubblicato un esempio del genere nella documentazione ufficiale, senza neanche accennare alla questione della deformazione, sia stata una leggerezza.</p>
+	<h2>&#8230;e la soluzione</h2>
+	<p>Non molto tempo fa sul blog di ArcGIS Server è comparso un interessante <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2010/03/05/Measuring-distances-and-areas-when-your-map-uses-the-Mercator-projection.aspx">post</a> che mette in evidenza il problema della misurazione delle distanze e spiega come comportarsi per risolverlo.<br />
+Il servizio che in ArcGIS Server è incaricato di calcolare lunghezze ed aree, il <a href="http://webhelp.esri.com/arcgisserver/9.3/Java/index.htm#geometry_service.htm">Geometry Service</a>, è in grado di svolgere diverse altre operazioni, tra cui la <strong>proiezione al volo</strong> delle geometrie.<br />
+Il &#8220;trucco&#8221; consiste nel riproiettare la geometria tracciata dall&#8217;utente nel sistema di riferimento più adatto alla zona mappata prima di effettuarne la misurazione e stampare a schermo il risultato.<br />
+Purtroppo lo snippet di codice fornito da ESRI è pronto all&#8217;uso solo per le API Javascript, mentre per le estensioni di Google Maps bisogna fare da soli e il discorso è un po&#8217; meno semplice.<br />
+Al posto di questa funzione:</p>
+	<pre class="brush: javascript; ">
+var sr = new esri.SpatialReference({wkid:32610});
+geometryService.project([graphic], sr, function(projectedGraphic) {
+geometryService.areasAndLengths(projectedGraphic, function(result) {
+var perimeter = result.lengths[0];
+var area = result.areas[0];
+});
+});
+</pre>
+	<p>abbiamo bisogno di questa:</p>
+	<pre class="brush: javascript; ">
+var geometryService = new esri.arcgis.gmaps.Geometry(&quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer&quot;);
+function calculateLengths() {
+//Parametri per la riproiezione
+var params = new esri.arcgis.gmaps.ProjectParameters();
+params.geometries = [polyline];
+params.inSpatialReference  = 4326;
+params.outSpatialReference = 3004; //Gauss-Boaga fuso Est
+//Riproiezione e funzione di callback
+geometryService.project(params, getLengths);
+}
+function getLengths(projectResults){
+var url = &quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/lengths&quot;;
+var parameters = {
+polylines: projectResults.geometries,
+sr: 3004
+};
+esri.arcgis.gmaps.JSONRequest(url, test, parameters);
+}
+function test(result) {
+alert(result.lengths[0]+&quot; m&quot;);
+}
+</pre>
+	<p>Ho realizzato un veloce <a href="http://dl.dropbox.com/u/1070973/Riproiezione_e_misura/index.html" target="blank">esempio</a> che mostra i risultati ottenuti dal codice proposto da ESRI nella propria documentazione a confronto con quelli ottenuti dalla riproiezione con il Geometry Service e dalle semplici API di Google Maps, che hanno dei metodi propri per la misura di linee e poligoni.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/">ArcGIS Server e Google Maps: come misurare correttamente le distanze</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" medium="image">
+			<media:title type="html">mercator</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>jQuery e OpenLayers: agitare prima dell’uso…</title>
+		<link>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/</link>
+		<comments>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/#comments</comments>
+		<pubDate>Mon, 01 Mar 2010 08:40:35 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[Geosilk]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1747</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da Linfiniti – sono riuscito nell&#8217;intento. Per chi non lo sapesse, jQuery è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da <a href="http://linfiniti.com/2010/02/fancy-map-toolbar-for-openlayers/" target="_blank">Linfiniti</a> – sono riuscito nell&#8217;intento.</p>
+	<p>Per chi non lo sapesse, <a href="http://jquery.org/" target="_blank">jQuery</a> è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di facile comprensione.<br />
+Il framework è rilasciato con doppia licenza: MIT e GPL.<br />
+I motivi per usare jQuery nei propri progetti non mancano di certo: comunità attiva, disponibilità di molti temi e ottimi plugin, compatibilità e leggerezza sono i primi che mi vengono in mente.</p>
+	<p>In questo articolo vedremo come costruire una mappa online sfruttando jQuery UI e OpenLayers.<br />
+Il <a href="http://blog.spaziogis.it/static/jquerymap/" target="_blank">risultato</a> della &#8220;fusione&#8221; è un client dotato di funzionalità di base come zoom, pan, misurazione delle distanze e vari layer di sfondo intercambiabili.<br />
+Si tratta, in pratica, di un template da cui partire per sviluppare applicazioni di web-mapping vere e proprie.</p>
+	<p style="text-align: center;"><a title="Demo JQuery UI | OpenLayers di Alessio Di Lorenzo" href="http://blog.spaziogis.it/static/jquerymap/" target="_blank"><img class="aligncenter size-full wp-image-1801" style="border: 0pt none;" title="jquery_openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" alt="jquery_openlayers" width="500" height="375" /></a></p>
+	<p>Per  creare il client dell&#8217;esempio abbiamo bisogno di:</p>
+	<ul>
+	<li><a href="http://openlayers.org" target="_blank">OpenLayers</a></li>
+	<li><a href="http://jqueryui.com" target="_blank">jQuery UI</a>, pensato per creare widget personalizzati con jQuery</li>
+	<li><a href="http://layout.jquery-dev.net/index.cfm" target="_blank">jQuery UI.Layout</a>, un plugin ispirato al <a href="http://extjs.com/deploy/dev/examples/layout/complex.html" target="_blank">border layout</a> di ExtJs</li>
+	<li><a href="http://craigsworks.com/projects/qtip/" target="_blank">qTip</a>, un plugin per modellare dei tooltip avanzati</li>
+	</ul>
+	<p>Ho già raccolto il tutto in <a href="http://blog.spaziogis.it/static/jquerymap/jquerymap.zip" target="_blank">questo</a> archivio .zip. Qui dentro, oltre alle librerie, si trova la totalità dei file che compongono il client. Vi basta quindi cliccare sul link per avere il template sul vostro computer, pronto all&#8217;uso e/o ad essere trasformato come volete.<br />
+Vi invito però a dare lo stesso un&#8217;occhiata alla <a href="http://jqueryui.com/download" target="_blank">pagina di download</a> di jQuery UI: noterete che è possibile modificare radicalmente il pacchetto prima di scaricarlo. Potete includere le sole componenti utili ai vostri scopi e scegliere tra vari temi già pronti o uno composto da voi con <a href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a>.<br />
+Io ho fatto solo qualche semplice modifica al tema UI-Darkness (in questo periodo non mi piacciono i bordi arrotondati&#8230;) ma, come dicevo, si può fare molto di più. Provare per credere.</p>
+	<p>Ora un po&#8217; di anatomia.<br />
+Scompattato l&#8217;esempio, è bene posare lo sguardo su alcune delle directory e dei file compresi al suo interno.</p>
+	<h3>jsLib</h3>
+	<p>E&#8217; la directory contenente tutte le librerie elencate in precedenza, necessarie al funzionamento del template.</p>
+	<h3>index.html</h3>
+	<p>Nella sezione <strong>header</strong> sono referenziate le librerie utilizzate, i fogli di stile e i file javascript.<br />
+Nel <strong>body</strong> è possibile notare che l&#8217;attributo class di molti degli elementi della pagina (div, button, span, ecc.) è parecchio popolato. Questo è il metodo con cui jQuery UI e jQueryUI.Layout si &#8220;ancorano&#8221; alla pagina web.<br />
+Per comprendere meglio vi rimando alla <a href="http://layout.jquery-dev.net/demos.cfm" target="_blank">pagina degli esempi</a> di jQuery UI.Layout e a <a href="http://www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/" target="_blank">questo articolo</a> che spiega in maniera egregia la composizione della toolbar e dei suoi pulsanti.</p>
+	<h3>jsFunc/mappa.js</h3>
+	<p>Contiene la mappa realizzata con OpenLayers.<br />
+Nella funzione di inizializzazione (initMap) richiamata al caricamento della pagina, ci sono, tra le altre cose, i controlli collegati ai bottoni della toolbar.</p>
+	<h3>jsFunc/layout.js</h3>
+	<p>In questo script, con poco più di 40 righe di codice, jQuery UI e i suoi plugin definiscono Il layout dell&#8217;applicazione, il tema, il comportamento e l&#8217;aspetto di bottoni e tooltip.</p>
+	<h3>Css/style.css</h3>
+	<p>A parte qualche piccola &#8220;frivolezza&#8221;  come <a href="http://projects.opengeo.org/geosilk" target="_blank">queste</a> (a mio giudizio) bellissime icone, in questo foglio di stile sono descritte le regole fondamentali per la corretta presentazione del layout e della toolbar creati tramite jQuery UI.</p>
+	<p>Ecco, questo è grossomodo ciò che bisogna sapere per iniziare a studiare i mille modi di mescolare le potenzialità di jQuery a quelle di OpenLayers.<br />
+Fondamentale, come sempre, è il ricorso alla documentazione ufficiale dei vari progetti e al supporto offerto dalla comunità.<br />
+Per chiudere segnalo anche due guide in italiano, estremamente ben fatte ed utilissime per avvicinarsi a jQuery e jQuery UI. Entrambe sono firmate <a href="http://html.it" target="_blank">HTML.it</a>:<br />
+<a href="http://javascript.html.it/guide/leggi/168/guida-jquery/" target="_blank">Guida a jQuery</a><br />
+<a href="http://javascript.html.it/guide/leggi/179/guida-jquery-ui/" target="_blank">Guida a jQuery UI</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/">jQuery e OpenLayers: agitare prima dell’uso…</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" medium="image">
+			<media:title type="html">jquery_openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Comunità geomatica. A che punto è la notte?</title>
+		<link>http://blog.spaziogis.it/2009/09/23/comunit-geomatica-a-che-punto-la-notte/</link>
+		<comments>http://blog.spaziogis.it/2009/09/23/comunit-geomatica-a-che-punto-la-notte/#comments</comments>
+		<pubDate>Wed, 23 Sep 2009 12:00:30 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[comunità]]></category>
+		<category><![CDATA[geomatica]]></category>
+		<category><![CDATA[informazione]]></category>
+		<category><![CDATA[ricerca]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1302</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comunit%C3%A0+geomatica.+A+che+punto+%C3%A8+la+notte%3F&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2009-09-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/23/comunit-geomatica-a-che-punto-la-notte/&amp;rft.language=English"></span>
+Una cosa è discutere tra noi “addetti del settore” (“geek” NdT) di aspetti tecnici, un’altra curare il marketing delle nostre creazioni, delle nostre aziende, e un’altra ancora usare i nuovi media per tendere una mano e aiutare le nuove generazioni. Queste parole di Jeff Thurston mi hanno letteralmente folgorato quando le ho lette sul suo [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comunit%C3%A0+geomatica.+A+che+punto+%C3%A8+la+notte%3F&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2009-09-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/23/comunit-geomatica-a-che-punto-la-notte/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://datamining.typepad.com/data_mining/2006/07/interactive_map.html" target="_blank"><img class="alignnone" style="border: 0pt none;" title="The Blogosphere" src="http://datamining.typepad.com/images/blogosphere-map-core-min2.gif" alt="" width="472" height="458" /></a></p>
+	<blockquote><p>Una cosa è discutere tra noi “addetti del settore” (“geek” NdT) di aspetti tecnici, un’altra curare il marketing delle nostre creazioni, delle nostre aziende, e un’altra ancora usare i nuovi media per tendere una mano e aiutare le nuove generazioni.</p></blockquote>
+	<p>Queste parole di <strong>Jeff Thurston</strong> mi hanno letteralmente folgorato quando le ho lette sul suo blog <a href="http://vector1media.com/vectorone/?p=3779" target="_blank"><strong>VectorOne</strong></a>. E mi hanno spinto a dire la mia. Stiamo parlando di tecnologie geospaziali, tanto per essere chiari, e del mondo dei media che ruotano loro attorno.</p>
+	<p>Con Andrea, <a href="http://www.massimozotti.it/" target="_blank">Massimo</a> e altri (pochi) amici &#8211; appunto “addetti ai lavori” – ci confrontiamo spesso su <strong>come e dove stia andando la blogosfera geomatica in Italia</strong>, e ci chiediamo “a che punto siamo”. Per come la vedo io, in una fase di sostanziale stallo, nella quale il livello della comunicazione sembra non riesca a evolvere verso una comunità nella quale tecnici, tecnologi, utenti, aziende, sviluppatori riescano a <strong>costituire una massa critica</strong> capace di dare vita a idee, soluzioni tecnologiche, nuovi settori di mercato che siano autenticamente innovativi. E al tempo stesso <strong>costruire una base di conoscenze</strong>, una risorsa/feedback per la comunità stessa, anche e soprattutto per i “newbie”, coloro che si avvicinano per la prima volta alla geomatica.</p>
+	<p>Thurston &#8211; <a href="http://www.theatlantic.com/doc/200909u/professional-bloggers" target="_blank">citando Carlson</a> &#8211; evidenzia come il punto debole dei nuovi media su web (in primis i blog) sia l’essere essenzialmente orientati verso la “numerosità dei collegamenti”: più si è linkati, più vuol dire che si è letti, più si è letti, più si è importanti. Un cortocircuito pericoloso che porta al “doping” dell’informazione.</p>
+	<p>Focalizzando la questione sulla geomatica, sempre citando Thurston</p>
+	<blockquote><p>La domanda più importante per la nostra comunità è legata al modo in cui essa si collega allo sviluppo della ricerca, alla formazione, lo studio dell’ingegneria, delle scienze dell&#8217;informazione geografica e di tutte le discipline connesse.</p>
+	<p>[…]</p>
+	<p>E se i nuovi media siano solamente uno strumento di marketing, o possano essere usati per costruire capacità, supportare altre persone non ancora coinvolte e in che modo poter fare questo. Del resto, nuovi mercati richiedono nuovi clienti.</p></blockquote>
+	<p><strong>Clienti, utenti, tecnici, professionisti, studenti consapevoli</strong>, aggiungerei io. Si tratta dunque di capire se vogliamo &#8211; come attori della comunità geomatica &#8211; convergere dalle rispettive posizioni di: <strong>aziende</strong> votate esclusivamente al marketing, <strong>tecnologi e sviluppatori</strong> concentrati essenzialmente sulle soluzioni tecnologiche migliori, <strong>mondo della ricerca</strong> scollegato da quello del mercato, per creare le giuste sinergie che riescano a dar luogo a una massa critica, e un livello dell&#8217;informazione costantemente in evoluzione.</p>
+	<p>Ecco che dunque le <strong>aziende illuminate</strong>, che producono reale valore aggiunto per la comunità geomatica, sono quelle che promuovono periodicamente concorsi di idee, awards, incentivano la ricerca anche nei singoli, che puntano sull’educazione e sulla formazione nelle scuole. <strong>Gli editori, le associazioni più lungimiranti</strong> sono quelli che puntano sull’organizzazione di eventi che stimolano l’incontro tra innovatori, mettono a confronto progetti. E per quanto riguarda i media, sempre Thurston:</p>
+	<blockquote><p>Qual’è l’equilibrio nella blogosfera geospaziale? Diamo valore alle opinioni e alle differenze di pensiero? O piuttosto cerchiamo l’omologazione orientata al mero conteggio dei link?</p></blockquote>
+	<p>Vincente, autenticamente innovativo è l’approccio che porta proprio alla valorizzazione delle differenze dei punti di vista, che mette in discussione lo status quo.</p>
+	<p>A che punto è la notte, secondo voi, in Italia?</p>
+	<p>A mio parere i <strong>pochi editori “puri”</strong> attivi nel settore sono troppo incentrati sul mondo delle imprese, trascurando gli aspetti della ricerca e dell’innovazione. Aspetti che possono invece essere <strong>curati e incentivati proprio dalle stesse aziende</strong> e <strong>rilanciati dalla</strong> <strong>blogosfera</strong>. Quest’ultima ha a sua volta un <strong>ruolo fondamentale di stimolo</strong> e pungolo sia per il mercato della geomatica, mettendo a <strong>confronto le soluzioni tecnologiche commerciali e aperte</strong>, sia come punto di riferimento per lo stuolo di nuovi utenti, professionisti e studenti, che sempre più numerosi si avvicinano al nostro mondo, e che <strong>chiedono aiuto, orientamento e incoraggiamento</strong>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/09/23/comunit-geomatica-a-che-punto-la-notte/">Comunità geomatica. A che punto è la notte?</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/09/23/comunit-geomatica-a-che-punto-la-notte/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comunit%C3%A0+geomatica.+A+che+punto+%C3%A8+la+notte%3F&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2009-09-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/23/comunit-geomatica-a-che-punto-la-notte/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://datamining.typepad.com/images/blogosphere-map-core-min2.gif" />
+		<media:content url="http://datamining.typepad.com/images/blogosphere-map-core-min2.gif" medium="image">
+			<media:title type="html">The Blogosphere</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

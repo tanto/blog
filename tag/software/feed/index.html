@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Software</title>
+	<atom:link href="http://blog.spaziogis.it/tag/software/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Appena rilasciata la nuova versione di QGIS (1.7.0 Wroclaw)</title>
+		<link>http://blog.spaziogis.it/2011/06/19/rilasciato-qgis-17/</link>
+		<comments>http://blog.spaziogis.it/2011/06/19/rilasciato-qgis-17/#comments</comments>
+		<pubDate>Sun, 19 Jun 2011 17:05:40 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[gfoss]]></category>
+		<category><![CDATA[qgis]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3826</guid>
+		<description><![CDATA[Tim Sutton ha da poco annunciato che è stato rilasciato ufficialmente QGIS 1.7.0 - Wroclaw e le novità sono veramente tante. Solo per citarne alcune: il supporto al Join, la riproiezione al volo dei file raster ed una riprogettazione dell'interfaccia.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Appena+rilasciata+la+nuova+versione+di+QGIS+%281.7.0+Wroclaw%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-06-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/06/19/rilasciato-qgis-17/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong><a title="Tim Sutton" href="http://twitter.com/#%21/timlinux" target="_blank">Tim Sutton</a> </strong>ha da poco annunciato che è stato rilasciato ufficialmente <strong><a title="Announcing the         release of QGIS 1.7 'Wroclaw'" href="http://osgeo-org.1803224.n2.nabble.com/Announcing-the-release-of-QGIS-1-7-Wroc-aw-tp6492512p6492512.html" target="_blank">QGIS 1.7.0 &#8211; Wroclaw</a></strong> e le <strong><a title="QGIS Version 1.7.0 'Wroclaw' is released " href="http://qgis.org/component/content/article/127-qgis-1-7-release.html" target="_blank">novità</a> </strong>sono veramente tante.</p>
+	<p>Alcune sono legate all&#8217;<strong>infrastruttura</strong> del progetto:</p>
+	<ul>
+	<li>un nuovo sito per gli sviluppatori per la pubblicazione dei loro <strong>plugin</strong>, <a title="QGIS plugin           developer site" href="http://plugins.qgis.org/" target="_blank">http://plugins.qgis.org/</a></li>
+	<li>un nuovo sito per condividere <strong>snippet di codice </strong>(sia in C++ che in Python), <a href="http://snippets.qgis.org/" target="_blank">http://snippets.qgis.org/</a></li>
+	<li>nuova <strong>mappa online degli utenti QGIS</strong>, <a href="http://users.qgis.org/" target="_blank">http://users.qgis.org/</a></li>
+	<li>nuovo <strong>planet QGIS</strong>, <a href="http://planet.qgis.org/" target="_blank">http://planet.qgis.org/</a></li>
+	<li>migrazione del <strong>bug tracker</strong> da trac aredmine, <a href="http://hub.qgis.org/" target="_blank">http://hub.qgis.org/</a></li>
+	<li>migrazione del <strong>repository del codice sorgente </strong>da quello SVN ospitato da OSGEO ad uno GIT su GITHub, <a href="http://github.com/qgis/Quantum-GIS" target="_blank">http://github.com/qgis/Quantum-GIS</a></li>
+	</ul>
+	<p>Queste invece alcune delle novità <strong>software</strong>:</p>
+	<ul>
+	<li><strong>Simbologia</strong>
+	<ul>
+	<li>il nuovo gestore della simbologia &#8211; già presente nella versione precedente &#8211; è diventato quello di default</li>
+	<li>import ed export degli stili</li>
+	<li>elementi lineari
+	<ul>
+	<li>è possibile inserire un simbolo nel punto centrale di una linea</li>
+	<li>è possibile inserire un simbolo sul primo e sull&#8217;ultimo nodo di una linea</li>
+	<li>è possibile inserire un simbolo in ogni vertice di unalinea</li>
+	</ul>
+	</li>
+	<li>elementi poligonali
+	<ul>
+	<li>rotazione dei riempimenti svg</li>
+	<li>aggiunta la possibilità di inserire un simbolo in corrispondenza del centroide di un poligono</li>
+	</ul>
+	</li>
+	<li>etichette</li>
+	</ul>
+	<ul>
+	<li>è possibile impostare la distanza in unità di mappa</li>
+	<li>inserito uno strumento per muovere/ruotare/cambiare interattivamente le etichette</li>
+	</ul>
+	</li>
+	<li><strong>Nuovi strumenti</strong>
+	<ul>
+	<li>aggiunta un&#8217;interfaccia per gdaldem</li>
+	<li>aggiunte nuove funzioni nel field calculator, $x $y e$perimeter</li>
+	<li>aggiunto lo strumento &#8220;Lines to polygons&#8221; nel menu Vector</li>
+	<li>aggiunto lo strumento &#8220;Voronoi polygon&#8221; nel menu Vector<strong> </strong></li>
+	</ul>
+	</li>
+	<li><strong>Interfaccia</strong>
+	<ul>
+	<li>zoom ad un gruppo di layer</li>
+	<li>&#8220;Suggerimento del giorno&#8221; all&#8217;avvio (si può disabilitare)</li>
+	<li>migliore organizzazione dei menu, e nuovo menu database</li>
+	<li>possibilità di mostrare in legenda il numero di feature per ogni classe (si attiva con il tasto destro del mouse)</li>
+	<li>migliorata usabilità e &#8220;pulizia&#8221;</li>
+	</ul>
+	</li>
+	<li><strong>Gestione CRS</strong>
+	<ul>
+	<li>visualizzazione del CRS attivo nella barra di stato</li>
+	<li>possibilità di assegnare il CRS  dal menu contestuale in legenda</li>
+	<li>possibilità di impostare il CRS di default per i nuovi progetti</li>
+	</ul>
+	</li>
+	<li><strong>Raster</strong>
+	<ul>
+	<li>aggiunti gli operatore AND e OR nel raster calculator</li>
+	<li>riproiezione al volo</li>
+	<li>inserita un barra degli strumenti, con pulsanti per calcolo dell&#8217;istogramma e funzioni di stretch</li>
+	</ul>
+	</li>
+	<li><strong>Gestione e provider dati</strong>
+	<ul>
+	<li>supporto per Join tra tabelle</li>
+	<li>nuovo provider vettoriale SQLAnywhere</li>
+	<li>supporto per la ricerca di valori NULL nella tabella degli attributi</li>
+	<li>miglioramenti nella modifica e nella gestione degli attributi</li>
+	<li>possibilità (opzionale) di inserire gli attributi della feature precedente all&#8217;inserimento di una nuova</li>
+	<li>stringa di rappresentazione dei Null value configurabile</li>
+	<li>possibilità di unire/assegnare valori di campi ad un insieme di feature</li>
+	<li>possibilità di salvare (tramite OGR) oggetti geometrici senza attributi associati (i.e. DGN/DXF)</li>
+	</ul>
+	</li>
+	<li><strong>QGIS Server</strong>
+	<ul>
+	<li>possibilità di specificare le Capabilities WMS nella finestra Proprietà Progetto</li>
+	<li>supporto per stampa WMS tramite GetPrint-Request</li>
+	</ul>
+	</li>
+	<li><strong>Plugin</strong>
+	<ul>
+	<li>supporto per l&#8217;utilizzo di icone nella finestra di dialogo di gestione dei plugin</li>
+	<li>rimosso plugin &#8220;quickprint&#8221; (usare in sostituzione il plugin easyprint scaricabile dal catalogo)</li>
+	<li>rimosso plugin &#8220;ogr convertor&#8221; (usare in sostituzione &#8220;save as&#8221; dal menu contestuale)</li>
+	</ul>
+	</li>
+	<li><strong>Stampa</strong>
+	<ul>
+	<li>supporto per Undo/Redo nel gestore di stampa</li>
+	</ul>
+	</li>
+	</ul>
+	<p>Io l&#8217;ho appena installato ed il primo impatto è molto buono. Feature come il supporto per il Join, la riproiezione al volo dei file raster e le migliorie legate alla simbologia mettono da subito di buon umore. Nel ringraziare tutti quelli che hanno contributo al progetto, ricordo (anche a me stesso) che QGIS è basato sul volontariato; una donazione, anche minima, si può fare da <strong><a title="Donazioni QGIS" href="http://qgis.org/en/sponsorship/donors.html" target="_blank">qui</a></strong>.</p>
+	<p><div class="slidedeck_frame skin-default"><dl id="SlideDeck_852_3859" class="slidedeck slidedeck_3859" style="width:100%;height:280px"><dt>Supporto Join</dt><dd><p style="text-align: center;"><img class="alignnone size-full wp-image-3837 aligncenter" title="join" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/join.png" alt="" width="383" height="199" /></p>
+</dd><dt>Simbologia elementi lineari</dt><dd><p style="text-align: center;"><img class="alignnone size-full wp-image-3836 aligncenter" title="Simbologia" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/Simbologia.png" alt="" width="383" height="199" /></p>
+</dd><dt>Conteggio feature</dt><dd><p style="text-align: center;"><img class="alignnone size-full wp-image-3838 aligncenter" title="feature_count" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/feature_count.png" alt="" width="384" height="200" /></p>
+</dd><dt>Gestione CRS</dt><dd><p style="text-align: center;"><img class="alignnone size-full wp-image-3835 aligncenter" title="Gestione CRS" src="http://blog.spaziogis.it/wp-content/uploads//2011/06/CRS.png" alt="" width="384" height="200" /></p>
+</dd></dl></div></p>
+	<p>___
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/06/19/rilasciato-qgis-17/">Appena rilasciata la nuova versione di QGIS (1.7.0 Wroclaw)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/06/19/rilasciato-qgis-17/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Appena+rilasciata+la+nuova+versione+di+QGIS+%281.7.0+Wroclaw%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-06-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/06/19/rilasciato-qgis-17/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/join-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/join.png" medium="image">
+			<media:title type="html">join</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/join-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/Simbologia.png" medium="image">
+			<media:title type="html">Simbologia</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/Simbologia-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/feature_count.png" medium="image">
+			<media:title type="html">feature_count</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/feature_count-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/06/CRS.png" medium="image">
+			<media:title type="html">Gestione CRS</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/06/CRS-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Comprendere la geostatistica ed il kriging con un ottimo supporto didattico</title>
+		<link>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/</link>
+		<comments>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/#comments</comments>
+		<pubDate>Wed, 28 May 2008 21:57:59 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[geostatistica]]></category>
+		<category><![CDATA[kriging]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+Il primo impatto con la geostatistica può essere molto duro; specie se da un giorno all&#8217;altro si passa dal fare belle carte (false) tematiche ed allestimenti per la stampa, all&#8217;analisi spaziale. Si parte quasi sempre da una &#8220;strana&#8221; nuvola di punti, che rappresenta la distribuzione di una serie di dati noti, e dalla quale si [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il primo impatto con la geostatistica può essere molto duro; specie se da un giorno all&#8217;altro si passa dal fare belle carte (false) tematiche ed allestimenti per la stampa, all&#8217;analisi spaziale.</p>
+	<p>Si parte quasi sempre da una &#8220;strana&#8221; nuvola di punti, che rappresenta la distribuzione di una serie di dati noti, e dalla quale si dovrà eseguire un&#8217;interpolazione. Per fortuna esiste l&#8217;arma segreta: il kriging.</p>
+	<p>E&#8217; uno dei nomi che ti passa più sotto gli occhi, e solo per questo hai il sospetto che sia qualcosa di importante. Ricordi subito di averlo visto citato in quel particolare modulo di quel software, e magari provi subito ad usarlo. Pochi click e produci una bella carta di dispersione di una certa variabile. Spegni subito il cervello e vai ad impaginare la carta prodotta: un reticolato kilometrico, una legenda, una freccia nord ed una scala metrica. Non ti resta che esportare un bel pdf e consegnarlo a chi di dovere. FINITO!!!</p>
+	<p>Ovviamente non ho finito alcunché. L&#8217;esempio di sopra, macchiettistico ma non lontano da diverse realtà, contiene un brutto esempio procedurale. Non bisognerebbe mai limitarsi a fare qualche click su qualche bottone di un&#8217;interfaccia di un software, senza capire i processi che stanno alle spalle.</p>
+	<p>Il kriging è un famosissimo metodo di interpolazione spaziale, con diverse varianti. &#8220;E&#8217; un metodo di regressione usato nell&#8217;ambito dell&#8217;analisi spaziale (geostatistica) che permette di interpolare una grandezza nello spazio, minimizzando l’errore quadratico medio.&#8221; (Kriging &#8211; Wikipedia, da <a href="http://it.wikipedia.org/wiki/Kriging">http://it.wikipedia.org/wiki/Kriging</a>).</p>
+	<p>Ci sono diverse pubblicazioni e libri di testo che ne parlano diffusamente e che ne illustrano i principi su cui si poggia. Per i neofiti sarà di grande aiuto uno strumento didattico come <a href="http://www.ai-geostats.org/index.php?id=114" title="E{Z}-Kriging - Teaching Kriging" target="_blank">E{Z}-Kriging</a>.</p>
+	<p>Consente a studenti con un <em>background </em>matematico di base di esplorare e comprendere il mondo del kriging, ed in particolare quello dell&#8217;<em>ordinary kriging</em>. Si presenta con un&#8217;interfaccia grafica divisa in tre pannelli (vedi figura sottostante):</p>
+	<ol>
+	<li>quello per configurare la base dati</li>
+	<li>quello per la gestione del semivariogramma</li>
+	<li>e quello per il kriging</li>
+	</ol>
+	<p align="center"> <img src="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" style="border: 0px none " alt="ez-kriging" border="0" height="324" width="484" /></p>
+	<p align="left">La semplicità di utilizzo è molto alta. E&#8217; possibile impostare la posizione del punto di cui si vuole stimare il valore interpolato (in rosso e a sinistra, nella figura in alto) e quella dei punti con valori noti, così come variare i parametri del semivariogramma; per ogni modifica potremo valutarne immediatamente le conseguenze:</p>
+	<ul>
+	<li>
+	<p align="left">quanto pesi nel modello un punto al di fuori del range</p>
+	</li>
+	<li>
+	<p align="left">quanto sia ridotta l&#8217;influenza di punti aggregati</p>
+	</li>
+	<li>
+	<p align="left">quanto il variare dei valori dei punti, alteri i valori previsti e la varianza dell&#8217;errore</p>
+	</li>
+	<li>
+	<p align="left">come il modello di forma del semivariogramma, il nugget, il sill ed il range influenzino i risultati del kriging</p>
+	</li>
+	<li>
+	<p align="left">&#8230;</p>
+	</li>
+	</ul>
+	<p align="left">Non è uno strumento per fare vere simulazioni, a partire da dati propri. E&#8217; utile &#8220;soltanto&#8221; per capire come funziona questo famoso metodo di interpolazione, sia che lo si voglia applicare, sia che lo si voglia spiegare a qualcun altro.</p>
+	<p align="left">Segnalo in chiusura due belle letture utili a chi voglia avvicinarsi alla geostatistica ed al kriging:</p>
+	<ul>
+	<li>
+	<p align="left"><a href="http://eusoils.jrc.it/ESDB_Archive/eusoils_docs/other/EUR22904en.pdf" title="Practical Guide to Geostatistical Mapping of Environmental Variables" target="_blank">Practical Guide to Geostatistical Mapping of Environmental Variables</a></p>
+	</li>
+	<li>
+	<p align="left"><a href="http://www.itc.nl/%7Erossiter/teach/stats/ssi_short.pdf" title="Introduction to applied geostatistics" target="_blank">Introduction to applied geostatistics</a></p>
+	</li>
+	</ul>
+	<p>via <a href="http://www.perrygeo.net/wordpress/?p=122" title="So you want to learn to learn about kriging …" target="_blank">Perrygeo</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/">Comprendere la geostatistica ed il kriging con un ottimo supporto didattico</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Comprendere+la+geostatistica+ed+il+kriging+con+un+ottimo+supporto+didattico&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-05-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/28/comprendere-la-geostatistica-ed-il-kriging-con-un-ottimo-supporto-didattico/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/05/ez-kriging.png" medium="image">
+			<media:title type="html">ez-kriging</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>QGIS 0.10 &quot;Io&quot; Release</title>
+		<link>http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/</link>
+		<comments>http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/#comments</comments>
+		<pubDate>Fri, 02 May 2008 19:23:37 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[desktop]]></category>
+		<category><![CDATA[editor]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[qgis]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS+0.10+%26quot%3BIo%26quot%3B+Release&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-05-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/&amp;rft.language=English"></span>
+E&#8217; con grande piacere e curiosità che scrivo di questa nuova release di QGIS (la notizia è del 30 aprile scorso). E&#8217; un GIS opensource rilasciato sotto licenza GNU General Public License, disponibile per Linux, Mac e Windows. Questa versione include 140 correzioni di bug, una maggiore stabilità,  e numerose nuove funzionalità. Queste le novità [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS+0.10+%26quot%3BIo%26quot%3B+Release&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-05-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>E&#8217; con grande piacere e curiosità che scrivo di questa nuova release di QGIS (la <a href="http://blog.qgis.org/?q=node/113" title="QGIS 0.10 " target="_blank">notizia</a> è del 30 aprile scorso). E&#8217; un GIS <em>opensource </em>rilasciato sotto licenza <em>GNU General Public License</em>, disponibile per Linux, Mac e Windows.</p>
+	<p>Questa versione include 140 correzioni di bug, una maggiore stabilità,  e numerose nuove funzionalità.</p>
+	<p>Queste le novità principali:</p>
+	<ul>
+	<li>il ridisegno della barra degli strumenti che ne migliora la chiarezza e la consistenza</li>
+	<li>aggiunte nuove funzioni di digitalizzazione</li>
+	<li>supporto per gli stili (ad ogni <em>layer </em>vettoriale sarà possibile associare uno stile grafico)</li>
+	<li>migliore gestione delle raster (trasparenza e classificazione)</li>
+	<li>supporto per il <em>drag and drop</em> dei file dentro il <em>file manager</em></li>
+	<li>creazione di un repository di plugin, diventato abbastanza ricco da quando esiste il supporto per python</li>
+	<li>rotazione e ridimensionamento dei simboli in basi ai valori di un campo selezionato</li>
+	</ul>
+	<p>Lo vado a <a href="http://download.qgis.org/downloads.rhtml" title="QGIS download" target="_blank">scaricare</a> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+	<p align="center"><img src="http://blog.spaziogis.it/wp-content/uploads/2008/05/qgis_io.jpg" alt="QGIS 0.10 “Io” Release Announcement" /></p>
+	<p><a href="http://blog.qgis.org/?q=node/113" title="http://blog.qgis.org/?q=node/113"><br />
+</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/">QGIS 0.10 &quot;Io&quot; Release</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS+0.10+%26quot%3BIo%26quot%3B+Release&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-05-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/05/02/qgis-010-io-release/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/05/qgis_io.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/05/qgis_io.jpg" medium="image">
+			<media:title type="html">QGIS 0.10 “Io” Release Announcement</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Personale, ma non troppo: amici di Blog e screencasting</title>
+		<link>http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/</link>
+		<comments>http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/#comments</comments>
+		<pubDate>Tue, 01 Apr 2008 13:00:54 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[guide]]></category>
+		<category><![CDATA[screencasting]]></category>
+		<category><![CDATA[Software]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Personale%2C+ma+non+troppo%3A+amici+di+Blog+e+screencasting&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/&amp;rft.language=English"></span>
+In un mio post di cui sono molto orgoglioso scrivo degli effetti a catena generati dalla semplice lettura di una pagina web. Questo post è ancora una tessera di quel domino. Scrivevo infatti di un bel video tutorial di Lorenzo Perone, e gli attribuivo un solo difetto: il non mostrare a video le operazioni le [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Personale%2C+ma+non+troppo%3A+amici+di+Blog+e+screencasting&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In un mio <a href="http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/" title="La rete come un domino: da Gerlando, a OpenOffice a Google Earth" target="_blank">post</a> di cui sono molto orgoglioso scrivo degli effetti a catena generati dalla semplice lettura di una pagina web. Questo post è ancora una tessera di quel domino.</p>
+	<p>Scrivevo infatti di un bel <a href="http://www.shannon.it/blog/uilizzi-poco-convenzionali-divertirsi-con-google-earthco/" title="Uilizzi poco convenzionali: divertirsi con Google Earth&amp;co" target="_blank">video tutorial</a> di <a href="http://lorenzo.perone.org/" title="Lorenzo Perone Blog" target="_blank">Lorenzo Perone</a>, e gli attribuivo un solo difetto: il non mostrare a video le operazioni le operazioni da lui ben raccontate. In quell&#8217;occasione lo contattai per fargli i complimenti e per stimolarlo a rendere ancora più efficace il suo bel lavoro. Gli ho semplicemente detto qualcosa come: &#8220;ma perché non catturi il video delle operazioni che esegui al pc, in modo da renderlo ancora più didattico?&#8221;<br />
+Con Lorenzo ho avuto il piacere di incontrarmi grazie al web, e prima della scrittura del suddetto post; ci leggiamo a vicenda, qualche volta chattiamo e qualche altra ci scriviamo email.</p>
+	<p>Lo conosco poco, ma in quell&#8217;occasione ne constatai la reattività e la voglia di lavorare bene, e per circa una settimana abbiamo discusso di come ottimizzare questa operazione di <a href="http://en.wikipedia.org/wiki/Screencast" title="definizione di screencasting" target="_blank">screencasting</a>. Io ho una piccola esperienza di cattura video per la creazione di tutorial, e mi sono permesso di suggerirgli due prodotti diversi tra loro: <a href="http://www.jingproject.com/" title="Jing HomePage" target="_blank">Jing</a> e <a href="http://camstudio.org/" title="CamStudio HomePage" target="_blank">CamStudio</a>.</p>
+	<p>Jing è un prodotto gratuito di cattura video e audio della TechSmith (quelli di Camtasia per intenderci) per Mac OS e per Windows. E&#8217; caratterizzato dalla semplicità di utilizzo ed è accoppiato ad un servizio di hosting gratuito per l&#8217;upload dei filmati registrati (<a href="http://screencast.com/t/n5n1bdvxVI" title="esempio di videocattura con Jing" target="_blank">qui</a> un esempio). E&#8217; possibile pubblicare i video anche sui propri server.</p>
+	<p>Oltre ai video, si possono fare degli screenshot ed annotarli con dei semplici strumenti (vedi immagine sottostante).</p>
+	<p align="center"><img src="http://blog.spaziogis.it/wp-content/uploads/2008/03/2008-03-31-2302-thumb.png" style="border-width: 0px" alt="2008-03-31_2302" border="0" height="373" width="481" /></p>
+	<p>E&#8217; di facile utilizzo, e copre le funzioni richieste per la gran parte degli utilizzi. E&#8217; un programma che però non consente di personalizzare quasi nessun parametro. Se vogliamo più &#8220;potere&#8221; nella creazione di questi filmati dobbiamo passare a qualcosa come <a href="http://camstudio.org/" title="CamStudio HomePage" target="_blank">CamStudio</a>.</p>
+	<p>Anche CamStudio è un prodotto gratuito sia per uso personale che professionale, disponibile solo per windows. Acquisisce tutte le attività che vengono fatte a schermo e le salva in formato AVI o SWF, sfruttando uno dei codec a disposizione sul proprio pc; l&#8217;autore del software ha reso disponibile sotto licenza GPL, un <a href="http://www.camstudio.org/CamStudioCodec10.zip" title="codec GPL CamStudio" target="_blank">codec</a> che genera filmati con un buon rapporto qualità/dimensioni del file (qui sotto un filmato creato con CamStudio).</p>
+	<p>    <object width="480" height="392" data="http://flash.revver.com/player/1.0/player.swf?mediaId=780916" type="application/x-shockwave-flash" id="revver780916122918691743115547" data="http://flash.revver.com/player/1.0/player.swf?mediaId=780916"></p>
+	<param name="Movie" value="http://flash.revver.com/player/1.0/player.swf?mediaId=780916">
+      </param>
+	<param name="FlashVars" value="allowFullScreen=true">
+      </param>
+	<param name="AllowFullScreen" value="true">
+      </param>
+	<param name="AllowScriptAccess" value="always">
+      </param>
+	<p>    </object>  </p>
+	<p style="visibility: visible">Con entrambi i prodotti potrete anche registrare la vostra voce da microfono: con il primo non potrete personalizzare alcunché, mentre con il secondo avrete più mano libera (qui sotto il pannello delle opzioni di acquisizione audio).</p>
+	<p style="visibility: visible">&nbsp;</p>
+	<p style="visibility: visible" align="center"><img src="http://blog.spaziogis.it/wp-content/uploads/2008/04/image.png" style="border: 0px none " alt="image" border="0" height="442" width="310" /></p>
+	<p style="visibility: visible" align="left">&nbsp;</p>
+	<p style="visibility: visible" align="left">Avere a disposizione uno strumento di screencasting può essere veramente molto utile. Io creo video essenzialmente per tre ragioni:</p>
+	<ol>
+	<li>
+	<p style="visibility: visible" align="left">creare delle videoguide</p>
+	</li>
+	<li>
+	<p style="visibility: visible" align="left">documentare un bug di un software ed inviarlo al supporto tecnico (così con una solo email li inchiodo <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' />   )</p>
+	</li>
+	<li>
+	<p style="visibility: visible" align="left">dare un po&#8217; di supporto a clienti, amici, fratelli e mamme (&#8220;<em>come metto il traduttore di lingue nella barra degli strumenti del browser?</em>&#8220;</p>
+	</li>
+	</ol>
+	<p>E spesso in pochi minuti produco qualcosa che messa per iscritto mi avrebbe levato molto più tempo ed energia.</p>
+	<p style="visibility: visible" align="left">Vi segnalo queste piccole utility di corredo:</p>
+	<ul>
+	<li>
+	<p style="visibility: visible" align="left"><a href="http://lifehacker.com/software/distraction/lifehacker-code-dropcloth-windows-245774.php" title="Dropcloth" target="_blank">Dropcloth</a> (solo per windows), per mettere un velo dietro la finestra che state catturando ed evitare che si veda (ad esempio) il vostro disordinatissimo desktop</p>
+	</li>
+	<li>
+	<p style="visibility: visible" align="left"><a href="http://technet.microsoft.com/en-us/sysinternals/bb897434.aspx" title="ZoomIt is screen zoom and annotation tool for technical presentations" target="_blank">ZoomIt</a> (solo per windows), per zoomare e annotare sul video</p>
+	</li>
+	<li>
+	<p style="visibility: visible" align="left"><a href="http://www.brianapps.net/sizer.html" title="Sizer is a freeware utility that allows you to resize any window to an exact, predefined size" target="_blank">Sizer</a> (solo per windows),  per ridimensionare le finestre da catturare in maniera precisa.</p>
+	</li>
+	</ul>
+	<p style="visibility: visible" align="left">Non avrei mai scritto questo post, se non avessi avuto lo scambio con Lorenzo e per questo lo ringrazio.</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/">Personale, ma non troppo: amici di Blog e screencasting</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Personale%2C+ma+non+troppo%3A+amici+di+Blog+e+screencasting&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/01/personale-ma-non-troppo-amici-di-blog-e-screencasting/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/03/2008-03-31-2302-thumb.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/03/2008-03-31-2302-thumb.png" medium="image">
+			<media:title type="html">2008-03-31_2302</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/image.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Un viewer GIS gratuito per Windows nella propria pendrive USB: TatukGIS</title>
+		<link>http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/</link>
+		<comments>http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/#comments</comments>
+		<pubDate>Tue, 05 Feb 2008 22:59:49 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[free]]></category>
+		<category><![CDATA[gis viewer]]></category>
+		<category><![CDATA[portable]]></category>
+		<category><![CDATA[Software]]></category>
+		<category><![CDATA[usb]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+viewer+GIS+gratuito+per+Windows+nella+propria+pendrive+USB%3A+TatukGIS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2008-02-05&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/&amp;rft.language=English"></span>
+TatukGIS viewer è una delle più piacevoli scoperte software fatte di recente, ed ancora non finisce di stupirmi. Si tratta probabilmente del miglior GIS viewer gratuito per windows, in termini di funzioni, flessibilità d&#8217;uso e performance. Noi lo usiamo molto in ufficio soprattutto per dare un rapido sguardo a nuovi dati ricevuti in (quasi) qualsiasi [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+viewer+GIS+gratuito+per+Windows+nella+propria+pendrive+USB%3A+TatukGIS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2008-02-05&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://www.tatukgis.com/products/viewer/viewer.aspx" title="TatukGIS viewer" target="_blank">TatukGIS viewer</a> è una delle più piacevoli scoperte software fatte di recente, ed ancora non finisce di stupirmi. Si tratta probabilmente del miglior GIS viewer gratuito per windows, in termini di funzioni, flessibilità d&#8217;uso e performance.</p>
+	<p>Noi lo usiamo molto in ufficio soprattutto per dare un rapido sguardo a nuovi dati ricevuti in (quasi) qualsiasi formato GIS, o per aprire al volo un vecchio file d&#8217;archivio. E&#8217; molto comodo per leggere rapidamente file raster compressi (ECW/ECWP, MrSID, JPEG2000), senza passare da procedure di import e/o conversione.</p>
+	<p>Utilizzandolo mi sono chiesto se ne esistesse una versione &#8220;<strong>portatile</strong>&#8221; da caricare su <em>pendrive</em> USB, che non ne richiedesse l&#8217;installazione, e che fosse eseguibile direttamente dal <em>driver </em>USB. Ho girato la domanda al supporto tecnico ed ho scoperto che TatukGIS viewer è nativamente portatile: basta infatti copiare la cartella di installazione (di solito la cartella &#8220;C:\Programmi\TatukGIS\Viewer&#8221;) nella <em>pendrive</em>. Fatto questo, potremo lanciare l&#8217;applicazione da qualsiasi computer a cui connettiamo la nostra <em>pendrive</em>, entrando nella cartella che abbiamo copiato e facendo doppio click sul file &#8220;ttkVWR.exe&#8221;.</p>
+	<p>Alcune delle altre caratteristiche:</p>
+	<ul>
+	<li>Lettura dei seguenti formati
+	<ul>
+	<li><strong>Raster:</strong> TIFF/GeoTIFF, ECW/ECWP, MrSID, JPEG2000, JPEG, IMG, BMP, BIL/SPOT, PNG, CADRG,</li>
+	<li><strong>Vettoriali:</strong> SHP, E00, MIF/MID, TAB, DXF, DGN, TIGER, GML, KML, VPF, GDF, DLG, SDTS, GPX, CSV</li>
+	<li><strong>SQL database layer:</strong> ESRI Personal Geodatabase, Geomedia® Access Warehouse, OPENGIS® Simple Features for SQL implementation, TatukGIS binary, TatukGIS <a href="http://www.tatukgis.com/Technologies/technologies.aspx">PixelStore</a></li>
+	<li><strong>Grid/DTM:</strong> ADF, BT, DT0, DT1, DT2, FLT (ArcInfo Float Binary Grid), GRD (ArcInfo ASCII Grid), GRD (Surfer ASCII Grid-DSAA)</li>
+	<li><strong>Georeferenced Images:</strong> GeoTIFF, World File, and TAB base</li>
+	<li>Tutti i formati sono supportati nativamente, senza che sia necessario importarli in qualche formato interno</li>
+	</ul>
+	</li>
+	<li>Integrazione di file di formato differente nello stesso progetto</li>
+	<li>Lettura di file progetto ESRI ArcView®, ArcExplorer®, o MapInfo Professional®</li>
+	<li>Zoom in/out, pan</li>
+	<li>Definizione di scale personalizzate di visualizzazione e stampa</li>
+	<li>Rapidità di gestione di grosse moli di dati (shapefile sino a 2 gigabyte)</li>
+	<li>Indicizzazione R-tree</li>
+	<li>Gestione degli stili grafici dei layer vettoriali (colori, stili, riempimenti, contorni, simboli, trasparenza, etc.)</li>
+	<li>Utilizzo di file CGM, WMF, e TrueType per la simbolizzazione degli elementi grafici</li>
+	<li>Creazioni di grafici a torta</li>
+	<li>Interrogazioni spaziali (per punto, linea, cerchio, rettangolo, poligono) basate sul Dimensionally Extended 9 Intersection Model (DE-9IM).</li>
+	<li>Interrogazione SQL per attributo</li>
+	<li>Misura di distanze, aree e perimetri</li>
+	<li>Importazione di dati GPS a partire da file in formato GPX</li>
+	<li>Creazione di Hotlink</li>
+	<li>Map hint automatici</li>
+	<li>Stampa in formato PDF</li>
+	<li>Export di qualsiasi vista in formato TIFF/GeoTIFF (w/ LZW), JPEG, PNG, BMP, PixelStore</li>
+	<li>Mosaicatura di più immagini giù georeferenziate in un unico file</li>
+	</ul>
+	<p>Vi consiglio di provarlo.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/">Un viewer GIS gratuito per Windows nella propria pendrive USB: TatukGIS</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+viewer+GIS+gratuito+per+Windows+nella+propria+pendrive+USB%3A+TatukGIS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2008-02-05&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/02/05/un-viewer-gis-gratuito-per-windows-nella-propria-pendrive-usb-tatukgis/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>La rete come un domino: da Gerlando, a OpenOffice a Google Earth</title>
+		<link>http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/</link>
+		<comments>http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/#comments</comments>
+		<pubDate>Sat, 19 Jan 2008 22:25:53 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[condivisione]]></category>
+		<category><![CDATA[neogeography]]></category>
+		<category><![CDATA[rss]]></category>
+		<category><![CDATA[Software]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+rete+come+un+domino%3A+da+Gerlando%2C+a+OpenOffice+a+Google+Earth&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/&amp;rft.language=English"></span>
+Gerlando è uno degli autori di questo Blog, è per meglio dire l&#8217;autore del post che ha portato più visite a TANTO in questi ultimi mesi: &#8220;smart2go: le mappe della tua città sul tuo telefonino (Nokia)&#8220;. Con Gerlando condividiamo molte cose e tra queste le letture che facciamo tramite il nostro lettore di feed RSS [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+rete+come+un+domino%3A+da+Gerlando%2C+a+OpenOffice+a+Google+Earth&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Gerlando è uno degli autori di questo Blog, è per meglio dire l&#8217;autore del post che ha portato più visite a TANTO in questi ultimi mesi: &#8220;<a href="http://blog.spaziogis.it/2007/11/01/smart2go-le-mappe-della-tua-citta-sul-tuo-telefonino-nokia/" title="smart2go: le mappe della tua città sul tuo telefonino (Nokia)" target="_blank">smart2go: le mappe della tua città sul tuo telefonino (Nokia)</a>&#8220;.</p>
+	<p>Con Gerlando condividiamo molte cose e tra queste le letture che facciamo tramite il nostro lettore di feed RSS preferito: <a href="http://www.google.com/reader" title="Google Reader" target="_blank">Google Reader</a>. I feed RSS li uso per varie cose, soprattutto per tenermi aggiornato. Ho selezionato alcune fonti di informazioni per me significative e le seguo giorno per giorno; il risultato è uno speciale giornale che contiene soltanto le notizie che &#8220;preferisco&#8221;.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads/2008/01/google-reader-shared.png"><img src="http://blog.spaziogis.it/wp-content/uploads/2008/01/google-reader-shared-thumb.png" alt="google_reader_shared" align="left" border="0" height="159" hspace="2" width="251" /></a> Google Reader aggiunge ai tradizionali RSS <em>reader</em> una funzione in più: la <strong>condivisione</strong> di una lettura.</p>
+	<p>Leggo ad esempio un interessante articolo, e ritengo sia utile condividerlo con qualcuno: con un collega di lavoro, con un amico, con mio fratello, etc. A quel punto clicco sul tasto Share (Condividi nella versione italiana dell&#8217;interfaccia) e quell&#8217;articolo verrà inserito nell&#8217;elenco delle mie letture condivise. A partire da questo elenco vengono generate una semplice e leggibilissima <a href="http://www.google.com/reader/shared/15244278077982194024" title="Andrea Borruso shared items" target="_blank">pagina web</a>, ed un <a href="http://www.google.com/reader/public/atom/user/15244278077982194024/state/com.google/broadcast" title="Andrea Borruso shared items RSS feed" target="_blank">feed RSS</a>.</p>
+	<p>Io ho tra le mie fonti RSS proprio il feed degli articoli condivisi da Gerlando, e tra questi la mia attenzione è caduta su un articolo pubblicato su <a href="http://www.digitallex.com/index.php/?option=com_content&amp;task=view&amp;id=709&amp;Itemid=112" title="Digital Lex - e-Learing: scarica le lezioni online gratuite di Oilproject.org." target="_blank">Digital Lex</a>: &#8220;e-Learing: scarica le lezioni online gratuite di Oilproject.org&#8221;. E&#8217; un blog interessante che parla di Diritto e nuove tecnologie. Io mi sono scaricato le <a href="http://www.oilproject.org/wiki/AudioLogs?cat=36" title="Oilproject: Lezioni su Openoffice" target="_blank">lezioni su OpenOffice</a>. Il domino è appena iniziato.</p>
+	<p>Da lì gli occhi mi vanno su <a href="http://oilproject.org/" title="Oilproject - La prima scuola gratuita di informatica online" target="_blank">Oilproject</a>, &#8220;La prima scuola gratuita di informatica online&#8221;. E&#8217; stata una bellissima scoperta, in quanto è un sito ricco di materiale didattico disponibile in varie forme: da testi in formato elettronico, a registrazioni audio di lezioni in formato .mp3 liberamente scaricabili. Come tutti i siti che si rispettano, anche Oilproject ha un Blog correlato: <a href="http://www.shannon.it/" title="Shannon.it" target="_blank">Shannon.it</a>.</p>
+	<p>Per parlarvi di Shannon la cosa migliore è citare gli stessi autori:</p>
+	<blockquote><p>Shannon  è un altro blog che tratta di tecnologia pubblicando sia articoli tecnici e mirati, sia articoli accessibili al grande pubblico.<br />
+Non è la redazione a scrivere articoli e i lettori a commentarli, ma esattamente il contrario.</p>
+	<p>L’obiettivo di Shannon è stimolare la nascita di discussioni costruttive, ponendo al centro del dibattito i lettori stessi, autori dei post iniziali.</p></blockquote>
+	<p>Subito incuriosito dal sito, mi metto un po&#8217; a girovagare e cado su questo interessantissimo post di <a href="http://lorenzo.perone.org" title="Il Blog di Lorenzo Perone" target="_blank">Lorenzo Perone</a>: &#8220;<a href="http://www.shannon.it/blog/uilizzi-poco-convenzionali-divertirsi-con-google-earthco/" title="Uilizzi poco convenzionali: divertirsi con Google Earth&amp;co" target="_blank">Uilizzi poco convenzionali: divertirsi con Google Earth &amp; Co</a>&#8220;. Il cuore del post è un video di circa 30 minuti in cui Lorenzo ci illustra le possibilità che ognuno di noi ha a disposizione utilizzando un GPS, una macchina fotografica, del bel software ed una connessione internet. Gli utilizzi &#8220;poco convenzionali&#8221; descritti da Lorenzo, richiamano quelli tipici della cosiddetta <strong><em>Neogeography</em></strong>:</p>
+	<ul>
+	<li>chiunque può creare una carta geografica</li>
+	<li>un viaggiatore creativo può inserire un&#8217;etichetta geografica nelle proprie foto, ovvero farne il <em><strong>geotagging</strong></em></li>
+	<li>la creazione di <em><a href="http://www.pc-facile.com/glossario/mashup/" title="definzione di mashup" target="_blank"><strong>mashup</strong></a></em></li>
+	<li>la semplicità di utilizzo di strumenti e tecnologie</li>
+	<li>la <strong>condivisione</strong> di dati e di esperienze</li>
+	</ul>
+	<p>Il video ha un solo difetto, non mostra le operazioni che Lorenzo racconta, ma per fortuna la narrazione è di estrema chiarezza. Ho sollecitato Lorenzo in tal senso, e sta pensando di rimontare il video e renderlo ancora più didattico.</p>
+	<p>Il video ci avvicina ad un utilizzo più &#8220;pieno&#8221; di Google Earth, ma anche di altri software meno diffusi ma di grande bellezza. Si parla ad esempio dell&#8217;eccezionale alternativa offerta dalla NASA &#8211; <a href="http://worldwind.arc.nasa.gov/" title="World Wind home page" target="_blank">World Wind</a> &#8211; che a mio avviso offre possibilità didattiche molto superiori a quelle di GE. Inoltre World Wind non ha le limitazioni di licenza che invece ha Google Earth (se ne parla nel video).</p>
+	<p>Il domino finisce con tre spunti che derivano ovviamente dalla visione del filmato:</p>
+	<ul>
+	<li><a href="http://code.google.com/p/gpicsync/" title="Gpicsync" target="_blank">Gpicsync</a>, un software per fare geotagging che sembra molto interessante e ricco di funzioni</li>
+	<li>l&#8217;elenco di <a href="http://code.google.com/p/gpicsync/wiki/OtherGeocodingSoftware" title="Software di geocoding" target="_blank">Software di geocoding</a> presente sul sito di Gpicsync (è sempre un effetto domino)</li>
+	<li>l&#8217;utilizzo dei <a href="http://www.gearthblog.com/blog/archives/2007/04/the_google_earth_net.html" title="KML Network Link" target="_blank">KML Network Link</a> in Google Earth (se tutto va bene, dedicherò un post all&#8217;argomento)</li>
+	</ul>
+	<p>La rete alle volte è un mare troppo grande e spesso ci si perde. Quello che a me piace fare è proprio perdermi, e quando ho paura &#8220;Arresto il sistema&#8221;.</p>
+	<p><font color="#000000">Sitografia:</font></p>
+	<ol>
+	<li><font color="#000000"><a href="http://news.nationalgeographic.com/news/2006/04/0425_060425_map_blogs.html" target="_blank">&#8220;Neogeography&#8221; Blends Blogs With Online Maps</a>.</font></li>
+	<li><font color="#000000">O&#8217;Reilly Media | <a href="http://www.oreilly.com/catalog/neogeography/" title="Introduction to Neogeography" target="_blank">Introduction to Neogeography</a>.</font></li>
+	<li><font color="#000000">The Map Room: <a href="http://www.mcwetboy.net/maproom/2006/04/neogeography.php" title="Neogeography" target="_blank">Neogeography</a>.</font></li>
+	</ol>
+	<p><a href="http://code.google.com/p/gpicsync/wiki/OtherGeocodingSoftware" title="Software di geocoding" target="_blank"></a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/">La rete come un domino: da Gerlando, a OpenOffice a Google Earth</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+rete+come+un+domino%3A+da+Gerlando%2C+a+OpenOffice+a+Google+Earth&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/19/la-rete-come-un-domino-da-gerlando-a-openoffice-a-google-earth/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/01/google-reader-shared-thumb.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/01/google-reader-shared-thumb.png" medium="image">
+			<media:title type="html">google_reader_shared</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Una guida di Google Earth pensata per la didattica</title>
+		<link>http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/</link>
+		<comments>http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/#comments</comments>
+		<pubDate>Wed, 19 Dec 2007 22:59:22 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[google-earth]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Una+guida+di+Google+Earth+pensata+per+la+didattica&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-12-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/&amp;rft.language=English"></span>
+Quelli di Google un po&#8217; ci sono ed un po&#8217; ci fanno, ma da utente è spesso soltanto un piacere avere a che fare con le risorse messe da loro a disposizione (direttamente o indirettamente). La didattica è un mio grande interesse, putroppo poco coltivato, e risorse come quelle che trovate sulla sezione Schools del [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Una+guida+di+Google+Earth+pensata+per+la+didattica&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-12-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Quelli di Google un po&#8217; ci sono ed un po&#8217; ci fanno, ma da utente è spesso soltanto un piacere avere a che fare con le risorse messe da loro a disposizione (direttamente o indirettamente).</p>
+	<p>La didattica è un mio grande interesse, putroppo poco coltivato, e risorse come quelle che trovate sulla sezione <strong><a title="Google UK Schools" href="http://www.google.co.uk/intl/en/schools/index.html" target="_blank">Schools</a></strong> del sito Google del Regno Unito, mi fanno andare in &#8220;brodo di giuggiole&#8221;. Per chi ama la cartografia ed i software in qualche modo correlati, c&#8217;è un regalo speciale: una guida di Google Earth dal titolo &#8220;<em><strong><a title="Virtual Fieldwork using Google Earth" href="http://blog.spaziogis.it/wp-content/uploads/2007/12/usinggoogleearth.pdf">Virtual Fieldwork using Google Earth</a></strong></em>&#8220;.</p>
+	<p>E&#8217; una guida che fornisce le basi necessarie ad un insegnante, per organizzare dei seminari pratici sull&#8217;utilizzo di Google Earth: dall&#8217;utilizzo dei comandi di navigazione alla creazione di <em>placemark </em>e percorsi, dall&#8217;integrazione con un GPS, alla condivisione dei layer creati.</p>
+	<p align="center"><img style="border: 0px none " src="http://blog.spaziogis.it/wp-content/uploads/2007/12/virtual-fieldwork-using-google-earth.png" border="0" alt="Virtual Fieldwork using Google Earth" width="484" height="694" /></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/">Una guida di Google Earth pensata per la didattica</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Una+guida+di+Google+Earth+pensata+per+la+didattica&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-12-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/19/una-guida-di-google-earth-pensata-per-la-didattica/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/12/virtual-fieldwork-using-google-earth.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/12/virtual-fieldwork-using-google-earth.png" medium="image">
+			<media:title type="html">Virtual Fieldwork using Google Earth</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Google Earth (o quasi) dentro una pagina web</title>
+		<link>http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/</link>
+		<comments>http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/#comments</comments>
+		<pubDate>Thu, 06 Dec 2007 07:00:08 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[3D]]></category>
+		<category><![CDATA[flash]]></category>
+		<category><![CDATA[Software]]></category>
+		<category><![CDATA[Terra]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+Earth+%28o+quasi%29+dentro+una+pagina+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2007-12-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/&amp;rft.language=English"></span>
+Da qualche giorno ho scoperto Poly9 FreeEarth, un applicazione web che vi consente di inserire un globo 3D interattivo dentro una pagina web. E&#8217; un&#8217;applicazione Flash, che da la possibilità di posizionare sulla nostra amata Terra diverse tipologie di layer: punti attivi GeoRSS feeds Etichette Polilinee Immagini Layer WMS &#8230; La documentazione è completa e [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+Earth+%28o+quasi%29+dentro+una+pagina+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2007-12-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Da qualche giorno ho scoperto <a href="http://freeearth.poly9.com/" title="FreeEarth" target="_blank">Poly9 FreeEarth</a>, un applicazione web che vi consente di inserire un globo 3D interattivo dentro una pagina web. E&#8217; un&#8217;applicazione Flash, che da la possibilità di posizionare sulla nostra amata Terra diverse tipologie di layer:</p>
+	<ul>
+	<li>punti attivi</li>
+	<li>GeoRSS feeds</li>
+	<li>Etichette</li>
+	<li>Polilinee</li>
+	<li>Immagini</li>
+	<li>Layer WMS</li>
+	<li>&#8230;</li>
+	</ul>
+	<p>La <a href="http://freeearth.poly9.com/api/documentation.php" title="Poly9 FreeEarth API" target="_blank">documentazione</a> è completa e ricca di esempi. Qui sotto un globo con posizionato sopra il feed GeoRSS della Reuters. <a href="http://blog.spaziogis.it/wp-content/uploads/2007/12/freeearth.zip" title="FreeEarth Sample Code">Qui</a> il codice che ho usato per l&#8217;esempio.</p>
+	<p><strong>Aggiornamento</strong>: grazie ad <a href="http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/#comment-3436">Angelo</a> ho scoperto che c&#8217;è un problema di visualizzazione con Internet Explorer, usando gli iframe. Con Firefox non ci sono problemi. Per tale ragione ho creato un <a href="http://blog.spaziogis.it/static/map/freeearth.htm" title="free earth" target="_blank">link</a> che apre una pagina esterna.</p>
+	<p align="center"><a href="http://blog.spaziogis.it/static/map/freeearth.htm" title="free earth" target="_blank"><img src="http://blog.spaziogis.it/wp-content/uploads/2007/12/freeearth.png" alt="free earth" /></a></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/">Google Earth (o quasi) dentro una pagina web</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+Earth+%28o+quasi%29+dentro+una+pagina+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2007-12-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/06/google-earth-o-quasi-dentro-una-pagina-web/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/12/freeearth.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/12/freeearth.png" medium="image">
+			<media:title type="html">free earth</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Il ridimensionamento delle immagini, come non lo avete mai visto.</title>
+		<link>http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/</link>
+		<comments>http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/#comments</comments>
+		<pubDate>Wed, 29 Aug 2007 07:07:36 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[immagini]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+ridimensionamento+delle+immagini%2C+come+non+lo+avete+mai+visto.&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/&amp;rft.language=English"></span>
+Oggi vi segnalo un video un po off-topic, perché in fondo a sempre a che fare con l&#8217;analisi delle immagini. Guardate il video con le casse accese. E&#8217; molto bello (via O&#8217;REILLY radar). [ v-gel 30ml tube $161.00 &#124; vipps pharmacy &#124; metaglip glipizide 2.5mg + metformin 250mg $81.00 &#124; levaquin 750mg pills $257.00 &#124; [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+ridimensionamento+delle+immagini%2C+come+non+lo+avete+mai+visto.&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Oggi vi segnalo un video un po off-topic, perché in fondo a sempre a che fare con l&#8217;analisi delle immagini. Guardate il video con le casse accese. E&#8217; molto bello (via <a title="o'reilly radar" href="http://radar.oreilly.com/archives/2007/08/context_aware_i.html" target="_blank">O&#8217;REILLY radar</a>).</p>
+	<p>    <object width="425" height="344" data="http://www.youtube.com/v/c-SSu3tJ3ns&#038;hl=it&#038;fs=1" type="application/x-shockwave-flash"></p>
+	<param name="movie" value="http://www.youtube.com/v/c-SSu3tJ3ns&#038;hl=it&#038;fs=1">
+      </param>
+	<param name="allowFullScreen" value="true">
+      </param>
+	<param name="allowscriptaccess" value="always">
+      </param>
+	<p>    </object>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/">Il ridimensionamento delle immagini, come non lo avete mai visto.</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+ridimensionamento+delle+immagini%2C+come+non+lo+avete+mai+visto.&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/29/il-ridimensionamento-delle-immagini-come-non-lo-avete-mai-visto/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>ILWIS &#8211; the Remote Sensing and GIS software &#8211; da oggi è Open Source</title>
+		<link>http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/</link>
+		<comments>http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/#comments</comments>
+		<pubDate>Mon, 02 Jul 2007 19:46:04 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[Software]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ILWIS+%26%238211%3B+the+Remote+Sensing+and+GIS+software+%26%238211%3B+da+oggi+%C3%A8+Open+Source&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-07-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/&amp;rft.language=English"></span>
+ILWIS &#8211; the Integrated Land and Water Information System &#8211; è un software noto soprattutto a chi si occupa di analisi di immagine, che gode di ottima fama; il passaggio ad Open Source, sotto le ali di 52 North Organization, è una buona notizia. Queste le caratteristiche più salienti: Integrated raster and vector design Import [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ILWIS+%26%238211%3B+the+Remote+Sensing+and+GIS+software+%26%238211%3B+da+oggi+%C3%A8+Open+Source&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-07-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://52north.org/index.php?option=com_projects&amp;task=showProject&amp;id=30&amp;Itemid=127" title="ILWIS home page" target="_blank">ILWIS</a> &#8211; the <strong>I</strong>ntegrated <strong>L</strong>and and <strong>W</strong>ater <strong>I</strong>nformation <strong>S</strong>ystem &#8211; è un software noto soprattutto a chi si occupa di analisi di immagine, che gode di ottima fama; il passaggio ad Open Source, sotto le ali di  <a href="http://www.52north.org/" target="_blank">52 North Organization</a>, è una buona notizia.</p>
+	<p>Queste le caratteristiche più salienti:</p>
+	<ul>
+	<li>Integrated raster and vector design</li>
+	<li>Import and export of widely used data formats</li>
+	<li>On-screen and tablet digitizing</li>
+	<li>Comprehensive set of image processing tools</li>
+	<li>Orthophoto, image georeferencing, transformation and mosaicing</li>
+	<li>Advanced modeling and spatial data analysis</li>
+	<li>3D visualization with interactive editing for optimal view findings</li>
+	<li>Rich projection and coordinate system library</li>
+	<li>Geo-statisitical analyses, with Kriging for improved interpolation</li>
+	<li>Production and visualization of stereo image pairs</li>
+	<li>Spatial Multiple Criteria Evaluation</li>
+	<li>Set of operations on DEMs/DTMs and hydrological processing</li>
+	</ul>
+	<p align="left">Anche la documentazione sembra buona. Due i link da non perdere: uno al <a href="http://52north.org/index.php?option=com_content&amp;task=view&amp;id=149&amp;Itemid=127" title="ILWIS 3.4 User Documentation" target="_blank">nuovo sito</a>, ed uno al <a href="http://www.itc.nl/ilwis/documentation/version_2/aguide.asp" title="ILWIS 2.1 Applications Guide" target="_blank">vecchio</a> (per la vecchia versione di ILWIS).<br />
+Nella figura iin basso, una sezione dell&#8217;interfaccia che denota &#8220;l&#8217;essenza&#8221; raster del software.
+</p>
+	<p align="center"><img src="http://blog.spaziogis.it/wp-content/uploads/2007/07/ilwis3_interface.png" alt="ILWIS interface" /></p>
+	<p align="left">La notizia l&#8217;ho presa dal Blog (citato più volte su questo sito)  <a href="http://freegeographytools.com/" title="free geography tools" target="_blank">Free Geography Tools</a>.</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/">ILWIS &#8211; the Remote Sensing and GIS software &#8211; da oggi è Open Source</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ILWIS+%26%238211%3B+the+Remote+Sensing+and+GIS+software+%26%238211%3B+da+oggi+%C3%A8+Open+Source&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-07-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/07/02/ilwis-the-remote-sensing-and-gis-software-da-oggi-e-open-source/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/07/ilwis3_interface.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/07/ilwis3_interface.png" medium="image">
+			<media:title type="html">ILWIS interface</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Tutorial</title>
+	<atom:link href="http://blog.spaziogis.it/tag/tutorial/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Python e GIS con GDAL/OGR: configurare l&#8217;ambiente di lavoro su windows</title>
+		<link>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/</link>
+		<comments>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/#comments</comments>
+		<pubDate>Sun, 09 Jan 2011 20:00:22 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[ogr]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3161</guid>
+		<description><![CDATA[Python e GIS sono ormai una coppia di fatto. In questo post è descritta la procedura per installare e configurare - in ambiente windows - il binding per Python  di GDAL/OGR. A cose fatte sarà possibile scrivere codice spaziale in Python.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Python+e+GIS+con+GDAL%2FOGR%3A+configurare+l%26%238217%3Bambiente+di+lavoro+su+windows&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>Python </strong>(<a title="Pyhon homepage" href="http://python.org/" target="_blank">http://python.org</a>) è un linguaggio di programmazione di alto livello, adatto ai più svariati obiettivi di programmazione. Viene usato per applicazioni web e desktop, giochi, programmazione scientifica, utility e anche per porzioni di sistemi operativi.<br />
+Anche chi ha la necessità di sviluppare delle applicazioni in grado di leggere, scrivere, analizzare ed elaborare dati ed informazioni spaziali, troverà in Python un compagno di viaggio piacevole, eclettico e ricco di pregi. Chi lavora in questo contesto e segue il mondo della programmazione, sa che si tratta di un linguaggio che sta diventando tra i più diffusi, sia nel mondo proprietario che in quello open-source, con a disposizione numerose librerie ad hoc.<br />
+Anche per questo, penso sia arrivato il momento (anzi mi sento in grande ritardo) di scrivere un post che fornisca gli strumenti per iniziare a “sporcarsi le mani”.<br />
+In linea teorica è possibile scrivere da zero codice Python che consenta di manipolare dati spaziali. Per fortuna esiste &#8211; tra le tante librerie disponibili &#8211;  il <a title="Binding python GDAL/OGE" href="http://trac.osgeo.org/gdal/wiki/GdalOgrInPython" target="_blank"><em>binding</em></a> Python di <strong><a title="Homepage gdal/ogr" href="http://www.gdal.org/" target="_blank">GDAL/OGR</a>;</strong> per iniziare è molto più comodo appoggiarsi sulle spalle di questo gigante.<br />
+Due annotazioni prima di passare agli aspetti pratici:</p>
+	<ul>
+	<li>questo post consentirà di configurare Python e GDAL/OGR in <strong>ambiente Windows</strong>. Confido in qualche collega della redazione per scrivere le istruzioni utili per altri sistemi operativi</li>
+	<li>verrà descritta una delle tante modalità possibili per configurare l’ambiente</li>
+	</ul>
+	<h2>Procedura</h2>
+	<p>Installare GDAL per Python su Windows è un processo semplice, che può essere portato fino in fondo, seguendo la seguente procedura:</p>
+	<ul>
+	<li>Scaricare l&#8217;<strong><em>installer</em></strong> di <strong>Python</strong> dal sito ufficiale &#8211; <a title="Python installer Download" href="http://www.python.org/download/" target="_blank">http://www.python.org/download/</a> &#8211; ed installarlo. E&#8217; possibile scaricare diverse release; noi abbiamo effettuato i nostri test con gli <em>installer</em> della <a title="Python 2.6.x windows installer" href="http://www.python.org/download/releases/2.6.6/" target="_blank"><strong>2.6.x</strong></a></li>
+	<li>Installare <strong>GDAL/OGR</strong> per Windows
+	<ul>
+	<li>Scaricarlo da <a title="GDAL/OGR per Windows" href="http://download.osgeo.org/gdal/win32" target="_blank">http://download.osgeo.org/gdal/win32/</a>. Abbiamo utilizzato il file “gdalwin32exe160.zip” che si trova nella cartella “1.6”.</li>
+	<li>Decomprimere questo file in una cartella del vostro PC. L&#8217;abbiamo estratta in C:\ ed abbiamo quindi creato la cartella C:\gdalwin32-1.6.</li>
+	<li>Aggiungere la cartella di GDAL che contiene gli eseguibili (&#8220;C:\gdalwin32-1.6\bin&#8221; nel nostro caso) alla variabile di ambiente  “Path”.
+	<ul>
+	<li>Aprire il &#8220;Pannello di controllo&#8221; di Windows</li>
+	<li>Fare click su Sistema (se usate la visualizzazione per categorie, “Prestazioni e manutenzione” e poi &#8220;Sistema&#8221;).</li>
+	<li>Fare click su Avanzate</li>
+	<li>Fare click su “Variabili d&#8217;ambiente”.</li>
+	<li>Cercare la voce “Path” tra le “Variabili di sistema” e cliccare su Modifica.</li>
+	<li>Fare click sulla cella “Valore variabile”, andare in fondo alla riga, aggiungere un “;” ed inserire il percorso completo della cartella “bin” della vostra installazione di GDAL (C:\gdalwin32-1.6\bin nel nostro caso).</li>
+	<li>Fare Click su OK.<br />
+<img title="gdal-bin Windows Path" src="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" alt="gdal-bin Windows Path" width="347" height="147" /></li>
+	</ul>
+	</li>
+	</ul>
+	<ul>
+	<li>Aggiungere “GDAL_DATA” come nuova variabile d&#8217;ambiente.
+	<ul>
+	<li>Fare click su &#8220;Nuovo&#8221; nella finestra &#8220;Variabili d&#8217;ambiente&#8221;.</li>
+	<li>Inserire “GDAL_DATA” nel campo “Nome variabile”.</li>
+	<li>Inserire il percorso completo della cartella data di GDAL nel campo “Valore variabile” (nel nostro caso “C:\gdalwin32-1.6\data”).</li>
+	<li>Fare click su &#8220;OK&#8221;. Aggiungeremo più avanti altre variabili d&#8217;ambiente, quindi potete tenere aperta questa finestra di dialogo.<br />
+<img title="gdal-data Windows path" src="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-data.png" alt="" width="347" height="147" /></li>
+	</ul>
+	</li>
+	</ul>
+	</li>
+	</ul>
+	<ul>
+	<li>Installare <strong>PROJ.4 </strong>per Windows. E&#8217; un pacchetto necessario per potere gestire le proiezioni ed i sistemi di coordinate.
+	<ul>
+	<li>Scaricare PROJ.4 da <a title="PROJ.4 per windows" href="http://download.osgeo.org/proj/" target="_blank">http://download.osgeo.org/proj/</a>. Il file binario per Windows – proj446_win32_bin.zip &#8211; non è aggiornatissimo, ma non è un problema.</li>
+	<li>Decomprimere questo file in una cartella del vostro PC, ad esempio in “C:\proj”.</li>
+	<li>Aggiungere la cartella “bin” di PROJ.4 (“C:\proj\bin” nel nostro caso) alla variabile di ambiente &#8220;Path&#8221;. Per farlo dovete seguire gli stessi passi visti sopra per la cartella &#8220;bin&#8221; di GDAL, ed aggiungere stavolta “C:\proj\bin”.</li>
+	<li>Aggiungere “PROJ_LIB” come nuova variabile d&#8217;ambiente. Dovete seguire le stesse istruzioni usate per la variabile &#8220;GDAL_DATA&#8221;, ma il nome della variabile è stavolta “PROJ_LIB”, ed il valore è il percorso completo della cartella “nad” contenuta in  PROJ.4 (C:\proj\nad nel nostro caso).</li>
+	<li>Copiare il file “proj.dll” dalla cartella “bin” di PROJ.4 alla cartella bin di GDAL. Nel nostro caso da &#8220;C:\proj\bin\&#8221; a &#8220;C:\gdalwin32-1.6\bin\&#8221;.</li>
+	</ul>
+	</li>
+	<li>Installare il <strong>binding per Python di GDAL </strong>
+	<ul>
+	<li>Scaricare la versione appropriata alla vostra release di Python da <a title="GDAL/OGR Python binding" href="http://pypi.python.org/simple/GDAL/" target="_blank">http://pypi.python.org/simple/GDAL/</a>.  Il file più aggiornato, compatibile con la versione 2.6.X di Python, è “GDAL-1.6.1.win32-py2.6.exe”.</li>
+	<li>Fare doppio click sul file, e completare la procedura di installazione</li>
+	</ul>
+	</li>
+	<li><strong>Riavviare il sistema</strong>.</li>
+	</ul>
+	<p>Al riavvio avrete a disposizione un sistema in cui sarà possibile scrivere codice SPAZIALE (nel senso di bel codice <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' />   ).</p>
+	<h2>Ciao mondo</h2>
+	<p>Il codice sottostante lo potrete usare come test “Ciao Mondo”, e verificare la procedura seguita.</p>
+	<pre class="brush: python; ">
+# importazione dei moduli
+import sys
+try:
+  from osgeo import ogr
+except:
+  import ogr
+	
+# apertura di uno shapefile in lettura
+driver = ogr.GetDriverByName(&#039;ESRI Shapefile&#039;)
+fn = &#039;C:/nomefile.shp&#039;
+dataSource = driver.Open(fn, 0)
+	
+# verifica dell&#039;esistenza del file
+if dataSource is None:
+  print &#039;Il file &#039; + fn + &#039; non esiste&#039;
+  sys.exit(1)
+	
+# accesso al layer
+layer = dataSource.GetLayer()
+	
+# conteggio delle feature
+numFeatures = layer.GetFeatureCount()
+print &#039;Numero di feature: &#039; + str(numFeatures)
+	
+# estensione del layer
+extent = layer.GetExtent()
+print &#039;Estensione:&#039;, extent
+print &#039;Coordinate vertice in alto a sinistra:&#039;, extent[0], extent[3]
+print &#039;Coordinate vertice in basso a destra:&#039;, extent[1], extent[2]
+</pre>
+	<p>L’output sarà qualcosa di simile a quanto riportato sotto:</p>
+	<pre>Numero di feature: 33
+Estensione: (280151.67957063887, 294843.14350770513, 4210159.3865045626, 4220843.5284850718)
+Coordinate vertice in alto a sinistra: 280151.679571 4220843.52849
+Coordinate vertice in basso a destra: 294843.143508 4210159.3865</pre>
+	<h2>Buone letture</h2>
+	<p>La procedura descritta in questo post è quasi una traduzione dell&#8217;eccellente documento scritto da <strong>Chris Garrard</strong>: “<a title="Installing GDAL manually" href="http://www.gis.usu.edu/~chrisg/python/2009/docs/gdal_win.pdf" target="_blank">Installing GDAL manually</a>”. Il dott. Garrard cura un corso denominato &#8220;<strong><a title="http://www.gis.usu.edu/~chrisg/python/2009/" href="http://www.gis.usu.edu/~chrisg/python/2009/" target="_blank">Geoprocessing with Python using Open Source GIS</a></strong>&#8220;, di cui trovate online il materiale didattico (slide, esercizi e codice); è stato per me illuminante per fare i primi passi e consiglio a tutti i novizi di leggerlo: ASSOLUTAMENTE DA NON PERDERE (si, sto urlando).<br />
+Per chi non ha mai scritto codice Python, e non ne ha alcuna conoscenza, la pietra miliare è (per me) &#8220;<strong><a title="Pensare da informatico - Versione Python  " href="http://www.python.it/doc/Howtothink/Howtothink-html-it/index.htm" target="_blank">Pensare da informatico</a></strong>&#8220;.</p>
+	<h2>Buoni propositi</h2>
+	<p>Il desiderio mio (e credo dei colleghi della redazione) è quello di non lasciare questo post da solo. Nel 2011 vorrei mettergli accanto dei fratellini; non saranno magari dei ricchi tutorial, ma la coppia <strong>GIS &amp; Python</strong> sarà uno dei temi che terremo sotto osservazione e di cui daremo nota nel blog e/o soltanto nei canali Twitter e Facebook.</p>
+	<p>Buona scrittura <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':-D' class='wp-smiley' /> </p>
+	<p><div class="note"><div class="notetip"><br />
+In questi giorni il tema generale dell&#8217;installazione delle librerie <strong>GDAL </strong>su <strong>Windows </strong>è <a target="_blank" href="http://osgeo-org.1803224.n2.nabble.com/gdal-dev-FWTools-and-GDAL-1-7-0-td5887121.html">caldissimo</a>. Sono in preparazione <a target="_blank" href="http://osgeo-org.1803224.n2.nabble.com/gdal-dev-GDAL-windows-installers-available-td5904300.html">nuovi installer</a>, e probabilmente nei prossimi mesi aggiorneremo questo post con una procedura più semplice e diretta.<br />
+</div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/">Python e GIS con GDAL/OGR: configurare l&#8217;ambiente di lavoro su windows</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Python+e+GIS+con+GDAL%2FOGR%3A+configurare+l%26%238217%3Bambiente+di+lavoro+su+windows&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" medium="image">
+			<media:title type="html">gdal-bin Windows Path</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-data.png" medium="image">
+			<media:title type="html">gdal-data Windows path</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>jQuery e OpenLayers: agitare prima dell’uso…</title>
+		<link>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/</link>
+		<comments>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/#comments</comments>
+		<pubDate>Mon, 01 Mar 2010 08:40:35 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[Geosilk]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1747</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da Linfiniti – sono riuscito nell&#8217;intento. Per chi non lo sapesse, jQuery è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da <a href="http://linfiniti.com/2010/02/fancy-map-toolbar-for-openlayers/" target="_blank">Linfiniti</a> – sono riuscito nell&#8217;intento.</p>
+	<p>Per chi non lo sapesse, <a href="http://jquery.org/" target="_blank">jQuery</a> è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di facile comprensione.<br />
+Il framework è rilasciato con doppia licenza: MIT e GPL.<br />
+I motivi per usare jQuery nei propri progetti non mancano di certo: comunità attiva, disponibilità di molti temi e ottimi plugin, compatibilità e leggerezza sono i primi che mi vengono in mente.</p>
+	<p>In questo articolo vedremo come costruire una mappa online sfruttando jQuery UI e OpenLayers.<br />
+Il <a href="http://blog.spaziogis.it/static/jquerymap/" target="_blank">risultato</a> della &#8220;fusione&#8221; è un client dotato di funzionalità di base come zoom, pan, misurazione delle distanze e vari layer di sfondo intercambiabili.<br />
+Si tratta, in pratica, di un template da cui partire per sviluppare applicazioni di web-mapping vere e proprie.</p>
+	<p style="text-align: center;"><a title="Demo JQuery UI | OpenLayers di Alessio Di Lorenzo" href="http://blog.spaziogis.it/static/jquerymap/" target="_blank"><img class="aligncenter size-full wp-image-1801" style="border: 0pt none;" title="jquery_openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" alt="jquery_openlayers" width="500" height="375" /></a></p>
+	<p>Per  creare il client dell&#8217;esempio abbiamo bisogno di:</p>
+	<ul>
+	<li><a href="http://openlayers.org" target="_blank">OpenLayers</a></li>
+	<li><a href="http://jqueryui.com" target="_blank">jQuery UI</a>, pensato per creare widget personalizzati con jQuery</li>
+	<li><a href="http://layout.jquery-dev.net/index.cfm" target="_blank">jQuery UI.Layout</a>, un plugin ispirato al <a href="http://extjs.com/deploy/dev/examples/layout/complex.html" target="_blank">border layout</a> di ExtJs</li>
+	<li><a href="http://craigsworks.com/projects/qtip/" target="_blank">qTip</a>, un plugin per modellare dei tooltip avanzati</li>
+	</ul>
+	<p>Ho già raccolto il tutto in <a href="http://blog.spaziogis.it/static/jquerymap/jquerymap.zip" target="_blank">questo</a> archivio .zip. Qui dentro, oltre alle librerie, si trova la totalità dei file che compongono il client. Vi basta quindi cliccare sul link per avere il template sul vostro computer, pronto all&#8217;uso e/o ad essere trasformato come volete.<br />
+Vi invito però a dare lo stesso un&#8217;occhiata alla <a href="http://jqueryui.com/download" target="_blank">pagina di download</a> di jQuery UI: noterete che è possibile modificare radicalmente il pacchetto prima di scaricarlo. Potete includere le sole componenti utili ai vostri scopi e scegliere tra vari temi già pronti o uno composto da voi con <a href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a>.<br />
+Io ho fatto solo qualche semplice modifica al tema UI-Darkness (in questo periodo non mi piacciono i bordi arrotondati&#8230;) ma, come dicevo, si può fare molto di più. Provare per credere.</p>
+	<p>Ora un po&#8217; di anatomia.<br />
+Scompattato l&#8217;esempio, è bene posare lo sguardo su alcune delle directory e dei file compresi al suo interno.</p>
+	<h3>jsLib</h3>
+	<p>E&#8217; la directory contenente tutte le librerie elencate in precedenza, necessarie al funzionamento del template.</p>
+	<h3>index.html</h3>
+	<p>Nella sezione <strong>header</strong> sono referenziate le librerie utilizzate, i fogli di stile e i file javascript.<br />
+Nel <strong>body</strong> è possibile notare che l&#8217;attributo class di molti degli elementi della pagina (div, button, span, ecc.) è parecchio popolato. Questo è il metodo con cui jQuery UI e jQueryUI.Layout si &#8220;ancorano&#8221; alla pagina web.<br />
+Per comprendere meglio vi rimando alla <a href="http://layout.jquery-dev.net/demos.cfm" target="_blank">pagina degli esempi</a> di jQuery UI.Layout e a <a href="http://www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/" target="_blank">questo articolo</a> che spiega in maniera egregia la composizione della toolbar e dei suoi pulsanti.</p>
+	<h3>jsFunc/mappa.js</h3>
+	<p>Contiene la mappa realizzata con OpenLayers.<br />
+Nella funzione di inizializzazione (initMap) richiamata al caricamento della pagina, ci sono, tra le altre cose, i controlli collegati ai bottoni della toolbar.</p>
+	<h3>jsFunc/layout.js</h3>
+	<p>In questo script, con poco più di 40 righe di codice, jQuery UI e i suoi plugin definiscono Il layout dell&#8217;applicazione, il tema, il comportamento e l&#8217;aspetto di bottoni e tooltip.</p>
+	<h3>Css/style.css</h3>
+	<p>A parte qualche piccola &#8220;frivolezza&#8221;  come <a href="http://projects.opengeo.org/geosilk" target="_blank">queste</a> (a mio giudizio) bellissime icone, in questo foglio di stile sono descritte le regole fondamentali per la corretta presentazione del layout e della toolbar creati tramite jQuery UI.</p>
+	<p>Ecco, questo è grossomodo ciò che bisogna sapere per iniziare a studiare i mille modi di mescolare le potenzialità di jQuery a quelle di OpenLayers.<br />
+Fondamentale, come sempre, è il ricorso alla documentazione ufficiale dei vari progetti e al supporto offerto dalla comunità.<br />
+Per chiudere segnalo anche due guide in italiano, estremamente ben fatte ed utilissime per avvicinarsi a jQuery e jQuery UI. Entrambe sono firmate <a href="http://html.it" target="_blank">HTML.it</a>:<br />
+<a href="http://javascript.html.it/guide/leggi/168/guida-jquery/" target="_blank">Guida a jQuery</a><br />
+<a href="http://javascript.html.it/guide/leggi/179/guida-jquery-ui/" target="_blank">Guida a jQuery UI</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/">jQuery e OpenLayers: agitare prima dell’uso…</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" medium="image">
+			<media:title type="html">jquery_openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Installare MapServer su Windows con Apache (riveduto e corretto)</title>
+		<link>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/</link>
+		<comments>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/#comments</comments>
+		<pubDate>Sat, 09 Jan 2010 12:58:43 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1602</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+Introduzione A Febbraio del 2006 &#8211; tantissimo tempo fa &#8230; &#8211; ho scritto un piccolo post sull&#8217;installazione di MapServer in ambiente Windows su un sistema in cui fosse già installato un webserver (Apache in particolare). E&#8217; stato un post che ha ricevuto molte letture, ma che ha anche subito qualche &#8220;legnata tecnologica&#8221;. Lo avevo scritto [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h2>Introduzione</h2>
+	<p>A Febbraio del 2006 &#8211; tantissimo tempo fa &#8230; &#8211; ho scritto un <a title="Installare MapServer su Windows con Apache" href="http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/" target="_blank">piccolo post</a> sull&#8217;installazione di <strong>MapServer</strong> in ambiente <strong>Windows </strong> su un sistema in cui fosse già installato un webserver (<strong>Apache</strong> in particolare).</p>
+	<p>E&#8217; stato un post che ha ricevuto molte letture, ma che ha anche subito qualche &#8220;legnata tecnologica&#8221;. Lo avevo scritto infatti non dentro il motore di questo blog (WordPress), ma dentro <strong>Writely</strong>.<br />
+Cosa è Writely? E&#8217; nientepopodimeno che l&#8217;applicazione online su cui è basato l&#8217;editor di testo di <a title="Google Docs" href="http://docs.google.com/" target="_blank">Google Docs</a>, comprata per l&#8217;appunto da Google proprio in quell&#8217;anno.<br />
+Ho scritto l&#8217;articolo, ho inserito anche delle immagini d&#8217;aiuto alla comprensione del testo, ed ho pubblicato tutto su questo blog con un click; il testo è stato contestualmente archiviato sui server di TANTO, mentre le immagini sono rimaste sui server di Writely. Questi non sono stati spenti subito e, per diverso tempo, questo vecchio glorioso articolo non ha subito alcuna conseguenza dal passaggio di Writely a Google. Spenti i server, sono sparite le immagini ed in qualche modo anche la leggibilità del post in oggetto. Ho provato a ripescarle dall&#8217;<a title="Internet Archive Wayback Machine" href="http://web.archive.org/web/*/http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache" target="_blank"><em><strong>Internet Archive Wayback Machine</strong></em></a>, ma senza fortuna.</p>
+	<p>In ogni caso dovevo rimediare da tempo. Avevo rimosso dalla memoria il problema (<em>sorry</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  ), e un commento recente mi ha messo nuovamente davanti alla cruda realtà (grazie riccardo). L&#8217;articolo inoltre è datato anche nei contenuti, e valeva la pena dargli una rinfrescata.</p>
+	<h2><span id="more-1602"></span>MapServer su Windows</h2>
+	<p>Installare MapServer è cosa semplice in qualsiasi ambiente (forse il massimo è su Linux); può sembrare meno semplice farlo su server in produzione con diversi servizi già installati e configurati, specie se vogliamo usare degli <em>installer</em> grafici e magari chiudere gli occhi.</p>
+	<p>I file binari per Windows sono contenuti in questi tre pacchetti:</p>
+	<ul>
+	<li><a href="http://trac.osgeo.org/osgeo4w/">OSGeo4W</a></li>
+	<li><a href="http://maptools.org/ms4w/">MS4W</a></li>
+	<li><a href="http://fwtools.maptools.org/">FWTools</a></li>
+	</ul>
+	<p>In questa guida sfrutteremo <strong>FWTools</strong>, di cui abbiamo parlato <a title="FWTools su TANTO" href="http://www.google.com/cse?cx=015822840187590198668%3Advzakmzb60k&amp;ie=UTF-8&amp;q=fwtools&amp;sa=Cerca&amp;siteurl=www.google.com%2Fcse%2Fhome%3Fcx%3D015822840187590198668%3Advzakmzb60k" target="_blank">diverse volte</a>.</p>
+	<h2>Installazione passo passo di MapServer</h2>
+	<p>Il prerequisito è quello di installare e scaricare FWTools per Windows dal <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">sito ufficiale</a>, e poi lanciarne l&#8217;installazione. Io di solito lo faccio scegliendo le opzioni visibili in figura.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1609 aligncenter" title="install fwtools on windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows.png" alt="install fwtools on windows" width="426" height="295" /></p>
+	<p style="text-align: left;">I file vengono estratti di default nella cartella &#8220;<strong><span style="color: #000000;">C:\Programmi\FWToolsx.x.x</span></strong>&#8220;. L&#8217;eseguibile di MapServer &#8211; mapserv.exe &#8211; è uno dei file a corredo di FWTools e lo troverete nella cartella &#8220;<span style="color: #000000;"><strong>C:\Programmi\FWToolsx.x..x\bin</strong></span>&#8220;.<br />
+Copiatelo nella<strong> cartella CGI di Apache</strong> (o in una qualsiasi cartella in cui il web server può lanciare applicazioni di questo tipo). Sul PC da cui scrivo la cartella è &#8220;C:\Programmi\Apache Software Foundation\Apachex.x\cgi-bin&#8221;
+</p>
+	<p style="text-align: left;">Copiare l&#8217;eseguibile non basta perché ci sono diverse dipendenze da rispettare. Per soddisfarle basterebbe copiare tutti i file contenuti in &#8220;<span style="color: #000000;">C:\Programmi\FWToolsx.x..x\bin</span>&#8221; nella cartella CGI, ma non è una procedura &#8220;pulita&#8221;. E&#8217; più corretto impostare delle <strong>variabili d&#8217;ambiente</strong>.</p>
+	<p style="text-align: left;">La prima è il PATH, in cui inseriremo proprio la cartella &#8220;<span style="color: #000000;">C:\Programmi\FWToolsx.x..x\bin</span>&#8220;. Per farlo basta aprire le &#8220;Proprietà del sistema&#8221; di Windows  e cliccare su &#8220;Variabili d&#8217;ambiente&#8221;.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1612 aligncenter" title="variabili ambiente windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows.png" alt="variabili ambiente windows" width="419" height="534" /></p>
+	<p style="text-align: left;">Tra quelle già definite troverete proprio PATH. Modificatela inserendo nel campo &#8220;Valore variabile&#8221;, a fine riga, il percorso della cartella bin di FWTools: <strong>inserite prima un &#8220;;&#8221;</strong>.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1614 aligncenter" title="windows path variabile 2" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2.png" alt="windows path variabile 2" width="384" height="430" /></p>
+	<p><span style="color: #000000;">C&#8217;è da impostare ancora una variabile d&#8217;ambiente in quanto MapServer deve &#8220;sapere&#8221; dove sono i file in cui sono definiti i sistemi di proiezione. La cartella in questo caso è </span>&#8220;<strong>C:\Programmi\FWToolsx.x.x\proj_lib</strong>&#8221; e la variabile  è <strong>PROJ_LIB</strong>.</p>
+	<p>Questa (di solito) non è &#8211; come PATH &#8211; già esistente e la dovrete creare cliccando sul tasto &#8220;Nuovo&#8221; ed inserire i valori come nella figura sottostante.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1615 aligncenter" title="PROJ_LIB MapServer Windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows.png" alt="PROJ_LIB MapServer Windows" width="384" height="430" /></p>
+	<p style="text-align: left;">A questo punto riavviate il PC, aprite il <em>browser</em> e lanciate un URL di questo tipo: <strong>http://vostrosito/cgi-bin/mapserv.exe</strong></p>
+	<p style="text-align: left;">Se avrete come risposta la stringa &#8220;<strong>No query information to decode. QUERY_STRING is set, but empty.</strong>&#8220;, vorrà dire che tutto è andato a buon fine.</p>
+	<p style="text-align: left;">Non vi resta che creare delle belle applicazioni di web-mapping.</p>
+	<p style="text-align: left;">
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/">Installare MapServer su Windows con Apache (riveduto e corretto)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/feed/</wfw:commentRss>
+		<slash:comments>21</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows.png" medium="image">
+			<media:title type="html">install fwtools on windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows.png" medium="image">
+			<media:title type="html">variabili ambiente windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2.png" medium="image">
+			<media:title type="html">windows path variabile 2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows.png" medium="image">
+			<media:title type="html">PROJ_LIB MapServer Windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Generare un GeoRSS in modo automatico</title>
+		<link>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/</link>
+		<comments>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/#comments</comments>
+		<pubDate>Mon, 10 Aug 2009 21:16:25 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[georss]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[terremoti]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[yahoo pipes]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1152</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+Era un pezzo che desideravo sperimentare Yahoo Pipes , dopo esserne venuto a conoscenza grazie ad Andrea (ricorderete il suo precedente geniale post). In effetti ho giocato d’anticipo proprio su di lui, per cimentarmi a produrre un GeoRSS in puro stile web 2.0. Non ho certo intenzione di mettermi qui a tessere le lodi di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era un pezzo che desideravo sperimentare <a href="http://pipes.yahoo.com" target="_blank">Yahoo Pipes</a><strong> </strong>, dopo esserne venuto a conoscenza grazie ad Andrea (ricorderete il suo precedente <a href="http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/" target="_blank">geniale post</a>). In effetti ho giocato d’anticipo <a href="http://blog.spaziogis.it/2009/04/13/dati-pubblici-standard-e-interconnessi-dedicato/" target="_blank">proprio su di lui</a>, per cimentarmi a produrre un GeoRSS in puro stile web 2.0.</p>
+	<p>Non ho certo intenzione di mettermi qui a tessere le lodi di Pipes, sebbene a mio avviso non se ne parli mai abbastanza. Voglio solo ribadire che si tratta di <strong>uno strumento web 2.0 dalle potenzialità pressoché infinite</strong>, che aumentano esponenzialmente in funzione della crescente messe di risorse e fonti di dati disponibili sul web. A patto che, inutile dirlo, lo siano secondo standard aperti, come già Andrea ha molto ben sottolineato proprio nel suo citato articolo.</p>
+	<p>Passiamo ai fatti.</p>
+	<p>Un item <a href="http://en.wikipedia.org/wiki/GeoRSS#Examples_of_GeoRSS_Implementations" target="_blank">GeoRSS</a>, nella codifica W3C ha la seguente struttura:</p>
+	<pre>&lt;?xml version=\"1.0\"?&gt;
+ &lt;?xml-stylesheet href=\"/eqcenter/catalogs/rssxsl.php?feed=eqs7day-M5.xml\" type=\"text/xsl\"
+                  media=\"screen\"?&gt;
+ &lt;rss version=\"2.0\"
+      xmlns:geo=\"http://www.w3.org/2003/01/geo/wgs84_pos#\"
+      xmlns:dc=\"http://purl.org/dc/elements/1.1/\"&gt;
+  &lt;channel&gt;
+     &lt;title&gt;USGS M5+ Earthquakes&lt;/title&gt;
+     &lt;description&gt;Real-time, worldwide earthquake list for the past 7 days&lt;/description&gt;
+     &lt;link&gt;http://earthquake.usgs.gov/eqcenter/&lt;/link&gt;
+     &lt;dc:publisher&gt;U.S. Geological Survey&lt;/dc:publisher&gt;
+     &lt;pubDate&gt;Thu, 27 Dec 2007 23:56:15 PST&lt;/pubDate&gt;
+     <span style=\"color: #ff0000;\">&lt;item&gt; &lt;pubDate&gt;Fri, 28 Dec 2007 05:24:17 GMT&lt;/pubDate&gt; &lt;title&gt;M 5.3, northern Sumatra, Indonesia&lt;/title&gt; &lt;description&gt;December 28, 2007 05:24:17 GMT&lt;/description&gt; &lt;link&gt;http://earthquake.usgs.gov/eqcenter/recenteqsww/Quakes/us2007llai.php&lt;/link&gt; &lt;geo:lat&gt;5.5319&lt;/geo:lat&gt; &lt;geo:long&gt;95.8972&lt;/geo:long&gt; &lt;/item&gt;</span>
+     &lt;/channel&gt;
+   &lt;/rss&gt;</pre>
+	<p>L’obiettivo è <strong>costruire un GeoRSS a partire da una fonte di dati che viene aggiornata in tempo reale</strong>, nella fattispecie &#8211; e tanto per essere originali &#8211; l’elenco dei terremoti rilevati dal <a href="http://cnt.rm.ingv.it/earthquakes_list.php" target="_blank">Centro Nazionale Terremoti</a> dell’INGV, sul cui sito vedrete una pagina html con tutti gli ultimi eventi rilevati.</p>
+	<p>Per il nostro lavoro utilizzeremo sempre le stesse informazioni, ma in formato standard CSV &#8211; <a href="http://openmap.rm.ingv.it/gmaps/rec/files/last90days_events.csv" target="_blank">disponibili qui</a> &#8211; dunque perfettamente importabili pressochè ovunque. Vediamone i contenuti:</p>
+	<ul>
+	<li><strong>Lat</strong> – la latitudine dell’evento in gradi decimali;</li>
+	<li><strong>Lon</strong> – la longitudine dell’evento in gradi decimali;</li>
+	<li><strong>Depth</strong> – la profondità dell’ipocentro in km;</li>
+	<li><strong>UTC_Date</strong> – il momento temporale nel quale l’evento è stato registrato;</li>
+	<li><strong>Magnitude</strong> – la magnitudine Richter dell’evento;</li>
+	<li><strong>Locality</strong> – il distretto sismico nel quale è avvenuto il terremoto;</li>
+	<li><strong>Code</strong> – un codice univoco relativo all’evento;</li>
+	<li><strong>Query_Time</strong> – il tempo di query del file CSV, corrispondente a quello di caricamento della pagina del sito INGV.</li>
+	</ul>
+	<p>In Pipes, il primo passo consiste nell’andare a recuperare (fetch) la fonte dei dati (il <a href="http://openmap.rm.ingv.it/gmaps/rec/files/last90days_events.csv" target="_blank">file CSV</a>) per poterne poi utilizzare il contenuto. Verrà utilizzato il modulo “<a href="http://pipes.yahoo.com/pipes/docs?doc=sources#FetchCSV" target="_blank">Fetch CSV</a>” nel quale andremo ad inserire l’URL del CSV, usando la prima riga come intestazione delle colonne.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" alt="image" width="327" height="199" border="0" /></a>Per poter generare il GeoRSS, Pipes deve “vedere” nei dati recuperati elementi che siano chiaramente riferibili a una coppia di coordinate, pertanto rinomineremo i campi “Lat” e “Lon” del CSV nei prosaici “Latitude” e “Longitude” mediante il modulo “<a href="http://pipes.yahoo.com/pipes/docs?doc=operators#Rename" target="_blank">Rename</a>”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image1.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb1.png" alt="image" width="366" height="123" border="0" /></a>Lo standard GeoRSS prevede alcuni item che consentono di arricchire di informazioni descrittive ogni elemento geotaggato, poi visibili nel “balloon” ad esso associato in fase di visualizzazione su mappa.</p>
+	<p>Naturalmente si tratta di informazioni residenti nel CSV, che noi andremo opportunamente a rinominare in modo da consentire a Pipes di includerle nel singolo elemento del GeoRSS. Si tratta essenzialmente di:</p>
+	<ul>
+	<li><strong>&lt;title&gt;</strong> – il titolo dell’elemento, in questo caso il distretto sismico nel quale è avvenuto l’evento;</li>
+	<li><strong>&lt;link&gt;</strong> – l’URL alla risorsa associata all’elemento, ovvero la pagina dedicata al singolo evento sismico, realizzata dall’INGV;</li>
+	<li><strong>&lt;description&gt;</strong> – la descrizione dell’elemento, con la magnitudine, la profondità dell’ipocentro e la data del terremoto.</li>
+	</ul>
+	<p>Passeremo queste informazioni al Pipe semplicemente usando sempre il modulo “Rename” avendo stavolta l’accortezza di scegliere l’opzione “Copy As”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image2.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb2.png" alt="image" width="467" height="180" border="0" /></a> Qui sopra per <strong>&lt;title&gt;</strong>, con la necessità di sostituire l’antiestetico underscore presente nel campo “Locality” del CSV con uno spazio vuoto (blank) grazie al modulo “<a href="http://pipes.yahoo.com/docs?doc=operators#Regex" target="_blank">Regex</a>”.</p>
+	<p>La <strong>&lt;description&gt;</strong> dell’elemento geotaggato come già detto è costituita da magnitudine, profondità dell’ipocentro e data dell’evento sismico, informazioni presenti in tre differenti campi del CSV, che andremo a comporre in un’unica stringa grazie al modulo “<a href="http://pipes.yahoo.com/docs?doc=string#StringBuilder" target="_blank">String Builder</a>”. Questo verrà utilizzato però nell’ambito di un modulo “<a href="http://pipes.yahoo.com/docs?doc=operators#Loop" target="_blank">Loop</a>”, poichè è un’operazione che va ripetuta per ogni elemento presente nel CSV.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image3.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb3.png" alt="image" width="382" height="283" border="0" /></a></p>
+	<p>Notate come il risultato dello String Builder vada ad essere assegnato all’item &lt;description&gt;.</p>
+	<p>L’INGV, per ogni evento sismico registrato, genera una pagina html che riporta informazioni estremamente dettagliate riguardanti il terremoto, molto preziose per chi si occupa di sismologia, di protezione civile o comunque davvero interessanti anche a scopo didattico. <a href="http://cnt.rm.ingv.it/data_id/2206496920/event.html" target="_blank">Qui</a> quella relativa al famigerato evento del 6 aprile scorso che ha devastato l’Aquilano.</p>
+	<p>Osservando l’URL si nota che la stringa risulta la seguente:</p>
+	<pre>http://cnt.rm.ingv.it/data_id/<strong>[codice evento]</strong>/event.html</pre>
+	<p>dunque ciò che cambia è il codice evento, registrato nel campo “Code” del CSV. Ancora una volta, useremo la combinazione dei moduli “Loop” e “String Builder” per costruire il link alla pagina di ogni evento, assegnando il risultato all’item “eventoURL” che verrà poi rinominato nell’item <strong>&lt;link&gt;</strong>.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image4.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb4.png" alt="image" width="386" height="353" border="0" /></a>Dulcis in fundo… il modulo che genera il vero e proprio GeoRSS… voilà, si tratta di “<a href="http://pipes.yahoo.com/pipes/docs?doc=operators#LocationExtractor" target="_blank">Location Extractor</a>”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image5.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb5.png" alt="image" width="293" height="146" border="0" /></a>Voi direte: “embè, e i parametri dove sono?!?”. E’ quel che mi son chiesto anch’io quando l’ho visto. Ma poi leggendo la descrizione del modulo (cosa che vi consiglio vivamente di fare), si capisce come funziona:</p>
+	<blockquote><p><em>Questo modulo esamina il feed in input, alla ricerca di informazioni che indichino una località geografica. Se trova dati geografici, il modulo crea una y:location che costituisce l’elemento di output. Questo contiene svariati sotto-elementi, in funzione del feed di input.</em></p></blockquote>
+	<p>Dunque fa tutto lui. In pasto possiamo dargli sorgenti <a href="http://it.wikipedia.org/wiki/Geography_Markup_Language" target="_blank">GML</a>, <a href="http://georss.org/w3c" target="_blank">W3C Basic Geo</a>, tags KML e ovviamente GeoRSS, in output fornirà appunto l’elemento <strong>y:location</strong>, che potrà essere visualizzato direttamente su una mappa interattiva Yahoo Map. Qui sotto il risultato…</p>
+	<p><script src="http://l.yimg.com/a/i/us/pps/mapbadge_1.5.js">{"pipe_id":"d58e2af150e9e798e4c593b4c3609dfa","_btype":"map"}</script></p>
+	<p>Ma il vero valore aggiunto del pipe è quello di poter essere impiegato in svariati modi, dal “banale” embedding della mappa in blog e siti web, per finire ad altri davvero potentissimi, riutilizzabili in una miriade di modalità. Solo per citarne alcuni JSON, PHP, KML e ovviamente GeoRSS.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image6.png"><img style="display: inline; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb6.png" alt="image" width="491" height="138" border="0" /></a></p>
+	<p>E proprio il GeoRSS può essere usato ad esempio con OpenLayers, scrivendo un pò di codice html è possibile in pochi minuti importare il feed generato dal pipe come layer grazie alla call <a href="http://dev.openlayers.org/docs/files/OpenLayers/Layer/GeoRSS-js.html" target="_blank">OpenLayers.Layer.GeoRSS</a> ottenendo una mappa semplice ma efficace, come si vede in <a href="http://blog.spaziogis.it/static/ingv_georss/" target="_blank">questo esempio</a>… Altre modalità di fruizione del GeoRSS &#8211; generate sempre in modo automatico &#8211; le riporto qui appresso giusto per coloro che non hanno voglia di andare a consultare la <a href="http://pipes.yahoo.com/loscioccoinblu/d58e2af150e9e798e4c593b4c3609dfa" target="_blank">pagina del pipe</a>:</p>
+	<ul>
+	<li><a href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=http:%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3Dd58e2af150e9e798e4c593b4c3609dfa%26_render%3Drss&amp;aq=&amp;sll=42.065607,13.557129&amp;sspn=12.653211,19.753418&amp;ie=UTF8&amp;t=h&amp;z=2" target="_blank">Direttamente in Google Maps;</a></li>
+	<li>Un <a href="http://pipes.yahoo.com/pipes/pipe.run?_id=d58e2af150e9e798e4c593b4c3609dfa&amp;_render=kml" target="_blank">kml</a> da aprire con Google Earth.</li>
+	</ul>
+	<p>Insomma, a noi Yahoo Pipes ci fa letteralmente sognare… Perchè sapere di avere uno strumento col quale poter attingere, trasformare, plasmare e “ricablare il web” (il loro slogan) e i dati sparsi per il mondo usando la logica ad oggetti, dedicando i propri neuroni solo ed esclusivamente alle idee e al modo di tradurle in fatti… beh, è davvero troppo, troppo entusiasmante.</p>
+	<p>E allora “Yes, we Pipe!”&#8230; ma prima ancora <strong>&#8220;<a id="aptureLink_t9gT6rxX0j" href="http://en.wikipedia.org/wiki/Linked%20Data">Linked Data</a>&#8230; now!!!&#8221;</strong>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/">Generare un GeoRSS in modo automatico</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb1.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb2.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb3.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb4.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb5.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb6.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Solo un’altra guida su GIS e GPS?</title>
+		<link>http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/</link>
+		<comments>http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/#comments</comments>
+		<pubDate>Sun, 29 Mar 2009 19:56:15 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[google-earth]]></category>
+		<category><![CDATA[MapWindow]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[volontariato]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=781</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Solo+un%E2%80%99altra+guida+su+GIS+e+GPS%3F&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-03-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/&amp;rft.language=English"></span>
+Mi era già capitato di parlare di GISCorps, una ONG di esperti che prestano su base volontaria le loro conoscenze e capacità geomatiche in tutto il mondo. Si è aggiunta di recente anche l’inglese MapAction, e qui voglio segnalare la loro fantastica “Field Guide to Humanitarian Mapping”. Al di là del target espressamente rivolto alle [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Solo+un%E2%80%99altra+guida+su+GIS+e+GPS%3F&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-03-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Mi era già capitato di <a href="http://blog.spaziogis.it/2008/05/28/volontari-del-gis/" target="_blank">parlare di GISCorps</a>, una ONG di esperti che prestano su base volontaria le loro conoscenze e capacità geomatiche in tutto il mondo. Si è aggiunta di recente anche l’inglese <a href="http://www.mapaction.org" target="_blank">MapAction</a>, e qui voglio segnalare la loro fantastica “<strong><a href="http://www.mapaction.org/content/view/183/59/" target="_blank">Field Guide to Humanitarian Mapping</a></strong>”.</p>
+	<p>Al di là del target espressamente rivolto alle emergenze umanitarie, la guida è davvero ben fatta, utilissima anche per chi desidera un documento agile – sono poco più di un centinaio di pagine &#8211; e chiaro – molti tutorial – per acquisire i concetti alla base dei GIS come pure dell’uso del GPS in campo.</p>
+	<p>Il <strong>primo capitolo</strong> introduce alla cartografia e approfondisce argomenti riguardanti i dati spaziali e i vari formati nei quali è possibile trovarli, i sistemi di coordinate. Il <strong>secondo capitolo</strong> è dedicato all’uso dei dispositivi GPS per raccogliere dati in campo, con un pratico schema per registrare i waypoint. Il <strong>terzo e quarto capitolo</strong> sono veri e propri tutorial per l’utilizzo di <a href="http://earth.google.com/" target="_blank">Google Earth</a> e <a href="http://www.mapwindow.org/" target="_blank">MapWindow</a> – un GIS open source – per la cartografia a scopo umanitario. MapAction lavora soprattutto con Google Earth perchè da un lato si tratta  del software di mapping che mette a disposizione i dati cartografici di base – foto aeree e immagini satellitari – più aggiornati disponibili, dall’altro perchè è estremamente diffuso anche tra i non addetti ai lavori.</p>
+	<p>In definitiva, questa guida è certamente un ottimo modo per i newbie di sporcarsi le mani e capire cosa vuol dire fare della cartografia digitale e quali possono essere i suoi impieghi pratici. Se poi ci si appassiona e si vuol dare il proprio contributo alla causa umanitaria… tanto meglio!</p>
+	<p><a title="View MapAction Field Guide to Humanitarian Mapping First Edn Low-res on Scribd" href="http://www.scribd.com/doc/13756318/MapAction-Field-Guide-to-Humanitarian-Mapping-First-Edn-Lowres" style="margin: 12px auto 6px auto; font-family: Helvetica,Arial,Sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 14px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; display: block; text-decoration: underline;">MapAction Field Guide to Humanitarian Mapping First Edn Low-res</a> <object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" id="doc_514035901105364" name="doc_514035901105364" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" align="middle"	height="500" width="100%" ><br />
+<param name="movie"	value="http://d.scribd.com/ScribdViewer.swf?document_id=13756318&#038;access_key=key-1pnwdr0lg50a3e2azvlx&#038;page=1&#038;version=1&#038;viewMode="> 		</param>
+<param name="quality" value="high"> 		</param>
+<param name="play" value="true">		</param>
+<param name="loop" value="true"> 		</param>
+<param name="scale" value="showall">		</param>
+<param name="wmode" value="opaque"> 		</param>
+<param name="devicefont" value="false">		</param>
+<param name="bgcolor" value="#ffffff"> 		</param>
+<param name="menu" value="true">		</param>
+<param name="allowFullScreen" value="true"> 		</param>
+<param name="allowScriptAccess" value="always"> 		</param>
+<param name="salign" value="">    				<embed src="http://d.scribd.com/ScribdViewer.swf?document_id=13756318&#038;access_key=key-1pnwdr0lg50a3e2azvlx&#038;page=1&#038;version=1&#038;viewMode=" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" play="true" loop="true" scale="showall" wmode="opaque" devicefont="false" bgcolor="#ffffff" name="doc_514035901105364_object" menu="true" allowfullscreen="true" allowscriptaccess="always" salign="" type="application/x-shockwave-flash" align="middle"  height="500" width="100%"></embed>			</param></object><br />
+<div style="margin: 6px auto 3px auto; font-family: Helvetica,Arial,Sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; display: block;">    <a href="http://www.scribd.com/upload" style="text-decoration: underline;">Publish at Scribd</a> or <a href="http://www.scribd.com/browse" style="text-decoration: underline;">explore</a> others:            <a href="http://www.scribd.com/browse/HowTo-Guides-DIY/" style="text-decoration: underline;">How-To Guides &#038; DIY</a>                  <a href="http://www.scribd.com/tag/gps" style="text-decoration: underline;">gps</a>              <a href="http://www.scribd.com/tag/gis" style="text-decoration: underline;">gis</a>      	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/">Solo un’altra guida su GIS e GPS?</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Solo+un%E2%80%99altra+guida+su+GIS+e+GPS%3F&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-03-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/29/solo-unaltra-guida-su-gis-e-gps/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Il tasto destro per alleggerire un po&#8217; il lavoro di chi si occupa di GIS (su Windows e su Linux)</title>
+		<link>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/</link>
+		<comments>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/#comments</comments>
+		<pubDate>Mon, 19 Jan 2009 20:00:07 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[metainformazioni]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[ubuntu]]></category>
+		<category><![CDATA[utilities]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=584</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+Il lavoro di ogni giorno è spesso routinario; spesso anche per chi si occupa di sistemi informativi geografici. Non parlo dell’analisi spaziale, ma di quelle cose che facciamo quasi ogni giorno: leggere le metainfomazioni di un file (e scoprire che sono povere), convertire il formato di un file, estrarre una porzione di una raster, etc. [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il lavoro di ogni giorno è spesso routinario; spesso anche per chi si occupa di sistemi informativi geografici. Non parlo dell’analisi spaziale, ma di quelle cose che facciamo quasi ogni giorno: leggere le metainfomazioni di un file (e scoprire che sono povere), convertire il formato di un file, estrarre una porzione di una raster, etc.</p>
+	<p>Si tratta di operazioni in genere molto semplici, che siamo in grado di portare a termine con molti strumenti. Questo blog parla de “le cose che ci piacciono TANTO”; una di queste sono quelle utility che alleggeriscono il lavoro di ogni giorno, con un click del mouse ed un menu contestuale.</p>
+	<p>Vi parlerò di due applicazioni di questo tipo, una per Windows ed una per Ubuntu (e per tutte le distribuzioni che sfruttano Gnome), che sono in grado di “trasferire” sul tasto destro del mouse alcune comuni operazioni utili ad un utente GIS.</p>
+	<p>Il <strong>prerequisito</strong> è che nel nostro sistema operativo siano installate le librerie <a title="Librerie GDAL" href="http://www.gdal.org/" target="_blank"><strong>GDAL</strong></a>, che sfrutteremo come motore delle operazioni “spaziali”. Per installarle su Windows basterà scaricare ed installare <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">FWTools</a>, mentre su Ubuntu basterà installare <em>gdal-bin</em> tramite synaptic o tramite riga di comando.</p>
+	<p>Alla fine del post saremo in grado di fare click con il destro su una TIFF del nostro hard-disk, ed eseguire queste due semplici (ma comodissime operazioni):</p>
+	<ol>
+	<li>convertirla in un altro formato spaziale (in questo esempio eseguirò la conversione in formato <a title="JPEG2000 su Wikipedia" href="http://it.wikipedia.org/wiki/JPEG_2000" target="_blank">JPG2000</a>, un eccellente formato compresso che può avere attributi geografici)</li>
+	<li>leggerne le metainformazioni (anche quelle spaziali)</li>
+	</ol>
+	<p>Se dovessi ottenere questi due risultati con le librerie GDAL, dovrei aprire il prompt dei comandi e scrivere rispettivamente:</p>
+	<ol>
+	<li>
+	<pre>&gt; gdal_translate -of JP2ECW input.tif output.jp2</pre>
+	</li>
+	<li>
+	<pre>&gt; gdalinfo input.tif</pre>
+	</li>
+	</ol>
+	<p>Vedremo come convertire questi comandi testuali, in operazioni da eseguire con il mouse.</p>
+	<h2>Su Windows</h2>
+	<p>Su Windows sfrutteremo <a title="Open++ help page" href="http://www.freewebs.com/dengdun/en/openxx.htm" target="_blank">Open++</a>, un&#8217;utility di <a title="open++ installer" href="http://www.freewebs.com/dengdun/en/openxx.zip" target="_blank">200kb</a> che consente di personalizzare l’elenco di comandi presenti nel menu contestuale, che si apre quando si clicca con il tasto destro del mouse su un file (o su una cartella).</p>
+	<p>Una volta che lo avrete scaricato ed installato, troverete una nuova voce nel menu che si aprirà al click con il destro su un file; è visibile nella figura sottostante (&#8220;Open++&#8221;).</p>
+	<p><img style="border-top-width: 0px; display: block; border-left-width: 0px; float: none; border-bottom-width: 0px; margin: 3px auto; border-right-width: 0px" title="contextmenu" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" border="0" alt="contextmenu" width="278" height="294" /></p>
+	<p>L’utilizzo è immediato e quasi autoesplicativo, in quanto Open++ è già configurato per eseguire delle comode operazioni di base: ade esempio copiare il percorso assoluto di un file (Copy Path), o  aprire il prompt dei comandi a partire dalla cartella selezionata (Command Prompt). Questi due stupidi comandi, sono già un ottimo esempio di alleggerimento del lavoro.</p>
+	<p>Il primo comando che voglio aggiungere, ci consentirà di convertire in formato JPG2000 un’immagine TIFF. Per inserire questo nuovo comando, tra quelli disponibili in Open++, dovrò cliccare sull’ultima opzione del suo menu a tendina: “Customize” (vedi figura poco sopra).</p>
+	<p>Mi si aprirà la finestra sottostante:</p>
+	<p><img style="border-top-width: 0px; display: block; border-left-width: 0px; float: none; border-bottom-width: 0px; margin-left: auto; margin-right: auto; border-right-width: 0px" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/image.png" border="0" alt="image" width="470" height="386" /></p>
+	<p>Questi i passi da eseguire:</p>
+	<ol>
+	<li>cliccare in alto a destra sul tasto “Add”, e scegliere l’opzione “Command”</li>
+	<li>cliccare sulla cella &#8220;Title&#8221;, ed aggiungere un nome descrittivo al comando che si sta creando (ad esempio “Convert to JPG2000”)</li>
+	<li>inserire nella cella “Program” il programma che si vuole lanciare. Nel nostro caso vogliamo lanciare il <em>prompt dei comandi</em> e basterà scrivere “%ComSpec%”</li>
+	<li>scrivere nella cella “Arguments” gli argomenti che vogliamo passare al nostro comando. Nel nostro caso inseriremo la seguente stringa &#8216;/c &#8220;C:\Programmi\FWTools2.2.6\bin\gdal_translate -of JP2ECW&#8221; $(TargetName)$(TargetExt) $(TargetName).jp2&#8242;
+	<ol>
+	<li>il parametro “/c” fa sì che il <em>prompt dei comandi </em>venga chiuso al termine dell’operazione</li>
+	<li>&#8220;C:\Programmi\FWTools2.2.6\bin\gdal_translate&#8221; è il percorso assoluto (nel mio pc) dell’utility GDAL &#8211; gdal_translate &#8211; che gestisce le conversioni tra formati di file spaziali</li>
+	<li>“-of JP2ECW” è il parametro necessario per impostare JPG2000 come formato di output</li>
+	<li>$(TargetName)$(TargetExt) sono delle variabili che coincidono con il nome e con l’estensione del file su cui cliccheremo con il destro, e che verranno valorizzate dinamicamente al lancio del comando. Se ad esempio il file su cui farò click sarà &#8220;c:\dati\input.tif&#8221;, la variabile “$(TargetName)” verrà sostituito da “c:\dati\input” e “$(TargetExt)” da “.tif”.</li>
+	<li>lo stesso si dica per $(TargetName).jp2, che verrà sostituito da “c:\dati\input.jp2”</li>
+	</ol>
+	</li>
+	<li>cliccare sulla cella &#8220;Associate with Files&#8221; e scrivere *.tif
+	<ol>
+	<li>in questo modo il comando di conversione formato sarà disponibile soltanto per i file con estensione .tif (è possibile aggiungere altre estensioni, separandole tramite &#8220;;&#8221;)</li>
+	</ol>
+	</li>
+	<li>impostare gli altri parametri come nella figura soprastante e cliccare su &#8220;OK&#8221;</li>
+	</ol>
+	<p>A questo punto aprite una cartella in cui avete un file TIFF, fateci click sopra con il destro del mouse, e selezionate Open++/Convert to JPG2000. Si aprirà il prompt dei comandi e verrà lanciato il comando gdal_translate; a comando eseguito il prompt dei comandi si chiuderà automaticamente e troverete il file JPG2000 (con estensione .jp2) nella stessa cartella in cui è presente il file TIFF.</p>
+	<p>Quello di sopra è soltanto un esempio; si può di più, meglio e diversamente. Consideratelo come un primo tutorial, dopo il quale iniziare a dare sfogo alla vostra fantasia ed alla vostra competenza.</p>
+	<p>Per ottenere le metainformazioni spaziali di un file TIFF, utilizzando soltanto il tasto destro del mouse, dovrete un creare un nuovo comando. La procedura è quasi identica alla precedente, salvo per la cella  “Arguments”: dovrete inserire la stringa &#8216;/k &#8220;C:\Programmi\FWTools2.2.6\bin\gdalinfo $(TargetName)$(TargetExt)&#8217;.</p>
+	<p>La differenza più importante è il parametro &#8220;/k&#8221;, che farà in modo che il prompt dei comandi non venga chiuso al termine del comando gdalinfo. Nella finestra del prompt potrete quindi leggere le metainformazioni del file che avrete selezionato.</p>
+	<p>In questo filmato vedrete i due comandi in azione:</p>
+	<p><object width="460" height="365" data="http://www.utipu.com/player/player.swf" type="application/x-shockwave-flash"><br />
+<param name="flashvars" value="&amp;file=http%3A%2F%2Fwww.utipu.com%2Fapp%2Fservice%2Fplaylist%2F%3Ftip%3D6249&amp;callback=http%3A%2F%2Fwww.utipu.com%2Fapp%2Fservice%2Fview" />
+<param name="src" value="http://www.utipu.com/player/player.swf" />
+<param name="allowfullscreen" value="true" /></object></p>
+	<h2>Su Linux</h2>
+	<p>In questo caso sfrutteremo <a title="Nautilus-actions homepage" href="http://www.grumz.net/index.php?q=taxonomy/term/2/9" target="_blank">Nautilus-actions</a>, un&#8217;utility analoga a Open++ in ambiente GNOME e quindi anche in Ubuntu. E&#8217; installabile tramite synaptic o digitando nella shell:</p>
+	<pre>&gt;sudo apt-get install nautilus-action</pre>
+	<p>Una volta installato lo troverete nel menu Sistema/Preferenze/Nautilus Actions Configuration.</p>
+	<p style="text-align: left;"><img class="aligncenter size-full wp-image-588" title="nautilus-actions" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions.png" alt="nautilus-actions" width="310" height="379" /></p>
+	<p style="text-align: left;">Creiamo un&#8217;azione (action) che estragga le metainformazioni da un tif selezionata.</p>
+	<p style="text-align: left;">Questi i passi da seguire:</p>
+	<ol>
+	<li>cliccare su Add</li>
+	<li>inserire nella cella &#8220;Label&#8221; un nome descrittivo del comando (ad esempio &#8220;gdal_info&#8221;)</li>
+	<li>scegliere &#8211; è opzionale &#8211; un tooltip per il comando (ad esempio &#8220;cliccare qui per avere le metainformazioni del file selezionato&#8221;)</li>
+	<li>scegliere &#8211; è opzionale &#8211; un&#8217;icona per il comando</li>
+	<li>definire il comando da lanciare, tramite la cella &#8220;Path&#8221;
+	<ol>
+	<li>inserire la stringa &#8220;bash -c&#8221;</li>
+	</ol>
+	</li>
+	<li>impostarne la stringa &#8220;gdalinfo %d/%f &gt; %d/%f.txt &amp;&amp; gedit %d/%f.txt&#8221; nella cella &#8220;Parameters
+	<ol>
+	<li>&#8220;%d &#8220;e &#8220;%f &#8221; sono delle variabili che verrano sostituite dinamicamente dal percorso (senza estensione) e dall&#8217;estensione del file selezionato</li>
+	<li>il carattere &#8220;&gt;&#8221; farà sì che l&#8217;output del comando &#8211; le metainformazioni &#8211; possano essere scritte e memorizzare in un file di testo</li>
+	<li>&#8220;%d/%f.txt&#8221; faranno si che il file di testo venga salvato nella stessa cartella del file selezionato (%d), con lo stesso nome (%f) e con estensione .txt</li>
+	<li>&#8220;&amp;&amp;&#8221; fa si che venga esguito il comando successivo &#8211; gedit &#8211; ma soltanto dopo la fine del primo</li>
+	<li>&#8220;gedit %d/%f.txt&#8221; per aprire con l&#8217;editor di testo di Ubuntu il file di testo appena creato</li>
+	</ol>
+	</li>
+	<li>cliccare sul Tab &#8220;Conditions&#8221; e scrivere nella cella &#8220;Filenames&#8221; la stringa &#8220;*.tif&#8221; (in questo modo il comando gdal_info sarà visibile soltanto per file con estensione .tif)</li>
+	<li>selezionare il radio botton &#8220;Only files&#8221;</li>
+	<li>e cliccare su OK</li>
+	</ol>
+	<p><img class="aligncenter size-full wp-image-599" title="edit-action-gdal_info" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info.png" alt="edit-action-gdal_info" width="470" height="459" /></p>
+	<p>A questo punto non ci resta che fare click con il destro su un file .tif e provare il comando appena creato. Aggiungo però qualche spiegazione dovuta. Cosa è bash?</p>
+	<blockquote><p>Si tratta di un interprete di comandi che permette all&#8217;utente di comunicare col sistema operativo attraverso una serie di funzioni predefinite, o di eseguire programmi.</p></blockquote>
+	<p>Il parametro &#8220;-c&#8221; forza bash a leggere i comandi dalla stringa di testo che segue, che nel nostro caso è quella del punto 6 di sopra.</p>
+	<p>Nel filmato sottostante vedrete (male, è saltata una parte) il comando in azione:</p>
+	<p><object width="425" height="344" data="http://www.screentoaster.com/swf/STPlayer.swf" type="application/x-shockwave-flash"><br />
+<param name="allowFullScreen" value="true" />
+<param name="flashvars" value="video=stVU5dQ0ZKRFFXRl1ZX1Jc" />
+<param name="src" value="http://www.screentoaster.com/swf/STPlayer.swf" /></object></p>
+	<div style="width: 425px; text-align: right;"><a href="http://www.screentoaster.com/">Record your screencast online</a></div>
+	<p>Nautilus-actions è a mio avviso un gioiellino. Una caratteristica che lo fa brillare è la facilità di condividere i comandi creati. Lo si fa con il tasto &#8220;Import/Export&#8221; presente nella finestra principale. <a title="Nautilus-action lcommand list" href="http://www.grumz.net/?q=configlist&amp;PHPSESSID=77035f138bd2d017058c1b4cb6292b25" target="_blank">Qui</a> ad esempio una serie di &#8220;azioni&#8221; già pronte. Il comando di conversione in JPG2000 è di facile implementazione e non lo svilupperò.</p>
+	<h2>In chiusura</h2>
+	<p>Prendete quanto scritto soltanto come spunto per &#8220;piegare&#8221; (ad esempio) le librerie GDAL/OGR al vostro tasto destro. Sono quasi un&#8217;analfabeta di istruzioni da riga di comando, e quelle che vi ho indicato possono sicuramente essere scritte meglio e più elegantemente. Mi piacerebbe molto che qualcuno condividesse qui la propria esperienza, con qualche comando &#8220;de paura&#8221;.</p>
+	<h2>Software/servizi usati per scrivere il post</h2>
+	<ul>
+	<li><a title="TipCam homepage" href="http://www.utipu.com/app/download" target="_blank">TipCam</a> per registrare il filmato su windows</li>
+	<li><a title="Screentoaster homepage" href="http://www.screentoaster.com" target="_blank">ScreenToaster</a> per farlo su Linux</li>
+	<li><a title="Zotero homepage" href="http://www.zotero.org/" target="_blank">Zotero</a> per gestire e generare la sitografia sottostante</li>
+	</ul>
+	<h2>Sitografia letta, consigliata e disordinata</h2>
+	<ol>
+	<li>“BASH Help &#8211; A Bash Tutorial,” <a href="http://www.hypexr.org/bash_tutorial.php">http://www.hypexr.org/bash_tutorial.php</a>.</li>
+	<li>“Bash &#8211; Wikipedia,” <a href="http://it.wikipedia.org/wiki/Bash">http://it.wikipedia.org/wiki/Bash</a>.</li>
+	<li>“Beginners/BashScripting &#8211; Community Ubuntu Documentation,” <a href="https://help.ubuntu.com/community/Beginners/BashScripting">https://help.ubuntu.com/community/Beginners/BashScripting</a>.</li>
+	<li>“COMMAND.COM, SHELL and COMSPEC,” <a href="http://www.robvanderwoude.com/command.html">http://www.robvanderwoude.com/command.html</a>.</li>
+	<li>“Eseguire programmi e comandi DOS &#8211; Cenati Giovanni VbScript WSH,” <a href="http://digilander.libero.it/Cenati/esegui.htm">http://digilander.libero.it/Cenati/esegui.htm</a>.</li>
+	<li>“Nautilus-actions: GUI è bello! » Ubuntu block notes,” <a href="http://www.aldolat.it/guide-e-howto/nautilus-actions-gui-e-bello/">http://www.aldolat.it/guide-e-howto/nautilus-actions-gui-e-bello/</a>.</li>
+	</ol>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/">Il tasto destro per alleggerire un po&#8217; il lavoro di chi si occupa di GIS (su Windows e su Linux)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" medium="image">
+			<media:title type="html">contextmenu</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/image.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions.png" medium="image">
+			<media:title type="html">nautilus-actions</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info.png" medium="image">
+			<media:title type="html">edit-action-gdal_info</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Un&#8217;eccellente articolo sulla cartografia online e sulle soluzioni disponibili per produrla (oltre Google Maps)</title>
+		<link>http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/</link>
+		<comments>http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/#comments</comments>
+		<pubDate>Tue, 08 Apr 2008 12:40:00 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[google-maps]]></category>
+		<category><![CDATA[online]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un%26%238217%3Beccellente+articolo+sulla+cartografia+online+e+sulle+soluzioni+disponibili+per+produrla+%28oltre+Google+Maps%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/&amp;rft.language=English"></span>
+Spero che tutti voi conosciate A List Apart, il miglior sito che parli di html, css e costruzione di siti web. E&#8217; pieno di articoli raffinati nei contenuti e nelle illustrazioni, ed è per me il paradiso dei webmaster. STOP agli elogi (ce ne sarebbero da fare ancora, credetemi). L&#8217;articolo di oggi è dedicato a [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un%26%238217%3Beccellente+articolo+sulla+cartografia+online+e+sulle+soluzioni+disponibili+per+produrla+%28oltre+Google+Maps%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p align="center"><img src="http://www.alistapart.com/d/takecontrolofyourmaps/map.jpg" height="205" width="475" /></p>
+	<p align="left">Spero che tutti voi conosciate <a href="http://www.alistapart.com/" title="A List Apart" target="_blank">A List Apart</a>, il miglior sito che parli di html, css e costruzione di siti web. E&#8217; pieno di articoli raffinati nei contenuti e nelle illustrazioni, ed è per me il paradiso dei webmaster. STOP agli elogi (ce ne sarebbero da fare ancora, credetemi).</p>
+	<p align="left">L&#8217;articolo di oggi è dedicato a quelli come noi a cui piace la cartografia, specie quella sul web. Il titolo è <a href="http://www.alistapart.com/articles/takecontrolofyourmaps" title="Take Control of Your Maps" target="_blank"><strong>Take Control of Your Maps</strong></a>.</p>
+	<p align="left">L&#8217;articolo parte dal presupposto ineccepibile che Google Maps ha completamente cambiato il modo di pensare alle mappe sul web; specie dal rilascio delle API, che hanno reso la cosa ancora più creativa ed interessante.<br />
+Ma è passato del tempo dall&#8217;uscita di Google Maps, e l&#8217;autore ci illustra la ricchezza di alternative che abbiamo oggi a disposizione.<br />
+Si tratta di prodotti molto maturi ed amati da noi di TANTO: <a href="http://www.openlayers.org">OpenLayers</a>, <a href="http://www.tilecache.org/">TileCache</a>, <a href="http://mapnik.org/">Mapnik</a>, <a href="http://www.postgresql.org">PostgreSQL</a>, <a href="http://qgis.org/">QGIS</a>, <a href="http://geoserver.org/display/GEOS/GeoServer+Home">GeoServer</a> e <a href="http://mapserver.gis.umn.edu/">MapServer</a>.
+</p>
+	<p align="left">L&#8217;obiettivo dell&#8217;autore è specialmente quello di avvicinare i webmaster al mondo della cartografia online, smitizzandone un po&#8217; la difficoltà di implementazione e l&#8217;esiguità di alternative ai prodotti dei giganti del web (yahoo, microsoft e google).</p>
+	<p align="left">Buona lettura!!!</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/">Un&#8217;eccellente articolo sulla cartografia online e sulle soluzioni disponibili per produrla (oltre Google Maps)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un%26%238217%3Beccellente+articolo+sulla+cartografia+online+e+sulle+soluzioni+disponibili+per+produrla+%28oltre+Google+Maps%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://www.alistapart.com/d/takecontrolofyourmaps/map.jpg" />
+		<media:content url="http://www.alistapart.com/d/takecontrolofyourmaps/map.jpg" medium="image" />
+	</item>
+		<item>
+		<title>Un piccolo screencast su OpenLayers</title>
+		<link>http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/</link>
+		<comments>http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/#comments</comments>
+		<pubDate>Mon, 19 Mar 2007 10:08:20 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[screencast]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+piccolo+screencast+su+OpenLayers&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-03-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/&amp;rft.language=English"></span>
+Il gruppo di sviluppo di OpenLayers ha prodotto un piccolo screencast (un tutorial video), che illustra come interfacciare OpenLayesr a MapServer. E&#8217; un tutorial di base, ma vi consiglio di dargli un&#8217;occhiata (dura anche poco). Buona visione [ combipres 0.1mg/15mg $83.00 &#124; calan 80mg pills $183.00 &#124; cipro 250mg pills 360 pills $180.00 &#124; isoptin [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+piccolo+screencast+su+OpenLayers&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-03-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il gruppo di sviluppo di <a href="http://www.openlayers.org/" title="OpenLayers Home page" target="_blank">OpenLayers</a> ha prodotto un piccolo <em><a href="http://openlayers.org/presentations/mappingyourdata/" title="screencast OpenLayers" target="_blank">screencast</a> </em>(un tutorial video), che illustra come interfacciare OpenLayesr a MapServer.</p>
+	<p>E&#8217; un tutorial di base, ma vi consiglio di dargli un&#8217;occhiata (dura anche poco).</p>
+	<p>Buona visione
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/">Un piccolo screencast su OpenLayers</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+piccolo+screencast+su+OpenLayers&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-03-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/03/19/un-piccolo-screencast-su-openlayers/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>FWTools: un kit di applicazioni GIS irrinunciabile</title>
+		<link>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/</link>
+		<comments>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/#comments</comments>
+		<pubDate>Fri, 09 Feb 2007 15:17:15 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[metainformazioni]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[Tutorial]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+un+kit+di+applicazioni+GIS+irrinunciabile&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/&amp;rft.language=English"></span>
+Quando formatto il mio PC, e devo reinstallare tutte le applicazioni, inizio da quelle &#8220;fondamentali ed insostituibili&#8221;. Ognuno ha le proprie, e la scelta si basa su criteri pratici mescolati spesso con pulsazioni da tifoso. Nella mia Top Ten c&#8217;è proprio FWTools, un kit di applicazioni sviluppato da Frank Warmerdam (FW), disponibile sia per Linux [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+un+kit+di+applicazioni+GIS+irrinunciabile&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Quando formatto il mio PC, e devo reinstallare tutte le applicazioni, inizio da quelle &#8220;fondamentali ed insostituibili&#8221;. Ognuno ha le proprie, e la scelta si basa su criteri pratici mescolati spesso con pulsazioni da tifoso. Nella mia <em>Top Ten</em> c&#8217;è proprio <a title="FWTools" href="http://fwtools.maptools.org/">FWTools</a>, un kit di applicazioni sviluppato da <a title="Frank Warmerdam's Home Page" href="http://home.gdal.org/~warmerda/" target="_blank">Frank Warmerdam</a> (FW), disponibile sia per Linux che per Windows, che non può mancare tra le applicazione di chiunque si occupi di GIS e cartografia numerica.</p>
+	<p>E&#8217; composto dai seguenti pacchetti:</p>
+	<blockquote>
+	<ul>
+	<li><strong>OpenEV</strong>: A high performance raster/vector desktop data viewer and analysis tool.</li>
+	<li><strong>MapServer</strong>: A web mapping package.</li>
+	<li><strong>GDAL/OGR</strong>: A library and set of commandline utility applications for reading and writing a variety of geospatial raster (GDAL) and vector (OGR) formats.</li>
+	<li><strong>PROJ.4</strong>: A cartographic projections library with commandline utilities.</li>
+	<li><strong>OGDI</strong>: a multi-format raster and vector reading techology noteworthy for inclusion of support for various military formats including VPF (ie. VMAP, VITD), RPF (ie. CADRG, CIB), and ADRG.</li>
+	<li><strong>Python</strong>: a scripting language.</li>
+	</ul>
+	</blockquote>
+	<p>Con questo <em>post</em>, voglio inaugurare una serie di piccolissimi tutorial dedicata a FWTools ed in particolare alle librerie GDAL/OGR. L&#8217;installazione di FWTools è molto semplice e non ne parlerò. Le operazione che andremo a svolgere, le faremo tutte da &#8220;riga di comando&#8221;.</p>
+	<h2>Come ricavare le metainformazioni disponibili in un file GeoTiff?</h2>
+	<p>Per ottenere queste informazioni utilizzerò le librerie GDAL, ed in particolare l&#8217;utility <a title="gdalinfo" href="http://www.gdal.org/gdalinfo.html" target="_blank"><strong>gdalinfo</strong></a>. Ecco i passi da seguire:</p>
+	<ul>
+	<li>aprire la shell di sistema</li>
+	<li>scrivere un comando con la seguente sintassi <code>"</code><code>gdalinfo /percorso_file_geotiff/file_geottif.tif</code><code>"</code></li>
+	<li>premere invio</li>
+	</ul>
+	<p>Otterrò un&#8217;output di questo tipo:</p>
+	<pre>Driver: GTiff/GeoTIFF
+Size is 7520, 5800
+Coordinate System is:
+PROJCS[\"unnamed\",
+GEOGCS[\"unnamed\",
+DATUM[\"unknown\",
+SPHEROID[\"unnamed\",6378388,297.0000000000014,
+AUTHORITY[\"EPSG\",\"7022\"]],
+AUTHORITY[\"EPSG\",\"6265\"]],
+PRIMEM[\"Greenwich\",0],
+UNIT[\"degree\",0.0174532925199433],
+AUTHORITY[\"EPSG\",\"4265\"]],
+UNIT[\"metre\",1,
+AUTHORITY[\"EPSG\",\"9001\"]],
+AUTHORITY[\"EPSG\",\"3004\"]]
+Origin = (2366320.000000,4218280.000000)
+Pixel Size = (1.00000000,-1.00000000)
+Metadata:
+AREA_OR_POINT=Area
+TIFFTAG_XRESOLUTION=300
+TIFFTAG_YRESOLUTION=300
+TIFFTAG_RESOLUTIONUNIT=2 (pixels/inch)
+Corner Coordinates:
+Upper Left  ( 2366320.000, 4218280.000)
+Lower Left  ( 2366320.000, 4212480.000)
+Upper Right ( 2373840.000, 4218280.000)
+Lower Right ( 2373840.000, 4212480.000)
+Center      ( 2370080.000, 4215380.000)
+Band 1 Block=7520x16 Type=Byte, ColorInterp=Red
+Band 2 Block=7520x16 Type=Byte, ColorInterp=Green
+Band 3 Block=7520x16 Type=Byte, ColorInterp=Blue</pre>
+	<p>Magari a voi non suscita alcun emozione, ma questo semplicissimo comando ci restituisce un&#8217;informazione spaziale strutturata utilissima. Se vorrete creare un file .txt, basterà scrivere sulla <em>shell</em> la seguente stringa:</p>
+	<pre>\"gdalinfo /percorso_file_geotiff/file_geottif.tif &gt; /percorso_export/nomefile.txt\"</pre>
+	<p>Il comando esegue anche operazioni più sofisticate, per le quali troverete informazioni sulla <a title="gdalinfo" href="http://www.gdal.org/gdalinfo.html" target="_blank">pagina ufficiale</a> di questa utility e anche cercando un po&#8217; sul web.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/">FWTools: un kit di applicazioni GIS irrinunciabile</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FWTools%3A+un+kit+di+applicazioni+GIS+irrinunciabile&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-02-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/02/09/fwtools-un-kit-di-applicazioni-gis-irrununciabile/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Tre nuovi tutorial per Google Earth 4</title>
+		<link>http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/</link>
+		<comments>http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/#comments</comments>
+		<pubDate>Tue, 21 Nov 2006 08:07:55 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[google-earth]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Tre+nuovi+tutorial+per+Google+Earth+4&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-11-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/&amp;rft.language=English"></span>
+Leggo su &#8220;Google Earth Blog&#8221; che sono stati creati tre nuovi tutorial per Google Earth 4: Navigating on the Earth Searching for Locations and Businesses Marking Locations Buono studio ;-D [ ed trial packs viagra 100mg + cialis 20mg pills 20 $64.00 &#124; anafranil 10mg pills $69.00 &#124; cleocin 150mg pills $351.00 &#124; propranolol 80mg [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Tre+nuovi+tutorial+per+Google+Earth+4&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-11-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Leggo su &#8220;<a target="_blank" href="http://www.gearthblog.com/blog/archives/2006/11/new_google_earth_4_t.html">Google Earth Blog</a>&#8221; che sono stati creati tre nuovi tutorial per Google Earth 4:</p>
+	<ul><font size="-1"></p>
+	<li><a href="http://earth.google.com/userguide/v4/tutorials/navigating.html">Navigating on the Earth</a></li>
+	<li><a href="http://earth.google.com/userguide/v4/tutorials/searching.html">Searching for Locations and Businesses</a></li>
+	<li><a href="http://earth.google.com/userguide/v4/tutorials/marking_locations.html">Marking Locations</a></li>
+	<p></font></ul>
+	<p>Buono studio ;-D
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/">Tre nuovi tutorial per Google Earth 4</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Tre+nuovi+tutorial+per+Google+Earth+4&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-11-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/11/21/tre-nuovi-tutorial-per-google-earth-4/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

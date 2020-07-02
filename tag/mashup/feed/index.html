@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; mashup</title>
+	<atom:link href="http://blog.spaziogis.it/tag/mashup/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Where to sleep in Turin: un esempio d&#8217;uso dei raw data piemontesi con Google Refine e SIMILE Exhibit</title>
+		<link>http://blog.spaziogis.it/2010/10/29/where-to-sleep-in-turin-un-esempio-d-uso-dei-raw-data-piemontesi-con-google-refine-e-simile-exhibit/</link>
+		<comments>http://blog.spaziogis.it/2010/10/29/where-to-sleep-in-turin-un-esempio-d-uso-dei-raw-data-piemontesi-con-google-refine-e-simile-exhibit/#comments</comments>
+		<pubDate>Fri, 29 Oct 2010 06:35:06 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[data cleansing]]></category>
+		<category><![CDATA[dati.piemonte.it]]></category>
+		<category><![CDATA[geocoding]]></category>
+		<category><![CDATA[google refine]]></category>
+		<category><![CDATA[itn 2010]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[open government]]></category>
+		<category><![CDATA[simile exhibit]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2815</guid>
+		<description><![CDATA[Il processo di liberazione dei dati pubblici procede abbastanza lentamente in Italia, tuttavia si comincia a registrare una graduale presa di coscienza del notevole impatto positivo che tale processo è potenzialmente in grado di produrre.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Where+to+sleep+in+Turin%3A+un+esempio+d%26%238217%3Buso+dei+raw+data+piemontesi+con+Google+Refine+e+SIMILE+Exhibit&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2010-10-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/10/29/where-to-sleep-in-turin-un-esempio-d-uso-dei-raw-data-piemontesi-con-google-refine-e-simile-exhibit/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il processo di liberazione dei dati pubblici procede abbastanza lentamente in Italia, nonostante le prime lodevoli iniziative in tal senso (<a title="dati.piemonte.it" href="http://dati.piemonte.it">dati.piemonte.it</a>, <a title="CKAN Italiano" href="http://it.ckan.net/">CKAN Italiano</a>, <a title="Linked Open Camera" href="http://www.linkedopencamera.it/">Linked Open Camera</a>), mentre in altri Paesi (USA e UK in primis) si tratta di un<a href="http://challenge.gov/"><img class="size-full wp-image-2820 alignleft" style="border: 0pt none;" title="Challenge.gov" src="http://blog.spaziogis.it/wp-content/uploads//2010/10/challenge.gov_.png" alt="Challenge.gov" width="310" height="83" /></a> fenomeno già ampiamente consolidato, tanto da <strong>rivoluzionare radicalmente il tradizionale modo di intendere il rapporto tra cittadini e Pubblica Amministrazione</strong>. Si veda, ad esempio, il portale <a title="Challenge.gov" href="http://challenge.gov/">Challenge.gov</a>, dove i vari dipartimenti esecutivi ed agenzie federali americani lanciano delle vere e proprie <strong>sfide</strong> ai cittadini sulle questioni più disparate, che vanno dall&#8217;ambiente alla sanità, dall&#8217;economia alla tecnologia, a fronte della risoluzione delle quali sono previsti premi di natura economica.</p>
+	<blockquote><p>Challenge.gov is a place where the public and government can solve problems together.</p></blockquote>
+	<p>Il clamoroso ritardo del Belpaese in materia di Open Data è imputabile a diversi fattori. Da un lato, persiste di fatto l&#8217;assenza di una forte e concreta volontà politica di innescare tale processo in tempi brevi. Dall&#8217;altro, tuttavia, si comincia a registrare una graduale presa di coscienza del <strong>notevole impatto positivo che la liberazione dei dati prodotti dalla PA è potenzialmente in grado di produrre in termini di trasparenza dell&#8217;azione amministrativa e, al tempo stesso, come valida opportunità di sviluppo economico nei vari settori dell&#8217;IT</strong>. Ampio merito va dato alla Regione Piemonte, che con il suo portale dati.piemonte.it, rappresenta finora l&#8217;unica PA italiana che, pur non essendo obbligata a farlo (come argomenta <a id="aptureLink_PrD1TeV6Sr" href="../author/neldrago/">Gerlando Gibilaro</a> in un suo recente <a id="aptureLink_4xZzotfeC7" href="http://www.indiritto.it/2010/10/03/la-normativa-relativa-ala-riutilizzo-dei-dati-il-commento-al-d-l-24-gennaio-2006-n-36-e-modifiche">post su InDiritto</a>), ha predisposto un banco di prova utile per mostrare effettivamente cosa si può fare con i dati grezzi e qual è il loro potenziale intrinseco ancora tutto da esplorare. A tal proposito, recentemente il portale si è arricchito di un&#8217;ulteriore sezione dedicata ai <a title="dati.piemonte.it - Casi d'uso" href="http://www.dati.piemonte.it/casi-duso.html">casi d&#8217;uso</a> dei dati finora rilasciati, ancora piuttosto limitati in numero, ma non per molto visto che i tempi sono più che maturi&#8230;</p>
+	<p>Infatti, dopo essere rimasti a guardare a lungo cosa accadeva oltremanica o oltreoceano, è giunto finalmente il momento di <strong>tradurre questa opportunità in azione!</strong> Pertanto, al di là delle etichette, <strong>civic hacker, hacktivisti o civil servant di tutta Italia mettiamoci anche noi in gioco, &#8220;sporchiamoci&#8221; le mani con gli open data e affrontiamo la nostra</strong> <strong>sfida per l&#8217;innovazione e lo sviluppo</strong>. Ne va di mezzo anche la reputazione del nostro estro creativo che, da sempre, ci invidia tutto il mondo!</p>
+	<h2>Gli open data piemontesi sul turismo&#8230;</h2>
+	<p>All&#8217;esordio di dati.piemonte.it, i primi dataset resi disponibili non erano caratterizzati da forte connotazione geografica. Oggi, invece, grazie al recente rilascio dei <a title="Regione Piemonte - Portale del riuso - Cerca tag:turismo" href="http://www.dati.piemonte.it/dati.html?searchphrase=all&amp;searchword=tag:turismo" target="_blank">dati relativi al settore del turismo</a>, è possibile cominciare a ragionare in termini di localizzazione di attività produttive, nella fattispecie di strutture ricettive, e di rappresentazione all&#8217;interno di un&#8217;applicazione di <a id="aptureLink_oANO1wGzPl" href="../?s=web+mapping">web mapping</a>, utilizzando un approccio maggiormente legato al territorio rispetto a quello prettamente illustrativo adottato in questo <a id="aptureLink_HzlKsNVpFr" href="../2010/07/12/i-pionieri-dellopen-data-in-italia/">post</a>. Nel dettaglio, sto riferendomi ai dati <a title="Regione Piemonte - Portale del riuso: Anagrafica esercizi – ricettività" href="http://www.dati.piemonte.it/dato/item/1232-anagrafica-esercizi-ricettivit%C3%A0.html" target="_blank">&#8220;Anagrafica esercizi – ricettività&#8221;</a>, contenenti l&#8217;elenco delle quasi 5000 strutture ricettive piemontesi censite nel 2009, per ognuna delle quali è fornito l&#8217;indirizzo (via e comune), alcuni recapiti, la tipologia, l&#8217;eventuale qualifica (numero di stelle) e alcuni indicatori di capacità ricettiva (numero di camere, letti e bagni).</p>
+	<p style="text-align: center;"><a href="http://www.dati.piemonte.it/dato/item/1232-anagrafica-esercizi-ricettivit%C3%A0.html" target="_blank"><img class="aligncenter size-full wp-image-2842" style="border: 0pt none;" title="Regione Piemonte - Portale del riuso: Anagrafica esercizi – ricettività" src="http://blog.spaziogis.it/wp-content/uploads//2010/10/anagrafica_esercizi.png" alt="" width="490" height="351" /></a></p>
+	<h2>Data cleansing e faceted navigation&#8230;</h2>
+	<p>Scaricati i dati di interesse, questi si presentano come un file di estensione <a id="aptureLink_nynfi0QMAh" href="http://it.wikipedia.org/wiki/7z">.7z</a> comprendente, a sua volta, due file <a id="aptureLink_F8ReV5VZ9u" href="http://it.wikipedia.org/wiki/Comma-separated_values">.csv</a>, di cui uno contenente i dati veri e propri e l&#8217;altro dei metadati. Fin qui tutto ok! Aprendo entrambi i file, tuttavia è possibile notare delle strane sequenze di caratteri (es. <em>+AC0-</em>, <em>+AC1-</em>, <em>+Aog-</em>, &#8230;): esse rappresentano la codifica di alcuni caratteri speciali (es. lettere accentate) derivanti dalla conversione dei dati grezzi nel formato CSV a partire dalla sorgente di dati originaria&#8230; Emerge chiaramente la necessità di dover ripulire questi dati e, piuttosto che utilizzare un comune editor di testo o un foglio di calcolo, ne ho approfittato per testare <strong><a title="Google Refine" href="https://code.google.com/p/google-refine/">Google Refine (ex Freebase Gridworks)</a></strong>, software con cui avevo visto fare cose davvero strabilianti in queste <a id="aptureLink_9w60z6e4Ha" href="http://vimeo.com/groups/gridworks/videos">screencast</a>.</p>
+	<p><img class="size-full wp-image-2865 alignleft" style="margin-left: 5px; margin-right: 5px;" title="Esempio di facet in Google Refine" src="http://blog.spaziogis.it/wp-content/uploads//2010/10/gridworks_facet_samples.png" alt="" width="225" height="462" />Si tratta, infatti, di un <strong>potente strumento per ripulire i dati grezzi (<a id="aptureLink_qnBFa9UMJV" href="http://en.wikipedia.org/wiki/Data%20cleansing">data cleansing</a>)</strong>, in grado di renderli consistenti, collegarli a basi di dati esterne come <a id="aptureLink_ofr1CHRnW5" href="http://www.freebase.com/">Freebase</a>, aggregarli con dati provenienti da altre fonti, convertirli nei formati necessari da utilizzare in altri strumenti e contribuire ad alimentare, a loro volta, altre fonti di dati. Ma non è finita qui&#8230; <a href="https://code.google.com/p/google-refine/"><img class="size-full wp-image-2857 alignright" style="border: 0pt none;" title="Google Refine" src="http://blog.spaziogis.it/wp-content/uploads//2010/10/google_refine_logo.png" alt="" width="48" height="46" /></a>Pur essendo utilizzato all&#8217;interno di un browser, <strong>Google Refine non è un servizio web, ma un&#8217;applicazione desktop</strong> eseguibile sul proprio computer che consente ampia libertà nel flusso di lavoro, prevede un meccanismo di <strong>&#8220;undo/redo&#8221; persistente</strong> (anche in caso di crash della macchina!) e supporta diverse modalità avanzate di ricerca e di filtraggio dei dati mediante <strong>facet (faccette)</strong>. In particolare, la <strong>&#8220;</strong><strong>faceted navigation</strong><strong>&#8220;</strong> (&#8220;<em>navigazione guidata</em>&#8221; o &#8220;<em>ricerca a faccette</em>&#8220;) è quel metodo di ricerca incrementale per parole chiavi, molto utilizzato ad es. nei portali di e-commerce, che guida l’utente in tempo reale verso le informazioni ricercate attraverso una serie di piccoli e semplici passaggi, garantendogli ampia libertà di scelta.<br />
+I dati sono stati quindi ripuliti dai vari refusi presenti, effettuando operazioni di sostituzione in maniera batch (in caso di errore, come accennavo prima, esiste fortunatamente la possibilità di annullare le modifiche) e controllando, infine, la congruenza dei risultati ottenuti tramite le comode facet e i filtri di testo. I dati così ottenuti sono stati quindi esportati in formato CSV ed, infine, importati e pubblicati in un <strong>Google Spreadsheet</strong>.</p>
+	<h2>Un problema di geocoding&#8230;</h2>
+	<p>Occupandomi di sistemi informativi geografici, il mio interesse nei confronti di questo dataset è scaturito dal fatto che <strong>ogni struttura ricettiva è dotata di indirizzo</strong> (non solo il comune o la provincia di appartenenza) e che quindi, ai fini della sua rappresentazione su mappa, si presta bene ad essere risolto come un classico problema di <a id="aptureLink_t4I5LpvAdR" href="http://en.wikipedia.org/wiki/Geocoding">geocoding</a>, ovvero di determinazione delle coordinate geografiche (latitudine e longitudine) a partire dagli indirizzi dei punti di interesse (POI). A tal fine, esistono <a id="aptureLink_xgJexoyauA" href="http://en.wikipedia.org/wiki/Geocoding#List_of_some_geocoding_systems">diversi servizi web</a> (<strong>geocoder</strong>), liberi o proprietari, caratterizzati da diverso grado di copertura, accuratezza ed eventuali restrizioni d&#8217;uso, che si occupano di convertire gli indirizzi in coordinate.<br />
+Dovendo effettuare tale operazione per migliaia di indirizzi e desiderando automatizzare il processo, ho scelto di utilizzare <a title="Batch Geocode Addresses from a Google Spreadsheet" href="http://gmaps-samples.googlecode.com/svn/trunk/spreadsheetsgeocoder/geocodespreadsheet.htm">questo servizio</a> di Google, che consiste in una <strong>procedura guidata per la generazione batch dei valori di latitudine e longitudine a partire da un Google spreadsheet</strong>, contenente almeno due attributi: un identificatore univoco e l&#8217;indirizzo dei punti di interesse. Effettuato il geocoding e verificato che questo sia andato a buon fine, l&#8217;accuratezza dell&#8217;operazione dipenderà fortemente dalla qualità e soprattutto dal grado di capillarità degli indirizzi che diamo in pasto al geocoder. Per intenderci, mentre nei centri urbani sarà possibile individuare con buona approssimazione le coordinate dei numeri civici, d&#8217;altro canto risulterà alquanto improbabile determinare la posizione accurata di un rifugio alpino!<br />
+A valle di questa operazione, ho esportato gli identificativi e le coordinate così ottenute all&#8217;interno di un foglio di calcolo sul mio pc, manipolandole in funzione del particolare formato richiesto dal framework che mi accingevo ad utilizzare. Successivamente, ho collegato le coordinate alla tabella dei dati originari sfruttando l&#8217;identificativo univoco come attributo comune ed ho quindi nuovamente esportato e pubblicato i dati in Google Spreadsheet.</p>
+	<h2>Il framework utilizzato&#8230;</h2>
+	<p><a href="http://simile.mit.edu/exhibit/"><img class="size-full wp-image-2866 alignleft" style="border: 0pt none; margin-top: 2px; margin-bottom: 2px;" title="Exhibit logo" src="http://blog.spaziogis.it/wp-content/uploads//2010/10/Exhibit.png" alt="" width="104" height="150" /></a>Una volta sistemati i dati, il passo successivo consiste nella progettazione e nell&#8217;implementazione dell&#8217;applicazione web da utilizzare per la loro rappresentazione. A tal proposito, la scelta fin da subito è ricaduta sullo strepitoso <strong><a title="SIMILE Exhibit" href="http://simile.mit.edu/exhibit/">SIMILE Exhibit</a></strong>, un <strong>framework per la pubblicazione di pagine web caratterizzate da  una forte interazione con i dati, che utilizza funzionalità di ricerca e di filtraggio basate ancora una volta sul concetto di &#8220;faceted navigation&#8221;</strong> e che consente di riprodurre agevolmente <strong>visualizzazioni interattive dei dati sotto forma di tabelle, thumbnail, mappe, grafici e timeline</strong> (come ad esempio ci aveva mostrato <a id="aptureLink_oevl8SlIYl" href="../author/andreaborruso/">Andrea Borruso</a> nel suo <a id="aptureLink_V470q54k0g" href="../2009/04/13/dati-pubblici-standard-e-interconnessi-dedicato/">post</a> scritto a seguito del terremoto in Abruzzo), senza richiedere il setup di database e di altre tecnologie server-side, nè tanto meno il possesso di skill avanzati di programmazione.<br />
+In particolare, il formato di dati che SIMILE Exhibit accetta in ingresso è <a id="aptureLink_KhEHGhKoVc" href="http://en.wikipedia.org/wiki/JSON">JSON</a> se la sorgente di dati risiede sullo stesso server dell&#8217;applicazione, <a id="aptureLink_dogjNFrGwC" href="http://en.wikipedia.org/wiki/JSON#JSONP">JSONP</a> negli altri casi. Tra le varie alternative a disposizione, <strong>è possibile importare dati da un Google spreadsheet</strong>, seguendo <a title="How to make an exhibit from data feed directly from a Google Spreadsheet" href="http://simile-widgets.org/wiki/How_to_make_an_exhibit_from_data_fed_directly_from_a_Google_Spreadsheet">queste indicazioni</a>.<br />
+Pertanto, dopo aver letto un po&#8217; di documentazione e spulciato il codice di alcuni esempi, ho provato a caricarci sopra l&#8217;intero dataset delle strutture ricettive piemontesi. Ahimè&#8230; mi sono scontrato con le uniche effettive <strong>controindicazioni</strong> <strong>all&#8217;utilizzo di queste API JavaScript</strong>, ovvero la limitazione della memoria cache dei browser in cui sono temporaneamente immagazzinati i dati e l&#8217;accettabilità del tempo di attesa in fase di caricamento. Trattandosi semplicemente di una <em>proof of concept</em>, ho deciso quindi di ridurre la mole dei dati in Google Refine, filtrando <strong>solo la provincia torinese</strong> e ripubblicando il tutto su Google Docs. In definitiva, il risultato ottenuto è il seguente (per accedere all&#8217;applicazione cliccare sull&#8217;immagine):</p>
+	<p><a href="http://blog.spaziogis.it/static/where_to_sleep_in_turin/" target="_blank"><img class="aligncenter size-full wp-image-2868" style="margin-top: 5px; margin-bottom: 5px; border: 0.1px solid grey;" title="Where to sleep in Turin" src="http://blog.spaziogis.it/wp-content/uploads//2010/10/where_to_sleep_in_turin.png" alt="" width="500" height="315" /></a></p>
+	<p>Nel dettaglio, l&#8217;applicazione <strong>&#8220;Where to sleep in Turin&#8221;</strong> consente la ricerca delle strutture ricettive della provincia torinese mediante l&#8217;utilizzo di:</p>
+	<ul>
+	<li> tre facet di ricerca di testo sul comune, la denominazione e l&#8217;indirizzo delle strutture ricettive;</li>
+	<li> una <em>&#8220;cloud facet&#8221;</em> sulla tipologia;</li>
+	<li> una <em>&#8220;filter facet&#8221;</em> sulla categoria delle strutture dotate di tale qualifica;</li>
+	<li> e, infine, tre <em>&#8220;slider facet&#8221;</em> per controllare l&#8217;intervallo di valori dei parametri di capacità ricettiva.</li>
+	</ul>
+	<p>Tra le varie modalità alternative di visualizzazione offerte da Exhibit, sono presenti:</p>
+	<ul>
+	<li> una thumbnail &#8220;STRUTTURE RICETTIVE&#8221; al fine di poter consultare in maniera descrittiva ed aggregata i risultati man mano che si restringe il campo della ricerca;</li>
+	<li> una mappa nella quale visualizzare l&#8217;ubicazione delle strutture ricettive e poterne interrogare gli attributi</li>
+	<li> ed, infine, tre scatterplot in cui si pongono reciprocamente in relazione i parametri di capacità ricettiva e dove, ancora una volta, è possibile interrogare le singole strutture su grafico.</li>
+	</ul>
+	<p><img class="aligncenter size-full wp-image-2869" style="margin-top: 5px; margin-bottom: 5px; border: 0.1px solid grey;" title="Esempio di scatterplot (bagni vs posti letto)" src="http://blog.spaziogis.it/wp-content/uploads//2010/10/bagniVsPostiLetto.png" alt="" width="500" height="306" /></p>
+	<p>In particolare, gli scatterplot presenti nell&#8217;applicazione non hanno una finalità strettamente legata alla ricerca delle strutture ricettive, piuttosto vogliono lasciar immaginare e quindi pregustare quanto di buono si possa fare con strumenti come SIMILE Exhibit. In questa applicazione, infatti, le correlazioni individuabili tra i vari parametri esaminati scaturiscono banalmente dalla tipologia di struttura (ad es. se la struttura è un albergo, il numero di bagni per posti letto si aggirerà generalmente attorno al valore 0.5, mentre se si tratta di un campeggio sarà decisamente minore). Diversamente, se al posto di questi dati ci fossero stati, ad esempio, quelli relativi alla concentrazione di un inquinante e all&#8217;incidenza di determinate patologie (a tal proposito, si veda questo <a id="aptureLink_thAqAnwnEq" href="../2010/01/28/la-geografia-e-il-destino-della-medicina/">post</a>), allora <strong>la potenza e l&#8217;immediatezza di tale modalità di rappresentazione dei dati potrebbe acquistare decisamente tutto un altro spessore ed utilità sociale</strong>. Lascio spazio alla vostra immaginazione&#8230;</p>
+	<p>E non è finita qui! Ne approfitto per segnalare la <strong>presenza di TANTO alla seconda edizione di <a id="aptureLink_EuoW63jmQ7" href="http://www.itnexpo.it/it/">ITN 2010</a></strong>, evento che si terrà a Torino l&#8217;11 e il 12 novembre 2010 (in concomitanza con le giornate conclusive di ASITA, sic!), in cui il nostro hacktivista <a id="aptureLink_kV5jt2mg6d" href="../author/pietroblu/">Pietro Blu Giandonato</a> interverrà con <strong>&#8220;I &#8216;luoghi&#8217; degli open data: dove e come trovare in Italia i dati per sviluppare applicazioni <em>location aware</em>&#8220;</strong> <strong>(<a id="aptureLink_4bM8plUBMV" href="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=giandonatoiluoghidegliopendatatorino-101113002958-phpapp01&amp;stripped_title=giandonato-i-luoghidegliopendatatorino&amp;userName=pietroblu">slide</a></strong><strong>)</strong> nella sessione <em>&#8220;Domanda (potenziale) e offerta (implicita) di informazione geolocalizzata: gli anelli mancanti&#8221;</em>. In particolare, uno dei temi chiave della sessione è rappresentato dai <em>&#8220;Dati geografici del settore pubblico o free, consolidati e facilmente accessibili, potenzialmente utilizzabili per la costruzione di significative applicazioni basate su informazione geolocalizzata&#8221;</em> e credo che quelli utilizzati nell&#8217;applicazione appena mostratavi ne sono un più che valido esempio. Come si dice da queste parti &#8230;<em>stay tuned!</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<div class="ndr">
+	<p><strong>Parlano di &#8220;Where to sleep in Turin&#8221;:</strong></p>
+	<ul>
+	<li><a title="Regione Piemonte - Portale del riuso - Casi d'uso" href="http://www.dati.piemonte.it/casi-duso.html" target="_blank">dati.piemonte.it &#8211; Casi d&#8217;uso</a></li>
+	<li><a title="spaghettiopendata - FAQ" href="http://www.spaghettiopendata.org/faq" target="_blank">spaghettiopendata &#8211; FAQ</a></li>
+	<li><a title="Comunicati Stampa Piemonte - Open Data: dati, conoscenza, valore" href="http://www.comunicatistampapiemonte.it/open-data-dati-conoscenza-valore-4414" target="_blank">Comunicati Stampa Piemonte &#8211; Open Data: dati, conoscenza, valore</a></li>
+	<li><a title="Google Refine wiki - WhatPeopleSay" href="http://code.google.com/p/google-refine/wiki/WhatPeopleSay" target="_blank">Google Refine wiki &#8211; WhatPeopleSay</a></li>
+	<li><a title="LA STAMPA.it - Open Data, da utente passivo a protagonista del Web" href="http://www.lastampa.it/_web/cmstp/tmplrubriche/tecnologia/grubrica.asp?ID_blog=30&amp;ID_articolo=8372&amp;ID_sezione=38&amp;sezione" target="_blank">LA STAMPA.it &#8211; Open Data, da utente passivo a protagonista del Web</a></li>
+	<li><a title="Ninja Marketing - Gli open data sono una grande risorsa per le startup [UNITED STARTUP!]" href="http://ninjamarketing.it/2011/01/10/gli-open-data-sono-una-grande-risorsa-per-le-startup-united-startup/" target="_blank">Ninja Marketing &#8211; Gli open data sono una grande risorsa per le startup [UNITED STARTUP!]</a></li>
+	</ul>
+	</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/10/29/where-to-sleep-in-turin-un-esempio-d-uso-dei-raw-data-piemontesi-con-google-refine-e-simile-exhibit/">Where to sleep in Turin: un esempio d&#8217;uso dei raw data piemontesi con Google Refine e SIMILE Exhibit</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/10/29/where-to-sleep-in-turin-un-esempio-d-uso-dei-raw-data-piemontesi-con-google-refine-e-simile-exhibit/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Where+to+sleep+in+Turin%3A+un+esempio+d%26%238217%3Buso+dei+raw+data+piemontesi+con+Google+Refine+e+SIMILE+Exhibit&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2010-10-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/10/29/where-to-sleep-in-turin-un-esempio-d-uso-dei-raw-data-piemontesi-con-google-refine-e-simile-exhibit/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/10/challenge.gov_-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/10/challenge.gov_.png" medium="image">
+			<media:title type="html">Challenge.gov</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/10/challenge.gov_-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/10/anagrafica_esercizi.png" medium="image">
+			<media:title type="html">anagrafica_esercizi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/10/anagrafica_esercizi-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/10/gridworks_facet_samples.png" medium="image">
+			<media:title type="html">Esempio di facet in Google Refine</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/10/gridworks_facet_samples-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/10/google_refine_logo.png" medium="image">
+			<media:title type="html">Google Refine</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/10/Exhibit.png" medium="image">
+			<media:title type="html">SIMILE Exhibit</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/10/where_to_sleep_in_turin.png" medium="image">
+			<media:title type="html">Where to sleep in Turin</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/10/where_to_sleep_in_turin-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/10/bagniVsPostiLetto.png" medium="image">
+			<media:title type="html">Esempio di scatterplot (bagni vs posti letto)</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/10/bagniVsPostiLetto-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>I pionieri dell&#8217;Open Data in Italia</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/</link>
+		<comments>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/#comments</comments>
+		<pubDate>Mon, 12 Jul 2010 07:27:50 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[dati.piemonte.it]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[open government]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=I+pionieri+dell%26%238217%3BOpen+Data+in+Italia&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2010-07-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/&amp;rft.language=English"></span>
+E&#8217; appena trascorso un mese dall&#8217;entrata in esercizio del primo portale Open Data italiano, dati.piemonte.it, il quale è stato accolto favorevolmente dagli entusiasti sostenitori italiani del movimento Open Data ed addirittura classificato come portale governativo di prima categoria dal gruppo PSI (Public Sector Information) della Commissione Europea, in quanto garantisce l&#8217;accesso diretto ai dati, analogamente [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=I+pionieri+dell%26%238217%3BOpen+Data+in+Italia&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2010-07-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>E&#8217; appena trascorso un mese dall&#8217;entrata in esercizio del <strong>primo portale Open Data italiano</strong>, <a title="dati.piemonte.it" href="http://www.dati.piemonte.it">dati.piemonte.it</a>, il quale è stato accolto favorevolmente dagli entusiasti sostenitori italiani del movimento Open Data ed addirittura classificato come <a title="Category 1: Public Sector Information (PSI) Data Catalogues (by governments) (Direct Access to Data)" href="http://www.epsiplatform.eu/psi_data_catalogues/category_1_public_sector_information_psi_data_catalogues_by_governments_direct_access_to_data">portale governativo di prima categoria</a> dal gruppo PSI (<em>Public Sector Information</em>) della Commissione Europea, in quanto garantisce l&#8217;accesso diretto ai dati, analogamente a <a title="data.gov" href="http://www.data.gov/">data.gov</a>.</p>
+	<p>Pur trattandosi di una versione beta, rappresenta indubbiamente una pietra miliare che dimostra la <strong>fattibilità dell&#8217;Open Data anche in Italia</strong>, nonostante le difficoltà di cui si accennava in questo recente <a title="Open Government e Open Data: bilanci e prospettive" href="http://blog.spaziogis.it/2010/05/30/open-government-e-open-data-bilanci-e-prospettive/">post</a>.</p>
+	<p>Ma vediamo in dettaglio di cosa si tratta. La pagina di accesso al portale si presenta con una grafica semplice ed accattivante su cui campeggia in primo piano il principio di fondo dell&#8217;iniziativa, una vera e propria dichiarazione di intenti in perfetto stile <em>Government 2.0</em> ed in completo accordo con il senso della <a title="Direttiva 2003/98/CE" href="http://www.cnipa.gov.it/site/_files/UE_Direttiva_98-2003_infopubblica.pdf">Direttiva 2003/98/CE</a> del Parlamento europeo:</p>
+	<blockquote><p>I dati pubblici sono di tutti<br />
+I dati in possesso della Pubblica Amministrazione sono un patrimonio informativo prezioso per la società e l&#8217;economia. La Regione Piemonte intende metterli a disposizione di cittadini e imprese per stimolare un nuovo rapporto fra pubblico e privato e favorire lo sviluppo di iniziative imprenditoriali.</p></blockquote>
+	<p>A valle di questa esaltante premessa, seguono immediatamente pochi ma efficaci menù che rimandano ai contenuti del portale, dopodiché si va direttamente al sodo, accedendo direttamente ad un piccolo assaggio dei dati grezzi finora messi a disposizione, ad un estratto delle discussioni più recenti nel blog ed, infine, ad una sezione dedicata al riuso dei dati pubblici, dotata di una presentazione multimediale esplicativa sull&#8217;argomento.</p>
+	<p>Curiosando all&#8217;interno della <strong>sezione Dati</strong>, è possibile osservare che:</p>
+	<ul>
+	<li>al momento sono presenti solo alcuni set di dati, tuttavia assicurano che a questi se ne aggiungeranno progressivamente degli altri, anche su richiesta degli utenti;</li>
+	<li>i dati grezzi sono descritti da metadati (informazioni sui dati);</li>
+	<li>sono resi disponibili in formato <a title="Comma Separated Values (CSV)" href="http://it.wikipedia.org/wiki/Comma-separated_values">CSV</a> e, di conseguenza, sono consultabili mediante un qualsiasi editor di testo;</li>
+	<li>sono aggregati a scala provinciale e, talvolta, comunale;</li>
+	<li>è facile verificare come siano indicizzati nei principali motori di ricerca e quindi siano di facile reperibilità anche all&#8217;esterno del portale;</li>
+	<li>infine, sono corredati di un contratto di licenza in cui si afferma chiaramente che la Regione Piemonte ne detiene la titolarità e ne &#8220;<em>autorizza la libera e gratuita consultazione, estrazione, riproduzione e modifica [...] da parte di chiunque vi abbia interesse per qualunque fine, ovvero secondo i termini della <a title="licenza Creative Commons - CC0 1.0 Universal" href="http://creativecommons.org/publicdomain/zero/1.0/">licenza Creative Commons &#8211; CC0 1.0 Universal</a></em>&#8221; (<strong>dominio pubblico</strong>).</li>
+	</ul>
+	<p>Benissimo! Siamo certamente ancora distanti dalla mole impressionante di contenuti presenti in <a title="data.gov" href="http://data.gov">data.gov</a> e <a title="data.gov.uk" href="http://data.gov.uk">data.gov.uk</a>, tuttavia sono largamente rispettate in sostanza le indicazioni del <a title="Local government data: how to make it really open" href="http://www.guardian.co.uk/news/datablog/2010/jul/07/local-government-data">Manifesto stilato da The Guardian</a>, contenente a mio avviso un insieme minimo di principi pienamente condivisibile.</p>
+	<p>Il <strong>rilascio dei dati grezzi prodotti dalla PA</strong> &#8211; in formato aperto e con licenze che ne consentono il riuso &#8211; può produrre effetti benefici tanto nella trasparenza dei processi decisionali delle amministrazioni, quanto nella qualità dei servizi e nell&#8217;economia immateriale che vi ruoterebbe attorno. In particolare, i <em>raw data</em> costituiscono una <strong>risorsa dall&#8217;enorme potenziale nascosto</strong>, che è possibile far venire allo scoperto sfruttando le relazioni esistenti tra i dati in maniera originale e creativa in fase di produzione di nuovi servizi, magari ottenendo applicazioni assolutamente impensabili da parte degli stessi produttori di dati.</p>
+	<p>TANTO si occupa ormai da diverso tempo di sensibilizzare i suoi lettori verso l&#8217;utilizzo creativo ed appassionato dei vari strumenti del <a title="Web 2.0" href="http://it.wikipedia.org/wiki/Web_2.0">web 2.0</a> disponibili in rete, sottolineando come essi possano rappresentare un <strong>importante mezzo di sviluppo e di crescita sia per chi si occupa di geomatica, che per l&#8217;intera collettività</strong>. A tal fine, mi piace riportare alcuni stralci di un commento di Pietro Blu Giandonato relativo a questo interessante <a title="Creare un geoRSS corredato di grafici, a partire da un file CSV" href="http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/">post</a>:</p>
+	<blockquote><p>esiste ormai sul web una messe di strumenti, applicazioni, servizi, fonti di dati formidabile, che sta crescendo vertiginosamente, e della quale non resta altro che coglierne le opportunità a piene mani. [...] In un paio d’ore, tra progettazione e realizzazione, è possibile tirare su un mashup potente, semplice e veloce per mettere in strada dati reperiti altrove da più fonti, o addirittura originali! [...] E’ necessario cambiare il paradigma della geomatica in Italia, passando dal GIS come unico strumento per la rappresentazione e gestione dei dati, arrivando a una sorta di “cloudmapping” realizzato con le decine di strumenti web 2.0 che esistono in giro. Una strada peraltro che richiede essenzialmente fantasia, creatività e intuito, che permette di costruire grandi cose con piccole azioni. Il problema è ovviamente immaginarle…</p></blockquote>
+	<p>Così, mi sono chiesto: è possibile visualizzare i <em>raw data</em> piemontesi all&#8217;interno di una piccola applicazione di <em>web mapping</em> facendo in modo che i risultati delle interrogazioni siano dei bei grafici, piuttosto che noiosi numeri? Certamente! Ho scelto quindi i dati relativi alle <a title="dati.piemonte.it - Dotazioni ICT presso i cittadini" href="http://www.dati.piemonte.it/dati/item/dotazioni-ict-cittadini.html">dotazioni ICT presso i cittadini</a> e ne ho effettuato il download accettandone le condizioni di utilizzo. Trattandosi di dati in forma tabellare, li ho semplicemente importati all&#8217;interno di un foglio di calcolo di <a title="Google docs" href="http://docs.google.com">Google Docs</a> e poi pubblicati in modo tale che &#8220;<em>chiunque abbia accesso a Internet possa trovarli e visualizzarli</em>&#8220;, ottenendo la struttura seguente:</p>
+	<p><iframe width='495' height='330' frameborder='0' src='http://spreadsheets.google.com/pub?key=0Av2Qv0whMjttdGxqY3FBNWpyQ1p0eDhCZEZlQTV4Unc&#038;single=true&#038;output=html&#038;widget=true'></iframe></p>
+	<p>I dati prescelti possono essere analizzati secondo <strong>differenti chiavi di lettura</strong> (query). Ad esempio, è possibile risalire alle dotazioni ICT per provincia e per anno, così come alla singola dotazione per provincia negli anni 2005-2009. Mi sono posto pertanto il seguente <b>obiettivo</b>: <em>individuare lo strumento web 2.0 più agevole per interrogare la tabella come all&#8217;interno di un database, in modo da poter estrarre di volta in volta solo i dati necessari per ottenere il grafico corrispondente ad una particolare query.</em> Dopo vari tentativi con <a title="Yahoo! Pipes" href="http://pipes.yahoo.com/pipes/">Yahoo! Pipes</a> ed <a title="Yahoo! Query Language" href="http://developer.yahoo.com/yql/">YQL (Yahoo! Query Language)</a>, peraltro abbastanza ben riusciti (li trovate <a href="http://1link.in/jxbws">qui</a>), ho individuato nel <a title="Query Language Reference (Version 0.7)" href="http://code.google.com/intl/it-IT/apis/visualization/documentation/querylanguage.html">Query Language delle Google Visualisation API</a> un&#8217;alternativa relativamente semplice ed efficiente, tale da scongiurare la necessità di dover configurare un web server e risolvere le beghe informatiche dovute alle <a title="Against the Browser's Will: Make Mashups Talk Across Domains" href="http://www.devx.com/webdev/Article/30860/1954">cross-domain restrictions</a>. Si tratta praticamente delle <a title="Google Chart Tools" href="http://code.google.com/intl/it-IT/apis/charttools/index.html">stesse API</a> che consentono di ottenere dei grafici a partire dai dati.</p>
+	<p>A proposito della <strong>componente geografica</strong>, ho deciso di utilizzare come client <a title="OpenLayers" href="http://openlayers.org/">OpenLayers</a> (di cui si parla spesso <a href="http://blog.spaziogis.it/tag/openlayers/">qui</a> su TANTO) per via della sua enorme versatilità e semplicità d&#8217;uso, un servizio <a title="TMS" href="http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification">TMS (Tile Map Service)</a> di <a title="OpenStreetMap" href="http://www.openstreetmap.org/">OpenStreetMap</a> come layer di base ( i &#8220;<em>linked data</em>&#8221; per eccellenza!), ed i confini ISTAT delle province reperibili <a title="ISTAT - Cartografia: confini amministrativi e dei sistemi locali del lavoro" href="http://www.istat.it/ambiente/cartografia/">qui</a>, utilizzabili per scopi non commerciali a patto di citarne la fonte. Questi ultimi sono stati convertiti nel formato <a title="Geography Markup Language" href="http://it.wikipedia.org/wiki/Geography_Markup_Language">GML</a> ed opportunamente trasformati nel sistema WGS84 (EPSG:4326).</p>
+	<p>In definitiva, il funzionamento dell&#8217;applicazione è molto semplice ed intuitivo: scelta una delle opzioni (query) poste in basso, per interrogare una delle province piemontesi occorre semplicemente cliccare sulla corrispondente entità vettoriale che la rappresenta in mappa. Comparirà successivamente un popup contenente la denominazione della provincia, il titolo del grafico ed il grafico stesso (dotato di legenda, se necessaria). Questo è il <strong>mashup risultante</strong>:</p>
+	<p><iframe width='495' height='780' frameborder='0' src='http://blog.spaziogis.it/static/mashup/ICT_cittadini_dati.piemonte.it.html'></iframe></p>
+	<p>Per concludere, ho alcune interessanti novità da segnalare. Nel frattempo, negli altri Paesi il modello di <em>Open Government</em> procede inesorabilmente la sua marcia. In particolare, <strong>nel Regno Unito</strong> è stata appena istituita una <a title="New Public Sector Transparency Board and Public Data Transparency Principles" href="http://data.gov.uk/blog/new-public-sector-transparency-board-and-public-data-transparency-principles">Commissione per la Trasparenza nel Settore Pubblico</a> con il compito di guidare l&#8217;agenda sulla Trasparenza del Governo, rendendola un elemento cardine di ogni sua attività e assicurando che tutti i Dipartimenti presso Whitehall rispettino le scadenze fissate per il rilascio di nuovi dataset pubblici. Inoltre, è responsabile della definizione di standard sui dati aperti per l&#8217;intero settore pubblico, recependo ciò che è richiesto dal pubblico e assicurando l&#8217;apertura dei dataset più richiesti. Un primo importante compito della Commissione attualmente in itinere consiste nella definizione dei <a title="Public Data Principles" href="http://data.gov.uk/wiki/Public_Data_Principles">Principi di Trasparenza dei Dati Pubblici</a> mediante il diretto coinvolgimento degli utenti.</p>
+	<p>Un&#8217;altra novità di rilievo è la nascita del <a title="CKAN" href="http://it.ckan.net/">portale italiano CKAN</a>, un progetto ad opera della <a title="Open Knowledge Foundation" href="http://www.okfn.org/">Open Knowledge Foundation</a>. Si tratta di un <strong>catalogo di dati e contenuti aperti</strong> creato allo scopo di facilitarne la ricerca, l&#8217;uso e il riuso, al quale è possibile contribuire liberamente, fornendo informazioni sulle banche dati (metadati), quali l&#8217;URL della risorsa, l&#8217;autore e il soggetto che detiene la titolarità dei dati, la versione e la licenza d&#8217;uso.</p>
+	<p>Sempre in Italia, un&#8217;altra notizia che fa ben sperare: il Ministro per la Pubblica Amministrazione e l&#8217;Innovazione, durante un&#8217;intervista a <a title="Frontiers of Interaction 2010" href="http://frontiers.idearium.org/2010/">Frontiers of Interaction 2010</a>, ha annunciato la <strong>creazione di un data.gov italiano entro la fine dell&#8217;anno</strong>. In particolare, la pubblicazione dei dati pubblici dovrebbe servire da contromisura ai fenomeni di corruzione legati agli appalti. Finalmente! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/">I pionieri dell&#8217;Open Data in Italia</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=I+pionieri+dell%26%238217%3BOpen+Data+in+Italia&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2010-07-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>GeoMAPpalermo &#124; esprimi il tuo parere sulle azioni di trasformazione urbane</title>
+		<link>http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/</link>
+		<comments>http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/#comments</comments>
+		<pubDate>Sun, 14 Feb 2010 18:19:37 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[blog]]></category>
+		<category><![CDATA[città]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[mobilità]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1707</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoMAPpalermo+%7C+esprimi+il+tuo+parere+sulle+azioni+di+trasformazione+urbane&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/&amp;rft.language=English"></span>
+Ho ricevuto questo contributo da Claudio Schifani e Giulio Di Chiara, e lo pubblico molto volentieri perché parla di temi a me molto vicini; sia in coordinate, che &#8220;con il cuore e con la mente&#8221;  Claudio ha &#8220;conosciuto&#8221; questo blog tempo fa per le imprevedibili vie del web, e ci siamo incontrati al GISDay (che [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoMAPpalermo+%7C+esprimi+il+tuo+parere+sulle+azioni+di+trasformazione+urbane&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<div class="ndr">Ho ricevuto questo contributo da <strong>Claudio Schifani</strong> e <strong>Giulio Di Chiara</strong>, e lo pubblico molto volentieri perché parla di temi a me molto vicini; sia in coordinate, che &#8220;con il cuore e con la mente&#8221;  <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':-D' class='wp-smiley' /><br />
+Claudio ha &#8220;conosciuto&#8221; questo blog tempo fa per le imprevedibili vie del web, e ci siamo incontrati al <a title="GISDay 2009 Palermo" href="http://gisday.consorzioarca.it/index.html" target="_blank">GISDay</a> (che ho contribuito ad organizzare) nel Novembre del 2009. E&#8217; stato un incontro emozionante in cui mi ha fatto i complimenti per la giornata e per questo blog di cui mi prendo cura insieme ad Alessio, Antonio, Gerlando, Pietro e Sergio (presto delle new entry). Mi ha raccontato che per realizzare <strong>GeoMAPpalermo</strong> (il progetto di cui si parla in questo post) gli è stato utile leggere gli articoli di TANTO; queste cose sono tra quelle che mi danno più piacere e soddisfazione, e che conservo come &#8220;armi emotive segrete&#8221; da usare nei momenti di difficoltà.<br />
+Giulio l&#8217;ho conosciuto tramite Claudio. E&#8217; uno dei creatori di <em>Mobilita Palermo</em>, &#8220;un comitato di sostegno verso quelle opere e progetti che possano incentivare lo sviluppo del capoluogo siciliano, con particolare attenzione al miglioramento della viabilità e della mobilità cittadina&#8221;. Anche con lui siamo prima &#8220;incontrati&#8221; digitalmente e poi per fortuna analogicamente. Con Giulio e Claudio ci siamo infatti riuniti attorno ad un tavolo, per cercare di fare insieme qualcosa per la nostra città, a partire dalle nostre professionalità. Abbiamo iniziato a discuterne e Giulio, oltre ad essere un cittadino che si spende per il bene della propria città, è energia pura  <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> .</p>
+	<p>Mi fermo qui e vi auguro una piacevole lettura.</div>
+	<p>Il 27 ottobre scorso,<br />
+“<span><span><span><em><strong>Mobilita Palermo</strong>” (<a title="Mobilita Palermo" href="http://www.mobilitapalermo.org" target="_blank">http://www.mobilitapalermo.org</a>), riconosciuto portale-blog su progetti, infrastrutture e mobilità nel capoluogo siciliano</em></span><span><span style="font-style: normal;">, in collaborazione con <a title="claudio schifani homepage" href="http://www.claudioschifani.it/cs/Home.html" target="_blank"><em><strong>C</strong></em></a></span></span><span><a title="claudio schifani homepage" href="http://www.claudioschifani.it/cs/Home.html" target="_blank"><em><strong>laudio Schifani</strong></em></a> (Assegnista di ricerca presso lo IUAV di Venezia), ha pubblicato on line un nuovo servizio per la cittadinanza palermitana che desidera interagire e “dire la sua” in tema di mobilità urbana. </span></span></span></p>
+	<h2><span><span>Presentazione</span></span></h2>
+	<p><span><span><span>Mobilita Palermo </span><span><span lang="it-IT">è un</span></span><span><span lang="it-IT"><strong> </strong></span></span><span><span lang="it-IT"><span style="font-weight: normal;">comitato cittadino</span></span></span><span><span lang="it-IT"> che nasce ufficialmente dalla rete, una collaborazione prima virtuale e in seguito tangibile tra persone che nutrono un profondo rispetto per la propria città, con un forte senso civico e voglia di cambiamento.</span></span><span> Uno scopo importante del comitato è quello di monitorare l’avanzamento dei cantieri e “sollecitare” il rispetto delle tempistiche, segnalando un’eventuale cattiva gestione dei lavori o del denaro pubblico stanziato per gli stessi. Basando la sua </span><span><em>mission</em></span><span> sulla forza della community e sul “potere comunicativo” della rete, ha individuato Word Press come la soluzione 2.0 per aprirsi alla condivisione delle informazioni, collaborazione ed integrazione di tutti i cittadini interessati. </span></span></span></p>
+	<p><span><span><span>Claudio Schifani ha svolto una ricerca per l’Università IUAV di Venezia sul tema “Modelli di conoscenza e processi decisionali” presso la scuola di dottorato nel corso in Nuove Tecnologie Informazione Territoriale &amp; Ambiente (</span><a title="corso in Nuove Tecnologie Informazione Territoriale &amp; Ambiente" href="http://www.didatticaericercasit.it" target="_blank"><span><em>http://www.didatticaericercasit.it</em></span></a><span>). La ricerca si è inquadrata nello scenario ormai noto come “Web 2.0” in cui l’informazione geografica assume sempre più carattere di pervasività e di condivisione delle conoscenze, sia esse esperte che locali. Informazione geografica e web rappresentano le componenti del recente scenario caratterizzato dalla sinergia di tre parole chiave, ovvero: territorio/conoscenza/web. Tra i casi di studio analizzati nel corso dell’indagine c’è il progetto ideato e sviluppato dall’Agenzia Europea dell’Ambiente e noto con il nome di “<a title="EyeOnEarth homepage" href="http://eyeonearth.cloudapp.net/" target="_blank">EyeOnEarth</a>”. “Occhio sulla terra” evoca un’azione che è al contempo conoscitiva e collaborativa grazie all’obiettivo dichiarato d’integrazione delle conoscenze “esperte e scientifiche” (dati rilevati dalla EEA) e informazioni rilevate “dal basso”, ovvero dalla comunità che vive o conosce quei luoghi, il tutto aggregato con modalità di </span><span><em>rating</em></span><span> in interfaccia </span><span><em>friendly</em></span><span>. Ciò costituisce un&#8217;interessante rivoluzione culturale e metodologica che ci apre nuove strade per studiare ed approfondire lo sviluppo di quadri di conoscenza del territorio che siano non soltanto condivisi (Web), ma anche integrati (a livello di conoscenze).</span></span></span></p>
+	<h2><span><span><span>Perché GeoMAPpalermo</span></span></span></h2>
+	<p><span><span><span>L’iniziativa è nata e sviluppata totalmente dal basso (Comitato di Cittadini e non un Ente Istituzionale) e pone tra gli obiettivi quello di “testare” la sensibilità della comunità locale nel valutare gli interventi attuati o in programma, in tema di mobilità, da parte dell’Amministrazione Comunale. </span></span></span></p>
+	<p><span><span>Ecco cosa si legge nel Blog di Mobilita Palermo a proposito dello strumento “<a title="geomappalermo" href="http://www.mobilitapalermo.org/mobpa/mobilita_guest.html" target="_blank"><strong>GeoMapPalermo</strong></a>”:</span></span></p>
+	<p style="text-align: center;"><img class="size-full wp-image-1717 aligncenter" title="1" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/1.png" alt="1" width="311" height="183" /></p>
+	<p><span><span>«Voi sarete la voce di Palermo, voi farete parlare la città. Dai vostri interventi sulla mappa, traspariranno le priorità, gli aspetti positivi e quelli negativi di Palermo. Il vostro intervento si traduce in una georeferenziazione, ovvero in un’etichetta localizzata all&#8217;interno di un areale di progetto presente sulla mappa, attraverso la quale potrete esprimere il vostro parere e fornire una breve motivazione, allargando così la conoscenza globale all’interno del “tessuto urbano”.»</span></span></p>
+	<h2><span><span>Come</span></span></h2>
+	<p><span><span><span>GeoMapPalermo è un servizio 2.0 in cui “l’immagine” del territorio ne costituisce il minimo comun denominatore attraverso cui veicolare una duplice informazione</span>:<span> da un lato i progetti urbani (restituiti come areali corredati da link, che puntano a informazioni dettagliate opportunamente aggiornate nel blog ), dall’altro i cittadini che esprimono una valutazione (da molto positiva a negativa). Ecco cosa si legge nel Blog di Mobilita Palermo a proposito dello strumento “GeoMapPalermo”:</span></span></span></p>
+	<p><span><span><span>GeoMapPalermo è un Mashup di Google Maps le cui mappe sono state scelte sia perché costituiscono un “linguaggio geografico” noto anche a soggetti non esperti sia perché TANTO è stato un eccellente “supporto didattico” con i suoi interessantissimi tutorial di implementazione di codice javascript con le mappe di Google. La piattaforma si basa sull’interazione tra un codice javascript per la consultazione ed inserimento di GeoTag e due script PHP per la connessione ad un DB in MySQL. Ciò che ha richiesto maggiore attenzione nello sviluppo dell’applicativo è stata la definizione della struttura dell’unica tabella presente nel DB che avrebbe raccolto le informazioni provenienti dalla comunità, al fine di rispettare lo schema logico delle connessioni tra i temi, i progetti, i soggetti e le valutazioni. La compilazione della scheda allegata a ciascun tag è, pertanto, guidata attraverso l’inserimento di valori preformattati che consentono la restituzione tematica delle informazioni in mappa.</span></span></span></p>
+	<p><span><span><span>Inoltre, è stato posto un importante “vincolo” (non a livello di codice ma di vidimazione del geotag da parte degli amministratori di Mobilita Palermo) di appartenenza ad un areale di progetto sul tema “Mobilità” ed in particolare: Tram, Parcheggi e Passante ferroviario.</span></span></span></p>
+	<p style="text-align: center;"><span><span><span><img class="size-full wp-image-1714 alignnone" title="2" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/2.png" alt="2" width="490" height="265" /></span></span><span><span> </span></span></span></p>
+	<p><span><span><span>Con questo strumento, Mobilita Palermo ha inteso perseguire gli obiettivi che si era posta per l’implementazione nel suo blog del nuovo servizio geografico 2.0: sensibilizzare l’opinione pubblica alla emergente cultura del territorio 2.0 – “territorio parlante” ed esprimere la volontà di testare un sistema di valutazione partecipata “bottom-up” sulle azioni di trasformazione della città. È interessante notare come nel primo mese di vita, la GeoMapPalermo abbia ricevuto oltre 40 geotag (alcuni dei quali sono stati rimossi perché non rispettavano il “vincolo” necessario alla loro accettazione) ed abbia incoraggiato il Comitato “Mobilita Palermo” ad interessarsi nel porre alcuni quesiti a Enti gestori e decisionali (in materia di mobilità) riguardo ad alcune segnalazioni emerse in mappa su questioni relative al progetto Tram ed alla gestione dei nuovi parcheggi urbani.</span></span></span></p>
+	<p><span><span>Un modo innovativo di affrontare tematiche a scala urbana e stimolare l’interesse collettivo sfruttando i moderni strumenti che internet mette a disposizione.</span></span></p>
+	<p style="margin-bottom: 0cm;">
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/">GeoMAPpalermo | esprimi il tuo parere sulle azioni di trasformazione urbane</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoMAPpalermo+%7C+esprimi+il+tuo+parere+sulle+azioni+di+trasformazione+urbane&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/1.png" medium="image">
+			<media:title type="html">1</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/2.png" medium="image">
+			<media:title type="html">2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/2-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Generare un GeoRSS in modo automatico</title>
+		<link>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/</link>
+		<comments>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/#comments</comments>
+		<pubDate>Mon, 10 Aug 2009 21:16:25 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[georss]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[terremoti]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[yahoo pipes]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1152</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+Era un pezzo che desideravo sperimentare Yahoo Pipes , dopo esserne venuto a conoscenza grazie ad Andrea (ricorderete il suo precedente geniale post). In effetti ho giocato d’anticipo proprio su di lui, per cimentarmi a produrre un GeoRSS in puro stile web 2.0. Non ho certo intenzione di mettermi qui a tessere le lodi di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era un pezzo che desideravo sperimentare <a href="http://pipes.yahoo.com" target="_blank">Yahoo Pipes</a><strong> </strong>, dopo esserne venuto a conoscenza grazie ad Andrea (ricorderete il suo precedente <a href="http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/" target="_blank">geniale post</a>). In effetti ho giocato d’anticipo <a href="http://blog.spaziogis.it/2009/04/13/dati-pubblici-standard-e-interconnessi-dedicato/" target="_blank">proprio su di lui</a>, per cimentarmi a produrre un GeoRSS in puro stile web 2.0.</p>
+	<p>Non ho certo intenzione di mettermi qui a tessere le lodi di Pipes, sebbene a mio avviso non se ne parli mai abbastanza. Voglio solo ribadire che si tratta di <strong>uno strumento web 2.0 dalle potenzialità pressoché infinite</strong>, che aumentano esponenzialmente in funzione della crescente messe di risorse e fonti di dati disponibili sul web. A patto che, inutile dirlo, lo siano secondo standard aperti, come già Andrea ha molto ben sottolineato proprio nel suo citato articolo.</p>
+	<p>Passiamo ai fatti.</p>
+	<p>Un item <a href="http://en.wikipedia.org/wiki/GeoRSS#Examples_of_GeoRSS_Implementations" target="_blank">GeoRSS</a>, nella codifica W3C ha la seguente struttura:</p>
+	<pre>&lt;?xml version=\"1.0\"?&gt;
+ &lt;?xml-stylesheet href=\"/eqcenter/catalogs/rssxsl.php?feed=eqs7day-M5.xml\" type=\"text/xsl\"
+                  media=\"screen\"?&gt;
+ &lt;rss version=\"2.0\"
+      xmlns:geo=\"http://www.w3.org/2003/01/geo/wgs84_pos#\"
+      xmlns:dc=\"http://purl.org/dc/elements/1.1/\"&gt;
+  &lt;channel&gt;
+     &lt;title&gt;USGS M5+ Earthquakes&lt;/title&gt;
+     &lt;description&gt;Real-time, worldwide earthquake list for the past 7 days&lt;/description&gt;
+     &lt;link&gt;http://earthquake.usgs.gov/eqcenter/&lt;/link&gt;
+     &lt;dc:publisher&gt;U.S. Geological Survey&lt;/dc:publisher&gt;
+     &lt;pubDate&gt;Thu, 27 Dec 2007 23:56:15 PST&lt;/pubDate&gt;
+     <span style=\"color: #ff0000;\">&lt;item&gt; &lt;pubDate&gt;Fri, 28 Dec 2007 05:24:17 GMT&lt;/pubDate&gt; &lt;title&gt;M 5.3, northern Sumatra, Indonesia&lt;/title&gt; &lt;description&gt;December 28, 2007 05:24:17 GMT&lt;/description&gt; &lt;link&gt;http://earthquake.usgs.gov/eqcenter/recenteqsww/Quakes/us2007llai.php&lt;/link&gt; &lt;geo:lat&gt;5.5319&lt;/geo:lat&gt; &lt;geo:long&gt;95.8972&lt;/geo:long&gt; &lt;/item&gt;</span>
+     &lt;/channel&gt;
+   &lt;/rss&gt;</pre>
+	<p>L’obiettivo è <strong>costruire un GeoRSS a partire da una fonte di dati che viene aggiornata in tempo reale</strong>, nella fattispecie &#8211; e tanto per essere originali &#8211; l’elenco dei terremoti rilevati dal <a href="http://cnt.rm.ingv.it/earthquakes_list.php" target="_blank">Centro Nazionale Terremoti</a> dell’INGV, sul cui sito vedrete una pagina html con tutti gli ultimi eventi rilevati.</p>
+	<p>Per il nostro lavoro utilizzeremo sempre le stesse informazioni, ma in formato standard CSV &#8211; <a href="http://openmap.rm.ingv.it/gmaps/rec/files/last90days_events.csv" target="_blank">disponibili qui</a> &#8211; dunque perfettamente importabili pressochè ovunque. Vediamone i contenuti:</p>
+	<ul>
+	<li><strong>Lat</strong> – la latitudine dell’evento in gradi decimali;</li>
+	<li><strong>Lon</strong> – la longitudine dell’evento in gradi decimali;</li>
+	<li><strong>Depth</strong> – la profondità dell’ipocentro in km;</li>
+	<li><strong>UTC_Date</strong> – il momento temporale nel quale l’evento è stato registrato;</li>
+	<li><strong>Magnitude</strong> – la magnitudine Richter dell’evento;</li>
+	<li><strong>Locality</strong> – il distretto sismico nel quale è avvenuto il terremoto;</li>
+	<li><strong>Code</strong> – un codice univoco relativo all’evento;</li>
+	<li><strong>Query_Time</strong> – il tempo di query del file CSV, corrispondente a quello di caricamento della pagina del sito INGV.</li>
+	</ul>
+	<p>In Pipes, il primo passo consiste nell’andare a recuperare (fetch) la fonte dei dati (il <a href="http://openmap.rm.ingv.it/gmaps/rec/files/last90days_events.csv" target="_blank">file CSV</a>) per poterne poi utilizzare il contenuto. Verrà utilizzato il modulo “<a href="http://pipes.yahoo.com/pipes/docs?doc=sources#FetchCSV" target="_blank">Fetch CSV</a>” nel quale andremo ad inserire l’URL del CSV, usando la prima riga come intestazione delle colonne.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" alt="image" width="327" height="199" border="0" /></a>Per poter generare il GeoRSS, Pipes deve “vedere” nei dati recuperati elementi che siano chiaramente riferibili a una coppia di coordinate, pertanto rinomineremo i campi “Lat” e “Lon” del CSV nei prosaici “Latitude” e “Longitude” mediante il modulo “<a href="http://pipes.yahoo.com/pipes/docs?doc=operators#Rename" target="_blank">Rename</a>”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image1.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb1.png" alt="image" width="366" height="123" border="0" /></a>Lo standard GeoRSS prevede alcuni item che consentono di arricchire di informazioni descrittive ogni elemento geotaggato, poi visibili nel “balloon” ad esso associato in fase di visualizzazione su mappa.</p>
+	<p>Naturalmente si tratta di informazioni residenti nel CSV, che noi andremo opportunamente a rinominare in modo da consentire a Pipes di includerle nel singolo elemento del GeoRSS. Si tratta essenzialmente di:</p>
+	<ul>
+	<li><strong>&lt;title&gt;</strong> – il titolo dell’elemento, in questo caso il distretto sismico nel quale è avvenuto l’evento;</li>
+	<li><strong>&lt;link&gt;</strong> – l’URL alla risorsa associata all’elemento, ovvero la pagina dedicata al singolo evento sismico, realizzata dall’INGV;</li>
+	<li><strong>&lt;description&gt;</strong> – la descrizione dell’elemento, con la magnitudine, la profondità dell’ipocentro e la data del terremoto.</li>
+	</ul>
+	<p>Passeremo queste informazioni al Pipe semplicemente usando sempre il modulo “Rename” avendo stavolta l’accortezza di scegliere l’opzione “Copy As”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image2.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb2.png" alt="image" width="467" height="180" border="0" /></a> Qui sopra per <strong>&lt;title&gt;</strong>, con la necessità di sostituire l’antiestetico underscore presente nel campo “Locality” del CSV con uno spazio vuoto (blank) grazie al modulo “<a href="http://pipes.yahoo.com/docs?doc=operators#Regex" target="_blank">Regex</a>”.</p>
+	<p>La <strong>&lt;description&gt;</strong> dell’elemento geotaggato come già detto è costituita da magnitudine, profondità dell’ipocentro e data dell’evento sismico, informazioni presenti in tre differenti campi del CSV, che andremo a comporre in un’unica stringa grazie al modulo “<a href="http://pipes.yahoo.com/docs?doc=string#StringBuilder" target="_blank">String Builder</a>”. Questo verrà utilizzato però nell’ambito di un modulo “<a href="http://pipes.yahoo.com/docs?doc=operators#Loop" target="_blank">Loop</a>”, poichè è un’operazione che va ripetuta per ogni elemento presente nel CSV.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image3.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb3.png" alt="image" width="382" height="283" border="0" /></a></p>
+	<p>Notate come il risultato dello String Builder vada ad essere assegnato all’item &lt;description&gt;.</p>
+	<p>L’INGV, per ogni evento sismico registrato, genera una pagina html che riporta informazioni estremamente dettagliate riguardanti il terremoto, molto preziose per chi si occupa di sismologia, di protezione civile o comunque davvero interessanti anche a scopo didattico. <a href="http://cnt.rm.ingv.it/data_id/2206496920/event.html" target="_blank">Qui</a> quella relativa al famigerato evento del 6 aprile scorso che ha devastato l’Aquilano.</p>
+	<p>Osservando l’URL si nota che la stringa risulta la seguente:</p>
+	<pre>http://cnt.rm.ingv.it/data_id/<strong>[codice evento]</strong>/event.html</pre>
+	<p>dunque ciò che cambia è il codice evento, registrato nel campo “Code” del CSV. Ancora una volta, useremo la combinazione dei moduli “Loop” e “String Builder” per costruire il link alla pagina di ogni evento, assegnando il risultato all’item “eventoURL” che verrà poi rinominato nell’item <strong>&lt;link&gt;</strong>.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image4.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb4.png" alt="image" width="386" height="353" border="0" /></a>Dulcis in fundo… il modulo che genera il vero e proprio GeoRSS… voilà, si tratta di “<a href="http://pipes.yahoo.com/pipes/docs?doc=operators#LocationExtractor" target="_blank">Location Extractor</a>”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image5.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb5.png" alt="image" width="293" height="146" border="0" /></a>Voi direte: “embè, e i parametri dove sono?!?”. E’ quel che mi son chiesto anch’io quando l’ho visto. Ma poi leggendo la descrizione del modulo (cosa che vi consiglio vivamente di fare), si capisce come funziona:</p>
+	<blockquote><p><em>Questo modulo esamina il feed in input, alla ricerca di informazioni che indichino una località geografica. Se trova dati geografici, il modulo crea una y:location che costituisce l’elemento di output. Questo contiene svariati sotto-elementi, in funzione del feed di input.</em></p></blockquote>
+	<p>Dunque fa tutto lui. In pasto possiamo dargli sorgenti <a href="http://it.wikipedia.org/wiki/Geography_Markup_Language" target="_blank">GML</a>, <a href="http://georss.org/w3c" target="_blank">W3C Basic Geo</a>, tags KML e ovviamente GeoRSS, in output fornirà appunto l’elemento <strong>y:location</strong>, che potrà essere visualizzato direttamente su una mappa interattiva Yahoo Map. Qui sotto il risultato…</p>
+	<p><script src="http://l.yimg.com/a/i/us/pps/mapbadge_1.5.js">{"pipe_id":"d58e2af150e9e798e4c593b4c3609dfa","_btype":"map"}</script></p>
+	<p>Ma il vero valore aggiunto del pipe è quello di poter essere impiegato in svariati modi, dal “banale” embedding della mappa in blog e siti web, per finire ad altri davvero potentissimi, riutilizzabili in una miriade di modalità. Solo per citarne alcuni JSON, PHP, KML e ovviamente GeoRSS.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/08/image6.png"><img style="display: inline; border-width: 0px;" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb6.png" alt="image" width="491" height="138" border="0" /></a></p>
+	<p>E proprio il GeoRSS può essere usato ad esempio con OpenLayers, scrivendo un pò di codice html è possibile in pochi minuti importare il feed generato dal pipe come layer grazie alla call <a href="http://dev.openlayers.org/docs/files/OpenLayers/Layer/GeoRSS-js.html" target="_blank">OpenLayers.Layer.GeoRSS</a> ottenendo una mappa semplice ma efficace, come si vede in <a href="http://blog.spaziogis.it/static/ingv_georss/" target="_blank">questo esempio</a>… Altre modalità di fruizione del GeoRSS &#8211; generate sempre in modo automatico &#8211; le riporto qui appresso giusto per coloro che non hanno voglia di andare a consultare la <a href="http://pipes.yahoo.com/loscioccoinblu/d58e2af150e9e798e4c593b4c3609dfa" target="_blank">pagina del pipe</a>:</p>
+	<ul>
+	<li><a href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=http:%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3Dd58e2af150e9e798e4c593b4c3609dfa%26_render%3Drss&amp;aq=&amp;sll=42.065607,13.557129&amp;sspn=12.653211,19.753418&amp;ie=UTF8&amp;t=h&amp;z=2" target="_blank">Direttamente in Google Maps;</a></li>
+	<li>Un <a href="http://pipes.yahoo.com/pipes/pipe.run?_id=d58e2af150e9e798e4c593b4c3609dfa&amp;_render=kml" target="_blank">kml</a> da aprire con Google Earth.</li>
+	</ul>
+	<p>Insomma, a noi Yahoo Pipes ci fa letteralmente sognare… Perchè sapere di avere uno strumento col quale poter attingere, trasformare, plasmare e “ricablare il web” (il loro slogan) e i dati sparsi per il mondo usando la logica ad oggetti, dedicando i propri neuroni solo ed esclusivamente alle idee e al modo di tradurle in fatti… beh, è davvero troppo, troppo entusiasmante.</p>
+	<p>E allora “Yes, we Pipe!”&#8230; ma prima ancora <strong>&#8220;<a id="aptureLink_t9gT6rxX0j" href="http://en.wikipedia.org/wiki/Linked%20Data">Linked Data</a>&#8230; now!!!&#8221;</strong>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/">Generare un GeoRSS in modo automatico</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Generare+un+GeoRSS+in+modo+automatico&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/10/generare-un-georss-in-modo-automatico/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb1.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb2.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb3.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb4.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb5.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/08/image-thumb6.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Creare un geoRSS corredato di grafici, a partire da un file CSV</title>
+		<link>http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/</link>
+		<comments>http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/#comments</comments>
+		<pubDate>Mon, 16 Mar 2009 22:24:02 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[georss]]></category>
+		<category><![CDATA[google charts]]></category>
+		<category><![CDATA[google-docs]]></category>
+		<category><![CDATA[google-maps]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[pipes]]></category>
+		<category><![CDATA[webm]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=725</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Creare+un+geoRSS+corredato+di+grafici%2C+a+partire+da+un+file+CSV&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2009-03-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/&amp;rft.language=English"></span>
+In questo post vi mostrerò come creare una sorgente geoRSS a partire da un file CSV che ho creato per l&#8217;occasione. Questo contiene dei dati fittizi su tre città italiane, che voglio pubblicare all&#8217;interno della sorgente geoRSS, curandone struttura e formattazione, ed inserendo anche un grafico di sintesi dei parametri presenti in ogni record. Realizzerò [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Creare+un+geoRSS+corredato+di+grafici%2C+a+partire+da+un+file+CSV&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2009-03-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In questo post vi mostrerò come creare una sorgente <strong><a title="geoRSS su Wikipedia" href="http://en.wikipedia.org/wiki/GeoRSS" target="_blank">geoRSS</a></strong> a partire da un file <strong>CSV </strong>che ho creato per l&#8217;occasione. Questo contiene dei dati fittizi su tre città italiane, che voglio pubblicare all&#8217;interno della sorgente geoRSS, curandone struttura e formattazione, ed inserendo anche un grafico di sintesi dei parametri presenti in ogni record.</p>
+	<p>Realizzerò il tutto creando un piccolo <em><strong>mashup</strong></em> sfruttando i seguenti servizi:</p>
+	<ul>
+	<li><a title="Google Docs" href="http://docs.google.com/" target="_blank">Google Docs</a>, per l&#8217;archiviazione dei dati grezzi e per la creazione del CSV a partire da questi</li>
+	<li><a title="Yahoo pipes" href="http://pipes.yahoo.com" target="_blank">Yahoo! Pipes</a>, per l&#8217;elaborazione del file CSV e la sua trasformazione in geoRSS</li>
+	<li>le api di <a title="Google Charts Api" href="http://code.google.com/intl/it/apis/chart/" target="_blank">Google Charts</a>, per inserire nella sorgente geoRSS dei grafici di sintesi sui dati contenuti nel file CSV</li>
+	<li>Google maps per visualizzare la  sorgente geoRSS in una mappa</li>
+	</ul>
+	<p>Un <em>mashup</em> è un&#8217;applicazione che, a partire da dati ed informazioni provenienti da due o più fonti/servizi/applicazioni, crea nuove applicazioni/servizi.</p>
+	<h2>Google Docs</h2>
+	<p>Ho creato in <strong>Google Docs</strong> un nuovo foglio elettronico ed ho inserito dei dati fittizi su tre città italiane. Ho anche aggiunto una colonna per il valore di latitudine, ed una per quello di longitudine (entrambi espressi i gradi decimali).</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-726" title="google docs" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs.png" alt="google docs" width="480" height="195" /></p>
+	<p>Per fare dialogare questo foglio elettronico con gli altri servizi citati sopra, dovrò renderlo pubblico; lo farò utilizzando il tasto <em>Share </em>e selezionando l&#8217;opzione &#8220;<em>Publish as a web page</em>&#8221; (così come nella figura sottostante).</p>
+	<p style="text-align: center;"><img class="size-full wp-image-727 alignnone" style="margin: 3px;" title="google_docs_publish" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs_publish.png" alt="google_docs_publish" width="225" height="158" /></p>
+	<p style="text-align: left;">Si aprirà una finestra di pop-up e dovrò cliccare su &#8220;<em>Publish now</em>&#8220;. Fatto questo, cliccherò sul link (presente in basso) &#8220;<em>More publishing options</em>&#8220;; si aprirà un&#8217;altra finestra di pop-up in cui sceglierò CSV come formato di pubblicazione e cliccherò sul tasto &#8220;Generate URL&#8221;. In ultimo copierò l&#8217;URL appena generato e lo incollerò da qualche parte (in un editor di testo).</p>
+	<h2>Yahoo! Pipes e Google Charts</h2>
+	<p>Yahoo! Pipes è il mio editor/cratore di <em>mashup</em> preferito. &#8220;Si presenta&#8221; ufficialmente così:</p>
+	<blockquote><p>Pipes is a powerful composition tool to <strong>aggregate</strong>, <strong>manipulate</strong>, and <strong>mashup</strong> <strong>content</strong> from around the web.</p></blockquote>
+	<p>Con Pipes aggrego ad esempio i feed RSS che pubblico in <a title="Blog GIS Italia" href="http://feeds2.feedburner.com/BlogGisItaliaV2" target="_blank">Blog GIS Italia</a>, ma qui lo utilizzerò in modo diverso.</p>
+	<p>La prima cosa da fare in Pipes è scegliere la fonte dei nostri dati (possono essere anche più d&#8217;una), e in questo caso sceglierò il file CSV di cui sopra; ne andrò a recuperare l&#8217;URL e lo incollerò dentro il modulo di Pipes &#8220;Fetch CSV&#8221;.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-740" title="fetch_csv3" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/fetch_csv3.png" alt="fetch_csv3" width="334" height="280" /></p>
+	<p>Posso personalizzare diverse parametri. In questo caso ho escluso dalla lettura dei dati la prima riga (contiene i nomi delle colonne), ed ho impostato a mano i nomi delle colonne della mia tabella.</p>
+	<p>A questo modulo, ne collego un altro che trovo tra gli operatori di Pipes: &#8220;Rename&#8221;.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-741" title="rename_3" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/rename_3.png" alt="rename_3" width="374" height="91" /></p>
+	<p>In questo modo rinominerò il campo &#8220;Citta&#8221; in &#8220;title&#8221;, in modo da avere a disposizione uno dei campi necessari per la creazione di una sorgente RSS.</p>
+	<p>Eseguirò successivamente il primo di due <strong><em>loop </em></strong>presenti in questo Pipe. Per ogni record della tabella andrò a &#8220;costruire&#8221; l&#8217;URL che mi consentirà di creare un grafico tramite le API di Google Charts. La struttura di base dell&#8217;URL per la generazione di un grafico tramite queste API è come quella sottostante:</p>
+	<pre><img class=\"alignleft\" style=\"margin: 2px;\" title=\"Google Charts\" src=\"http://chart.apis.google.com/chart?chs=210x80&amp;chd=t:60,40&amp;cht=p3&amp;chl=Hello|World\" alt=\"\" width=\"210\" height=\"80\" />http://chart.apis.google.com/chart?
+chs=250x100
+&amp;chd=t:60,40
+&amp;cht=p3
+&amp;chl=Hello|World</pre>
+	<p>Dove:</p>
+	<ul>
+	<li><span style="color: #999999;">http://chart.apis.google.com/chart?</span> è l&#8217;URL di base delle API.</li>
+	<li><span style="color: #808080;">&amp;</span> è il separatore dei parametri</li>
+	<li><span style="color: #808080;">chs=250&#215;100</span> è la larghezza dei grafici in pixel.</li>
+	<li><span style="color: #808080;">chd=t:60,40</span> sono i dati che voglio rappresentare.</li>
+	<li><span style="color: #808080;">cht=p3</span> è il tipo di grafico.</li>
+	<li><span style="color: #808080;">chl=Hello|World</span> sono le etichette del grafico.</li>
+	</ul>
+	<p>Dovrò adattare questo schema ai miei dati, per struttura, valori e formattazione.</p>
+	<p>Inserirò allora nel modulo &#8220;<em>Loop</em>&#8221; di Pipes un costruttore di stringhe &#8211; il modulo &#8220;<em>String Builder</em>&#8221; &#8211; con cui genererò un URL utile per la stampa a video di un grafico a torta per ogni record della mia tabella.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-732" title="loop" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop.png" alt="loop" width="423" height="414" /></p>
+	<p>Assegnerò i valori di output di questo loop alla variabile  &#8220;item.chartURI&#8221;. Per il primo record verrà generato ad esempio questo URL:</p>
+	<pre><span><span>\"http://chart.apis.google.com/chart?cht=p3&amp;chd=t:32,32,34&amp;chl=Parametro
+A|Parametro B|Parametro C&amp;chs=450x200&amp;chtt=Reggio Calabria\"</span></span></pre>
+	<p>Utilizzerò il modulo &#8220;Regex&#8221; per fare sì che gli URL generati abbiano una corretta sintassi. Rimuoverò quindi gli spazi e li sostituirò con la stringa &#8220;%20&#8243;</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-733" title="regex" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/regex.png" alt="regex" width="480" height="81" /></p>
+	<p>Utilizzerò adesso il secondo modulo di &#8220;Loop&#8221;, per generare il contenuto del secondo elemento necessario in una sorgente RSS: il campo &#8220;<em>descritpion</em>&#8220;. Lo riempirò con delle stringhe di testo con i valori delle colonne che rappresenterò tramite grafico, e con il grafico stesso. Questo per ogni record della tabella.</p>
+	<p>Posso inserire qualsiasi stringa HTML che sia utile a formattare al meglio gli elementi del mio RSS. Il grafico verrà inserito in corrispondenza del tag &lt;img&gt;, che avrà come <em>source</em> proprio l&#8217;URL generato nel primo loop.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-734" title="loop2" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop2.png" alt="loop2" width="422" height="390" /></p>
+	<p>Infine:</p>
+	<ul>
+	<li> userò il modulo &#8220;Location Extractor&#8221; per trasformare un normale RSS in un geoRSS</li>
+	<li>mapperò il campo &#8220;link&#8221; della sorgente RSS affinché punti al grafico generato</li>
+	<li>genererò l&#8217;output</li>
+	</ul>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-735" title="fine" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/fine.png" alt="fine" width="379" height="236" /></p>
+	<p>Il modulo &#8220;Location Extractor&#8221; non richiede informazioni aggiuntive, perché sfrutta due colonne presenti nel mio file CSV originario: &#8220;Latitude&#8221; e &#8220;Longitude&#8221;. In questo modo ogni elemento del mio RSS sarà geotaggato.</p>
+	<p>Non mi resta che salvare il mio Pipe cliccando sul tasto &#8220;Save&#8221;, e provarlo. Per vederlo in azione cliccherò sul link &#8220;<em>Run pipe</em>&#8220;, visibile nella zona in alto al centro della finestra di editing del Pipe. Si aprirà una pagina come quella sottostante.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-742" title="pipe3" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/pipe3.png" alt="pipe3" width="480" height="405" /></p>
+	<p>Da questavisualizzerò gli elementi della mia sorgente RSS. Nel caso di una fonte geoRSS verrà generata automaticamente una mappa, che potrò inserire in una qualsiasi pagina html (copiando il codice che mi verrà restituito al click sul tasto &#8220;<em>Get as a Badge</em>&#8220;). Qui sotto vedete il tutto in azione.</p>
+	<div align="center">
+<script src="http://l.yimg.com/a/i/us/pps/mapbadge_1.3.js">{"pipe_id":"3q2gzFER3hG_vHeWrbQIDg","_btype":"map"}</script>
+</div>
+	<p>Questi alcuni degli altri output possibili:</p>
+	<ul>
+	<li><a title="pipes rss output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=rss" target="_blank">RSS</a></li>
+	<li><a title="pipes json output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=json" target="_blank">JSON</a></li>
+	<li>un output pensato per codice scritto in <a title="New Yahoo! Pipes PHP serialized output renderer" href="http://blog.pipes.yahoo.net/2008/04/02/new-yahoo-pipes-php-serialized-output-renderer/" target="_blank">PHP</a></li>
+	<li><a title="pipes kml output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=kml" target="_blank">KML</a></li>
+	<li><a title="pipes csv output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=csv" target="_blank">CSV</a></li>
+	</ul>
+	<h2>Google Maps</h2>
+	<p>Due degli output di sopra, <a title="pipes rss output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=rss" target="_blank">RSS</a> e<a title="pipes kml output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=kml" target="_blank"> KML</a>, possono essere visualizzati in un istante ed in modo molto efficace in <strong>Google Maps</strong>.</p>
+	<p>Basterà incollare uno dei due URL di sopra (RSS o KML) dentro il box di ricerca di Google Maps, e fare click sul tasto di ricerca.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-757" title="google_maps" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_maps.png" alt="google_maps" width="480" height="59" /></p>
+	<p style="text-align: left;">Qui i due risultati in azione:</p>
+	<ul>
+	<li><a title="geoRSS su Google Maps" href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=http:%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3D3q2gzFER3hG_vHeWrbQIDg%26_render%3Drss&amp;ie=UTF8&amp;t=p&amp;z=7" target="_blank">RSS su Google Maps</a></li>
+	<li><a title="Kml su Google Maps" href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=http:%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3D3q2gzFER3hG_vHeWrbQIDg%26_render%3Dkml&amp;ie=UTF8&amp;t=k&amp;z=7" target="_blank">KML su Google Maps</a></li>
+	</ul>
+	<p>E&#8217; possibile ottenere questo risultato con (quasi) qualsiasi URL di file KML o sorgenti RSS che siano geroRSS.</p>
+	<h2>Considerazioni finali</h2>
+	<p>Questo post è quasi la traduzione di <a title="Creating Google Charts From CSV Data Inside a Yahoo Pipe" href="http://ouseful.wordpress.com/2009/03/12/creating-google-charts-from-csv-data-inside-a-yahoo-pipe/" target="_blank">quest&#8217;altro</a> pubblicato su uno dei Blog che mi solletica di più in questo momento: <strong>OUseful.Info</strong>. Leggerlo è stato divertente, ma lo è stato molto di più mettere in pratica quanto descritto. Quello che vorrei trasmettervi è l&#8217;importanza del &#8220;fare&#8221;: si comprendono i concetti in modo più profondo, ed escono fuori molte più idee.</p>
+	<p>Quello che mi stupisce sempre è qualità, la varietà, e la &#8220;potenza&#8221; degli strumenti che abbiamo a disposizione. L&#8217;esempio descritto in questo post è semplice, e mentre lo scrivevo mi rendevo conto che con un po&#8217; di fantasia ed ingegno si potrebbero ottenere risultati sorprendenti.</p>
+	<p>Per utilizzare Yahoo! Pipes è necessario avere un account Yahoo!. <a title="Creare un geoRSS corredato di grafici, a partire da un file CSV" href="http://pipes.yahoo.com/pipes/pipe.info?_id=3q2gzFER3hG_vHeWrbQIDg" target="_blank">Qui</a> il Pipe che ho realizzato, che potrete clonare ed adattare alle vostre &#8220;vere&#8221; esigenze.</p>
+	<h2>Sitografia letta, consigliata e disordinata</h2>
+	<ol>
+	<li>“Chart Types &#8211; Google Chart API &#8211; Google Code,” <a title="Chart Types - Google Chart API - Google Code" href="http://code.google.com/intl/it/apis/chart/types.html" target="_blank">http://code.google.com/intl/it/apis/chart/types.html</a>.</li>
+	<li>“Creating Google Charts From CSV Data Inside a Yahoo Pipe « OUseful.Info, the blog…,” <a title="Creating Google Charts From CSV Data Inside a Yahoo Pipe « OUseful.Info, the blog…" href="http://ouseful.wordpress.com/2009/03/12/creating-google-charts-from-csv-data-inside-a-yahoo-pipe/" target="_blank">http://ouseful.wordpress.com/2009/03/12/creating-google-charts-from-csv-data-inside-a-yahoo-pipe/</a>.</li>
+	<li>“GeoRSS &#8211; Wikipedia, the free encyclopedia,” <a title="GeoRSS - Wikipedia, the free encyclopedia" href="http://en.wikipedia.org/wiki/GeoRSS" target="_blank">http://en.wikipedia.org/wiki/GeoRSS</a>.</li>
+	<li>“The scripting library: Combining data and information in the library,” <a title="The scripting library: Combining data and information in the library" href="http://www.slideshare.net/bonaria/the-scripting-library-combining-data-and-information-in-the-library" target="_blank">http://www.slideshare.net/bonaria/the-scripting-library-combining-data-and-information-in-the-library</a>.</li>
+	<li>“Technical Overview: GeoRSS,” <a title="Technical Overview: GeoRSS" href="http://www.geowebguru.com/articles/108-technical-overview-georss" target="_blank">http://www.geowebguru.com/articles/108-technical-overview-georss</a>.</li>
+	</ol>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/">Creare un geoRSS corredato di grafici, a partire da un file CSV</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Creare+un+geoRSS+corredato+di+grafici%2C+a+partire+da+un+file+CSV&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2009-03-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs.png" medium="image">
+			<media:title type="html">google docs</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs_publish.png" medium="image">
+			<media:title type="html">google_docs_publish</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs_publish-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fetch_csv3.png" medium="image">
+			<media:title type="html">fetch_csv3</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fetch_csv3-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/rename_3.png" medium="image">
+			<media:title type="html">rename_3</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/rename_3-150x91.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop.png" medium="image">
+			<media:title type="html">loop</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/regex.png" medium="image">
+			<media:title type="html">regex</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/regex-150x81.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop2.png" medium="image">
+			<media:title type="html">loop2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fine.png" medium="image">
+			<media:title type="html">fine</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fine-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/pipe3.png" medium="image">
+			<media:title type="html">pipe3</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/pipe3-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_maps.png" medium="image">
+			<media:title type="html">google_maps</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_maps-150x59.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>GeoCommons contest… “Yes We Map”!</title>
+		<link>http://blog.spaziogis.it/2009/01/13/geocommons-contest-yes-we-map/</link>
+		<comments>http://blog.spaziogis.it/2009/01/13/geocommons-contest-yes-we-map/#comments</comments>
+		<pubDate>Tue, 13 Jan 2009 20:50:28 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Recensioni]]></category>
+		<category><![CDATA[crowdsourcing]]></category>
+		<category><![CDATA[geocommons]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[terremoti]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=593</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoCommons+contest%E2%80%A6+%E2%80%9CYes+We+Map%E2%80%9D%21&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2009-01-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/13/geocommons-contest-yes-we-map/&amp;rft.language=English"></span>
+Tempo fa avevo buttato GeoCommons nel mucchio delle belle cose da approfondire, e come spesso mi accade presto l’avevo dimenticato. Ma ecco che Andrea e Gerlando in due loro precedenti articoli [1,2] si son messi a giocarci, e mi hanno dato l’impulso per sporcarmici le mani pure io. GeoCommons è un formidabile mashup messo su [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoCommons+contest%E2%80%A6+%E2%80%9CYes+We+Map%E2%80%9D%21&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2009-01-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/13/geocommons-contest-yes-we-map/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Tempo fa avevo buttato <a href="http://www.geocommons.com/" target="_blank">GeoCommons</a><strong></strong> nel mucchio delle belle cose da approfondire, e come spesso mi accade presto l’avevo dimenticato. Ma ecco che Andrea e Gerlando in due loro precedenti articoli [1,2] si son messi a giocarci, e mi hanno dato l’impulso per sporcarmici le mani pure io.</p>
+	<p>GeoCommons è un formidabile mashup messo su da <a href="http://www.fortiusone.com/" target="_blank">FortiusOne</a>, che si pone due obiettivi principali. Il primo è quello di mettere a disposizione degli utenti &#8211; con conoscenza anche nulla o quasi di GIS e cartografia &#8211; uno <strong>strumento di costruzione di mappe</strong> semplice ed efficace. Il secondo è quello di <strong>realizzare un grande repository di dati geografici </strong>generati dagli utenti stessi e <strong>liberamente utilizzabili</strong> con licenza <a href="http://en.wikipedia.org/wiki/Creative_commons" target="_blank">Creative Commons</a>.</p>
+	<p><a title="GeoCommons Map - Eventi sismici in Italia" href="http://maker.geocommons.com/maps/2043" target="_blank"><img style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" title="GC_eventi_sismici" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/gc-eventi-sismici.png" border="0" alt="GC_eventi_sismici" width="499" height="419" /></a></p>
+	<p>Ma cosa permette davvero di fare GC? Certamente non si tratta di un ambiente GIS propriamente detto, con il quale sia possibile creare mappe complesse e articolate, con la possibilità di usare layer raster e uno styiling avanzato di quelli vettoriali. Lo scopo di GeoCommons è infatti quello di “<em>realizzare analisi visuali mediante mappe; consentendo a utenti privi di conoscenze tecniche di visualizzare dataset multipli, raggiungere conclusioni, prendere decisioni e risolvere problemi senza far ricorso ai GIS</em>”.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2009/01/gc-point-style.png"><img style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; margin: 0px 10px 0px 0px; border-right-width: 0px" title="GC_point_style" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/gc-point-style-thumb.png" border="0" alt="GC_point_style" width="125" height="244" align="left" /></a>Con <a href="http://maker.geocommons.com/" target="_blank"><strong>Maker!</strong></a> – il map builder di GC &#8211; è possibile, previa registrazione, creare mappe partendo sia da dati presenti sul repository GC &#8211; messi a disposizione da altri utenti – che propri, importabili nel proprio account come <a href="http://en.wikipedia.org/wiki/Shapefile" target="_blank">shapefile</a>, come foglio di calcolo <a href="http://en.wikipedia.org/wiki/Comma-separated_values" target="_blank">CSV</a> oppure <a href="http://it.wikipedia.org/wiki/Keyhole_Markup_Language" target="_blank">KML</a>. Buona norma sarà taggare i dati con termini che ne descrivano contenuto e zona geografica, in maniera tale da renderli facilmente rintracciabili da altri utenti. I dati caricati dovranno essere rigorosamente in <a href="http://it.wikipedia.org/wiki/WGS84">WGS84</a>, poichè GC non supporta la riproiezione al volo. <a href="http://finder.geocommons.com/" target="_blank"><strong>Finder!</strong></a> è invece semplicemente il motore di ricerca del data repository di GC.</p>
+	<p>Come detto, GeoCommons non è un GIS ma fa bene il suo lavoro. La semplicità di utilizzo e dello styling dei dati vettoriali ne fanno strumento efficace per rappresentare essenzialmente dati di tipo quantitativo (statistici, grandezze fisiche, eventi), ma non certo di tipo qualitativo (litologia, uso del suolo, vegetazione). Lo styling dei dati è infatti basato su simboli o colori graduati, con in più la sola possibilità di scegliere cerchi o quadrati per i punti, 5 stili per le linee e 5 palette di colori per i poligoni. Oltre naturalmente a poter impostare la trasparenza per tutti i layer.</p>
+	<p>I dati di base &#8211; con i quali poter dare senso ai nostri &#8211; derivano tutti da Google e si può scegliere tra strade, satellite, ibridi, terrain oppure un bello sfondo monocolore.</p>
+	<p>Insomma, costruire mappe con GeoCommons è davvero semplice, e sebbene lo styling dei dati possa apparire limitato a un primo approccio, in realtà viene messo a disposizione lo stretto indispensabile per ottenere mappe di chiara ed efficace lettura.</p>
+	<p>Inutile dire quanto GC sia perfetto per avvicinare un gran numero di persone alle mappe e alla rappresentazione spaziale dei dati tipicamente descrittivi. E allora perchè non <strong>lanciare da qui un bel GeoCommons contest</strong> per chiamare alle arti cartografiche i frequentatori di TANTO?</p>
+	<p>L’esempio l’abbiamo dato Andrea e io stesso, lui con l’articolo “<a href="http://blog.spaziogis.it/2008/11/23/la-geografia-giudiziaria-la-realizzazione-di-una-mappa-per-iniziare/" target="_blank">La Geografia Giudiziaria: la realizzazione di una mappa… per iniziare</a>” del novembre scorso, mentre io mi sono cimentato in una <a href="http://maker.geocommons.com/maps/2043" target="_blank">semplice mappa</a> nella quale viene mostrata l’attività sismica a livello nazionale, così come gli eventi registrati a livello mondiale dalla rete sismica italiana. I dati li ho recuperati dall’INGV, per i dettagli date un’occhiata al post nella quale l’ho pubblicata in precedenza, sul mio tumblelog <a href="http://loscioccoinblu.tumblr.com/post/67378079/grazie-a-andy-mi-sono-davvero-intrippato-con" target="_blank">loscioccoinBlu</a>. Il webgis dell’INGV è ben fatto, ma riporta solo gli eventi degli ultimi 90 giorni. Io ho intenzione di tenere aggiornata la mia mappa su GC mensilmente, in modo tale da costruire un repository dei terremoti nel tempo, con tanto di dati pronti per essere scaricati e utilizzati in qualunque maniera e contesto da chiunque.</p>
+	<p><strong>E allora sotto con le vostre mappe! Pubblicatele come commento a questo post, e tirate fuori il </strong><a href="http://it.wikipedia.org/wiki/Piri_Re%C3%ACs" target="_blank"><strong>Piri Reis</strong></a><strong> che è in voi al grido di “Yes We Map”!</strong></p>
+	<p>Qui di seguito un elenco – ovviamente non esaustivo – di alcuni link dai quali è possibile scaricare dati per costruire le vostre opere. Invito chiunque a segnalarne di nuovi.</p>
+	<ul>
+	<li>ISTAT &#8211; <a href="http://www.istat.it/ambiente/cartografia/" target="_blank">Confini amministrativi e dei Sistemi locali del lavoro Anno 2001</a></li>
+	<li>ISTAT &#8211; <a href="http://dawinci.istat.it/" target="_blank">14° Censimento generale della popolazione e delle abitazioni</a></li>
+	<li>ISTAT &#8211; <a href="http://dawinci.istat.it/cis/" target="_blank">8° Censimento Generale dell&#8217;Industria e dei Servizi</a></li>
+	<li><a href="http://wiki.gfoss.it/index.php/Catalogo_WebGIS" target="_blank">Catalogo dei WebGIS</a> di enti pubblici manutenuto da <a href="http://www.gfoss.it/drupal/" target="_blank">GFOSS.it</a> dai quali in alcuni (rari) casi è possibile scaricare dati direttamente utilizzabili.</li>
+	<li>Ministero dell’Ambiente – <a href="ftp://ftp.scn.minambiente.it/Cartografie/" target="_blank">Servizio Conservazione della Natura</a></li>
+	</ul>
+	<p>[1] <a href="http://blog.spaziogis.it/2008/12/22/fare-sorridere-una-tabella-o-di-quanto-siano-belli-i-grafici/" target="_blank">Fare sorridere una tabella, o di quanto siano belli i grafici</a><br />
+[2] <a href="http://blog.spaziogis.it/2008/11/23/la-geografia-giudiziaria-la-realizzazione-di-una-mappa-per-iniziare/" target="_blank">La Geografia Giudiziaria: la realizzazione di una mappa… per iniziare</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/01/13/geocommons-contest-yes-we-map/">GeoCommons contest… “Yes We Map”!</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/01/13/geocommons-contest-yes-we-map/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoCommons+contest%E2%80%A6+%E2%80%9CYes+We+Map%E2%80%9D%21&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2009-01-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/13/geocommons-contest-yes-we-map/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/gc-eventi-sismici.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/gc-eventi-sismici.png" medium="image">
+			<media:title type="html">GC_eventi_sismici</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/gc-point-style-thumb.png" medium="image">
+			<media:title type="html">GC_point_style</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Mappare i luoghi della propria città</title>
+		<link>http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/</link>
+		<comments>http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/#comments</comments>
+		<pubDate>Fri, 28 Nov 2008 00:13:28 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Recensioni]]></category>
+		<category><![CDATA[cartografia collaborativa]]></category>
+		<category><![CDATA[crowdsourcing]]></category>
+		<category><![CDATA[google-maps]]></category>
+		<category><![CDATA[kml]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[urbanistica-partecipata]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Mappare+i+luoghi+della+propria+citt%C3%A0&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2008-11-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/&amp;rft.language=English"></span>
+Ormai il termine crowdsourcing è di moda. Ma a noi di TANTO le mode ci fanno un baffo, e ci piace parlare delle cose interessanti. Dei concetti interessanti. Il crowdsourcing lo è. E iBegin Places è una iniziativa di crowdsourcing estremamente interessante. Dando un&#8217;occhiata alle mappe prodotte dagli utenti in maniera collettiva, molti storceranno il [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Mappare+i+luoghi+della+propria+citt%C3%A0&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2008-11-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ormai il termine <a href="http://it.wikipedia.org/wiki/Crowdsourcing" target="_blank">crowdsourcing</a> è di moda. Ma a noi di TANTO le mode ci fanno un baffo, e ci piace parlare delle cose interessanti. Dei concetti interessanti. Il crowdsourcing lo è.</p>
+	<p>E <strong><a href="http://places.ibegin.com/" target="_blank">iBegin Places</a></strong> è una iniziativa di crowdsourcing estremamente interessante. Dando un&#8217;occhiata alle <a href="http://places.ibegin.com/collections/view/2/" target="_blank">mappe prodotte dagli utenti</a> in maniera collettiva, molti storceranno il naso: poligoni digitalizzati alla meglio, che si sovrappongono, topologia imprecisa&#8230; ma chi è sta gente? Chi gli ha dato la patente?</p>
+	<p>Ma qui bisogna mettere da parte ogni velleità di precisione cartografica, che è di secondaria importanza. Con iBegin Places <strong>la gente può segnalare e classificare gli spazi delle proprie città</strong>: giardini pubblici, strutture sportive, luoghi di aggregazione, zone industriali abbandonate, quartieri&#8230; qualunque area rappresentabile con un poligono (ma anche punti e polilinee), che abbia un qualche senso per un gruppo di persone.</p>
+	<p>Da queste accozzaglie di poligoni colorati &#8211; apparentemente fini a se stesse &#8211; possono nascere idee per il riuso degli spazi cittadini o coadiuvare iniziative di <a href="http://it.wikipedia.org/wiki/Urbanistica_partecipata" target="_blank"><strong>urbanistica partecipata</strong></a>. Se ne fa un gran parlare qui in Italia, ma è davvero difficile coinvolgere attivamente i cittadini nei processi di analisi e descrizione del territorio. Con iBegin Places si potrebbero mettere su laboratori collettivi in pochissimo tempo, con ridotte conoscenze tecniche e tecnologiche richieste ai partecipanti.</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2008/11/ibeginplaces.png"><img style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" title="iBeginPlaces" src="http://blog.spaziogis.it/wp-content/uploads//2008/11/ibeginplaces-thumb.png" border="0" alt="iBeginPlaces" width="480" height="383" /></a></p>
+	<p>Vengono usate le API di Google Maps, tutte le creazioni rimangono assolutamente libere di essere riutilizzate da chiunque. E&#8217; possibile esportarle come JSON, JS, RSS o KML e farne ciò che si vuole.</p>
+	<p>Lunga vita al crowdsourcing, quando è libero e bello.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/">Mappare i luoghi della propria città</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Mappare+i+luoghi+della+propria+citt%C3%A0&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2008-11-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/11/28/crowdsourcing-mappare-i-luoghi-della-propria-citt/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2008/11/ibeginplaces-thumb.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2008/11/ibeginplaces-thumb.png" medium="image">
+			<media:title type="html">iBeginPlaces</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Geocaching: “Lo sport nel quale sei tu il motore di ricerca”…</title>
+		<link>http://blog.spaziogis.it/2008/09/12/lo-sport-nel-quale-sei-tu-il-motore-di-ricerca/</link>
+		<comments>http://blog.spaziogis.it/2008/09/12/lo-sport-nel-quale-sei-tu-il-motore-di-ricerca/#comments</comments>
+		<pubDate>Thu, 11 Sep 2008 23:46:41 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[geocaching]]></category>
+		<category><![CDATA[gps]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[outdoor]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=486</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Geocaching%3A+%E2%80%9CLo+sport+nel+quale+sei+tu+il+motore+di+ricerca%E2%80%9D%E2%80%A6&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-09-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/09/12/lo-sport-nel-quale-sei-tu-il-motore-di-ricerca/&amp;rft.language=English"></span>
+Non so per quale motivo non abbia scritto finora un post su una delle cose che mi piacciono TANTO: il geocaching. Forse perché ho pensato banalmente che tutti coloro che lavorano con GIS e cartografia digitale possiedano un dispositivo GPS, e per la regola della transizione che costoro conoscano anche il geocaching. Nata nel 2000, [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Geocaching%3A+%E2%80%9CLo+sport+nel+quale+sei+tu+il+motore+di+ricerca%E2%80%9D%E2%80%A6&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-09-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/09/12/lo-sport-nel-quale-sei-tu-il-motore-di-ricerca/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img src="http://www.westallisccc.com/geocaching.gif" alt="" width="104" height="103" align="left" /> Non so per quale motivo non abbia scritto finora un post su una delle cose che mi piacciono TANTO: il geocaching.</p>
+	<p>Forse perché ho pensato banalmente che tutti coloro che lavorano con GIS e cartografia digitale possiedano un dispositivo GPS, e per la regola della transizione che costoro conoscano anche il geocaching.</p>
+	<p>Nata nel 2000, all’indomani della fatidica caduta della “<a href="http://www.ngs.noaa.gov/FGCS/info/sans_SA/docs/statement.html">selective availability</a>”, si tratta di una sorta di grande caccia al tesoro mondiale, alla quale possono partecipare i possessori di un GPS e di una gran voglia di cercare scatolette nascoste da loro simili.</p>
+	<p>Unico indizio, ovviamente, una coppia di coordinate rigorosamente espresse in <a href="http://it.wikipedia.org/wiki/WGS84">WGS84</a>. Lo scopo è dunque quello di recarsi nel luogo indicato e cercare il tesoro (cache), consistente in una scatola con dimensioni che possono andare dal contenitore per rullini a quelle di un secchio (sic!).</p>
+	<p><img src="http://www.geocaching.com/images/track/travelbug_image.jpg" alt="" width="150" height="150" align="right" /> Cosa c&#8217;è dentro? Ci trovate sempre almeno un log book, sul quale registrare il proprio nome e la data del ritrovamento, perchè come avrete intuito, i cache non vanno mai portati via. Come optional potreste trovare oggetti collocati dal proprietario o dai &#8220;geocacher&#8221; che l&#8217;hanno trovato. Tra questi i più curiosi sono i &#8220;<a href="http://www.geocaching.com/track/">trackables</a>&#8220;, oggetti tra i più vari che hanno un codice univoco e dunque tracciabili nel loro viaggio incessante da un geocache all&#8217;altro. Ogni cacher che trova un trackable ha l&#8217;onere e l&#8217;onore di ricollocarlo in un altro cache. Ce ne sono alcuni che hanno fatto il giro del mondo.</p>
+	<p>Per un geocacher, oltre all&#8217;entusiasmo di trovare e loggare il maggior numero di cache, c&#8217;è anche quello di collocarne tante, in posti curiosi, dai più affollati delle grandi città (<a href="http://www.geocaching.com/map/default.aspx?lat=45.463671&amp;lng=9.188126&amp;zm=13&amp;mt=m">nella sola Milano ce ne sono a decine</a>), a quelli lontani dalle rotte migratorie turistiche.</p>
+	<p>Personalmente trovo affascinante attrarre gente in luoghi che ritengo belli da visitare, insoliti o interessanti da tanti punti di vista. Eppoi ci sono tanti tipi di cache, e per trovarli bisogna saper cercare, o risolvere dei piccoli rompicapo. Un tipo speciale è ad esempio l&#8217;Earthcache, ovvero un luogo singolare dal punto di vista geologico (c.d. geosito), al quale viene sempre associata un&#8217;attività didattica da effettuare per poter &#8220;loggare&#8221;, ovvero registrare la propria visita. Ci sono poi alcuni geocacher puristi che non usano nemmeno il GPS, ma solo carte topografiche in puro sile &#8220;orienteering&#8221;.</p>
+	<p>E&#8217; facile intuire la grande valenza che il geocaching ha dal punto di vista ambientale. Il rispetto dei luoghi nei quali si trovano i cache è fondamentale, regola non scritta è quella di portar via eventuali rifiuti che vebgono trovati.</p>
+	<p><!--[if gte mso 9]&amp;gt;  Normal 0 14   false false false        MicrosoftInternetExplorer4  &amp;lt;![endif]--><!--[if gte mso 9]&amp;gt;   &amp;lt;![endif]--></p>
+	<p><!--[if gte mso 10]&amp;gt;-->Il geocaching poi è uno sport fantastico da fare in compagnia ma soprattutto soli, io veramente lo adoro per questo. Anche perchè la strana abitudine che i geocacher hanno di partire alla ricerca di una scatoletta, all&#8217;improvviso, nel bel mezzo di una gitarella è difficilmente comprensibile da parte di amici che magari vi accompagnano. Cacciare di tasca il GPS, guardarsi intorno, dire: “torno subito” e stare via un tempo interminabile per poi tornare con un sorriso di soddisfazione stampato sul volto, giustificarlo col fatto che avete trovato il “cache”, e magari pure un Travel Bug, è un “FTF”, e dovete correre a “loggarlo” al piu’ presto… No, sarebbe decisamente troppo per i vostri amici.</p>
+	<p>Durante la mia recente vacanza in Abruzzo sono a malincuore passato davanti a 4 geocache perchè nessuno della compagnia voleva assecondarmi in questa passione&#8230; Ma per uno, almeno per uno, ho piantato in asso famiglia e amici ad Anversa degli Abruzzi, ho preso la macchina e ho detto loro: &#8220;Ci vediamo tra un paio d&#8217;ore!&#8221;. Mi sono inerpicato su su per raggiungere un paesino, <a href="http://www.geocaching.com/map/default.aspx?lat=41.98692903426598&amp;lng=13.807368278503418&amp;zm=15&amp;mt=m" target="_blank">Castrovalva</a>, e cercare un cache vicino a una chiesetta sbattuta su un crinale&#8230; il fantastico panorama, da solo, valeva la ricerca.</p>
+	<p>Ecco perchè amo questo sport: ti porta e ti fa portare gente in luoghi unici. E&#8217; l&#8217;ebbrezza della ricerca, del perchè quella scatoletta è stata messa proprio lì.</p>
+	<p>Insomma il mio invito, da entusiasta geocacher, è quello di provarci anche voi&#8230; Date un&#8217;occhiata al <a href="http://www.geocaching.com/">sito ufficiale</a> e quello della <a href="http://www.geocaching-italia.com">comunità italiana</a>, individuate le cache più vicine a dove siete con il <a href="http://www.geocaching.com/map/default.aspx?lat=41.82045509614034&amp;lng=12.83203125&amp;zm=6&amp;mt=m">mashup di Google Maps</a> o con il <a href="http://www.geocaching.com/kml/buildnetworkkml.aspx">Geocache browser</a> di Google Earth (bisogna iscriversi su geocaching.com per scaricarlo) e fatevi prendere dalla voglia di cercarle!</p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads/2008/09/gc-puglia.jpg"><img style="0px" src="http://blog.spaziogis.it/wp-content/uploads/2008/09/gc-puglia-thumb.jpg" border="0" alt="GC_Puglia" width="497" height="345" /></a></p>
+	<p>Non rimane che augurare buona caccia a tutti.. nel senso più pacifico possibile.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/09/12/lo-sport-nel-quale-sei-tu-il-motore-di-ricerca/">Geocaching: “Lo sport nel quale sei tu il motore di ricerca”…</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/09/12/lo-sport-nel-quale-sei-tu-il-motore-di-ricerca/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Geocaching%3A+%E2%80%9CLo+sport+nel+quale+sei+tu+il+motore+di+ricerca%E2%80%9D%E2%80%A6&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-09-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/09/12/lo-sport-nel-quale-sei-tu-il-motore-di-ricerca/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://www.westallisccc.com/geocaching.gif" />
+		<media:content url="http://www.westallisccc.com/geocaching.gif" medium="image" />
+		<media:content url="http://www.geocaching.com/images/track/travelbug_image.jpg" medium="image" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/09/gc-puglia-thumb.jpg" medium="image">
+			<media:title type="html">GC_Puglia</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Bikely: per condividere i vostri percorsi in bicicletta</title>
+		<link>http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/</link>
+		<comments>http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/#comments</comments>
+		<pubDate>Sat, 19 Aug 2006 10:26:12 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[bicycle]]></category>
+		<category><![CDATA[google-maps]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[routes]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Bikely%3A+per+condividere+i+vostri+percorsi+in+bicicletta&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2006-08-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/&amp;rft.language=English"></span>
+La condivisione, ed il &#8220;web come piattaforma&#8221; sono due dei paradigmi del web2.0. Bikely è un&#8217;applicazione &#8211; che gira interamente sul web &#8211; che vi consente di condividere con chiunque i vostri percorsi in bicicletta preferiti. E&#8217; una delle centinaia di applicazioni di cartografia online basata sulle API di Google Maps, tramite la quale potrete [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Bikely%3A+per+condividere+i+vostri+percorsi+in+bicicletta&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2006-08-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>La condivisione, ed il &#8220;web come piattaforma&#8221; sono due dei paradigmi del <a target="_blank" title="web 2.0" href="http://www.oreillynet.com/pub/a/oreilly/tim/news/2005/09/30/what-is-web-20.html">web2.0</a>. <a target="_blank" title="bikely" href="http://www.bikely.com/">Bikely</a> è un&#8217;applicazione &#8211; che gira interamente sul web &#8211; che vi consente di condividere con chiunque i vostri percorsi in bicicletta preferiti.<br />
+E&#8217; una delle <a target="_blank" title="google maps mashups" href="http://www.programmableweb.com/api/GoogleMaps/mashups">centinaia di applicazioni</a> di cartografia online basata sulle API di Google Maps, tramite la quale potrete tracciare (su Google Maps) un percorso ed inserire tutte le annotazioni che riterrete utili. Ogni percorso è esportabile in formato .gpx, può essere quindi caricato come traccia su un GPS e rendere felice il ciclista &#8220;tecnologico&#8221;.</p>
+	<p align="center"><img alt="bikely" id="image209" title="bikely" src="http://blog.spaziogis.it/wp-content/uploads/2006/08/bikely.png" /></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/">Bikely: per condividere i vostri percorsi in bicicletta</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Bikely%3A+per+condividere+i+vostri+percorsi+in+bicicletta&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2006-08-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/08/19/bikely-per-condividere-i-vostri-percorsi-in-bicicletta/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2006/08/bikely.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2006/08/bikely.png" medium="image">
+			<media:title type="html">bikely</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

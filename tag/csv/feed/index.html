@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; csv</title>
+	<atom:link href="http://blog.spaziogis.it/tag/csv/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Da excel a gpx e kml: ogr2ogr</title>
+		<link>http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/</link>
+		<comments>http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/#comments</comments>
+		<pubDate>Fri, 28 Dec 2007 23:29:40 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[csv]]></category>
+		<category><![CDATA[excel]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[gpx]]></category>
+		<category><![CDATA[kml]]></category>
+		<category><![CDATA[ogr]]></category>
+		<category><![CDATA[ogr2ogr]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Da+excel+a+gpx+e+kml%3A+ogr2ogr&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/&amp;rft.language=English"></span>
+In questo Blog ho parlato già molte volte di FWTools e delle utilities in esso contenute. Oggi lo farò ancora una volta, fortemente ispirato da un piacevolissimo post di Tom Kralidis. Tom parla di una catena di coffee shop canadese, Tim Hortons, e ci racconta di quanto sia importante (per un canadese) sapere dove possa [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Da+excel+a+gpx+e+kml%3A+ogr2ogr&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In questo Blog ho parlato già molte volte di <strong><a href="http://blog.spaziogis.it/?s=fwtools" title="FWTools su TANTO" target="_blank">FWTools</a></strong> e delle <em>utilities </em>in esso contenute. Oggi lo farò ancora una volta, fortemente ispirato da un piacevolissimo <a href="http://www.kralidis.ca/blog/2007/12/28/two-milk-no-sugar/" title="Two Milk, No Sugar" target="_blank">post</a> di Tom Kralidis.</p>
+	<p>Tom parla di una catena di <em>coffee shop</em> canadese, Tim Hortons, e ci racconta di quanto sia importante (per un canadese) sapere dove possa essere il punto vendita più vicino della catena. Tanto importante che un <a href="http://www.gpspassion.com/forumsen/topic.asp?TOPIC_ID=66445&amp;whichpage=1" title="GpsPasSion Forums - Tim Hortons POI's" target="_blank">forum</a> di appassionati di GPS  ha creato delle tabelle con le coppie di coordinate di tutti i punti vendita nel paese. Sia in formato .xls, che .csv.  Tom nel post mostra come sfruttare <strong><a href="http://www.gdal.org/ogr/ogr2ogr.html" title="ogr2ogr homepage" target="_blank">ogr2ogr</a></strong>, una <em>utility </em>contenuta in FWTools, per convertire queste tabelle in formato <strong>.gpx</strong> (un formato di scambio dati per GPS) e in formato <strong>.kml </strong>(Google Earth).</p>
+	<p>Il passi sono i seguenti:</p>
+	<ul>
+	<li>apro il file <a href="http://www.gpspassion.com/upload/team/Dewi_TimHortons_xls_20071120.zip" title="Tim Hortons POI">excel</a> che contiene i POI dei punti vendita</li>
+	<li>salvo il file in formato .csv (lo chiamo ad esempio th.csv)</li>
+	<li>sfrutto la capacità di OGR di leggere informazioni spaziali anche da una semplice tabella, sfruttando il supporto della <a href="http://www.gdal.org/ogr/drv_vrt.html" title="Virtual Datasource">Virtual Datasource</a>. Per sfruttare questo tipo di connessione creerò un file .ovf così fatto:</li>
+	</ul>
+	<p><code>&lt;OGRVRTDataSource&gt;<br />
+&lt;OGRVRTLayer name="th"&gt;<br />
+&lt;SrcDataSource relativeToVRT="1"&gt;./th.csv&lt;/SrcDataSource&gt;<br />
+&lt;GeometryType&gt;wkbPoint&lt;/GeometryType&gt;<br />
+&lt;LayerSRS&gt;WGS84&lt;/LayerSRS&gt;<br />
+&lt;GeometryField encoding="PointFromColumns" x="Longitude" y="Latitude"/&gt;<br />
+&lt;/OGRVRTLayer&gt;<br />
+&lt;/OGRVRTDataSource&gt;</code></p>
+	<p>Per creare un file .kml dovrò soltanto aprire la shell di FWTools, posizionarmi nella cartella in cui ho salvato i file .ovf, e scrivere:</p>
+	<pre>ogr2ogr -f KML nomefile.kml th.ovf</pre>
+	<p>Con il parametro &#8220;-f&#8221; specifico il formato, poi dichiaro il nome del file di destinazione e infine quello del sorgente.</p>
+	<p>Per creare un file .gpx userò invece questa sintassi:</p>
+	<pre>ogr2ogr -dsco GPX_USE_EXTENSIONS=YES -f GPX nomefile.gpx th.ovf</pre>
+	<p>Il pametro &#8220;-dsco&#8221; mi consente di estendere il formato .gpx con campi non supportati nello schema GPX standard (ad esempio la Città ed il Telefono del punto vendità).</p>
+	<p>Questi sono soltanto due dei formati di output possibili, ma le possibilità sono veramente <a href="http://www.gdal.org/ogr/ogr_formats.html" title="OGR formats" target="_blank">molte</a>.</p>
+	<p>Grazie Tom.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/">Da excel a gpx e kml: ogr2ogr</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Da+excel+a+gpx+e+kml%3A+ogr2ogr&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2007-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

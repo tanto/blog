@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Antonio Falciano</title>
+	<atom:link href="http://blog.spaziogis.it/author/afalciano/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Sistemi di trasformazione di coordinate e grigliati NTv2</title>
+		<link>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/</link>
+		<comments>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/#comments</comments>
+		<pubDate>Fri, 08 Feb 2013 07:00:05 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Basilicata]]></category>
+		<category><![CDATA[coordinate]]></category>
+		<category><![CDATA[GN]]></category>
+		<category><![CDATA[grigliati]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[NTv2]]></category>
+		<category><![CDATA[SEXTANTE]]></category>
+		<category><![CDATA[trasformazioni]]></category>
+		<category><![CDATA[WCTS]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5439</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+Una novità che sta circolando da poco più di un mese a questa parte e che, in pratica, interessa tutta la comunità italiana di fruitori dell&#8217;informazione geografica, consiste nella recentissima attivazione del servizio di trasformazione di coordinate ad opera del Geoportale Nazionale (ex Portale Cartografico Nazionale). Tale tipologia di servizio rientra tra gli adempimenti previsti [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Una novità che sta circolando da poco più di un mese a questa parte e che, in pratica, interessa tutta la comunità italiana di fruitori dell&#8217;informazione geografica, consiste nella <strong>recentissima attivazione del servizio di trasformazione di coordinate ad opera del Geoportale Nazionale</strong> (ex Portale Cartografico Nazionale). Tale tipologia di servizio rientra tra gli adempimenti previsti dalle <a title="INSPIRE Implementing Rules" href="http://inspire.jrc.ec.europa.eu/index.cfm/pageid/47" target="_blank"><em>Implementing Rules</em></a> della <a title="Direttiva 2007/2/CE" href="http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2007:108:0001:01:IT:HTML" target="_blank"><strong>Direttiva europea INSPIRE (2007/2/EC)</strong></a>, al fine di assicurare la condivisione e l&#8217;interoperabilità di dataset e servizi, adottando formati e specifiche comuni, tra tutti i nodi dell&#8217;infrastruttura di dati spaziali europea. In particolare, l&#8217;implementazione di tale servizio da parte del GN consiste in:</p>
+	<ul>
+	<li>un&#8217;applicazione web: <a href="http://www.pcn.minambiente.it/wctsclient/">http://www.pcn.minambiente.it/wctsclient/</a></li>
+	<li>un servizio WCTS: <a href="http://www.pcn.minambiente.it/GN/wps.php?lan=it">http://www.pcn.minambiente.it/GN/wps.php?lan=it</a></li>
+	</ul>
+	<p>Per ulteriori approfondimenti circa le premesse e i dettagli tecnici, si consiglia la lettura di <a title="Interoperabilità dei dati territoriali: il GN si dota di un nuovo servizio per la trasformazione di coordinate per l’intero territorio italiano" href="http://www.rivistageomedia.it/201212314770/GEOmedia-No-5-2012/interoperabilita-dei-dati-territoriali-il-gn-si-dota-di-un-nuovo-servizio-per-la-trasformazione-di-coordinate-per-lintero-territorio-italiano.html" target="_blank">questo articolo</a> sulla rivista Geomedia.</p>
+	<p>Benissimo! “<em>Lasciamoci INSPIR(ar)E</em>” dunque, parafrasando il titolo di un gran bel <a title="Lasciamo INSPIR(ar)E" href="http://blog.planetek.it/2010/04/13/lasciamoci-inspirare/" target="_blank">post</a> di Pietro Blu Giandonato di qualche anno fa&#8230; E cosa avviene a livello regionale? In verità, esiste già qualche servizio analogo, tra cui:</p>
+	<ul>
+	<li><strong>Regione Lombardia:</strong> <a href="http://www.cartografia.regione.lombardia.it/geoportale/ptk">http://www.cartografia.regione.lombardia.it/geoportale/ptk</a></li>
+	<li><strong>Regione Liguria:</strong> <a href="http://www.cartografia.regione.liguria.it/template4.asp?itemID=4005&amp;level=2&amp;label=Trasformazione%20coordinate">http://www.cartografia.regione.liguria.it/template4.asp?itemID=4005&amp;level=2&amp;label=Trasformazione%20coordinate</a></li>
+	<li><strong>Regione Sardegna:</strong> <a href="http://www.sardegnageoportale.it/strumenti/conversionecoordinate.html">http://www.sardegnageoportale.it/strumenti/conversionecoordinate.html</a></li>
+	<li><strong>Regione Basilicata:</strong> <a href="http://rsdi.regione.basilicata.it/web/guest/servizio-wcts">http://rsdi.regione.basilicata.it/web/guest/servizio-wcts</a></li>
+	<li><strong>Regione Emilia-Romagna:</strong> <a href="http://geoportale.regione.emilia-romagna.it/it/services/servizi%20tecnici/servizio-di-conversione">http://geoportale.regione.emilia-romagna.it/it/services/servizi%20tecnici/servizio-di-conversione</a></li>
+	</ul>
+	<p>Per curiosità, dopo aver letto un <a href="http://gfoss-geographic-free-and-open-source-software-italian-mailing.3056002.n2.nabble.com/Fwd-Il-Geoportale-Nazionale-ha-realizzato-il-servizio-di-trasformazione-WCTS-tp7580861p7580885.html" target="_blank">post</a> nella lista GFOSS in cui erano segnalate delle inaspettate anomalie, ho deciso di impiegare qualche ritaglio di tempo libero per verificare la bontà del servizio WCTS della mia regione, la Basilicata, rispetto a quello appena reso disponibile dal GN. Nel seguito, non mi addentrerò nella descrizione qualitativa dei servizi (della serie &#8230;è più bello, è più brutto, è più veloce, mi chiede l&#8217;indirizzo email, ecc.), poiché esula completamente dai miei scopi.</p>
+	<p>In pratica, ho effettuato le seguenti operazioni:</p>
+	<ul>
+	<li>ho scaricato i confini amministrativi regionali dal <a title="ISTAT - Cartografia: confini amministrativi e dei sistemi locali del lavoro" href="http://www3.istat.it/ambiente/cartografia/" target="_blank">sito dell&#8217;ISTAT</a>, definiti in <a href="http://www.spatialreference.org/ref/epsg/23032/"><strong>EPSG:23032</strong></a>, e li ho caricati in una vista di <strong>gvSIG 1.12</strong>, definita nello stesso sistema;</li>
+	<li>ho poi selezionato solo la mia regione e applicato l&#8217;algoritmo di SEXTANTE <em>“Adjust n points to polygon”</em>, in modo tale da generare un set di 100 punti scelti in maniera casuale contenuti in Basilicata, utilizzando i parametri rappresentati in <em>Figura 1</em> e ottenendo il risultato in <em>Figura 2</em>;</li>
+	</ul>
+	<p><div id="attachment_5453" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5453" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-e1360243542704.png" alt="Figura 1 - Adjust n points to polygon" width="480" height="271" /><p class="wp-caption-text">Figura 1 &#8211; Adjust n points to polygon</p></div></p>
+	<p><div id="attachment_5455" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5455" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-e1360243851330.png" alt="Figura 2 - Layer di punti casuali" width="480" height="274" /><p class="wp-caption-text">Figura 2 &#8211; Layer di punti casuali</p></div></p>
+	<ul>
+	<li>ho quindi trasformato il layer di punti precedentemente ottenuto, utilizzando sia l&#8217;applicazione web del Geoportale Nazionale che quella della Regione Basilicata, rispettivamente dal sistema EPSG:23032 (ereditato dal layer dei confini amministrativi ISTAT) verso <a href="http://www.spatialreference.org/ref/epsg/3004/"><strong>EPSG:3004</strong></a> e <a href="http://www.spatialreference.org/ref/epsg/32633/"><strong>EPSG:32633</strong></a>, assumendo per buona ad occhi chiusi la conversione dovuta al passaggio di fuso/zona contenuta in maniera implicita in entrambe le trasformazioni, in quanto si tratta di un&#8217;operazione di coordinate che i software e le librerie GIS generalmente affrontano in maniera rigorosa e quindi fuori di discussione. Inoltre, ho trasformato &#8211; sempre utilizzando entrambi i servizi &#8211; il layer dei punti definito in EPSG:32633 ottenuto dal GN verso EPSG:3004. In definitiva, ho ottenuto <strong>tre coppie di layer, ognuna corrispondente ad ogni trasformazione possibile tra i tre sistemi citati e definita in un preciso sistema di destinazione</strong>. In <em>Figura 3</em> sono rappresentate schematicamente le singole trasformazioni realizzate.</li>
+	</ul>
+	<p><div id="attachment_5458" class="wp-caption aligncenter" style="width: 388px"><img class="size-full wp-image-5458" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS.png" alt="Figura 3 - Trasformazioni realizzate" width="378" height="352" /><p class="wp-caption-text">Figura 3 &#8211; Trasformazioni realizzate (Autore: Andrea Borruso)</p></div></p>
+	<ul>
+	<li>Il passo successivo è stato quello di definire e calcolare dei nuovi campi nelle tabelle associate ai layer ottenuti al punto precedente, contenenti le coordinate nei rispettivi sistemi di appartenenza (esistono diversi modi di farlo in gvSIG: con il “Calcolatore di campo”, con lo strumento “Aggiungi informazioni geometriche”, con “<em>Add coordinates to points</em>” di SEXTANTE &#8230;e tanti altri). Ho rinominato tali campi di coordinate in modo da poterli rapidamente associare al CRS di appartenenza, oltre che allo specifico servizio utilizzato. Ad esempio, <em>X3004GN</em> rappresenta la coordinata Est nel sistema EPSG:3004 trasformata dal Geoportale Nazionale, mentre <em>X3004BAS</em> è la corrispondente coordinata trasformata tramite il geoportale lucano.</li>
+	<li>A questo punto, essendomi dimenticato di definire un campo identificativo da utilizzare come chiave esterna (in questo caso poco male, essendo i punti reciprocamente abbastanza distanti tra loro), ho eseguito il geoprocesso <em>“Spatial join”</em> per ogni coppia di layer definiti nello stesso CRS, selezionando l&#8217;opzione “Usa la geometria più prossima”, in alternativa al classico join tra tabelle. Il risultato di tale operazione è praticamente equivalente a quello del join, ad eccezione del fatto che gvSIG restituisce un campo DIST delle distanze tra le geometrie poste in relazione e, inoltre, il layer ottenuto è salvato su disco.</li>
+	<li>Dulcis in fundo, ho calcolato le differenze tra coordinate omologhe al fine di verificare la bontà della trasformazione dei due servizi, assumendo quelle del GN come capisaldi in quanto dovrebbero essere quelle “ufficiali”.</li>
+	</ul>
+	<p>I risultati di tutto l&#8217;ambaradan appena descritto, sperando di non avervi fin qui annoiato, sono riportati nella tabella seguente:</p>
+	<p><div id="attachment_5456" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5456" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-e1360245448479.png" alt="Tabella 1 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata" width="480" height="133" /><p class="wp-caption-text">Tabella 1 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN)</p></div></p>
+	<p>A quanto pare, <strong>gli scostamenti tra le trasformazioni operate dai due servizi sono piuttosto importanti e, talvolta, addirittura superano il metro e mezzo!</strong> Se fossi un topografo, nel dubbio, mi guarderei bene dall&#8217;usare uno o l&#8217;altro servizio per trasformare i dati di un rilievo ad alta precisione. Ma anche un operatore GIS potrebbe imbattersi in qualche strana incongruenza topologica accostando dati provenienti da fonti (e quindi trasformazioni) diverse. Personalmente mi sarei aspettato differenze al più dell&#8217;ordine di un paio di decimetri per coordinata, ipotizzando dietro l&#8217;applicazione web del GN l&#8217;utilizzo di un unico grigliato comprendente tutta l&#8217;Italia a maglia più larga rispetto a quella dei singoli grigliati IGM, piuttosto che un numero elevato di griglie a passo fitto, decisamente più oneroso da gestire lato server.</p>
+	<p>Dalle statistiche di <em>Tabella 1</em> chiaramente non si evince quale dei due servizi sia il meno accurato rispetto ai grigliati IGM. Eppure entrambi i servizi dichiarano di utilizzarli! Sarebbe utile, a mio avviso, ripetere lo stesso test con altri servizi WCTS regionali, magari utilizzando i grigliati come termine di confronto.</p>
+	<p>E&#8217; lecito quindi chiedersi come mai la gestione informatica dei grigliati IGM all&#8217;interno di differenti applicazioni web porta a risultati diversi. E&#8217; chiaro che occorrerebbe disporre di un <strong>riferimento ufficiale, unico ed inequivocabile</strong>.</p>
+	<p>A tal fine, per fugare ogni dubbio,<strong> sarebbe auspicabile il rilascio di un grigliato NTv2</strong>, formato ormai gestibile da molti desktop GIS, <strong>per ognuna delle possibili trasformazioni che interessano il nostro territorio nazionale.</strong> Non parlo necessariamente di quelli che utilizzano i topografi, ma anche solo una versione opportunamente semplificata che consenta di riunificare l&#8217;Italia intera, senza perdere eccessivamente in accuratezza. <strong>L&#8217;esempio lungimirante offerto da <a href="http://lambert93.ign.fr/index.php?id=30#c71">Francia</a>, <a href="http://www.ign.es/ign/layoutIn/herramientas.do#DATUM">Spagna</a>, <a href="http://www.igeo.pt/produtos/geodesia/Grelhas_NTv2.htm">Portogallo</a>, <a href="http://www.swisstopo.admin.ch/internet/swisstopo/en/home/products/software/products/chenyx06.html">Svizzera</a> e <a href="http://crs.bkg.bund.de/crseu/crs/descrtrans/BeTA/de_dhdn2etrs_beta.php">Germania</a> dovrà pur significare qualcosa nell&#8217;epoca di INSPIRE!</strong></p>
+	<p>&nbsp;</p>
+	<h2>Aggiornamento del 09/02/2013</h2>
+	<p>A seguito dell&#8217;aggiornamento ufficioso del servizio di trasformazione di coordinate del GN di cui si è avuta notizia ieri, i contenuti di questo post sono già obsoleti (forse, si tratta di un record per questo blog&#8230; ma siam contenti così! )<br />
+Ho quindi ricalcolato le medie degli scostamenti tra le trasformazioni dei due geoportali utilizzando lo stesso set di punti casuali. Il risultato è che le medie degli scostamenti sono stavolta sempre inferiori ai 3 cm. Restano tuttavia degli scostamenti max e min ancora consistenti (fino a 85 cm) per la coordinata Est. I valori estremi della coordinata Nord si aggirano invece attorno ai 20 cm, fatta eccezione per la trasformazione da EPSG:23032 a EPSG:32633, dove si superano i 30 cm.</p>
+	<p><div id="attachment_5476" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5476" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-e1360406215995.png" alt="Tabella 2 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) - agg. 09/02/2013" width="480" height="132" /><p class="wp-caption-text">Tabella 2 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) &#8211; agg. 09/02/2013</p></div></p>
+	<p>Resta, a mio modesto avviso, la necessità di dover rendere congruenti e quindi interoperabili i vari servizi di trasformazione di coordinate regionali con quello nazionale, evitando così l&#8217;eventuale disorientamento degli utenti. Inoltre, eviterei l&#8217;ulteriore proliferazione di servizi WCTS regionali, a questo punto ridondanti, e favorirei il rilascio e la diffusione dei grigliati NTv2, standard de facto a livello internazionale, almeno relativamente alla componente planimetrica.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/">Sistemi di trasformazione di coordinate e grigliati NTv2</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/feed/</wfw:commentRss>
+		<slash:comments>16</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-e1360243542704.png" medium="image">
+			<media:title type="html">Figura 1 &#8211; Adjust n points to polygon</media:title>
+			<media:description type="html">Figura 1 - Adjust n points to polygon</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-e1360243851330.png" medium="image">
+			<media:title type="html">Figura 2 &#8211; Layer di punti casuali</media:title>
+			<media:description type="html">Figura 2 - Layer di punti casuali</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS.png" medium="image">
+			<media:title type="html">Figura 3 &#8211; Trasformazioni realizzate</media:title>
+			<media:description type="html">Figura 3 - Trasformazioni realizzate</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-e1360245448479.png" medium="image">
+			<media:title type="html">Tabella 1 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata</media:title>
+			<media:description type="html">Tabella 1 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-e1360406215995.png" medium="image">
+			<media:title type="html">Tabella 2 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) &#8211; agg. 09/02/2013</media:title>
+			<media:description type="html">Tabella 2 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) - agg. 09/02/2013</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Quinte Giornate Italiane di gvSIG a Como</title>
+		<link>http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/</link>
+		<comments>http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/#comments</comments>
+		<pubDate>Wed, 09 May 2012 06:00:15 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[2012]]></category>
+		<category><![CDATA[Como]]></category>
+		<category><![CDATA[gvSIG]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4919</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quinte+Giornate+Italiane+di+gvSIG+a+Como&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2012-05-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/&amp;rft.language=English"></span>
+Le Giornate Italiane di gvSIG, giunte alla quinta edizione, si svolgeranno dal 27 al 29 giugno 2012, presso l&#8217;Aula Magna del Politecnico di Milano &#8211; Polo Territoriale di Como, via Castelnuovo, 7 a Como. L&#8217;evento è organizzato dal Laboratorio di Geomatica del Politecnico di Milano &#8211; Polo Territoriale di Como e dall&#8217;Associazione gvSIG, e rappresenta [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quinte+Giornate+Italiane+di+gvSIG+a+Como&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2012-05-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://www.gvsig.org/web/community/events/giornate-italia/2012"><img class="wp-image-4920 alignleft" style="border: 0pt none; margin: 0px;" title="Logo Quinte Giornate Italiane gvSIG Como" src="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como-280x300.jpg" alt="logosmall_como" width="140" height="150" /></a>Le <strong>Giornate Italiane di gvSIG</strong>, giunte alla quinta edizione, si svolgeranno dal 27 al 29 giugno 2012, presso l&#8217;Aula Magna del Politecnico di Milano &#8211; Polo Territoriale di Como, via Castelnuovo, 7 a Como. L&#8217;evento è organizzato dal <a href="http://geomatica.como.polimi.it/"><strong>Laboratorio di Geomatica del Politecnico di Milano &#8211; Polo Territoriale di Como</strong></a> e dall&#8217;<a href="http://www.gvsig.com/inizio?set_language=it"><strong>Associazione gvSIG</strong></a>, e rappresenta l&#8217;ormai classico punto d&#8217;incontro e di scambio di esperienze tra utenti e sviluppatori italiani di gvSIG.</p>
+	<p>Sono ancora aperte le iscrizioni alle <a href="http://www.gvsig.org/web/community/events/giornate-italia/2012"><strong>Quinte Giornate Italiane di gvSIG</strong></a>, completamente gratuite, ed è richiesta solo la compilazione dell&#8217;apposito <a href="http://www.gvsig.org/web/community/events/giornate-italia/2012/iscrizione/formulario-d-iscrizione">formulario</a>. E&#8217; possibile condividere le vostre esperienze professionali partecipando anche come relatori. Occorre semplicemente inviare un riassunto (abstract) al seguente indirizzo email: <a href="mailto:giornate.italiane@gvsig.org">giornate.italiane@gvsig.org</a> entro il 23 maggio 2012 (consultare le <a href="http://www.gvsig.org/web/community/events/giornate-italia/2012/comunicazioni%20">norme per le presentazioni</a>). Affrettatevi!</p>
+	<p style="text-align: center;">
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/">Quinte Giornate Italiane di gvSIG a Como</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		<georss:point featurename="Via Castelnuovo 7, Como, Italy">45.8027983 9.093560000000025</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quinte+Giornate+Italiane+di+gvSIG+a+Como&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2012-05-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/05/09/quinte-giornate-italiane-di-gvsig-a-como/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como.jpg" medium="image">
+			<media:title type="html">Logo Quinte Giornate Italiane gvSIG Como</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/05/logosmall_como-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>GDAL in due clic con Open++</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/</link>
+		<comments>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/#comments</comments>
+		<pubDate>Thu, 13 Oct 2011 07:00:58 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[gdalinfo]]></category>
+		<category><![CDATA[gdal_translate]]></category>
+		<category><![CDATA[open++]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+I nostri più assidui lettori sicuramente ricorderanno un &#8220;vecchio&#8221; post di Andrea Borruso dal titolo &#8220;Il tasto destro per alleggerire un po’ il lavoro di chi si occupa di GIS (su Windows e su Linux)&#8221;, un evergreen del nostro blog tra i più visitati di sempre. Ebbene, in accordo con la postilla che scriviamo in [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="text-align: left;">I n<a href="http://dengdun.webs.com/en/openxx.htm" target="_blank"><img class="alignleft" style="border: 0pt none; margin: 5px;" title="Open++" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" alt="Open++" width="32" height="32" /></a>ostri più assidui lettori sicuramente ricorderanno un &#8220;vecchio&#8221; post di Andrea Borruso dal titolo<strong> <a title="Il tasto destro per alleggerire un po' il lavoro di chi si occupa di GIS (su Windows e su Linux)" href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/" target="_blank">&#8220;Il tasto destro per alleggerire un po’ il lavoro di chi si occupa di GIS (su Windows e su Linux)&#8221;</a></strong>, un evergreen del nostro blog tra i più visitati di sempre. Ebbene, in accordo con la postilla che scriviamo in calce ai nostri post dopo un anno dalla loro pubblicazione (ci teniamo a ricordarlo!), il post di Andrea, pur sempre attualissimo, merita un aggiornamento in virtù del fatto che il software <a title="Open++" href="http://dengdun.webs.com/en/openxx.htm" target="_blank"><strong>Open++</strong></a> da lui brillantemente recensito ha subito di recente alcune evoluzioni significative tali da rendere inefficaci le istruzioni scritte all&#8217;epoca (&#8230;ben due anni e mezzo fa!).</p>
+	<p style="text-align: left;">In particolare, Andrea ci mostrava come configurare Open++ in modo da “automatizzare” l&#8217;utilizzo di alcune utility dello <em>swiss kn</em><em>ife</em> geospaziale per eccellenza: <a title="GDAL - Geospatial Data Abstraction Library" href="http://www.gdal.org/" target="_blank"><strong>la libreria GDAL</strong></a>. Cercheremo pertanto di ottenere lo stesso risultato di allora, utilizzando stavolta l&#8217;ultima release di Open++ (v. 1.5.1).</p>
+	<p style="text-align: left;">Partiamo innanzitutto dal notare che la struttura della finestra di dialogo di Open++ è leggermente cambiata rispetto al passato. In luogo della scheda <em>Language</em>, ora ne sono presenti altre due: <em>Install/Uninstall</em> e <em>About</em>. Tralasciando l&#8217;ovvio significato di quest&#8217;ultima, la scheda <em>Install/Uninstall </em>è stata introdotta in sostituzione del vecchio installer, rendendo quindi l&#8217;applicazione portabile (può essere eseguita su una semplice chiavetta USB). La scheda principale (<em>Commands</em>) è apparentemente rimasta invariata rispetto al passato. Tuttavia, come ci fa notare Chiara (una lettrice che di recente ha <a title="Commento di Chiara al post di Andrea" href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/comment-page-1/#comment-7297" target="_blank">commentato il post di Andrea</a>, sollevando il problema), qualcosa è cambiato nella versione 1.5.1 (probabilmente anche prima): si tratta essenzialmente delle variabili utilizzabili nella casella di testo in cui andiamo a configurare i nostri comandi e, in particolare, quella degli argomenti (<em>Arguments</em>), come mostrato nella figura seguente.</p>
+	<p style="text-align: center;"><img class="aligncenter" title="Open++ - opzioni Arguments" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/1.png" alt="Open++ - opzioni Arguments" width="501" height="380" /></p>
+	<p style="text-align: left;" align="JUSTIFY">Tali variabili, per quanto siano di una chiarezza quasi disarmante, risultano però meno flessibili da gestire rispetto alle versioni precedenti specie quando, come nel caso delle utility della libreria GDAL, il nostro comando accetta due o più parametri basati sul nome del file in ingresso. Fortunatamente, ci viene in soccorso l&#8217;unica FAQ presente nell&#8217;help file di Open++ (abbastanza criptico, in verità&#8230;) in cui è mostrato l&#8217;utilizzo di un ciclo <em>for</em> in linguaggio batch all&#8217;interno degli argomenti. Dunque, se è possibile usare il linguaggio batch, è altrettanto possibile usare anche i <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/percent.mspx?mfr=true">parametri batch</a> e trarne così beneficio nel gestire i nomi dei file con o senza le loro estensioni. Ovviamente un ciclo <em>for</em> è applicabile anche su un singolo file e quindi il gioco è fatto!</p>
+	<p style="text-align: left;" align="JUSTIFY">Andando al sodo, per prima cosa consiglio di aggiungere la cartella dei binari di GDAL (o di FWTools, se preferite) all&#8217;interno della variabile PATH di sistema. Così potrete facilmente eseguire qualsiasi tool di GDAL all&#8217;interno di una qualsivoglia cartella, senza la necessità di dover riscrivere il suo percorso. In questo altro <a href="../2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/">post</a> sempre di Andrea (lo &#8220;<em>swiss knife</em>&#8221; di TANTO <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' />  ) è descritto come fare. Nel seguito, assumerò che lo abbiate fatto.</p>
+	<p style="text-align: left;" align="JUSTIFY">Quindi aggiungiamo un separatore delle opzioni di menù nella scheda <em>Commands</em> di Open++ e proviamo a configurare l&#8217;utility relativamente più semplice tra quelle trattate da Andrea: <em>gdalinfo</em>. Per prima cosa, scriviamo <em>&#8220;GDALinfo&#8221; </em>come titolo. Poi, trattandosi di una utility che si esegue da riga di comando, il programma da utilizzare sarà <em>%ComSpec%</em>, ovvero il nome della variabile di ambiente usata da Windows per indicare l&#8217;interprete da linea di comando (CLI), solitamente <em>cmd.exe</em>. Fin qui nulla di nuovo rispetto al post di Andrea. Negli argomenti, invece, scriveremo:</p>
+	<pre>/k gdalinfo %FilePaths%</pre>
+	<p style="text-align: left;" align="JUSTIFY">La spiegazione è piuttosto semplice: <em>/k</em> significa che vogliamo mantenere la finestra aperta dopo l&#8217;esecuzione del comando (altrimenti non riusciremmo a leggere le informazioni), <em>gdalinfo</em> è il nome dell&#8217;eseguibile dell&#8217;utility e, quindi, <em>%FilePaths%</em> è una variabile che rappresenta il vettore dei percorsi dei file passati come parametro. La directory di lavoro coincide con la directory del file stesso (<em>%FileDir%</em>), scegliamo eventualmente un&#8217;icona per rappresentare il comando, associamo il comando al singolo file e, infine, esplicitiamo le estensioni possibili del file in ingresso. Nulla di trascendentale, verrebbe da pensare.</p>
+	<p style="text-align: center;"><img class="aligncenter" title="Open++ - gdalinfo" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/2.png" alt="Open++ - gdalinfo" width="486" height="510" /></p>
+	<p style="text-align: left;" align="JUSTIFY">Le cose si complicano, invece, quando andiamo a mettere in pratica l&#8217;esempio di Andrea relativo a <em>gdal_translate</em>. La procedura è sostanzialmente identica al caso precedente, ad eccezione dell&#8217;argomento. Tuttavia, come anticipavo in precedenza, ci viene ottimamente in soccorso l&#8217;unica FAQ a disposizione. E, pertanto, l&#8217;argomento da scrivere per convertire in formato JPEG sarà:</p>
+	<pre>/c for %i in (%FilePaths%) do start gdal_translate -of JPEG %~nxi %~ni.jpg</pre>
+	<p style="text-align: left;" align="JUSTIFY">che, in pratica, significa che per tutti i file contenuti nel vettore dei percorsi <em>%FilePaths%</em> (nel nostro caso, contiene un unico percorso in quanto selezioneremo un unico file) esegue il comando <em>gdal_translate -of JPEG %~nxi %~ni.jpg, </em>dove <em>%~nxi </em>è il nome <span style="text-decoration: underline;">compreso di estensione</span> del raster sorgente, mentre <em>%~ni </em>è il nome <span style="text-decoration: underline;">privo di estensione</span> del raster di destinazione, seguito poi da <em>.jpg</em>.</p>
+	<p style="text-align: left;" align="JUSTIFY"><img class="aligncenter size-full wp-image-4275" title="Open++ - gdal_translate" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/3.png" alt="Open++ - gdal_translate" width="486" height="510" /></p>
+	<p>E non è ancora tutto! Visto che usiamo un ciclo <em>for</em> come argomento e che Open++ prevede l&#8217;associazione dei suoi comandi anche ad un insieme di file, possiamo quindi rendere la conversione in JPEG in modalità batch. A tal fine, creeremo sostanzialmente una copia del <em>Convert to JPEG</em> in cui aggiungeremo solo il termine <em>(batch)</em> alla fine del titolo e poi cambieremo l&#8217;opzione <em>Associate with</em> da <em>Single File</em> a <em>Multiple File</em>. Possiamo quindi selezionare più file raster e da menù contestuale scegliere l&#8217;opzione <em>Convert to JPEG (batch)</em> per avere la conversione in blocco di tutti i file selezionati. E&#8217; quindi adesso facile definire altri comandi di conversione verso altri <a title="GDAL Raster Formats" href="http://www.gdal.org/formats_list.html" target="_blank">formati raster supportati da GDAL</a> &#8230;e non solo! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-4296" title="open++ menù" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg.png" alt="" width="469" height="251" /></p>
+	<p>Per i più pigri, ecco il file di configurazione <a title="Sample OpenXX initialization file showing how to use GDAL utilities" href="https://gist.github.com/1273596" target="_blank"><strong>OpenXX.ini</strong></a> dei comandi descritti in precedenza. Basta copiarlo nella cartella contenente Open++, eseguirlo &#8230;<em>et voilà</em> &#8230;si otterrà la stessa identica configurazione. Si tratta di un metodo semplice e rapido per condividere le proprie raccolte di comandi con i colleghi.</p>
+	<p><strong>Una nota a margine:</strong> in caso si decida di definire comandi per effettuare operazioni di coordinate, occorre aggiungere alla variabile PATH di sistema anche il percorso della cartella di GDAL (o eventualmente della libreria proj.4) che contiene le definizioni dei vari sistemi cartografici definiti da EPSG.</p>
+	<p>Infine, <strong>un grosso ringraziamento a Chiara</strong> per averci costretti a rivalutare un post obsoleto.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/">GDAL in due clic con Open++</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" medium="image">
+			<media:title type="html">Open++</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/1.png" medium="image">
+			<media:title type="html">Open++ - opzioni Arguments</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/2.png" medium="image">
+			<media:title type="html">Open++ - gdalinfo</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/3.png" medium="image">
+			<media:title type="html">Open++ &#8211; gdal_translate</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/3-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg.png" medium="image">
+			<media:title type="html">open++ menù</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>La rivoluzione geospaziale continua!</title>
+		<link>http://blog.spaziogis.it/2011/08/11/la-rivoluzione-geospaziale-continua/</link>
+		<comments>http://blog.spaziogis.it/2011/08/11/la-rivoluzione-geospaziale-continua/#comments</comments>
+		<pubDate>Thu, 11 Aug 2011 15:24:46 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[geospatial]]></category>
+		<category><![CDATA[GRP]]></category>
+		<category><![CDATA[traduzioni]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3977</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+rivoluzione+geospaziale+continua%21&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-08-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/08/11/la-rivoluzione-geospaziale-continua/&amp;rft.language=English"></span>
+Era il maggio 2009 quando TANTO cominciava a raccontare di Geospatial Revolution Project, definendolo come un “ambizioso progetto con il quale diffondere la consapevolezza della coscienza geografica in un mondo nel quale ormai (quasi) tutti sanno cosa siano Google Earth e Streetview”, di come queste tecnologie siano usate non solo negli smartphone e nei ricevitori [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+rivoluzione+geospaziale+continua%21&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-08-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/08/11/la-rivoluzione-geospaziale-continua/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://geospatialrevolution.psu.edu/" target="_blank"><img class="alignleft size-full wp-image-3981" style="margin: 2px; padding-right: 5px; border: 0pt none;" title="Geospatial Revolution Project" src="http://blog.spaziogis.it/wp-content/uploads//2011/07/geospatial_revolution_centered1.png" alt="" width="253" height="71" /></a>Era il <a href="../2009/05/11/raccontare-la-rivoluzione-geospaziale/">maggio 2009</a> quando TANTO cominciava a raccontare di <a title="Geospatial Revolution Project" href="http://geospatialrevolution.psu.edu/" target="_blank"><strong>Geospatial Revolution Project</strong></a>, definendolo come un <em>“ambizioso progetto con il quale diffondere la consapevolezza della coscienza geografica in un mondo nel quale ormai (quasi) tutti sanno cosa siano Google Earth e Streetview”</em>, di come queste tecnologie siano usate non solo negli smartphone e nei ricevitori GPS delle automobili, ma anche in molte branche della scienza, nell&#8217;allocazione ottimale delle risorse, nel governo del territorio, nella gestione delle crisi internazionali &#8230;e molto altro ancora, sempre di più davanti ai nostri occhi. E provando a fare un bilancio, GRP si è effettivamente dimostrato al di là di ogni nostra più rosea aspettativa.</p>
+	<p>Abbiamo preso a cuore questo progetto poiché rappresenta, a nostro modesto avviso, una sintesi non tecnica particolarmente efficace a livello divulgativo che descrive ottimamente quello che è il mondo delle tecnologie geospaziali che ci piace tanto &#8230;e non solo! Ci ha offerto infatti innumerevoli spunti di riflessione, ponendoci davanti diversi interrogativi. Dove saremmo ora se John Snow non avesse disegnato la sua mappa leggendaria, ponendo così le basi per l&#8217;analisi spaziale in senso moderno? A quale destino ancor più amaro sarebbe andato incontro Haiti dopo l&#8217;immane catastrofe del terremoto del 2010, se non fossero esistiti il progetto OpenStreetMap e i suoi contributori provenienti da ogni angolo del mondo? Gli abitanti di Kibera avrebbero oggi a disposizione fondamentali servizi laddove prima non c&#8217;erano, se non fosse stata messa in campo l&#8217;iniziativa meravigliosa di Map Kibera? E ce ne sarebbero tanti altri&#8230;</p>
+	<div align="center">
+<iframe width="500" height="314" src="http://www.youtube.com/embed/9F7z9LLYxf8?rel=0&#038;hl=it_IT&#038;fs=1;cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
+</div>
+	<p>Un viaggio durato un paio d&#8217;anni, ma che certamente non si esaurisce qui. L&#8217;epilogo del quarto ed ultimo episodio (di cui finalmente abbiamo terminato la traduzione dei sottotitoli e che vi riproponiamo in questo post) condensa tutto il senso di quanto ci siamo detti finora e quanto ancora deve venire:</p>
+	<blockquote><p>Questa tecnologia sta cambiando il modo in cui guardiamo il mondo. Stiamo acquisendo la comprensione basata sulla localizzazione di qualsiasi cosa sul pianeta rendendola ora quasi tangibile. [...] La geografia e la scienza stanno per fare la differenza. Aiuteranno i governi a prendere decisioni migliori, aiuteranno le persone a imparare cose in modi nuovi, aiuteranno i cittadini a comprendere il loro governo e mettersi in gioco, contribuiranno a salvare il mondo.</p></blockquote>
+	<p>Non ci resta che attuarla questa rivoluzione giorno dopo giorno, cercando di disseminare in maniera capillare questa nuova forma di consapevolezza, a partire dai banchi di scuola per finire a quelli di chi ci governa, e immaginando nuovi possibili utilizzi di queste tecnologie al servizio dell&#8217;intera umanità. L&#8217;evoluzione dell&#8217;<em>homo geographicus</em> si trova ancora sul ramo ascendente della sua parabola, per cui abbiamo ancora tanta strada da percorrere&#8230;</p>
+	<p><strong>&#8230;la rivoluzione geospaziale continua!</strong></p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/08/11/la-rivoluzione-geospaziale-continua/">La rivoluzione geospaziale continua!</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/08/11/la-rivoluzione-geospaziale-continua/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+rivoluzione+geospaziale+continua%21&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-08-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/08/11/la-rivoluzione-geospaziale-continua/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/07/geospatial_revolution_centered1-150x81.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/07/geospatial_revolution_centered1.png" medium="image">
+			<media:title type="html">Geospatial Revolution Project</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/07/geospatial_revolution_centered1-150x81.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>La notte della Rete</title>
+		<link>http://blog.spaziogis.it/2011/07/05/la-notte-della-rete/</link>
+		<comments>http://blog.spaziogis.it/2011/07/05/la-notte-della-rete/#comments</comments>
+		<pubDate>Tue, 05 Jul 2011 14:33:44 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[agcom]]></category>
+		<category><![CDATA[notterete]]></category>
+		<category><![CDATA[rete]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3900</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+notte+della+Rete&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-07-05&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/07/05/la-notte-della-rete/&amp;rft.language=English"></span>
+Domani (6 luglio), l&#8217;Autorità per le Comunicazioni (AgCom) voterà una delibera con cui si attribuirà il potere di oscurare siti internet stranieri e di rimuovere contenuti da quelli italiani, in modo del tutto arbitrario e bypassando di fatto l&#8217;autorizzazione della magistratura. Anche TANTO dice no al bavaglio alla rete! Seguiamo insieme &#8220;La notte della rete&#8221;, [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+notte+della+Rete&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-07-05&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/07/05/la-notte-della-rete/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://www.agoradigitale.org/lanottedellarete"><img class="size-medium wp-image-3903 alignleft" title="La notte della Rete" src="http://blog.spaziogis.it/wp-content/uploads//2011/07/notteretesmall-274x300.png" alt="" width="200" height="219" /></a>Domani (6 luglio), l&#8217;Autorità per le Comunicazioni (AgCom) voterà una delibera con cui si attribuirà il potere di oscurare siti internet stranieri e di rimuovere contenuti da quelli italiani, in modo del tutto arbitrario e bypassando di fatto l&#8217;autorizzazione della magistratura.</p>
+	<p>Anche TANTO dice <strong>no al bavaglio alla rete!</strong> Seguiamo insieme &#8220;La notte della rete&#8221;, una 4 ore no-stop in cui si alterneranno cittadini e associazioni in difesa del web, politici, giornalisti, cantanti, esperti. L&#8217;evento sarà in diretta streaming a partire dalle 17:30. L&#8217;hashtag Twitter è <strong><a title="#notterete" href="https://twitter.com/#!/search/%23notterete" target="_blank">#notterete</a></strong>.<br />
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="480" height="296" id="utv249997" name="utv_n_294932"><br />
+<param name="flashvars" value="loc=%2F&amp;autoplay=false&amp;vid=15814980&amp;locale=en_US&amp;hasticket=false&amp;v3=1" />
+<param name="allowfullscreen" value="true" />
+<param name="allowscriptaccess" value="always" />
+<param name="src" value="http://www.ustream.tv/flash/viewer.swf" /><embed flashvars="loc=%2F&amp;autoplay=false&amp;vid=15814980&amp;locale=en_US&amp;hasticket=false&amp;v3=1" width="480" height="296" allowfullscreen="true" allowscriptaccess="always" id="utv249997" name="utv_n_294932" src="http://www.ustream.tv/flash/viewer.swf" type="application/x-shockwave-flash" /></object></p>
+	<p>Tutti noi crediamo che il diritto di autore vada rispettato e tutelato come parte integrante della persona e del diritto di espressione.</p>
+	<p>Proprio in relazione a tali valori non può essere accettato né il principio, né il <em>modus operandi</em> della detta delibera che, lungi dal tutelare veramente il diritto di autore, mina seriamente, dal punto di vista sostanziale e dal punto di vista formale, i diritti inviolabili dell&#8217;individuo.</p>
+	<p>Di seguito, per chi volesse farsi una idea sulla questione, vi segnaliamo i seguenti link:</p>
+	<ul>
+	<li><a href="http://sitononraggiungibile.e-policy.it/it/faq/">Cosa c’è da sapere sulla Delibera 668/2010 dell’AGCOM e il diritto d’autore: A chi si applica, come ci si può difendere, cosa succede per i siti esteri. </a></li>
+	<li><a href="http://www.agoradigitale.org/">Agorà digitale</a></li>
+	</ul>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/07/05/la-notte-della-rete/">La notte della Rete</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/07/05/la-notte-della-rete/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+notte+della+Rete&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-07-05&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/07/05/la-notte-della-rete/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/07/notteretesmall-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/07/notteretesmall.png" medium="image">
+			<media:title type="html">La notte della Rete</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/07/notteretesmall-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Programma delle Quarte Giornate Italiane di gvSIG</title>
+		<link>http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/</link>
+		<comments>http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/#comments</comments>
+		<pubDate>Wed, 30 Mar 2011 08:00:20 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[udine]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3568</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Programma+delle+Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-03-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+E&#8217; stato pubblicato il programma delle &#8220;Quarte Giornate Italiane di gvSIG&#8221; che, ricordiamo, si terranno dal 19 al 21 aprile presso l&#8217;Auditorium della Regione Autonoma Friuli Venezia Giulia, Udine. E&#8217; possibile consultarlo sul portale gvsig.org. &#160; [ clopidogrel 75mg pills $90.00 &#124; herbal v viagra study &#124; levaquin 250mg pills $63.00 &#124; lotrisone cream in [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Programma+delle+Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-03-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="text-align: left;">E&#8217; stato pubblicato il programma delle <strong>&#8220;Quarte Giornate Italiane di gvSIG&#8221;</strong> che, ricordiamo, si terranno dal 19 al 21 aprile presso l&#8217;Auditorium della Regione Autonoma Friuli Venezia Giulia, Udine. E&#8217; possibile consultarlo sul portale <a title="Programma Quarte Giornate Italiane di gvSIG" href="http://www.gvsig.org/web/community/events/giornate-italia/2011/Programa" target="_blank">gvsig.org</a>.</p>
+	<p style="text-align: center;"><a href="http://www.gvsig.org/web/community/events/giornate-italia/2011" target="_blank"><img class="aligncenter size-full wp-image-3570" style="border: 0pt none;" title="Quarte Giornate Italiane di gvSIG" src="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord.jpg" alt="" width="215" height="230" /></a></p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/">Programma delle Quarte Giornate Italiane di gvSIG</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		<georss:point featurename="udine">46.0649418 13.2307247</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Programma+delle+Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-03-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/30/programma-delle-quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord.jpg" medium="image">
+			<media:title type="html">Quarte Giornate Italiane di gvSIG</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/03/logocoord-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il lato oscuro della Rivoluzione Geospaziale</title>
+		<link>http://blog.spaziogis.it/2011/03/02/il-lato-oscuro-della-rivoluzione-geospaziale/</link>
+		<comments>http://blog.spaziogis.it/2011/03/02/il-lato-oscuro-della-rivoluzione-geospaziale/#comments</comments>
+		<pubDate>Wed, 02 Mar 2011 12:20:51 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[diplomazia]]></category>
+		<category><![CDATA[geospatial]]></category>
+		<category><![CDATA[gps]]></category>
+		<category><![CDATA[GRP]]></category>
+		<category><![CDATA[guerra]]></category>
+		<category><![CDATA[privacy]]></category>
+		<category><![CDATA[sicurezza]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3488</guid>
+		<description><![CDATA[Oggi è possibile tenere traccia delle persone, che lo sappiano oppure no. Ma si tratta davvero di un'invasione della privacy o solo dell'affermazione di una tecnologia irreversibile e al tempo stesso sempre più irresistibile? Chissà cosa ne pensa la gente...]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+lato+oscuro+della+Rivoluzione+Geospaziale&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/02/il-lato-oscuro-della-rivoluzione-geospaziale/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://geospatialrevolution.psu.edu/"><img class="alignleft size-full wp-image-3489" style="border: 0pt none; margin: 2px;" title="Geospatial Revolution Project" src="http://blog.spaziogis.it/wp-content/uploads//2011/03/geospatial_revolution_stacked.png" alt="Geospatial Revolution Project" width="205" height="286" /></a>Continua l&#8217;appuntamento con <a title="Geospatial Revolution Project" href="http://geospatialrevolution.psu.edu/" target="_blank"><strong>Geospatial Revolution Project</strong></a> ad opera della Pennsylvania State University, che tanto sta appassionando anche la comunità geospaziale italiana.<br />
+Il terzo e penultimo episodio parla dell&#8217;uso dei GIS nei campi della diplomazia internazionale, delle operazioni militari, del lavoro delle forze dell&#8217;ordine e della sicurezza dei cittadini.</p>
+	<p>Il primo capitolo dal titolo <strong>“Mapping the Road to Peace”</strong> sostiene la necessità di avere gli “occhi della nazione” (USA) puntati sui “cattivi” e di utilizzare la <em>geospatial intelligence</em> per intercettare sul nascere le crisi internazionali. Ma soprattutto ricorda quello che è stato il primo impiego di successo delle tecnologie geospaziali nelle trattative diplomatiche durante il conflitto della Bosnia-Erzegovina, a metà degli anni Novanta.</p>
+	<p>Il secondo capitolo <strong>“Waging Modern War”</strong> si occupa di strategia e <em>mission planning</em> nella guerra moderna di precisione. Descrive l&#8217;impiego nelle missioni militari della tecnica “<em>BuckEye Terrain Visualization</em>” che raccoglie, elabora e trasmette dati del terreno ad elevata risoluzione mediante una camera elettro-ottica e un sensore LIDAR al fine di individuare la posizione degli <a title="Improvised Explosive Devices" href="http://en.wikipedia.org/wiki/Improvised_explosive_device" target="_blank">IED (<em>Improvised Explosive Devices</em>)</a>, una continua minaccia anche per le missioni di pace molto difficile da scovare, come purtroppo ci ricorda la <a href="http://www.ansa.it/web/notizie/rubriche/mondo/2011/02/28/visualizza_new.html_1562606595.html" target="_blank">triste cronaca di questi giorni</a>. Si parla anche di <em>human geography</em>, ovvero degli aspetti sociali, culturali, economici, ecc. calati direttamente sulla geografia fisica, la cui rappresentazione su mappa è in grado di facilitare la comprensione da parte dei militari della complessità di Paesi come l&#8217;Afghanistan.</p>
+	<p>Nel terzo capitolo <strong>“Serving &amp; Protecting”</strong>, invece, si illustra come le tecnologie geospaziali possano costituire un valido strumento di supporto alle attività delle forze dell&#8217;ordine. Ad esempio in caso di una rapina in banca, è possibile calcolare in tempo reale le isocrone sulla rete stradale e quindi circoscrivere il perimetro entro il quale ricercare i criminali e posizionare i posti di blocco. E&#8217; mostrato come l&#8217;impiego congiunto di un criminologo e dei GIS possa consentire l&#8217;individuazione della correlazione esistente tra gli hotspot di particolari tipologie di crimini avvenuti in una determinata area e la loro posizione, permettendo quindi una migliore dislocazione delle pattuglie a disposizione, specie se l&#8217;area da controllare è molto estesa. Si parla inoltre dell&#8217;uso del braccialetto elettronico in California come deterrente per chi ha commesso reati di natura sessuale e viene rilasciato in libertà condizionata.</p>
+	<p>L&#8217;ultimo capitolo <strong>“Staying Safe”</strong> ci pone un interrogativo: disporre di un GPS nel proprio telefono cellulare può essere utile in caso di emergenza per le forze dell&#8217;ordine, ma cosa succede se chi controlla è ad esempio uno <em>stalker</em>? Il progresso che scaturisce dall&#8217;uso delle tecnologie geospaziali presenta quindi un duplice aspetto. Da un lato, bisogna saper cogliere tutti i benefici che ne possono derivare. Dall&#8217;altro, occorre ricordarsi che la tecnologia può essere oggetto di abuso e quindi occorre saperla gestire.</p>
+	<blockquote><p>the more data that&#8217;s available out there<br />
+the more transparent the world becomes</p></blockquote>
+	<p>Oggi è possibile tenere traccia delle persone, che lo sappiano oppure no. Ma si tratta davvero di un&#8217;invasione della privacy o solo dell&#8217;affermazione di una tecnologia irreversibile e al tempo stesso sempre più irresistibile? Chissà cosa ne pensa la gente&#8230;</p>
+	<div align="center">
+<iframe title="YouTube video player" width="499" height="311" src="http://www.youtube.com/embed/OePOK6nzcaY?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/03/02/il-lato-oscuro-della-rivoluzione-geospaziale/">Il lato oscuro della Rivoluzione Geospaziale</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/03/02/il-lato-oscuro-della-rivoluzione-geospaziale/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+lato+oscuro+della+Rivoluzione+Geospaziale&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/02/il-lato-oscuro-della-rivoluzione-geospaziale/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/03/geospatial_revolution_stacked-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/03/geospatial_revolution_stacked.png" medium="image">
+			<media:title type="html">Geospatial Revolution Project</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/03/geospatial_revolution_stacked-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Quarte Giornate Italiane di gvSIG</title>
+		<link>http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/</link>
+		<comments>http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/#comments</comments>
+		<pubDate>Fri, 11 Feb 2011 08:50:16 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Eventi]]></category>
+		<category><![CDATA[gfoss]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[italia]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3458</guid>
+		<description><![CDATA[Dal 19 al 21 aprile 2011, si terranno le "Quarte Giornate Italiane di gvSIG" presso l'Auditorium della Regione Autonoma Friuli Venezia Giulia, in via Volturno a Udine.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-02-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Dopo il successo di pubblico delle <a title="Giornate Triestine gvSIG" href="http://blog.spaziogis.it/2010/02/18/giornate-triestine-gvsig/" target="_blank">“Terze Giornate Triestine degli utenti di gvSIG”</a>, tenutesi nel 2010 nella splendida cornice di San Dorligo della Valle/Dolina a pochi passi da Trieste, quest&#8217;anno il classico incontro annuale degli utenti e sviluppatori italiani di gvSIG cambia pelle: assume la nuova denominazione di “Giornate Italiane di gvSIG”, durerà tre giorni invece di due (come in passato) e avrà luogo a Udine, segno che gvSIG è ormai una realtà consolidata nel panorama molto variegato dei software GFOSS e che un numero sempre maggiore di amministrazioni, università e professionisti lo utilizza quotidianamente. Nel seguito, si riporta integralmente il comunicato ufficiale del Comitato organizzatore:</p>
+	<blockquote><p>Dal 19 al 21 aprile 2011, si terranno le <a title="Quarte Giornate Italiane di gvSIG" href="http://www.gvsig.org/web/community/events/giornate-italia/2011/" target="_blank"><strong>&#8220;Quarte Giornate Italiane di gvSIG&#8221;</strong></a> presso l&#8217;Auditorium della Regione Autonoma Friuli Venezia Giulia, in via Volturno a Udine.</p>
+	<p>L&#8217;incontro, organizzato dalla Direzione centrale delle risorse rurali, agroalimentari e forestali della Regione Autonoma Friuli Venezia Giulia, dal Dipartimento di Scienze della Vita dell&#8217;Università degli Studi di Trieste e dall&#8217;Associazione gvSIG, con il patrocinio di Cartesio dell&#8217;Università degli Studi di Udine, dell&#8217;Istituto Nazionale di Oceanografia e di Geofisica Sperimentale &#8211; OGS, della Provincia Autonoma di Bolzano/Bozen, della Comunità Montana della Carnia e del Comune di Tavagnacco, è un interessante punto d&#8217;incontro e di scambio di esperienze tra gli utilizzatori italiani e quelli dell&#8217;Europa centrale. Sono infatti previste numerose presentazioni internazionali.</p>
+	<p>E&#8217; già possibile inviare le proposte di comunicazione presso il seguente indirizzo email: <a title="giornate.italiane@gvsig.org " href="mailto:giornate.italiane@gvsig.org " target="_blank">giornate.italiane@gvsig.org </a>(consultare le <a title="Norme per le presentazioni" href="http://www.gvsig.org/web/community/events/giornate-italia/2011/Comunicaciones" target="_blank">Norme per le presentazioni</a>). Termine per il ricevimento dei riassunti delle presentazioni: mercoledì 16 marzo 2011.</p>
+	<p>L&#8217;iscrizione alle Quarte Giornate Italiane di gvSIG potrà avvenire a partire dal 16 febbraio 2011.</p>
+	<p>Saranno illustrate le novità della versione desktop 1.11, delle estensioni per il laser scanning e 3D, e della versione 1.0 per palmare, come nel corso delle 6e Giornate tenutesi a Valencia nel dicembre 2010.</p>
+	<p>Saranno inoltre presentate applicazioni di interesse regionale, nazionale ed europeo in materia di urbanistica, telerilevamento, idrologia, didattica&#8230;</p></blockquote>
+	<p><div id="attachment_3459" class="wp-caption aligncenter" style="width: 278px"><img class="size-medium wp-image-3459 " style="border: 0pt none;" title="logosmall_400" src="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400-268x300.jpg" alt="" width="268" height="300" /><p class="wp-caption-text">Giornate Italiane di gvSIG</p></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/">Quarte Giornate Italiane di gvSIG</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quarte+Giornate+Italiane+di+gvSIG&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Eventi&amp;rft.source=TANTO&amp;rft.date=2011-02-11&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/02/11/quarte-giornate-italiane-di-gvsig/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400.jpg" medium="image">
+			<media:title type="html">logosmall_400</media:title>
+			<media:description type="html">Giornate Italiane di gvSIG</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/02/logosmall_400-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>JEQL: un linguaggio di scripting geospaziale con la E maiuscola</title>
+		<link>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/</link>
+		<comments>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/#comments</comments>
+		<pubDate>Mon, 17 Jan 2011 11:20:56 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[JEQL]]></category>
+		<category><![CDATA[JTS]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[regexp]]></category>
+		<category><![CDATA[Scripting]]></category>
+		<category><![CDATA[SQL]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3272</guid>
+		<description><![CDATA[Si presenta il linguaggio di scripting JEQL, caratterizzato da eccezionali potenzialità nel processamento di dati geospaziali, attraverso l'illustrazione di un esempio applicativo.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=JEQL%3A+un+linguaggio+di+scripting+geospaziale+con+la+E+maiuscola&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-01-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Scopo del presente post è presentare un formidabile linguaggio di scripting, in cui io e <a title="Giovanni Allegri" href="http://blog.spaziogis.it/author/giohappy/" target="_blank">Giovanni Allegri</a> ci siamo imbattuti da un po’ di tempo a questa parte, che presenta delle potenzialità davvero eccezionali nel processamento di dati geospaziali. Il pretesto occasionale che ha riacceso il nostro sopito interesse nei confronti di <a title="JEQL" href="http://tsusiatsoftware.net/jeql/main.html" target="_blank">JEQL</a> é un recente post del blog Lin.ear Th.inking, <a title="Lin.ear th.inking: Visualizing geodetic information with JEQL" href="http://lin-ear-th-inking.blogspot.com/2010/12/visualizing-geodetic-information-with.html" target="_blank">Visualizing geodetic information with JEQL</a>, in cui l’autore Martin Davis (aka “Dr JTS”, l’attuale <em>designer</em> e <em>lead developer</em> della fantastica libreria JTS &#8230;e non solo!) introduce delle nuove funzioni geodetiche di calcolo sulle geometrie all&#8217;interno di JTS, illustrandone l&#8217;utilizzo mediante un&#8217;applicazione in JEQL che ripercorreremo nel seguito.</p>
+	<h2>Cos’è JEQL?</h2>
+	<p>JEQL è un <strong>Query Language sviluppato in Java</strong>, dove la <strong>“E”</strong> può assumere i seguenti significati:</p>
+	<ul>
+	<li> <strong>Extended</strong>, poiché implementa un numero sempre crescente di estensioni che lo rende più potente nel processamento dei dati rispetto alle tante versioni e dialetti <a title="SQL - Wikipedia" href="http://it.wikipedia.org/wiki/SQL" target="_blank">SQL</a> esistenti;</li>
+	<li><strong>Embeddable</strong>, in quanto il motore di JEQL può essere integrato all&#8217;interno di altre applicazioni, in modo da essere utilizzato come query language per modelli di dati tabellari;</li>
+	<li><strong>ETL</strong>, essendo l&#8217;<a title="Extract, transform, load - Wikipedia" href="http://it.wikipedia.org/wiki/Extract,_transform,_load" target="_blank">Extract/Transform/Load</a> il caso d&#8217;uso ideale di JEQL;</li>
+	<li><strong>Efficient</strong>, dato che garantisce velocità di sviluppo ed esecuzione.</li>
+	</ul>
+	<p>JEQL è dunque un linguaggio di scripting che consente il processamento di strutture di dati tabellari, compresi quelli geografici vettoriali. Fin qui nulla di nuovo, probabilmente penseranno i lettori esperti dei possenti RDBMS con estensione spaziale (PostgreSQL + PostGIS, Oracle Spatial, MySQL, ecc.) o del più leggero e, al tempo stesso, molto versatile SpatiaLite. Analogamente a quest&#8217;ultimo, <strong>JEQL non richiede l&#8217;installazione di un server database</strong> e ciò, assieme al fatto che è un linguaggio di scripting, rappresenta un grosso vantaggio in termini di portabilità. Si pensi ad esempio alla replicazione della configurazione di un DBMS a distanza di parecchio tempo oppure alla condivisione di uno script con un nostro collega. Inoltre, anche la velocità di sviluppo e di esecuzione rappresentano dei non trascurabili punti di forza. Naturalmente, esistono anche dei task non coperti da JEQL per i quali un RDBMS è insuperabile.<br />
+<strong>Quali tipi di dati è in grado di utilizzare?</strong> Oltre ai classici tipi Java (interi, stringhe, double) e le date, JEQL supporta anche le geometrie JTS e un vasto repertorio in continua crescita di funzioni spaziali, costruttori di predicati e funzioni di aggregazione, che lo rendono uno strumento particolarmente adatto per il processamento di dataset spaziali. Inoltre, è in grado di accedere in lettura e scrittura a diversi formati di dati (CSV, DBF, SHP, KML) e database compatibili con JDBC (Java Data Base Connectivity).<br />
+<strong>L&#8217;installazione di JEQL è molto semplice</strong>: nei sistemi operativi Windows, basta scompattare il <a href="http://tsusiatsoftware.net/jeql/download.html" target="_blank">pacchetto di installazione</a> (è appena stata rilasciata la versione 0.9) in una cartella con percorso non contenente spazi (<em>[JEQL_HOME]</em>) ed aggiungere nella variabile <em>PATH</em> di sistema il percorso <em>[JEQL_HOME]\bin</em>. Manca, tuttavia, uno script shell o qualcosa di analogo per Linux, che tuttavia non dovrebbe essere difficile da produrre.<br />
+<strong>L’apprendimento del linguaggio JEQL è abbastanza rapido</strong>, soprattutto per chi possiede già dei rudimenti di SQL, ed è facilitato dall&#8217;interprete che guida l&#8217;utente nell&#8217;individuazione e nella correzione degli errori. Il pacchetto di installazione è inoltre corredato da una lista di <em>unit test</em>, ovvero gli stessi esempi basilari utilizzati in fase di collaudo del codice. La documentazione rappresenta invece una delle poche note dolenti, essendo ancora un work in progress, nonostante la presenza di alcuni illuminanti <a href="http://tsusiatsoftware.net/jeql/user/examples.html" target="_blank">esempi applicativi</a>, diversi <a href="http://lin-ear-th-inking.blogspot.com/search/label/jeql" target="_blank">post su Lin.ear Th.inking</a> e una <a href="https://groups.google.com/group/jeql-users?hl=en&amp;pli=1" target="_blank">mailing list</a> dedicata, oltre alla indiscutibile cortesia e competenza dello sviluppatore.<br />
+Attualmente JEQL è rilasciato con <strong>doppia licenza</strong>: freeware e &#8220;commerciale&#8221;. Quest&#8217;ultima per consentirne l&#8217;integrazione all&#8217;interno di software commerciali (&#8230;e in quelli open source?).</p>
+	<h2>Un esempio applicativo: worldAirRoutes.jql</h2>
+	<p>Nel seguito, si cercherà di fornire un saggio delle potenzialità di JEQL, proponendoci le stesse finalità del post citato in precedenza, ovvero disegnare le rotte aeree a scala globale secondo <a href="http://web.unife.it/progetti/matematicainsieme/matcart/ortloss.htm" target="_blank">linee ortodromiche</a>, piuttosto che linee rette, con tutti gli accorgimenti del caso al fine di ottenere una buona resa grafica. Ci cimenteremo passo dopo passo con le fasi di importazione e normalizzazione dei dati di interesse fino al raggiungimento dello scopo. I dati utilizzati nell&#8217;applicazione sono:</p>
+	<ul>
+	<li><a href="http://openflights.svn.sourceforge.net/viewvc/openflights/openflights/data/airports.dat" target="_blank">airport.dat</a></li>
+	<li><a href="http://openflights.svn.sourceforge.net/viewvc/openflights/openflights/data/routes.dat" target="_blank">routes.dat</a></li>
+	<li><a href="http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" target="_blank">TM_WORLD_BORDERS_SIMPL-0.3.zip</a></li>
+	</ul>
+	<p>In particolare, i primi due sono parte degli open data del progetto <a title="OpenFlights" href="http://www.openflights.org/" target="_blank">OpenFlights</a>, rilasciati con <a title="Open Database License (Odbl)" href="http://www.opendatacommons.org/licenses/odbl/" target="_blank">Open Database License (Odbl)</a>, mentre lo shapefile semplificato dei <em>world borders</em> (a proposito della loro qualità, si consiglia la lettura di questo <a title="Free Shapefile of Countries of the World" href="http://barendgehrels.blogspot.com/2010/12/free-shapefile-of-countries-of-world.html" target="_blank">post</a> e successivi) è rilasciato da <a href="http://thematicmapping.org/downloads/world_borders.php" target="_blank">thematicmapping.org</a> con licenza <a title="Creative Commons CC-SA" href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Creative Commons CC-SA</a>.<br />
+Dopo aver installato JEQL 0.9, creiamo una cartella, vi collochiamo i dati appena scaricati (scompattando naturalmente lo zip file) e vi definiamo inoltre un semplice file di testo (<em>worldAirRoutes.jql</em>) nel quale andremo a scrivere il nostro codice.<br />
+Il primo passo dell’applicazione consiste nell&#8217;<strong>importazione dei dati relativi agli aeroporti (airport.dat)</strong>, tenendo presente che i file .dat in esame sono in formato CSV:</p>
+	<pre class="brush: java; ">
+// Read data from CSV
+CSVReader airports file: &quot;airports.dat&quot;;
+numAirports = select count(*) from airports;
+Print &quot;Number of airports to clean: &quot; + val(numAirports);
+Print airports limit: 10;
+</pre>
+	<p>Salviamo lo script, apriamo il prompt dei comandi e collochiamoci nella directory che lo contiene. Per eseguirlo occorre digitare <em>jeql worldAirRoutes.jql</em> e premere il tasto Invio. Successivamente, nel prompt dei comandi comparirà qualcosa del genere:</p>
+	<pre>Number of airports to clean: 6344
+col1:String, col2:String, col3:String, col4:String, col5:String, col6:String, col7:String, col8:String, col9:String, col10:String, col11:String
+1 Goroka Goroka Papua New Guinea GKA AYGA -6.081689 145.391881 5282 10 U
+2 Madang Madang Papua New Guinea MAG AYMD -5.207083 145.7887 20 10 U
+3 Mount Hagen Mount Hagen Papua New Guinea HGU AYMH -5.826789 144.295861 5388 10 U
+...</pre>
+	<p>La prima cosa che scopriamo è che le colonne della tabella “airports” sono identificate come “col1, col2 … colN”, sebbene il file CSV sia sprovvisto delle relative intestazioni dei campi (per la descrizione dei quali si rimanda a <a href="http://openflights.org/data.html" target="_blank">questa pagina</a>), e che i campi sono considerati tutti di tipo String. Procediamo quindi con la <strong>normalizzazione dei dati degli aeroporti</strong>, selezionando i dati di nostro interesse:</p>
+	<pre class="brush: java; ">
+// Select airports data with valid IATA airport code
+airports2 = select
+  col2 as name,
+  col3 as city,
+  col4 as country,
+  col5 as code,
+  col7 as lat,
+  col8 as lon
+  from airports
+  where RegEx.matches(col5,&#039;[A-Z]{3}&#039;);
+</pre>
+	<p>E&#8217; interessante notare che:</p>
+	<ul>
+	<li> per definire gli alias dei campi di una tabella è utilizzata la parola chiave <em>as</em>, così come avviene solitamente in molte versioni di SQL, tuttavia si tenga presente che in JEQL il suo uso è a discrezione dell’utente;</li>
+	</ul>
+	<ul>
+	<li> nella clausola <em>where</em> è utilizzata la funzione <em>RegEx.matches (campo, espressione regolare)</em> in modo da selezionare mediante una semplice <a title="Espressione regolare -Wikipedia" href="http://it.wikipedia.org/wiki/Espressione_regolare" target="_blank">espressione regolare</a> tutti e soli gli aeroporti con <a title="International_Air Transport Association airport code - Wikipedia" href="http://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code" target="_blank">codice IATA</a> composto da tre lettere maiuscole, in base allo standard ufficiale dell&#8217;<a title="International Air Transport Association (IATA)" href="http://www.iata.org/" target="_blank">International Air Transport Association (IATA)</a>.</li>
+	</ul>
+	<p>Occorre, inoltre, verificare la presenza di eventuali codici IATA duplicati, in modo da essere certi dell’univocità del campo <em>“code”</em>, al fine di utilizzarlo poi come chiave esterna nelle operazioni di join con la tabella delle rotte aeree (routes.dat), come si vedrà nel seguito.</p>
+	<pre class="brush: java; ">
+// Find duplicate IATA airport codes in airports data
+duplicateCodes = select *
+  from (select code, count(code) as numOccurrences
+    from airports2
+    group by code) as duplicates
+  where numOccurrences &gt; 1;
+Print duplicateCodes;
+</pre>
+	<p>A fronte di tale verifica, si riscontra un unico codice duplicato (<em>“TCG”</em>). Avvalendoci dell’ausilio della <a href="http://www.iata.org/ps/publications/Pages/code-search.aspx" target="_blank">banca dati ufficiale</a> è possibile risolvere tale ambiguità, scartando l&#8217;aeroporto di Tocache (Cina) al quale è stato erroneamente attribuito questo codice. A tal fine, la clausola <em>where</em> della prima <em>select</em> diventa:</p>
+	<pre class="brush: java; ">
+  where RegEx.matches(col5,&#039;[A-Z]{3}&#039;)
+  and col3!=&quot;Tocache&quot;;
+</pre>
+	<p>E’ dunque possibile commentare il codice relativo alla ricerca dei duplicati (<em>“//”</em> commenta una singola riga, mentre <em>“/* &#8230; */”</em> tutto il codice tra essi compreso &#8211; non a caso, come nel linguaggio Java) e verificare la bontà dei risultati fin qui ottenuti, visualizzando eventualmente i primi dieci record della tabella <em>“airports2”</em>.</p>
+	<pre class="brush: java; ">
+// Check intermediate results
+numAirports2 = select count(*) from airports2;
+Print &quot;Number of airports without duplicates: &quot; + val(numAirports2);
+</pre>
+	<p>Omettendo per brevità la visualizzazione del contenuto delle tabelle, otteniamo:</p>
+	<pre>Number of airports without duplicates: 5023</pre>
+	<p>Successivamente, si procede all&#8217;<strong>importazione e normalizzazione dei dati relativi alle rotte aeree (routes.dat)</strong>. In particolare, selezioniamo i codici IATA degli aeroporti di origine e destinazione relativi a ciascuna rotta aerea, e li combiniamo in un&#8217;unica stringa in modo da poter escludere le rotte duplicate mediante l’operazione di raggruppamento (<em>group by</em>). Da queste stringhe è poi possibile recuperare nuovamente i codici dai quali sono stati ottenuti. Inoltre, definiamo una chiave primaria <em>“rid”</em> tramite la funzione <em>rownum()</em> che restituisce il numero di riga.</p>
+	<pre class="brush: java; ">
+// Read data from CSV
+CSVReader routes file: &quot;routes.dat&quot;;
+numRoutes = select count(*) from routes;
+Print &quot;Number of routes to clean: &quot; + val(numRoutes);
+	
+// Select routes data removing duplicates
+routes2 = select
+  rownum() as rid,
+  String.substring(routeCode, 0, 3) as fromCode,
+  String.substring(routeCode, 3, 6) as toCode
+  from (select
+    //col3 as fromCode,
+    //col5 as toCode,
+    col3+col5 as routeCode
+    from routes
+    order by routeCode asc) as routesWithDuplicates
+  group by routeCode;
+	
+// Check intermediate results
+numRoutes2 = select count(*) from routes2;
+Print &quot;Number of routes without duplicates: &quot; + val(numRoutes2);
+</pre>
+	<p>ottenendo:</p>
+	<pre>Number of routes to clean: 64114
+Number of routes without duplicates: 36004</pre>
+	<p>Il task successivo consiste nell&#8217;associare ad ogni rotta aerea le coordinate dell&#8217;aeroporto di partenza e di quello di destinazione, scartando le coordinate con valore <em>null</em> e validando quelle che non lo sono, facendo ancora una volta ricorso alle espressioni regolari.</p>
+	<pre class="brush: java; ">
+// Extract origin airport data
+fromAirport = select
+  rid,
+  fromCode,
+  name as fromName,
+  city as fromCity,
+  country as fromCountry,
+  lat as fromLat,
+  lon as fromLon
+  from routes2
+  left outer join airports2
+  on routes2.fromCode == airports2.code;
+	
+// Extract destination airport data
+toAirport = select
+  rid,
+  toCode,
+  name as toName,
+  city as toCity,
+  country as toCountry,
+  lat as toLat,
+  lon as toLon
+  from routes2
+  left outer join airports2
+  on routes2.toCode == airports2.code;
+	
+// Join the last two tables (removing records with null coords)
+troute = select fromAirport.*, toAirport.* except rid
+  from fromAirport
+  join toAirport
+  on fromAirport.rid==toAirport.rid
+  where not Val.isNull(fromLat) and not Val.isNull(fromLon) and not Val.isNull(toLat) and not Val.isNull(toLon);
+	
+// Check if coords are valid
+troute2 = select *
+  from troute
+  where RegEx.matches(fromLat,&#039;-?((([0-9]|[1-8][0-9])(\.[0-9]*)?)|(90))&#039;)
+  and RegEx.matches(fromLon,&#039;-?((([0-9]|[1-9][0-9]|1[0-7][0-9])(\.[0-9]*)?)|(180))&#039;)
+  and RegEx.matches(toLat,&#039;-?((([0-9]|[1-8][0-9])(\.[0-9]*)?)|(90))&#039;)
+  and RegEx.matches(toLon,&#039;-?((([0-9]|[1-9][0-9]|1[0-7][0-9])(\.[0-9]*)?)|(180))&#039;);
+	
+// Check intermediate result
+numRoutes3 = select count(*) from troute2;
+Print &quot;Number of routes without duplicates and with valid coords: &quot; + val(numRoutes3);
+</pre>
+	<p>che ci restituisce:</p>
+	<pre>Number of routes without duplicates and with valid coords: 35475</pre>
+	<p>Un altro aspetto degno di nota è l’utilizzo della parola chiave <em>except</em> nella <em>select</em> della tabella <em>“troute”</em>. Si tratta di un’estensione solitamente assente nei vari linguaggi SQL che ci consente di selezionare tutti i campi di una particolare tabella ad eccezione di un campo.<br />
+Infine, selezioniamo i dati da cui poter derivare le geometrie delle rotte aeree e rappresentarle graficamente (da qui in poi, il codice è quello del Dr JTS con qualche piccolo adattamento):</p>
+	<pre class="brush: java; ">
+// Convert coords from string to double
+trte = select fromCity, toCity,
+  Val.toDouble(fromLon) fromLon, Val.toDouble(fromLat) fromLat,
+  Val.toDouble(toLon) toLon, Val.toDouble(toLat) toLat
+  from troute2;
+	
+// Split geodetic arcs and calculate lengths
+tlines = select fromCity, toCity, line, len
+  with {
+    line = Geodetic.split180(Geodetic.arc(fromLon, fromLat, toLon, toLat, 2));
+    len = Geom.length(line);
+  }
+  from trte order by len desc;
+	
+// Interpolate line color and fix line width
+tplot = select line,
+  Color.interpolate(&quot;ffffff&quot;, &quot;00aacc&quot;, &quot;0000ff&quot;, len / 50.0 ) lineColor,
+  0.2 lineWidth
+  from tlines;
+	
+// Import shapefile data
+ShapefileReader tworld file: &quot;TM_WORLD_BORDERS_SIMPL-0.3.shp&quot;;
+	
+// Select geometries and define line and fill colors
+tworldLine = select GEOMETRY, &quot;222222&quot; lineColor from tworld;
+tworldFill = select GEOMETRY, &quot;333333&quot; fillColor from tworld;
+	
+// Plot routes with world landmasses
+width = 1800;
+Plot width: width height: width / 2
+  extent: LINESTRING(-180 -90, 180 90)
+  data: tworldFill
+  data: tplot
+  data: tworldLine
+  file: &quot;routes.png&quot;;
+	
+// Plot routes without world landmasses
+Plot width: width height: width / 2
+  extent: LINESTRING(-180 -90, 180 90)
+  data: tplot
+  file: &quot;routes_only.png&quot;;
+</pre>
+	<p><a title="worldAirRoutes.jql" href="http://bit.ly/eTxd2R" target="_blank">Qui</a> è possibile effettuare il download dell&#8217;intero script. Infine, si mostrano le due immagini risultanti in cui sono rappresentate le rotte aeree rispettivamente con e senza i <em>world borders</em>. In particolare, le rotte sono disegnate in ordine di lunghezza decrescente, utilizzando un colore interpolato in base alla lunghezza, per cui spiccano le rotte più brevi con colore più chiaro. Anche nella seconda immagine, è possibile rilevare con buona approssimazione i limiti di molte terre emerse.</p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" target="_blank"><img class="aligncenter size-full wp-image-3308" style="border: 0pt none;" title="routes" src="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" alt="" width="500" height="250" /></a></p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" target="_blank"><img class="aligncenter size-full wp-image-3312" style="border: 0pt none;" title="routes_only" src="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" alt="" width="500" height="250" /></a></p>
+	<p>Come giustamente afferma Martin Davis, dalla densità delle rotte aeree che si percepisce nelle immagini si evince come agli europei piaccia molto volare. Ma neanche quelli delle East Coast scherzano! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+	<h2>Conclusioni</h2>
+	<p>L’esempio applicativo appena mostrato esprime già molte delle potenzialità offerte da JEQL, e i comandi attualmente disponibili sono molto numerosi (basta digitare <em>jeql -man</em> per scoprirlo!). JEQL offre inoltre anche la possibilità di estendere le sue funzionalità tramite un’interfaccia di programmazione (API), non ancora documentata, tramite la quale creare nuovi comandi e funzioni da poter utilizzare all’interno dei nostri script. Non nascondiamo la speranza, in parte malcelata dallo stesso Martin Davis, che un domani si possa usufruire di una doppia licenza open source/commerciale, che permetta di contribuire alla crescita della libreria con nuovi plugin e una migliore documentazione di tutte le caratteristiche offerte.</p>
+	<h2>Ringraziamenti</h2>
+	<p>Desidero ringraziare <strong>Giovanni Allegri</strong>, non solo per il proficuo scambio di idee avvenuto dietro le quinte, ma anche per aver sollecitato il rilascio della nuova release (0.9) di JEQL, senza la quale non sarebbe stato possibile riprodurre l&#8217;applicazione, e naturalmente <strong>Martin Davis</strong>, il padre di questo formidabile linguaggio, per aver ispirato questo post.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/">JEQL: un linguaggio di scripting geospaziale con la E maiuscola</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=JEQL%3A+un+linguaggio+di+scripting+geospaziale+con+la+E+maiuscola&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-01-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" medium="image">
+			<media:title type="html">routes</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" medium="image">
+			<media:title type="html">routes_only</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Una cultura diffusa di prevenzione e riduzione del rischio sismico</title>
+		<link>http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/</link>
+		<comments>http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/#comments</comments>
+		<pubDate>Tue, 23 Nov 2010 09:28:21 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[INGV]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[Protezione Civile]]></category>
+		<category><![CDATA[rischio sismico]]></category>
+		<category><![CDATA[terremoti]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2995</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Una+cultura+diffusa+di+prevenzione+e+riduzione+del+rischio+sismico&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-11-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/&amp;rft.language=English"></span>
+Oggi ricade il trentennale del terremoto del 23 novembre 1980, noto anche come il &#8220;terremoto dell&#8217;Irpinia&#8221; , i cui effetti devastanti colpirono una vasta area dell&#8217;Italia meridionale, posta a cavallo delle province di Avellino, Salerno e Potenza, mietendo quasi 3000 vittime. Tra le immagini indelebili ancora scolpite nella mia memoria di potentino vi è quella [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Una+cultura+diffusa+di+prevenzione+e+riduzione+del+rischio+sismico&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-11-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Oggi ricade il <strong>trentennale del terremoto del 23 novembre 1980</strong>, noto anche come il <a id="aptureLink_Hn9ZsjHhaE" href="http://it.wikipedia.org/wiki/Terremoto_dell%27Irpinia">&#8220;terremoto dell&#8217;Irpinia&#8221;</a> , i cui effetti devastanti colpirono una vasta area dell&#8217;Italia meridionale, posta a cavallo delle province di Avellino, Salerno e Potenza, mietendo quasi 3000 vittime. <img class="alignleft size-full wp-image-3003" style="border: 0pt none; margin: 5px;" title="Orologio del Palazzo del Governo a Piazza Mario Pagano, Potenza dopo il terremoto del 1980" src="http://blog.spaziogis.it/wp-content/uploads//2010/11/orolog.jpg" alt="Orologio del Palazzo del Governo" width="181" height="116" />Tra le immagini indelebili ancora scolpite nella mia memoria di potentino vi è quella dell&#8217;orologio del Palazzo del Governo a Piazza Mario Pagano che si è fermato alle 19:34, l&#8217;ora esatta in cui la terra ha cominciato a tremare per 90 interminabili secondi. Quel quadrante rotto rappresenta l&#8217;emblema di una profonda ferita che ancora oggi non si è rimarginata del tutto.</p>
+	<p>Trenta anni fa non esisteva ancora il <strong>Sistema Nazionale di Protezione Civile</strong>, così come lo conosciamo oggi, e si nominò un Commissario Straordinario allo scopo di fronteggiare l&#8217;emergenza e coordinare i soccorsi delle popolazioni interessate dal terremoto, che entrò in servizio solamente 24 ore dopo la catastrofe. Gli eventi sismici molto recenti verificatisi in <strong>Abruzzo (aprile 2009)</strong> e ad <strong>Haiti (gennaio 2010)</strong>, così come altre calamità naturali, dimostrano come la celerità degli interventi durante le prime ore di soccorso sia fondamentale nel salvataggio di vite umane. Una risposta tempestiva e efficiente della Protezione Civile può fare la differenza, ma tutto ciò non può e non deve bastare.</p>
+	<p><em>&#8220;L&#8217;Italia è un paese di santi, poeti, navigatori&#8230;&#8221;</em> e purtroppo anche di terremoti. Basti pensare che <strong>nell&#8217;arco di un mese si verificano generalmente diverse centinaia di eventi sismici</strong> che interessano la quasi totalità del nostro Paese (si salvano la Sardegna e la penisola salentina), dei quali fortunatamente la maggior parte è percepita solo a livello strumentale e non dalla popolazione. Dobbiamo pertanto saperci convivere proprio come avviene in altri paesi evoluti, come il Giappone o la California, senza farci cogliere del tutto impreparati, come avveniva in passato.</p>
+	<p><a href="http://zonesismiche.mi.ingv.it/" target="_blank"><img class="alignright size-full wp-image-3006" style="border: 0pt none; margin: 5px;" title="Mappa di pericolosità sismica del territorio nazionale" src="http://blog.spaziogis.it/wp-content/uploads//2010/11/mappa_opcm3519.gif" alt="" width="257" height="369" /></a>La comunità scientifica internazionale allo stato attuale non ha ancora individuato un <strong>modello attendibile di predizione dei terremoti</strong>, pur essendo attivi promettenti filoni di ricerca basati sullo <strong>studio dei precursori sismici</strong>, anche mediante l&#8217;impiego di immagini telerilevate. Premesso ciò, il migliore approccio possibile da seguire consiste nella <strong>mitigazione del rischio sismico attraverso la corretta applicazione delle norme sulle costruzioni</strong> e l&#8217;adozione di criteri costruttivi tali da scongiurare il pericolo di crollo degli edifici, tenendo conto della <strong>mappa di pericolosità sismica del territorio nazionale</strong> – una delle più avanzate in Europa – e recependo gli studi di <strong>microzonazione sismica</strong> all&#8217;interno degli strumenti urbanistici comunali, in modo da disincentivare il più possibile l&#8217;edificazione nei siti potenzialmente oggetto di fenomeni di amplificazione locale. L&#8217;insieme di questi strumenti di rilevante importanza preventiva può essere inoltre utilizzato per <strong>trasmettere alla popolazione le nozioni di base del rischio sismico</strong>, ovvero una maggiore consapevolezza del fenomeno in modo da poterlo affrontare correttamente.</p>
+	<blockquote><p>Diffondere informazioni scientifiche aggiornate e tali da consentire una conoscenza approfondita del territorio è il miglior strumento per avviare strategie di prevenzione e riduzione dei rischi naturali.</p></blockquote>
+	<p>E quale occasione migliore per apprendere questi concetti, se non in tenera età? Assolutamente in questa direzione vanno alcune iniziative dell&#8217;<a title="INGV - Istituto Nazionale di Geofisica e Vulcanologia" href="http://www.ingv.it/" target="_blank">INGV (Istituto Nazionale di Geofisica e Vulcanologia)</a> finanziate dal Dipartimento nazionale della Protezione Civile. Mi riferisco in particolare al progetto <a title="EDURISK" href="http://www.edurisk.it/" target="_blank">EDURISK</a>, nato circa una ventina di anni fa ad opera di un gruppo di ricercatori del GNDT (Gruppo Nazionale per la Difesa dei Terremoti, confluito nel 2001 nell&#8217;INGV), che coinvolge esperti nel settore dello studio e della riduzione dei rischi naturali, dei vari settori disciplinari attinenti (geologia, sismologia, pericolosità sismica, <a href="http://www.edurisk.it/" target="_blank"><img class="size-full wp-image-3008 alignleft" style="border: 0pt none; margin: 5px;" title="EDURISK logo" src="http://blog.spaziogis.it/wp-content/uploads//2010/11/edurisk_logo.png" alt="EDURISK" width="283" height="76" /></a>ingegneria sismica, sismologia storica, psicologia dell&#8217;emergenza), uno staff di progettazione educativa proveniente dall&#8217;editoria scolastica e multimediale, autori di libri per ragazzi, disegnatori, illustratori, fumettisti ed esperti di didattica. L&#8217;obiettivo principale del progetto EDURISK consiste nel <strong>mettere in campo i ricercatori, la scuola e tutti i cittadini, coinvolgendoli in un progetto di formazione e scoperta del rischio sismico</strong>. In particolare, il frutto di tale iniziativa consiste nella pubblicazione di libri, opuscoli e dvd a supporto del progetto formativo di diffusione delle conoscenze sul rischio sismico e vulcanico (<a title="EDURISK - materiali" href="http://www.edurisk.it/it/scuola/materiali.html" target="_blank">materiale didattico</a>). Il progetto è, inoltre, presente nei principali social network (<a id="aptureLink_L91L4XCmwA" href="http://www.facebook.com/pages/EDURISK/209797215392?ref=ts">Facebook</a>, <a id="aptureLink_O4AMXnURXx" href="http://twitter.com/Edurisk">Twitter</a>, <a id="aptureLink_clyVC8WvPM" href="http://www.anobii.com/edurisk/books">Anobii</a> e <a id="aptureLink_hDGsIN1LLB" href="http://www.youtube.com/edyourisk/">YouTube</a>). Per ulteriori dettagli, si rimanda direttamente al portale del progetto. Di recente, EDURISK ha prodotto la docufiction <strong>&#8220;Non chiamarmi Terremoto&#8221;</strong>, che affronta temi quali la prevenzione, il rispetto per le norme sismiche e i comportamenti corretti da tenere in emergenza. Nel seguito, è possibile visionarne l&#8217;anteprima e questo è il <a href="http://www.nonchiamarmiterremoto.it/" target="_blank">sito</a> dell&#8217;iniziativa.</p>
+	<p><p><a href="http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/"><em>Clicca qui per vedere il video incorporato.</em></a></p></p>
+	<p>D&#8217;altro canto, anche lo stesso INGV è presente su <a id="aptureLink_1np7DOGAA7" href="http://twitter.com/INGVterremoti">Twitter</a> e <a id="aptureLink_49sausupeF" href="http://www.youtube.com/ingvterremoti/">YouTube</a>. Nel primo caso si tratta di un servizio sperimentale di informazione sui terremoti in Italia (e non solo), mentre il canale su YouTube, molto interessante, prevede periodicamente degli aggiornamenti e la descrizione dell&#8217;attività sismica in corso, anche per spiegare alcuni aspetti della ricerca che viene svolta dai ricercatori dell&#8217;INGV.</p>
+	<p>Recentemente, <a id="aptureLink_q0WWmMvYdc" href="../2010/09/06/nessun-dato-sui-terremoti-il-problema-e-risolto/">qui</a> su TANTO si scongiurava l&#8217;eventualità che il prof. Boschi, presidente dell&#8217;INGV, adottasse politiche restrittive sul rilascio dei dati di competenza dell&#8217;Istituto. E&#8217; auspicabile, inoltre, che si continui nella direzione già abbondantemente tracciata nella diffusione capillare delle informazioni. Solo così si potrà contribuire efficacemente al raggiungimento di una sempre maggiore consapevolezza e conoscenza del fenomeno terremoto da parte dei ricercatori, dei tecnici e della popolazione.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/">Una cultura diffusa di prevenzione e riduzione del rischio sismico</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Una+cultura+diffusa+di+prevenzione+e+riduzione+del+rischio+sismico&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-11-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/11/23/una-cultura-diffusa-di-prevenzione-e-riduzione-del-rischio-sismico/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/11/orolog-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/11/orolog.jpg" medium="image">
+			<media:title type="html">Orologio del Palazzo del Governo a P.zza M. Pagano, Potenza dopo il terremoto del 1980</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/11/orolog-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/11/mappa_opcm3519.gif" medium="image">
+			<media:title type="html">Mappa di pericolosità sismica del territorio nazionale</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/11/mappa_opcm3519-150x150.gif" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/11/edurisk_logo.png" medium="image">
+			<media:title type="html">EDURISK logo</media:title>
+			<media:description type="html">EDURISK</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/11/edurisk_logo-150x135.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

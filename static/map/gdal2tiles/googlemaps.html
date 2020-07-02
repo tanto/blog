@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"> 
+  <head>
+    <title>Pubblicare una Raster</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv='imagetoolbar' content='no'/>
+    <style type="text/css"> v\:* {behavior:url(googlemaps.html);}
+        html, body { overflow: hidden; padding: 0; height: 100%; width: 100%; font-family: 'Lucida Grande',Geneva,Arial,Verdana,sans-serif; }
+        body { margin: 10px; background: #fff; }
+        h1 { margin: 0; padding: 6px; border:0; font-size: 20pt; }
+        #header { height: 43px; padding: 0; background-color: #eee; border: 1px solid #888; }
+        #subheader { height: 12px; text-align: right; font-size: 10px; color: #555;}
+        #map { height: 95%; border: 1px solid #888; }
+    </style>
+    <script src='http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAA2XfdS2WfWDTE_U5DK5pK1RQh1g9nutciT0LGp3K2KhGZpOQHRRTyd_c0SX2_ugRQuNZR6dpm_lO0-g' type='text/javascript'></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    function getWindowHeight() {
+	    if (self.innerHeight) return self.innerHeight;
+	    if (document.documentElement && document.documentElement.clientHeight)
+	        return document.documentElement.clientHeight;
+	    if (document.body) return document.body.clientHeight;
+	    return 0;
+    }
+
+    function getWindowWidth() {
+	    if (self.innerWidth) return self.innerWidth;
+    	if (document.documentElement && document.documentElement.clientWidth)
+	        return document.documentElement.clientWidth;
+	    if (document.body) return document.body.clientWidth;
+	    return 0;
+    }
+    
+    function resize() {  
+	    var map = document.getElementById("map");  
+	    var header = document.getElementById("header");  
+	    var subheader = document.getElementById("subheader");  
+	    map.style.height = (getWindowHeight()-80) + "px";
+	    map.style.width = (getWindowWidth()-150) + "px";
+	    header.style.width = (getWindowWidth()-150) + "px";
+	    subheader.style.width = (getWindowWidth()-150) + "px";
+	    // map.checkResize();
+    } 
+
+
+	// See http://www.google.com/apis/maps/documentation/reference.html#GProjection 
+	// This code comes from FlatProjection.js, done by Smurf in project gwmap
+	/**
+	 * Creates a custom GProjection for flat maps.
+	 *
+	 * @classDescription	Creates a custom GProjection for flat maps.
+	 * @param {Number} width The width in pixels of the map at the specified zoom level.
+	 * @param {Number} height The height in pixels of the map at the specified zoom level.
+	 * @param {Number} pixelsPerLon The number of pixels per degree of longitude at the specified zoom level.
+	 * @param {Number} zoom The zoom level width, height, and pixelsPerLon are set for.
+	 * @param {Number} maxZoom The maximum zoom level the map will go.
+	 * @constructor	
+	 */
+	function FlatProjection(width,height,pixelsPerLon,zoom,maxZoom)
+	{
+		this.pixelsPerLonDegree = new Array(maxZoom);
+		this.tileBounds = new Array(maxZoom);
+
+		width /= Math.pow(2,zoom);
+		height /= Math.pow(2,zoom);
+		pixelsPerLon /= Math.pow(2,zoom);
+		
+		for(var i=maxZoom; i>=0; i--)
+		{
+			this.pixelsPerLonDegree[i] = pixelsPerLon*Math.pow(2,i);
+			this.tileBounds[i] = new GPoint(Math.ceil(width*Math.pow(2,i)/256), Math.ceil(height*Math.pow(2,i)/256));
+		}
+	}
+
+	FlatProjection.prototype = new GProjection();
+
+	FlatProjection.prototype.fromLatLngToPixel = function(point,zoom)
+	{
+		var x = Math.round(point.lng() * this.pixelsPerLonDegree[zoom]);
+		var y = Math.round(point.lat() * this.pixelsPerLonDegree[zoom]);
+		return new GPoint(x,y);
+	}
+
+	FlatProjection.prototype.fromPixelToLatLng = function(pixel,zoom,unbounded)	
+	{
+		var lng = pixel.x/this.pixelsPerLonDegree[zoom];
+		var lat = pixel.y/this.pixelsPerLonDegree[zoom];
+		return new GLatLng(lat,lng,true);
+	}
+
+	FlatProjection.prototype.tileCheckRange = function(tile, zoom, tilesize)
+	{
+		if( tile.y<0 || tile.x<0 || tile.y>=this.tileBounds[zoom].y || tile.x>=this.tileBounds[zoom].x )
+		{
+			return false;
+		}
+		return true;
+	}
+	FlatProjection.prototype.getWrapWidth = function(zoom)
+	{
+		return Number.MAX_VALUE;
+	}
+
+    /*
+     * Main load function:
+     */
+
+    function load() {
+        var MapWidth = 8192;
+        var MapHeight = 4096;
+        var MapMaxZoom = 5;
+        var MapPxPerLon = 256;
+
+        if (GBrowserIsCompatible()) {
+            var map = new GMap2( document.getElementById("map") );
+            var tileLayer = [ new GTileLayer( new GCopyrightCollection(null), 0, MapMaxZoom ) ];
+            tileLayer[0].getTileUrl = function(a,b) {
+                var y = Math.floor(MapHeight / (MapPxPerLon * Math.pow(2, (MapMaxZoom-b)))) - a.y;
+                // Google Maps indexed tiles from top left, we from bottom left, it causes problems during zooming, solution?
+                return b+"/"+a.x+"/"+y+".png";
+            }
+            var mapType = new GMapType(
+                tileLayer,
+                new FlatProjection( MapWidth, MapHeight, MapPxPerLon, MapMaxZoom-2, MapMaxZoom),
+                'Default',
+                { maxResolution: MapMaxZoom, minResolution: 0, tileSize: MapPxPerLon }
+            );
+            map.addMapType(mapType);
+
+            map.removeMapType(G_NORMAL_MAP);
+            map.removeMapType(G_SATELLITE_MAP);
+            map.removeMapType(G_HYBRID_MAP);
+
+            map.setCenter(new GLatLng((MapHeight/MapPxPerLon/4)/2, (MapWidth/MapPxPerLon/4)/2), 3, mapType);
+
+            //alert((MapHeight/MapPxPerLon/4)/2 + " x " + (MapWidth/MapPxPerLon/4)/2);
+            //map.addOverlay(new GMarker( new GLatLng((MapHeight/MapPxPerLon/4)/2,(MapWidth/MapPxPerLon/4)/2) ));
+
+            map.getContainer().style.backgroundColor='#fff';
+
+            map.addControl(new GLargeMapControl());
+            // Overview Map Control is not running correctly...
+            // map.addControl(new GOverviewMapControl());
+        }
+        resize();
+    }
+
+    onresize=function(){ resize(); };
+
+    //]]>
+    </script>
+  </head>
+  <body onload="load()" onunload="GUnload()">
+      <div id="header"><h1>Pubblicare una Raster</h1></div>
+      <div id="subheader">Generated by <a href="http://www.klokan.cz/projects/gdal2tiles/">GDAL2Tiles</a>, Copyright (c) 2007 <a href="http://www.klokan.cz/">Klokan Petr Pridal</a>,  <a href="http://www.gdal.org/">GDAL</a> &amp; <a href="http://www.osgeo.org/">OSGeo</a> <a href="http://code.google.com/soc/">SoC 2007</a>
+      </div>
+       <div id="map"></div>
+  </body>
+</html>

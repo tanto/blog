@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Vector Editor</title>
+		<meta name="author" content="Alessio Di Lorenzo">
+		<meta name="description" content="Un'applicazione d'esempio realizzata per un articolo su OpenLayers" /> 
+		<meta name="keywords" content="mapfish, openlayers, editor" />
+		<!-- MapFish framework CSS -->
+		<link rel="stylesheet" type="text/css" href="MapFish/client/mfbase/ext/resources/css/ext-all.css" />
+		<link rel="stylesheet" type="text/css" href="http://blog.spaziogis.it/static/vectoreditor/MapFish/client/mfbase/ext/resources/css/default.css" />
+
+		<!-- MapFish framework JS-->
+		<script type="text/javascript" src="MapFish/client/mfbase/openlayers/lib/OpenLayers.js"></script>
+		<script type="text/javascript" src="MapFish/client/mfbase/ext/adapter/ext/ext-base.js"></script>
+		<script type="text/javascript" src="MapFish/client/mfbase/ext/ext-all.js"></script>
+		<script type="text/javascript" src="MapFish/client/mfbase/mapfish/MapFish.js"></script>
+		
+		<!-- Application script and CSS -->
+		<script type="text/javascript" src="Javascript/mappa.js"></script>
+		<script type="text/javascript" src="Javascript/layout.js"></script>
+		<link rel="stylesheet" type="text/css" href="Css/style.css" />
+		
+		<!-- Google API key for blog.spaziogis.it -->
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA8zASJpG04qTfSZB_OGqCqBQjFwtZC1p89Y-7MAyq65TPpKffpRSUu_rCrW86QRrSWUAYt8ZDziysbQ" type="text/javascript"></script>
+	</head>
+	
+	<body onload="initMap()">
+		<div id="map" style="width:100%;height:100%"></div>
+		<div id="buttonbar"></div>
+		<div id="tree"></div>
+		<div id="info">
+			Questa applicazione di webmapping consente di creare, importare e modificare feature geometriche 
+			nei vari formati standard selezionabili dalla lista a discesa in alto.<br/>
+			Sono disponibili snap, split e diverse modalit&agrave; di editing delle feature disegnate o importate.<br/><br/>
+			<img src="Images/cc_logo.png" alt="cc"/><br/>
+			Questa opera &egrave; pubblicata sotto una <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/" target="_blank">Licenza Creative Commons</a>. 
+		</div>
+	</body>
+	
+</html>
+
+
+
+
+

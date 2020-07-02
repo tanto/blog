@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Javascript</title>
+	<atom:link href="http://blog.spaziogis.it/tag/javascript/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>jqGrid, ArcGIS Server e JSONP</title>
+		<link>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/</link>
+		<comments>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/#comments</comments>
+		<pubDate>Wed, 28 Mar 2012 06:00:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jqGrid]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4785</guid>
+		<description><![CDATA[Quando si parla di applicazioni GIS, siano esse desktop o web, spesso occorre dedicare alla visualizzazione degli attributi alfanumerici un'attenzione pari a quella prestata alla realizzazione della mappa. In questo post, quindi, vediamo come ottenere una tabella ricca e interattiva con i dati estratti da una query verso i servizi ReST di ArcGIS Server 10. Inoltre, per sfruttare la nostra fonte di dati (uno dei server di esempio di ESRI) ci avvarremo di JSONP, una strategia che consente di aggirare i limiti imposti dalla same origini policy.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Su TANTO abbiamo scritto in varie occasioni di <a title="jQuery" href="http://jquery.com/" target="_blank">jQuery</a> e abbiamo visto vari esempi delle sue potenzialità nella creazione di interfacce efficaci ed esteticamente valide per le applicazioni web.<br />
+Esistono tantissime estensioni per questo popolare framework ed una delle mie preferite è sicuramente <a title="jqGrid homepage" href="http://www.trirand.com/blog/" target="_blank"><strong>jqGrid</strong></a>, utilissima per chi sviluppa applicazioni web in ambito geospaziale.<br />
+La sua utilità nel nostro campo è presto detta: un’applicazione GIS, che sia desktop o web, non consiste solo della mappa, ma deve dare anche la possibilità a chi la usa di esplorare le informazioni associate agli elementi visualizzati, cioè gli attributi. jqGrid assolve benissimo il compito.<br />
+Gli <a title="Esempi jqGrid" href="http://www.trirand.com/blog/jqgrid/jqgrid.html" target="_blank">esempi</a> sul sito ufficiale offrono una buona carrellata delle possibilità del plugin e, insieme al dettagliato <a title="Wiki jqGrid" href="http://www.trirand.com/jqgridwiki/doku.php" target="_blank">wiki</a>, permettono di produrre le prime griglie in tempi brevi.<br />
+I <a title="Formati dati supportati" href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:retrieving_data" target="_blank">formati</a> di dati che jqGrid è in grado di importare e rappresentare sono molti e, tra questi, quello che ci interessa in particolar modo oggi è <a title="JSONP" href="http://en.wikipedia.org/wiki/JSONP" target="_blank"><strong>JSONP</strong></a> (JavaScript Object Notation with Padding).<br />
+In breve, si tratta di una tecnica che supera le restrizioni della <a title="Same Origin Policy" href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">same origin policy</a> e permette di effettuare chiamate tra domini differenti. E’ bene sapere, comunque, che questa è una regola di sicurezza che, impedendo di eseguire script provenienti da siti esterni e “non fidati”, protegge l’utente da attacchi informatici detti <a title="Attacchi XSS" href="http://it.wikipedia.org/wiki/Cross-site_scripting" target="_blank">XSS</a> (Cross Site Scripting).<br />
+Ricorrere a JSONP è una delle strategie disponibili per aggirare questa politica, che risulta parecchio limitante per le applicazioni web che, come i Mash-up spaziali spesso citati su TANTO, fanno uso di dati provenienti da più fonti.<br />
+Il trucco si basa sulla capacità del tag html <em>script</em> di caricare file javascript, anche esterni e, all&#8217;occorrenza, eseguire del codice. Non mi dilungo oltre sull’argomento e rimando a wikipedia e a <a title="JSONP" href="http//javascript.html.it/articoli/leggi/2957/jsonp-e-le-richieste-cross-domain/" target="_blank">questo articolo</a> su HTML.it per eventuali approfondimenti.</p>
+	<p>Vediamo subito un esempio. Come fonte di dati prendiamo il risultato di un query task lanciato verso un <a title="MapService di esempio" href="http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/4" target="_blank">MapService ReST</a> di <strong>ArcGIS Server</strong>. Il codice per ottenere la griglia di attributi è molto semplice e il risultato di sicuro effetto.</p>
+	<pre class="brush: javascript; ">
+	
+$(&#039;#grid&#039;).jqGrid({
+url: &#039;http://sampleserver1.arcgisonline.com/ArcGIS/rest/&#039;+
+     &#039;services/Demographics/ESRI_Census_USA/MapServer/4/query&#039;,
+datatype: &#039;jsonp&#039;,
+postData: $.param({
+where: &quot;1=1&quot;,
+returnGeometry: false,
+outFields: &quot;ObjectID,NAME,STATE_NAME,CNTY_FIPS&quot;,
+f: &quot;json&quot;
+}),
+colModel: [
+{name: &#039;ObjectID&#039;, label: &#039;ID&#039;, width: 60, jsonmap: &#039;attributes.ObjectID&#039;,sorttype:&#039;number&#039;},
+{name: &#039;NAME&#039;, label: &#039;Name&#039;, width: 170, jsonmap: &#039;attributes.NAME&#039;},
+{name: &#039;STATE_NAME&#039;, label: &#039;State&#039;, width: 150, jsonmap: &#039;attributes.STATE_NAME&#039;},
+{name: &#039;CNTY_FIPS&#039;, label: &#039;FIPS&#039;, width: 60, jsonmap: &#039;attributes.CNTY_FIPS&#039;}
+],
+caption:&quot;ArcGIS Server 10 query&quot;,
+toppager: false,
+pager:&quot;#pager&quot;,
+rowList: [50, 100, 250, 1000],
+rowNum: 50,
+jsonReader: {
+root: &#039;features&#039;,
+repeatitems: false,
+},
+loadonce: true,
+ignoreCase: true,
+viewrecords: true,
+height: &#039;300&#039;,
+width:&#039;500&#039;
+}).jqGrid(&#039;navGrid&#039;, &#039;#pager&#039;, {search:false, add: false, edit: false, del: false});
+});
+	</pre>
+	<p>Il codice è volutamente semplice e ovviamente si può sostituire il valore della clausola <em>where</em>, qui passata come parametro e valorizzata con <em>1=1</em>, con qualcosa di più utile (o dinamico).<br />
+Qui sotto potete vedere l&#8217;output della query in una tabella dinamica che offre la possibilità di consultare in modo ricco ed interattivo la nostra sorgente di dati spaziali d&#8217;esempio</p>
+	<p><iframe style="width: 480px; height: 410px; border: none;" src="http://blog.spaziogis.it/static/jqgrid_jsonp/index.html" width="320" height="240"></iframe>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/">jqGrid, ArcGIS Server e JSONP</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>ArcGIS Server e Google Maps: come misurare correttamente le distanze</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/</link>
+		<comments>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/#comments</comments>
+		<pubDate>Sun, 25 Apr 2010 22:29:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[projection]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+Tempo fa scrissi un articolo su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps. Ultimamente ho lavorato un po&#8217; con le prime e ne ho avuto complessivamente una buona [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Tempo fa scrissi <a href="http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/">un articolo</a> su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps.<br />
+Ultimamente ho lavorato un po&#8217; con <a href="http://resources.esri.com/arcgisserver/apis/javascript/gmaps/index.cfm?fa=home" target="_blank">le prime</a> e ne ho avuto complessivamente una buona impressione. Tuttavia, durante lo sviluppo, ho riscontrato un problema nella misurazione delle distanze e delle aree che merita di essere messo in evidenza, soprattutto perché gli esempi della documentazione ESRI non lo fanno a dovere ed anzi, secondo me, risultano leggermente fuorvianti.<br />
+Terminata la premessa, prima di andare avanti con l&#8217;articolo, voglio ringraziare <a href="http://www.nicogis.blogspot.com/" target="_blank">Domenico Ciavarella</a>, che mi ha dato un supporto fondamentale per arrivare ad una soluzione che altrimenti starei ancora cercando.</p>
+	<h2>La proiezione di Google Maps</h2>
+	<p><div id="attachment_2018" class="wp-caption alignright" style="width: 273px"><br />
+<img class="size-full wp-image-2018" style="border: 0pt none;" title="mercator" src="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" alt="mercator" width="263" height="244" /><p class="wp-caption-text">Effetto di distorsione delle aree</p></div></p>
+	<p>Google Maps, Bing Maps ed altri provider (come OpenStreetMap, Yahoo e, di recente, <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2009/11/20/ArcGIS-Online-moving-to-Google-_2F00_-Bing-tiling-scheme_3A00_-What-does-this-mean-for-you_3F00_.aspx" target="_blank">la stessa ESRI</a>) utilizzano una proiezione nota come <strong>Spherical Mercator</strong>, derivata dalla proiezione di <a href="http://it.wikipedia.org/wiki/Proiezione_cilindrica_centrografica_modificata_di_Mercatore" target="_blank">Mercatore</a>. Il codice <a href="http://www.epsg.org/" target="_blank">EPSG</a> ufficiale è 3785, anche se prima della sua definizione molti software hanno utilizzato l&#8217;ufficioso 900913. L&#8217;identificativo per i software ESRI, tra cui ovviamente ArcGIS Server, è invece 102113.<br />
+Questa proiezione considera la Terra come una sfera e consente di includerne completamente la superficie all&#8217;interno di un quadrato.<br />
+Quando però si rappresenta una superficie curva su di un piano, come un foglio di carta o il monitor di un computer, si introducono delle deformazioni. In questo caso, man mano che ci si allontana dall&#8217;equatore le aree cartografate subiscono un pesante stiramento sia in senso verticale che orizzontale e diventano, quindi, via via più esagerate verso i poli (la Groenlandia, per esempio, sembra più grande dell&#8217;Africa). Questa proiezione evidentemente non è fatta per minimizzare la deformazione delle aree (la proiezione di Mercatore è <a href="http://it.wikipedia.org/wiki/Proiezione_conforme" target="_blank">conforme</a> infatti), ma risulta vantaggiosa per l&#8217;uso attraverso il web perché consente di applicare un modello efficiente di tassellamento e caching.</p>
+	<h2>Il problema&#8230;</h2>
+	<p>Ammettiamo di voler creare un&#8217;applicazione di webmapping con le sopracitate estensioni delle API Javascript di ArcGIS Server per Google Maps.<br />
+La prima cosa da fare è creare un mapservice in grado di esporre i nostri dati spaziali con la medesima proiezione delle basi cartografiche di Google. Come spiegato nel post dedicato ad ArcGIS Server (linkato all&#8217;inizio di questo articolo) un mapservice &#8220;aggancia&#8221; e pubblica un progetto redatto in ArcMap (il classico .mxd), quindi basta assegnare al dataframe del progetto il sistema di riferimento appropriato (che si trova nella lista dei sistemi proiettati, alla voce WGS 84 Web Mercator, con identificativo 102113), salvare il tutto e pubblicarlo con ArcGIS Server. Niente di difficile insomma.<br />
+Focalizziamoci ora sullo sviluppo del client: tra i tanti strumenti che oggi ci si aspetta di trovare in una applicazione WebGIS ci sono i &#8220;righelli&#8221; che consentono di disegnare spezzate e poligoni e di misurarne poi lunghezza ed area. ESRI lo sa, ed ha giustamente incluso un <a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/gmaps/samples/utilities/util_measureline.html" target="_blank">esempio</a> per mostrare come creare questi tool nella documentazione delle sue API.<br />
+Abbiamo detto però che l&#8217;uso della proiezione Spherical Mercator provoca una deformazione crescente man mano che ci si spinge verso i poli e, tracciando una spezzata per misurare un oggetto al suolo di dimensioni note, come uno stadio di calcio, ci si accorge dell&#8217;inghippo: è più lungo di quanto dovrebbe essere (circa 146 metri invece di 105-110).<br />
+L&#8217;esempio fornito da ESRI non considera la deformazione e può indurre gli sviluppatori all&#8217;errore. E&#8217; vero che una persona con le adeguate conoscenze di geomatica può arrivare ad intuire il rischio insito nell&#8217;uso della proiezione di Google, ma è anche vero che il webmapping è terra di confine tra &#8220;gissologi&#8221; e sviluppatori informatici &#8220;puri&#8221;, senza particolari cognizioni tipiche del mondo gis. Non è per nulla detto, quindi, che chi sviluppa abbia i mezzi per immaginare il problema prima di averci sbattuto il muso e personalmente credo che aver pubblicato un esempio del genere nella documentazione ufficiale, senza neanche accennare alla questione della deformazione, sia stata una leggerezza.</p>
+	<h2>&#8230;e la soluzione</h2>
+	<p>Non molto tempo fa sul blog di ArcGIS Server è comparso un interessante <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2010/03/05/Measuring-distances-and-areas-when-your-map-uses-the-Mercator-projection.aspx">post</a> che mette in evidenza il problema della misurazione delle distanze e spiega come comportarsi per risolverlo.<br />
+Il servizio che in ArcGIS Server è incaricato di calcolare lunghezze ed aree, il <a href="http://webhelp.esri.com/arcgisserver/9.3/Java/index.htm#geometry_service.htm">Geometry Service</a>, è in grado di svolgere diverse altre operazioni, tra cui la <strong>proiezione al volo</strong> delle geometrie.<br />
+Il &#8220;trucco&#8221; consiste nel riproiettare la geometria tracciata dall&#8217;utente nel sistema di riferimento più adatto alla zona mappata prima di effettuarne la misurazione e stampare a schermo il risultato.<br />
+Purtroppo lo snippet di codice fornito da ESRI è pronto all&#8217;uso solo per le API Javascript, mentre per le estensioni di Google Maps bisogna fare da soli e il discorso è un po&#8217; meno semplice.<br />
+Al posto di questa funzione:</p>
+	<pre class="brush: javascript; ">
+var sr = new esri.SpatialReference({wkid:32610});
+geometryService.project([graphic], sr, function(projectedGraphic) {
+geometryService.areasAndLengths(projectedGraphic, function(result) {
+var perimeter = result.lengths[0];
+var area = result.areas[0];
+});
+});
+</pre>
+	<p>abbiamo bisogno di questa:</p>
+	<pre class="brush: javascript; ">
+var geometryService = new esri.arcgis.gmaps.Geometry(&quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer&quot;);
+function calculateLengths() {
+//Parametri per la riproiezione
+var params = new esri.arcgis.gmaps.ProjectParameters();
+params.geometries = [polyline];
+params.inSpatialReference  = 4326;
+params.outSpatialReference = 3004; //Gauss-Boaga fuso Est
+//Riproiezione e funzione di callback
+geometryService.project(params, getLengths);
+}
+function getLengths(projectResults){
+var url = &quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/lengths&quot;;
+var parameters = {
+polylines: projectResults.geometries,
+sr: 3004
+};
+esri.arcgis.gmaps.JSONRequest(url, test, parameters);
+}
+function test(result) {
+alert(result.lengths[0]+&quot; m&quot;);
+}
+</pre>
+	<p>Ho realizzato un veloce <a href="http://dl.dropbox.com/u/1070973/Riproiezione_e_misura/index.html" target="blank">esempio</a> che mostra i risultati ottenuti dal codice proposto da ESRI nella propria documentazione a confronto con quelli ottenuti dalla riproiezione con il Geometry Service e dalle semplici API di Google Maps, che hanno dei metodi propri per la misura di linee e poligoni.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/">ArcGIS Server e Google Maps: come misurare correttamente le distanze</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" medium="image">
+			<media:title type="html">mercator</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>jQuery e OpenLayers: agitare prima dell’uso…</title>
+		<link>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/</link>
+		<comments>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/#comments</comments>
+		<pubDate>Mon, 01 Mar 2010 08:40:35 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[Geosilk]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1747</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da Linfiniti – sono riuscito nell&#8217;intento. Per chi non lo sapesse, jQuery è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da <a href="http://linfiniti.com/2010/02/fancy-map-toolbar-for-openlayers/" target="_blank">Linfiniti</a> – sono riuscito nell&#8217;intento.</p>
+	<p>Per chi non lo sapesse, <a href="http://jquery.org/" target="_blank">jQuery</a> è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di facile comprensione.<br />
+Il framework è rilasciato con doppia licenza: MIT e GPL.<br />
+I motivi per usare jQuery nei propri progetti non mancano di certo: comunità attiva, disponibilità di molti temi e ottimi plugin, compatibilità e leggerezza sono i primi che mi vengono in mente.</p>
+	<p>In questo articolo vedremo come costruire una mappa online sfruttando jQuery UI e OpenLayers.<br />
+Il <a href="http://blog.spaziogis.it/static/jquerymap/" target="_blank">risultato</a> della &#8220;fusione&#8221; è un client dotato di funzionalità di base come zoom, pan, misurazione delle distanze e vari layer di sfondo intercambiabili.<br />
+Si tratta, in pratica, di un template da cui partire per sviluppare applicazioni di web-mapping vere e proprie.</p>
+	<p style="text-align: center;"><a title="Demo JQuery UI | OpenLayers di Alessio Di Lorenzo" href="http://blog.spaziogis.it/static/jquerymap/" target="_blank"><img class="aligncenter size-full wp-image-1801" style="border: 0pt none;" title="jquery_openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" alt="jquery_openlayers" width="500" height="375" /></a></p>
+	<p>Per  creare il client dell&#8217;esempio abbiamo bisogno di:</p>
+	<ul>
+	<li><a href="http://openlayers.org" target="_blank">OpenLayers</a></li>
+	<li><a href="http://jqueryui.com" target="_blank">jQuery UI</a>, pensato per creare widget personalizzati con jQuery</li>
+	<li><a href="http://layout.jquery-dev.net/index.cfm" target="_blank">jQuery UI.Layout</a>, un plugin ispirato al <a href="http://extjs.com/deploy/dev/examples/layout/complex.html" target="_blank">border layout</a> di ExtJs</li>
+	<li><a href="http://craigsworks.com/projects/qtip/" target="_blank">qTip</a>, un plugin per modellare dei tooltip avanzati</li>
+	</ul>
+	<p>Ho già raccolto il tutto in <a href="http://blog.spaziogis.it/static/jquerymap/jquerymap.zip" target="_blank">questo</a> archivio .zip. Qui dentro, oltre alle librerie, si trova la totalità dei file che compongono il client. Vi basta quindi cliccare sul link per avere il template sul vostro computer, pronto all&#8217;uso e/o ad essere trasformato come volete.<br />
+Vi invito però a dare lo stesso un&#8217;occhiata alla <a href="http://jqueryui.com/download" target="_blank">pagina di download</a> di jQuery UI: noterete che è possibile modificare radicalmente il pacchetto prima di scaricarlo. Potete includere le sole componenti utili ai vostri scopi e scegliere tra vari temi già pronti o uno composto da voi con <a href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a>.<br />
+Io ho fatto solo qualche semplice modifica al tema UI-Darkness (in questo periodo non mi piacciono i bordi arrotondati&#8230;) ma, come dicevo, si può fare molto di più. Provare per credere.</p>
+	<p>Ora un po&#8217; di anatomia.<br />
+Scompattato l&#8217;esempio, è bene posare lo sguardo su alcune delle directory e dei file compresi al suo interno.</p>
+	<h3>jsLib</h3>
+	<p>E&#8217; la directory contenente tutte le librerie elencate in precedenza, necessarie al funzionamento del template.</p>
+	<h3>index.html</h3>
+	<p>Nella sezione <strong>header</strong> sono referenziate le librerie utilizzate, i fogli di stile e i file javascript.<br />
+Nel <strong>body</strong> è possibile notare che l&#8217;attributo class di molti degli elementi della pagina (div, button, span, ecc.) è parecchio popolato. Questo è il metodo con cui jQuery UI e jQueryUI.Layout si &#8220;ancorano&#8221; alla pagina web.<br />
+Per comprendere meglio vi rimando alla <a href="http://layout.jquery-dev.net/demos.cfm" target="_blank">pagina degli esempi</a> di jQuery UI.Layout e a <a href="http://www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/" target="_blank">questo articolo</a> che spiega in maniera egregia la composizione della toolbar e dei suoi pulsanti.</p>
+	<h3>jsFunc/mappa.js</h3>
+	<p>Contiene la mappa realizzata con OpenLayers.<br />
+Nella funzione di inizializzazione (initMap) richiamata al caricamento della pagina, ci sono, tra le altre cose, i controlli collegati ai bottoni della toolbar.</p>
+	<h3>jsFunc/layout.js</h3>
+	<p>In questo script, con poco più di 40 righe di codice, jQuery UI e i suoi plugin definiscono Il layout dell&#8217;applicazione, il tema, il comportamento e l&#8217;aspetto di bottoni e tooltip.</p>
+	<h3>Css/style.css</h3>
+	<p>A parte qualche piccola &#8220;frivolezza&#8221;  come <a href="http://projects.opengeo.org/geosilk" target="_blank">queste</a> (a mio giudizio) bellissime icone, in questo foglio di stile sono descritte le regole fondamentali per la corretta presentazione del layout e della toolbar creati tramite jQuery UI.</p>
+	<p>Ecco, questo è grossomodo ciò che bisogna sapere per iniziare a studiare i mille modi di mescolare le potenzialità di jQuery a quelle di OpenLayers.<br />
+Fondamentale, come sempre, è il ricorso alla documentazione ufficiale dei vari progetti e al supporto offerto dalla comunità.<br />
+Per chiudere segnalo anche due guide in italiano, estremamente ben fatte ed utilissime per avvicinarsi a jQuery e jQuery UI. Entrambe sono firmate <a href="http://html.it" target="_blank">HTML.it</a>:<br />
+<a href="http://javascript.html.it/guide/leggi/168/guida-jquery/" target="_blank">Guida a jQuery</a><br />
+<a href="http://javascript.html.it/guide/leggi/179/guida-jquery-ui/" target="_blank">Guida a jQuery UI</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/">jQuery e OpenLayers: agitare prima dell’uso…</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" medium="image">
+			<media:title type="html">jquery_openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Editing vettoriale con OpenLayers</title>
+		<link>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/</link>
+		<comments>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/#comments</comments>
+		<pubDate>Mon, 21 Sep 2009 07:28:55 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[editor]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[MapFish]]></category>
+		<category><![CDATA[Open-Web-Mapping]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1251</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+Ultimamente mi è stato richiesto un applicativo di webmapping che mettesse chiunque (o quasi&#8230;) in condizione di gestire agevolmente un geodatabase, aggiornando nel tempo le informazioni contenute, comprese le feature geografiche. In due parole: un gestionale web, ma con delle funzionalità proprie dei GIS desktop. Il committente ha richiesto una soluzione open source ed io [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignright size-full wp-image-1235" src="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil.jpg" alt="pencil" width="172" height="216" />Ultimamente mi è stato richiesto un applicativo di webmapping che mettesse chiunque (o quasi&#8230;) in condizione di gestire agevolmente un geodatabase, aggiornando nel tempo le informazioni contenute, comprese le feature geografiche. In due parole: un gestionale web, ma con delle funzionalità proprie dei GIS desktop.<br />
+Il committente ha richiesto una soluzione open source ed io sono stato ben contento di proporre il rodato quartetto composto da <a href="http://mapserver.org" target="_blank">UMN-Mapserver</a>, <a href="http://postgis.refractions.net" target="_blank">PostGIS</a>, <a href="http://php.net" target="_blank">PHP</a> e <a href="http://mapfish.org" target="_blank">MapFish</a>.<br />
+In passato avevo già realizzato qualcosa di simile, ma si trattava di inserire dei punti a partire da una coppia di coordinate, operazione semplicissima grazie a PostGIS. Questa volta era necessario che l&#8217;utente disegnasse le geometrie online, direttamente nella finestra del browser, ed ho colto l&#8217;occasione per dare finalmente un&#8217;occhiata alle funzioni di editing vettoriale di <a href="http://openlayers.org" target="_blank">OpenLayers</a> 2.8. Ne sono rimasto estremamente soddisfatto, come sempre avviene quando si tratta di OpenLayers.<br />
+Scorrendo la <a href="http://openlayers.org/dev/examples/" target="_blank">pagina degli esempi</a> ed inserendo il filtro &#8220;vector&#8221;, ci si rende subito conto della potenza dei controlli dedicati all&#8217;editing.</p>
+	<p>Grazie agli esempi, che coprono quasi tutto lo spettro delle possibilità, è stato facile produrre la parte client del mio lavoro.<br />
+L&#8217;editor ottenuto è adattabile a qualsiasi back-end &#8220;spatial enabled&#8221;, è indipendente dal mapserver scelto per pubblicare i dataset online, dal geodbms usato per contenerli e dal linguaggio di programmazione lato server.<br />
+Il cuore del client è costituito dalle funzioni presentate in <a href="http://openlayers.org/dev/examples/vector-formats.html" target="_blank">questo esempio</a>, che consentono di disegnare una feature da <strong>serializzare</strong> sotto forma di stringa in ben 6 formati standard differenti. Ottenuta la stringa, il gioco è fatto: uno script lato server si occupa di recuperarla e lanciare una query di inserimento nel geodabase (ci sono, come sempre, anche altre soluzioni).<br />
+L&#8217;operazione inversa, vale a dire <strong>deserializzare</strong> una stringa ed ottenere una feature, è ugualmente possibile e può essere molto utile.<br />
+Per esempio, volendo rifinire degli shapefile su una base Google Maps o <a href="http://openstreetmap.org">Openstreetmap</a>, basta trasformarli KML (o in uno degli altri 5 formati supportati), aprire il file con un editor di testo e, infine, copiare ed incollare il contenuto dentro la textarea del nostro editor. A questo punto si è liberi di modificare a piacimento le feature importate.<br />
+Questo è solo un esempio grezzo di import, dispobile &#8220;out of the box&#8221;, ma una volta collegato l&#8217;editor ad un back-end spaziale si può dare sfogo alla fantasia e creare delle funzioni di importazione più raffinate.</p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/static/vectoreditor/"><img border="0" class="aligncenter size-full wp-image-1298" title="vector editing con openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing.png" alt="vector editing con openlayers" width="480" height="426" /></a></p>
+	<p style="text-align: left;">Cliccando <strong><a href="http://blog.spaziogis.it/static/vectoreditor/" target="_blank">qui</a></strong> potete vedere una versione super-generica del client di editing da me realizzato. Ho usato MapFish 1.1<a href="#nota1"><sup>[1]</sup></a> per dare un aspetto un po&#8217; più carino<a href="#nota2"><sup>[2]</sup></a> al tutto ed ho modificato il codice degli esempi affinché le diverse funzioni di editing potessero essere attivate da una toolbar invece che da una serie di checkbox e radiobutton. I commenti nel codice dovrebbero essere abbastanza esplicativi.</p>
+	<p><a name="nota1"><sup>[1]</sup></a> <em>Si tratta di una versione leggermente modificata in cui ho sostituito OpenLayers 2.7 con OpenLayers 2.8</em></p>
+	<p><a name="nota2"><sup>[2]</sup></a> <em>Qualcuno potrebbe cimentarsi con <a href="http://www.dojotoolkit.org/" target="_blank">Dojo</a> o <a href="http://jquery.com/" target="_blank">jQuery</a>&#8230; sono sicuro che non verrebbe affatto male</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p><strong>Nota</strong><br />
+Devo scusarmi con i lettori di TANTO iscritti al feed RSS.<br />
+Stamattina ho accidentalmente cliccato sul bottone &#8220;Pubblica&#8221; mentre scrivevo la bozza e nonostante mi sia precipitato a recuperare, non sono riuscito ad evitare che l&#8217;articolo incompleto finisse nel feed. Per farmi perdonare mi sono incollato al computer ed ho fatto il possibile per finire l&#8217;articolo e la demo alla svelta! In futuro starò più attento a dove clicco e soprattutto non inizierò a scrivere bozze di domenica mattina prima di colazione! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/">Editing vettoriale con OpenLayers</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/feed/</wfw:commentRss>
+		<slash:comments>19</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Editing+vettoriale+con+OpenLayers&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-09-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/09/21/editing-vettoriale-con-openlayers/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil.jpg" medium="image">
+			<media:title type="html">pencil</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/pencil-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing.png" medium="image">
+			<media:title type="html">vector editing con openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/09/vector_editing-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>ArcGIS Server 9.3: impressioni di utilizzo</title>
+		<link>http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/</link>
+		<comments>http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/#comments</comments>
+		<pubDate>Sun, 02 Aug 2009 20:22:28 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[Dojo]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1028</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+9.3%3A+impressioni+di+utilizzo&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/&amp;rft.language=English"></span>
+Posso dire di essere un sostenitore dell&#8217;open source e senza dubbio preferisco avere a che fare con software, tecnologie e formati aperti. Al movimento del software libero sono molto legato, per alcuni versi ne faccio parte e, quando posso, cerco di dare i miei microscopici contributi qui e la. Il mio mondo (digitale) ideale è [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+9.3%3A+impressioni+di+utilizzo&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img src="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri.jpg" alt="esri" width="171" height="208" class="alignright size-full wp-image-1049" />Posso dire di essere un sostenitore dell&#8217;open source e senza dubbio preferisco avere a che fare con software, tecnologie e formati aperti. Al movimento del software libero sono molto legato, per alcuni versi ne faccio parte e, quando posso, cerco di dare i miei microscopici contributi <a href="http://ka-map.ominiverdi.org/wiki/index.php/Search_By_Filter_Implementation" target="_blank">qui</a> e <a href="http://wiki.ubuntu-it.org/GruppoForum" target="_blank">la</a>.<br />
+Il mio mondo (digitale) ideale è un mondo in cui tutto il software è libero e, soprattutto, in cui le persone si scambiano dati e servizi in formati standard e liberi.<br />
+Il mondo reale, però, è fatto anche di altro e quando c&#8217;è da portare a casa la proverbiale pagnotta è bene tenerlo a mente. Inoltre penso che sia un preciso dovere, per un buon analista, essere sempre aggiornato sulle soluzioni esistenti indipendentemente dalla licenza che le accompagna.<br />
+In questo articolo racconterò quindi le impressioni che ho avuto durante le mie prime due settimane di lavoro con ArcGIS Server 9.3. Inizio subito col dire che partivo prevenuto nei confronti di questa piattaforma, date le allucinanti esperienze con ArcIMS, ma devo ammettere di essere rimasto piacevolmente sorpreso!</p>
+	<h3>Che cos&#8217;è?</h3>
+	<p>Bene, mi tocca entrare nel vivo e dare una definzione di massima che aiuti a capire meglio di cosa stiamo parlando.<br />
+Senza scendere troppo nel dettaglio tecnico, possiamo dire che ArcGIS Server è un ambiente che permette di pubblicare <i>geowebservices</i> sulla base dei quali si potranno poi sviluppare applicazioni di web-mapping.<br />
+Su questo fronte lo spettro di possibilità offerte da ArcGIS Server 9.3 agli sviluppatori GIS è davvero ampio. Si va dagli ADF (Advanced Development Framework) per gli ambienti .NET e Java, alle API Javascript, Flex e &#8211; di recente &#8211; Silverlight.<br />
+C&#8217;è anche un wizard che permette di pubblicare un&#8217;applicazione web senza grosse pretese di originalità e nel giro di qualche click, pur non avendo alcuna conoscenza di programmazione.</p>
+	<h3>Come funziona?</h3>
+	<p>Innanzitutto si deve installare! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /><br />
+Non ho avuto modo di provare l&#8217;installazione in ambiente GNU/Linux, ma in ambiente Windows la procedura non si discosta da quella classica che caratterizza la maggior parte dei programmi. Di certo avete presente il tipico: “Avanti → Avanti → Ok”&#8230;<br />
+Ultimata l&#8217;installazione vera e propria, vengono richieste delle informazioni utili alla configurazione dell&#8217;ambiente e, infine, si procede con l&#8217;autenticazione della licenza.<br />
+Al riavvio potremo finalmente effettuare il login in ArcGIS Server Manager, un applicativo di amministrazione da browser, oppure, se preferiamo, connetterci all&#8217;istanza di ArcGIS Server usando ArcCatalog.</p>
+	<p>A questo punto siamo pronti per tirarci su le maniche e creare <a href="http://resources.esri.com/arcgisserver/index.cfm?fa=services" target="_blank">servizi di vario tipo</a> (mapservice, dataservice, gisservice, geoprocessing e geocoding service).<br />
+Consideriamo per esempio il mapservice, un tipo di servizio che serve ad esporre una mappa composta da uno o più layer, sui quali si possono eseguire delle operazioni (<i>task</i>) come find, query e identify.<br />
+Pubblicare un mapservice è decisamente semplice. Basta avere un progetto redatto in  ArcMap (un normale file .mxd) ed effettuare delle semplici scelte per la configurazione del servizio.<br />
+Oltre al servizio proprietario ESRI, sono a disposizione vari standard: KML, WMS, WFS-T e WCS. </p>
+	<h3>Sviluppo client con REST e Javascript</h3>
+	<p>ArcGIS Server 9.3 offre, out-of-the box, la possibilità di esporre i servizi secondo il paradigma REST.<br />
+Questa, insieme alle <a href="http://resources.esri.com/arcgisserver/index.cfm?fa=JSAPIs" target="_blank">API Javascript</a> basate sull&#8217;ottimo toolkit open source <a href="http://www.dojotoolkit.org/" target="_blank">Dojo</a>, è probabilmente la novità di maggior rilievo di ArcGIS Server 9.3.<br />
+Imparare a sfruttare questi mezzi equivale ad aprirsi la possibilità di sviluppare delle applicazioni web 2.0 che, col solo codice lato-client, offrono la maggior parte delle caratteristiche che normalmente ci si aspetta di trovare in una applicazione di web-mapping.<br />
+<a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/arcgis/help/jssamples_start.htm" target="_blank">Qui</a> ci sono alcuni esempi che sicuramente vale la pena di esplorare per rendersi conto delle potenzialità delle API.</p>
+	<p>E&#8217; interessante, inoltre, che l&#8217;ultima versione di OpenLayers, la 2.8, permetta di utilizzare anche i <a href="http://openlayers.org/dev/examples/arcgis93rest.html" target="_blank">layer REST</a> di ArcGIS Server 9.3.<br />
+Se volete saperne di più sull&#8217;argomento vi consiglio caldamente <a href="http://resources.esri.com/arcgisserver/apis/javascript/arcgis/index.cfm?fa=mediaGalleryDetails&amp;mediaID=8BE10472-1422-2418-A06335EA0FA3EE57" target="_blank">questo</a> video!</p>
+	<h3>Pro e contro</h3>
+	<p>Siamo alla fine del post ed è ora di fare un bilancio.<br />
+Prima le cattive notizie: il supporto, non me ne vogliano in ESRI Italia, è assolutamente inadeguato!<br />
+Se si naviga tra <a href="http://edn.esri.com/" target="_blank">EDN</a> e <a href="http://resources.esri.com/arcgisserver/" target="_blank">Resource Gateway</a> o si bazzica la comunità internazionale sul <a href="http://forums.esri.com" target="_blank">forum</a>, in fin dei conti non è proprio malaccio (anzi, sul forum ci sono utenti molto preparati e dispobili grazie ai quali ho risolto alcuni piccoli intoppi).<br />
+Però chi ha acquistato un prodotto <b>in Italia</b>, pagandolo profumatamente, tollera con un po&#8217; di mal di pancia che il supporto locale non sappia nemmeno dare un aiuto di tipo “getting started” se ci si vuole discostare dall&#8217;uso del wizard o dello sviluppo con l&#8217;ADF Java o .NET.<br />
+Personalmente, ho telefonato 3 volte al supporto ponendo delle domande tecniche precise e non ho mai ricevuto una risposta utile dall&#8217;interlocutore (quasi sempre: &#8220;apra un ticket&#8221;). Oggi, con poche settimane di esperienza di sviluppo con queste API alle spalle, mi rendo conto che le mie domande erano davvero molto semplici, il che mi porta a pensare che quello dello sviluppo con le API Javascript, in ESRI Italia, sia un tema molto trascurato.<br />
+Comunque devo essere onesto e dire che in altre occasioni ho trovato utilissimo (spesso risolutivo) il supporto di ESRI Italia. Questo mi fa ben sperare per il futuro nel caso in cui a Roma decidano di dedicare un po&#8217; di attenzione anche quei balordi (come il sottoscritto) che si sono fissati col Javascript!              </p>
+	<p>Passiamo ai pro che, invece, sono tanti:</p>
+	<ul>
+	<li>scalabilità dell&#8217;architettura</li>
+	<li>semplicità nella configurazione e nello sviluppo degli applicativi</li>
+	<li>versatilità delle API e possibilità di creare Mash-Up praticamente con tutto</li>
+	<li>buon supporto agli standard del settore</li>
+	</ul>
+	<h3>Basta con le chiacchiere!</h3>
+	<p>Cliccando <a href="http://blog.spaziogis.it/static/agsdemo/" target="_blank">qui</a>, potete vedere un piccolo esempio live da me realizzato.<br />
+Divertitevi (si fa per dire&#8230;) a fare lo stesso&#8230; e <a href="http://resources.esri.com/arcgisserver/apis/javascript/arcgis/index.cfm?fa=codeGallery" target="_blank">condividete</a> il risultato! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':D' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/">ArcGIS Server 9.3: impressioni di utilizzo</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/feed/</wfw:commentRss>
+		<slash:comments>27</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+9.3%3A+impressioni+di+utilizzo&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2009-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri.jpg" medium="image">
+			<media:title type="html">esri</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/07/esri-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Introduzione a MapFish: OpenLayer e ExtJs “a braccetto”</title>
+		<link>http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/</link>
+		<comments>http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/#comments</comments>
+		<pubDate>Thu, 23 Apr 2009 14:25:08 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ExtJs]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[MapFish]]></category>
+		<category><![CDATA[Open-Web-Mapping]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[wms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=831</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Introduzione+a+MapFish%3A+OpenLayer+e+ExtJs+%E2%80%9Ca+braccetto%E2%80%9D&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/&amp;rft.language=English"></span>
+Come prima cosa vorrei ringraziare Andrea per avermi dato la possibilità di contribuire, nel mio piccolo, a TANTO, scusandomi con lui per tutto il tempo (davvero troppo) passato da quando gli ho promesso questo tutorial ad oggi! In questo breve articolo-tutorial cercherò di fare una panoramica sulla componente client di MapFish, un framework open source [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Introduzione+a+MapFish%3A+OpenLayer+e+ExtJs+%E2%80%9Ca+braccetto%E2%80%9D&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Come prima cosa vorrei ringraziare Andrea per avermi dato la possibilità di contribuire, nel mio piccolo, a TANTO, scusandomi con lui per tutto il tempo (davvero troppo) passato da quando gli ho promesso questo tutorial ad oggi!</p>
+	<p>In questo breve articolo-tutorial cercherò di fare una panoramica sulla componente client di MapFish, un framework open source basato su ExtJs e OpenLayers, grazie al quale è possibile realizzare delle applicazioni webgis in pieno stile web 2.0 con poco sforzo una volta compreso il funzionamento degli “ingranaggi”.</p>
+	<p>Innanzitutto va detto che la parte relativa al mapping vero e proprio può essere gestita esattamente come in OpenLayers che, come già ricordato, è compreso all&#8217;interno di MapFish.<br />
+Si ha quindi a disposizione tutta la flessibilità di OpenLayers (layer WMS, WFS, Google, Yahoo, ecc.) e se si sanno già realizzare mappe online con questa ottima libreria, il passaggio a MapFish consiste semplicemente nel comprendere come gestire layout ed eventi alla maniera di ExtJs (l&#8217;altra componente del framework) e nello scoprire gli utili widget che MapFish mette a disposizione dello sviluppatore.</p>
+	<p>L&#8217;utilizzo di questi widget è simile a quello dei controlli di OpenLayers, con la differenza che in questo caso viene sfruttata la potenza di ExtJs per aggiungere un&#8217;interfaccia utente avanzata al controllo. I widget che necessitano del solo codice lato client sono:</p>
+	<ul>
+	<li><strong>Toolbar</strong> – una barra degli strumenti con dei tasti preimpostati (full-extent, pan, zoombox, zoom out) che è possibile espandere con nuovi bottoni sapendosi muovere un minimo con OL;</li>
+	<li><strong>Layer Tree</strong> – si tratta di una “toc”, simile al layer switcher di OL, ma molto più configurabile, con la possibilità di includere facilmente icone e di annidare e raggruppare i layer a proprio piacimento;</li>
+	<li><strong>Scorciatoie</strong> – liste a discesa con possibilità di autocompletamento del testo inserito (come avviene in Google suggest, per capirci) che centrano la mappa sulle coordinate corrispondenti al luogo/elemento scelto;</li>
+	<li><strong>Stampa</strong> – un semplice controllo da includere per stampare la porzione di mappa visualizzata.</li>
+	</ul>
+	<p>Affinché gli altri widget di MapFish (stampa complessa, ricerca nel db, ecc.) funzionino, è necessario che sia installata la componente server del framework che, però, non tratteremo in questo articolo (anche perché, non avendoci mai lavorato, rischierei di scrivere una montagna di cavolate!).<br />
+ExtJs semplifica la creazione di layout, anche molto complessi, che risultano accattivanti per l&#8217;utente e cross-browser. Con poche righe di codice è possibile creare interfacce a schede (tab), menu accordion, form avanzati, ecc&#8230; avendo la sicurezza che l&#8217;applicazione verrà correttamente visualizzata su tutti i browser più diffusi in circolazione. Con ExtJs possiamo ottenere rapidamente delle belle GUI in cui “infilare” le nostre applicazioni webgis. Insomma, sono assicurati un risultato di tutto rispetto e un bel risparmio di diottrie e bile (è risaputo che quella di rendere cross-browser delle appicazioni web “complesse” sia una delle attività che più contribuiscono alla creazione di nuovi tipi di imprecazioni&#8230; <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  ).</p>
+	<p>Fatta questa introduzione, passiamo al tutorial vero e proprio!</p>
+	<h2>Tutorial MapFish</h2>
+	<p>Creeremo una semplice applicazione webgis, munita di una toolbar e di un layer tree, con cui sarà possibile visualizzare la localizzazione degli utenti GRASS su due mappe di base alternative.<br />
+Le informazioni che mostreremo provengono da diversi server WMS (Nasa, Metacarta, Grass).<br />
+Utilizzeremo la versione 1.1 del framework MapFish, scaricabile da <a href="http://www.mapfish.org/downloads">qui</a> come archivio compresso in formato tar.gz (se state lavorando in ambiente Windows, vi consiglio di procurarvi l&#8217;ottimo <a href="http://www.7-zip.org/">7zip</a> per estrarne il contenuto).</p>
+	<p>Il primo passaggio consiste ovviamente nello scompattare quanto abbiamo scaricato in modo da ottenere una cartella (MapFish-1.1) che contiene tutto il necessario per creare la nostra applicazione d&#8217;esempio.<br />
+Utilizzando la sola parte client non abbiamo bisogno di rendere visibile il tutto ad un eventuale webserver e possiamo posizionare la directory di cui sopra dove più ci aggrada nel filesystem&#8230;<br />
+Tuttavia, per mantenere un certo ordine, consiglio di creare una ulteriore cartella, che chiameremo &#8220;EsempioMF&#8221;, e di lavorare al suo interno.<br />
+Creiamo anche un file <em>index.html</em>, un file <em>myMapFish.js</em> e spostiamo anche loro nella cartella di lavoro &#8220;EsempioMF&#8221;.<br />
+A questo punto, quindi, la situazione dovrebbe essere la seguente:</p>
+	<p>EsempioMF<br />
+|<br />
+ &#8211; MapFish-1.1<br />
+|<br />
+ &#8211; index.html<br />
+|<br />
+ &#8211; myMapfish.js</p>
+	<p>Ora che siamo organizzati in modo più o meno ordinato, è il momento di riempire il file index.html.<br />
+Ecco come:</p>
+	<pre class="brush: html; ">
+	
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Esempio MapFish by TANTO&lt;/title&gt;
+	
+&lt;!-- link ai CSS della componente ExtJS
+(è possibile scaricare temi dal sito di extjs e sostituire default.css con il foglio di stile del tema scaricato... ce ne sono un paio che meritano) --&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/ext-all.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/default.css&quot; /&gt;
+	
+&lt;!-- Inserisco i riferimenti agli script Javascript necessari al funzionamento del framework MapFish --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/openlayers/lib/OpenLayers.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/adapter/ext/ext-base.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/ext-all.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/mapfish/MapFish.js&quot;&gt;&lt;/script&gt;
+	
+&lt;!-- Inserisco il riferimento allo script Javascript myMapFish.js --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;myMapFish.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!-- Nel body creo i div che faranno da contenitori per la mappa vera e propria, per la toolbar e per il layer tree --&gt;
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;buttonbar&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;tree&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+	</pre>
+	<p>I commenti indicano cosa è stato inserito nell&#8217;header.Quindi possiamo chiudere index.html e iniziare a lavorare sullo script myMapFish.js.<br />
+Questo script conterrà due porzioni ben distinte:<br />
+- la prima servirà a definire il layout dell&#8217;applicazione (codice ExtJs);<br />
+- la seconda definirà la mappa vera e propria (codice OpenLayers) ed i widget MapFish che utilizzeremo.</p>
+	<p>Cominciamo, quindi, dalla prima parte dello script ed inseriamo quanto segue:</p>
+	<pre class="brush: javascript; ">
+	
+//Layout dell&#039;applicazione
+//************************
+Ext.onReady(function() {
+    new Ext.Viewport({
+        layout:&#039;border&#039;,
+        items:[{
+                region:&#039;north&#039;,
+                margins:&#039;4 4 4 4&#039;,
+                height: 63,
+                html: &#039;&lt;img src=&quot;http://blog.spaziogis.it/wp-content/themes/blacknwhite/blacknwhite/images/TANTO_logo.png&quot;/&gt;&#039;,
+                bodyStyle:&#039;padding:2px;&#039;
+                },{
+                region:&#039;center&#039;,
+                layout:&#039;border&#039;,
+                margins:&#039;0 4 4 4&#039;,
+                items:[{
+                        region:&#039;north&#039;,
+                        border:false,
+                        contentEl:&#039;buttonbar&#039;,
+                        height:26
+                        },{
+                        region:&#039;center&#039;,
+                        contentEl:&#039;map&#039;,
+                        border:false
+                }]
+                },{
+                title:&#039;Layer tree&#039;,
+                region:&#039;east&#039;,
+                margins:&#039;0 4 4 0&#039;,
+                width:350,
+                contentEl:&#039;tree&#039;,
+                collapsible:true
+                },{
+                region:&#039;south&#039;,
+                margins:&#039;0 4 4 4&#039;,
+                height:20,
+                html:&#039;Esempio realizzato per TANTO&#039;,
+                bodyStyle:&#039;padding:2px;font-size:12px;font-family:tahoma,arial,helvetica&#039;
+        }]
+	
+    });
+	
+});
+	</pre>
+	<p>questa porzione di codice definisce completamente la webgui, non c&#8217;è bisogno di altro.<br />
+In sintesi, dopo aver inizializzato ExtJs con il metodo Ext.onReady, abbiamo creato un oggetto Viewport per dire ad ExtJs di utilizzare tutta la finestra del browser (dimenticavo&#8230; vogliamo che la nostra applicazione sia a tutto schermo <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  ) e poi abbiamo inserito un layout di tipo &#8216;border&#8217; all&#8217;interndo del quale (nel pannello &#8216;center&#8217;) abbiamo annidato un secondo layout dello stesso tipo.<br />
+Ogni layout di tipo border può contenere 5 panneli (&#8216;region&#8217;), detti north, center, east, west, south. Di questi solo &#8216;center&#8217; è obbligatorio.<br />
+Ad ogni modo vi rimando all&#8217;esplorazione del <a href="http://extjs.com">sito di ExtJs</a> per scoprire come complicare a piacimento i vostri layout. Il sito è molto ben fatto, pieno di tutorial ed esempi.</p>
+	<p>Passiamo ora alla mappa e ai mapfish widget.<br />
+Sempre all&#8217;interno del file myMapFish.js inseriamo questo pezzo di codice sotto al precedente:</p>
+	<pre class="brush: javascript; ">
+	
+//Mappa e Widget
+//************************
+	
+function initMap(){
+	
+    //Creo la mappa e definisco alcuni controlli di base
+    var map = new OpenLayers.Map(&#039;map&#039;,{controls:[
+        new OpenLayers.Control.Navigation(),
+        new OpenLayers.Control.PanZoomBar()
+    ]});
+	
+    //Definisco l&#039;extent che utilizzerò come vista iniziale
+    var bounds = new OpenLayers.Bounds(5,36,21,50);
+	
+    //Definisco i layer WMS, due di base (alternativi) e uno di overlay
+    var jpl_wms = new OpenLayers.Layer.WMS(&quot;NASA_Global_Mosaic&quot;,
+&quot;http://t1.hypercube.telascience.org/cgi-bin/landsat7&quot;,{layers: &quot;landsat7&quot;});
+	
+    var ol_wms = new OpenLayers.Layer.WMS(&quot;OpenLayers_WMS&quot;,
+&quot;http://labs.metacarta.com/wms/vmap0&quot;,{layers: &#039;basic&#039;});
+	
+    var grass_users = new OpenLayers.Layer.WMS.Untiled(&quot;Utenti_grass&quot;,
+&quot;http://mapserver.gdf-hannover.de/cgi-bin/grassuserwms?&quot;,
+        {layers: &#039;GRASS-Users&#039;,transparent:true, format:&#039;image/png&#039;},
+        {isBaseLayer:false});
+	
+    //Aggiungo i layer alla mappa
+    map.addLayers([jpl_wms,ol_wms,grass_users]);
+	
+    //Aggiungo il toolbar widget di MapFish:
+    //**************************************
+    //Creo la toolbar
+    var toolbar = new mapfish.widgets.toolbar.Toolbar({map: map, configurable:true});
+	
+    //Scelgo di renderizzare la toolbar in un div con id = buttonbar
+    toolbar.render(&#039;buttonbar&#039;);
+	
+    //Aggiungo i bottoni/controlli
+    toolbar.addControl(new OpenLayers.Control.ZoomBox(), {iconCls: &#039;zoomin&#039;,toggleGroup: &#039;map&#039;});
+    toolbar.addControl(new OpenLayers.Control.ZoomOut(), {iconCls: &#039;zoomout&#039;,toggleGroup: &#039;map&#039;});
+    toolbar.addControl(new OpenLayers.Control.DragPan({isDefault: true}),{iconCls: &#039;pan&#039;, toggleGroup: &#039;map&#039;});
+	
+    //Attivo la toolbar
+    toolbar.activate();
+	
+    //Layer tree
+    //***************************************
+    //Creo un modello per il layer tree, distribuendo i layer in due nodi espandibili distinti (Mappe di base e Overlay)
+    var model = [{
+         text: &quot;Mappe di base&quot;,
+         expanded: true,
+         children: [{
+              checked:true,
+              text:&quot;Nasa Global Mosaic&quot;,
+              layerName:&quot;NASA_Global_Mosaic&quot;
+              },{
+              checked:false,
+              text:&quot;OpenLayers WMS&quot;,
+              layerName:&quot;OpenLayers_WMS&quot;
+         }]},{
+         text: &quot;Overlay&quot;,
+         expanded: true,
+         children: [{
+              checked:false,
+              text:&quot;Utenti GRASS&quot;,
+              layerName:&quot;Utenti_grass&quot;
+          }]
+    }];
+	
+    //Inserisco il widget vero e proprio indicando
+    var tree = new mapfish.widgets.LayerTree({
+    map: map, el: &#039;tree&#039;,
+    model: model,
+    border:false, autoHeight:true
+    });
+    tree.render();
+	
+    //Centro la mappa sull&#039;extent definito in precedenza
+    map.zoomToExtent(bounds);
+	
+} //fine della funzione init()
+	</pre>
+	<p>Anche qui i commenti dovrebbero essere abbastanza chiari.<br />
+Abbiamo creato una mappa esattamente come se stessimo lavorando con buon vecchio OpenLayers e, in più, abbiamo inserito nel codice due MapFish widget.</p>
+	<p>Prima di vedere il risultato del nostro lavoro dobbiamo fare due piccole modifica al file index.html:<br />
+- inserire un evento onload a livello del tag  per fare in modo che la mappa venga caricata all&#8217;apertura della pagina (esattamente come in OL);<br />
+- inseire alcune regole CSS necessarie per la corretta visualizzazione dei MapFish widget</p>
+	<p>Ecco come deve apparire index.html modificato a dovere:</p>
+	<pre class="brush: html; ">
+	
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Esempio MapFish by TANTO&lt;/title&gt;
+	
+&lt;!-- link ai CSS della componente ExtJS
+(è possibile scaricare temi dal sito di extjs e sostituire default.css con il foglio di stile del tema scaricato... ce ne sono un paio che meritano) --&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/ext-all.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;MapFish-1.1/client/mfbase/ext/resources/css/default.css&quot; /&gt;
+	
+&lt;!-- Inserisco i riferimenti agli script Javascript necessari al funzionamento del framework MapFish --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/openlayers/lib/OpenLayers.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/adapter/ext/ext-base.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/ext/ext-all.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;MapFish-1.1/client/mfbase/mapfish/MapFish.js&quot;&gt;&lt;/script&gt;
+	
+&lt;!-- Inserisco il riferimento allo script Javascript myMapFish.js --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;myMapFish.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;initMap()&quot;&gt;
+&lt;!-- Nel body creo i div che faranno da contenitori per la mappa vera e propria, per la toolbar e per il layer tree --&gt;
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;buttonbar&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;tree&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+	
+&lt;style type=&quot;text/css&quot;&gt;
+/* Icone dei bottoni della toolbar */
+.zoomin {
+background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_zoomin.png) !important;
+height:20px !important;
+width:20px !important;
+}
+.zoomout {
+background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_zoomout.png) !important;
+height:20px !important;
+width:20px !important;
+}
+	
+.pan {
+background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_pan.png) !important;
+height:20px !important;
+width:20px !important;
+}
+	
+/* Dimensioni del Layer tree */
+#tree {
+height: 100%;
+width: 100%;
+}
+&lt;/style&gt;
+	</pre>
+	<p>Adesso apriamo index.html col borwser e il risultato dovrebbe essere <a title="esempio applicazione MapFish" href="http://blog.spaziogis.it/static/esempiomf/" target="_blank">questo</a>.</p>
+	<p> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/">Introduzione a MapFish: OpenLayer e ExtJs “a braccetto”</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/feed/</wfw:commentRss>
+		<slash:comments>19</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Introduzione+a+MapFish%3A+OpenLayer+e+ExtJs+%E2%80%9Ca+braccetto%E2%80%9D&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-04-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

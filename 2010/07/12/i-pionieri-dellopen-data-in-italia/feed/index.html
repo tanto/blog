@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+		>
+<channel>
+	<title>Commenti a: I pionieri dell&#8217;Open Data in Italia</title>
+	<atom:link href="http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Fri, 04 Nov 2016 08:49:24 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+	<item>
+		<title>Di: Antonio Falciano</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/comment-page-1/#comment-5907</link>
+		<dc:creator>Antonio Falciano</dc:creator>
+		<pubDate>Fri, 15 Oct 2010 20:01:55 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213#comment-5907</guid>
+		<description><![CDATA[Grazie. Qui in Italia abbiamo ora più che mai un disperato bisogno di openness... ci riusciremo in tempo utile?]]></description>
+		<content:encoded><![CDATA[<p>Grazie. Qui in Italia abbiamo ora più che mai un disperato bisogno di openness&#8230; ci riusciremo in tempo utile?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Leonardo Bertini</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/comment-page-1/#comment-5904</link>
+		<dc:creator>Leonardo Bertini</dc:creator>
+		<pubDate>Fri, 08 Oct 2010 14:04:46 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213#comment-5904</guid>
+		<description><![CDATA[ti faccio i complimenti per l&#039;esaustività e chiarezza dell&#039;info!
+noi come associazione stiamo lavorando da tempo sulle tematiche OPEN a 360° con OSPA, ci siamo attivati per una diffusione degli open data anche in Italia!]]></description>
+		<content:encoded><![CDATA[<p>ti faccio i complimenti per l&#8217;esaustività e chiarezza dell&#8217;info!<br />
+noi come associazione stiamo lavorando da tempo sulle tematiche OPEN a 360° con OSPA, ci siamo attivati per una diffusione degli open data anche in Italia!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: inDiritto.it &#187; Blog Archive &#187; Legislazioni: accesso e ricerca delle norme</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/comment-page-1/#comment-5272</link>
+		<dc:creator>inDiritto.it &#187; Blog Archive &#187; Legislazioni: accesso e ricerca delle norme</dc:creator>
+		<pubDate>Fri, 03 Sep 2010 15:33:19 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213#comment-5272</guid>
+		<description><![CDATA[[...] Government e Open Data: bilanci e prospettive&#8221; e &#8220;I pionieri dell’Open Data in Italia&#8220;, di Antonio [...]]]></description>
+		<content:encoded><![CDATA[<p>[...] Government e Open Data: bilanci e prospettive&#8221; e &#8220;I pionieri dell’Open Data in Italia&#8220;, di Antonio [...]</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Antonio Falciano</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/comment-page-1/#comment-5264</link>
+		<dc:creator>Antonio Falciano</dc:creator>
+		<pubDate>Wed, 01 Sep 2010 20:56:20 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213#comment-5264</guid>
+		<description><![CDATA[E&#039; utile ricordare che gli shapefile dell&#039;ISTAT sono nel sistema UTM ED50 Zone 32N (EPSG:23032) e sono corredati di projection file (.prj). Essendo dotati di quest&#039;ultimo non è necessario dichiarare il sistema di coordinate (SRS), in quanto ogr2ogr è in grado di riconoscerlo. Tuttavia, in prima approssimazione, l&#039;istruzione con ogr2ogr dovrebbe essere del tipo:
+
+&lt;code&gt;ogr2ogr pippo.gml -f &quot;GML&quot; -t_srs &quot;EPSG:4326&quot; prov2010_s.shp&lt;/code&gt;
+
+utilizzando l&#039;opzione &lt;b&gt;-t_srs&lt;/b&gt; invece di &lt;b&gt;-a_srs&lt;/b&gt;, poiché intendiamo trasformare il layer verso EPSG:4326 e non assegnargli semplicemente un sistema di coordinate.
+
+Trattandosi di una trasformazione (passaggio tra datum diversi), converrebbe esplicitare i parametri del sistema cartografico in ingresso (li puoi trovare su spatialreference.org) aggiungendovi i parametri della trasformazione mediante l&#039;opzione +towgs84 (questi invece li trovi su www.epsg-registry.org). In tal caso, si avrebbe:
+
+&lt;code&gt;ogr2ogr pippo.gml -f &quot;GML&quot; -s_srs &quot;+proj=utm +zone=32 +ellps=intl +units=m +towgs84=-87,-98,-121&quot; -t_srs &quot;EPSG:4326&quot; prov2010_s.shp&lt;/code&gt;
+
+Il layer GML così ottenuto presenterà una maggiore accuratezza rispetto al primo caso, accettabile ai nostri fini.
+
+Infine, esisterebbe una terza soluzione ancora più accurata che prevede l&#039;utilizzo di grigliati, ma sicuramente un mashup a scala provinciale non richiede così tanta precisione, pertanto mi arresterei al secondo step.
+
+Grazie a te. Ciao
+
+PS: complimenti per le tue sperimentazioni con i raw data piemontesi: http://masciap.barberaware.org]]></description>
+		<content:encoded><![CDATA[<p>E&#8217; utile ricordare che gli shapefile dell&#8217;ISTAT sono nel sistema UTM ED50 Zone 32N (EPSG:23032) e sono corredati di projection file (.prj). Essendo dotati di quest&#8217;ultimo non è necessario dichiarare il sistema di coordinate (SRS), in quanto ogr2ogr è in grado di riconoscerlo. Tuttavia, in prima approssimazione, l&#8217;istruzione con ogr2ogr dovrebbe essere del tipo:</p>
+<p><code>ogr2ogr pippo.gml -f "GML" -t_srs "EPSG:4326" prov2010_s.shp</code></p>
+<p>utilizzando l&#8217;opzione <b>-t_srs</b> invece di <b>-a_srs</b>, poiché intendiamo trasformare il layer verso EPSG:4326 e non assegnargli semplicemente un sistema di coordinate.</p>
+<p>Trattandosi di una trasformazione (passaggio tra datum diversi), converrebbe esplicitare i parametri del sistema cartografico in ingresso (li puoi trovare su spatialreference.org) aggiungendovi i parametri della trasformazione mediante l&#8217;opzione +towgs84 (questi invece li trovi su <a href="http://www.epsg-registry.org" rel="nofollow">http://www.epsg-registry.org</a>). In tal caso, si avrebbe:</p>
+<p><code>ogr2ogr pippo.gml -f "GML" -s_srs "+proj=utm +zone=32 +ellps=intl +units=m +towgs84=-87,-98,-121" -t_srs "EPSG:4326" prov2010_s.shp</code></p>
+<p>Il layer GML così ottenuto presenterà una maggiore accuratezza rispetto al primo caso, accettabile ai nostri fini.</p>
+<p>Infine, esisterebbe una terza soluzione ancora più accurata che prevede l&#8217;utilizzo di grigliati, ma sicuramente un mashup a scala provinciale non richiede così tanta precisione, pertanto mi arresterei al secondo step.</p>
+<p>Grazie a te. Ciao</p>
+<p>PS: complimenti per le tue sperimentazioni con i raw data piemontesi: <a href="http://masciap.barberaware.org" rel="nofollow">http://masciap.barberaware.org</a></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Roberto Guido</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/comment-page-1/#comment-5263</link>
+		<dc:creator>Roberto Guido</dc:creator>
+		<pubDate>Wed, 01 Sep 2010 14:51:13 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213#comment-5263</guid>
+		<description><![CDATA[Come hai ottenuto il file GML corretto da dare in pasto a OpenLayers? Io ho usato il tool ogr2ogr nel pacchetto GDAL, piu&#039; precisamente:
+
+&lt;code&gt;ogr2ogr pippo.gml -f &quot;GML&quot; -a_srs &quot;EPSG:4326&quot; prov2010_s.shp&lt;/code&gt;
+
+ma assolutamente, pur copiando ed incollando tutto il resto del tuo codice, non riesco a renderizzare quel che voglio!
+Eppure l&#039;XML risultato e&#039; pressoche&#039; identico al tuo, forse c&#039;e&#039; un qualche dettaglio in merito alla &quot;boundingbox&quot; che non conosco...
+
+Grazie :-)]]></description>
+		<content:encoded><![CDATA[<p>Come hai ottenuto il file GML corretto da dare in pasto a OpenLayers? Io ho usato il tool ogr2ogr nel pacchetto GDAL, piu&#8217; precisamente:</p>
+<p><code>ogr2ogr pippo.gml -f "GML" -a_srs "EPSG:4326" prov2010_s.shp</code></p>
+<p>ma assolutamente, pur copiando ed incollando tutto il resto del tuo codice, non riesco a renderizzare quel che voglio!<br />
+Eppure l&#8217;XML risultato e&#8217; pressoche&#8217; identico al tuo, forse c&#8217;e&#8217; un qualche dettaglio in merito alla &#8220;boundingbox&#8221; che non conosco&#8230;</p>
+<p>Grazie <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Antonio Falciano</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/comment-page-1/#comment-5219</link>
+		<dc:creator>Antonio Falciano</dc:creator>
+		<pubDate>Sat, 17 Jul 2010 19:18:34 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213#comment-5219</guid>
+		<description><![CDATA[Ottima segnalazione, Pietro! Decisamente una gran bella idea per un&#039;Italia migliore. Ed è anche tra le più votate... mi auguro che diventi presto una pianta forte e rigogliosa. Ciao]]></description>
+		<content:encoded><![CDATA[<p>Ottima segnalazione, Pietro! Decisamente una gran bella idea per un&#8217;Italia migliore. Ed è anche tra le più votate&#8230; mi auguro che diventi presto una pianta forte e rigogliosa. Ciao</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Pietro Blu Giandonato</title>
+		<link>http://blog.spaziogis.it/2010/07/12/i-pionieri-dellopen-data-in-italia/comment-page-1/#comment-5218</link>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+		<pubDate>Sat, 17 Jul 2010 14:51:45 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2213#comment-5218</guid>
+		<description><![CDATA[Sul blog del Fabbricamp della Fabbrica di Nichi (Vendola) è stata proposta l&#039;idea &quot;Linked Open Data, “liberare” i dati a beneficio di tutti&quot; http://ht.ly/2cQb2
+Un&#039;altro seme è stato piantato, speriamo germogli e cresca...
+Seguirò la cosa, cercando di contribuire in qualche maniera.]]></description>
+		<content:encoded><![CDATA[<p>Sul blog del Fabbricamp della Fabbrica di Nichi (Vendola) è stata proposta l&#8217;idea &#8220;Linked Open Data, “liberare” i dati a beneficio di tutti&#8221; <a href="http://ht.ly/2cQb2" rel="nofollow">http://ht.ly/2cQb2</a><br />
+Un&#8217;altro seme è stato piantato, speriamo germogli e cresca&#8230;<br />
+Seguirò la cosa, cercando di contribuire in qualche maniera.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

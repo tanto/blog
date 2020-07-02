@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; mapser</title>
+	<atom:link href="http://blog.spaziogis.it/tag/mapser/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>MapServer 5: un piacere per gli occhi</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/</link>
+		<comments>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comments</comments>
+		<pubDate>Fri, 10 Aug 2007 07:42:08 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[mapser]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MapServer+5%3A+un+piacere+per+gli+occhi&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/&amp;rft.language=English"></span>
+Non è la prima che lo scrivo in questo Blog: se non avessi &#8220;incontrato&#8221; MapServer, non avrei avuto la possibilità di aquisire certe conoscenze ed una certa cultura. E&#8217; un ottimo prodotto, che non ti &#8220;abbondona&#8221; mai. Quello che mi ha sempre colpito è la qualità della mailing list: è ricca di entusiasmo, di competenza [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MapServer+5%3A+un+piacere+per+gli+occhi&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Non è la prima che lo scrivo in questo Blog: se non avessi &#8220;incontrato&#8221; <a href="http://mapserver.gis.umn.edu/" title="MapServer Homepage" target="_blank">MapServer</a>, non avrei avuto la possibilità di aquisire certe conoscenze ed una certa cultura. E&#8217; un ottimo prodotto, che non ti &#8220;abbondona&#8221; mai. Quello che mi ha sempre colpito è la qualità della mailing list: è ricca di entusiasmo, di competenza e disponibilità, grazie sia ai novizi che agli sviluppatori di MapServer. Non dico nulla del prodotto, perché è da tempo celebre.</p>
+	<p>Vi voglio solo fare guardare le nuove capacit� di rendering della prossima futura <a href="http://mapserver.gis.umn.edu/download/beta" title="MapServer 5 Beta" target="_blank">versione 5</a>. Magari vi sembrerà qualcosa di poco sostanziale, ma date un&#8217;occhiata alle due immagini di sotto, ad esempio a come viene renderizzata la linea rossa &#8230;</p>
+	<p><img src="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver4.png" alt="Rendering in MapServer 4" /><br />
+<a href="http://boston.freemap.in/kamap.html?lat=901381&amp;lon=232542&amp;zoom=7&amp;layers=B" title="Rendering in MapServer 4" target="_blank">Mapserver 4</a></p>
+	<p><img src="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver5.png" alt="Rendering in MapServer 5" /><br />
+<a href="http://boston.freemap.in/?lat=901381&amp;lon=232542&amp;zoom=7&amp;layers=B" title="Rendering in MapServer 5" target="_blank">Mapserver 5</a></p>
+	<p>La differenza è sostanziale ed è dovuta principalmente ad <a href="http://www.antigrain.com/about/index.html" title="AGG library" target="_blank">AGG</a>, la nuova libreria di rendering.</p>
+	<p>Queste le principali novità:</p>
+	<ul>
+	<li>Added Style and Label attribute binding</li>
+	<li>Raster Color Correction via color lookup table</li>
+	<li>Added label priority</li>
+	<li>Added dynamic charting (pie and bar charts)</li>
+	<li>New mechanism to load/set objects via URL using mapfile syntax</li>
+	<li>Added support for map rendering using the AGG library for better output quality</li>
+	</ul>
+	<p>Le immagini di sopra sono screenshot del lavoro fatto da <a href="http://crschmidt.net/blog" title="Christopher Schmidt Blog" target="_blank">Christopher Schmidt</a>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/">MapServer 5: un piacere per gli occhi</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MapServer+5%3A+un+piacere+per+gli+occhi&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver4.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver4.png" medium="image">
+			<media:title type="html">Rendering in MapServer 4</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver5.png" medium="image">
+			<media:title type="html">Rendering in MapServer 5</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

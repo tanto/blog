@@ -1,0 +1,9 @@
+
+/*Icone della Toolbar*/
+.zoominIcon { background-image:url(../images/nav_zoomin.png); width:20px; height:20px; }
+.zoomoutIcon { background-image:url(../images/nav_zoomout.png); width:20px; height:20px; }
+.zoomfullextIcon { background-image:url(../images/nav_fullextent.png); width:20px; height:20px; }
+.zoomprevIcon { background-image:url(../images/nav_previous.png); width:20px; height:20px; }
+.zoomnextIcon { background-image:url(../images/nav_next.png); width:20px; height:20px; }
+.panIcon { background-image:url(../images/nav_pan.png); width:20px; height:20px; }
+.deactivateIcon { background-image:url(../images/nav_decline.png); width:20px; height:20px; }

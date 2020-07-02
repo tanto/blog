@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; gdal</title>
+	<atom:link href="http://blog.spaziogis.it/tag/gdal/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</title>
+		<link>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/</link>
+		<comments>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/#comments</comments>
+		<pubDate>Thu, 03 Oct 2013 05:53:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[open source]]></category>
+		<category><![CDATA[spatialite]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[sqlite]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5837</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+MySQL è uno dei più diffusi database server, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di default). Mi stupisce però che le funzioni per testare le relazioni spaziali tra oggetti siano limitate. Mi spiego con un esempio classico: selezionare tutti i punti di un layer che cadono all&#8217;interno del perimetro di un poligono [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>MySQL</strong> è uno dei più diffusi <em>database server</em>, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di <em>default</em>). Mi stupisce però che le funzioni per testare le<strong> relazioni spaziali</strong> tra oggetti siano limitate.</p>
+	<p>Mi spiego con un esempio classico: selezionare tutti i punti di un <em>layer</em> che cadono all&#8217;interno del perimetro di un poligono presente in un altro <em>layer</em>. E&#8217; un&#8217;operazione tipica dei GIS, e presente in tutti database con estensione spaziale.</p>
+	<p>In MySQL basta lanciare una <em>query </em>spaziale<em> </em>di questo tipo:</p>
+	<pre class="brush: css; ">
+SELECT * FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1
+</pre>
+	<p>Purtroppo però l&#8217;<em>output</em> non è costituito da tutti i punti contenuti nel perimetro di mio interesse, ma da tutti quelli contenuti nel rettangolo che lo include. Quest&#8217;ultimo è il classico <strong><em>Bounding</em> <em>Box</em></strong>, o come si definisce in ambiente MySQL<em> Minimal Bounding Rectangles </em>(MBR)<span style="color: #000000;">.</span> Nel manuale online è riportato:</p>
+	<blockquote><p>The OpenGIS specification defines the following functions. They test the relationship between two geometry values g1 and g2.</p></blockquote>
+	<p>Questo dovrebbe garantire che l&#8217;output della funzione <em>Contains() </em>sia relativo al perimetro dell&#8217;oggetto &#8220;target&#8221;, ma poco più avanti si legge:</p>
+	<blockquote><p>Currently, <strong>MySQL does not implement these functions according to the specification</strong>. Those that are implemented return the same result as the corresponding MBR-based functions.</p></blockquote>
+	<p>Immagino che i <em>GeoSpatial Developers </em>abbiano diverse frecce al loro arco per superare questo problema, così come ne esisteranno diverse lato utente. Una potrebbe essere quella di non usare questo <em>database server</em> e fare tutto con <em>PostGIS</em>, <em>Oracle Spatial, Spatialite</em>, ecc., ma è troppo facile e non sempre si può scegliere.</p>
+	<p>Io ho pensato a <strong>GDAL/OGR</strong> ed alle sue <a title="OGR Utility Programs" href="http://www.gdal.org/ogr_utilities.html" target="_blank">utility</a> per oggetti vettoriali, ed alla possibilità (che esiste dalla versione 1.10 della libreria) di usare il <a title="SQLite SQL dialect" href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" target="_blank">dialetto </a><strong><a title="SQLite SQL dialect" href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" target="_blank">SQLite/Spatialite</a></strong>. Questo dialetto estende di molto quello che queste utility fanno (egregiamente) di default, ovvero eseguire delle <em>query</em> sql all&#8217;interno di un comando; ad esempio:</p>
+	<pre>ogrinfo province.shp province -sql &quot;SELECT nome FROM province WHERE ID_PRO = 2&quot;</pre>
+	<p>Con il dialetto SQLite/Spatialite ho a disposizione anche le <a title="SQL functions that test spatial relationships" href="http://www.gaia-gis.it/gaia-sins/spatialite-sql-4.0.0.html#p12" target="_blank">funzioni</a> per verificare relazioni spaziali tra oggetti, anche per quelle basi dati che non prevedono intrinsecamente la possibilità di farlo, proprio come MySQL <em>spatial</em>.</p>
+	<p>Andando nel concreto dovrei scrivere una cosa di questo tipo:</p>
+	<pre>ogrinfo MYSQL:&quot;mydb,user=myuse,password=mypwd,port=3306&quot; -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>La sorpresa è che, nonostante si dichiari nella stringa il &#8220;dialetto&#8221; <em>sqlite</em>, si ottiene sempre come output quello relativo ai punti contenuti nel <em>bounding box</em> del perimetro di interesse. E&#8217; un baco? Nella <a href="http://www.gdal.org/ogr/ogr_sql.html" target="_blank">documentazione</a> di OGR si legge:</p>
+	<blockquote><p><strong>All OGR drivers for database systems</strong>: MySQL, PostgreSQL and PostGIS (PG), Oracle (OCI), SQLite, ODBC, ESRI Personal Geodatabase (PGeo) and MS SQL Spatial (MSSQLSpatial), <strong>override the OGRDataSource::ExecuteSQL() function</strong> with dedicated implementation and, by default, pass the SQL statements directly to the underlying RDBMS. In these cases the SQL syntax varies in some particulars from OGR SQL. Also, anything possible in SQL can then be accomplished for these particular databases. Only the result of SQL WHERE statements will be returned as layers.</p></blockquote>
+	<p>Ma si legge anche:</p>
+	<blockquote><p><strong>The SQLite dialect may be used with any OGR datasource</strong>, like the OGR SQL dialect. It is available through the OGRDataSource::ExecuteSQL() method by specifying the pszDialect to &#8220;SQLITE&#8221;. For the ogrinfo or ogr2ogr utility, you must specify the &#8220;-dialect SQLITE&#8221; option.</p></blockquote>
+	<p>La soluzione l&#8217;ho trovata in un test stupido che ho voluto fare: accedere alla fonte MySQL non direttamente, ma tramite il <a href="http://www.gdal.org/ogr/drv_vrt.html" target="_blank"><strong>Virtual Format</strong></a> di OGR, che in qualche modo astrae l&#8217;accesso al formato di input.</p>
+	<p>A partire quindi da una fonte MySQL costruita secondo le specifiche del Virtual Format e salvata come &#8220;test.vrt&#8221;:</p>
+	<pre class="brush: xml; ">
+&lt;ogrvrtdatasource&gt;
+&lt;ogrvrtlayer name=&quot;poligoni&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;poligoni&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPolygon&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;ogrvrtlayer name=&quot;punti&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;punti&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPoint&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;/ogrvrtdatasource&gt;
+</pre>
+	<p>Posso ad esempio lanciare:</p>
+	<pre>ogrinfo test.vrt -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>Il risultato ottenuto sarà così quello desiderato e l&#8217;output corrisponderà a tutti i punti che ricadono nel perimetro di interesse. Nell&#8217;immagine di sotto, ho raccontato il tutto in modo visuale.</p>
+	<p>Concludo sottolineando  quanto siano interessanti, utili, belle e di al<span style="color: #ff0000;"><span style="color: #000000;">t</span></span>o livello professionale alcune delle dinamiche delle <strong>comunità <em>open source</em></strong>. Ho <a title="GDAL - Dev mailing list" href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-td5080909.html" target="_blank">segnalato</a> quello che a me sembrava un baco alla lista GDAL &#8211; DEV. Non solo ho ottenuto subito delle risposte che mi hanno consentito di capirne molto di più, ma si sono messi già al lavoro sia in termini di codice che di documentazione. Un semplice &#8220;grazie&#8221; sembra veramente poco.</p>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" alt="sqlite dialect vs MySQL source" width="496" height="514" /></p>
+	<p>Questo post è dedicato a <strong>Flaviano</strong>, un mio amico che grazie anche ad alcuni <em>tips &amp; tricks</em> su GDAL/OGR ha trovato un bel posto di lavoro in Qatar <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p><div class="note"><div class="noteclassic"></p>
+	<p><strong>NDR</strong>: Jukka Rahkonen, uno sviluppatore di GDAL/OGR, mi fa <a href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-tp5080909p5081551.html" target="_blank">notare</a> che dalla release in trunk r26506 di GDAL e a partire dalle future release stabili ufficiali, non sarà necessario creare alcun file virtuale. Si potrà accedere direttamente alla sorgente MySQL e impostare la proprietà &#8220;-dialect&#8221; al valore &#8220;SQLITE&#8221;.</p>
+	<p></div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/">Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" medium="image">
+			<media:title type="html">sqlite dialect vs MySQL source</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>O che bel tassello marcondirondirondello &#8230;</title>
+		<link>http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/</link>
+		<comments>http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/#comments</comments>
+		<pubDate>Mon, 28 Jan 2013 07:00:00 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[standard]]></category>
+		<category><![CDATA[tiling]]></category>
+		<category><![CDATA[tms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5392</guid>
+		<description><![CDATA[In questo articolo viene mostrato come leggere una sorgente di dati a tasselli, generata secondo standard TMS, e convertirla in un'unica immagine georeferenziata.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=O+che+bel+tassello+marcondirondirondello+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-01-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignright size-full wp-image-5398" src="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello.png" alt="indici_tassello" width="200" height="200" />La cartografia digitale è ormai da tempo invasa da milioni di <strong>tasselli</strong>. I <em>layer</em> di Virtual Earth (che sono vecchio!), OpenStreetMap, Yahoo! Maps, Google Maps, ecc. sono da tempo distribuiti a pezzetti da 256&#215;256 pixel e poi ricomposti nei nostri browser. Le modalità con cui la cosa viene realizzata sono &#8220;abbastanza&#8221; standard; se si prova però ad approfondire un po&#8217;, si scopre ad esempio una grande varietà nel definire l&#8217;indice numerico associato ad un dato tassello, di una certa zona del mondo, ad uno specifico livello di zoom. La mia amata/odiata Sicilia ad esempio, a livello di ingrandimento &#8220;6&#8243;, la posso richiamare nei modi diversi che vedete qui accanto, per tre dei più diffusi indici di tassellamento. Per approfondire il tema vi consiglio di partire da <a href="http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/" target="_blank">qui</a>.</p>
+	<p>Nel tempo queste mattonelle cartografiche sono aumentate a dismisura e ce le troviamo anche in tasca. Penso ai nostri <em><strong>smartphone</strong></em> e al fatto che la quasi totalità delle basi cartografiche delle applicazioni che installiamo in questi sono distribuite a tasselli.</p>
+	<p>E nel prossimo futuro la diffusione sarà ancora più pervasiva, in quanto passeranno dall&#8217;essere consultati quasi esclusivamente tramite servizi/server web, all&#8217;essere letti direttamente da un file residente sul nostro terminale. Un esempio per tutti è quello del <a href="http://www.opengeospatial.org/projects/groups/geopackageswg" target="_blank"><strong>GeoPackage</strong></a>, un formato standard che l&#8217;<strong>OGC</strong> sta definendo, in cui le basi <em>raster</em> potranno essere archiviate proprio a tasselli. Un po&#8217; come <a href="http://www.gaia-gis.it/gaia-sins/" target="_blank"><em>rasterlite</em></a> di Sandro Furieri, che credo sia in qualche modo lo scheletro portante di questo <strong>nuovo formato</strong> OGC.</p>
+	<p>I tasselli sono talmente tanti che ormai spesso trovo negli <em>hard-disk</em>, <em>pen-drive</em> USB, DVD (come sono vecchio!), schede SD, ecc. quelle strane cartelle a loro volta suddivise in decine e decine (nel caso migliore) di sottocartelle, tipiche della struttura di archiviazione su <em>file system</em> di basi dati tassellate e piramidate.</p>
+	<p>Proprio per questo ho pensato di scrivere un articolo su come accedere ad un archivio cartografico di questo tipo, che in qualche modo è il complementare ad un <a href="http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/" target="_blank"> altro</a> scritto nel lontanissimo 2008 e in cui viene illustrato come tassellare un&#8217;immagine.</p>
+	<h2>Come accedere ad un archivio cartografico a tasselli e ricomporlo in un unica immagine georeferenziata?</h2>
+	<p>In sé la cosa sembra ovvia, in quanto si tratta di formati file leggibili da qualsiasi terminale con qualsiasi sistema operativo: parliamo infatti nella stragrande maggioranza dei casi di .jpg e .png. Sfoglio le cartelle, faccio doppio click su una delle immagini e le visualizzo in un attimo. E dove è finita l&#8217;<strong>informazione geografica</strong>?</p>
+	<p>Se le apro infatti con un visualizzatore di immagini è normale che le uniche coordinate riconosciute siano i pixel, ma se provate ad aprire lo stesso tassello con una applicazione GIS, il risultato non cambia. L&#8217;informazione geografica infatti non è presente nemmeno in qualche <em>tag</em> nascosto internamente ai file e quindi non può essere letta. Per assurdo tutti i tasselli sembrano sovrapposti nello stesso punto della terra, ad una sola risoluzione.</p>
+	<p>L&#8217;arcano si risolve proprio nella lettura della struttura della cartella in cui sono archiviati e quindi nella conoscenza dell&#8217;indice utilizzato per generare tutti i pezzetti di mondo alle varie scale di ingrandimento. Data infatti una certa modalità di tassellamento, ogni punto della terra è associato ad una certa tessera di questo enorme mosaico, per un certo livello di zoom.</p>
+	<p><img class="alignright size-full wp-image-5399" style="margin: 2px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/01/struttura.png" alt="struttura" width="259" height="148" />Ma sporchiamoci un po&#8217; le mani. Nell&#8217;immagine accanto una cartella di <em>output</em> di un tassellamento, con le sue sottocartelle, che potete scaricare da <a href="http://blog.spaziogis.it/static/tassello/NE2_50M_SR_W.zip" target="_blank">qui</a>. Se la si sfoglia un po&#8217; e si provano ad aprire i singoli file che troviamo all&#8217;interno delle varie cartelle, è evidente che quello che varia per ogni tassello è l&#8217;ingrandimento e/o l&#8217;area della Terra rappresentata. Posizione e zoom, ovvero x, y e z.</p>
+	<p>In questo esempio, ed è facile verificarlo in modo empirico, il primo livello di sottocartelle è legato all&#8217;ingrandimento: dalla cartella &#8220;0&#8243; con la risoluzione più bassa a quella &#8220;4&#8243; con quella più alta. All&#8217;interno di queste invece le eventuali sottocartelle rappresentano spostamenti lungo l&#8217;asse x. Nella figura di sopra quindi le cartelle &#8220;NE2_50M_SR_W\1&#8243; e &#8220;NE2_50M_SR_W\1\1&#8243; contengono, per il livello di zoom &#8220;1&#8243;, porzioni di Terra affiancate. La variazione lungo l&#8217;asse y è invece resa, per ogni cartella, dal nome del file: il tassello &#8220;1.png&#8221; sta a Nord di quello &#8220;0.png&#8221;.</p>
+	<p>Nella figura sottostante ho schematizzato la cosa, per rendere ancora più leggibile e chiara questa struttura.</p>
+	<p><img class="alignnone size-full wp-image-5400 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2013/01/dettaglio_web.png" alt="dettaglio_web" width="498" height="533" /></p>
+	<p>Conoscere tutto questo ovviamente non basta a posizionare queste immagini nello spazio, ma soltanto in modo relativo. Per fortuna però il tassellamento viene fatto secondo <strong>standard</strong>, magari diversi, ma definiti. Quindi se conosciamo (o riconosciamo) lo standard con cui sono state generate le nostre tessere, basterà essere in possesso di un <em>client</em> che sappia leggere questo standard e queste verranno posizionate correttamente nello spazio cartografico. Un po&#8217; come quando accediamo ad un servizio WMS.</p>
+	<p>La cartella di esempio che sto usando per questo esercizio contiene al suo interno (per fortuna c&#8217;è quasi sempre qualcosa di simile) il seguente file .xml.</p>
+	<pre class="brush: xml; ">
+&lt; ?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;tilemap version=&quot;1.0.0&quot; tilemapservice=&quot;http://tms.osgeo.org/1.0.0&quot;&gt;
+&lt;title&gt;NE2_50M_SR_W&lt;/title&gt;
+&lt;abstract&gt;&lt;/abstract&gt;
+&lt;srs&gt;EPSG:900913&lt;/srs&gt;
+&lt;boundingbox minx=&quot;-85.05112878000000&quot; miny=&quot;-180.00000000000000&quot; maxx=&quot;85.05112878000000&quot; maxy=&quot;179.99871994141003&quot;&gt;&lt;/boundingbox&gt;
+&lt;origin x=&quot;-85.05112878000000&quot; y=&quot;-180.00000000000000&quot;&gt;&lt;/origin&gt;
+&lt;tileformat width=&quot;256&quot; height=&quot;256&quot; mime-type=&quot;image/png&quot; extension=&quot;png&quot;&gt;&lt;/tileformat&gt;
+&lt;tilesets profile=&quot;mercator&quot;&gt;
+&lt;tileset href=&quot;0&quot; units-per-pixel=&quot;156543.03390000000945&quot; order=&quot;0&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;1&quot; units-per-pixel=&quot;78271.51695000000473&quot; order=&quot;1&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;2&quot; units-per-pixel=&quot;39135.75847500000236&quot; order=&quot;2&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;3&quot; units-per-pixel=&quot;19567.87923750000118&quot; order=&quot;3&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;4&quot; units-per-pixel=&quot;9783.93961875000059&quot; order=&quot;4&quot;&gt;&lt;/tileset&gt;
+&lt;/tilesets&gt;
+&lt;/tilemap&gt;
+</pre>
+	<p>E&#8217; un piccolo tesoro che ci dice quasi tutto della struttura a tasselli che stiamo analizzando:</p>
+	<ul>
+	<li>la specifica sul formato di tassellamento, ovvero il <a href="Tile%20Map%20Service%20Specification">TMS 1.0</a> (<strong>Tile Map Service</strong>) di OSGeo;</li>
+	<li>lo <em>Spatial Reference System</em> usato;</li>
+	<li>il <em>Bounding Box</em>;</li>
+	<li>l&#8217;origine del mosaico dei tasselli;</li>
+	<li>formato e dimensioni dei tasselli;</li>
+	<li>e la risoluzione per ogni livello di zoom.</li>
+	</ul>
+	<p>Non ci resta che trovare un <em>client</em> compatibile con lo standard TMS e provare a leggere questa struttura dati. La scelta va ancora una volta verso il Victorinox delle librerie spaziali, ovvero <strong>GDAL/OGR</strong>. Sfruttando infatti i <em><strong>minidriver</strong></em> di GDAL, descritti in fondo nella <a href="http://www.gdal.org/frmt_wms.html" target="_blank">pagina</a> di accesso ai servizi WMS, è possibile accedere direttamente a dati esposti in TMS; sia come <em>che su</em> file system. Prima è però necessario definire un file di configurazione, come descritto nella documentazione di cui sopra e di cui si riporta a seguire un esempio, basato sui dati che sto usando per questo post.</p>
+	<pre class="brush: xml; ">
+&lt;gdal_wms&gt;
+&lt;service name=&quot;TMS&quot;&gt;
+&lt;serverurl&gt;
+file://C:/tmp/NE2_50M_SR_W/${z}/${x}/${y}.png
+&lt;/serverurl&gt;
+&lt;/service&gt;
+&lt;imageformat&gt;image/png&lt;/imageformat&gt;
+&lt;datawindow&gt;
+&lt;upperleftx&gt;-20037508.34&lt;/upperleftx&gt;
+&lt;upperlefty&gt;20037508.34&lt;/upperlefty&gt;
+&lt;lowerrightx&gt;20037508.34&lt;/lowerrightx&gt;
+&lt;lowerrighty&gt;-20037508.34&lt;/lowerrighty&gt;
+&lt;tilelevel&gt;4&lt;/tilelevel&gt;
+&lt;tilecountx&gt;1&lt;/tilecountx&gt;
+&lt;tilecounty&gt;1&lt;/tilecounty&gt;
+&lt;/datawindow&gt;
+&lt;projection&gt;EPSG:900913&lt;/projection&gt;
+&lt;blocksizex&gt;256&lt;/blocksizex&gt;
+&lt;blocksizey&gt;256&lt;/blocksizey&gt;
+&lt;bandscount&gt;3&lt;/bandscount&gt;
+&lt;maxconnections&gt;10&lt;/maxconnections&gt;
+&lt;cache&gt;&lt;/cache&gt;
+&lt;/gdal_wms&gt;
+</pre>
+	<p>Il file contiene, in modo differente, quasi le stesse informazioni descritte prime per il file .xml. Tra queste:</p>
+	<ul>
+	<li>il tipo di servizio - &lt;service name&gt;</li>
+	<li>l&#8217;indirizzo per accedere ai dati - &lt;serverurl&gt;</li>
+	<li>il formato immagine della sorgente dati - &lt;imageformat&gt;</li>
+	<li>il <em>Bounding Box </em>- &lt;upperleftx&gt;, &lt;upperlefty&gt;, &#8230;</li>
+	<li>il livello di Zoom con la risoluzione più alta, che ricavo proprio dal file.xml di sopra - &lt;tilelevel&gt;</li>
+	<li>lo <em>Spatial Reference System -</em> &lt;projection&gt;</li>
+	<li>la dimensione in pixel dei tasselli - &lt;blocksizex&gt;, &lt;blocksizey&gt;</li>
+	</ul>
+	<p>Il valore del parametro ServerUrl &#8211; ovvero l&#8217;indirizzo della sorgente dati &#8211; è di solito quello di un servizio web con una forma di questo tipo: http://myserver.it/NE2_50M_SR_W/${z}/${x}/${y}.png.</p>
+	<p>Nel caso descritto i dati sono su un <em>hard-disk</em> di un PC e quindi, l&#8217;accesso non è in HTTP ma secondo lo schema URI di accesso a file: file://C:/tmp/NE2_50M_SR_W/${z}/${x}/${y}.png (in questo esempio la cartella dei dati è all&#8217;interno di &#8220;C:\tmp&#8221;).<br />
+Nell&#8217;URI è necessario indicare come è realizzata, in termini di struttura e nomi dei file, la mappatura di x, y e z. Nel caso in esame abbiamo visto che è resa come z/x/y.png, e cosi è stata riportata nel file di configurazione. Bisogna soltanto fare attenzione alla sintassi che prevede l&#8217;utilizzo di alcuni caratteri speciali.</p>
+	<p>Creato il file di configurazione e salvato con nome (ad esempio &#8220;input.txt&#8221;), non resta che provare a leggere i dati. Il primo passo, un po&#8217; per fare <em>debug</em> è aprire la shell e digitare:</p>
+	<pre>gdalinfo input.txt</pre>
+	<p>Come risultato, se tutto è correttamente configurato, si otterrà:</p>
+	<pre>Driver: WMS/OGC Web Map Service
+Files: input.txt
+Size is 4096, 4096
+Coordinate System is:
+PROJCS[\"Google Maps Global Mercator\",
+    GEOGCS[\"WGS 84\",
+        DATUM[\"WGS_1984\",
+            SPHEROID[\"WGS 84\",6378137,298.257223563,
+                AUTHORITY[\"EPSG\",\"7030\"]],
+            AUTHORITY[\"EPSG\",\"6326\"]],
+        PRIMEM[\"Greenwich\",0,
+            AUTHORITY[\"EPSG\",\"8901\"]],
+        UNIT[\"degree\",0.01745329251994328,
+            AUTHORITY[\"EPSG\",\"9122\"]],
+        AUTHORITY[\"EPSG\",\"4326\"]],
+    PROJECTION[\"Mercator_2SP\"],
+    PARAMETER[\"standard_parallel_1\",0],
+    PARAMETER[\"latitude_of_origin\",0],
+    PARAMETER[\"central_meridian\",0],
+    PARAMETER[\"false_easting\",0],
+    PARAMETER[\"false_northing\",0],
+    UNIT[\"Meter\",1],
+    EXTENSION[\"PROJ4\",\"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs\"],
+    AUTHORITY[\"EPSG\",\"900913\"]]
+Origin = (-20037508.340000000000000,20037508.340000000000000)
+Pixel Size = (9783.939619140624900,-9783.939619140624900)
+Image Structure Metadata:
+  INTERLEAVE=PIXEL
+Corner Coordinates:
+Upper Left  (-20037508.340,20037508.340) (180d 0' 0.00\"W, 85d 3' 4.06\"N)
+Lower Left  (-20037508.340,-20037508.340) (180d 0' 0.00\"W, 85d 3' 4.06\"S)
+Upper Right (20037508.340,20037508.340) (180d 0' 0.00\"E, 85d 3' 4.06\"N)
+Lower Right (20037508.340,-20037508.340) (180d 0' 0.00\"E, 85d 3' 4.06\"S)
+Center      (   0.0000000,   0.0000000) (  0d 0' 0.01\"E,  0d 0' 0.01\"N)
+Band 1 Block=256x256 Type=Byte, ColorInterp=Red
+  Overviews: 2048x2048, 1024x1024, 512x512, 256x256
+Band 2 Block=256x256 Type=Byte, ColorInterp=Green
+  Overviews: 2048x2048, 1024x1024, 512x512, 256x256
+Band 3 Block=256x256 Type=Byte, ColorInterp=Blue
+  Overviews: 2048x2048, 1024x1024, 512x512, 256x256</pre>
+	<p>Siamo riusciti a leggere correttamente le informazioni sui nostri dati e non abbiamo avuto nessun errore. A questo punto il comando per la ricomposizione in un&#8217;unica immagine georeferenziata è la cosa più ovvia, è gdal_translate:</p>
+	<pre>gdal_translate input.txt output.tif</pre>
+	<p>L&#8217;output sarà un unico file geotiff, <em>Mission Accomplished!</em></p>
+	<p>Questo ovviamente è un caso semplice, costruito in modo che sia replicabile e didatticamente valido. Nella pratica quotidiana è tutto un po&#8217; più complicato, ma leggendo i riferimenti indicati nell&#8217;articolo, documentandosi un po&#8217;, sarà possibile replicare la cosa con i propri dati.<br />
+La carta di base da cui ho generato i tasselli (che poi ho ricomposto) è la bella &#8220;<em>Natural Earth II with Shaded Relief and Water</em>&#8220;. E&#8217; rilasciata sotto <strong>pubblico dominio</strong> e scaricabile da <a href="http://www.naturalearthdata.com/downloads/50m-natural-earth-2/50m-natural-earth-ii-with-shaded-relief-and-water/" target="_blank">qui</a>.</p>
+	<p>Con i <em>minidriver</em> di GDAL/OGR si possono fare tante altre cose, come accedere e quindi (volendo) scaricare, i tasselli di Bing Maps e Google Maps, facendo però la giusta attenzione ai termini legali imposti. Inoltre il file di testo di input creato sopra, può essere trascinato in <em>drag &amp; drop</em> su <strong>Quantum GIS</strong> e visualizzato pochi secondi dopo. Questo sempre grazie all&#8217;esistenza degli standard e di GDAL/OGR.</p>
+	<p>Questo articolo diverrà magari presto &#8220;superato&#8221; proprio perché l&#8217;invasione dei tasselli sarà probabilmente peggiore di un <strong>attacco <em>zombie</em></strong>, e saranno pertanto sviluppate modalità di accesso, procedure e interfacce ancora più semplici e trasparenti. Il fatto di poter accedere al basso livello descritto in questo articolo, offre comunque una potenza e una libertà di impieghi che difficilmente si potrà ottenere tramite strumenti di livello più alto.</p>
+	<p>In ultimo ringrazio <a href="http://blog.spaziogis.it/author/lorenzop/" target="_blank"><strong>Lorenzo Perone</strong></a> che mi ha dato gli stimoli per mettere in linea questi pensieri e questo processo.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/">O che bel tassello marcondirondirondello &#8230;</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=O+che+bel+tassello+marcondirondirondello+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-01-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello.png" medium="image">
+			<media:title type="html">indici_tassello</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/01/struttura.png" medium="image">
+			<media:title type="html">struttura</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/struttura-150x148.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/01/dettaglio_web.png" medium="image">
+			<media:title type="html">dettaglio_web</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/dettaglio_web-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>GDAL in due clic con Open++</title>
+		<link>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/</link>
+		<comments>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/#comments</comments>
+		<pubDate>Thu, 13 Oct 2011 07:00:58 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[gdalinfo]]></category>
+		<category><![CDATA[gdal_translate]]></category>
+		<category><![CDATA[open++]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4268</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+I nostri più assidui lettori sicuramente ricorderanno un &#8220;vecchio&#8221; post di Andrea Borruso dal titolo &#8220;Il tasto destro per alleggerire un po’ il lavoro di chi si occupa di GIS (su Windows e su Linux)&#8221;, un evergreen del nostro blog tra i più visitati di sempre. Ebbene, in accordo con la postilla che scriviamo in [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="text-align: left;">I n<a href="http://dengdun.webs.com/en/openxx.htm" target="_blank"><img class="alignleft" style="border: 0pt none; margin: 5px;" title="Open++" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" alt="Open++" width="32" height="32" /></a>ostri più assidui lettori sicuramente ricorderanno un &#8220;vecchio&#8221; post di Andrea Borruso dal titolo<strong> <a title="Il tasto destro per alleggerire un po' il lavoro di chi si occupa di GIS (su Windows e su Linux)" href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/" target="_blank">&#8220;Il tasto destro per alleggerire un po’ il lavoro di chi si occupa di GIS (su Windows e su Linux)&#8221;</a></strong>, un evergreen del nostro blog tra i più visitati di sempre. Ebbene, in accordo con la postilla che scriviamo in calce ai nostri post dopo un anno dalla loro pubblicazione (ci teniamo a ricordarlo!), il post di Andrea, pur sempre attualissimo, merita un aggiornamento in virtù del fatto che il software <a title="Open++" href="http://dengdun.webs.com/en/openxx.htm" target="_blank"><strong>Open++</strong></a> da lui brillantemente recensito ha subito di recente alcune evoluzioni significative tali da rendere inefficaci le istruzioni scritte all&#8217;epoca (&#8230;ben due anni e mezzo fa!).</p>
+	<p style="text-align: left;">In particolare, Andrea ci mostrava come configurare Open++ in modo da “automatizzare” l&#8217;utilizzo di alcune utility dello <em>swiss kn</em><em>ife</em> geospaziale per eccellenza: <a title="GDAL - Geospatial Data Abstraction Library" href="http://www.gdal.org/" target="_blank"><strong>la libreria GDAL</strong></a>. Cercheremo pertanto di ottenere lo stesso risultato di allora, utilizzando stavolta l&#8217;ultima release di Open++ (v. 1.5.1).</p>
+	<p style="text-align: left;">Partiamo innanzitutto dal notare che la struttura della finestra di dialogo di Open++ è leggermente cambiata rispetto al passato. In luogo della scheda <em>Language</em>, ora ne sono presenti altre due: <em>Install/Uninstall</em> e <em>About</em>. Tralasciando l&#8217;ovvio significato di quest&#8217;ultima, la scheda <em>Install/Uninstall </em>è stata introdotta in sostituzione del vecchio installer, rendendo quindi l&#8217;applicazione portabile (può essere eseguita su una semplice chiavetta USB). La scheda principale (<em>Commands</em>) è apparentemente rimasta invariata rispetto al passato. Tuttavia, come ci fa notare Chiara (una lettrice che di recente ha <a title="Commento di Chiara al post di Andrea" href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/comment-page-1/#comment-7297" target="_blank">commentato il post di Andrea</a>, sollevando il problema), qualcosa è cambiato nella versione 1.5.1 (probabilmente anche prima): si tratta essenzialmente delle variabili utilizzabili nella casella di testo in cui andiamo a configurare i nostri comandi e, in particolare, quella degli argomenti (<em>Arguments</em>), come mostrato nella figura seguente.</p>
+	<p style="text-align: center;"><img class="aligncenter" title="Open++ - opzioni Arguments" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/1.png" alt="Open++ - opzioni Arguments" width="501" height="380" /></p>
+	<p style="text-align: left;" align="JUSTIFY">Tali variabili, per quanto siano di una chiarezza quasi disarmante, risultano però meno flessibili da gestire rispetto alle versioni precedenti specie quando, come nel caso delle utility della libreria GDAL, il nostro comando accetta due o più parametri basati sul nome del file in ingresso. Fortunatamente, ci viene in soccorso l&#8217;unica FAQ presente nell&#8217;help file di Open++ (abbastanza criptico, in verità&#8230;) in cui è mostrato l&#8217;utilizzo di un ciclo <em>for</em> in linguaggio batch all&#8217;interno degli argomenti. Dunque, se è possibile usare il linguaggio batch, è altrettanto possibile usare anche i <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/percent.mspx?mfr=true">parametri batch</a> e trarne così beneficio nel gestire i nomi dei file con o senza le loro estensioni. Ovviamente un ciclo <em>for</em> è applicabile anche su un singolo file e quindi il gioco è fatto!</p>
+	<p style="text-align: left;" align="JUSTIFY">Andando al sodo, per prima cosa consiglio di aggiungere la cartella dei binari di GDAL (o di FWTools, se preferite) all&#8217;interno della variabile PATH di sistema. Così potrete facilmente eseguire qualsiasi tool di GDAL all&#8217;interno di una qualsivoglia cartella, senza la necessità di dover riscrivere il suo percorso. In questo altro <a href="../2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/">post</a> sempre di Andrea (lo &#8220;<em>swiss knife</em>&#8221; di TANTO <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' />  ) è descritto come fare. Nel seguito, assumerò che lo abbiate fatto.</p>
+	<p style="text-align: left;" align="JUSTIFY">Quindi aggiungiamo un separatore delle opzioni di menù nella scheda <em>Commands</em> di Open++ e proviamo a configurare l&#8217;utility relativamente più semplice tra quelle trattate da Andrea: <em>gdalinfo</em>. Per prima cosa, scriviamo <em>&#8220;GDALinfo&#8221; </em>come titolo. Poi, trattandosi di una utility che si esegue da riga di comando, il programma da utilizzare sarà <em>%ComSpec%</em>, ovvero il nome della variabile di ambiente usata da Windows per indicare l&#8217;interprete da linea di comando (CLI), solitamente <em>cmd.exe</em>. Fin qui nulla di nuovo rispetto al post di Andrea. Negli argomenti, invece, scriveremo:</p>
+	<pre>/k gdalinfo %FilePaths%</pre>
+	<p style="text-align: left;" align="JUSTIFY">La spiegazione è piuttosto semplice: <em>/k</em> significa che vogliamo mantenere la finestra aperta dopo l&#8217;esecuzione del comando (altrimenti non riusciremmo a leggere le informazioni), <em>gdalinfo</em> è il nome dell&#8217;eseguibile dell&#8217;utility e, quindi, <em>%FilePaths%</em> è una variabile che rappresenta il vettore dei percorsi dei file passati come parametro. La directory di lavoro coincide con la directory del file stesso (<em>%FileDir%</em>), scegliamo eventualmente un&#8217;icona per rappresentare il comando, associamo il comando al singolo file e, infine, esplicitiamo le estensioni possibili del file in ingresso. Nulla di trascendentale, verrebbe da pensare.</p>
+	<p style="text-align: center;"><img class="aligncenter" title="Open++ - gdalinfo" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/2.png" alt="Open++ - gdalinfo" width="486" height="510" /></p>
+	<p style="text-align: left;" align="JUSTIFY">Le cose si complicano, invece, quando andiamo a mettere in pratica l&#8217;esempio di Andrea relativo a <em>gdal_translate</em>. La procedura è sostanzialmente identica al caso precedente, ad eccezione dell&#8217;argomento. Tuttavia, come anticipavo in precedenza, ci viene ottimamente in soccorso l&#8217;unica FAQ a disposizione. E, pertanto, l&#8217;argomento da scrivere per convertire in formato JPEG sarà:</p>
+	<pre>/c for %i in (%FilePaths%) do start gdal_translate -of JPEG %~nxi %~ni.jpg</pre>
+	<p style="text-align: left;" align="JUSTIFY">che, in pratica, significa che per tutti i file contenuti nel vettore dei percorsi <em>%FilePaths%</em> (nel nostro caso, contiene un unico percorso in quanto selezioneremo un unico file) esegue il comando <em>gdal_translate -of JPEG %~nxi %~ni.jpg, </em>dove <em>%~nxi </em>è il nome <span style="text-decoration: underline;">compreso di estensione</span> del raster sorgente, mentre <em>%~ni </em>è il nome <span style="text-decoration: underline;">privo di estensione</span> del raster di destinazione, seguito poi da <em>.jpg</em>.</p>
+	<p style="text-align: left;" align="JUSTIFY"><img class="aligncenter size-full wp-image-4275" title="Open++ - gdal_translate" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/3.png" alt="Open++ - gdal_translate" width="486" height="510" /></p>
+	<p>E non è ancora tutto! Visto che usiamo un ciclo <em>for</em> come argomento e che Open++ prevede l&#8217;associazione dei suoi comandi anche ad un insieme di file, possiamo quindi rendere la conversione in JPEG in modalità batch. A tal fine, creeremo sostanzialmente una copia del <em>Convert to JPEG</em> in cui aggiungeremo solo il termine <em>(batch)</em> alla fine del titolo e poi cambieremo l&#8217;opzione <em>Associate with</em> da <em>Single File</em> a <em>Multiple File</em>. Possiamo quindi selezionare più file raster e da menù contestuale scegliere l&#8217;opzione <em>Convert to JPEG (batch)</em> per avere la conversione in blocco di tutti i file selezionati. E&#8217; quindi adesso facile definire altri comandi di conversione verso altri <a title="GDAL Raster Formats" href="http://www.gdal.org/formats_list.html" target="_blank">formati raster supportati da GDAL</a> &#8230;e non solo! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-4296" title="open++ menù" src="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg.png" alt="" width="469" height="251" /></p>
+	<p>Per i più pigri, ecco il file di configurazione <a title="Sample OpenXX initialization file showing how to use GDAL utilities" href="https://gist.github.com/1273596" target="_blank"><strong>OpenXX.ini</strong></a> dei comandi descritti in precedenza. Basta copiarlo nella cartella contenente Open++, eseguirlo &#8230;<em>et voilà</em> &#8230;si otterrà la stessa identica configurazione. Si tratta di un metodo semplice e rapido per condividere le proprie raccolte di comandi con i colleghi.</p>
+	<p><strong>Una nota a margine:</strong> in caso si decida di definire comandi per effettuare operazioni di coordinate, occorre aggiungere alla variabile PATH di sistema anche il percorso della cartella di GDAL (o eventualmente della libreria proj.4) che contiene le definizioni dei vari sistemi cartografici definiti da EPSG.</p>
+	<p>Infine, <strong>un grosso ringraziamento a Chiara</strong> per averci costretti a rivalutare un post obsoleto.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/">GDAL in due clic con Open++</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL+in+due+clic+con+Open%2B%2B&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-10-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/13/gdal-in-due-clic-con-open/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++.png" medium="image">
+			<media:title type="html">Open++</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/1.png" medium="image">
+			<media:title type="html">Open++ - opzioni Arguments</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/2.png" medium="image">
+			<media:title type="html">Open++ - gdalinfo</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/3.png" medium="image">
+			<media:title type="html">Open++ &#8211; gdal_translate</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/3-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg.png" medium="image">
+			<media:title type="html">open++ menù</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/10/open++_menu_jpeg-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Python e GIS con GDAL/OGR: configurare l&#8217;ambiente di lavoro su windows</title>
+		<link>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/</link>
+		<comments>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/#comments</comments>
+		<pubDate>Sun, 09 Jan 2011 20:00:22 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[ogr]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3161</guid>
+		<description><![CDATA[Python e GIS sono ormai una coppia di fatto. In questo post è descritta la procedura per installare e configurare - in ambiente windows - il binding per Python  di GDAL/OGR. A cose fatte sarà possibile scrivere codice spaziale in Python.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Python+e+GIS+con+GDAL%2FOGR%3A+configurare+l%26%238217%3Bambiente+di+lavoro+su+windows&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>Python </strong>(<a title="Pyhon homepage" href="http://python.org/" target="_blank">http://python.org</a>) è un linguaggio di programmazione di alto livello, adatto ai più svariati obiettivi di programmazione. Viene usato per applicazioni web e desktop, giochi, programmazione scientifica, utility e anche per porzioni di sistemi operativi.<br />
+Anche chi ha la necessità di sviluppare delle applicazioni in grado di leggere, scrivere, analizzare ed elaborare dati ed informazioni spaziali, troverà in Python un compagno di viaggio piacevole, eclettico e ricco di pregi. Chi lavora in questo contesto e segue il mondo della programmazione, sa che si tratta di un linguaggio che sta diventando tra i più diffusi, sia nel mondo proprietario che in quello open-source, con a disposizione numerose librerie ad hoc.<br />
+Anche per questo, penso sia arrivato il momento (anzi mi sento in grande ritardo) di scrivere un post che fornisca gli strumenti per iniziare a “sporcarsi le mani”.<br />
+In linea teorica è possibile scrivere da zero codice Python che consenta di manipolare dati spaziali. Per fortuna esiste &#8211; tra le tante librerie disponibili &#8211;  il <a title="Binding python GDAL/OGE" href="http://trac.osgeo.org/gdal/wiki/GdalOgrInPython" target="_blank"><em>binding</em></a> Python di <strong><a title="Homepage gdal/ogr" href="http://www.gdal.org/" target="_blank">GDAL/OGR</a>;</strong> per iniziare è molto più comodo appoggiarsi sulle spalle di questo gigante.<br />
+Due annotazioni prima di passare agli aspetti pratici:</p>
+	<ul>
+	<li>questo post consentirà di configurare Python e GDAL/OGR in <strong>ambiente Windows</strong>. Confido in qualche collega della redazione per scrivere le istruzioni utili per altri sistemi operativi</li>
+	<li>verrà descritta una delle tante modalità possibili per configurare l’ambiente</li>
+	</ul>
+	<h2>Procedura</h2>
+	<p>Installare GDAL per Python su Windows è un processo semplice, che può essere portato fino in fondo, seguendo la seguente procedura:</p>
+	<ul>
+	<li>Scaricare l&#8217;<strong><em>installer</em></strong> di <strong>Python</strong> dal sito ufficiale &#8211; <a title="Python installer Download" href="http://www.python.org/download/" target="_blank">http://www.python.org/download/</a> &#8211; ed installarlo. E&#8217; possibile scaricare diverse release; noi abbiamo effettuato i nostri test con gli <em>installer</em> della <a title="Python 2.6.x windows installer" href="http://www.python.org/download/releases/2.6.6/" target="_blank"><strong>2.6.x</strong></a></li>
+	<li>Installare <strong>GDAL/OGR</strong> per Windows
+	<ul>
+	<li>Scaricarlo da <a title="GDAL/OGR per Windows" href="http://download.osgeo.org/gdal/win32" target="_blank">http://download.osgeo.org/gdal/win32/</a>. Abbiamo utilizzato il file “gdalwin32exe160.zip” che si trova nella cartella “1.6”.</li>
+	<li>Decomprimere questo file in una cartella del vostro PC. L&#8217;abbiamo estratta in C:\ ed abbiamo quindi creato la cartella C:\gdalwin32-1.6.</li>
+	<li>Aggiungere la cartella di GDAL che contiene gli eseguibili (&#8220;C:\gdalwin32-1.6\bin&#8221; nel nostro caso) alla variabile di ambiente  “Path”.
+	<ul>
+	<li>Aprire il &#8220;Pannello di controllo&#8221; di Windows</li>
+	<li>Fare click su Sistema (se usate la visualizzazione per categorie, “Prestazioni e manutenzione” e poi &#8220;Sistema&#8221;).</li>
+	<li>Fare click su Avanzate</li>
+	<li>Fare click su “Variabili d&#8217;ambiente”.</li>
+	<li>Cercare la voce “Path” tra le “Variabili di sistema” e cliccare su Modifica.</li>
+	<li>Fare click sulla cella “Valore variabile”, andare in fondo alla riga, aggiungere un “;” ed inserire il percorso completo della cartella “bin” della vostra installazione di GDAL (C:\gdalwin32-1.6\bin nel nostro caso).</li>
+	<li>Fare Click su OK.<br />
+<img title="gdal-bin Windows Path" src="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" alt="gdal-bin Windows Path" width="347" height="147" /></li>
+	</ul>
+	</li>
+	</ul>
+	<ul>
+	<li>Aggiungere “GDAL_DATA” come nuova variabile d&#8217;ambiente.
+	<ul>
+	<li>Fare click su &#8220;Nuovo&#8221; nella finestra &#8220;Variabili d&#8217;ambiente&#8221;.</li>
+	<li>Inserire “GDAL_DATA” nel campo “Nome variabile”.</li>
+	<li>Inserire il percorso completo della cartella data di GDAL nel campo “Valore variabile” (nel nostro caso “C:\gdalwin32-1.6\data”).</li>
+	<li>Fare click su &#8220;OK&#8221;. Aggiungeremo più avanti altre variabili d&#8217;ambiente, quindi potete tenere aperta questa finestra di dialogo.<br />
+<img title="gdal-data Windows path" src="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-data.png" alt="" width="347" height="147" /></li>
+	</ul>
+	</li>
+	</ul>
+	</li>
+	</ul>
+	<ul>
+	<li>Installare <strong>PROJ.4 </strong>per Windows. E&#8217; un pacchetto necessario per potere gestire le proiezioni ed i sistemi di coordinate.
+	<ul>
+	<li>Scaricare PROJ.4 da <a title="PROJ.4 per windows" href="http://download.osgeo.org/proj/" target="_blank">http://download.osgeo.org/proj/</a>. Il file binario per Windows – proj446_win32_bin.zip &#8211; non è aggiornatissimo, ma non è un problema.</li>
+	<li>Decomprimere questo file in una cartella del vostro PC, ad esempio in “C:\proj”.</li>
+	<li>Aggiungere la cartella “bin” di PROJ.4 (“C:\proj\bin” nel nostro caso) alla variabile di ambiente &#8220;Path&#8221;. Per farlo dovete seguire gli stessi passi visti sopra per la cartella &#8220;bin&#8221; di GDAL, ed aggiungere stavolta “C:\proj\bin”.</li>
+	<li>Aggiungere “PROJ_LIB” come nuova variabile d&#8217;ambiente. Dovete seguire le stesse istruzioni usate per la variabile &#8220;GDAL_DATA&#8221;, ma il nome della variabile è stavolta “PROJ_LIB”, ed il valore è il percorso completo della cartella “nad” contenuta in  PROJ.4 (C:\proj\nad nel nostro caso).</li>
+	<li>Copiare il file “proj.dll” dalla cartella “bin” di PROJ.4 alla cartella bin di GDAL. Nel nostro caso da &#8220;C:\proj\bin\&#8221; a &#8220;C:\gdalwin32-1.6\bin\&#8221;.</li>
+	</ul>
+	</li>
+	<li>Installare il <strong>binding per Python di GDAL </strong>
+	<ul>
+	<li>Scaricare la versione appropriata alla vostra release di Python da <a title="GDAL/OGR Python binding" href="http://pypi.python.org/simple/GDAL/" target="_blank">http://pypi.python.org/simple/GDAL/</a>.  Il file più aggiornato, compatibile con la versione 2.6.X di Python, è “GDAL-1.6.1.win32-py2.6.exe”.</li>
+	<li>Fare doppio click sul file, e completare la procedura di installazione</li>
+	</ul>
+	</li>
+	<li><strong>Riavviare il sistema</strong>.</li>
+	</ul>
+	<p>Al riavvio avrete a disposizione un sistema in cui sarà possibile scrivere codice SPAZIALE (nel senso di bel codice <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' />   ).</p>
+	<h2>Ciao mondo</h2>
+	<p>Il codice sottostante lo potrete usare come test “Ciao Mondo”, e verificare la procedura seguita.</p>
+	<pre class="brush: python; ">
+# importazione dei moduli
+import sys
+try:
+  from osgeo import ogr
+except:
+  import ogr
+	
+# apertura di uno shapefile in lettura
+driver = ogr.GetDriverByName(&#039;ESRI Shapefile&#039;)
+fn = &#039;C:/nomefile.shp&#039;
+dataSource = driver.Open(fn, 0)
+	
+# verifica dell&#039;esistenza del file
+if dataSource is None:
+  print &#039;Il file &#039; + fn + &#039; non esiste&#039;
+  sys.exit(1)
+	
+# accesso al layer
+layer = dataSource.GetLayer()
+	
+# conteggio delle feature
+numFeatures = layer.GetFeatureCount()
+print &#039;Numero di feature: &#039; + str(numFeatures)
+	
+# estensione del layer
+extent = layer.GetExtent()
+print &#039;Estensione:&#039;, extent
+print &#039;Coordinate vertice in alto a sinistra:&#039;, extent[0], extent[3]
+print &#039;Coordinate vertice in basso a destra:&#039;, extent[1], extent[2]
+</pre>
+	<p>L’output sarà qualcosa di simile a quanto riportato sotto:</p>
+	<pre>Numero di feature: 33
+Estensione: (280151.67957063887, 294843.14350770513, 4210159.3865045626, 4220843.5284850718)
+Coordinate vertice in alto a sinistra: 280151.679571 4220843.52849
+Coordinate vertice in basso a destra: 294843.143508 4210159.3865</pre>
+	<h2>Buone letture</h2>
+	<p>La procedura descritta in questo post è quasi una traduzione dell&#8217;eccellente documento scritto da <strong>Chris Garrard</strong>: “<a title="Installing GDAL manually" href="http://www.gis.usu.edu/~chrisg/python/2009/docs/gdal_win.pdf" target="_blank">Installing GDAL manually</a>”. Il dott. Garrard cura un corso denominato &#8220;<strong><a title="http://www.gis.usu.edu/~chrisg/python/2009/" href="http://www.gis.usu.edu/~chrisg/python/2009/" target="_blank">Geoprocessing with Python using Open Source GIS</a></strong>&#8220;, di cui trovate online il materiale didattico (slide, esercizi e codice); è stato per me illuminante per fare i primi passi e consiglio a tutti i novizi di leggerlo: ASSOLUTAMENTE DA NON PERDERE (si, sto urlando).<br />
+Per chi non ha mai scritto codice Python, e non ne ha alcuna conoscenza, la pietra miliare è (per me) &#8220;<strong><a title="Pensare da informatico - Versione Python  " href="http://www.python.it/doc/Howtothink/Howtothink-html-it/index.htm" target="_blank">Pensare da informatico</a></strong>&#8220;.</p>
+	<h2>Buoni propositi</h2>
+	<p>Il desiderio mio (e credo dei colleghi della redazione) è quello di non lasciare questo post da solo. Nel 2011 vorrei mettergli accanto dei fratellini; non saranno magari dei ricchi tutorial, ma la coppia <strong>GIS &amp; Python</strong> sarà uno dei temi che terremo sotto osservazione e di cui daremo nota nel blog e/o soltanto nei canali Twitter e Facebook.</p>
+	<p>Buona scrittura <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':-D' class='wp-smiley' /> </p>
+	<p><div class="note"><div class="notetip"><br />
+In questi giorni il tema generale dell&#8217;installazione delle librerie <strong>GDAL </strong>su <strong>Windows </strong>è <a target="_blank" href="http://osgeo-org.1803224.n2.nabble.com/gdal-dev-FWTools-and-GDAL-1-7-0-td5887121.html">caldissimo</a>. Sono in preparazione <a target="_blank" href="http://osgeo-org.1803224.n2.nabble.com/gdal-dev-GDAL-windows-installers-available-td5904300.html">nuovi installer</a>, e probabilmente nei prossimi mesi aggiorneremo questo post con una procedura più semplice e diretta.<br />
+</div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/">Python e GIS con GDAL/OGR: configurare l&#8217;ambiente di lavoro su windows</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Python+e+GIS+con+GDAL%2FOGR%3A+configurare+l%26%238217%3Bambiente+di+lavoro+su+windows&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2011-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/09/python-e-gis-con-gdalogr-configurare-lambiente-di-lavoro-su-windows/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-bin.png" medium="image">
+			<media:title type="html">gdal-bin Windows Path</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/12/gdal-data.png" medium="image">
+			<media:title type="html">gdal-data Windows path</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Il tasto destro per alleggerire un po&#8217; il lavoro di chi si occupa di GIS (su Windows e su Linux)</title>
+		<link>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/</link>
+		<comments>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/#comments</comments>
+		<pubDate>Mon, 19 Jan 2009 20:00:07 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[metainformazioni]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[ubuntu]]></category>
+		<category><![CDATA[utilities]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=584</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+Il lavoro di ogni giorno è spesso routinario; spesso anche per chi si occupa di sistemi informativi geografici. Non parlo dell’analisi spaziale, ma di quelle cose che facciamo quasi ogni giorno: leggere le metainfomazioni di un file (e scoprire che sono povere), convertire il formato di un file, estrarre una porzione di una raster, etc. [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il lavoro di ogni giorno è spesso routinario; spesso anche per chi si occupa di sistemi informativi geografici. Non parlo dell’analisi spaziale, ma di quelle cose che facciamo quasi ogni giorno: leggere le metainfomazioni di un file (e scoprire che sono povere), convertire il formato di un file, estrarre una porzione di una raster, etc.</p>
+	<p>Si tratta di operazioni in genere molto semplici, che siamo in grado di portare a termine con molti strumenti. Questo blog parla de “le cose che ci piacciono TANTO”; una di queste sono quelle utility che alleggeriscono il lavoro di ogni giorno, con un click del mouse ed un menu contestuale.</p>
+	<p>Vi parlerò di due applicazioni di questo tipo, una per Windows ed una per Ubuntu (e per tutte le distribuzioni che sfruttano Gnome), che sono in grado di “trasferire” sul tasto destro del mouse alcune comuni operazioni utili ad un utente GIS.</p>
+	<p>Il <strong>prerequisito</strong> è che nel nostro sistema operativo siano installate le librerie <a title="Librerie GDAL" href="http://www.gdal.org/" target="_blank"><strong>GDAL</strong></a>, che sfrutteremo come motore delle operazioni “spaziali”. Per installarle su Windows basterà scaricare ed installare <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">FWTools</a>, mentre su Ubuntu basterà installare <em>gdal-bin</em> tramite synaptic o tramite riga di comando.</p>
+	<p>Alla fine del post saremo in grado di fare click con il destro su una TIFF del nostro hard-disk, ed eseguire queste due semplici (ma comodissime operazioni):</p>
+	<ol>
+	<li>convertirla in un altro formato spaziale (in questo esempio eseguirò la conversione in formato <a title="JPEG2000 su Wikipedia" href="http://it.wikipedia.org/wiki/JPEG_2000" target="_blank">JPG2000</a>, un eccellente formato compresso che può avere attributi geografici)</li>
+	<li>leggerne le metainformazioni (anche quelle spaziali)</li>
+	</ol>
+	<p>Se dovessi ottenere questi due risultati con le librerie GDAL, dovrei aprire il prompt dei comandi e scrivere rispettivamente:</p>
+	<ol>
+	<li>
+	<pre>&gt; gdal_translate -of JP2ECW input.tif output.jp2</pre>
+	</li>
+	<li>
+	<pre>&gt; gdalinfo input.tif</pre>
+	</li>
+	</ol>
+	<p>Vedremo come convertire questi comandi testuali, in operazioni da eseguire con il mouse.</p>
+	<h2>Su Windows</h2>
+	<p>Su Windows sfrutteremo <a title="Open++ help page" href="http://www.freewebs.com/dengdun/en/openxx.htm" target="_blank">Open++</a>, un&#8217;utility di <a title="open++ installer" href="http://www.freewebs.com/dengdun/en/openxx.zip" target="_blank">200kb</a> che consente di personalizzare l’elenco di comandi presenti nel menu contestuale, che si apre quando si clicca con il tasto destro del mouse su un file (o su una cartella).</p>
+	<p>Una volta che lo avrete scaricato ed installato, troverete una nuova voce nel menu che si aprirà al click con il destro su un file; è visibile nella figura sottostante (&#8220;Open++&#8221;).</p>
+	<p><img style="border-top-width: 0px; display: block; border-left-width: 0px; float: none; border-bottom-width: 0px; margin: 3px auto; border-right-width: 0px" title="contextmenu" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" border="0" alt="contextmenu" width="278" height="294" /></p>
+	<p>L’utilizzo è immediato e quasi autoesplicativo, in quanto Open++ è già configurato per eseguire delle comode operazioni di base: ade esempio copiare il percorso assoluto di un file (Copy Path), o  aprire il prompt dei comandi a partire dalla cartella selezionata (Command Prompt). Questi due stupidi comandi, sono già un ottimo esempio di alleggerimento del lavoro.</p>
+	<p>Il primo comando che voglio aggiungere, ci consentirà di convertire in formato JPG2000 un’immagine TIFF. Per inserire questo nuovo comando, tra quelli disponibili in Open++, dovrò cliccare sull’ultima opzione del suo menu a tendina: “Customize” (vedi figura poco sopra).</p>
+	<p>Mi si aprirà la finestra sottostante:</p>
+	<p><img style="border-top-width: 0px; display: block; border-left-width: 0px; float: none; border-bottom-width: 0px; margin-left: auto; margin-right: auto; border-right-width: 0px" title="image" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/image.png" border="0" alt="image" width="470" height="386" /></p>
+	<p>Questi i passi da eseguire:</p>
+	<ol>
+	<li>cliccare in alto a destra sul tasto “Add”, e scegliere l’opzione “Command”</li>
+	<li>cliccare sulla cella &#8220;Title&#8221;, ed aggiungere un nome descrittivo al comando che si sta creando (ad esempio “Convert to JPG2000”)</li>
+	<li>inserire nella cella “Program” il programma che si vuole lanciare. Nel nostro caso vogliamo lanciare il <em>prompt dei comandi</em> e basterà scrivere “%ComSpec%”</li>
+	<li>scrivere nella cella “Arguments” gli argomenti che vogliamo passare al nostro comando. Nel nostro caso inseriremo la seguente stringa &#8216;/c &#8220;C:\Programmi\FWTools2.2.6\bin\gdal_translate -of JP2ECW&#8221; $(TargetName)$(TargetExt) $(TargetName).jp2&#8242;
+	<ol>
+	<li>il parametro “/c” fa sì che il <em>prompt dei comandi </em>venga chiuso al termine dell’operazione</li>
+	<li>&#8220;C:\Programmi\FWTools2.2.6\bin\gdal_translate&#8221; è il percorso assoluto (nel mio pc) dell’utility GDAL &#8211; gdal_translate &#8211; che gestisce le conversioni tra formati di file spaziali</li>
+	<li>“-of JP2ECW” è il parametro necessario per impostare JPG2000 come formato di output</li>
+	<li>$(TargetName)$(TargetExt) sono delle variabili che coincidono con il nome e con l’estensione del file su cui cliccheremo con il destro, e che verranno valorizzate dinamicamente al lancio del comando. Se ad esempio il file su cui farò click sarà &#8220;c:\dati\input.tif&#8221;, la variabile “$(TargetName)” verrà sostituito da “c:\dati\input” e “$(TargetExt)” da “.tif”.</li>
+	<li>lo stesso si dica per $(TargetName).jp2, che verrà sostituito da “c:\dati\input.jp2”</li>
+	</ol>
+	</li>
+	<li>cliccare sulla cella &#8220;Associate with Files&#8221; e scrivere *.tif
+	<ol>
+	<li>in questo modo il comando di conversione formato sarà disponibile soltanto per i file con estensione .tif (è possibile aggiungere altre estensioni, separandole tramite &#8220;;&#8221;)</li>
+	</ol>
+	</li>
+	<li>impostare gli altri parametri come nella figura soprastante e cliccare su &#8220;OK&#8221;</li>
+	</ol>
+	<p>A questo punto aprite una cartella in cui avete un file TIFF, fateci click sopra con il destro del mouse, e selezionate Open++/Convert to JPG2000. Si aprirà il prompt dei comandi e verrà lanciato il comando gdal_translate; a comando eseguito il prompt dei comandi si chiuderà automaticamente e troverete il file JPG2000 (con estensione .jp2) nella stessa cartella in cui è presente il file TIFF.</p>
+	<p>Quello di sopra è soltanto un esempio; si può di più, meglio e diversamente. Consideratelo come un primo tutorial, dopo il quale iniziare a dare sfogo alla vostra fantasia ed alla vostra competenza.</p>
+	<p>Per ottenere le metainformazioni spaziali di un file TIFF, utilizzando soltanto il tasto destro del mouse, dovrete un creare un nuovo comando. La procedura è quasi identica alla precedente, salvo per la cella  “Arguments”: dovrete inserire la stringa &#8216;/k &#8220;C:\Programmi\FWTools2.2.6\bin\gdalinfo $(TargetName)$(TargetExt)&#8217;.</p>
+	<p>La differenza più importante è il parametro &#8220;/k&#8221;, che farà in modo che il prompt dei comandi non venga chiuso al termine del comando gdalinfo. Nella finestra del prompt potrete quindi leggere le metainformazioni del file che avrete selezionato.</p>
+	<p>In questo filmato vedrete i due comandi in azione:</p>
+	<p><object width="460" height="365" data="http://www.utipu.com/player/player.swf" type="application/x-shockwave-flash"><br />
+<param name="flashvars" value="&amp;file=http%3A%2F%2Fwww.utipu.com%2Fapp%2Fservice%2Fplaylist%2F%3Ftip%3D6249&amp;callback=http%3A%2F%2Fwww.utipu.com%2Fapp%2Fservice%2Fview" />
+<param name="src" value="http://www.utipu.com/player/player.swf" />
+<param name="allowfullscreen" value="true" /></object></p>
+	<h2>Su Linux</h2>
+	<p>In questo caso sfrutteremo <a title="Nautilus-actions homepage" href="http://www.grumz.net/index.php?q=taxonomy/term/2/9" target="_blank">Nautilus-actions</a>, un&#8217;utility analoga a Open++ in ambiente GNOME e quindi anche in Ubuntu. E&#8217; installabile tramite synaptic o digitando nella shell:</p>
+	<pre>&gt;sudo apt-get install nautilus-action</pre>
+	<p>Una volta installato lo troverete nel menu Sistema/Preferenze/Nautilus Actions Configuration.</p>
+	<p style="text-align: left;"><img class="aligncenter size-full wp-image-588" title="nautilus-actions" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions.png" alt="nautilus-actions" width="310" height="379" /></p>
+	<p style="text-align: left;">Creiamo un&#8217;azione (action) che estragga le metainformazioni da un tif selezionata.</p>
+	<p style="text-align: left;">Questi i passi da seguire:</p>
+	<ol>
+	<li>cliccare su Add</li>
+	<li>inserire nella cella &#8220;Label&#8221; un nome descrittivo del comando (ad esempio &#8220;gdal_info&#8221;)</li>
+	<li>scegliere &#8211; è opzionale &#8211; un tooltip per il comando (ad esempio &#8220;cliccare qui per avere le metainformazioni del file selezionato&#8221;)</li>
+	<li>scegliere &#8211; è opzionale &#8211; un&#8217;icona per il comando</li>
+	<li>definire il comando da lanciare, tramite la cella &#8220;Path&#8221;
+	<ol>
+	<li>inserire la stringa &#8220;bash -c&#8221;</li>
+	</ol>
+	</li>
+	<li>impostarne la stringa &#8220;gdalinfo %d/%f &gt; %d/%f.txt &amp;&amp; gedit %d/%f.txt&#8221; nella cella &#8220;Parameters
+	<ol>
+	<li>&#8220;%d &#8220;e &#8220;%f &#8221; sono delle variabili che verrano sostituite dinamicamente dal percorso (senza estensione) e dall&#8217;estensione del file selezionato</li>
+	<li>il carattere &#8220;&gt;&#8221; farà sì che l&#8217;output del comando &#8211; le metainformazioni &#8211; possano essere scritte e memorizzare in un file di testo</li>
+	<li>&#8220;%d/%f.txt&#8221; faranno si che il file di testo venga salvato nella stessa cartella del file selezionato (%d), con lo stesso nome (%f) e con estensione .txt</li>
+	<li>&#8220;&amp;&amp;&#8221; fa si che venga esguito il comando successivo &#8211; gedit &#8211; ma soltanto dopo la fine del primo</li>
+	<li>&#8220;gedit %d/%f.txt&#8221; per aprire con l&#8217;editor di testo di Ubuntu il file di testo appena creato</li>
+	</ol>
+	</li>
+	<li>cliccare sul Tab &#8220;Conditions&#8221; e scrivere nella cella &#8220;Filenames&#8221; la stringa &#8220;*.tif&#8221; (in questo modo il comando gdal_info sarà visibile soltanto per file con estensione .tif)</li>
+	<li>selezionare il radio botton &#8220;Only files&#8221;</li>
+	<li>e cliccare su OK</li>
+	</ol>
+	<p><img class="aligncenter size-full wp-image-599" title="edit-action-gdal_info" src="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info.png" alt="edit-action-gdal_info" width="470" height="459" /></p>
+	<p>A questo punto non ci resta che fare click con il destro su un file .tif e provare il comando appena creato. Aggiungo però qualche spiegazione dovuta. Cosa è bash?</p>
+	<blockquote><p>Si tratta di un interprete di comandi che permette all&#8217;utente di comunicare col sistema operativo attraverso una serie di funzioni predefinite, o di eseguire programmi.</p></blockquote>
+	<p>Il parametro &#8220;-c&#8221; forza bash a leggere i comandi dalla stringa di testo che segue, che nel nostro caso è quella del punto 6 di sopra.</p>
+	<p>Nel filmato sottostante vedrete (male, è saltata una parte) il comando in azione:</p>
+	<p><object width="425" height="344" data="http://www.screentoaster.com/swf/STPlayer.swf" type="application/x-shockwave-flash"><br />
+<param name="allowFullScreen" value="true" />
+<param name="flashvars" value="video=stVU5dQ0ZKRFFXRl1ZX1Jc" />
+<param name="src" value="http://www.screentoaster.com/swf/STPlayer.swf" /></object></p>
+	<div style="width: 425px; text-align: right;"><a href="http://www.screentoaster.com/">Record your screencast online</a></div>
+	<p>Nautilus-actions è a mio avviso un gioiellino. Una caratteristica che lo fa brillare è la facilità di condividere i comandi creati. Lo si fa con il tasto &#8220;Import/Export&#8221; presente nella finestra principale. <a title="Nautilus-action lcommand list" href="http://www.grumz.net/?q=configlist&amp;PHPSESSID=77035f138bd2d017058c1b4cb6292b25" target="_blank">Qui</a> ad esempio una serie di &#8220;azioni&#8221; già pronte. Il comando di conversione in JPG2000 è di facile implementazione e non lo svilupperò.</p>
+	<h2>In chiusura</h2>
+	<p>Prendete quanto scritto soltanto come spunto per &#8220;piegare&#8221; (ad esempio) le librerie GDAL/OGR al vostro tasto destro. Sono quasi un&#8217;analfabeta di istruzioni da riga di comando, e quelle che vi ho indicato possono sicuramente essere scritte meglio e più elegantemente. Mi piacerebbe molto che qualcuno condividesse qui la propria esperienza, con qualche comando &#8220;de paura&#8221;.</p>
+	<h2>Software/servizi usati per scrivere il post</h2>
+	<ul>
+	<li><a title="TipCam homepage" href="http://www.utipu.com/app/download" target="_blank">TipCam</a> per registrare il filmato su windows</li>
+	<li><a title="Screentoaster homepage" href="http://www.screentoaster.com" target="_blank">ScreenToaster</a> per farlo su Linux</li>
+	<li><a title="Zotero homepage" href="http://www.zotero.org/" target="_blank">Zotero</a> per gestire e generare la sitografia sottostante</li>
+	</ul>
+	<h2>Sitografia letta, consigliata e disordinata</h2>
+	<ol>
+	<li>“BASH Help &#8211; A Bash Tutorial,” <a href="http://www.hypexr.org/bash_tutorial.php">http://www.hypexr.org/bash_tutorial.php</a>.</li>
+	<li>“Bash &#8211; Wikipedia,” <a href="http://it.wikipedia.org/wiki/Bash">http://it.wikipedia.org/wiki/Bash</a>.</li>
+	<li>“Beginners/BashScripting &#8211; Community Ubuntu Documentation,” <a href="https://help.ubuntu.com/community/Beginners/BashScripting">https://help.ubuntu.com/community/Beginners/BashScripting</a>.</li>
+	<li>“COMMAND.COM, SHELL and COMSPEC,” <a href="http://www.robvanderwoude.com/command.html">http://www.robvanderwoude.com/command.html</a>.</li>
+	<li>“Eseguire programmi e comandi DOS &#8211; Cenati Giovanni VbScript WSH,” <a href="http://digilander.libero.it/Cenati/esegui.htm">http://digilander.libero.it/Cenati/esegui.htm</a>.</li>
+	<li>“Nautilus-actions: GUI è bello! » Ubuntu block notes,” <a href="http://www.aldolat.it/guide-e-howto/nautilus-actions-gui-e-bello/">http://www.aldolat.it/guide-e-howto/nautilus-actions-gui-e-bello/</a>.</li>
+	</ol>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/">Il tasto destro per alleggerire un po&#8217; il lavoro di chi si occupa di GIS (su Windows e su Linux)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+tasto+destro+per+alleggerire+un+po%26%238217%3B+il+lavoro+di+chi+si+occupa+di+GIS+%28su+Windows+e+su+Linux%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-01-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/01/19/il-tasto-destro-per-alleggerire-un-po-il-lavoro-di-chi-si-occupa-di-gis-su-windows-e-su-linux/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/contextmenu.gif" medium="image">
+			<media:title type="html">contextmenu</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/image.png" medium="image">
+			<media:title type="html">image</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions.png" medium="image">
+			<media:title type="html">nautilus-actions</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/nautilus-actions-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info.png" medium="image">
+			<media:title type="html">edit-action-gdal_info</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/01/edit-action-gdal_info-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Pubblicare facilmente una carta raster sul web</title>
+		<link>http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/</link>
+		<comments>http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/#comments</comments>
+		<pubDate>Tue, 22 Apr 2008 08:00:58 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[google-maps]]></category>
+		<category><![CDATA[googleearth]]></category>
+		<category><![CDATA[piramidazione]]></category>
+		<category><![CDATA[standard]]></category>
+		<category><![CDATA[tiling]]></category>
+		<category><![CDATA[tms]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Pubblicare+facilmente+una+carta+raster+sul+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/&amp;rft.language=English"></span>
+In un post recente, ho scritto di alcune delle modalità di pubblicazione online di cartografia digitale. Ne sono seguiti dei commenti interessanti, ed alcune email con richieste di consigli e di approfondimento. L&#8217;argomento  mi è sembrato &#8220;caldo&#8221;, e credo valga la pena alimentarlo ulteriormente. Su un blog che vi consiglio di leggere &#8211; thematicmapping blog [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Pubblicare+facilmente+una+carta+raster+sul+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In un <a title="Un’eccellente articolo sulla cartografia online e sulle soluzioni disponibili per produrla (oltre Google Maps)" href="http://blog.spaziogis.it/2008/04/08/uneccellente-articolo-sulla-cartografia-online-e-sulle-soluzioni-disponibili-per-produrla-oltre-google-maps/">post</a> recente, ho scritto di alcune delle modalità di pubblicazione online di cartografia digitale. Ne sono seguiti dei commenti interessanti, ed alcune email con richieste di consigli e di approfondimento. L&#8217;argomento  mi è sembrato &#8220;caldo&#8221;, e credo valga la pena alimentarlo ulteriormente.</p>
+	<p>Su un blog che vi consiglio di leggere &#8211; <a title="generating map tiles with gdal2tiles" href="http://blog.thematicmapping.org/2008/03/generating-map-tiles-with-gdal2tiles.html" target="_blank">thematicmapping blog</a> &#8211; ho scoperto dell&#8217;esistenza di <a title="GDAL2Tiles, easy publishing of raster maps on the Internet" href="http://www.klokan.cz/projects/gdal2tiles/" target="_blank">GDAL2Tiles</a>, un software a riga di comando che consente di pubblicare -rapidamente e con efficacia &#8211; una carta raster nelle seguenti modalità: Google Maps, OpenLayers and Google Earth. E&#8217; uno strumento incluso in GDAL/OGR 1.5.0, e quindi anche nell&#8217;ultimo <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">FWTools</a>.</p>
+	<p><img style="border-width: 0px;" src="http://blog.spaziogis.it/wp-content/uploads/2008/04/image-pyramid.jpg" alt="image_pyramid" width="260" height="148" align="left" border="0" /> Il lavoro che fa GDAL2Tiles è quello di leggere un&#8217;immagine georeferenziata, e suddividerla in tasselli da 256 x 256 <em>pixel</em>, con una struttura a piramide (il nome del pacchetto è in qualche modo descrittivo della funzione che svolge). In altre parole a partire da una <em>raster</em>, ne vengono generate diverse a risoluzioni decrescenti, che vengono suddivise in sezioni da 256 <em>pixel</em> (vedi figura).</p>
+	<p>Il tassellamento e la piramidazione sono molto efficienti per distribuire <em>raster</em> sul web, in quanto l&#8217;immagine potrà essere visualizzata direttamente alla risoluzione adatta al livello di zoom attivo, e verranno scaricati soltanto i tasselli dell&#8217;area che stiamo osservando a video. E&#8217; il meccanismo che sta dietro al motore di Google Maps e a quello dei maggiori <em>provider</em> di cartografia <em>online</em>.</p>
+	<p>Andiamo alla parte pratica e proviamo a mettere online una delle fantastiche immagini presenti su <a title="Natural Earth II - World environment map in natural color" href="http://www.shadedrelief.com/natural2/" target="_blank">Natural Earth II</a>. Si tratta di file (qui sotto un esempio) che rappresentano la terra, così come sarebbe senza l&#8217;influenza dell&#8217;uomo (immaginate Parigi coperta da una foresta temperata &#8230;); una rappresentazione del pianeta, precedente all&#8217;era moderna.</p>
+	<p><img style="border: 0px none;" src="http://blog.spaziogis.it/wp-content/uploads/2008/04/natural-earth.jpg" alt="natural_earth" width="500" height="260" border="0" /></p>
+	<p>Per il mio esempio ho scaricato la tavola denominata &#8220;<em><a title="Ocean with layered depth tints" href="http://www.nacis.org/data/NE2/NE2_WDB2.jpg" target="_blank">Ocean with layered depth tints</a></em>&#8220;.</p>
+	<p>La prima cosa che ho fatto è stata georeferenziarla. Conosco le coordinate dei 4 vertici della tavola, ho FWTools installato, e dalla shell FWTools lancio il seguente comando:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdal_translate -a_srs EPSG:4326 -gcp 0 0 -180 90 -gcp 16200 0 180 90</pre>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">-gcp 16200 8100 180 -90 NE2_modis3.jpg NE2_modis3.tif</pre>
+	<p><a title="gdal_translate" href="http://www.gdal.org/gdal_translate.html" target="_blank">gdal_translate</a> è una delle utility presenti in FWTools; questo il significato dei parametri usati:</p>
+	<p><strong>-a_srs</strong> per assegnare il corretto sistema di coordinate (<a title="EPSG:4326" href="http://spatialreference.org/ref/epsg/4326/" target="_blank">EPSG:4326</a>)<br />
+<strong>-gcp </strong>per assegnare i vari punti di controllo (prima le coordinate in pixel, e poi quelle del sistema di coordinate scelto)</p>
+	<p>A partire dalla jpeg scaricata, ho creato un tif georeferenziata, assegnando come punti di controllo i 4 vertici della carta.</p>
+	<p>Dovrò adesso processare l&#8217;immagine con <a title="gdalwarp" href="http://www.gdal.org/gdalwarp.html" target="_blank">gdalwarp</a>:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdalwarp -t_srs EPSG:4326 NE2_modis3.tif NE2_modis3_4326.tif</pre>
+	<p><strong>-t_srs </strong>è il parametro per assegnare il sistema di coordinate.</p>
+	<p>La mia immagine di partenza è di 16200  x 8100 <em>pixel;</em> GDAL2Tiles la tassellerà e la piramiderà. Ogni tassello che andrò a generare sarà di  256 x 256 pixel. I livelli di piramidazione, corrispondenti ai livelli di zoom possibili, rispecchieranno lo schema della tabella sottostante.</p>
+	<table width="480" border="1" cellspacing="2" cellpadding="2">
+	<tbody>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center"><strong>Livello di Zoom</strong></p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center"><strong>Dimensione immagine</strong></p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center"><strong>Tasselli</strong></p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center"><strong>Numero totale di tasselli</strong></p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">1</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">512 x 256</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2 x 1</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">2</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">1024 x 512</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">4 x 2</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">3</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2048 x 1024</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8 x 4</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">32</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">4</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">4096 x 2048</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">16 x 8</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">128</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">5</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8192 x 4096</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">32 x 16</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">512</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">6</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">16384 x 8192</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">64 x 32</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">2048</p>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top" width="120">
+	<p align="center">7</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">32768 x 16384</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">128 x 64</p>
+	</td>
+	<td valign="top" width="120">
+	<p align="center">8192</p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Per il mio esempio mi &#8220;accontenterò&#8221; di un livello di zoom massimo pari a 5 e, prima di dare in pasto il mio file a GDAL2Tiles, ne ridurrò le dimensioni di conseguenza:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdal_translate -outsize 8192 4096 NE2_modis3_4326.tif</pre>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">NE2_modis3_4326_5.tif</pre>
+	<p><strong>-outsize </strong>per specifcare la larghezza e l&#8217;altezza dell&#8217;immagine di output</p>
+	<p>Non mi resta che &#8220;passare&#8221; a GDAL2Tiles, l&#8217;ultimo file generato:</p>
+	<pre style="border-style: none; margin: 0em; padding: 0px; overflow: visible; font-size: 8pt; width: 100%; color: black; line-height: 12pt; font-family: consolas,'Courier New',courier,monospace; background-color: #f4f4f4;">&gt; gdal2tiles -title <span style=\"color: #006080;\">\"Pubblicare una Raster\"</span> -publishurl
+http:<span style=\"color: #008000;\">//www.nostroserver.org/maptiles/ -v </span>
+NE2_modis3_4326_5.tif cartella_di_output</pre>
+	<p><strong>-title </strong>per dare un titolo al progetto<br />
+<strong>-publishurl</strong> per definire l&#8217;url delle mappe che pubblicheremo<br />
+<strong>-v </strong>per avere un output &#8220;verboso&#8221; del comando, e leggere a video il dettaglio di tutte le operazioni eseguite da GDAL2Tiles</p>
+	<p>L&#8217;output del processo sarà una cartella con il seguente contenuto:</p>
+	<ul>
+	<li>una sottocartella per ognuno dei livelli di piramidazione (in ognuna di queste diverse altre sottocartelle con i vari tasselli da 256 x 256 pixel)</li>
+	<li>un file denominato &#8220;openlayers.html&#8221;, ovvero un&#8217;interfaccia web basata su <a title="OpenLayers homepage" href="http://openlayers.org/" target="_blank">OpenLayers</a></li>
+	<li>un file denominato &#8220;googlemaps.html&#8221;, ovvero un&#8217;interfaccia web basata su Google Maps</li>
+	<li>un file denominato &#8220;tilemapresource.xml&#8221;, ovvero lo schema della struttura dei tasselli di mappa</li>
+	<li>un file denominato &#8220;cartella_di_output.kml&#8221;, che ci consentirà di visualizzare in Google Earth l&#8217;immagine processata (vedi figura sotto)</li>
+	</ul>
+	<p>Bisognerà fare l&#8217;upload di tutti i file creati da GDAL2Tiles, all&#8217;interno della cartella specificata sopra con il parametro <strong>-publishurl</strong>, e testarne infine il risultato.</p>
+	<p><strong><a title="GDAL2Tiles openlayers" href="http://blog.spaziogis.it/static/map/gdal2tiles/openlayers.html" target="_blank">Qui</a></strong> potete testare la visualizzazione della mappa in <strong>OpenLayers</strong>, <strong><a title="GDAL2Tiles Google Maps" href="http://blog.spaziogis.it/static/map/gdal2tiles/googlemaps.html" target="_blank">qui</a></strong> in <strong>Google Maps</strong> e <strong><a title="GDAL2Tiles Google Earth" href="http://blog.spaziogis.it/static/map/gdal2tiles/gdal2tiles.kml" target="_blank">qui</a></strong> in <strong>Google Earth</strong>.</p>
+	<p><img style="border: 0px none;" src="http://blog.spaziogis.it/wp-content/uploads/2008/04/google-earth.jpg" alt="google_earth" width="484" height="388" border="0" /></p>
+	<p>Il file con l&#8217;interfaccia basata su OpenLayers ha bisogno di una patch. <a title="GDAL2Tiles patch openlayers" href="http://blog.spaziogis.it/static/map/gdal2tiles/openlayers.zip" target="_blank">Qui</a> il file con la patch applicata.</p>
+	<p>Un bravo webmaster è in grado di portare a termine questa procedura, senza sapere nulla di cartografia digitale? Probabilmente si, ma magari soltanto in modo meccanico e pertanto non saprà applicarla ad esempi differenti da quelli descritti (immaginate di partire da un 25000 IGM).</p>
+	<p>Non ci si improvvisa cartografi online, e bisogna sempre documentarsi. Strumenti come questo fanno venire la voglia di farlo e consentono una più rapida valorizzazione e diffusione di queste tematiche. E&#8217; per questo che mi piace GDAL2Tiles.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/">Pubblicare facilmente una carta raster sul web</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Pubblicare+facilmente+una+carta+raster+sul+web&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2008-04-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/04/image-pyramid.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/image-pyramid.jpg" medium="image">
+			<media:title type="html">image_pyramid</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/natural-earth.jpg" medium="image">
+			<media:title type="html">natural_earth</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/google-earth.jpg" medium="image">
+			<media:title type="html">google_earth</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" dir="ltr" lang="de-DE">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" dir="ltr" lang="de-DE">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" dir="ltr" lang="de-DE">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html dir="ltr" lang="de-DE">
+<!--<![endif]-->
+<head>
+<title>Bolzano chiama Bari (mappa a schermo intero) - con tecnologia MapsMarker.com</title>
+<meta charset="UTF-8" />
+<meta name="geo.position" content="42.520700;12.744141" />
+<meta name="ICBM" content="42.520700, 12.744141" />
+<meta name="page-type" content="mappa" />
+<link rel="stylesheet" id="leafletmapsmarker-css" href="leaflet-dist/leaflet.css%3Fver=3.5.4.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-dist/leaflet.ie.css?ver=3.5.4" type="text/css" media="all" / >
+<![endif]-->
+<style type="text/css" id="leafletmapsmarker-image-css-override">.leaflet-popup-content img { max-width:230px !important; height:auto !important; margin: 0px !important; padding: 0px !important; box-shadow:none !important; width:auto !important; }</style>
+<script type="text/javascript" src="../../../wp-includes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?key="></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var leafletmapsmarker_L10n = {"lmm_zoom_in":"Ingrandisci","lmm_zoom_out":"Rimpicciolisci","lmm_googlemaps_language":"","lmm_googlemaps_libraries":"","lmm_googlemaps_base_domain":"&base_domain=","lmm_bing_culture":"it_IT"};
+/* ]]> */
+</script>
+<style>form { margin: 0 ; } </style>
+<script type="text/javascript" src="leaflet-dist/leaflet.js%3Fver=3.5.4"></script>
+</head>
+<body style="margin:0;padding:0;height:100%;background: #efefef;overflow:hidden;">
+<div id="panel_top_a96732e1" style="background: #efefef; width:99%; padding:5px;">
+<span style="font-weight:bold;">Bolzano chiama Bari</span><span class="lmm-panel-api-fullscreen"><a href="leaflet-kml.php%3Flayer=2&amp;name=show" style="text-decoration:none;" title="Esporta come KML per Google Earth/Google Maps"><img src="inc/img/icon-kml.png" width="14" height="14" alt="KML-Logo" class="lmm-panel-api-images" /></a><a href="leaflet-fullscreen.php%3Flayer=2.html" style="text-decoration:none;" title="Apri mappa autonoma in modalità schermo intero" target="_blank"><img src="inc/img/icon-fullscreen.png" width="14" height="14" alt="Fullscreen-Logo" class="lmm-panel-api-images" /></a><a href="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?layer=2" target="_blank" title="Creare immagine del codice QR per mappa autonoma in modalità schermo intero"><img src="inc/img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" class="lmm-panel-api-images" /></a><a href="leaflet-geojson.php%3Flayer=2&amp;callback=jsonp&amp;full=yes" style="text-decoration:none;" title="Esporta come GeoJSON" target="_blank"><img src="inc/img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" class="lmm-panel-api-images" /></a><a href="leaflet-georss.php%3Flayer=2" style="text-decoration:none;" title="Esporta come GeoRSS" target="_blank"><img src="inc/img/icon-georss.png" width="14" height="14" alt="GeoRSS-Logo" class="lmm-panel-api-images" /></a></span></div>
+<div id="mapsmarker_a96732e1" style="width:100%; height:94%; height:auto !important; min-height: 94%; overflow: hidden !important; background:#ccc; padding:0; border:none; position:absolute;"><noscript><br/><strong>Non è stato possibile caricare le mappe - abilitare JavaScript!</strong><br/><a style="text-decoration:none;" href="http://www.mapsmarker.com/js-disabled" target="_blank">&rarr; maggiori informazioni</a></noscript></div>
+<div class="lmm-geo-tags geo">Bari: <span class="latitude">41.120422</span>, <span class="longitude">16.870537</span></div>
+<div class="lmm-geo-tags geo">Bolzano: <span class="latitude">46.496715</span>, <span class="longitude">11.358005</span></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+/* Maps created with MapsMarker.com WordPress plugin - version 3.5.4 */
+var layers = {};
+var markers = {};
+var mapsmarker_a96732e1 = {};
+(function($) {
+mapsmarker_a96732e1 = new L.Map("mapsmarker_a96732e1", { dragging: true, touchZoom: true, scrollWheelZoom: true, doubleClickZoom: true, boxzoom: true, trackResize: true, worldCopyJump: true, closePopupOnClick: true, keyboard: true, keyboardPanOffset: 80, keyboardZoomOffset: 1, inertia: true, inertiaDeceleration: 3000, inertiaMaxSpeed: 1500, zoomControl: true, crs: L.CRS.EPSG3857 });
+mapsmarker_a96732e1.attributionControl.setPrefix("<a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://mapsmarker.com/go\&quot;" target=\"_blank\" title=\"powered by 'Leaflet Maps Marker'-Plugin for WordPress\">MapsMarker.com</a> (<a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.leafletjs.com\&quot;" target=\"_blank\" title=\"'Leaflet Maps Marker' uses the JavaScript library 'Leaflet' for interactive maps by CloudMade\">Leaflet</a>, <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://mapicons.nicolasmollet.com\&quot;" target=\"_blank\" title=\"'Leaflet Maps Marker' uses icons from the 'Maps Icons Collection'\">Icons</a>)");
+var osm_mapnik = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: &copy; <a id=\"editlink_a96732e1\" href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.openstreetmap.org/copyright\&quot;" target=\"_blank\">OpenStreetMap contributors</a>", detectRetina: true});
+var mapquest_osm = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: Tiles Courtesy of <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.mapquest.com/\&quot;" target=\"_blank\">MapQuest</a> <img src="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/logo-mapquest.png\&quot;" style=\"display:inline;\" /> - &copy; <a id=\"editlink_a96732e1\" href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.openstreetmap.org/copyright\&quot;" target=\"_blank\">OpenStreetMap contributors</a>", subdomains: ["otile1","otile2","otile3","otile4"], detectRetina: true});
+var mapquest_aerial = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.mapquest.com/\&quot;" target=\"_blank\">MapQuest</a> <img src="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/logo-mapquest.png\&quot;" style=\"display:inline;\" />, Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency", subdomains: ["otile1","otile2","otile3","otile4"], detectRetina: true});
+var googleLayer_roadmap = new L.Google("ROADMAP", {detectRetina: true});
+var googleLayer_satellite = new L.Google("SATELLITE", {detectRetina: true});
+var googleLayer_hybrid = new L.Google("HYBRID", {detectRetina: true});
+var googleLayer_terrain = new L.Google("TERRAIN", {detectRetina: true});
+var ogdwien_basemap = new L.TileLayer("http://{s}.wien.gv.at/wmts/fmzk/pastell/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: Città di Vienna (<a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://data.wien.gv.at\&quot;" target=\"_blank\" style=\"\">data.wien.gv.at</a>)", subdomains: ["maps","maps1", "maps2", "maps3"], detectRetina: true});
+var ogdwien_satellite = new L.TileLayer("http://{s}.wien.gv.at/wmts/lb/farbe/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: Città di Vienna (<a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://data.wien.gv.at\&quot;" target=\"_blank\">data.wien.gv.at</a>)", subdomains: ["maps","maps1", "maps2", "maps3"], detectRetina: true});
+var cloudmade = new L.TileLayer("http://{s}.tile.cloudmade.com/269179a4f2fc4ff0973f5cd5f612ed6d/2400/256/{z}/{x}/{y}.png", {maxZoom: 19, minZoom: 1, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: &copy; <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.openstreetmap.org/copyright\&quot;" target=\"_blank\" style=\"\">OpenStreetMap contributors</a>, Imagery &copy; <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://cloudmade.com\&quot;" target=\"_blank\">CloudMade</a>", subdomains: ["a","b","c"], detectRetina: true});
+var cloudmade2 = new L.TileLayer("http://{s}.tile.cloudmade.com///256/{z}/{x}/{y}.png", {maxZoom: 19, minZoom: 1, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: &copy; <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.openstreetmap.org/copyright\&quot;" target=\"_blank\" style=\"\">OpenStreetMap contributors</a>, Imagery &copy; <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://cloudmade.com\&quot;" target=\"_blank\">CloudMade</a>", subdomains: ["a","b","c"], detectRetina: true});
+var cloudmade3 = new L.TileLayer("http://{s}.tile.cloudmade.com///256/{z}/{x}/{y}.png", {maxZoom: 19, minZoom: 1, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: &copy; <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.openstreetmap.org/copyright\&quot;" target=\"_blank\" style=\"\">OpenStreetMap contributors</a>, Imagery &copy; <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://cloudmade.com\&quot;" target=\"_blank\">CloudMade</a>", subdomains: ["a","b","c"], detectRetina: true});
+var mapbox = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jul/{z}/{x}/{y}.png", {minZoom: 0, maxZoom: 8, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "MapBox/NASA, <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.mapbox.com\&quot;" target=\"_blank\">http://www.mapbox.com</a>", subdomains: ["a","b","c","d"], detectRetina: true});
+var mapbox2 = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/mapbox.geography-class/{z}/{x}/{y}.png", {minZoom: 0, maxZoom: 8, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "MapBox, <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.mapbox.com\&quot;" target=\"_blank\">http://www.mapbox.com</a>", subdomains: ["a","b","c","d"], detectRetina: true});
+var mapbox3 = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/mapbox.mapbox-streets/{z}/{x}/{y}.png", {minZoom: 0, maxZoom: 17, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "MapBox, <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://www.mapbox.com\&quot;" target=\"_blank\">http://www.mapbox.com</a>", subdomains: ["a","b","c","d"], detectRetina: true});
+var custom_basemap = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, tms: false, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: Copyright 2012 <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://xy.com\&quot;">Provider X</a>", subdomains: ["otile1", "otile2", "otile3", "otile4"], continuousWorld: false, noWrap: false, detectRetina: true});
+var custom_basemap2 = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, tms: false, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: Copyright 2012 <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://xy.com\&quot;">Provider Y</a>", subdomains: ["otile1", "otile2", "otile3", "otile4"], continuousWorld: false, noWrap: false, detectRetina: true});
+var custom_basemap3 = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, tms: false, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "Mappa: Copyright 2012 <a href="http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/\&quot;http://xy.com\&quot;">Provider Z</a>", subdomains: ["otile1", "otile2", "otile3", "otile4"], continuousWorld: false, noWrap: false, detectRetina: true});
+var empty_basemap = new L.TileLayer("");
+var overlays_custom = new L.TileLayer("http://{s}.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png", {tms: false, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "", opacity: 1, maxZoom: 19, minZoom: 1, subdomains: ["maps", "maps1", "maps2", "maps3"], detectRetina: true});
+var overlays_custom2 = new L.TileLayer("http://{s}.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png", {tms: false, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "", opacity: 1, maxZoom: 17, minZoom: 1, subdomains: ["maps", "maps1", "maps2", "maps3"], detectRetina: true});
+var overlays_custom3 = new L.TileLayer("http://maps.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png", {tms: false, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "", opacity: 1, maxZoom: 17, minZoom: 1, subdomains: ["maps", "maps1", "maps2", "maps3"], detectRetina: true});
+var overlays_custom4 = new L.TileLayer("http://maps.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png", {tms: false, errorTileUrl: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/inc/img/error-tile-image.png", attribution: "", opacity: 1, maxZoom: 17, minZoom: 1, subdomains: ["maps", "maps1", "maps2", "maps3"], detectRetina: true});
+var layersControl = new L.Control.Layers(
+{'OpenStreetMap': osm_mapnik,'Mapquest (OSM)': mapquest_osm,'Mapquest (Aerial)': mapquest_aerial,'Google Maps (Mappa stradale)': googleLayer_roadmap,'Google Maps (Satellite)': googleLayer_satellite,'Google Maps (Ibrida)': googleLayer_hybrid,'Google Maps (Terreno)': googleLayer_terrain,'Cloudmade': cloudmade},
+{},
+{ collapsed: true } );
+mapsmarker_a96732e1.setView(new L.LatLng(42.520700, 12.744141), 5);
+mapsmarker_a96732e1.addLayer(mapquest_osm).addControl(layersControl);L.control.scale({position:'bottomleft', maxWidth: 100, metric: true, imperial: true, updateWhenIdle: false}).addTo(mapsmarker_a96732e1);
+var geojsonObj, mapIcon, marker_clickable, marker_title;
+geojsonObj = eval("(" + jQuery.ajax({url: "http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-geojson.php?layer=2", async: false, cache: true}).responseText + ")");
+L.geoJson(geojsonObj, {
+		onEachFeature: function(feature, marker) {
+			if (feature.properties.text != '') {
+			marker.bindPopup(feature.properties.text, {
+			maxWidth: 300, 
+			minWidth: 250, 
+			maxHeight: 160, 
+			autoPan: true, 
+			closeButton: true, 
+			autoPanPadding: new L.Point(5, 5)
+			});
+			}
+		},
+pointToLayer: function (feature, latlng) {
+	mapIcon = L.icon({ 
+		iconUrl: (feature.properties.icon != '') ? 'http://blog.spaziogis.it/wp-content/uploads//leaflet-maps-marker-icons/' + feature.properties.icon : 'http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-dist/images/marker.png',
+		iconSize: [32, 37],
+		iconAnchor: [17, 36],
+		popupAnchor: [-1, -32],
+		shadowUrl: 'http://blog.spaziogis.it/wp-content/plugins/leaflet-maps-marker/leaflet-dist/images/marker-shadow.png',
+		shadowSize: [41, 41],
+		shadowAnchor: [16, 43],
+		className: (feature.properties.icon == '') ? 'lmm_marker_icon_default' : 'lmm_marker_icon_'+ feature.properties.icon.slice(0,-4)
+	});
+if (feature.properties.text == '') { marker_clickable = false } else { marker_clickable = true };
+if (feature.properties.markername == '') { marker_title = '' } else { marker_title = feature.properties.markername };
+return L.marker(latlng, {icon: mapIcon, clickable: marker_clickable, title: marker_title, opacity: 1});
+}
+}).addTo(mapsmarker_a96732e1);
+
+			jQuery(document).ready( function($) {
+				function appendeditlink() {
+					var boundingbox = mapsmarker_a96732e1.getBounds().toBBoxString();
+					var editlink = ' (<a href="http://www.openstreetmap.org/edit?editor=potlatch2&bbox='+boundingbox+'" target="_blank" title="aiuta OpenStreetMap.org a migliorare i dettagli delle mappe">modifica</a>)';
+					$('#editlink_a96732e1').append(editlink);	
+				}
+				appendeditlink();
+			})
+})(jQuery);
+/* ]] > */
+</script></body></html>

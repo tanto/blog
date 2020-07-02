@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; bash</title>
+	<atom:link href="http://blog.spaziogis.it/tag/bash/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>GTFS, pronti, partenza, via &#8230;</title>
+		<link>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/</link>
+		<comments>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/#comments</comments>
+		<pubDate>Wed, 24 Aug 2016 06:00:50 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[bash]]></category>
+		<category><![CDATA[GTFS]]></category>
+		<category><![CDATA[script]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6973</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+Introduzione Il GTFS è un formato nato per definire orari e informazioni geografiche legate a reti pubbliche e private di trasporto. E’ nato in sintesi estrema (qui più dettagli) come side project di un dipendente di Google che nel 2005 stava cercando un modo per standardizzare l’importazione di dati di questo tipo in Google Maps. [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h2 id="introduzione">Introduzione</h2>
+	<p>Il <code>GTFS</code> è un formato nato per definire orari e informazioni geografiche legate a reti pubbliche e private di trasporto. E’ nato in sintesi estrema (<a href="http://sf.streetsblog.org/2010/01/05/how-google-and-portlands-trimet-set-the-standard-for-open-transit-data/">qui</a> più dettagli) come <em>side project</em> di un dipendente di Google che nel 2005 stava cercando un modo per standardizzare l’importazione di dati di questo tipo in Google Maps. Non c’era ancora uno standard in questo settore, e nel tempo il GTFS è diventato il formato di riferimento, grazie anche all’uso diffuso e alla sua documentazione.</p>
+	<p>Si tratta di una collezione di file <code>CSV</code> (con estensione <code>.txt</code>) &#8211; da un minimo di 6 a un massimo di 13 &#8211; archiviati all’interno di un file <code>zip</code>, le cui specifiche sono documentate qui: <a href="https://developers.google.com/transit/gtfs/reference/">https://developers.google.com/transit/gtfs/reference/</a></p>
+	<p>Per varie ragioni è un formato con cui ho spesso a che fare, ed è stato di ispirazione per creare uno <em>script</em> che ho scritto durante le bellissime olimpiadi di Rio e che ho chiamato <strong>GTFS, ready, set, go</strong>.</p>
+	<h2 id="cosa-è-gtfs-ready-set-go">Cosa è GTFS, ready, set, go</h2>
+	<p>È uno script <em>bash</em> che fa essenzialmente una cosa: trasforma i file <code>txt</code> del GTFS in formati <strong>pronti</strong> per essere <strong>usati meglio</strong> e <strong>subito</strong>, sopratutto in <strong>applicazioni spaziali</strong>. Nel dettaglio:</p>
+	<ul>
+	<li>scarica una sorgente dati GTFS e ne converte i file <code>txt</code> in tabelle di un DBMS con estensione spaziale e in particolare in formato <strong><a href="http://www.gaia-gis.it/gaia-sins/">spatialite</a></strong> (evviva <strong>Alessandro Furieri </strong>e tutti quelli che si prendono cura di spatialite);
+	<ul>
+	<li>trasforma in layer cartografici le tabelle delle fermate e delle rotte (<code>stops</code> e <code>routes</code>);</li>
+	<li>genera alcuna tabelle utili a creare un report sul file della reti di trasporti preso in esame;</li>
+	</ul>
+	</li>
+	<li>esporta in formato <code>GeoJSON</code> e <code>KML</code> la tabella delle rotte e quella delle fermate;</li>
+	<li>genera un report in formato <code>HTML</code> e <code>Markdown</code> utili a dare una visione d’insieme dei dati in esame (al momento è ancora minimale e in bozza) .</li>
+	</ul>
+	<p>Nulla di complesso e nulla di nuovo. Ci sono già altre modalità e prodotti per fare cose simili, ma sono scritti in linguaggi che non conosco (ad esempio in <a href="https://github.com/harrytruong/gtfs-sqlite">Go</a>), richiedono l’installazione di un database server o non spazializzano database sqlite (come il mio amato <a href="https://github.com/OpenTransitTools/gtfsdb">GTFSDB</a>) o sono procedure (semplici) da svolgere “a mano” e quindi a rischio sempre di qualche errore e con perdite di tempo (come ad esempio <a href="http://www.stevencanplan.com/2016/02/converting-a-transit-agencys-gtfs-to-shapefile-and-geojson-with-qgis/">questa</a>).</p>
+	<p>Qui il repository su <strong>GitHub</strong>: <a href="https://github.com/ondata/gtfsreadysetgo" target="_blank">https://github.com/ondata/gtfsreadysetgo</a></p>
+	<h2 id="come-funziona">Come funziona</h2>
+	<p>Si tratta di uno script in cui ho messo in fila i comandi utili al mio obiettivo finale, costruendo una (sorta di) macro in cui sfrutto le caratteristiche del <code>bash</code> e alcune <em>utility</em>/applicazioni utili per arrivare al risultato atteso. Queste ultime sono al momento un requisito per lo script, e quindi una piccola barriera ad un utilizzo immediato: le ho utilizzate perché mi hanno consentito di non scrivere “vero” codice, perché “fanno” nella sostanza tutto loro.</p>
+	<h3 id="requisiti">Requisiti</h3>
+	<p>Avere un sistema operativo in cui è possibile lanciare uno script bash, quindi ovviamente i sistemi Linux, quelli Mac e anche quelli Windows. Su quest’ultimo apro una piccola parentesi.</p>
+	<p>Per lanciare uno script bash su Windows &#8211; sino a poco tempo fa &#8211; era necessario installare “cose” come <a href="https://www.cygwin.com/">Cygwin</a>.</p>
+	<blockquote><p>Cygwin è una distribuzione di software libero, sviluppata originariamente da Cygnus Solutions, che consente a diverse versioni di Microsoft Windows di svolgere alcuni compiti in maniera esteticamente e funzionalmente simile ad un sistema Unix (da <a href="https://it.wikipedia.org/wiki/Cygwin">Wikipedia</a>).</p></blockquote>
+	<p>Dall’ultimo aggiornamento di release di Windows 10 (l’<em>anniversary update</em> di agosto 2016) è possibile utilizzare nativamente <em>bash</em> anche in Windows, tramite l’applicazione denominata “<a href="http://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx">Bash in Ubuntu on Windows</a>”; “GTFS ready set go” l’ho scritto e testato per intero in ambiente Windows 10, anche per provare questa novità introdotta in questo recente aggiornamento, che rende la comodità e la potenza di fuoco di <em>bash</em> sempre più trasversali.</p>
+	<p><img class="alignnone size-full wp-image-6976 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash.png" alt="bash" width="500" height="217" /></p>
+	<p>Lo script sfrutta queste applicazioni:</p>
+	<ul>
+	<li><a href="http://www.gdal.org/">GDAL</a> &#8211; Geospatial Data Abstraction Library &gt;= 2.1, che viene usato essenzialmente per le operazioni di creazione, importazione e esportazione delle risorse;</li>
+	<li><a href="https://www.gaia-gis.it/fossil/spatialite-tools/index">spatialite</a>, che viene sfruttato per fare query spaziali e come uno dei formati di archiviazione e output;</li>
+	<li>unzip, per decomprimere il GTFS sorgente;</li>
+	<li><a href="https://curl.haxx.se/">curl</a>, per il download del file GTFS;</li>
+	<li><a href="https://github.com/shenwei356/csvtk">csvtk</a>, per convertire in formato Markdown alcune delle tabelle create;</li>
+	<li><a href="http://pandoc.org/">pandoc</a>, per convertire il report Markdown anche in formato HTML.</li>
+	</ul>
+	<p>E infine vengono utilizzate gli straordinari <code>grep</code> e <code>sed</code>, che sono sempre presenti in ambienti in cui è possibile lanciare uno script <code>bash</code>.</p>
+	<h3 id="usare-lo-script">Usare lo script</h3>
+	<p>Questa la modalità attuale di utilizzo:</p>
+	<ul>
+	<li><a href="https://codeload.github.com/ondata/gtfsreadysetgo/zip/master">scaricare</a> (o clonare) il <em>repository</em> e decomprimere in una cartella il file zip scaricato;</li>
+	<li>dare allo script <code>.sh</code> i permessi di esecuzione;</li>
+	<li>aprirlo con un editor di testo e cercare la variabile <code>URLGTFS</code>;</li>
+	<li>sostituire l’URL presente con l’URL di un feed GTFS di proprio interesse (un comodo archivio di GTFS è <a href="https://transitfeeds.com/l/60-europe">TransitFeeds</a>) come ad esempio quello di Madrid <a href="https://servicios.emtmadrid.es:8443/gtfs/transitemt.zip;">https://servicios.emtmadrid.es:8443/gtfs/transitemt.zip;</a></li>
+	<li>salvare e lanciare lo script via shell.</li>
+	</ul>
+	<p>Qui sotto la replica di quanto descritto nei punti di sopra.</p>
+	<p><a href="https://www.youtube.com/watch?v=rkC4r_BwXI4" target="_blank"><img class="alignnone size-full wp-image-6978 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39.png" alt="2016-08-23_10h31_39" width="500" height="283" /></a></p>
+	<h3 id="alcune-note">Alcune note</h3>
+	<p>Lo script può essere migliorato e di molto. Per questa ragione inserisco alcune importanti note:</p>
+	<ul>
+	<li>lo script <strong>non fa la verifica dei requisiti software</strong> (vedi sopra), quindi se non soddisfatti andrà in errore;</li>
+	<li>lo script è utilizzabile al momento soltanto con i <strong>GTFS</strong> che <strong>contengono</strong> anche la <strong>tabella</strong> <a href="https://developers.google.com/transit/gtfs/reference/shapes-file" target="_blank"><code>shapes</code></a>, che è opzionale per il formato GTFS, quindi non sempre presente;</li>
+	<li>lo script non fa alcuna <strong>verifica</strong> di <strong>consistenza</strong> dei <strong>dati</strong> (per la quale è possibile utilizzare <a href="https://github.com/google/transitfeed/wiki/FeedValidator">FeedValidator</a>;</li>
+	<li>lo script crea e cancella file e cartelle nella cartella in cui viene eseguito.</li>
+	</ul>
+	<h2 id="gli-output">Gli output</h2>
+	<p>Sopra ho già fatto riferimento agli output. Nel <em>repository</em> oltre allo script è stata creata la cartella <code>output_example_folder</code> per mostrare nel concreto quali siano gli output prodotti. A seguire l’elenco dei vari output con i relativi URL, in modo da potersi fare un’idea più concreta:</p>
+	<ul>
+	<li><code>feed_gtfs.sqlite</code> <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/feed_gtfs.sqlite">download</a>, ovvero il file GTFS trasformato in formato SpatiaLite, in cui le tabelle <code>stops</code> e <code>routes</code> sono state trasformate in layer spaziali;</li>
+	<li><code>routes.geojson</code> (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/routes.geojson">visualizzazione</a> e <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/routes.geojson">download</a>), il file in formato GeoJSON per le rotte;</li>
+	<li><code>routes.kml</code> (<a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/routes.kml">download</a>), file in formato KML per le rotte, visualizzabile in Google Earth (ed in altri client);</li>
+	<li><code>stops.geojson</code> (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/stops.geojson">visualizzazione</a> e <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/stops.geojson">download</a>), il file in formato GeoJSON per le fermate;</li>
+	<li><code>stops.kml</code> (<a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/stops.kml">download</a>), file in formato KML per le fermate, visualizzabile in Google Earth (ed in altri client);</li>
+	<li>la cartella <code>report</code>(<a href="https://github.com/ondata/gtfsreadysetgo/tree/master/output_example_folder/report">visualizza</a>), che a sua volta contiene:
+	<ul>
+	<li><code>report.md</code>, il file con il report in formato Markdown (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/report/report.md">visualizza</a>)</li>
+	<li><code>report.html</code>, il file con il report in formato HTML (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/report/report.html">vista codice</a> e <a href="https://ondata.github.io/gtfsreadysetgo/report.html">rendering HTML</a>);</li>
+	<li>tutte le tabelle usate per costruire i report, in formato CSV e Markdown.</li>
+	</ul>
+	</li>
+	</ul>
+	<h2 id="perché">Perché</h2>
+	<p><strong>GTFS, ready, set, go</strong> nasce come conseguenza di <a href="https://www.facebook.com/groups/openamat">#openamat</a>, un’iniziativa civica (ancora in corso) per chiedere a AMAT (la municipalizzata comunale di Palermo che gestisce il trasporto pubblico) di pubblicare i dati relativi ai trasporti pubblici in formato aperto ed in tempo reale.</p>
+	<p>Dopo 6 mesi senza aggiornare i dati, AMAT ha pubblicato a luglio del 2016 tre aggiornamenti di GTFS in 15 giorni e avevo bisogno di uno script per poter usare e visualizzare subito questi dati.</p>
+	<p>Lo rendo pubblico perché penso possa essere utile anche ad altri.</p>
+	<h2 id="url-che-mi-sono-stati-utili">URL (che mi sono stati) utili</h2>
+	<ul>
+	<li><a href="http://blog.openplans.org/2012/08/the-openplans-guide-to-gtfs-data/">The OpenPlans Guide to GTFS Data</a>;</li>
+	<li><a href="https://github.com/napo/osm_users_stats_italian_province">osm_users_stats_italian_province</a>;</li>
+	<li><a href="https://github.com/WorldBank-Transport/GTFS-Training-Materials">GTFS-Training-Materials</a>;</li>
+	<li><a href="https://github.com/OpenTransitTools/gtfsdb">GTFSDB</a>;</li>
+	<li><a href="http://lin-ear-th-inking.blogspot.it/2011/10/extracting-gtfs-data-using-jeql.html">Extracting GTFS data using JEQL</a>;</li>
+	<li><a href="https://github.com/google/transitfeed/wiki">TransitFeed library</a>.</li>
+	</ul>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/">GTFS, pronti, partenza, via &#8230;</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash.png" medium="image">
+			<media:title type="html">bash</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39.png" medium="image">
+			<media:title type="html">2016-08-23_10h31_39</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

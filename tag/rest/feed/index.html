@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; rest</title>
+	<atom:link href="http://blog.spaziogis.it/tag/rest/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Take the best, use the REST</title>
+		<link>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/</link>
+		<comments>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/#comments</comments>
+		<pubDate>Mon, 29 Dec 2014 14:00:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[dati]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[gdal/ogr]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[rest]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6507</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del catalogo dei dataset (come quella del geoportale della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite servizi OGC standard come WMS, WFS e WCS. Ma ci [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del <strong>catalogo</strong> dei dataset (come quella del <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.sitr.regione.sicilia.it%2Fgeoportale&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG7RUw_DCXDDpf6kHOLLKGZrZnT0Q" target="_blank">geoportale</a> della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite <strong>servizi OGC</strong> standard come WMS, WFS e WCS.</p>
+	<p>Ma ci sono diverse altre caratteristiche interessanti rese disponibili da queste tecnologie e che molto spesso ignoriamo, la cui conoscenza ci consente di accedere ad un numero molto più ampio di informazioni e dati. Tutto questo oggi è a maggior forza interessante, grazie alle politiche Open Data realizzate da molte Pubbliche Amministrazioni e anche perché dal <strong>19 marzo 2013</strong>i &#8221;tutti i dati e documenti che le pubbliche amministrazioni pubblicano con qualsiasi modalità, senza l’espressa adozione di una licenza d’uso, si intendono rilasciati come dati aperti (<strong>open data by default</strong>)&#8221; (cit. dati.gov.it, mentre dal punto di vista normativo si tratta dell&#8217;<strong>articolo 52, comma 2</strong> del <strong><a href="http://www.agid.gov.it/cad/accesso-telematico-riutilizzo-dati-pubbliche-amministrazioni" target="_blank">CAD</a></strong>).</p>
+	<p>In questo post sottolineerò alcuni elementi relativi all&#8217;accesso ai dati tramite <em>query</em> via interfaccia <strong>REST</strong> (più propriamente tramite API REST).</p>
+	<h2 id="introduzione">Introduzione</h2>
+	<p>Le API REST di ArcGIS &#8211; REST è l&#8217;acronimo di <em>Representational State Transfer</em> - forniscono una semplice <strong>interfaccia</strong> di <strong>accesso web</strong> ai server cartografici di questa casa software, sia ai dati/servizi che ad alcuni processi. Il tutto è quindi accessibile tramite una serie di URL gerarchici, che identificano ciò a cui si vuole accedere. L&#8217;URL di default di accesso ha di _default _questa struttura:</p>
+	<pre>http://&lt;host&gt;:/arcgis/rest/services</pre>
+	<p>Ad esempio quello della Regione Siciliana è questo:</p>
+	<p><a href="http://map.sitr.regione.sicilia.it/ArcGIS/rest/services" target="_blank">http://map.sitr.regione.sicilia.it/ArcGIS/rest/services</a></p>
+	<p>E aprendo l&#8217;indirizzo sono elencati dati e servizi disponibili in questo server.</p>
+	<p><img class="alignnone size-full wp-image-6513 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" alt="sicilia_rest" width="500" height="285" /></p>
+	<p>La <strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" target="_blank">documentazione</a></strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" target="_blank"> ufficiale</a> generale è molto ricca e vasta e non aggiungerò altri dettagli generici.</p>
+	<p>A seguire invece alcuni esempi di <strong>query</strong>  via ArcGIS REST API, in modo da apprezzarne la ricchezza e le modalità di accesso.</p>
+	<h2 id="interroghiamo-una-risorsa">Interroghiamo una risorsa</h2>
+	<p>Per gli esempi di questo articolo farò riferimento alla <strong>Regione Umbria</strong>, che ha aperto <a href="http://www.google.com/url?q=http%3A%2F%2Fagendadigitale.regione.umbria.it%2Fcartografia-umbria%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGh7oXngcnvcK4DvFY_uBWgTYXftw" target="_blank">da poco</a> i suoi dati cartografici. Dal suo portale open data possiamo leggere l&#8217;URL pubblico del server ArcGIS.</p>
+	<p><img class="alignnone size-full wp-image-6514 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" alt="url_umbria" width="500" height="232" /></p>
+	<p>Si legge</p>
+	<pre>http://geo.umbriaterritorio.it/arcgis/</pre>
+	<p>Bisogna aggiungere (vedi sopra) &#8220;rest/services/&#8221; e abbiamo</p>
+	<p><a href="http://geo.umbriaterritorio.it/arcgis/rest/services/" target="_blank">http://geo.umbriaterritorio.it/arcgis/rest/services/</a></p>
+	<p>A questo punto non resta che sfogliare un po&#8217; la <em>directory</em> pubblica e scegliere un <em>layer</em> su cui eseguire una <em>query</em>. Userò il dataset dei &#8220;NUMERI CIVICI&#8221;, che si raggiunge facendo click su <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGsOAQrrPu5ImWNlAL_d8H3zDdhtQ" target="_blank">Public &gt; ECOGRAFICO_CATASTALE_WGS84 (MapServer) &gt; NUMERI CIVICI</a>.</p>
+	<p>Scorrendo la pagina verso il basso è visibile il tasto &#8220;<em>Query</em>&#8220;, tramite il quale è possibile interrogare il dataset.</p>
+	<p><img class="alignnone size-full wp-image-6512 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" alt="query" width="500" height="370" /></p>
+	<p>Per lanciare la prima interrogazione devo inserire almeno un criterio di ricerca. Ad esempio <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%3D1%26where%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH6iLFbjBb4YxEY1dKVGuFrZBhiMQ" target="_blank">il numero civico con &#8220;ID=1&#8243;</a> (ogni elemento ha sempre un identificativo numerico associato). La pagina html con il risultato dell&#8217;interrogazione mi fornisce informazioni sia sugli attributi che sulla geometria dell&#8217;elemento.</p>
+	<p><img class="alignnone size-full wp-image-6509 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" alt="attributi" width="382" height="212" /></p>
+	<p>Posso fare allora una query per <strong>attributo</strong>: <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&#038;geometryType=esriGeometryPoint&#038;inSR=&#038;spatialRel=esriSpatialRelIntersects&#038;relationParam=&#038;objectIds=&#038;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&#038;time=&#038;returnCountOnly=false&#038;returnIdsOnly=false&#038;returnGeometry=true&#038;maxAllowableOffset=&#038;outSR=&#038;outFields=*&#038;f=html" target="_blank">tutti gli elementi</a> che contengono nel campo &#8220;DESCR_S49&#8243; la stringa &#8220;CORPOSANO&#8221;. Nell&#8217;interfaccia leggiamo che ci sono 47 record che soddisfano questa condizione e l&#8217;output è in HTML. Ci sono però altri formati di output tra cui <strong>KML</strong> e <strong>JSON</strong>; <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DDESCR_S49%2BLIKE%2B'%2525CORPOSANO%2525'%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dpjson&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHS-5eXTUQRW6lngrc9W3yzjDYWZg" target="_blank">questo</a> l&#8217;output in JSON della stessa query.</p>
+	<p><img class="alignnone size-full wp-image-6511 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" alt="output" width="500" height="116" /></p>
+	<p>Questi due formati quindi mostrano nei fatti, come una query REST su server ArcGIS sia un&#8217;ulteriore modalità di accesso al dato grezzo.</p>
+	<h2>Query spaziale</h2>
+	<p>E&#8217; possibile eseguire anche delle interrogazioni spaziali di complessità variabile. Ad esempio posso estrarre tutti i civici che ricadono tra queste coordinate <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=12.384356%2C+43.108511%2C12.388869%2C43.110765&amp;geometryType=esriGeometryEnvelope&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=html" target="_blank">12.384356,43.108511,12.388869,43.110765</a> (&lt;xmin&gt;,&lt;ymin&gt;,&lt;xmax&gt;,&lt;ymax&gt;).</p>
+	<p><img class="alignnone size-full wp-image-6542 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" alt="spatial_query" width="496" height="118" /></p>
+	<p>Posso farne il download con GDAL/OGR (vedi sotto) e ottenere rapidamente i dati in formato spaziale e al contempo visualizzarne rapidamente una loro rappresentazione.</p>
+	<p><img class="alignnone size-full wp-image-6543 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" alt="spatial_query_map" width="500" height="394" /></p>
+	<h2 id="accesso-tramite-gdal/ogr-a-una-query">Accesso tramite GDAL/OGR a una query</h2>
+	<p>La libreria <strong>GDAL/OGR</strong> ha i driver di accesso in lettura e scrittura al <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.gdal.org%2Fdrv_geojson.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEYFJK4I_iIh-CbRFHchaL-132kJg" target="_blank">formato GeoJSON</a>. Uno degli output delle query di sopra è proprio JSON e questa libreria lo riesce a leggere nativamente proprio come GeoJSON.</p>
+	<p>L&#8217;ultima query si effettua chiamando <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson" target="_blank">questo lungo URL</a>:</p>
+	<pre>http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;<strong>where</strong>=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;<strong>f</strong>=pjson</pre>
+	<p>Nell&#8217;indirizzo di sopra sono visibili tutti i parametri disponibili per effettuare un’interrogazione, ma sopra abbiamo valorizzato soltanto la stringa di testo da ricercare in un determinato campo (parametro &#8220;where&#8221;) e il formato di output (parametro &#8220;f&#8221;). Questo URL fa da <em>source</em> per GDAL/OGR. Se voglio avere tutte le <strong>informazioni</strong> su questa sorgente di dati vettoriali userò il classico ogrinfo:</p>
+	<pre>ogrinfo -ro &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>&#8220;OGRGeoJSON&#8221; è per GDAL/OGR il nome predefinito del layer di una sorgente GeoJSON. &#8220;-ro&#8221; perché imposto l’accesso in sola lettura.</p>
+	<p>Se voglio <strong>convertire</strong> in ArcView Shapefile l&#8217;output di questa query userò ogr2ogr:</p>
+	<pre>ogr2ogr CORPOSANO.shp &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>Come esempio, riporto qui il <a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/CORPOSANO.zip" target="_blank"><strong>download</strong></a> fatto con GDAL/OGR nei formati ArcView Shapefile, GeoJSON e KML.</p>
+	<h2 id="web-mapping-a-partire-da-query">Web mapping a partire da query</h2>
+	<p>Queste query possono essere visualizzate in maniera molto efficace anche in un&#8217;interfaccia di <em>web mapping</em>. Sia a partire dal salvataggio dell&#8217;output, che tramite chiamata diretta in <em>realtime</em>. La cosa è inoltre resa semplice da una bella libreria rilasciata in <em>open source</em> da ESRI e basata su <strong>Leaflet</strong>: <a href="http://www.google.com/url?q=http%3A%2F%2Fesri.github.io%2Fesri-leaflet&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFHs50dsXaxLd9Jq6RYR_VlXnnM2A" target="_blank">http://esri.github.io/esri-leaflet</a>.</p>
+	<p>La query di sopra (quella sulla stringa &#8220;CORPOSANO&#8221;) ad esempio si può rappresentare rapidamente come sotto (click <strong><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" target="_blank">qui</a></strong> per aprire a <strong>schermo intero</strong>).</p>
+	<p><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" target="_blank"><img class="alignnone size-full wp-image-6510 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" alt="leaflet" width="500" height="378" border="0" /></a></p>
+	<p>Il codice lo trovate qui: <a href="https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Ftanto%2Farcgisqueryrest%2Fblob%2Fgh-pages%2Findex.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG4onJJ1-fhQ16rPu3V_R3aFE0ofw" target="_blank">https://github.com/tanto/arcgisqueryrest/blob/gh-pages/index.html</a></p>
+	<h2 id="alcune-note-in-conclusione">Alcune note in conclusione</h2>
+	<p>Sono rimasto molto in superficie, ma l&#8217;intento è quello di mostrare un punto di ingresso poco noto e utile, visto il sempre maggior numero di dati spaziali oggi disponibili e aperti. Di default l&#8217;<em>output</em> di queste _query _è limitato a 1000 risultati, quindi è necessario &#8220;ciclare&#8221; le chiamate. Ad esempio per ID a gruppi di 1000 record:</p>
+	<ul id="draft_check_box_list_0">
+	<li>inizio con la condizione <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DOBJECTID%253E%253D1%2Band%2B%2BOBJECTID%253C%253D1000%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNESchVZwiY-eDtZyqQ-tWo3yZyDuw" target="_blank">OBJECTID&gt;=1 and OBJECTID&lt;=1000</a>;</li>
+	<li>poi OBJECTID&gt;=1001 and OBJECTID&lt;=2000;</li>
+	<li>e così via &#8230;</li>
+	</ul>
+	<p>Il totale (190140 record), da conoscere prima di fare partire il ciclo, si ricava ad esempio con <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3D1%253D1%26time%26returnCountOnly%3Dtrue%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGXetugfKd8MZId4F4iV-3NJOsWhg" target="_blank">questa query</a>. Ci sono altri modi per ciclare tra i record, questo è solo un esempio.</p>
+	<p>L&#8217;accesso REST è molto utile anche con sorgenti di tipo <em>raster</em>, ma magari lo scrive qualcun altro, in un altro post <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  .</p>
+	<p>L&#8217;URL con struttura &#8220;http://&lt;host&gt;:/arcgis/rest/services&#8221; è quello di <em>default</em>. Chi gestisce il server potrebbe usare uno schema diverso.</p>
+	<p>Questo post è dedicato al giovane Padawan &#8220;<strong><a href="https://plus.google.com/u/0/114313445728286224740/posts" target="_blank">Flavio</a></strong>&#8220;, che mi ha fatto scoprire <a href="https://www.google.com/url?q=https%3A%2F%2Fhub.qgis.org%2Fwiki%2F17%2FArcgis_rest&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEmBzX8cx7Y0rkxiZXreebrdHQWVw" target="_blank">questa pagina</a> e ha dato la stura alla stesura di questo testo.</p>
+	<p>Non mi <strong>REST</strong>a che augurarvi un <strong>buon 2015</strong>!
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/">Take the best, use the REST</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" medium="image">
+			<media:title type="html">sicilia_rest</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" medium="image">
+			<media:title type="html">url_umbria</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" medium="image">
+			<media:title type="html">query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" medium="image">
+			<media:title type="html">attributi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" medium="image">
+			<media:title type="html">output</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output-150x116.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" medium="image">
+			<media:title type="html">spatial_query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query-150x118.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" medium="image">
+			<media:title type="html">spatial_query_map</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" medium="image">
+			<media:title type="html">leaflet</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet-150x150.jpg" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

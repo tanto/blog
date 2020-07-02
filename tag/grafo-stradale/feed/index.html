@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; grafo stradale</title>
+	<atom:link href="http://blog.spaziogis.it/tag/grafo-stradale/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Definizione di una rete stradale strategica di ambito provinciale in condizioni di esercizio</title>
+		<link>http://blog.spaziogis.it/2011/09/26/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale-in-condizioni-di-esercizio/</link>
+		<comments>http://blog.spaziogis.it/2011/09/26/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale-in-condizioni-di-esercizio/#comments</comments>
+		<pubDate>Mon, 26 Sep 2011 07:00:53 +0000</pubDate>
+		<dc:creator>Lorenzo Perone</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[bms]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[grafo stradale]]></category>
+		<category><![CDATA[manutenzione strade]]></category>
+		<category><![CDATA[provincia di bologna]]></category>
+		<category><![CDATA[rete strategica]]></category>
+		<category><![CDATA[routing]]></category>
+		<category><![CDATA[scenario di esercizio]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4126</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+una+rete+stradale+strategica+di+ambito+provinciale+in+condizioni+di+esercizio&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/26/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale-in-condizioni-di-esercizio/&amp;rft.language=English"></span>
+Questo post nasce a seguito della sollecitazione a descrivere le modalità con cui abbiamo elaborato il modello per l&#8217;individuazione della rete strategica in condizioni di esercizio. E&#8217; la naturale continuazione del mio precedente “Definizione di una rete stradale strategica di ambito provinciale” che invito a leggere per maggiore chiarezza, in quanto alcuni passaggi comuni alle [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+una+rete+stradale+strategica+di+ambito+provinciale+in+condizioni+di+esercizio&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/26/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale-in-condizioni-di-esercizio/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="text-align: justify;">Questo <strong>post</strong> nasce a seguito della <strong>sollecitazione</strong> a descrivere le <strong>modalità</strong> con cui abbiamo <strong>elaborato</strong> il <strong>modello</strong> per l&#8217;individuazione della <strong>rete strategica in condizioni di esercizio</strong>. E&#8217; la naturale <strong style="text-align: justify;">continuazione</strong> del mio precedente <em>“<a href="../../../../../2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/">Definizione di una rete stradale strategica di ambito provinciale</a>”</em> che invito a <strong>leggere</strong> per <strong>maggiore chiarezza</strong>, in quanto alcuni <strong>passaggi comuni</strong> alle due analisi sono stati <strong>descritti nel primo post con maggiore dettaglio</strong>.</p>
+	<p style="text-align: justify;">Ricordo comunque, a titolo di completezza, alcuni concetti generali.</p>
+	<blockquote>
+	<p style="text-align: justify;" dir="ltr">Lo scopo dell’analisi è stato quello di definire, all’interno dei <strong>1400 Km</strong> della rete viaria della Provincia di Bologna, tre categorie di <strong>importanza funzionale</strong> indicative della<strong> rilevanza strategica</strong> di un tronco stradale.</p>
+	<p style="text-align: justify;" dir="ltr">La definizione di una rete strategica è finalizzata a <strong>garantire un livello di servizio dell’infrastruttura stradale adeguato alla sua funzione</strong>, a <strong>programmare e gestire la manutenzione dell’infrastruttura stradale</strong> sul territorio provinciale in maniera mirata e a <strong>ottimizzare le risorse disponibili per gli interventi definendo priorità e fornendo supporto nella definizione dei piani triennali dei lavori</strong>.</p>
+	<p style="text-align: justify;" dir="ltr">L’individuazione della rete strategica viene effettuata tenendo conto di due <strong>diversi scenari</strong>:</p>
+	<ul>
+	<li>
+	<p dir="ltr"><strong>scenario di servizio</strong>: valuta la funzionalità richiesta all’infrastruttura in condizione di normale esercizio;</p>
+	</li>
+	<li>
+	<p dir="ltr"><strong>scenario di emergenza</strong>: valuta la funzionalità richiesta all’infrastruttura nella condizione di emergenza legata ad un evento sismico.</p>
+	</li>
+	</ul>
+	</blockquote>
+	<p style="text-align: justify;" dir="ltr">Nel caso dell’<strong>analisi in condizioni di esercizio</strong> si è tenuto conto dei <strong>flussi di traffico</strong> e lo <strong>studio dei percorsi</strong> (routing) ha valutato i <strong>percorsi tra centroidi di attrazione e generazione di spostamento secondo la relazione residenti-edificato</strong>,<strong> residenti-imprese </strong>e<strong> caselli autostradali-edificato</strong>.</p>
+	<blockquote><p>L’<strong>analisi GIS</strong> utilizza:</p>
+	<ul>
+	<li>una <strong>mappa di densità dei residenti</strong> ottenuta dal dato geometrico dalle sezioni di censimento ISTAT;</li>
+	<li>una <strong>mappa di densità delle imprese</strong> ottenuta della banca dati della Camera di Commercio georeferenziata;</li>
+	<li>una <strong>mappa di densità dell’edificato</strong> ricavata secondo quanto descritto in questo<a href="../../../../../2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/"> post</a>.</li>
+	</ul>
+	<p>Queste <strong>mappe raster</strong> vengono filtrate utilizzando un <strong>valore minimo di soglia</strong> che permetta di identificare un <strong>numero di &#8220;isole&#8221; ritenuto rappresentativo del contesto provinciale</strong> mediante un’analisi qualitativa. Di queste isole vengono poi <strong>calcolati i baricentri</strong> passando per la trasformazione in poligoni. I <strong>baricentri</strong>, assieme agli <strong>accessi ai caselli autostradali</strong>, rappresentano i <strong>centroidi dell&#8217;analisi dei percorsi</strong>e sono costituiti da:</p>
+	<ul id="internal-source-marker_0.39143436597353">
+	<li>48 centroidi di aree ad elevata densità residenziale, ottenuti elaborando le sezioni relative all’ultimo censimento della popolazione, che definiremo centroidi residenti</li>
+	<li>61 centroidi di aree densamente edificate, ottenuti elaborando la densità edilizia calcolata dai dati catastali secondo la metodologia proposta da questo<a href="../2011/09/15/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/"> post</a>, che definiremo centroidi edificato</li>
+	<li>46 centroidi di aree ad elevata presenza di imprese ottenuti elaborando i dati della Camera di Commercio di Bologna georiferiti, che definiremo centroidi imprese</li>
+	<li>24 accessi ai caselli autostradali</li>
+	</ul>
+	</blockquote>
+	<p id="internal-source-marker_0.39143436597353" dir="ltr">Individuati i <strong>centroidi di generazione/attrazione degli spostamenti</strong> vengono definite nel modello le <strong>regole</strong> secondo le quali il software deve <strong>calcolare i percorsi di collegamento</strong> che sono <strong>rappresentati dalla seguente matrice</strong>.</p>
+	<div dir="ltr">
+	<table>
+<colgroup> <col width="179" /> <col width="172" /> <col width="177" /></colgroup><br />
+	<tbody>
+	<tr>
+	<td></td>
+	<td>
+	<p dir="ltr">Centroidi edificato</p>
+	</td>
+	<td>
+	<p dir="ltr">Centroidi imprese</p>
+	</td>
+	</tr>
+	<tr>
+	<td>Centroidi residenti</td>
+	<td>
+	<p dir="ltr">5C/TB</p>
+	</td>
+	<td>
+	<p dir="ltr">5C/TB</p>
+	</td>
+	</tr>
+	<tr>
+	<td>Caselli autostradali</td>
+	<td>
+	<p dir="ltr">1C/TB</p>
+	</td>
+	<td>
+	<p dir="ltr">-</p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	<p>&nbsp;</p>
+	<p style="text-align: justify;" dir="ltr">Per <strong>ogni relazione</strong> è espresso un <strong>parametro di calcolo utilizzato dall’algoritmo di routing</strong> del software:</p>
+	<ul>
+	<li style="text-align: justify;">
+	<p dir="ltr">1C, 5C <strong>numero di connessioni del centroide</strong> di generazione degli spostamenti con i più prossimi punti di attrazione degli spostamenti, es. tra centroidi residenti e centroidi edificato e è indicato 5C, cioè il centroide di ogni area ad elevata densità residenziale deve raggiungere il centroide delle cinque aree densamente edificate più prossime.</p>
+	</li>
+	<li>
+	<p style="text-align: justify;" dir="ltr">TB calcolo del percorso utilizzando il percorso più breve in termini di tempo.</p>
+	</li>
+	</ul>
+	<p style="text-align: justify;">Ad ogni <strong>arco stradale</strong> è attribuito un<strong> peso</strong> basato sul <strong>numero dei percorsi</strong>, tra quelli calcolati, <strong>che lo utilizzano</strong>, la parte relativa al calcolo dei percorsi a questo punto è conclusa. Si opera l&#8217;<strong>estrazione del grafo delle strade provinciali dal grafo complessivo</strong>.</p>
+	<p style="text-align: justify;" dir="ltr">Oltre ai <strong>percorsi</strong>, per il calcolo della <strong>categoria di importanza funzionale, in condizioni di esercizio, delle strade provinciali</strong>, sono utilizzati anche i dati sui <strong>flussi di traffico</strong> che provengono da <strong><a href="http://servizissiir.regione.emilia-romagna.it/FlussiMTS/">Mobiliter</a></strong>, il sistema di consultazione dei flussi online della regione Emilia-Romagna. I dati forniti sono rilevati da circa <strong>40 postazioni, in funzione 24 ore su 24</strong>, installate <strong>sulle strade provinciali</strong>. Questi dati di flusso sono integrati dai <strong>dati rilevati</strong> in fase di definizione del quadro conoscitivo del <strong><a href="http://www.provincia.bologna.it/pianificazione/Engine/RAServePG.php/P/259111020505">Piano della Mobilità Provinciale</a></strong>.</p>
+	<p style="text-align: justify;">I <strong>dati relativi ai flussi di traffico</strong> sono stati inseriti come <strong>attributi nel grafo provinciale</strong> <strong>a livello di singolo arco stradale</strong>. Sono state individuate <strong>tre classi di traffico</strong> attraverso un’<strong>analisi di significatività statistica</strong> (Jenks). La scelta dei <strong>valori di soglia</strong>, operata secondo questo metodo, consente di determinare <strong>classi di aggregazione</strong> (classe 1, 2 e 3) con i <strong>valori di gruppo più simili</strong> e che <strong>massimizzano le differenze tra le classi stesse</strong>.</p>
+	<p style="text-align: justify;" dir="ltr">Il <strong>calcolo dell&#8217;indice di importanza funzionale</strong>, basato sulle <strong>classi di traffico</strong> e sul <strong>peso determinato dall&#8217;analisi dei percorsi</strong>, è stato<strong> effettuato in maniera diversificata</strong> tra le <strong>strade di pianura e quelle collinari o montane</strong>. Si è operata una <strong>distinzione basata sulla definizione geografica di pianura</strong> come territorio compreso al di sotto della quota di 200 m s.l.m. Lo scopo di questa differenziazione, che si traduce nella creazione di due sub-grafi, è quello di amplificare l&#8217;importanza funzionale delle strade appenniniche, cioè quelle poste a 200 m s.l.m., che presentano in termini di flussi di traffico un&#8217;importanza spesso secondaria. Tale scelta si è concretizzata nel calcolo dell&#8217;<strong>indice di importanza funzionale</strong> che segue la logica di seguito descritta.</p>
+	<div dir="ltr">
+	<table>
+<colgroup> <col width="*" /> <col width="*" /> <col width="*" /></colgroup><br />
+	<tbody>
+	<tr>
+	<td></td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Peso dell’analisi dei percorsi</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Peso dei flussi di traffico</p>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p dir="ltr">Ambito di pianura</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">40%</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">60%</p>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p dir="ltr">Ambito appenninico</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">60%</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">40%</p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	<p style="text-align: justify;">Una volta calcolato l&#8217;indice di importanza funzionale nel contesto di pianura ed in quello appenninico si può riunificare il grafo.<strong> L&#8217;indice di imporanza funzionale</strong> che ogni arco si trova come attributo<strong> viene normalizzato a 100</strong> e vengono <strong>individuate tre categorie di importanza funzionale </strong>mediante l&#8217;analisi di significatività statistica di Jenks.</p>
+	<p style="text-align: justify;">Quello che si ottiene è un grafo che presenta per ogni <strong>singola strada provinciale</strong> diversi <strong>tratti con categoria di importanza funzionale diversa</strong>. Con un’analisi qualitativa si operano delle scelte per <strong>attribuire le categorie di importanza funzionale in maniera più continua</strong> ad interi tratti di strada.</p>
+	<p><div class="slidedeck_frame skin-default"><dl id="SlideDeck_409_4159" class="slidedeck slidedeck_4159" style="width:100%;height:370px"><dt>Mappa dei percorsi in Appennino</dt><dd><div id="attachment_4160" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_percorsi.png" target="_blank"><img class="size-large wp-image-4160        " title="Scenario dei percorsi in appennino" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_percorsi-300x300.png" alt="Scenario dei percorsi in Appennino" width="300" height="300" /></a>
+<p class="wp-caption-text">Scenario dei percorsi in Appennino</p>
+</div>
+</dd><dt>Mappa del traffico in Appennino</dt><dd><div id="attachment_4161" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_traffico.png" target="_blank"><img class="size-large wp-image-4161    " title="Mappa del traffico in Appennino" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_traffico-300x300.png" alt="Mappa del traffico in Appennino" width="300" height="300" /></a>
+<p class="wp-caption-text">Mappa del traffico in Appennino</p>
+</div>
+<p style="text-align: center;">
+</dd><dt>Mappa della rete strategica in Appennino</dt><dd><div id="attachment_4173" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_categorie.png" target="_blank"><img class="size-large wp-image-4173   " title="Mappa della rete strategica in Appennino" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_categorie-1024x1024.png" alt="Mappa della rete strategica in Appennino" width="300" height="300" /></a>
+<p class="wp-caption-text">Mappa della rete strategica in Appennino</p>
+</div>
+</dd><dt>Mappa dei percorsi in pianura</dt><dd><div id="attachment_4175" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_percorsi.png" target="_blank"><img class="size-large wp-image-4175 " title="Mappa dei percorsi in pianura" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_percorsi-1024x1024.png" alt="Mappa dei percorsi in pianura" width="300" height="300" /></a>
+<p class="wp-caption-text">Mappa dei percorsi in pianura</p>
+</div>
+</dd><dt>Mappa del traffico in pianura</dt><dd><div id="attachment_4177" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_traffico.png" target="_blank"><img class="size-large wp-image-4177 " title="Mappa del traffico in pianura" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_traffico-1024x1024.png" alt="Mappa del traffico in pianura" width="300" height="300" /></a>
+<p class="wp-caption-text">Mappa del traffico in pianura</p>
+</div>
+</dd><dt>Mappa della rete strategica in pianura</dt><dd><div id="attachment_4178" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_categorie.png" target="_blank"><img class="size-large wp-image-4178 " title="Mappa della rete strategica in pianura" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_categorie-1024x1024.png" alt="Mappa della rete strategica in pianura" width="300" height="300" /></a>
+<p class="wp-caption-text">Mappa della rete strategica in pianura</p>
+</div>
+</dd></dl></div></p>
+	<p style="text-align: justify;">Un&#8217;illustrazione interessante può essere quella di un <strong>utilizzo &#8220;pratico&#8221; della rete strategica in condizioni di esercizio</strong> quale la<strong> valutazione dell&#8217;indice di equilibrio nell&#8217;attività di pulizia della neve</strong>. Si calcola per ogni arco stradale l&#8217;<strong>indice di servizio</strong>, cioè il rapporto tra il numero dei mezzi ed il percorso assegnato (es. 1 mezzo / 15 Km = 0.067). Il valore dell&#8217;indice di servizio, attraverso l&#8217;analisi di significatività di Jenks, viene classificato in tre classi: massimo (classe 1), medio (classe 2) e minimo (classe 3) servizio. Successivamente per ogni arco si confronta la classe di servizio con la categoria di importanza funzionale in condizioni di esercizio. Gli scenari possibili sono i seguenti.</p>
+	<table>
+	<tbody>
+	<tr>
+	<td></td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Classe servizio 1</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Classe servizio 2</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Classe servizio 3</p>
+	</td>
+	</tr>
+	<tr>
+	<td>Cat. importanza funzionale 1</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio equilibrato</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio basso</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio molto basso</p>
+	</td>
+	</tr>
+	<tr>
+	<td>Cat. importanza funzionale 2</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio alto</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio equilibrato</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio basso</p>
+	</td>
+	</tr>
+	<tr>
+	<td>Cat. importanza funzionale 3</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio molto alto</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio alto</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">Indice servizio equilibrato</p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	<p style="text-align: justify;">La mappa dell&#8217;indice di equilibrio risultante è la seguente.</p>
+	<p><div id="attachment_4185" class="wp-caption aligncenter" style="width: 460px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_neve.png" target="_blank"><img class="size-large wp-image-4185  " title="Mappa dell'indice di equilibrio nella pulizia neve" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_neve-1024x1024.png" alt="Mappa dell'indice di equilibrio nella pulizia neve" width="450" height="450" /></a><p class="wp-caption-text">Mappa dell&#39;indice di equilibrio nella pulizia neve</p></div></p>
+	<p>Spero di essere riuscito nell&#8217;intento di esemplificare il flusso di lavoro seguito. Invito chi possa essere interessato all&#8217;argomento a contribuire, chiedere informazioni o criticare utilizzando i commenti <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/09/26/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale-in-condizioni-di-esercizio/">Definizione di una rete stradale strategica di ambito provinciale in condizioni di esercizio</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/09/26/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale-in-condizioni-di-esercizio/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		<georss:point featurename="Via Castelnuovo 7, Como, Italy">45.8027983 9.093560000000025</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+una+rete+stradale+strategica+di+ambito+provinciale+in+condizioni+di+esercizio&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/26/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale-in-condizioni-di-esercizio/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_percorsi-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_percorsi.png" medium="image">
+			<media:title type="html">Scenario dei percorsi in appennino</media:title>
+			<media:description type="html">Scenario dei percorsi in appennino</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_percorsi-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_traffico.png" medium="image">
+			<media:title type="html">analisi_scenario_esercizio_appennino_traffico</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_traffico-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_categorie.png" medium="image">
+			<media:title type="html">Mappa della rete strategica in appennino</media:title>
+			<media:description type="html">Mappa della rete strategica in appennino</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_appennino_categorie-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_percorsi.png" medium="image">
+			<media:title type="html">Mappa dei percorsi in pianura</media:title>
+			<media:description type="html">Mappa dei percorsi in pianura</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_percorsi-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_traffico.png" medium="image">
+			<media:title type="html">Mappa del traffico in pianura</media:title>
+			<media:description type="html">Mappa del traffico in pianura</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_traffico-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_categorie.png" medium="image">
+			<media:title type="html">Mappa della rete strategica in pianura</media:title>
+			<media:description type="html">Mappa della rete strategica in pianura</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_pianura_categorie-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_neve.png" medium="image">
+			<media:title type="html">Mappa dell&#8217;indice di equilibrio nella pulizia neve</media:title>
+			<media:description type="html">Mappa dell&#039;indice di equilibrio nella pulizia neve</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/analisi_scenario_esercizio_neve-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Definizione di una rete stradale strategica di ambito provinciale</title>
+		<link>http://blog.spaziogis.it/2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/</link>
+		<comments>http://blog.spaziogis.it/2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/#comments</comments>
+		<pubDate>Thu, 15 Sep 2011 08:03:38 +0000</pubDate>
+		<dc:creator>Lorenzo Perone</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[bms]]></category>
+		<category><![CDATA[emergenza sismica]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[grafo stradale]]></category>
+		<category><![CDATA[manutenzione strade]]></category>
+		<category><![CDATA[provincia di bologna]]></category>
+		<category><![CDATA[rete strategica]]></category>
+		<category><![CDATA[routing]]></category>
+		<category><![CDATA[vulnerabilità sismica]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4069</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+una+rete+stradale+strategica+di+ambito+provinciale&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/&amp;rft.language=English"></span>
+Questo post nasce dal mio desiderio di condividere e discutere un’approccio metodologico, in termini di analisi GIS, per me relativamente nuovo nell’ambito del mio lavoro presso il Servizio Manutenzione Strade della Provincia di Bologna. Il lavoro da cui è tratta la metodologia descritta in questo post è stato svolto a quattro mani con il mio [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+una+rete+stradale+strategica+di+ambito+provinciale&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p id="internal-source-marker_0.4622081591187557" style="text-align: justify;" dir="ltr">Questo post nasce dal mio desiderio di condividere e discutere un’approccio metodologico, in termini di analisi GIS, per me relativamente nuovo nell’ambito del mio lavoro presso il <strong>Servizio Manutenzione Strade</strong> della<strong> Provincia di Bologna</strong>. Il lavoro da cui è tratta la metodologia descritta in questo post è stato svolto a quattro mani con il mio collega Pierluigi Tropea le cui competenze in ambito strutturale e manutentivo, complementari alle mia esperienza in ambito GIS, ci hanno permesso di conseguire un risultato, secondo me, interessante.</p>
+	<p style="text-align: justify;" dir="ltr">Lo scopo dell’analisi è stato quello di definire, all’interno dei <strong>1400 Km</strong> della rete viaria della Provincia di Bologna, tre categorie di <strong>importanza funzionale</strong> indicative della <strong>rilevanza strategica</strong> di un tronco stradale.</p>
+	<p style="text-align: justify;" dir="ltr">La definizione di una rete strategica è finalizzata a <strong>garantire un livello di servizio dell’infrastruttura stradale adeguato alla sua funzione</strong>, a <strong>programmare e gestire la manutenzione dell’infrastruttura stradale</strong> sul territorio provinciale in maniera mirata e a <strong>ottimizzare le risorse disponibili per gli interventi definendo priorità e fornendo supporto nella definizione dei piani triennali dei lavori</strong>.</p>
+	<p style="text-align: justify;" dir="ltr">L’individuazione della rete strategica viene effettuata tenendo conto di due <strong>diversi scenari</strong>.</p>
+	<ul style="text-align: justify;">
+	<li>
+	<p dir="ltr"><strong>Scenario di servizio</strong>: valuta la funzionalità richiesta all’infrastruttura in condizione di normale esercizio.</p>
+	</li>
+	<li>
+	<p dir="ltr"><strong>Scenario di emergenza</strong>: valuta la funzionalità richiesta all’infrastruttura nella condizione di emergenza legata ad un evento sismico.</p>
+	</li>
+	</ul>
+	<p style="text-align: justify;" dir="ltr">Le modalità utilizzate per definire la categoria di importanza funzionale di una strada variano a seconda dello scenario di analisi. Si parte in entrambi i casi dall’analizzare le <strong>densità di residenti, edificato ed imprese</strong>. Nel caso dello <strong>scenario di emergenza</strong> le <strong>densità</strong> vengono <strong>amplificate</strong> in base ad una <strong>funzione esponenziale di pericolosità sismica</strong> definita sul territorio attraverso l’<strong>accelerazione sismica di picco al suolo</strong> e la <strong>probabilità di superamento di un determinato sisma di riferimento</strong>.</p>
+	<p style="text-align: center;" dir="ltr"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/image03.jpg" target="_blank"><img class="aligncenter size-full wp-image-4073" title="Matrice della funzione di amplificazione" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/image03.jpg" alt="Matrice della funzione di amplificazione" width="466" height="207" /></a></p>
+	<p style="text-align: justify;" dir="ltr">Lo scopo di questa amplificazione è tenere conto del maggiore danno atteso in aree a maggiore sismicità potenziandone virtualmente i recettori di soccorso.</p>
+	<p style="text-align: center;" dir="ltr"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/image00.jpg" target="_blank"><img class="size-medium wp-image-4077 aligncenter" title="Mappa della densità dei residenti" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/image00-1024x454.jpg" alt="Mappa della densità dei residenti" width="450" height="200" /></a></p>
+	<p style="text-align: justify;" dir="ltr">Nel caso dello <strong>scenario di esercizio</strong> si tengono in considerazione anche i <strong>flussi di traffico</strong> e l’<strong>analisi dei percorsi (routing)</strong> valuta i percorsi tra centroidi di attrazione e generazione di spostamento secondo la relazione <strong>residenti-edificato </strong>e<strong> residenti-imprese</strong>. La metodologia per individuare i centroidi analizzati in questo scenario è la medesima di quella sotto riportata per lo scenario di emergenza.</p>
+	<p style="text-align: justify;" dir="ltr">L’analisi GIS utilizza una <strong>mappa di densità dei residenti</strong> ottenuta dal dato geometrico dalle sezioni di censimento ISTAT; una <strong>mappa di densità delle imprese</strong> ottenuta della banca dati della Camera di Commercio georeferenziata; una <strong>mappa di densità dell’edificato</strong> ricavata secondo quanto descritto in questo <a title="Definizione di reti strategiche: analisi di densità edilizia attraverso la banca dati catastale di SIGMATER" href="http://blog.spaziogis.it/2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/" target="_blank"><em>post</em></a>. Queste <strong>mappe raster</strong> che sono amplificate dalla <strong>funzione di pericolosità sismica</strong> nel caso dello <strong>scenario di emergenza</strong>, vengono filtrate utilizzando un <strong>valore minimo di soglia</strong> che permetta di identificare un <strong>numero di isole ritenuto rappresentativo del contesto provinciale</strong> mediante un’analisi qualitativa. Di queste “isole” vengono poi calcolati i <strong>baricentri</strong> passando per la trasformazione in poligoni.</p>
+	<p style="text-align: justify;" dir="ltr">I baricentri rappresentano i <strong>centroidi</strong> della nostra analisi. Questi centroidi ed i punti che rappresentano l’<strong>ubicazione delle industrie a rischio rilevante</strong> sono, nell’analisi dei percorsi (routing), i punti verso i quali veicolare, attraverso il grafo stradale, i mezzi provenienti dai centri di <strong>offerta di soccorso</strong>.</p>
+	<p style="text-align: center;" dir="ltr"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/image01.jpg" target="_blank"><img class="aligncenter size-large wp-image-4071" title="Mappa della densità filtrata - centroidi" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/image01-1024x454.jpg" alt="Mappa della densità filtrata - centroidi" width="498" height="221" /></a></p>
+	<p style="text-align: justify;" dir="ltr">Nel complesso l’analisi GIS, per lo scenario di emergenza, si articola in <span style="color: #3366ff;"><em><strong>quattro</strong> <strong>punti</strong></em></span>.</p>
+	<p style="text-align: justify;"><span style="color: #3366ff;"><em><strong>Punto 1</strong></em></span> &#8211; Individuazione dei punti da cui, nel modello, si origina l’<strong>offerta di soccorso</strong> nel territorio provinciale a cui ho accennato poco sopra.</p>
+	<ul style="text-align: justify;">
+	<li>
+	<p dir="ltr"><em>16 caserme dei Vigili del Fuoco</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>40 presidi ospedalieri</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>24 accessi ai caselli autostradali</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>Interporto di Bologna</em></p>
+	</li>
+	</ul>
+	<p style="text-align: justify;"><em><strong><span style="color: #3366ff;">Punto 2</span> &#8211; </strong></em>Individuazione dei recettori che fanno <strong>richiesta di soccorso</strong> che nel modello deve essere veicolato attraverso il grafo stradale che comprende l’intera rete stradale presente sul territorio provinciale.</p>
+	<ul style="text-align: justify;">
+	<li>
+	<p dir="ltr"><em>48 centroidi di aree ad elevata densità residenziale, ottenuti elaborando le sezioni relative all’ultimo censimento della popolazione, che definiremo centroidi residenti</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>61 centroidi di aree densamente edificate, ottenuti elaborando la densità edilizia calcolata dai dati catastali secondo la metodologia proposta da questo <a href="../2010/09/27/analisi-di-densita-edilizia-attraverso-la-banca-dati-catastale-di-sigmater/">post</a>, che definiremo centroidi edificato</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>46 centroidi di aree ad elevata presenza di imprese ottenuti elaborando i dati della Camera di Commercio di Bologna georiferiti, che definiremo centroidi imprese</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>23 industrie a rischio rilevante</em></p>
+	</li>
+	</ul>
+	<p style="text-align: justify;" dir="ltr"><em><strong><span style="color: #3366ff;">Punto 3</span> &#8211; </strong></em>Definite le origini e le destinazioni vengono definite nel modello le regole secondo le quali il software deve<strong> calcolare i percorsi di collegamento</strong>. Le relazioni variano a seconda dello scenario di riferimento analizzato, quelle utilizzate per lo scenario di emergenza sono rappresentate dalle seguente matrice.</p>
+	<div dir="ltr">
+	<table>
+<colgroup> <col width="*" /> <col width="*" /> <col width="*" /> <col width="*" /> <col width="*" /></colgroup><br />
+	<tbody>
+	<tr>
+	<td></td>
+	<td style="text-align: center;"><em>Caserme dei Vigili del Fuoco</em></td>
+	<td style="text-align: center;"><em>Presidi opedalieri</em></td>
+	<td style="text-align: center;"><em>Caselli autostradali</em></td>
+	<td style="text-align: center;"><em>Interporto</em></td>
+	</tr>
+	<tr>
+	<td><em>Centroidi residenti</em></td>
+	<td>
+	<p style="text-align: center;" dir="ltr">2C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">2C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	</tr>
+	<tr>
+	<td><em>Centroidi edificato</em></td>
+	<td>
+	<p style="text-align: center;" dir="ltr">2C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">2C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	</tr>
+	<tr>
+	<td><em>Centroidi imprese</em></td>
+	<td>
+	<p style="text-align: center;" dir="ltr">2C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">2C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	</tr>
+	<tr>
+	<td><em>Industrie a rischio</em></td>
+	<td>
+	<p style="text-align: center;" dir="ltr">3C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">3C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	<td>
+	<p style="text-align: center;" dir="ltr">1C/TB</p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	<p style="text-align: justify;" dir="ltr">Per ogni relazione è espresso un parametro di calcolo utilizzato dall’algoritmo di routing del software:</p>
+	<ul>
+	<li style="text-align: justify;">
+	<p style="text-align: justify;" dir="ltr"><em>1C, 2C, 3C numero di connessioni del centroide di richiesta di soccorso con i più prossimi punti di offerta di soccorso della relazione, es. tra <strong>industrie a rischio rilevante </strong>e<strong> presidi ospedalieri</strong> è indicato 3C, cioè un’industria a rischio deve essere raggiunta dai tre più prossimi presidi ospedalieri</em></p>
+	</li>
+	<li>
+	<p style="text-align: justify;" dir="ltr"><em>TB calcolo del percorso utilizzando il percorso più breve in termini di tempo</em></p>
+	</li>
+	</ul>
+	<p style="text-align: justify;" dir="ltr">Il <strong>risultato</strong> è una <strong>mappa</strong> in cui ad ogni elemento (arco) del <strong>grafo stradale</strong> sono<strong> sovrapposti n archi stradali relativi ai percorsi calcolati</strong> secondo la logica descritta.</p>
+	<p><div id="attachment_4095" class="wp-caption aligncenter" style="width: 452px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/image02_legenda.jpg" target="_blank"><img class="size-large wp-image-4095   " title="Percorsi di collegamento tra centroidi di offerta e ricezione di soccorso" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/image02_legenda-1024x1024.jpg" alt="Percorsi di collegamento tra centroidi di offerta e ricezione di soccorso" width="442" height="442" /></a><p class="wp-caption-text">Percorsi di collegamento tra centroidi di offerta e ricezione di soccorso</p></div></p>
+	<p style="text-align: left;">La <strong>legenda dei percorsi tra punti di offerta di soccorso ed i recettori </strong>può essere così esplicitata.<em></em></p>
+	<p style="padding-left: 30px;"><strong>Offerta di soccorso</strong></p>
+	<p style="padding-left: 30px;"><em>PS presidi ospedalieri</em></p>
+	<p style="padding-left: 30px;"><em>VVF caserme dei Vigili del Fuoco</em></p>
+	<p style="padding-left: 30px;"><span style="color: #000000;"><em>CS accessi ai caselli autostradali</em></span></p>
+	<p style="padding-left: 30px;"><em>IP interporto di Bologna</em></p>
+	<p style="padding-left: 30px;"><strong>Recettore di soccorso</strong></p>
+	<p style="padding-left: 30px;"><em>IR industrie a rischio rilevante</em></p>
+	<p style="padding-left: 30px;"><em><span style="color: #000000;">ED centroidi di aree densamente edificate</span></em></p>
+	<p style="padding-left: 30px;"><em><span style="color: #000000;">RR centroidi di aree ad elevata densità residenziale</span></em></p>
+	<p style="padding-left: 30px;"><em><span style="color: #000000;">AZ</span> centroidi di aree ad elevata presenza di imprese</em></p>
+	<p>A questo punto, ad ogni <strong>arco stradale</strong>, viene attribuito un<strong> indice di importanza funzionale</strong> basato sul <strong>numero dei percorsi</strong>, tra quelli calcolati, che lo utilizzano. Il valore dell’indice è poi normalizzato a 100.</p>
+	<p style="text-align: justify;" dir="ltr"><em><strong><span style="color: #3366ff;">Punto 4</span> -</strong></em> Si stabiliscono delle <strong>classi di aggregazione</strong> di valore dell’<strong>indice di importanza funzionale</strong>. Sono state definite <strong>tre classi</strong> individuando i valori di soglia attraverso un’<strong>analisi di significatività statistica</strong> (Jenks) dei <strong>valori dell&#8217;indice di importanza funzionale</strong> degli archi del grafo stradale. La scelta dei <strong>valori di soglia</strong>, operata secondo questo metodo, consente di determinare <strong>classi di aggregazione</strong> (categoria 1, 2 e 3) con i <strong>valori di gruppo più simili</strong> e che <strong>massimizzano le differenze tra le classi stesse</strong>.</p>
+	<p style="text-align: justify;" dir="ltr">L’analisi operata fino ad ora ha preso in considerazione l’<strong>intero grafo stradale provinciale</strong>: autostrade, tangenziali, strade statali, strade provinciali e strade comunali. La “nostra” <strong>rete strategica</strong> deve contenere <strong>solo le strade provinciali</strong> che vengono quindi estratte dal grafo complessivo.</p>
+	<p style="text-align: justify;">Quello che si ottiene è un grafo che presenta per ogni <strong>singola strada provinciale</strong> diversi <strong>tratti con categoria di importanza funzionale diversa</strong>. Con un’analisi qualitativa si operano delle scelte per <strong>attribuire le categorie di importanza funzionale in maniera più continua</strong> ad interi tratti di strada.</p>
+	<p><div id="attachment_4074" class="wp-caption aligncenter" style="width: 452px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/image04.jpg" target="_blank"><img class="size-large wp-image-4074   " title="Rete strategica delle strade provinciali" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/image04-1024x1024.jpg" alt="Rete strategica delle strade provinciali" width="442" height="442" /></a><p class="wp-caption-text">Rete strategica delle strade provinciali</p></div></p>
+	<div class="mceTemp mceIEcenter"></div>
+	<p dir="ltr">La <strong>mappa</strong> sopra riportata rappresenta il <strong>risultato complessivo dell’analisi</strong> con la rappresentazione delle strade provinciali secondo le tre categorie di importanza funzionale:</p>
+	<ol>
+	<li>
+	<p dir="ltr"><em>categoria &#8211; massima importanza strategica</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>categoria &#8211; media importanza strategica</em></p>
+	</li>
+	<li>
+	<p dir="ltr"><em>categoria &#8211; minima importanza strategic</em>a</p>
+	</li>
+	</ol>
+	<p dir="ltr">da un punto di vista statistico il risultato è il seguente.</p>
+	<p><div id="attachment_4075" class="wp-caption aligncenter" style="width: 436px"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/09/image05.jpg"><img class="size-full wp-image-4075  " title="Statistica dei Km di strade provinciali per categoria" src="http://blog.spaziogis.it/wp-content/uploads//2011/09/image05.jpg" alt="Statistica dei Km di strade provinciali per categoria" width="426" height="230" /></a><p class="wp-caption-text">Statistica dei Km di strade provinciali per categoria</p></div></p>
+	<p style="text-align: justify;" dir="ltr">Le <strong>percentuali</strong> sono espresse<strong> in termini di Km</strong> sui 1400 km complessivi di strade provinciali.</p>
+	<p style="text-align: justify;" dir="ltr">Mi auguro che <strong>questo post</strong> possa essere di<strong> stimolo alla nascita di un confronto sulla metodologia utilizzata</strong>, cosa importante per <strong>evidenziare i punti di debolezza</strong> ed avere <strong>utili spunti</strong>.</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/">Definizione di una rete stradale strategica di ambito provinciale</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		<georss:point featurename="Via Castelnuovo 7, Como, Italy">45.8027983 9.093560000000025</georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Definizione+di+una+rete+stradale+strategica+di+ambito+provinciale&amp;rft.aulast=Perone&amp;rft.aufirst=Lorenzo&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/15/definizione-di-una-rete-stradale-strategica-di-ambito-provinciale/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image03-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image03.jpg" medium="image">
+			<media:title type="html">Matrice della funzione di amplificazione</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image03-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image00.jpg" medium="image">
+			<media:title type="html">Mappa della densità dei residenti</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image00-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image01.jpg" medium="image">
+			<media:title type="html">Mappa della densità filtrata &#8211; centroidi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image01-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image02_legenda.jpg" medium="image">
+			<media:title type="html">Percorsi di collegamento tra centroidi di offerta e ricezione di soccorso</media:title>
+			<media:description type="html">Percorsi di collegamento tra centroidi di offerta e ricezione di soccorso</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image02_legenda-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image04.jpg" medium="image">
+			<media:title type="html">Rete strategica delle strade provinciali</media:title>
+			<media:description type="html">Rete strategica delle strade provinciali</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image04-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image05.jpg" medium="image">
+			<media:title type="html">Statistica dei Km di strade provinciali per categoria</media:title>
+			<media:description type="html">Statistica dei Km di strade provinciali per categoria</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/09/image05-150x150.jpg" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

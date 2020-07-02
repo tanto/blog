@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>Pubblicazione del GeoRSS dei terremoti con OpenLayers</title>
+        <meta name="author" content="Pietro Blu Giandonato">
+        <meta name="description" content="GeoRSS dei terremoti realizzato con pipes.yahoo.com" /> 
+        <meta name="keywords" content="GeoRSS, OpenLayers, pipes, yahoo, INGV, terremoti" />
+		
+		<style type="text/css">
+            body {
+                padding: 0px;
+                margin: 0px;
+                font-family: sans-serif;
+                font-size: small;
+                margin: 0px 0px 0px 5px;
+            }
+                      
+        </style>
+
+		
+  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA2XfdS2WfWDTE_U5DK5pK1RQjFwtZC1p89Y-7MAyq65TPpKffpRSD9cYrtN_hz3BqVH7uRWidtg7BUA" type="text/javascript"></script>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script src="http://clients.multimap.com/API/maps/1.1/metacarta_04"></script>
+  <script src="http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=euzuro-openlayers"></script>
+  <script src="http://dev.virtualearth.net/mapcontrol/v3/mapcontrol.js"></script>
+
+</head>
+<body>
+  <h1>Il GeoRSS dei terremoti in OpenLayers</h1>
+  <p>Realizzato da <a href="mailto:p.giandonato+tanto@gmail.com">Pietro Blu Giandonato</a> di <a href="../../index.html">TANTO</a> utilizzando dati dell'<a href="http://openmap.rm.ingv.it/gmaps/rec-big/Index.htm">INGV</a> tradotti in GeoRSS mediante <a href="http://pipes.yahoo.com/pipes/pipe.info?_id=b62fbaa7451b5e0fa5062f91c31baa66">Yahoo Pipes</a><p>
+
+  <div style="width:100%; height:80%" id="map"></div>
+
+  <script defer="defer" type="text/javascript">
+    OpenLayers.ProxyHost = "http://blog.spaziogis.it/cgi-bin/proxy.cgi?url=";
+
+    var map = new OpenLayers.Map( 'map', {controls: [new OpenLayers.Control.PanZoomBar()]} );
+
+    map.addControl(new OpenLayers.Control.MouseToolbar());
+    map.addControl(new OpenLayers.Control.MousePosition());
+//    map.addControl(new OpenLayers.Control.Permalink());
+
+    var layer_switcher = new OpenLayers.Control.LayerSwitcher();
+    map.addControl(layer_switcher);
+    layer_switcher.maximizeControl();
+
+    var wms = new OpenLayers.Layer.WMS( "OpenLayers WMS", "http://labs.metacarta.com/wms/vmap0", {layers: 'basic'} );
+    var google = new OpenLayers.Layer.Google("Google");
+    var googles = new OpenLayers.Layer.Google("Google Satellite", { 'type': G_SATELLITE_MAP });
+    var googleh = new OpenLayers.Layer.Google("Google Hybrid", { 'type': G_HYBRID_MAP });
+    var yahoo = new OpenLayers.Layer.Yahoo("Yahoo");
+    var ingv = new OpenLayers.Layer.GeoRSS("Terremoti (INGV)", "http://pipes.yahoo.com/pipes/pipe.run?_id=b62fbaa7451b5e0fa5062f91c31baa66&_render=rss");
+    var usgs = new OpenLayers.Layer.GeoRSS("Earthquakes (USGS)", "http://earthquake.usgs.gov/eqcenter/catalogs/eqs7day-M2.5.xml");
+	var pcn_orto2006 = new OpenLayers.Layer.WMS( "PCN - orto2006 (visibile a grande scala)", "http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06.map", {layers: 'ortofoto_colore_06'} );
+    var markers = new OpenLayers.Layer.Markers("Markers personali");
+    markers.setVisibility(false);
+	usgs.setVisibility(false);
+
+    map.addLayers([yahoo, wms, google, googles, googleh, markers, ingv, usgs, pcn_orto2006]);
+
+    map.setCenter(new OpenLayers.LonLat(14.00,42.00), 6);
+
+    map.events.register("click", map, function(e) {
+      markers.addMarker(new OpenLayers.Marker(this.getLonLatFromPixel(e.xy)));
+    });
+ 
+  </script>
+</body>
+</html>

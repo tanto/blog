@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; GTFS</title>
+	<atom:link href="http://blog.spaziogis.it/tag/gtfs/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>GTFS, pronti, partenza, via &#8230;</title>
+		<link>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/</link>
+		<comments>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/#comments</comments>
+		<pubDate>Wed, 24 Aug 2016 06:00:50 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[bash]]></category>
+		<category><![CDATA[GTFS]]></category>
+		<category><![CDATA[script]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6973</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+Introduzione Il GTFS è un formato nato per definire orari e informazioni geografiche legate a reti pubbliche e private di trasporto. E’ nato in sintesi estrema (qui più dettagli) come side project di un dipendente di Google che nel 2005 stava cercando un modo per standardizzare l’importazione di dati di questo tipo in Google Maps. [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h2 id="introduzione">Introduzione</h2>
+	<p>Il <code>GTFS</code> è un formato nato per definire orari e informazioni geografiche legate a reti pubbliche e private di trasporto. E’ nato in sintesi estrema (<a href="http://sf.streetsblog.org/2010/01/05/how-google-and-portlands-trimet-set-the-standard-for-open-transit-data/">qui</a> più dettagli) come <em>side project</em> di un dipendente di Google che nel 2005 stava cercando un modo per standardizzare l’importazione di dati di questo tipo in Google Maps. Non c’era ancora uno standard in questo settore, e nel tempo il GTFS è diventato il formato di riferimento, grazie anche all’uso diffuso e alla sua documentazione.</p>
+	<p>Si tratta di una collezione di file <code>CSV</code> (con estensione <code>.txt</code>) &#8211; da un minimo di 6 a un massimo di 13 &#8211; archiviati all’interno di un file <code>zip</code>, le cui specifiche sono documentate qui: <a href="https://developers.google.com/transit/gtfs/reference/">https://developers.google.com/transit/gtfs/reference/</a></p>
+	<p>Per varie ragioni è un formato con cui ho spesso a che fare, ed è stato di ispirazione per creare uno <em>script</em> che ho scritto durante le bellissime olimpiadi di Rio e che ho chiamato <strong>GTFS, ready, set, go</strong>.</p>
+	<h2 id="cosa-è-gtfs-ready-set-go">Cosa è GTFS, ready, set, go</h2>
+	<p>È uno script <em>bash</em> che fa essenzialmente una cosa: trasforma i file <code>txt</code> del GTFS in formati <strong>pronti</strong> per essere <strong>usati meglio</strong> e <strong>subito</strong>, sopratutto in <strong>applicazioni spaziali</strong>. Nel dettaglio:</p>
+	<ul>
+	<li>scarica una sorgente dati GTFS e ne converte i file <code>txt</code> in tabelle di un DBMS con estensione spaziale e in particolare in formato <strong><a href="http://www.gaia-gis.it/gaia-sins/">spatialite</a></strong> (evviva <strong>Alessandro Furieri </strong>e tutti quelli che si prendono cura di spatialite);
+	<ul>
+	<li>trasforma in layer cartografici le tabelle delle fermate e delle rotte (<code>stops</code> e <code>routes</code>);</li>
+	<li>genera alcuna tabelle utili a creare un report sul file della reti di trasporti preso in esame;</li>
+	</ul>
+	</li>
+	<li>esporta in formato <code>GeoJSON</code> e <code>KML</code> la tabella delle rotte e quella delle fermate;</li>
+	<li>genera un report in formato <code>HTML</code> e <code>Markdown</code> utili a dare una visione d’insieme dei dati in esame (al momento è ancora minimale e in bozza) .</li>
+	</ul>
+	<p>Nulla di complesso e nulla di nuovo. Ci sono già altre modalità e prodotti per fare cose simili, ma sono scritti in linguaggi che non conosco (ad esempio in <a href="https://github.com/harrytruong/gtfs-sqlite">Go</a>), richiedono l’installazione di un database server o non spazializzano database sqlite (come il mio amato <a href="https://github.com/OpenTransitTools/gtfsdb">GTFSDB</a>) o sono procedure (semplici) da svolgere “a mano” e quindi a rischio sempre di qualche errore e con perdite di tempo (come ad esempio <a href="http://www.stevencanplan.com/2016/02/converting-a-transit-agencys-gtfs-to-shapefile-and-geojson-with-qgis/">questa</a>).</p>
+	<p>Qui il repository su <strong>GitHub</strong>: <a href="https://github.com/ondata/gtfsreadysetgo" target="_blank">https://github.com/ondata/gtfsreadysetgo</a></p>
+	<h2 id="come-funziona">Come funziona</h2>
+	<p>Si tratta di uno script in cui ho messo in fila i comandi utili al mio obiettivo finale, costruendo una (sorta di) macro in cui sfrutto le caratteristiche del <code>bash</code> e alcune <em>utility</em>/applicazioni utili per arrivare al risultato atteso. Queste ultime sono al momento un requisito per lo script, e quindi una piccola barriera ad un utilizzo immediato: le ho utilizzate perché mi hanno consentito di non scrivere “vero” codice, perché “fanno” nella sostanza tutto loro.</p>
+	<h3 id="requisiti">Requisiti</h3>
+	<p>Avere un sistema operativo in cui è possibile lanciare uno script bash, quindi ovviamente i sistemi Linux, quelli Mac e anche quelli Windows. Su quest’ultimo apro una piccola parentesi.</p>
+	<p>Per lanciare uno script bash su Windows &#8211; sino a poco tempo fa &#8211; era necessario installare “cose” come <a href="https://www.cygwin.com/">Cygwin</a>.</p>
+	<blockquote><p>Cygwin è una distribuzione di software libero, sviluppata originariamente da Cygnus Solutions, che consente a diverse versioni di Microsoft Windows di svolgere alcuni compiti in maniera esteticamente e funzionalmente simile ad un sistema Unix (da <a href="https://it.wikipedia.org/wiki/Cygwin">Wikipedia</a>).</p></blockquote>
+	<p>Dall’ultimo aggiornamento di release di Windows 10 (l’<em>anniversary update</em> di agosto 2016) è possibile utilizzare nativamente <em>bash</em> anche in Windows, tramite l’applicazione denominata “<a href="http://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx">Bash in Ubuntu on Windows</a>”; “GTFS ready set go” l’ho scritto e testato per intero in ambiente Windows 10, anche per provare questa novità introdotta in questo recente aggiornamento, che rende la comodità e la potenza di fuoco di <em>bash</em> sempre più trasversali.</p>
+	<p><img class="alignnone size-full wp-image-6976 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash.png" alt="bash" width="500" height="217" /></p>
+	<p>Lo script sfrutta queste applicazioni:</p>
+	<ul>
+	<li><a href="http://www.gdal.org/">GDAL</a> &#8211; Geospatial Data Abstraction Library &gt;= 2.1, che viene usato essenzialmente per le operazioni di creazione, importazione e esportazione delle risorse;</li>
+	<li><a href="https://www.gaia-gis.it/fossil/spatialite-tools/index">spatialite</a>, che viene sfruttato per fare query spaziali e come uno dei formati di archiviazione e output;</li>
+	<li>unzip, per decomprimere il GTFS sorgente;</li>
+	<li><a href="https://curl.haxx.se/">curl</a>, per il download del file GTFS;</li>
+	<li><a href="https://github.com/shenwei356/csvtk">csvtk</a>, per convertire in formato Markdown alcune delle tabelle create;</li>
+	<li><a href="http://pandoc.org/">pandoc</a>, per convertire il report Markdown anche in formato HTML.</li>
+	</ul>
+	<p>E infine vengono utilizzate gli straordinari <code>grep</code> e <code>sed</code>, che sono sempre presenti in ambienti in cui è possibile lanciare uno script <code>bash</code>.</p>
+	<h3 id="usare-lo-script">Usare lo script</h3>
+	<p>Questa la modalità attuale di utilizzo:</p>
+	<ul>
+	<li><a href="https://codeload.github.com/ondata/gtfsreadysetgo/zip/master">scaricare</a> (o clonare) il <em>repository</em> e decomprimere in una cartella il file zip scaricato;</li>
+	<li>dare allo script <code>.sh</code> i permessi di esecuzione;</li>
+	<li>aprirlo con un editor di testo e cercare la variabile <code>URLGTFS</code>;</li>
+	<li>sostituire l’URL presente con l’URL di un feed GTFS di proprio interesse (un comodo archivio di GTFS è <a href="https://transitfeeds.com/l/60-europe">TransitFeeds</a>) come ad esempio quello di Madrid <a href="https://servicios.emtmadrid.es:8443/gtfs/transitemt.zip;">https://servicios.emtmadrid.es:8443/gtfs/transitemt.zip;</a></li>
+	<li>salvare e lanciare lo script via shell.</li>
+	</ul>
+	<p>Qui sotto la replica di quanto descritto nei punti di sopra.</p>
+	<p><a href="https://www.youtube.com/watch?v=rkC4r_BwXI4" target="_blank"><img class="alignnone size-full wp-image-6978 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39.png" alt="2016-08-23_10h31_39" width="500" height="283" /></a></p>
+	<h3 id="alcune-note">Alcune note</h3>
+	<p>Lo script può essere migliorato e di molto. Per questa ragione inserisco alcune importanti note:</p>
+	<ul>
+	<li>lo script <strong>non fa la verifica dei requisiti software</strong> (vedi sopra), quindi se non soddisfatti andrà in errore;</li>
+	<li>lo script è utilizzabile al momento soltanto con i <strong>GTFS</strong> che <strong>contengono</strong> anche la <strong>tabella</strong> <a href="https://developers.google.com/transit/gtfs/reference/shapes-file" target="_blank"><code>shapes</code></a>, che è opzionale per il formato GTFS, quindi non sempre presente;</li>
+	<li>lo script non fa alcuna <strong>verifica</strong> di <strong>consistenza</strong> dei <strong>dati</strong> (per la quale è possibile utilizzare <a href="https://github.com/google/transitfeed/wiki/FeedValidator">FeedValidator</a>;</li>
+	<li>lo script crea e cancella file e cartelle nella cartella in cui viene eseguito.</li>
+	</ul>
+	<h2 id="gli-output">Gli output</h2>
+	<p>Sopra ho già fatto riferimento agli output. Nel <em>repository</em> oltre allo script è stata creata la cartella <code>output_example_folder</code> per mostrare nel concreto quali siano gli output prodotti. A seguire l’elenco dei vari output con i relativi URL, in modo da potersi fare un’idea più concreta:</p>
+	<ul>
+	<li><code>feed_gtfs.sqlite</code> <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/feed_gtfs.sqlite">download</a>, ovvero il file GTFS trasformato in formato SpatiaLite, in cui le tabelle <code>stops</code> e <code>routes</code> sono state trasformate in layer spaziali;</li>
+	<li><code>routes.geojson</code> (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/routes.geojson">visualizzazione</a> e <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/routes.geojson">download</a>), il file in formato GeoJSON per le rotte;</li>
+	<li><code>routes.kml</code> (<a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/routes.kml">download</a>), file in formato KML per le rotte, visualizzabile in Google Earth (ed in altri client);</li>
+	<li><code>stops.geojson</code> (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/stops.geojson">visualizzazione</a> e <a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/stops.geojson">download</a>), il file in formato GeoJSON per le fermate;</li>
+	<li><code>stops.kml</code> (<a href="https://cdn.rawgit.com/ondata/gtfsreadysetgo/master/output_example_folder/stops.kml">download</a>), file in formato KML per le fermate, visualizzabile in Google Earth (ed in altri client);</li>
+	<li>la cartella <code>report</code>(<a href="https://github.com/ondata/gtfsreadysetgo/tree/master/output_example_folder/report">visualizza</a>), che a sua volta contiene:
+	<ul>
+	<li><code>report.md</code>, il file con il report in formato Markdown (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/report/report.md">visualizza</a>)</li>
+	<li><code>report.html</code>, il file con il report in formato HTML (<a href="https://github.com/ondata/gtfsreadysetgo/blob/master/output_example_folder/report/report.html">vista codice</a> e <a href="https://ondata.github.io/gtfsreadysetgo/report.html">rendering HTML</a>);</li>
+	<li>tutte le tabelle usate per costruire i report, in formato CSV e Markdown.</li>
+	</ul>
+	</li>
+	</ul>
+	<h2 id="perché">Perché</h2>
+	<p><strong>GTFS, ready, set, go</strong> nasce come conseguenza di <a href="https://www.facebook.com/groups/openamat">#openamat</a>, un’iniziativa civica (ancora in corso) per chiedere a AMAT (la municipalizzata comunale di Palermo che gestisce il trasporto pubblico) di pubblicare i dati relativi ai trasporti pubblici in formato aperto ed in tempo reale.</p>
+	<p>Dopo 6 mesi senza aggiornare i dati, AMAT ha pubblicato a luglio del 2016 tre aggiornamenti di GTFS in 15 giorni e avevo bisogno di uno script per poter usare e visualizzare subito questi dati.</p>
+	<p>Lo rendo pubblico perché penso possa essere utile anche ad altri.</p>
+	<h2 id="url-che-mi-sono-stati-utili">URL (che mi sono stati) utili</h2>
+	<ul>
+	<li><a href="http://blog.openplans.org/2012/08/the-openplans-guide-to-gtfs-data/">The OpenPlans Guide to GTFS Data</a>;</li>
+	<li><a href="https://github.com/napo/osm_users_stats_italian_province">osm_users_stats_italian_province</a>;</li>
+	<li><a href="https://github.com/WorldBank-Transport/GTFS-Training-Materials">GTFS-Training-Materials</a>;</li>
+	<li><a href="https://github.com/OpenTransitTools/gtfsdb">GTFSDB</a>;</li>
+	<li><a href="http://lin-ear-th-inking.blogspot.it/2011/10/extracting-gtfs-data-using-jeql.html">Extracting GTFS data using JEQL</a>;</li>
+	<li><a href="https://github.com/google/transitfeed/wiki">TransitFeed library</a>.</li>
+	</ul>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/">GTFS, pronti, partenza, via &#8230;</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GTFS%2C+pronti%2C+partenza%2C+via+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-08-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/08/24/gtfs-pronti-partenza-via/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash.png" medium="image">
+			<media:title type="html">bash</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/bash-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39.png" medium="image">
+			<media:title type="html">2016-08-23_10h31_39</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/08/2016-08-23_10h31_39-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Transitland, per mettere insieme e &#8220;dare vita&#8221; ai dati sui trasporti</title>
+		<link>http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/</link>
+		<comments>http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/#comments</comments>
+		<pubDate>Wed, 02 Mar 2016 15:23:02 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[GTFS]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[trasporti]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6857</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Transitland%2C+per+mettere+insieme+e+%26%238220%3Bdare+vita%26%238221%3B+ai+dati+sui+trasporti&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/&amp;rft.language=English"></span>
+Da novembre è attivo Transit.land, un progetto sponsorizzato da Mapzen che ha come obiettivo quello di creare un catalogo “integrato” di dati sulle reti di trasporto di tutto il mondo. Nasce da una sperimentazione fatta a San Francisco, città con più di 30 agenzie di trasporto pubblico, un numero crescente di servizi privati, il carpooling, [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Transitland%2C+per+mettere+insieme+e+%26%238220%3Bdare+vita%26%238221%3B+ai+dati+sui+trasporti&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Da novembre è attivo <a href="https://transit.land/"><strong>Transit.land</strong></a>, un progetto sponsorizzato da <a href="https://mapzen.com/"><strong>Mapzen</strong></a> che ha come obiettivo quello di creare un <strong>catalogo</strong> “integrato” di dati sulle <strong>reti di trasporto</strong> di <strong>tutto il mondo</strong>.</p>
+	<p>Nasce da una sperimentazione fatta a San Francisco, città con <strong>più di 30 agenzie di trasporto pubblico</strong>, un numero crescente di servizi privati, il carpooling, ecc.. L&#8217;obiettivo era proprio quello di <strong>mettere a rete</strong> tutti questi dati e catalogare le informazioni su autobus, treni, tram, traghetti anche le funivie e renderli interrogabili come se fossero in <strong>un unico database</strong>.</p>
+	<p><img class="aligncenter size-full wp-image-6858" src="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale.png" alt="multi_modale" width="500" height="378" /></p>
+	<p>Tutto talmente bello, che dopo la sperimentazione &#8220;locale&#8221; è partito il progetto globale, con l&#8217;obiettivo di mettere a catalogo file <strong>GTFS</strong> da tutto il mondo.<br />
+La scelta del formato file di input è caduta proprio su <a href="http://www.transitwiki.org/TransitWiki/index.php?title=General_Transit_Feed_Specification">General Transit Feed Specification</a>, oggi lo standard di fatto per questo tipo di dati, usato da Google Maps, Microsoft Bing Maps, Apple Maps, ecc. Molti operatori di servizi di trasporto pubblicano i dati in questo formato, e molti innovatori civici hanno creato questi file per le loro città.</p>
+	<p>Ma si tratta di risorse che per lo più fluttuano nel web spesso come elementi separati. Transitlad, ancora invero in uno stato iniziale, mira a diventare un <strong>centro di gravità</strong> per questi <strong>dataset</strong>, completamente <strong>aperto</strong> in termini di licenza di <a href="https://github.com/transitland"><strong>software</strong></a> e di <strong>dati</strong>.</p>
+	<h2 id="contribuire">Contribuire</h2>
+	<p>Uno dei modi per contribuire al progetto, lanciato da poco, è quello di <strong>inviare una nuova sorgente di dati GTFS</strong>, in modo che possa essere integrata al <a href="https://transit.land/feed-registry/"><strong>catalogo generale</strong></a>, che oggi comprende più di 70 risorse.<br />
+Farlo è molto semplice: a partire da <a href="https://transit.land/feed-registry/feeds/new"><strong>questo wizard</strong></a> dove viene richiesto essenzialmente di inserire l&#8217;<strong>URL</strong> della sorgente dati, il tipo di <strong>licenza</strong> con cui sono pubblicati ed alcune informazioni anagrafiche del mittente.<br />
+Il dataset, a quel punto, viene sottoposto ad una verifica e dopo qualche giorno verrà inserito in catalogo.</p>
+	<p>Un po&#8217; per testare l&#8217;oggetto, un po&#8217; perché mi sembra un gran bella idea &#8211; non nuova, ma mai pienamente realizzata &#8211; mi sono messo all&#8217;opera e nel catalogo Trantit.land oggi sono in eleno le &#8220;nostre&#8221;:</p>
+	<ul>
+	<li><a href="https://transit.land/feed-registry/operators/o-sqc2-amatpalermospa">Palermo</a>;</li>
+	<li><a href="https://transit.land/feed-registry/operators/o-s-aziendanapoletanamobilit">Napoli</a>;</li>
+	<li><a href="https://transit.land/feed-registry/operators/o-sr2-romaserviziperlamobilitsrl">Roma</a>;</li>
+	<li><a href="https://transit.land/feed-registry/operators/o-u0pv-trentinotrasportieserciziospa">Trento</a>.</li>
+	</ul>
+	<h2 id="le-api-e-la-vita-dei-dati">Le API e la &#8220;vita&#8221; dei dati</h2>
+	<p>I dati, come dice spesso chi fa didattica su questi temi, sono come la farina e l&#8217;acqua: materia prima con cui c&#8217;è chi farà torte e chi &#8220;busiate&#8221; (io non ho dubbi).</p>
+	<p><img class="size-full wp-image-6859 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2016/03/busiate.png" alt="busiate" width="500" height="323" /></p>
+	<p>A Transit.land hanno impastato tutto e invece hanno tirato fuori delle <strong>API</strong>, rendendo l&#8217;interrogazione del loro catalogo un processo semplice, comodo e che potenzialmente potrà produrre diversi effetti a cascata.</p>
+	<p>Qualche esempio di query:</p>
+	<ul>
+	<li>Tutte le <strong>fermate</strong> di un <strong>operatore</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?servedBy=o-s-aziendanapoletanamobilit" target="_blank">https://transit.land/api/v1/stops?servedBy=o-s-aziendanapoletanamobilit</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>rotte</strong> di un <strong>operatore</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/routes?operatedBy=o-s-aziendanapoletanamobilit" target="_blank">https://transit.land/api/v1/routes?operatedBy=o-s-aziendanapoletanamobilit</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> nel <strong>raggio</strong> di 500 metri da un punto di <strong>coordinate note</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?lon=14.231413&amp;lat=40.835970&amp;r=500" target="_blank">https://transit.land/api/v1/stops?lon=14.231413&amp;lat=40.835970&amp;r=500</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> comprese in un <strong>rettangolo</strong> di <strong>coordinate note</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?bbox=14.231413,40.835970,14.239355,40.842158" target="_blank">https://transit.land/api/v1/stops?bbox=14.231413,40.835970,14.239355,40.842158</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> in cui un certo <strong>tag</strong> è valorizzato (in questo caso ingresso con sedia a rotelle) in <strong>una certa area</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?tag_key=wheelchair_boarding&amp;bbox=-122.4183,37.7758,-122.4120,37.7808" target="_blank">https://transit.land/api/v1/stops?tag_key=wheelchair_boarding&amp;bbox=-122.4183,37.7758,-122.4120,37.7808</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>fermate</strong> che ricadono nella <strong>via</strong> che ha come <strong>OSM ID </strong>il valore 395047052 (Corso Vittorio Emanuele a Napoli)
+	<ul>
+	<li><a href="https://transit.land/api/v1/stops?tag_key=osm_way_id&amp;tag_value=395047052" target="_blank">https://transit.land/api/v1/stops?tag_key=osm_way_id&amp;tag_value=395047052</a></li>
+	</ul>
+	</li>
+	<li>Tutti i <strong>dati</strong> su una determinata <strong>rotta</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/routes?identifier=gtfs://f-s-anm~it/r/100475194" target="_blank">https://transit.land/api/v1/routes?identifier=gtfs://f-s-anm~it/r/100475194</a></li>
+	</ul>
+	</li>
+	<li>Tutte le <strong>rotte</strong> comprese in un <strong>rettangolo</strong> di <strong>coordinate note</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/routes?bbox=14.231413,40.835970,14.239355,40.842158" target="_blank">https://transit.land/api/v1/routes?bbox=14.231413,40.835970,14.239355,40.842158</a></li>
+	</ul>
+	</li>
+	<li>Tutti i dati di un <strong>oggetto</strong> con un determinato<strong> Onestop ID</strong>
+	<ul>
+	<li><a href="https://transit.land/api/v1/onestop_id/r-sr607-c18" target="_blank">https://transit.land/api/v1/onestop_id/r-sr607-c18</a></li>
+	</ul>
+	</li>
+	</ul>
+	<p>Ma sono solo alcuni esempi e le <strong>chiamate disponibili</strong> sono molte di più:<br />
+<a class="uri" href="https://github.com/transitland/transitland-datastore#api-endpoints">https://github.com/transitland/transitland-datastore#api-endpoints</a></p>
+	<p>I risultati sono esposti con una paginazione di 50 in 50.</p>
+	<h2 id="open-data-day">Open Data Day</h2>
+	<p>Sabato 5 marzo 2016 è l&#8217;<a href="http://opendataday.org/"><strong>Open Data Day</strong></a>, e una delle sedi sarà la città di Napoli.</p>
+	<p>Il bello è che sino a 15 giorni fa i dati sui trasporti di questo comune non erano disponibili ed oggi, solo per il fatto di essere <a href="http://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/29233">stati pubblicati</a> in <strong>formato aperto</strong> e <strong>documentato</strong> sono pure accessibili tramite API. Questo è stato possibile grazie anche a <a href="https://www.facebook.com/ilaria.vitellio"><strong>Ilaria Vitellio</strong></a> che si è spesa personalmente con la pubblica amministrazione locale, che ha risposto prontamente ed ha pubblicato questi dati.</p>
+	<p><strong>In bocca al lupo</strong> allora a Ilaria ed a tutti i presenti a <strong>Napoli</strong>, che avranno a disposizione nuova farina e nuovi mattarelli.</p>
+	<p>In chiusura una nota personale. Anche i dati sulla mia città, <strong>Palermo</strong>, sono presenti nel catalogo e quindi accessibili via API, ma purtroppo<strong> valgono per fare qualche demo</strong> di qualità.<br />
+Si tratta di dati aggiornati a fine dicembre, in cui non è contemplata la nuova rete tranviaria e tutti i grossi cambiamenti che la rete ha subito tra fine 2015 e inizio 2016.<br />
+E&#8217; un fatto grave, specie per una città ricca di turisti come Palermo e con grossi problemi di traffico autoveicolare, che non siano ancora disponibili dati aggiornati sui trasporti pubblici.</p>
+	<p>Ne riparlerò in un altro post.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/">Transitland, per mettere insieme e &#8220;dare vita&#8221; ai dati sui trasporti</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Transitland%2C+per+mettere+insieme+e+%26%238220%3Bdare+vita%26%238221%3B+ai+dati+sui+trasporti&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2016-03-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2016/03/02/transiland-per-mettere-insieme-e-dare-vita-ai-dati-sui-trasporti/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale.png" medium="image">
+			<media:title type="html">multi_modale</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/03/multi_modale-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2016/03/busiate.png" medium="image">
+			<media:title type="html">busiate</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2016/03/busiate-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

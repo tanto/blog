@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; query</title>
+	<atom:link href="http://blog.spaziogis.it/tag/query/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Guardian Datastore Explorer: per costruire query su fogli elettronici Google Drive</title>
+		<link>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/</link>
+		<comments>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/#comments</comments>
+		<pubDate>Tue, 06 Oct 2015 06:44:38 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[gdrive]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[umap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6753</guid>
+		<description><![CDATA[Questo post per presentare Guardian Datastore Explorer, uno strumento per costruire query su fogli elettronici Google Drive, sfruttando il linguaggio di interrogazione messo a disposizione dalle API di GDrive. E ci facciamo pure una mappa.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Guardian+Datastore+Explorer%3A+per+costruire+query+su+fogli+elettronici+Google+Drive&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2015-10-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: questo è stato pubblicato originariamente sul sito della <strong><a href="http://school.dataninja.it/welcome/" target="_blank">dataninjaschool</a></strong>.</p>
+	<h2 id="introduzione">Introduzione</h2>
+	<p>Tra gli strumenti esposti da Google Drive c&#8217;è <strong><a href="https://www.google.com/intl/it_it/sheets/about/">Sheet</a></strong>, un foglio elettronico online ricco di funzioni, molto usato per le professioni e gli utilizzi più svariati.</p>
+	<p>I fogli creati fungono spesso da &#8220;<strong>contenitori</strong>&#8221; di dati, che fanno da sorgente a grafici, mappe, infografiche e applicazioni di svariata natura</p>
+	<p>L&#8217;accesso a Sheet si può eseguire tramite le <strong>API</strong> ufficiali di interrogazione. Nella <a href="https://developers.google.com/chart/interactive/docs/querylanguage">documentazione ufficiale</a> è indicato come generare un output, come generarne uno filtrato, come impostare i formati di output, come usarlo come un database relazionale su cui fare delle query SQL con aggregazione, calcoli, ecc.. Sul web, oltre alla guida dedicata, numerosi tutorial ed esempi.</p>
+	<p>Si tratta di operazioni semplici, con possibilità di uso molto ricche, per uno strumento che è comunque &#8220;<strong>per tutti</strong>&#8220;. Nella mia esperienza da formatore ho riscontrato però che per alcuni, la costruzione di una query non è di immediato apprendimento.<br />
+Questo post nasce proprio allo scopo di presentare uno strumento che consente di superare questi ostacoli: il buon vecchio <strong>Guardian Datastore Explorer</strong> di <a href="https://twitter.com/psychemedia">Tony Hirst</a>.</p>
+	<h2 id="lo-strumento">Lo strumento</h2>
+	<p>Il <strong>Guardian Datastore Explorer</strong> è un vecchietto arzillo: fa la sua prima apparizione nel lontanissimo <strong><a href="http://blog.ouseful.info/2009/05/22/first-steps-towards-a-generic-google-spreadsheets-query-tool/">2009</a></strong>, un&#8217;altra era (non c&#8217;era ad esempio Instagram).<br />
+Sono due le caratteristiche principali che lo rendono molto interessante:</p>
+	<ul>
+	<li>consente facilmente di <strong>costruire in modo guidato</strong> un&#8217;interrogazione su uno Sheet di GDrive;</li>
+	<li>è molto <strong>didattico</strong>. Utilizzandolo si impara ad usare il linguaggio di <em>query</em> e dopo poco tempo si impareranno a <strong>scrivere stringhe di interrogazione in autonomia</strong> con un semplice editor di testo.</li>
+	</ul>
+	<p>E&#8217; uno strumento web ed il suo URL è <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php">http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php</a>.</p>
+	<h2 id="come-si-usa">Come si usa</h2>
+	<h3 id="predisposizione-del-foglio-google-drive-sheet">Predisposizione del foglio Google Drive Sheet</h3>
+	<p>E&#8217; propedeutico avere un account su Google Drive. E poi è necessario avere un foglio elettronico con cui testare il Guardian Datastore Explorer: per le spiegazioni successive verrà utilizzato <a href="https://docs.google.com/spreadsheets/d/1LCAOTXWC5ExNWxFPtMimlG_jdSLgGwRAgrEYgq9iiRc/edit?usp=sharing">questo</a>, con i <strong>musei</strong> del <strong>territorio comunale fiorentino</strong>.</p>
+	<p>Si tratta di dati aperti presenti sul portate <a href="http://www.dati.gov.it/dataset/comune-di-firenze_0038">dati.gov.it</a>. Lo sottolineo perché un&#8217;altra cosa abilitata dagli <strong>open data</strong> è la <strong>didattica</strong>.</p>
+	<p>La prima cosa da fare con il foglio elettronico, è crearne una <strong>copia</strong>:</p>
+	<p><img class="aligncenter" src="http://i.imgur.com/6qWgYXq.png" alt="" /></p>
+	<p style="text-align: center;">Fatta la &#8220;vostra&#8221; copia, è necessario impostarne la <strong>condivisione</strong> (tasto &#8220;Condividi&#8221; o &#8220;Share&#8221; in alto a destra), e fare in modo che (<strong>1</strong>) chiunque abbia l&#8217;URL del foglio, (<strong>2</strong>) possa visualizzarlo.<br />
+<img class="aligncenter" src="http://i.imgur.com/49N1sAZ.png" alt="" width="500" height="361" /></p>
+	<p>Poi si dovrà pubblicare sul web:<br />
+<img class="aligncenter" src="http://i.imgur.com/OOtNPHu.png" alt="" /></p>
+	<p style="text-align: center;">In questo <strong>video</strong> la sequenza della procedura sopra descritta:<br />
+<a href="https://www.youtube.com/watch?v=NPNTDa2YCqk&amp;feature=youtu.be&amp;hd=1"><img class="aligncenter" src="http://i.imgur.com/yeelFlg.png" alt="" width="500" height="281" /></a></p>
+	<p>La condivisione e la pubblicazione sul web sono necessarie perché il Guardian Datastore Explorer è utilizzabile soltanto con fogli pubblicamente accessibili.</p>
+	<h3 id="costruzione-della-query-sul-del-foglio-elettronico">Costruzione della query sul del foglio elettronico</h3>
+	<p>La prima cosa da fare è ricavare il <strong>codice identificativo</strong> del foglio. Si trova all&#8217;interno dell&#8217;URL dello sheet ed è facilmente indetificabile.<br />
+Ad esempio nell&#8217;URL sottostante l&#8217;ID del foglio è quello in grassetto:</p>
+	<p>http://docs.google.com/spreadsheets/d/<strong>1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</strong>/edit#gid=108845820</p>
+	<p>Quindi in questo caso è &#8220;<strong>1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</strong>&#8220;.</p>
+	<p>Poi c&#8217;è aprire la pagina web del <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php">Guardian Datastore Explorer</a> e (<strong>1</strong>) inserire l&#8217;ID del foglio e (<strong>2</strong>) fare click su &#8220;Preview table headings&#8221;. In questo modo l&#8217;interrogazione è stata attivata e come risultato vengono visualizzate le (<strong>3</strong>) intestazione delle colonne del foglio.</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/uwi9QC9.png" alt="" width="500" height="200" /></p>
+	<p>Subito dopo si può andare a <strong>pescare dati</strong> (&#8220;Go Fish&#8221; scrive l&#8217;autore) e iniziare a imparare come usare questo linguaggio di interrogazione, tramite la tabella di esempi riportata sul sito. Leggendola si vede che a tutti gli effetti si tratta un classico <strong>SQL</strong> (Structured Query Language). Qualche esempio:</p>
+	<table>
+	<thead>
+	<tr>
+	<th>Obiettivo</th>
+	<th>Comando</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>Selezionare tutti i record</td>
+	<td>SELECT *</td>
+	</tr>
+	<tr>
+	<td>Selezionare le colonne A e B (ovvero la prima e la seconda) per tutti i record</td>
+	<td>SELECT A,B</td>
+	</tr>
+	<tr>
+	<td>Selezionare tutti record per le colonne A e B, dove il valore della colonna I è uguale a &#8220;3467&#8243;</td>
+	<td>SELECT A,B WHERE I = 3467</td>
+	</tr>
+	<tr>
+	<td>Selezionare tutti record delle colonne C e D, in cui la colonna F non assume il valore di 42043</td>
+	<td>SELECT C,D WHERE F != 3467</td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Nella pagina trovate molti altri esempi.</p>
+	<p>Un&#8217;interrogazione che si potrebbe fare sul foglio dei musei di Firenze potrebbe essere quella per cui applichiamo questi filtri:</p>
+	<ul>
+	<li>Soltanto le colonne A, B, E, F, G, H, I e K;</li>
+	<li>i soli musei a Est della &#8220;Cappella Brancacci&#8221;;</li>
+	<li>solo quelli Statali;</li>
+	<li>solo quelli che hanno un numero di telefono associato;</li>
+	<li>ordinati da Nord verso Sud.</li>
+	</ul>
+	<p>Prima di costruirla, un breve <strong>video</strong> che illustra una prima query più semplice, in modo da prendere confidenza con lo strumento: le sole colonne &#8220;latitude&#8221; e &#8220;longitude&#8221;, dove la &#8220;latitude&#8221; è maggiore di 43.77 e tutto ordinato per longitudine crescente.</p>
+	<p style="text-align: center;"><a href="https://www.youtube.com/watch?v=dQ_ngLlYMTI&amp;feature=youtu.be&amp;hd=1"><img class="aligncenter" src="http://i.imgur.com/HNMrxLL.png" alt="" width="500" height="281" /></a></p>
+	<p>Fatta la query, poco sopra i risultati di output, <strong>tre righe</strong> di testo molto interessanti:</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/p5kjlTV.png" alt="" width="500" height="57" /></p>
+	<p>La <strong>prima</strong> è proprio la query che abbiamo costruito, secondo il linguaggio delle API di Google Drive:</p>
+	<pre><code>select%20A%2CB where B%20%3E%2043.77 order by A asc </code></pre>
+	<p>Nella stringa ci sono dei caratteri che ne rendono poco &#8220;leggibili&#8221; alcune parti: <code>select A,B where B &gt; 43.77 order by A asc</code> si comprende meglio. In realtà la prima è il risultato dell&#8217;<em>encoding</em> dei caratteri della seconda. Questa è una procedura necessaria perché l&#8217;interrogazione viene lanciata tramite un URL, e in questo alcuni caratteri non sono consentiti. Nel nostro caso lo spazio deve essere codificato in &#8220;%20&#8243;, la &#8220;,&#8221; in &#8220;%2C&#8221;, il &#8220;&lt;&#8221; in &#8220;%3E&#8221;.</p>
+	<p>La <strong>seconda</strong> contiene due <em>hyperlink</em>, a due dei formati di <strong>output</strong> possibili di una query fatta su Google Drive Sheet: l&#8217;<strong><a href="http://spreadsheets.google.com/tq?tqx=out:html&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg">HTML</a></strong> e il <strong><a href="http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg">CSV</a></strong>. Il secondo è forse il formato più comodo per chi dovrà utilizzare i risultati di un&#8217;interrogazione per creare grafici, mappe e infografiche.</p>
+	<p>Questo ad esempio l&#8217;<em>hyperlink</em> per l&#8217;output in CSV:</p>
+	<pre>http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</pre>
+	<p>Se lo separiamo in blocchi, si evidenziano elementi interessanti:</p>
+	<ul>
+	<li><code>tqx=out:csv</code>serve per impostare il formato di output;</li>
+	<li><code>tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc</code> per dichiarare la query;</li>
+	<li><code>key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</code> per dichiarare l&#8217;ID del foglio.</li>
+	</ul>
+	<p>La <strong>terza riga</strong> un <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php?run=true&amp;gsKey=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg&amp;gqc=A%2CB&amp;gqw=B%20%3E%2043.77&amp;gqoA">segnalibro</a> che consente di aprire il Guardian Data Explorer con e fargli lanciare la <em>query</em> appena eseguita. E&#8217; un modo per <strong>salvare </strong>l&#8217;<strong>interrogazione</strong> costruita.</p>
+	<p>Adesso siamo in grado di costruire la query indicata a inizio paragrafo:</p>
+	<ul>
+	<li>Soltanto le colonne A, B, E, F, G, H, I e K -&gt; <code>select A,B,E,F,G,H,I,K</code></li>
+	<li>i soli musei a Est della &#8220;Cappella Brancacci&#8221; -&gt; <code>where B &gt; 11.2438292167895</code></li>
+	<li>solo quelli Statali -&gt; <code>AND I matches 'Statale'</code></li>
+	<li>solo quelli che hanno un numero di telefono associato -&gt; <code>AND H !=""</code></li>
+	<li>ordinati da Nord verso Sud -&gt; <code>order by A desc</code></li>
+	</ul>
+	<pre><code>select A,B,E,F,G,H,I,K where B &gt; 11.2438292167895 AND I matches 'Statale' AND H !=\"\" order by B desc </code></pre>
+	<p>Per potere usare questa query è necessario eseguire la codifica dei caratteri in modo che possa essere inserita in un URL. Il risultato (mille strumenti online per farlo, uno è <a href="http://meyerweb.com/eric/tools/dencoder/">questo</a>) dell&#8217;<em>endoding</em> è:</p>
+	<pre><code>select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc </code></pre>
+	<p>E&#8217; possibile usare allora questa stringa per creare l&#8217;URL che esegue l&#8217;interrogazione di sopra e che produce come un risultato un file CSV:</p>
+	<pre><a href=\"http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg\">http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</a></pre>
+	<p>Il file scaricato sarà apribile con qualsiasi editor di testo, e qualsiasi foglio elettronico.</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/tSenfEr.png" alt="" width="500" height="259" /></p>
+	<h1 id="usare-l-output-di-una-query-per-costruire-una-mappa-online">Usare l&#8217;output di una query per costruire una mappa online</h1>
+	<p>Come già scritto sopra, il risultato di una di queste query può essere usata per visualizzare i dati in differenti modi. Uno è una <strong>mappa</strong> online (deformazione professionale).</p>
+	<p>Il dataset di esempio si presta, perché contiene la latitudine e la longitudine di ogni museo. Uno strumento <em>free</em> e <em>open-source</em> molto comodo per generare mappe da output di questo tipo è <strong><a href="http://umap.openstreetmap.fr/it/">uMap</a></strong>. Tra i formati di input supportati proprio il CSV; l&#8217;unico requisito è che nel file CSV siano presenti le colonne denominate &#8220;<em>latitude</em>&#8221; e &#8220;<em>longitude</em>&#8220;.</p>
+	<p>La cosa interessante è che la <strong>mappa</strong> online sarà <strong><em>live</em></strong> e ogni aggiornamento fatto nel foglio elettronico, produrrà un aggiornamento della mappa. Questo avviene perché tutte le volte che verrà visualizzata, verrà lanciata una nuova query.</p>
+	<p>Nel <strong>video</strong> sottostante è illustrato come creare una mappa <em>online live</em> a partire proprio dall&#8217;URL soprastante, che produce in output un CSV.</p>
+	<p style="text-align: center;"><a href="https://www.youtube.com/watch?v=bU7XtYo-w4M&amp;feature=youtu.be&amp;hd=1"><img class="aligncenter" src="http://i.imgur.com/PeOCcTp.png" alt="" width="500" height="281" /></a></p>
+	<h1 id="considerazioni-finali">Considerazioni finali</h1>
+	<p>Il Guardian Datastore Explorer non è un <em>query builder</em> particolarmente potente ed elegante, ma è sicuramente uno strumento che rende semplice l&#8217;avvicinamento al Query Language di Google Drive Sheet.</p>
+	<p>Sopratutto fa comprendere che si tratta di un linguaggio semplice, e dopo poco tempo anche i novizi scriveranno le query &#8220;a mano&#8221; senza più usarlo. Bastano concetti di base di SQL, sapere fare l&#8217;encoding dei caratteri e leggersi la documentazione <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/">Guardian Datastore Explorer: per costruire query su fogli elettronici Google Drive</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Guardian+Datastore+Explorer%3A+per+costruire+query+su+fogli+elettronici+Google+Drive&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2015-10-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://i.imgur.com/6qWgYXq.png" />
+		<media:content url="http://i.imgur.com/6qWgYXq.png" medium="image" />
+		<media:content url="http://i.imgur.com/49N1sAZ.png" medium="image" />
+		<media:content url="http://i.imgur.com/OOtNPHu.png" medium="image" />
+		<media:content url="http://i.imgur.com/yeelFlg.png" medium="image" />
+		<media:content url="http://i.imgur.com/uwi9QC9.png" medium="image" />
+		<media:content url="http://i.imgur.com/HNMrxLL.png" medium="image" />
+		<media:content url="http://i.imgur.com/p5kjlTV.png" medium="image" />
+		<media:content url="http://i.imgur.com/tSenfEr.png" medium="image" />
+		<media:content url="http://i.imgur.com/PeOCcTp.png" medium="image" />
+	</item>
+		<item>
+		<title>Take the best, use the REST</title>
+		<link>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/</link>
+		<comments>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/#comments</comments>
+		<pubDate>Mon, 29 Dec 2014 14:00:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[dati]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[gdal/ogr]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[rest]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6507</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del catalogo dei dataset (come quella del geoportale della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite servizi OGC standard come WMS, WFS e WCS. Ma ci [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del <strong>catalogo</strong> dei dataset (come quella del <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.sitr.regione.sicilia.it%2Fgeoportale&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG7RUw_DCXDDpf6kHOLLKGZrZnT0Q" target="_blank">geoportale</a> della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite <strong>servizi OGC</strong> standard come WMS, WFS e WCS.</p>
+	<p>Ma ci sono diverse altre caratteristiche interessanti rese disponibili da queste tecnologie e che molto spesso ignoriamo, la cui conoscenza ci consente di accedere ad un numero molto più ampio di informazioni e dati. Tutto questo oggi è a maggior forza interessante, grazie alle politiche Open Data realizzate da molte Pubbliche Amministrazioni e anche perché dal <strong>19 marzo 2013</strong>i &#8221;tutti i dati e documenti che le pubbliche amministrazioni pubblicano con qualsiasi modalità, senza l’espressa adozione di una licenza d’uso, si intendono rilasciati come dati aperti (<strong>open data by default</strong>)&#8221; (cit. dati.gov.it, mentre dal punto di vista normativo si tratta dell&#8217;<strong>articolo 52, comma 2</strong> del <strong><a href="http://www.agid.gov.it/cad/accesso-telematico-riutilizzo-dati-pubbliche-amministrazioni" target="_blank">CAD</a></strong>).</p>
+	<p>In questo post sottolineerò alcuni elementi relativi all&#8217;accesso ai dati tramite <em>query</em> via interfaccia <strong>REST</strong> (più propriamente tramite API REST).</p>
+	<h2 id="introduzione">Introduzione</h2>
+	<p>Le API REST di ArcGIS &#8211; REST è l&#8217;acronimo di <em>Representational State Transfer</em> - forniscono una semplice <strong>interfaccia</strong> di <strong>accesso web</strong> ai server cartografici di questa casa software, sia ai dati/servizi che ad alcuni processi. Il tutto è quindi accessibile tramite una serie di URL gerarchici, che identificano ciò a cui si vuole accedere. L&#8217;URL di default di accesso ha di _default _questa struttura:</p>
+	<pre>http://&lt;host&gt;:/arcgis/rest/services</pre>
+	<p>Ad esempio quello della Regione Siciliana è questo:</p>
+	<p><a href="http://map.sitr.regione.sicilia.it/ArcGIS/rest/services" target="_blank">http://map.sitr.regione.sicilia.it/ArcGIS/rest/services</a></p>
+	<p>E aprendo l&#8217;indirizzo sono elencati dati e servizi disponibili in questo server.</p>
+	<p><img class="alignnone size-full wp-image-6513 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" alt="sicilia_rest" width="500" height="285" /></p>
+	<p>La <strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" target="_blank">documentazione</a></strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" target="_blank"> ufficiale</a> generale è molto ricca e vasta e non aggiungerò altri dettagli generici.</p>
+	<p>A seguire invece alcuni esempi di <strong>query</strong>  via ArcGIS REST API, in modo da apprezzarne la ricchezza e le modalità di accesso.</p>
+	<h2 id="interroghiamo-una-risorsa">Interroghiamo una risorsa</h2>
+	<p>Per gli esempi di questo articolo farò riferimento alla <strong>Regione Umbria</strong>, che ha aperto <a href="http://www.google.com/url?q=http%3A%2F%2Fagendadigitale.regione.umbria.it%2Fcartografia-umbria%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGh7oXngcnvcK4DvFY_uBWgTYXftw" target="_blank">da poco</a> i suoi dati cartografici. Dal suo portale open data possiamo leggere l&#8217;URL pubblico del server ArcGIS.</p>
+	<p><img class="alignnone size-full wp-image-6514 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" alt="url_umbria" width="500" height="232" /></p>
+	<p>Si legge</p>
+	<pre>http://geo.umbriaterritorio.it/arcgis/</pre>
+	<p>Bisogna aggiungere (vedi sopra) &#8220;rest/services/&#8221; e abbiamo</p>
+	<p><a href="http://geo.umbriaterritorio.it/arcgis/rest/services/" target="_blank">http://geo.umbriaterritorio.it/arcgis/rest/services/</a></p>
+	<p>A questo punto non resta che sfogliare un po&#8217; la <em>directory</em> pubblica e scegliere un <em>layer</em> su cui eseguire una <em>query</em>. Userò il dataset dei &#8220;NUMERI CIVICI&#8221;, che si raggiunge facendo click su <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGsOAQrrPu5ImWNlAL_d8H3zDdhtQ" target="_blank">Public &gt; ECOGRAFICO_CATASTALE_WGS84 (MapServer) &gt; NUMERI CIVICI</a>.</p>
+	<p>Scorrendo la pagina verso il basso è visibile il tasto &#8220;<em>Query</em>&#8220;, tramite il quale è possibile interrogare il dataset.</p>
+	<p><img class="alignnone size-full wp-image-6512 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" alt="query" width="500" height="370" /></p>
+	<p>Per lanciare la prima interrogazione devo inserire almeno un criterio di ricerca. Ad esempio <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%3D1%26where%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH6iLFbjBb4YxEY1dKVGuFrZBhiMQ" target="_blank">il numero civico con &#8220;ID=1&#8243;</a> (ogni elemento ha sempre un identificativo numerico associato). La pagina html con il risultato dell&#8217;interrogazione mi fornisce informazioni sia sugli attributi che sulla geometria dell&#8217;elemento.</p>
+	<p><img class="alignnone size-full wp-image-6509 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" alt="attributi" width="382" height="212" /></p>
+	<p>Posso fare allora una query per <strong>attributo</strong>: <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&#038;geometryType=esriGeometryPoint&#038;inSR=&#038;spatialRel=esriSpatialRelIntersects&#038;relationParam=&#038;objectIds=&#038;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&#038;time=&#038;returnCountOnly=false&#038;returnIdsOnly=false&#038;returnGeometry=true&#038;maxAllowableOffset=&#038;outSR=&#038;outFields=*&#038;f=html" target="_blank">tutti gli elementi</a> che contengono nel campo &#8220;DESCR_S49&#8243; la stringa &#8220;CORPOSANO&#8221;. Nell&#8217;interfaccia leggiamo che ci sono 47 record che soddisfano questa condizione e l&#8217;output è in HTML. Ci sono però altri formati di output tra cui <strong>KML</strong> e <strong>JSON</strong>; <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DDESCR_S49%2BLIKE%2B'%2525CORPOSANO%2525'%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dpjson&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHS-5eXTUQRW6lngrc9W3yzjDYWZg" target="_blank">questo</a> l&#8217;output in JSON della stessa query.</p>
+	<p><img class="alignnone size-full wp-image-6511 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" alt="output" width="500" height="116" /></p>
+	<p>Questi due formati quindi mostrano nei fatti, come una query REST su server ArcGIS sia un&#8217;ulteriore modalità di accesso al dato grezzo.</p>
+	<h2>Query spaziale</h2>
+	<p>E&#8217; possibile eseguire anche delle interrogazioni spaziali di complessità variabile. Ad esempio posso estrarre tutti i civici che ricadono tra queste coordinate <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=12.384356%2C+43.108511%2C12.388869%2C43.110765&amp;geometryType=esriGeometryEnvelope&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=html" target="_blank">12.384356,43.108511,12.388869,43.110765</a> (&lt;xmin&gt;,&lt;ymin&gt;,&lt;xmax&gt;,&lt;ymax&gt;).</p>
+	<p><img class="alignnone size-full wp-image-6542 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" alt="spatial_query" width="496" height="118" /></p>
+	<p>Posso farne il download con GDAL/OGR (vedi sotto) e ottenere rapidamente i dati in formato spaziale e al contempo visualizzarne rapidamente una loro rappresentazione.</p>
+	<p><img class="alignnone size-full wp-image-6543 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" alt="spatial_query_map" width="500" height="394" /></p>
+	<h2 id="accesso-tramite-gdal/ogr-a-una-query">Accesso tramite GDAL/OGR a una query</h2>
+	<p>La libreria <strong>GDAL/OGR</strong> ha i driver di accesso in lettura e scrittura al <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.gdal.org%2Fdrv_geojson.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEYFJK4I_iIh-CbRFHchaL-132kJg" target="_blank">formato GeoJSON</a>. Uno degli output delle query di sopra è proprio JSON e questa libreria lo riesce a leggere nativamente proprio come GeoJSON.</p>
+	<p>L&#8217;ultima query si effettua chiamando <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson" target="_blank">questo lungo URL</a>:</p>
+	<pre>http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;<strong>where</strong>=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;<strong>f</strong>=pjson</pre>
+	<p>Nell&#8217;indirizzo di sopra sono visibili tutti i parametri disponibili per effettuare un’interrogazione, ma sopra abbiamo valorizzato soltanto la stringa di testo da ricercare in un determinato campo (parametro &#8220;where&#8221;) e il formato di output (parametro &#8220;f&#8221;). Questo URL fa da <em>source</em> per GDAL/OGR. Se voglio avere tutte le <strong>informazioni</strong> su questa sorgente di dati vettoriali userò il classico ogrinfo:</p>
+	<pre>ogrinfo -ro &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>&#8220;OGRGeoJSON&#8221; è per GDAL/OGR il nome predefinito del layer di una sorgente GeoJSON. &#8220;-ro&#8221; perché imposto l’accesso in sola lettura.</p>
+	<p>Se voglio <strong>convertire</strong> in ArcView Shapefile l&#8217;output di questa query userò ogr2ogr:</p>
+	<pre>ogr2ogr CORPOSANO.shp &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>Come esempio, riporto qui il <a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/CORPOSANO.zip" target="_blank"><strong>download</strong></a> fatto con GDAL/OGR nei formati ArcView Shapefile, GeoJSON e KML.</p>
+	<h2 id="web-mapping-a-partire-da-query">Web mapping a partire da query</h2>
+	<p>Queste query possono essere visualizzate in maniera molto efficace anche in un&#8217;interfaccia di <em>web mapping</em>. Sia a partire dal salvataggio dell&#8217;output, che tramite chiamata diretta in <em>realtime</em>. La cosa è inoltre resa semplice da una bella libreria rilasciata in <em>open source</em> da ESRI e basata su <strong>Leaflet</strong>: <a href="http://www.google.com/url?q=http%3A%2F%2Fesri.github.io%2Fesri-leaflet&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFHs50dsXaxLd9Jq6RYR_VlXnnM2A" target="_blank">http://esri.github.io/esri-leaflet</a>.</p>
+	<p>La query di sopra (quella sulla stringa &#8220;CORPOSANO&#8221;) ad esempio si può rappresentare rapidamente come sotto (click <strong><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" target="_blank">qui</a></strong> per aprire a <strong>schermo intero</strong>).</p>
+	<p><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" target="_blank"><img class="alignnone size-full wp-image-6510 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" alt="leaflet" width="500" height="378" border="0" /></a></p>
+	<p>Il codice lo trovate qui: <a href="https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Ftanto%2Farcgisqueryrest%2Fblob%2Fgh-pages%2Findex.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG4onJJ1-fhQ16rPu3V_R3aFE0ofw" target="_blank">https://github.com/tanto/arcgisqueryrest/blob/gh-pages/index.html</a></p>
+	<h2 id="alcune-note-in-conclusione">Alcune note in conclusione</h2>
+	<p>Sono rimasto molto in superficie, ma l&#8217;intento è quello di mostrare un punto di ingresso poco noto e utile, visto il sempre maggior numero di dati spaziali oggi disponibili e aperti. Di default l&#8217;<em>output</em> di queste _query _è limitato a 1000 risultati, quindi è necessario &#8220;ciclare&#8221; le chiamate. Ad esempio per ID a gruppi di 1000 record:</p>
+	<ul id="draft_check_box_list_0">
+	<li>inizio con la condizione <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DOBJECTID%253E%253D1%2Band%2B%2BOBJECTID%253C%253D1000%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNESchVZwiY-eDtZyqQ-tWo3yZyDuw" target="_blank">OBJECTID&gt;=1 and OBJECTID&lt;=1000</a>;</li>
+	<li>poi OBJECTID&gt;=1001 and OBJECTID&lt;=2000;</li>
+	<li>e così via &#8230;</li>
+	</ul>
+	<p>Il totale (190140 record), da conoscere prima di fare partire il ciclo, si ricava ad esempio con <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3D1%253D1%26time%26returnCountOnly%3Dtrue%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGXetugfKd8MZId4F4iV-3NJOsWhg" target="_blank">questa query</a>. Ci sono altri modi per ciclare tra i record, questo è solo un esempio.</p>
+	<p>L&#8217;accesso REST è molto utile anche con sorgenti di tipo <em>raster</em>, ma magari lo scrive qualcun altro, in un altro post <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  .</p>
+	<p>L&#8217;URL con struttura &#8220;http://&lt;host&gt;:/arcgis/rest/services&#8221; è quello di <em>default</em>. Chi gestisce il server potrebbe usare uno schema diverso.</p>
+	<p>Questo post è dedicato al giovane Padawan &#8220;<strong><a href="https://plus.google.com/u/0/114313445728286224740/posts" target="_blank">Flavio</a></strong>&#8220;, che mi ha fatto scoprire <a href="https://www.google.com/url?q=https%3A%2F%2Fhub.qgis.org%2Fwiki%2F17%2FArcgis_rest&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEmBzX8cx7Y0rkxiZXreebrdHQWVw" target="_blank">questa pagina</a> e ha dato la stura alla stesura di questo testo.</p>
+	<p>Non mi <strong>REST</strong>a che augurarvi un <strong>buon 2015</strong>!
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/">Take the best, use the REST</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" medium="image">
+			<media:title type="html">sicilia_rest</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" medium="image">
+			<media:title type="html">url_umbria</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" medium="image">
+			<media:title type="html">query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" medium="image">
+			<media:title type="html">attributi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" medium="image">
+			<media:title type="html">output</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output-150x116.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" medium="image">
+			<media:title type="html">spatial_query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query-150x118.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" medium="image">
+			<media:title type="html">spatial_query_map</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" medium="image">
+			<media:title type="html">leaflet</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet-150x150.jpg" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

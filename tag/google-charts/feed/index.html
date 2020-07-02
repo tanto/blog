@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; google charts</title>
+	<atom:link href="http://blog.spaziogis.it/tag/google-charts/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Creare un geoRSS corredato di grafici, a partire da un file CSV</title>
+		<link>http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/</link>
+		<comments>http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/#comments</comments>
+		<pubDate>Mon, 16 Mar 2009 22:24:02 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[georss]]></category>
+		<category><![CDATA[google charts]]></category>
+		<category><![CDATA[google-docs]]></category>
+		<category><![CDATA[google-maps]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[pipes]]></category>
+		<category><![CDATA[webm]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=725</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Creare+un+geoRSS+corredato+di+grafici%2C+a+partire+da+un+file+CSV&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2009-03-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/&amp;rft.language=English"></span>
+In questo post vi mostrerò come creare una sorgente geoRSS a partire da un file CSV che ho creato per l&#8217;occasione. Questo contiene dei dati fittizi su tre città italiane, che voglio pubblicare all&#8217;interno della sorgente geoRSS, curandone struttura e formattazione, ed inserendo anche un grafico di sintesi dei parametri presenti in ogni record. Realizzerò [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Creare+un+geoRSS+corredato+di+grafici%2C+a+partire+da+un+file+CSV&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2009-03-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In questo post vi mostrerò come creare una sorgente <strong><a title="geoRSS su Wikipedia" href="http://en.wikipedia.org/wiki/GeoRSS" target="_blank">geoRSS</a></strong> a partire da un file <strong>CSV </strong>che ho creato per l&#8217;occasione. Questo contiene dei dati fittizi su tre città italiane, che voglio pubblicare all&#8217;interno della sorgente geoRSS, curandone struttura e formattazione, ed inserendo anche un grafico di sintesi dei parametri presenti in ogni record.</p>
+	<p>Realizzerò il tutto creando un piccolo <em><strong>mashup</strong></em> sfruttando i seguenti servizi:</p>
+	<ul>
+	<li><a title="Google Docs" href="http://docs.google.com/" target="_blank">Google Docs</a>, per l&#8217;archiviazione dei dati grezzi e per la creazione del CSV a partire da questi</li>
+	<li><a title="Yahoo pipes" href="http://pipes.yahoo.com" target="_blank">Yahoo! Pipes</a>, per l&#8217;elaborazione del file CSV e la sua trasformazione in geoRSS</li>
+	<li>le api di <a title="Google Charts Api" href="http://code.google.com/intl/it/apis/chart/" target="_blank">Google Charts</a>, per inserire nella sorgente geoRSS dei grafici di sintesi sui dati contenuti nel file CSV</li>
+	<li>Google maps per visualizzare la  sorgente geoRSS in una mappa</li>
+	</ul>
+	<p>Un <em>mashup</em> è un&#8217;applicazione che, a partire da dati ed informazioni provenienti da due o più fonti/servizi/applicazioni, crea nuove applicazioni/servizi.</p>
+	<h2>Google Docs</h2>
+	<p>Ho creato in <strong>Google Docs</strong> un nuovo foglio elettronico ed ho inserito dei dati fittizi su tre città italiane. Ho anche aggiunto una colonna per il valore di latitudine, ed una per quello di longitudine (entrambi espressi i gradi decimali).</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-726" title="google docs" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs.png" alt="google docs" width="480" height="195" /></p>
+	<p>Per fare dialogare questo foglio elettronico con gli altri servizi citati sopra, dovrò renderlo pubblico; lo farò utilizzando il tasto <em>Share </em>e selezionando l&#8217;opzione &#8220;<em>Publish as a web page</em>&#8221; (così come nella figura sottostante).</p>
+	<p style="text-align: center;"><img class="size-full wp-image-727 alignnone" style="margin: 3px;" title="google_docs_publish" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs_publish.png" alt="google_docs_publish" width="225" height="158" /></p>
+	<p style="text-align: left;">Si aprirà una finestra di pop-up e dovrò cliccare su &#8220;<em>Publish now</em>&#8220;. Fatto questo, cliccherò sul link (presente in basso) &#8220;<em>More publishing options</em>&#8220;; si aprirà un&#8217;altra finestra di pop-up in cui sceglierò CSV come formato di pubblicazione e cliccherò sul tasto &#8220;Generate URL&#8221;. In ultimo copierò l&#8217;URL appena generato e lo incollerò da qualche parte (in un editor di testo).</p>
+	<h2>Yahoo! Pipes e Google Charts</h2>
+	<p>Yahoo! Pipes è il mio editor/cratore di <em>mashup</em> preferito. &#8220;Si presenta&#8221; ufficialmente così:</p>
+	<blockquote><p>Pipes is a powerful composition tool to <strong>aggregate</strong>, <strong>manipulate</strong>, and <strong>mashup</strong> <strong>content</strong> from around the web.</p></blockquote>
+	<p>Con Pipes aggrego ad esempio i feed RSS che pubblico in <a title="Blog GIS Italia" href="http://feeds2.feedburner.com/BlogGisItaliaV2" target="_blank">Blog GIS Italia</a>, ma qui lo utilizzerò in modo diverso.</p>
+	<p>La prima cosa da fare in Pipes è scegliere la fonte dei nostri dati (possono essere anche più d&#8217;una), e in questo caso sceglierò il file CSV di cui sopra; ne andrò a recuperare l&#8217;URL e lo incollerò dentro il modulo di Pipes &#8220;Fetch CSV&#8221;.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-740" title="fetch_csv3" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/fetch_csv3.png" alt="fetch_csv3" width="334" height="280" /></p>
+	<p>Posso personalizzare diverse parametri. In questo caso ho escluso dalla lettura dei dati la prima riga (contiene i nomi delle colonne), ed ho impostato a mano i nomi delle colonne della mia tabella.</p>
+	<p>A questo modulo, ne collego un altro che trovo tra gli operatori di Pipes: &#8220;Rename&#8221;.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-741" title="rename_3" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/rename_3.png" alt="rename_3" width="374" height="91" /></p>
+	<p>In questo modo rinominerò il campo &#8220;Citta&#8221; in &#8220;title&#8221;, in modo da avere a disposizione uno dei campi necessari per la creazione di una sorgente RSS.</p>
+	<p>Eseguirò successivamente il primo di due <strong><em>loop </em></strong>presenti in questo Pipe. Per ogni record della tabella andrò a &#8220;costruire&#8221; l&#8217;URL che mi consentirà di creare un grafico tramite le API di Google Charts. La struttura di base dell&#8217;URL per la generazione di un grafico tramite queste API è come quella sottostante:</p>
+	<pre><img class=\"alignleft\" style=\"margin: 2px;\" title=\"Google Charts\" src=\"http://chart.apis.google.com/chart?chs=210x80&amp;chd=t:60,40&amp;cht=p3&amp;chl=Hello|World\" alt=\"\" width=\"210\" height=\"80\" />http://chart.apis.google.com/chart?
+chs=250x100
+&amp;chd=t:60,40
+&amp;cht=p3
+&amp;chl=Hello|World</pre>
+	<p>Dove:</p>
+	<ul>
+	<li><span style="color: #999999;">http://chart.apis.google.com/chart?</span> è l&#8217;URL di base delle API.</li>
+	<li><span style="color: #808080;">&amp;</span> è il separatore dei parametri</li>
+	<li><span style="color: #808080;">chs=250&#215;100</span> è la larghezza dei grafici in pixel.</li>
+	<li><span style="color: #808080;">chd=t:60,40</span> sono i dati che voglio rappresentare.</li>
+	<li><span style="color: #808080;">cht=p3</span> è il tipo di grafico.</li>
+	<li><span style="color: #808080;">chl=Hello|World</span> sono le etichette del grafico.</li>
+	</ul>
+	<p>Dovrò adattare questo schema ai miei dati, per struttura, valori e formattazione.</p>
+	<p>Inserirò allora nel modulo &#8220;<em>Loop</em>&#8221; di Pipes un costruttore di stringhe &#8211; il modulo &#8220;<em>String Builder</em>&#8221; &#8211; con cui genererò un URL utile per la stampa a video di un grafico a torta per ogni record della mia tabella.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-732" title="loop" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop.png" alt="loop" width="423" height="414" /></p>
+	<p>Assegnerò i valori di output di questo loop alla variabile  &#8220;item.chartURI&#8221;. Per il primo record verrà generato ad esempio questo URL:</p>
+	<pre><span><span>\"http://chart.apis.google.com/chart?cht=p3&amp;chd=t:32,32,34&amp;chl=Parametro
+A|Parametro B|Parametro C&amp;chs=450x200&amp;chtt=Reggio Calabria\"</span></span></pre>
+	<p>Utilizzerò il modulo &#8220;Regex&#8221; per fare sì che gli URL generati abbiano una corretta sintassi. Rimuoverò quindi gli spazi e li sostituirò con la stringa &#8220;%20&#8243;</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-733" title="regex" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/regex.png" alt="regex" width="480" height="81" /></p>
+	<p>Utilizzerò adesso il secondo modulo di &#8220;Loop&#8221;, per generare il contenuto del secondo elemento necessario in una sorgente RSS: il campo &#8220;<em>descritpion</em>&#8220;. Lo riempirò con delle stringhe di testo con i valori delle colonne che rappresenterò tramite grafico, e con il grafico stesso. Questo per ogni record della tabella.</p>
+	<p>Posso inserire qualsiasi stringa HTML che sia utile a formattare al meglio gli elementi del mio RSS. Il grafico verrà inserito in corrispondenza del tag &lt;img&gt;, che avrà come <em>source</em> proprio l&#8217;URL generato nel primo loop.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-734" title="loop2" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop2.png" alt="loop2" width="422" height="390" /></p>
+	<p>Infine:</p>
+	<ul>
+	<li> userò il modulo &#8220;Location Extractor&#8221; per trasformare un normale RSS in un geoRSS</li>
+	<li>mapperò il campo &#8220;link&#8221; della sorgente RSS affinché punti al grafico generato</li>
+	<li>genererò l&#8217;output</li>
+	</ul>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-735" title="fine" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/fine.png" alt="fine" width="379" height="236" /></p>
+	<p>Il modulo &#8220;Location Extractor&#8221; non richiede informazioni aggiuntive, perché sfrutta due colonne presenti nel mio file CSV originario: &#8220;Latitude&#8221; e &#8220;Longitude&#8221;. In questo modo ogni elemento del mio RSS sarà geotaggato.</p>
+	<p>Non mi resta che salvare il mio Pipe cliccando sul tasto &#8220;Save&#8221;, e provarlo. Per vederlo in azione cliccherò sul link &#8220;<em>Run pipe</em>&#8220;, visibile nella zona in alto al centro della finestra di editing del Pipe. Si aprirà una pagina come quella sottostante.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-742" title="pipe3" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/pipe3.png" alt="pipe3" width="480" height="405" /></p>
+	<p>Da questavisualizzerò gli elementi della mia sorgente RSS. Nel caso di una fonte geoRSS verrà generata automaticamente una mappa, che potrò inserire in una qualsiasi pagina html (copiando il codice che mi verrà restituito al click sul tasto &#8220;<em>Get as a Badge</em>&#8220;). Qui sotto vedete il tutto in azione.</p>
+	<div align="center">
+<script src="http://l.yimg.com/a/i/us/pps/mapbadge_1.3.js">{"pipe_id":"3q2gzFER3hG_vHeWrbQIDg","_btype":"map"}</script>
+</div>
+	<p>Questi alcuni degli altri output possibili:</p>
+	<ul>
+	<li><a title="pipes rss output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=rss" target="_blank">RSS</a></li>
+	<li><a title="pipes json output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=json" target="_blank">JSON</a></li>
+	<li>un output pensato per codice scritto in <a title="New Yahoo! Pipes PHP serialized output renderer" href="http://blog.pipes.yahoo.net/2008/04/02/new-yahoo-pipes-php-serialized-output-renderer/" target="_blank">PHP</a></li>
+	<li><a title="pipes kml output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=kml" target="_blank">KML</a></li>
+	<li><a title="pipes csv output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=csv" target="_blank">CSV</a></li>
+	</ul>
+	<h2>Google Maps</h2>
+	<p>Due degli output di sopra, <a title="pipes rss output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=rss" target="_blank">RSS</a> e<a title="pipes kml output" href="http://pipes.yahoo.com/pipes/pipe.run?_id=3q2gzFER3hG_vHeWrbQIDg&amp;_render=kml" target="_blank"> KML</a>, possono essere visualizzati in un istante ed in modo molto efficace in <strong>Google Maps</strong>.</p>
+	<p>Basterà incollare uno dei due URL di sopra (RSS o KML) dentro il box di ricerca di Google Maps, e fare click sul tasto di ricerca.</p>
+	<p style="text-align: center;"><img class="aligncenter size-full wp-image-757" title="google_maps" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_maps.png" alt="google_maps" width="480" height="59" /></p>
+	<p style="text-align: left;">Qui i due risultati in azione:</p>
+	<ul>
+	<li><a title="geoRSS su Google Maps" href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=http:%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3D3q2gzFER3hG_vHeWrbQIDg%26_render%3Drss&amp;ie=UTF8&amp;t=p&amp;z=7" target="_blank">RSS su Google Maps</a></li>
+	<li><a title="Kml su Google Maps" href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=http:%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3D3q2gzFER3hG_vHeWrbQIDg%26_render%3Dkml&amp;ie=UTF8&amp;t=k&amp;z=7" target="_blank">KML su Google Maps</a></li>
+	</ul>
+	<p>E&#8217; possibile ottenere questo risultato con (quasi) qualsiasi URL di file KML o sorgenti RSS che siano geroRSS.</p>
+	<h2>Considerazioni finali</h2>
+	<p>Questo post è quasi la traduzione di <a title="Creating Google Charts From CSV Data Inside a Yahoo Pipe" href="http://ouseful.wordpress.com/2009/03/12/creating-google-charts-from-csv-data-inside-a-yahoo-pipe/" target="_blank">quest&#8217;altro</a> pubblicato su uno dei Blog che mi solletica di più in questo momento: <strong>OUseful.Info</strong>. Leggerlo è stato divertente, ma lo è stato molto di più mettere in pratica quanto descritto. Quello che vorrei trasmettervi è l&#8217;importanza del &#8220;fare&#8221;: si comprendono i concetti in modo più profondo, ed escono fuori molte più idee.</p>
+	<p>Quello che mi stupisce sempre è qualità, la varietà, e la &#8220;potenza&#8221; degli strumenti che abbiamo a disposizione. L&#8217;esempio descritto in questo post è semplice, e mentre lo scrivevo mi rendevo conto che con un po&#8217; di fantasia ed ingegno si potrebbero ottenere risultati sorprendenti.</p>
+	<p>Per utilizzare Yahoo! Pipes è necessario avere un account Yahoo!. <a title="Creare un geoRSS corredato di grafici, a partire da un file CSV" href="http://pipes.yahoo.com/pipes/pipe.info?_id=3q2gzFER3hG_vHeWrbQIDg" target="_blank">Qui</a> il Pipe che ho realizzato, che potrete clonare ed adattare alle vostre &#8220;vere&#8221; esigenze.</p>
+	<h2>Sitografia letta, consigliata e disordinata</h2>
+	<ol>
+	<li>“Chart Types &#8211; Google Chart API &#8211; Google Code,” <a title="Chart Types - Google Chart API - Google Code" href="http://code.google.com/intl/it/apis/chart/types.html" target="_blank">http://code.google.com/intl/it/apis/chart/types.html</a>.</li>
+	<li>“Creating Google Charts From CSV Data Inside a Yahoo Pipe « OUseful.Info, the blog…,” <a title="Creating Google Charts From CSV Data Inside a Yahoo Pipe « OUseful.Info, the blog…" href="http://ouseful.wordpress.com/2009/03/12/creating-google-charts-from-csv-data-inside-a-yahoo-pipe/" target="_blank">http://ouseful.wordpress.com/2009/03/12/creating-google-charts-from-csv-data-inside-a-yahoo-pipe/</a>.</li>
+	<li>“GeoRSS &#8211; Wikipedia, the free encyclopedia,” <a title="GeoRSS - Wikipedia, the free encyclopedia" href="http://en.wikipedia.org/wiki/GeoRSS" target="_blank">http://en.wikipedia.org/wiki/GeoRSS</a>.</li>
+	<li>“The scripting library: Combining data and information in the library,” <a title="The scripting library: Combining data and information in the library" href="http://www.slideshare.net/bonaria/the-scripting-library-combining-data-and-information-in-the-library" target="_blank">http://www.slideshare.net/bonaria/the-scripting-library-combining-data-and-information-in-the-library</a>.</li>
+	<li>“Technical Overview: GeoRSS,” <a title="Technical Overview: GeoRSS" href="http://www.geowebguru.com/articles/108-technical-overview-georss" target="_blank">http://www.geowebguru.com/articles/108-technical-overview-georss</a>.</li>
+	</ol>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/">Creare un geoRSS corredato di grafici, a partire da un file CSV</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Creare+un+geoRSS+corredato+di+grafici%2C+a+partire+da+un+file+CSV&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2009-03-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/16/creare-un-georss-corredato-di-grafici-a-partire-da-un-file-csv/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs.png" medium="image">
+			<media:title type="html">google docs</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs_publish.png" medium="image">
+			<media:title type="html">google_docs_publish</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_docs_publish-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fetch_csv3.png" medium="image">
+			<media:title type="html">fetch_csv3</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fetch_csv3-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/rename_3.png" medium="image">
+			<media:title type="html">rename_3</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/rename_3-150x91.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop.png" medium="image">
+			<media:title type="html">loop</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/regex.png" medium="image">
+			<media:title type="html">regex</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/regex-150x81.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop2.png" medium="image">
+			<media:title type="html">loop2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/loop2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fine.png" medium="image">
+			<media:title type="html">fine</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/fine-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/pipe3.png" medium="image">
+			<media:title type="html">pipe3</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/pipe3-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_maps.png" medium="image">
+			<media:title type="html">google_maps</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/google_maps-150x59.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

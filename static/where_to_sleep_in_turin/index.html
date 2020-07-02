@@ -1,0 +1,223 @@
+<html>
+   <head>
+       <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+       <meta name="author" content="Antonio Falciano"> 
+       <meta name="description" content="Ricerca delle strutture ricettive in Provincia di Torino, Piemonte, Italy"/> 
+       <meta name="keywords" content="torino, piemonte, italia, open data, dati.piemonte.it, simile exhibit, strutture ricettive, where to sleep in turin, piedmont"/>
+       <meta name="language" content="it"></meta>
+       
+       <title>Where to sleep in Turin</title>
+       <!-- Shortcut icon -->
+       <link rel="shortcut icon" href="../../favicon.ico"/>
+
+       <!-- Stylesheet -->
+       <link rel='stylesheet' href='styles.css' type='text/css'/>
+       <!-- Exhibit data and schema -->
+       <link rel="exhibit/data" type="application/jsonp" ex:converter="googleSpreadsheets"
+             href="https://spreadsheets.google.com/feeds/list/0Av2Qv0whMjttdGZDcFI3VjVOQ3o0em85bngwOEVoc1E/od6/public/basic?alt=json-in-script"/>
+       <link rel="exhibit/data" type="application/json" href="schema.js"/>
+       <!-- SIMILE Exhibit API -->
+       <script src="http://trunk.simile-widgets.org/exhibit/api/exhibit-api.js" type="text/javascript"></script>
+       <script src="http://trunk.simile-widgets.org/exhibit/api/extensions/map/map-extension.js?gmapkey=ABQIAAAAi0OGAiwO3TE-ukb2b1e0PBR9mXAuzmqu8b-zVcK9RbPH7QM6qxQ5sW-kMVSM8-_zAxDicZDVwhCbeQ" type="text/javascript"></script>
+       <script src="http://trunk.simile-widgets.org/exhibit/api/extensions/chart/chart-extension.js" type="text/javascript"></script>
+
+   </head> 
+   
+   <body>
+        <div id="header">
+        <table>
+           <tr valign="top">
+             <td width="110px">
+                <!-- TANTO logo -->
+                <div class="logo"> 
+                    <a rel="logo" href="../../index.html" target="_blank"><img title="TANTO, le cose che ci piacciono ..." 
+                    alt="TANTO, le cose che ci piacciono ..." style="border-width:0" src="tanto_logo.png"/></a> 
+                </div>
+             </td>
+             <td>
+                <!-- CC BY-NC-SA logo -->
+                <div class="license"> 
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/" target="_blank">
+                    <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.5/it/80x15.png"/></a> 
+                </div>
+                <h1>Where&nbsp;to&nbsp;sleep&nbsp;in&nbsp;Turin</h1>
+                <h2>Ricerca&nbsp;delle&nbsp;strutture&nbsp;ricettive&nbsp;in&nbsp;Provincia&nbsp;di&nbsp;Torino</h2>
+                <div class="credits">un&nbsp;mashup&nbsp;realizzato&nbsp;da&nbsp;<a href="../../author/afalciano/index.html" target="_blank"
+                title="Antonio Falciano" alt="Antonio Falciano">Antonio Falciano</a><br>a&nbsp;partire&nbsp;dagli&nbsp;open&nbsp;data&nbsp;di&nbsp;
+                <a href="http://dati.piemonte.it" target="_blank" title="dati.piemonte.it" alt="dati.piemonte.it">dati.piemonte.it</a>&nbsp;-&nbsp;<b>(<a 
+                href="../../index.html_p=2815.html" 
+                target="_blank" title="Where to sleep in Turin: un esempio d’uso dei raw data piemontesi con Google Refine e SIMILE Exhibit" 
+                alt="Where to sleep in Turin: un esempio d’uso dei raw data piemontesi con Google Refine e SIMILE Exhibit">leggi&nbsp;il&nbsp;post</a>)</b>
+                </div>
+             </td>
+        </table>
+        </div>
+        <div id="content"> 
+        <table width="100%">
+            <tr valign="top">           
+                <td id="left_sidebar" width="20%">
+                
+                    <!-- Text Search Facets -->
+                    <div ex:role="facet"
+                         ex:facetClass="TextSearch"
+                         ex:expressions=".city"
+                         ex:facetLabel="Cerca Comune">
+                    </div><br>
+                    
+                    <div ex:role="facet"
+                         ex:facetClass="TextSearch"
+                         ex:expressions=".address"
+                         ex:facetLabel="Cerca Indirizzo">
+                    </div><br>
+                                       
+                    <div ex:role="facet"
+                         ex:facetClass="TextSearch"
+                         ex:expressions=".label"
+                         ex:facetLabel="Cerca Denominazione">
+                    </div><br>            
+                  
+                    <!-- Cloud Facet -->
+                    <div ex:role="facet"
+                         ex:facetClass="Cloud"
+                         ex:expression=".type"
+                         ex:facetLabel="Tipologia">
+                    </div>
+                    
+                    <!-- SIMILE Exhibit logo -->
+                    <div style="text-align: center; margin: 2em;">
+                        <div ex:role="logo" ex:color="SteelBlue"></div>
+                    </div>
+                                        
+                </td>
+                
+                <td id="middle_column" ex:role="viewPanel" width="60%">
+                    
+                    <!-- Coordinators -->
+                    <div ex:role="coordinator" id="coordinator-a" ></div>
+                    <div ex:role="coordinator" id="coordinator-b" ></div>
+
+                    <!-- Lens -->
+                    <table class="map-lens" ex:role="lens" style="display: none;">
+
+                      <tr><td>
+                         <div><b span ex:content=".label"></b></div>
+                         <div><i span ex:content=".type"></i></div>
+                         <div ex:content=".address"></div>
+                         <div ex:content="concat(.cap, ' ', .city, ' (TO)')"></div>
+                         <div ex:content="concat('Tel. ', .phone, ' - Fax ', .fax)"></div>
+                         <div>E-mail: <a ex:href-subcontent="mailto:{{.email}}" ex:content="if(exists(.email), .email, '')"></a></div>
+                         <div ex:content="concat('Camere: ', .rooms, ' - Posti letto: ', .beds, ' - Bagni: ', .bathrooms)"></div>                        
+                      </td></tr>
+
+                    </table>
+                    
+                    <!-- Thumbnail View -->
+                    <div ex:role="view" 
+                         ex:viewClass="Thumbnail"
+                         ex:grouped="false"
+                         ex:showAll="false"
+                         ex:abbreviatedCount=20
+                         ex:orders=".label"
+                         ex:possibleOrders=".label, .city, .type, .rooms, .beds, .bathrooms"
+                         ex:Label="Strutture ricettive">
+                    </div>
+
+                    <!-- Map View -->
+                    <div ex:role="view" 
+                         ex:viewClass="Map"
+                         ex:latlng=".coords"
+                         ex:center="45.20,7.45"
+                         ex:zoom=8
+                         ex:colorKey=".type"
+                         ex:overviewControl="true"
+                         ex:Label="Mappa">
+                    </div>
+                    
+                    <!-- Scatter Plot Views -->
+                    <div ex:role="view"
+                         ex:viewClass="ScatterPlot"
+                         ex:label="Posti&nbsp;letto&nbsp;vs&nbsp;Camere"
+                         ex:x=".rooms"
+                         ex:y=".beds"
+                         ex:xLabel="Camere"
+                         ex:yLabel="Posti&nbsp;letto"
+                         ex:colorKey=".type"
+                         ex:bubbleWidth=375
+                         ex:bubbleHeight=135
+                         ex:selectCoordinator="coordinator-a"
+                         ex:hoverCoordinator="coordinator-b">
+                    </div>
+                     
+                    <div ex:role="view"
+                         ex:viewClass="ScatterPlot"
+                         ex:label="Bagni&nbsp;vs&nbsp;Camere"
+                         ex:x=".rooms"
+                         ex:y=".bathrooms"
+                         ex:xLabel="Camere"
+                         ex:yLabel="Bagni"
+                         ex:colorKey=".type"
+                         ex:bubbleWidth=375
+                         ex:bubbleHeight=135
+                         ex:selectCoordinator="coordinator-a"
+                         ex:hoverCoordinator="coordinator-b">
+                    </div>
+                     
+                    <div ex:role="view"
+                         ex:viewClass="ScatterPlot"
+                         ex:label="Bagni&nbsp;vs&nbsp;Posti&nbsp;letto"
+                         ex:x=".beds"
+                         ex:y=".bathrooms"
+                         ex:xLabel="Posti letto"
+                         ex:yLabel="Bagni"
+                         ex:colorKey=".type"
+                         ex:bubbleWidth=375
+                         ex:bubbleHeight=135
+                         ex:selectCoordinator="coordinator-a"
+                         ex:hoverCoordinator="coordinator-b">
+                    </div>
+
+                </td>
+               
+                <td id="right_sidebar" width="20%">
+                
+                    <!-- Filter Facets -->
+                    <div ex:role="facet" 
+                         ex:expression=".stars"
+                         ex:facetLabel="Categoria (stelle)"
+                         ex:height="12.5em">
+                    </div><br>
+                    
+                    <!-- Slider Facets -->
+                    <div ex:role="facet"
+                         ex:facetClass="Slider"
+                         ex:expression=".rooms"
+                         ex:facetLabel="Camere" 
+                         ex:horizontal="true"
+                         ex:precision="10"
+                         ex:histogram="true">
+                    </div><br>
+                    
+                    <div ex:role="facet"
+                         ex:facetClass="Slider"
+                         ex:expression=".beds"
+                         ex:facetLabel="Posti&nbsp;letto" 
+                         ex:horizontal="true"
+                         ex:precision="10"
+                         ex:histogram="true">
+                    </div><br>
+                  
+                    <div ex:role="facet"
+                         ex:facetClass="Slider"
+                         ex:expression=".bathrooms"
+                         ex:facetLabel="Bagni" 
+                         ex:horizontal="true"
+                         ex:precision="10"
+                         ex:histogram="true">
+                    </div>
+                    
+                </td>
+            </tr>
+        </table>
+        </div>   
+   </body>
+</html>

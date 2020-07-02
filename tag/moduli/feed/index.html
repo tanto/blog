@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; moduli</title>
+	<atom:link href="http://blog.spaziogis.it/tag/moduli/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>QGIS, relazioni, moduli e widget, illustrati con un semplice caso d&#8217;uso</title>
+		<link>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/</link>
+		<comments>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/#comments</comments>
+		<pubDate>Mon, 28 Apr 2014 06:23:31 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[moduli]]></category>
+		<category><![CDATA[qgis]]></category>
+		<category><![CDATA[relazioni]]></category>
+		<category><![CDATA[widget]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6277</guid>
+		<description><![CDATA[Le relazioni in QGIS consentono di sviluppare dei casi d’uso applicativi molto interessanti; una delle ragioni del post è quella di contribuire alla diffusione della conoscenza del tema.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS%2C+relazioni%2C+moduli+e+widget%2C+illustrati+con+un+semplice+caso+d%26%238217%3Buso&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-04-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Le <strong>relazioni </strong>in <strong>QGIS </strong>consentono di sviluppare dei casi d’uso applicativi molto interessanti; una delle ragioni del post è quella di contribuire alla diffusione della conoscenza del tema.</p>
+	<h2>Il caso d’uso: le strade e la loro manutenzione</h2>
+	<p>Immaginate di essere i gestori del network della rete stradale della vostra città e di volere utilizzare QGIS (insieme ad altri strumenti) per farlo. Avete quindi un layer cartografico con tutte le strade (e i relativi attributi) e la necessità di associare a questo il dataset delle manutenzioni che vengono realizzate nei vari componenti della rete.</p>
+	<p>A seguire vedremo come gestire la cosa con QGIS, le relazioni e con il comodo supporto delle <strong>maschere </strong>di input personalizzabili.</p>
+	<h2>Chiavi e relazione</h2>
+	<p>Per mettere in relazione il dataset delle manutenzioni con quello delle strade, potrete usare il meccanismo classico delle <strong>chiavi</strong>.</p>
+	<p>Il layer delle strade sarà caratterizzato da un campo con un codice identificativo numerico univoco per ogni strada &#8211; la <strong>chiave primaria</strong> - denominato nell’esempio di questo post “pkuid”.</p>
+	<p>Il database delle manutenzioni &#8211; che è una semplice tabella senza alcun attributo spaziale &#8211; è composto dai campi &#8220;PK_UID&#8221;, &#8220;data&#8221;, &#8220;responsabile&#8221;, &#8220;compagnia&#8221;, &#8220;note&#8221;; aggiungeremo un campo che contenga il codice identificativo della strada a cui la manutezione è riferita. Questo campo farà da <strong>chiave esterna</strong> e si chiamerà &#8220;ce_pkuid&#8221;.</p>
+	<p>Il nostro modello prevede, per semplicità, che ad ogni strada sia possibile associare una o più manutenzioni; una classica <strong>relazione </strong>1:N impostata sulle due chiavi numeriche di cui sopra.</p>
+	<h2>Layer</h2>
+	<p>Il layer delle strade ha la struttura sottostante, in cui sono stati introdotti dei campi per raccogliere il nome della Via, il relativo tipo (Corso, Viale, Via, ecc.) e il codice identificativo comunale.</p>
+	<p><img class="alignnone size-full wp-image-6280 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02.png" alt="image02" width="339" height="141" /></p>
+	<p>Quello delle manutenzioni conterrà un codice identificativo numerico univoco per ogni elemento, un campo in cui inserire la data dell’intervento di manutenzione, il nome del responsabile, il nome della compagnia incaricata e un campo per le note.</p>
+	<p><img class="alignnone size-full wp-image-6288 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10.png" alt="image10" width="425" height="201" /></p>
+	<h2>Definire la relazione</h2>
+	<p>La relazione tra i due dataset si definisce a livello di “<strong>Proprietà di progetto</strong>”. Aperto il tab <strong>Relations </strong>si farà click su “Add Relation” e si imposteranno i seguenti parametri:</p>
+	<ul>
+	<li><strong>Name</strong>, per dare un nome alla relazione;</li>
+	<li><strong>Referencing Layer (Child)</strong>,<strong> </strong>per il nome del layer che contiene la chiave esterna;</li>
+	<li><strong>Referencing Field</strong>,<strong> </strong>per il nome della chiave esterna;</li>
+	<li><strong>Referencing Layer (Parent)</strong>, per il nome del layer che contiene la chiave primaria;</li>
+	<li><strong>Referencing Field</strong>,<strong> </strong>per il nome della chiave primaria;</li>
+	<li><strong>Id</strong>, che viene usato internamente da QGIS, deve essere univoco e fa da indice della tabella di relazione tra chiave primaria e chiave esterna.</li>
+	</ul>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image00.png" alt="image00" width="500" height="288" /></p>
+	<p>A relazione definita, questa apparirà nella finestra di dialogo:</p>
+	<p><img class="alignnone size-full wp-image-6281 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03.png" alt="image03" width="500" height="243" /></p>
+	<h2>Moduli</h2>
+	<p>Una volta definita la relazione, se ne avrà evidenza anche nel <strong>modulo </strong>di inserimento/modifica degli attributi del dataset delle strade. La visualizzazione a moduli in QGIS è molto utile per alcuni task di verifica ed inserimento dei dati, ed è molto <a href="http://www.qgis.org/it/docs/training_manual/create_vector_data/forms.html" target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">personalizzabile</span></span></a>.</p>
+	<p><img class="alignnone size-full wp-image-6283 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05.png" alt="image05" width="500" height="278" /></p>
+	<p>La tabella della manutenzioni sarà visibile in un <strong>widget </strong>del modulo dello strade, e sopra questa saranno visibili cinque <strong>pulsanti</strong>:</p>
+	<ol>
+	<li>la <strong>matita</strong>, per attivare la modifica della tabella delle manutenzioni;</li>
+	<li>il “<strong>+</strong>” per aggiungere un nuovo record alla tabella, che di default verrà associato all’elemento attivo del layer “strade”;</li>
+	<li>il tasto “<strong>x</strong>” per cancellare il record selezionato della tabella “manutenzioni”;</li>
+	<li>il tasto “<strong>catenella</strong>” che aprirà una nuova finestra di dialogo con il quale associare qualsiasi manutenzione presente alla strada corrente;</li>
+	<li>il tasto “<strong>rompi</strong> <strong>catenella</strong>” che rimuoverà l’associazione tra la manutenzione selezionata e la strada corrente;</li>
+	<li>ed infine, a destra, ci sono due pulsanti per passare dalla vista “tabella” a quella modulo.</li>
+	</ol>
+	<p>Anche per il dataset delle manutenzioni è possibile attivare il modulo di inserimento/modifica degli attributi, in modo che dia conto visivamente della relazione con il layer delle strade.</p>
+	<p>A partire dalle proprietà del layer manutenzioni, bisognerà modificare il widget del campo che fa da chiave esterna.</p>
+	<p><img class="alignnone size-full wp-image-6282 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04.png" alt="image04" width="500" height="244" /></p>
+	<p>E scegliere come tipo di widget “Relation Reference”, utilizzando i parametri visibili nella figura sottostante:</p>
+	<p><img class="alignnone size-full wp-image-6286 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08.png" alt="image08" width="500" height="433" /></p>
+	<p>Una volta scelto questo speciale widget, sarà possibile leggere la relazione tra i due layer anche nel modulo delle manutezioni:</p>
+	<p style="text-align: center;"><img src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image06.png" alt="image06" width="500" height="537" /></p>
+	<h2>Note finali (riferimenti, file esempio e video demo)</h2>
+	<p>Questo articolo è quasi una traduzione di <a href="http://blog.vitu.ch/10112013-1201/qgis-relations" target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">questo</span></span></a> di Matthias Kuhn. Sono caduto nel suo bel blog, perché tra i tipi di widget accessibili nelle proprietà dei campi di un layer ho scoperto il tipo “Relation Reference”. A me era completamente ignoto; ho provato a cercare nella <a href="http://www.qgis.org/en/docs/user_manual/working_with_vector/vector_properties.html#fields-menu" target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">documentazione</span></span></a>, senza però trovarne traccia. Il post di Matthias mi è sembrata una piccola perla e ho creduto utile clonarlo.</p>
+	<p>Da <a href="http://blog.spaziogis.it/wp-content/uploads//2014/04/qgis_e_le_relazioni.zip"><span style="color: #1155cc;"><span>qui</span></span></a> potrete scaricare un <strong>file di progetto</strong> d’esempio basato su QGIS 2.2 e come formato dati su SpatiaLite. Questo ultimo farà da contenitore unico sia del file spaziale (le strade), che della tabella delle manutenzioni.</p>
+	<p>Nel progetto, per i due moduli, ho impostato altri widget diversi da quello di default (“Line edit”); alcuni sono di grande comodità come quello per il campo “data” delle manutenzioni (widget di tipo “Calendar”), o l’elenco controllato del campo “Tipo” (widget di tipo “Value map”) del layer delle strade.</p>
+	<p><img class="alignnone size-full wp-image-6294 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011.png" alt="image01" width="497" height="243" /></p>
+	<p>Per chi vuole vedere la cosa in azione ho preparato un <a href="https://www.youtube.com/watch?v=KzLL0npcUN4&amp;feature=youtu.be&amp;hd=1" target="_blank"><span style="color: #1155cc;"><span><strong>piccolo video</strong></span></span></a>, che non ha alcuna pretesa didattica. Vuole essere soltanto una carrelata visuale rapida di alcune delle cose descritte in questo post.</p>
+	<p><a href="https://www.youtube.com/watch?v=KzLL0npcUN4&amp;feature=youtu.be&amp;hd=1" target="_blank"><img class="alignnone size-full wp-image-6285 aligncenter" style="border: 0px;" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07.png" alt="image07" width="500" height="305" /></a></p>
+	<p>Un’ultima annotazione finale: il <strong>caso d’uso</strong> descritto è <strong>molto semplificato</strong> e non tiene conto di tutte i requisiti di un’applicazione complessa come la gestione di un network stradale. Mi è stato utile come esempio per scrivere di QGIS, relazioni, moduli e widget.</p>
+	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: <strong>Salvatore Fiandaca</strong>, prendendo spunto da questo post, ne ha creato una sorta di versione aggiornata che trovate <strong><a href="https://pigrecoinfinito.wordpress.com/2016/01/02/qgis-relazioni-moduli-widget-e-report/" target="_blank">qui</a></strong>. Ringraziamo Totò e consigliamo la lettura <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/">QGIS, relazioni, moduli e widget, illustrati con un semplice caso d&#8217;uso</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/feed/</wfw:commentRss>
+		<slash:comments>20</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS%2C+relazioni%2C+moduli+e+widget%2C+illustrati+con+un+semplice+caso+d%26%238217%3Buso&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-04-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02-150x141.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02.png" medium="image">
+			<media:title type="html">image02</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02-150x141.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10.png" medium="image">
+			<media:title type="html">image10</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image00.png" medium="image">
+			<media:title type="html">image00</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03.png" medium="image">
+			<media:title type="html">image03</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05.png" medium="image">
+			<media:title type="html">image05</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04.png" medium="image">
+			<media:title type="html">image04</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08.png" medium="image">
+			<media:title type="html">image08</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image06.png" medium="image">
+			<media:title type="html">image06</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011.png" medium="image">
+			<media:title type="html">image01</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07.png" medium="image">
+			<media:title type="html">image07</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; SQL</title>
+	<atom:link href="http://blog.spaziogis.it/tag/sql/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Guardian Datastore Explorer: per costruire query su fogli elettronici Google Drive</title>
+		<link>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/</link>
+		<comments>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/#comments</comments>
+		<pubDate>Tue, 06 Oct 2015 06:44:38 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[gdrive]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[umap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6753</guid>
+		<description><![CDATA[Questo post per presentare Guardian Datastore Explorer, uno strumento per costruire query su fogli elettronici Google Drive, sfruttando il linguaggio di interrogazione messo a disposizione dalle API di GDrive. E ci facciamo pure una mappa.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Guardian+Datastore+Explorer%3A+per+costruire+query+su+fogli+elettronici+Google+Drive&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2015-10-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: questo è stato pubblicato originariamente sul sito della <strong><a href="http://school.dataninja.it/welcome/" target="_blank">dataninjaschool</a></strong>.</p>
+	<h2 id="introduzione">Introduzione</h2>
+	<p>Tra gli strumenti esposti da Google Drive c&#8217;è <strong><a href="https://www.google.com/intl/it_it/sheets/about/">Sheet</a></strong>, un foglio elettronico online ricco di funzioni, molto usato per le professioni e gli utilizzi più svariati.</p>
+	<p>I fogli creati fungono spesso da &#8220;<strong>contenitori</strong>&#8221; di dati, che fanno da sorgente a grafici, mappe, infografiche e applicazioni di svariata natura</p>
+	<p>L&#8217;accesso a Sheet si può eseguire tramite le <strong>API</strong> ufficiali di interrogazione. Nella <a href="https://developers.google.com/chart/interactive/docs/querylanguage">documentazione ufficiale</a> è indicato come generare un output, come generarne uno filtrato, come impostare i formati di output, come usarlo come un database relazionale su cui fare delle query SQL con aggregazione, calcoli, ecc.. Sul web, oltre alla guida dedicata, numerosi tutorial ed esempi.</p>
+	<p>Si tratta di operazioni semplici, con possibilità di uso molto ricche, per uno strumento che è comunque &#8220;<strong>per tutti</strong>&#8220;. Nella mia esperienza da formatore ho riscontrato però che per alcuni, la costruzione di una query non è di immediato apprendimento.<br />
+Questo post nasce proprio allo scopo di presentare uno strumento che consente di superare questi ostacoli: il buon vecchio <strong>Guardian Datastore Explorer</strong> di <a href="https://twitter.com/psychemedia">Tony Hirst</a>.</p>
+	<h2 id="lo-strumento">Lo strumento</h2>
+	<p>Il <strong>Guardian Datastore Explorer</strong> è un vecchietto arzillo: fa la sua prima apparizione nel lontanissimo <strong><a href="http://blog.ouseful.info/2009/05/22/first-steps-towards-a-generic-google-spreadsheets-query-tool/">2009</a></strong>, un&#8217;altra era (non c&#8217;era ad esempio Instagram).<br />
+Sono due le caratteristiche principali che lo rendono molto interessante:</p>
+	<ul>
+	<li>consente facilmente di <strong>costruire in modo guidato</strong> un&#8217;interrogazione su uno Sheet di GDrive;</li>
+	<li>è molto <strong>didattico</strong>. Utilizzandolo si impara ad usare il linguaggio di <em>query</em> e dopo poco tempo si impareranno a <strong>scrivere stringhe di interrogazione in autonomia</strong> con un semplice editor di testo.</li>
+	</ul>
+	<p>E&#8217; uno strumento web ed il suo URL è <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php">http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php</a>.</p>
+	<h2 id="come-si-usa">Come si usa</h2>
+	<h3 id="predisposizione-del-foglio-google-drive-sheet">Predisposizione del foglio Google Drive Sheet</h3>
+	<p>E&#8217; propedeutico avere un account su Google Drive. E poi è necessario avere un foglio elettronico con cui testare il Guardian Datastore Explorer: per le spiegazioni successive verrà utilizzato <a href="https://docs.google.com/spreadsheets/d/1LCAOTXWC5ExNWxFPtMimlG_jdSLgGwRAgrEYgq9iiRc/edit?usp=sharing">questo</a>, con i <strong>musei</strong> del <strong>territorio comunale fiorentino</strong>.</p>
+	<p>Si tratta di dati aperti presenti sul portate <a href="http://www.dati.gov.it/dataset/comune-di-firenze_0038">dati.gov.it</a>. Lo sottolineo perché un&#8217;altra cosa abilitata dagli <strong>open data</strong> è la <strong>didattica</strong>.</p>
+	<p>La prima cosa da fare con il foglio elettronico, è crearne una <strong>copia</strong>:</p>
+	<p><img class="aligncenter" src="http://i.imgur.com/6qWgYXq.png" alt="" /></p>
+	<p style="text-align: center;">Fatta la &#8220;vostra&#8221; copia, è necessario impostarne la <strong>condivisione</strong> (tasto &#8220;Condividi&#8221; o &#8220;Share&#8221; in alto a destra), e fare in modo che (<strong>1</strong>) chiunque abbia l&#8217;URL del foglio, (<strong>2</strong>) possa visualizzarlo.<br />
+<img class="aligncenter" src="http://i.imgur.com/49N1sAZ.png" alt="" width="500" height="361" /></p>
+	<p>Poi si dovrà pubblicare sul web:<br />
+<img class="aligncenter" src="http://i.imgur.com/OOtNPHu.png" alt="" /></p>
+	<p style="text-align: center;">In questo <strong>video</strong> la sequenza della procedura sopra descritta:<br />
+<a href="https://www.youtube.com/watch?v=NPNTDa2YCqk&amp;feature=youtu.be&amp;hd=1"><img class="aligncenter" src="http://i.imgur.com/yeelFlg.png" alt="" width="500" height="281" /></a></p>
+	<p>La condivisione e la pubblicazione sul web sono necessarie perché il Guardian Datastore Explorer è utilizzabile soltanto con fogli pubblicamente accessibili.</p>
+	<h3 id="costruzione-della-query-sul-del-foglio-elettronico">Costruzione della query sul del foglio elettronico</h3>
+	<p>La prima cosa da fare è ricavare il <strong>codice identificativo</strong> del foglio. Si trova all&#8217;interno dell&#8217;URL dello sheet ed è facilmente indetificabile.<br />
+Ad esempio nell&#8217;URL sottostante l&#8217;ID del foglio è quello in grassetto:</p>
+	<p>http://docs.google.com/spreadsheets/d/<strong>1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</strong>/edit#gid=108845820</p>
+	<p>Quindi in questo caso è &#8220;<strong>1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</strong>&#8220;.</p>
+	<p>Poi c&#8217;è aprire la pagina web del <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php">Guardian Datastore Explorer</a> e (<strong>1</strong>) inserire l&#8217;ID del foglio e (<strong>2</strong>) fare click su &#8220;Preview table headings&#8221;. In questo modo l&#8217;interrogazione è stata attivata e come risultato vengono visualizzate le (<strong>3</strong>) intestazione delle colonne del foglio.</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/uwi9QC9.png" alt="" width="500" height="200" /></p>
+	<p>Subito dopo si può andare a <strong>pescare dati</strong> (&#8220;Go Fish&#8221; scrive l&#8217;autore) e iniziare a imparare come usare questo linguaggio di interrogazione, tramite la tabella di esempi riportata sul sito. Leggendola si vede che a tutti gli effetti si tratta un classico <strong>SQL</strong> (Structured Query Language). Qualche esempio:</p>
+	<table>
+	<thead>
+	<tr>
+	<th>Obiettivo</th>
+	<th>Comando</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>Selezionare tutti i record</td>
+	<td>SELECT *</td>
+	</tr>
+	<tr>
+	<td>Selezionare le colonne A e B (ovvero la prima e la seconda) per tutti i record</td>
+	<td>SELECT A,B</td>
+	</tr>
+	<tr>
+	<td>Selezionare tutti record per le colonne A e B, dove il valore della colonna I è uguale a &#8220;3467&#8243;</td>
+	<td>SELECT A,B WHERE I = 3467</td>
+	</tr>
+	<tr>
+	<td>Selezionare tutti record delle colonne C e D, in cui la colonna F non assume il valore di 42043</td>
+	<td>SELECT C,D WHERE F != 3467</td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Nella pagina trovate molti altri esempi.</p>
+	<p>Un&#8217;interrogazione che si potrebbe fare sul foglio dei musei di Firenze potrebbe essere quella per cui applichiamo questi filtri:</p>
+	<ul>
+	<li>Soltanto le colonne A, B, E, F, G, H, I e K;</li>
+	<li>i soli musei a Est della &#8220;Cappella Brancacci&#8221;;</li>
+	<li>solo quelli Statali;</li>
+	<li>solo quelli che hanno un numero di telefono associato;</li>
+	<li>ordinati da Nord verso Sud.</li>
+	</ul>
+	<p>Prima di costruirla, un breve <strong>video</strong> che illustra una prima query più semplice, in modo da prendere confidenza con lo strumento: le sole colonne &#8220;latitude&#8221; e &#8220;longitude&#8221;, dove la &#8220;latitude&#8221; è maggiore di 43.77 e tutto ordinato per longitudine crescente.</p>
+	<p style="text-align: center;"><a href="https://www.youtube.com/watch?v=dQ_ngLlYMTI&amp;feature=youtu.be&amp;hd=1"><img class="aligncenter" src="http://i.imgur.com/HNMrxLL.png" alt="" width="500" height="281" /></a></p>
+	<p>Fatta la query, poco sopra i risultati di output, <strong>tre righe</strong> di testo molto interessanti:</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/p5kjlTV.png" alt="" width="500" height="57" /></p>
+	<p>La <strong>prima</strong> è proprio la query che abbiamo costruito, secondo il linguaggio delle API di Google Drive:</p>
+	<pre><code>select%20A%2CB where B%20%3E%2043.77 order by A asc </code></pre>
+	<p>Nella stringa ci sono dei caratteri che ne rendono poco &#8220;leggibili&#8221; alcune parti: <code>select A,B where B &gt; 43.77 order by A asc</code> si comprende meglio. In realtà la prima è il risultato dell&#8217;<em>encoding</em> dei caratteri della seconda. Questa è una procedura necessaria perché l&#8217;interrogazione viene lanciata tramite un URL, e in questo alcuni caratteri non sono consentiti. Nel nostro caso lo spazio deve essere codificato in &#8220;%20&#8243;, la &#8220;,&#8221; in &#8220;%2C&#8221;, il &#8220;&lt;&#8221; in &#8220;%3E&#8221;.</p>
+	<p>La <strong>seconda</strong> contiene due <em>hyperlink</em>, a due dei formati di <strong>output</strong> possibili di una query fatta su Google Drive Sheet: l&#8217;<strong><a href="http://spreadsheets.google.com/tq?tqx=out:html&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg">HTML</a></strong> e il <strong><a href="http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg">CSV</a></strong>. Il secondo è forse il formato più comodo per chi dovrà utilizzare i risultati di un&#8217;interrogazione per creare grafici, mappe e infografiche.</p>
+	<p>Questo ad esempio l&#8217;<em>hyperlink</em> per l&#8217;output in CSV:</p>
+	<pre>http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</pre>
+	<p>Se lo separiamo in blocchi, si evidenziano elementi interessanti:</p>
+	<ul>
+	<li><code>tqx=out:csv</code>serve per impostare il formato di output;</li>
+	<li><code>tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc</code> per dichiarare la query;</li>
+	<li><code>key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</code> per dichiarare l&#8217;ID del foglio.</li>
+	</ul>
+	<p>La <strong>terza riga</strong> un <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php?run=true&amp;gsKey=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg&amp;gqc=A%2CB&amp;gqw=B%20%3E%2043.77&amp;gqoA">segnalibro</a> che consente di aprire il Guardian Data Explorer con e fargli lanciare la <em>query</em> appena eseguita. E&#8217; un modo per <strong>salvare </strong>l&#8217;<strong>interrogazione</strong> costruita.</p>
+	<p>Adesso siamo in grado di costruire la query indicata a inizio paragrafo:</p>
+	<ul>
+	<li>Soltanto le colonne A, B, E, F, G, H, I e K -&gt; <code>select A,B,E,F,G,H,I,K</code></li>
+	<li>i soli musei a Est della &#8220;Cappella Brancacci&#8221; -&gt; <code>where B &gt; 11.2438292167895</code></li>
+	<li>solo quelli Statali -&gt; <code>AND I matches 'Statale'</code></li>
+	<li>solo quelli che hanno un numero di telefono associato -&gt; <code>AND H !=""</code></li>
+	<li>ordinati da Nord verso Sud -&gt; <code>order by A desc</code></li>
+	</ul>
+	<pre><code>select A,B,E,F,G,H,I,K where B &gt; 11.2438292167895 AND I matches 'Statale' AND H !=\"\" order by B desc </code></pre>
+	<p>Per potere usare questa query è necessario eseguire la codifica dei caratteri in modo che possa essere inserita in un URL. Il risultato (mille strumenti online per farlo, uno è <a href="http://meyerweb.com/eric/tools/dencoder/">questo</a>) dell&#8217;<em>endoding</em> è:</p>
+	<pre><code>select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc </code></pre>
+	<p>E&#8217; possibile usare allora questa stringa per creare l&#8217;URL che esegue l&#8217;interrogazione di sopra e che produce come un risultato un file CSV:</p>
+	<pre><a href=\"http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg\">http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</a></pre>
+	<p>Il file scaricato sarà apribile con qualsiasi editor di testo, e qualsiasi foglio elettronico.</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/tSenfEr.png" alt="" width="500" height="259" /></p>
+	<h1 id="usare-l-output-di-una-query-per-costruire-una-mappa-online">Usare l&#8217;output di una query per costruire una mappa online</h1>
+	<p>Come già scritto sopra, il risultato di una di queste query può essere usata per visualizzare i dati in differenti modi. Uno è una <strong>mappa</strong> online (deformazione professionale).</p>
+	<p>Il dataset di esempio si presta, perché contiene la latitudine e la longitudine di ogni museo. Uno strumento <em>free</em> e <em>open-source</em> molto comodo per generare mappe da output di questo tipo è <strong><a href="http://umap.openstreetmap.fr/it/">uMap</a></strong>. Tra i formati di input supportati proprio il CSV; l&#8217;unico requisito è che nel file CSV siano presenti le colonne denominate &#8220;<em>latitude</em>&#8221; e &#8220;<em>longitude</em>&#8220;.</p>
+	<p>La cosa interessante è che la <strong>mappa</strong> online sarà <strong><em>live</em></strong> e ogni aggiornamento fatto nel foglio elettronico, produrrà un aggiornamento della mappa. Questo avviene perché tutte le volte che verrà visualizzata, verrà lanciata una nuova query.</p>
+	<p>Nel <strong>video</strong> sottostante è illustrato come creare una mappa <em>online live</em> a partire proprio dall&#8217;URL soprastante, che produce in output un CSV.</p>
+	<p style="text-align: center;"><a href="https://www.youtube.com/watch?v=bU7XtYo-w4M&amp;feature=youtu.be&amp;hd=1"><img class="aligncenter" src="http://i.imgur.com/PeOCcTp.png" alt="" width="500" height="281" /></a></p>
+	<h1 id="considerazioni-finali">Considerazioni finali</h1>
+	<p>Il Guardian Datastore Explorer non è un <em>query builder</em> particolarmente potente ed elegante, ma è sicuramente uno strumento che rende semplice l&#8217;avvicinamento al Query Language di Google Drive Sheet.</p>
+	<p>Sopratutto fa comprendere che si tratta di un linguaggio semplice, e dopo poco tempo anche i novizi scriveranno le query &#8220;a mano&#8221; senza più usarlo. Bastano concetti di base di SQL, sapere fare l&#8217;encoding dei caratteri e leggersi la documentazione <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/">Guardian Datastore Explorer: per costruire query su fogli elettronici Google Drive</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Guardian+Datastore+Explorer%3A+per+costruire+query+su+fogli+elettronici+Google+Drive&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2015-10-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://i.imgur.com/6qWgYXq.png" />
+		<media:content url="http://i.imgur.com/6qWgYXq.png" medium="image" />
+		<media:content url="http://i.imgur.com/49N1sAZ.png" medium="image" />
+		<media:content url="http://i.imgur.com/OOtNPHu.png" medium="image" />
+		<media:content url="http://i.imgur.com/yeelFlg.png" medium="image" />
+		<media:content url="http://i.imgur.com/uwi9QC9.png" medium="image" />
+		<media:content url="http://i.imgur.com/HNMrxLL.png" medium="image" />
+		<media:content url="http://i.imgur.com/p5kjlTV.png" medium="image" />
+		<media:content url="http://i.imgur.com/tSenfEr.png" medium="image" />
+		<media:content url="http://i.imgur.com/PeOCcTp.png" medium="image" />
+	</item>
+		<item>
+		<title>Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</title>
+		<link>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/</link>
+		<comments>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/#comments</comments>
+		<pubDate>Thu, 03 Oct 2013 05:53:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[open source]]></category>
+		<category><![CDATA[spatialite]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[sqlite]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5837</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+MySQL è uno dei più diffusi database server, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di default). Mi stupisce però che le funzioni per testare le relazioni spaziali tra oggetti siano limitate. Mi spiego con un esempio classico: selezionare tutti i punti di un layer che cadono all&#8217;interno del perimetro di un poligono [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>MySQL</strong> è uno dei più diffusi <em>database server</em>, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di <em>default</em>). Mi stupisce però che le funzioni per testare le<strong> relazioni spaziali</strong> tra oggetti siano limitate.</p>
+	<p>Mi spiego con un esempio classico: selezionare tutti i punti di un <em>layer</em> che cadono all&#8217;interno del perimetro di un poligono presente in un altro <em>layer</em>. E&#8217; un&#8217;operazione tipica dei GIS, e presente in tutti database con estensione spaziale.</p>
+	<p>In MySQL basta lanciare una <em>query </em>spaziale<em> </em>di questo tipo:</p>
+	<pre class="brush: css; ">
+SELECT * FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1
+</pre>
+	<p>Purtroppo però l&#8217;<em>output</em> non è costituito da tutti i punti contenuti nel perimetro di mio interesse, ma da tutti quelli contenuti nel rettangolo che lo include. Quest&#8217;ultimo è il classico <strong><em>Bounding</em> <em>Box</em></strong>, o come si definisce in ambiente MySQL<em> Minimal Bounding Rectangles </em>(MBR)<span style="color: #000000;">.</span> Nel manuale online è riportato:</p>
+	<blockquote><p>The OpenGIS specification defines the following functions. They test the relationship between two geometry values g1 and g2.</p></blockquote>
+	<p>Questo dovrebbe garantire che l&#8217;output della funzione <em>Contains() </em>sia relativo al perimetro dell&#8217;oggetto &#8220;target&#8221;, ma poco più avanti si legge:</p>
+	<blockquote><p>Currently, <strong>MySQL does not implement these functions according to the specification</strong>. Those that are implemented return the same result as the corresponding MBR-based functions.</p></blockquote>
+	<p>Immagino che i <em>GeoSpatial Developers </em>abbiano diverse frecce al loro arco per superare questo problema, così come ne esisteranno diverse lato utente. Una potrebbe essere quella di non usare questo <em>database server</em> e fare tutto con <em>PostGIS</em>, <em>Oracle Spatial, Spatialite</em>, ecc., ma è troppo facile e non sempre si può scegliere.</p>
+	<p>Io ho pensato a <strong>GDAL/OGR</strong> ed alle sue <a title="OGR Utility Programs" href="http://www.gdal.org/ogr_utilities.html" target="_blank">utility</a> per oggetti vettoriali, ed alla possibilità (che esiste dalla versione 1.10 della libreria) di usare il <a title="SQLite SQL dialect" href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" target="_blank">dialetto </a><strong><a title="SQLite SQL dialect" href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" target="_blank">SQLite/Spatialite</a></strong>. Questo dialetto estende di molto quello che queste utility fanno (egregiamente) di default, ovvero eseguire delle <em>query</em> sql all&#8217;interno di un comando; ad esempio:</p>
+	<pre>ogrinfo province.shp province -sql &quot;SELECT nome FROM province WHERE ID_PRO = 2&quot;</pre>
+	<p>Con il dialetto SQLite/Spatialite ho a disposizione anche le <a title="SQL functions that test spatial relationships" href="http://www.gaia-gis.it/gaia-sins/spatialite-sql-4.0.0.html#p12" target="_blank">funzioni</a> per verificare relazioni spaziali tra oggetti, anche per quelle basi dati che non prevedono intrinsecamente la possibilità di farlo, proprio come MySQL <em>spatial</em>.</p>
+	<p>Andando nel concreto dovrei scrivere una cosa di questo tipo:</p>
+	<pre>ogrinfo MYSQL:&quot;mydb,user=myuse,password=mypwd,port=3306&quot; -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>La sorpresa è che, nonostante si dichiari nella stringa il &#8220;dialetto&#8221; <em>sqlite</em>, si ottiene sempre come output quello relativo ai punti contenuti nel <em>bounding box</em> del perimetro di interesse. E&#8217; un baco? Nella <a href="http://www.gdal.org/ogr/ogr_sql.html" target="_blank">documentazione</a> di OGR si legge:</p>
+	<blockquote><p><strong>All OGR drivers for database systems</strong>: MySQL, PostgreSQL and PostGIS (PG), Oracle (OCI), SQLite, ODBC, ESRI Personal Geodatabase (PGeo) and MS SQL Spatial (MSSQLSpatial), <strong>override the OGRDataSource::ExecuteSQL() function</strong> with dedicated implementation and, by default, pass the SQL statements directly to the underlying RDBMS. In these cases the SQL syntax varies in some particulars from OGR SQL. Also, anything possible in SQL can then be accomplished for these particular databases. Only the result of SQL WHERE statements will be returned as layers.</p></blockquote>
+	<p>Ma si legge anche:</p>
+	<blockquote><p><strong>The SQLite dialect may be used with any OGR datasource</strong>, like the OGR SQL dialect. It is available through the OGRDataSource::ExecuteSQL() method by specifying the pszDialect to &#8220;SQLITE&#8221;. For the ogrinfo or ogr2ogr utility, you must specify the &#8220;-dialect SQLITE&#8221; option.</p></blockquote>
+	<p>La soluzione l&#8217;ho trovata in un test stupido che ho voluto fare: accedere alla fonte MySQL non direttamente, ma tramite il <a href="http://www.gdal.org/ogr/drv_vrt.html" target="_blank"><strong>Virtual Format</strong></a> di OGR, che in qualche modo astrae l&#8217;accesso al formato di input.</p>
+	<p>A partire quindi da una fonte MySQL costruita secondo le specifiche del Virtual Format e salvata come &#8220;test.vrt&#8221;:</p>
+	<pre class="brush: xml; ">
+&lt;ogrvrtdatasource&gt;
+&lt;ogrvrtlayer name=&quot;poligoni&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;poligoni&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPolygon&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;ogrvrtlayer name=&quot;punti&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;punti&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPoint&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;/ogrvrtdatasource&gt;
+</pre>
+	<p>Posso ad esempio lanciare:</p>
+	<pre>ogrinfo test.vrt -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>Il risultato ottenuto sarà così quello desiderato e l&#8217;output corrisponderà a tutti i punti che ricadono nel perimetro di interesse. Nell&#8217;immagine di sotto, ho raccontato il tutto in modo visuale.</p>
+	<p>Concludo sottolineando  quanto siano interessanti, utili, belle e di al<span style="color: #ff0000;"><span style="color: #000000;">t</span></span>o livello professionale alcune delle dinamiche delle <strong>comunità <em>open source</em></strong>. Ho <a title="GDAL - Dev mailing list" href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-td5080909.html" target="_blank">segnalato</a> quello che a me sembrava un baco alla lista GDAL &#8211; DEV. Non solo ho ottenuto subito delle risposte che mi hanno consentito di capirne molto di più, ma si sono messi già al lavoro sia in termini di codice che di documentazione. Un semplice &#8220;grazie&#8221; sembra veramente poco.</p>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" alt="sqlite dialect vs MySQL source" width="496" height="514" /></p>
+	<p>Questo post è dedicato a <strong>Flaviano</strong>, un mio amico che grazie anche ad alcuni <em>tips &amp; tricks</em> su GDAL/OGR ha trovato un bel posto di lavoro in Qatar <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p><div class="note"><div class="noteclassic"></p>
+	<p><strong>NDR</strong>: Jukka Rahkonen, uno sviluppatore di GDAL/OGR, mi fa <a href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-tp5080909p5081551.html" target="_blank">notare</a> che dalla release in trunk r26506 di GDAL e a partire dalle future release stabili ufficiali, non sarà necessario creare alcun file virtuale. Si potrà accedere direttamente alla sorgente MySQL e impostare la proprietà &#8220;-dialect&#8221; al valore &#8220;SQLITE&#8221;.</p>
+	<p></div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/">Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" medium="image">
+			<media:title type="html">sqlite dialect vs MySQL source</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>JEQL: un linguaggio di scripting geospaziale con la E maiuscola</title>
+		<link>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/</link>
+		<comments>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/#comments</comments>
+		<pubDate>Mon, 17 Jan 2011 11:20:56 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[JEQL]]></category>
+		<category><![CDATA[JTS]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[regexp]]></category>
+		<category><![CDATA[Scripting]]></category>
+		<category><![CDATA[SQL]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3272</guid>
+		<description><![CDATA[Si presenta il linguaggio di scripting JEQL, caratterizzato da eccezionali potenzialità nel processamento di dati geospaziali, attraverso l'illustrazione di un esempio applicativo.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=JEQL%3A+un+linguaggio+di+scripting+geospaziale+con+la+E+maiuscola&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-01-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Scopo del presente post è presentare un formidabile linguaggio di scripting, in cui io e <a title="Giovanni Allegri" href="http://blog.spaziogis.it/author/giohappy/" target="_blank">Giovanni Allegri</a> ci siamo imbattuti da un po’ di tempo a questa parte, che presenta delle potenzialità davvero eccezionali nel processamento di dati geospaziali. Il pretesto occasionale che ha riacceso il nostro sopito interesse nei confronti di <a title="JEQL" href="http://tsusiatsoftware.net/jeql/main.html" target="_blank">JEQL</a> é un recente post del blog Lin.ear Th.inking, <a title="Lin.ear th.inking: Visualizing geodetic information with JEQL" href="http://lin-ear-th-inking.blogspot.com/2010/12/visualizing-geodetic-information-with.html" target="_blank">Visualizing geodetic information with JEQL</a>, in cui l’autore Martin Davis (aka “Dr JTS”, l’attuale <em>designer</em> e <em>lead developer</em> della fantastica libreria JTS &#8230;e non solo!) introduce delle nuove funzioni geodetiche di calcolo sulle geometrie all&#8217;interno di JTS, illustrandone l&#8217;utilizzo mediante un&#8217;applicazione in JEQL che ripercorreremo nel seguito.</p>
+	<h2>Cos’è JEQL?</h2>
+	<p>JEQL è un <strong>Query Language sviluppato in Java</strong>, dove la <strong>“E”</strong> può assumere i seguenti significati:</p>
+	<ul>
+	<li> <strong>Extended</strong>, poiché implementa un numero sempre crescente di estensioni che lo rende più potente nel processamento dei dati rispetto alle tante versioni e dialetti <a title="SQL - Wikipedia" href="http://it.wikipedia.org/wiki/SQL" target="_blank">SQL</a> esistenti;</li>
+	<li><strong>Embeddable</strong>, in quanto il motore di JEQL può essere integrato all&#8217;interno di altre applicazioni, in modo da essere utilizzato come query language per modelli di dati tabellari;</li>
+	<li><strong>ETL</strong>, essendo l&#8217;<a title="Extract, transform, load - Wikipedia" href="http://it.wikipedia.org/wiki/Extract,_transform,_load" target="_blank">Extract/Transform/Load</a> il caso d&#8217;uso ideale di JEQL;</li>
+	<li><strong>Efficient</strong>, dato che garantisce velocità di sviluppo ed esecuzione.</li>
+	</ul>
+	<p>JEQL è dunque un linguaggio di scripting che consente il processamento di strutture di dati tabellari, compresi quelli geografici vettoriali. Fin qui nulla di nuovo, probabilmente penseranno i lettori esperti dei possenti RDBMS con estensione spaziale (PostgreSQL + PostGIS, Oracle Spatial, MySQL, ecc.) o del più leggero e, al tempo stesso, molto versatile SpatiaLite. Analogamente a quest&#8217;ultimo, <strong>JEQL non richiede l&#8217;installazione di un server database</strong> e ciò, assieme al fatto che è un linguaggio di scripting, rappresenta un grosso vantaggio in termini di portabilità. Si pensi ad esempio alla replicazione della configurazione di un DBMS a distanza di parecchio tempo oppure alla condivisione di uno script con un nostro collega. Inoltre, anche la velocità di sviluppo e di esecuzione rappresentano dei non trascurabili punti di forza. Naturalmente, esistono anche dei task non coperti da JEQL per i quali un RDBMS è insuperabile.<br />
+<strong>Quali tipi di dati è in grado di utilizzare?</strong> Oltre ai classici tipi Java (interi, stringhe, double) e le date, JEQL supporta anche le geometrie JTS e un vasto repertorio in continua crescita di funzioni spaziali, costruttori di predicati e funzioni di aggregazione, che lo rendono uno strumento particolarmente adatto per il processamento di dataset spaziali. Inoltre, è in grado di accedere in lettura e scrittura a diversi formati di dati (CSV, DBF, SHP, KML) e database compatibili con JDBC (Java Data Base Connectivity).<br />
+<strong>L&#8217;installazione di JEQL è molto semplice</strong>: nei sistemi operativi Windows, basta scompattare il <a href="http://tsusiatsoftware.net/jeql/download.html" target="_blank">pacchetto di installazione</a> (è appena stata rilasciata la versione 0.9) in una cartella con percorso non contenente spazi (<em>[JEQL_HOME]</em>) ed aggiungere nella variabile <em>PATH</em> di sistema il percorso <em>[JEQL_HOME]\bin</em>. Manca, tuttavia, uno script shell o qualcosa di analogo per Linux, che tuttavia non dovrebbe essere difficile da produrre.<br />
+<strong>L’apprendimento del linguaggio JEQL è abbastanza rapido</strong>, soprattutto per chi possiede già dei rudimenti di SQL, ed è facilitato dall&#8217;interprete che guida l&#8217;utente nell&#8217;individuazione e nella correzione degli errori. Il pacchetto di installazione è inoltre corredato da una lista di <em>unit test</em>, ovvero gli stessi esempi basilari utilizzati in fase di collaudo del codice. La documentazione rappresenta invece una delle poche note dolenti, essendo ancora un work in progress, nonostante la presenza di alcuni illuminanti <a href="http://tsusiatsoftware.net/jeql/user/examples.html" target="_blank">esempi applicativi</a>, diversi <a href="http://lin-ear-th-inking.blogspot.com/search/label/jeql" target="_blank">post su Lin.ear Th.inking</a> e una <a href="https://groups.google.com/group/jeql-users?hl=en&amp;pli=1" target="_blank">mailing list</a> dedicata, oltre alla indiscutibile cortesia e competenza dello sviluppatore.<br />
+Attualmente JEQL è rilasciato con <strong>doppia licenza</strong>: freeware e &#8220;commerciale&#8221;. Quest&#8217;ultima per consentirne l&#8217;integrazione all&#8217;interno di software commerciali (&#8230;e in quelli open source?).</p>
+	<h2>Un esempio applicativo: worldAirRoutes.jql</h2>
+	<p>Nel seguito, si cercherà di fornire un saggio delle potenzialità di JEQL, proponendoci le stesse finalità del post citato in precedenza, ovvero disegnare le rotte aeree a scala globale secondo <a href="http://web.unife.it/progetti/matematicainsieme/matcart/ortloss.htm" target="_blank">linee ortodromiche</a>, piuttosto che linee rette, con tutti gli accorgimenti del caso al fine di ottenere una buona resa grafica. Ci cimenteremo passo dopo passo con le fasi di importazione e normalizzazione dei dati di interesse fino al raggiungimento dello scopo. I dati utilizzati nell&#8217;applicazione sono:</p>
+	<ul>
+	<li><a href="http://openflights.svn.sourceforge.net/viewvc/openflights/openflights/data/airports.dat" target="_blank">airport.dat</a></li>
+	<li><a href="http://openflights.svn.sourceforge.net/viewvc/openflights/openflights/data/routes.dat" target="_blank">routes.dat</a></li>
+	<li><a href="http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" target="_blank">TM_WORLD_BORDERS_SIMPL-0.3.zip</a></li>
+	</ul>
+	<p>In particolare, i primi due sono parte degli open data del progetto <a title="OpenFlights" href="http://www.openflights.org/" target="_blank">OpenFlights</a>, rilasciati con <a title="Open Database License (Odbl)" href="http://www.opendatacommons.org/licenses/odbl/" target="_blank">Open Database License (Odbl)</a>, mentre lo shapefile semplificato dei <em>world borders</em> (a proposito della loro qualità, si consiglia la lettura di questo <a title="Free Shapefile of Countries of the World" href="http://barendgehrels.blogspot.com/2010/12/free-shapefile-of-countries-of-world.html" target="_blank">post</a> e successivi) è rilasciato da <a href="http://thematicmapping.org/downloads/world_borders.php" target="_blank">thematicmapping.org</a> con licenza <a title="Creative Commons CC-SA" href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Creative Commons CC-SA</a>.<br />
+Dopo aver installato JEQL 0.9, creiamo una cartella, vi collochiamo i dati appena scaricati (scompattando naturalmente lo zip file) e vi definiamo inoltre un semplice file di testo (<em>worldAirRoutes.jql</em>) nel quale andremo a scrivere il nostro codice.<br />
+Il primo passo dell’applicazione consiste nell&#8217;<strong>importazione dei dati relativi agli aeroporti (airport.dat)</strong>, tenendo presente che i file .dat in esame sono in formato CSV:</p>
+	<pre class="brush: java; ">
+// Read data from CSV
+CSVReader airports file: &quot;airports.dat&quot;;
+numAirports = select count(*) from airports;
+Print &quot;Number of airports to clean: &quot; + val(numAirports);
+Print airports limit: 10;
+</pre>
+	<p>Salviamo lo script, apriamo il prompt dei comandi e collochiamoci nella directory che lo contiene. Per eseguirlo occorre digitare <em>jeql worldAirRoutes.jql</em> e premere il tasto Invio. Successivamente, nel prompt dei comandi comparirà qualcosa del genere:</p>
+	<pre>Number of airports to clean: 6344
+col1:String, col2:String, col3:String, col4:String, col5:String, col6:String, col7:String, col8:String, col9:String, col10:String, col11:String
+1 Goroka Goroka Papua New Guinea GKA AYGA -6.081689 145.391881 5282 10 U
+2 Madang Madang Papua New Guinea MAG AYMD -5.207083 145.7887 20 10 U
+3 Mount Hagen Mount Hagen Papua New Guinea HGU AYMH -5.826789 144.295861 5388 10 U
+...</pre>
+	<p>La prima cosa che scopriamo è che le colonne della tabella “airports” sono identificate come “col1, col2 … colN”, sebbene il file CSV sia sprovvisto delle relative intestazioni dei campi (per la descrizione dei quali si rimanda a <a href="http://openflights.org/data.html" target="_blank">questa pagina</a>), e che i campi sono considerati tutti di tipo String. Procediamo quindi con la <strong>normalizzazione dei dati degli aeroporti</strong>, selezionando i dati di nostro interesse:</p>
+	<pre class="brush: java; ">
+// Select airports data with valid IATA airport code
+airports2 = select
+  col2 as name,
+  col3 as city,
+  col4 as country,
+  col5 as code,
+  col7 as lat,
+  col8 as lon
+  from airports
+  where RegEx.matches(col5,&#039;[A-Z]{3}&#039;);
+</pre>
+	<p>E&#8217; interessante notare che:</p>
+	<ul>
+	<li> per definire gli alias dei campi di una tabella è utilizzata la parola chiave <em>as</em>, così come avviene solitamente in molte versioni di SQL, tuttavia si tenga presente che in JEQL il suo uso è a discrezione dell’utente;</li>
+	</ul>
+	<ul>
+	<li> nella clausola <em>where</em> è utilizzata la funzione <em>RegEx.matches (campo, espressione regolare)</em> in modo da selezionare mediante una semplice <a title="Espressione regolare -Wikipedia" href="http://it.wikipedia.org/wiki/Espressione_regolare" target="_blank">espressione regolare</a> tutti e soli gli aeroporti con <a title="International_Air Transport Association airport code - Wikipedia" href="http://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code" target="_blank">codice IATA</a> composto da tre lettere maiuscole, in base allo standard ufficiale dell&#8217;<a title="International Air Transport Association (IATA)" href="http://www.iata.org/" target="_blank">International Air Transport Association (IATA)</a>.</li>
+	</ul>
+	<p>Occorre, inoltre, verificare la presenza di eventuali codici IATA duplicati, in modo da essere certi dell’univocità del campo <em>“code”</em>, al fine di utilizzarlo poi come chiave esterna nelle operazioni di join con la tabella delle rotte aeree (routes.dat), come si vedrà nel seguito.</p>
+	<pre class="brush: java; ">
+// Find duplicate IATA airport codes in airports data
+duplicateCodes = select *
+  from (select code, count(code) as numOccurrences
+    from airports2
+    group by code) as duplicates
+  where numOccurrences &gt; 1;
+Print duplicateCodes;
+</pre>
+	<p>A fronte di tale verifica, si riscontra un unico codice duplicato (<em>“TCG”</em>). Avvalendoci dell’ausilio della <a href="http://www.iata.org/ps/publications/Pages/code-search.aspx" target="_blank">banca dati ufficiale</a> è possibile risolvere tale ambiguità, scartando l&#8217;aeroporto di Tocache (Cina) al quale è stato erroneamente attribuito questo codice. A tal fine, la clausola <em>where</em> della prima <em>select</em> diventa:</p>
+	<pre class="brush: java; ">
+  where RegEx.matches(col5,&#039;[A-Z]{3}&#039;)
+  and col3!=&quot;Tocache&quot;;
+</pre>
+	<p>E’ dunque possibile commentare il codice relativo alla ricerca dei duplicati (<em>“//”</em> commenta una singola riga, mentre <em>“/* &#8230; */”</em> tutto il codice tra essi compreso &#8211; non a caso, come nel linguaggio Java) e verificare la bontà dei risultati fin qui ottenuti, visualizzando eventualmente i primi dieci record della tabella <em>“airports2”</em>.</p>
+	<pre class="brush: java; ">
+// Check intermediate results
+numAirports2 = select count(*) from airports2;
+Print &quot;Number of airports without duplicates: &quot; + val(numAirports2);
+</pre>
+	<p>Omettendo per brevità la visualizzazione del contenuto delle tabelle, otteniamo:</p>
+	<pre>Number of airports without duplicates: 5023</pre>
+	<p>Successivamente, si procede all&#8217;<strong>importazione e normalizzazione dei dati relativi alle rotte aeree (routes.dat)</strong>. In particolare, selezioniamo i codici IATA degli aeroporti di origine e destinazione relativi a ciascuna rotta aerea, e li combiniamo in un&#8217;unica stringa in modo da poter escludere le rotte duplicate mediante l’operazione di raggruppamento (<em>group by</em>). Da queste stringhe è poi possibile recuperare nuovamente i codici dai quali sono stati ottenuti. Inoltre, definiamo una chiave primaria <em>“rid”</em> tramite la funzione <em>rownum()</em> che restituisce il numero di riga.</p>
+	<pre class="brush: java; ">
+// Read data from CSV
+CSVReader routes file: &quot;routes.dat&quot;;
+numRoutes = select count(*) from routes;
+Print &quot;Number of routes to clean: &quot; + val(numRoutes);
+	
+// Select routes data removing duplicates
+routes2 = select
+  rownum() as rid,
+  String.substring(routeCode, 0, 3) as fromCode,
+  String.substring(routeCode, 3, 6) as toCode
+  from (select
+    //col3 as fromCode,
+    //col5 as toCode,
+    col3+col5 as routeCode
+    from routes
+    order by routeCode asc) as routesWithDuplicates
+  group by routeCode;
+	
+// Check intermediate results
+numRoutes2 = select count(*) from routes2;
+Print &quot;Number of routes without duplicates: &quot; + val(numRoutes2);
+</pre>
+	<p>ottenendo:</p>
+	<pre>Number of routes to clean: 64114
+Number of routes without duplicates: 36004</pre>
+	<p>Il task successivo consiste nell&#8217;associare ad ogni rotta aerea le coordinate dell&#8217;aeroporto di partenza e di quello di destinazione, scartando le coordinate con valore <em>null</em> e validando quelle che non lo sono, facendo ancora una volta ricorso alle espressioni regolari.</p>
+	<pre class="brush: java; ">
+// Extract origin airport data
+fromAirport = select
+  rid,
+  fromCode,
+  name as fromName,
+  city as fromCity,
+  country as fromCountry,
+  lat as fromLat,
+  lon as fromLon
+  from routes2
+  left outer join airports2
+  on routes2.fromCode == airports2.code;
+	
+// Extract destination airport data
+toAirport = select
+  rid,
+  toCode,
+  name as toName,
+  city as toCity,
+  country as toCountry,
+  lat as toLat,
+  lon as toLon
+  from routes2
+  left outer join airports2
+  on routes2.toCode == airports2.code;
+	
+// Join the last two tables (removing records with null coords)
+troute = select fromAirport.*, toAirport.* except rid
+  from fromAirport
+  join toAirport
+  on fromAirport.rid==toAirport.rid
+  where not Val.isNull(fromLat) and not Val.isNull(fromLon) and not Val.isNull(toLat) and not Val.isNull(toLon);
+	
+// Check if coords are valid
+troute2 = select *
+  from troute
+  where RegEx.matches(fromLat,&#039;-?((([0-9]|[1-8][0-9])(\.[0-9]*)?)|(90))&#039;)
+  and RegEx.matches(fromLon,&#039;-?((([0-9]|[1-9][0-9]|1[0-7][0-9])(\.[0-9]*)?)|(180))&#039;)
+  and RegEx.matches(toLat,&#039;-?((([0-9]|[1-8][0-9])(\.[0-9]*)?)|(90))&#039;)
+  and RegEx.matches(toLon,&#039;-?((([0-9]|[1-9][0-9]|1[0-7][0-9])(\.[0-9]*)?)|(180))&#039;);
+	
+// Check intermediate result
+numRoutes3 = select count(*) from troute2;
+Print &quot;Number of routes without duplicates and with valid coords: &quot; + val(numRoutes3);
+</pre>
+	<p>che ci restituisce:</p>
+	<pre>Number of routes without duplicates and with valid coords: 35475</pre>
+	<p>Un altro aspetto degno di nota è l’utilizzo della parola chiave <em>except</em> nella <em>select</em> della tabella <em>“troute”</em>. Si tratta di un’estensione solitamente assente nei vari linguaggi SQL che ci consente di selezionare tutti i campi di una particolare tabella ad eccezione di un campo.<br />
+Infine, selezioniamo i dati da cui poter derivare le geometrie delle rotte aeree e rappresentarle graficamente (da qui in poi, il codice è quello del Dr JTS con qualche piccolo adattamento):</p>
+	<pre class="brush: java; ">
+// Convert coords from string to double
+trte = select fromCity, toCity,
+  Val.toDouble(fromLon) fromLon, Val.toDouble(fromLat) fromLat,
+  Val.toDouble(toLon) toLon, Val.toDouble(toLat) toLat
+  from troute2;
+	
+// Split geodetic arcs and calculate lengths
+tlines = select fromCity, toCity, line, len
+  with {
+    line = Geodetic.split180(Geodetic.arc(fromLon, fromLat, toLon, toLat, 2));
+    len = Geom.length(line);
+  }
+  from trte order by len desc;
+	
+// Interpolate line color and fix line width
+tplot = select line,
+  Color.interpolate(&quot;ffffff&quot;, &quot;00aacc&quot;, &quot;0000ff&quot;, len / 50.0 ) lineColor,
+  0.2 lineWidth
+  from tlines;
+	
+// Import shapefile data
+ShapefileReader tworld file: &quot;TM_WORLD_BORDERS_SIMPL-0.3.shp&quot;;
+	
+// Select geometries and define line and fill colors
+tworldLine = select GEOMETRY, &quot;222222&quot; lineColor from tworld;
+tworldFill = select GEOMETRY, &quot;333333&quot; fillColor from tworld;
+	
+// Plot routes with world landmasses
+width = 1800;
+Plot width: width height: width / 2
+  extent: LINESTRING(-180 -90, 180 90)
+  data: tworldFill
+  data: tplot
+  data: tworldLine
+  file: &quot;routes.png&quot;;
+	
+// Plot routes without world landmasses
+Plot width: width height: width / 2
+  extent: LINESTRING(-180 -90, 180 90)
+  data: tplot
+  file: &quot;routes_only.png&quot;;
+</pre>
+	<p><a title="worldAirRoutes.jql" href="http://bit.ly/eTxd2R" target="_blank">Qui</a> è possibile effettuare il download dell&#8217;intero script. Infine, si mostrano le due immagini risultanti in cui sono rappresentate le rotte aeree rispettivamente con e senza i <em>world borders</em>. In particolare, le rotte sono disegnate in ordine di lunghezza decrescente, utilizzando un colore interpolato in base alla lunghezza, per cui spiccano le rotte più brevi con colore più chiaro. Anche nella seconda immagine, è possibile rilevare con buona approssimazione i limiti di molte terre emerse.</p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" target="_blank"><img class="aligncenter size-full wp-image-3308" style="border: 0pt none;" title="routes" src="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" alt="" width="500" height="250" /></a></p>
+	<p style="text-align: center;"><a href="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" target="_blank"><img class="aligncenter size-full wp-image-3312" style="border: 0pt none;" title="routes_only" src="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" alt="" width="500" height="250" /></a></p>
+	<p>Come giustamente afferma Martin Davis, dalla densità delle rotte aeree che si percepisce nelle immagini si evince come agli europei piaccia molto volare. Ma neanche quelli delle East Coast scherzano! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+	<h2>Conclusioni</h2>
+	<p>L’esempio applicativo appena mostrato esprime già molte delle potenzialità offerte da JEQL, e i comandi attualmente disponibili sono molto numerosi (basta digitare <em>jeql -man</em> per scoprirlo!). JEQL offre inoltre anche la possibilità di estendere le sue funzionalità tramite un’interfaccia di programmazione (API), non ancora documentata, tramite la quale creare nuovi comandi e funzioni da poter utilizzare all’interno dei nostri script. Non nascondiamo la speranza, in parte malcelata dallo stesso Martin Davis, che un domani si possa usufruire di una doppia licenza open source/commerciale, che permetta di contribuire alla crescita della libreria con nuovi plugin e una migliore documentazione di tutte le caratteristiche offerte.</p>
+	<h2>Ringraziamenti</h2>
+	<p>Desidero ringraziare <strong>Giovanni Allegri</strong>, non solo per il proficuo scambio di idee avvenuto dietro le quinte, ma anche per aver sollecitato il rilascio della nuova release (0.9) di JEQL, senza la quale non sarebbe stato possibile riprodurre l&#8217;applicazione, e naturalmente <strong>Martin Davis</strong>, il padre di questo formidabile linguaggio, per aver ispirato questo post.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/">JEQL: un linguaggio di scripting geospaziale con la E maiuscola</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		<georss:point featurename="Potenza"> </georss:point>
+	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=JEQL%3A+un+linguaggio+di+scripting+geospaziale+con+la+E+maiuscola&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2011-01-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/01/17/jeql-un-linguaggio-di-scripting-geospaziale-con-la-e-maiuscola/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes.png" medium="image">
+			<media:title type="html">routes</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only.png" medium="image">
+			<media:title type="html">routes_only</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/01/routes_only-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

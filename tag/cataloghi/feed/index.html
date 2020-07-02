@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; cataloghi</title>
+	<atom:link href="http://blog.spaziogis.it/tag/cataloghi/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>GDAL-OGR per accedere a cataloghi geografici (CSW)</title>
+		<link>http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/</link>
+		<comments>http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/#comments</comments>
+		<pubDate>Fri, 31 Jul 2015 07:47:11 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[cataloghi]]></category>
+		<category><![CDATA[csw]]></category>
+		<category><![CDATA[gdal/ogr]]></category>
+		<category><![CDATA[ogr]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6710</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL-OGR+per+accedere+a+cataloghi+geografici+%28CSW%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2015-07-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/&amp;rft.language=English"></span>
+Il 18 giugno 2015 è stata rilasciata la versione 2.0.0 di GDAL/OGR. Una delle novità è legata a un nuovo driver di OGR “Catalog Service for the Web (CSW)”, che consente di accedere a cataloghi di risorse cartografiche esposti sul web. La sintassi di base per leggere le informazioni da queste fonti è: ogrinfo -ro [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL-OGR+per+accedere+a+cataloghi+geografici+%28CSW%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2015-07-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p dir="ltr">Il 18 giugno 2015 è stata rilasciata la versione 2.0.0 di GDAL/OGR. Una delle novità è legata a un nuovo driver di OGR “Catalog Service for the Web (CSW)”, che consente di accedere a cataloghi di risorse cartografiche esposti sul web.</p>
+	<p dir="ltr">La sintassi di base per leggere le informazioni da queste fonti è:</p>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http//catalogo.it/csw</pre>
+	<p dir="ltr">L&#8217;utility di riferimento è <a href="http://www.gdal.org/1.11/ogrinfo.html" target="_blank">ogrinfo</a>, e sono a disposizione quindi tutte le altre opzioni del <a href="http://www.gdal.org/1.11/ogrinfo.html">comando</a>.</p>
+	<p dir="ltr">I cataloghi CSW sono un po&#8217; come quei cassetti pieni di calzini in cui, in occasione di una importante ricorrenza, cerchiamo quelli lilla a pois bianchi (sono an pendant con l&#8217;ultima nostra meravigliosa giacca), ma per troppa abbondanza e varietà non riusciremo mai a trovare. Bisogna anche saper cercare <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p dir="ltr">OGR è l&#8217;ultimo arrivato tra gli strumenti di accesso e ricerca. Ecco qualche semplice esempio, basato sul <a href="http://www.rndt.gov.it/RNDT/home/index.php?option=com_content&amp;view=article&amp;id=88&amp;Itemid=229" target="_blank">catalogo</a> del Repertorio Nazionale dei Dati Territoriali (RNDT).</p>
+	<h2 id="avere-l'elenco-di-tutti-i-record-del-server">Avere l&#8217;elenco di tutti i record del server</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -oo MAX_RECORDS=100</pre>
+	<p>Sul catalogo RNDT sono presenti più di 17000 record, quindi la risposta al comando sarà &#8220;lunga&#8221;. L&#8217;opzione MAX_RECORDS fissa il numero massimo di record che è possibile ricevere ciclicamente durante una chiamata. Nell’esempio di sopra, per 17000 record quindi 170 cicli, ognuno composto da 100 record di output.</p>
+	<h2 id="tutti-i-record-all'interno-di-una-determinata-area">Tutti i record all&#8217;interno di una determinata area</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -spat 12 35 15 38 -oo MAX_RECORDS=100</pre>
+	<p>Ogni record di un catalogo CSW è associato ad un’estensione geografica. Inserendo il parametro -spat si impostano le coordinate del boundig box (xmin ymin xmax ymax, in EPSG:4326) all’interno del quale si vuole eseguire la ricerca: in risposta si avranno tutti i record ricadenti in quell’area.</p>
+	<h2 id="tutti-i-record-che-contengono-una-determinata-parola-(stringa-di-testo)-in-uno-dei-campi-esposti-dal-catalogo">Tutti i record che contengono una determinata parola (stringa di testo) in uno dei campi esposti dal catalogo</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -where \"abstract LIKE '%geologia%'\" -oo MAX_RECORDS=100</pre>
+	<p>In questo modo si cercheranno tutti i record che contengono la parola &#8220;geologia&#8221; nel campo &#8220;abstract&#8221;. Ad oggi sono 31.</p>
+	<p><img class="aligncenter size-full wp-image-6727" src="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06.png" alt="2015-07-31_11h57_06" width="421" height="95" /></p>
+	<p>Gli altri campi che è possibile sfruttare per fare ricerche sono:</p>
+	<ul id="draft_check_box_list_0">
+	<li>identifier (String)</li>
+	<li>other_identifiers (StringList)</li>
+	<li>type (String)</li>
+	<li>subject (String)</li>
+	<li>other_subjects (StringList)</li>
+	<li>references (String)</li>
+	<li>other_references (StringList)</li>
+	<li>modified (String)</li>
+	<li>abstract (String)</li>
+	<li>date (String)</li>
+	<li>language (String)</li>
+	<li>rights (String)</li>
+	<li>format (String)</li>
+	<li>other_formats (StringList)</li>
+	<li>creator (String)</li>
+	<li>source (String)</li>
+	</ul>
+	<h2 id="tutti-i-record-che-contengono-una-determinata-stringa-in-un-campo-qualsiasi">Tutti i record che contengono una determinata stringa in un campo qualsiasi</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -where \"anytext LIKE '%frane%'\" -oo MAX_RECORDS=100</pre>
+	<p>La stringa cercata è &#8220;frane&#8221;, e si ottengono 52 record.</p>
+	<h2 id="tutti-i-record-della-ricerca-precedente-ma-in-formato-iso-19115/19119">Tutti i record della ricerca precedente ma in formato ISO 19115/19119</h2>
+	<pre dir="ltr">ogrinfo -ro -al -noextent CSW:http://www.rndt.gov.it/RNDT/CSW -where \"anytext LIKE '%frane%'\" -oo OUTPUT_SCHEMA=gmd -oo MAX_RECORDS=100</pre>
+	<p>L&#8217;output in questo caso è secondo lo schema descritto qui <a href="http://www.isotc211.org/2005/gmd" target="_blank">http://www.isotc211.org/2005/gmd</a>. Se invece si scrive OUTPUT_SCHEMA=csw, sarà secondo queste specifiche <a href="http://www.opengis.net/cat/csw/2.0.2" target="_blank">http://www.opengis.net/cat/csw/2.0.2</a>.</p>
+	<hr />
+	<p>Tutte le altre novità su GDAL/OGR 2.0.0 le trovate sintetizzate nel <a href="http://erouault.blogspot.it/2015/06/gdalogr-200-released.html">post</a> di Even Rouault e purtroppo<strong> il catalogo RNDT non è ancora nel registro INSPIRE!</strong> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_sad.gif' alt=':(' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/">GDAL-OGR per accedere a cataloghi geografici (CSW)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GDAL-OGR+per+accedere+a+cataloghi+geografici+%28CSW%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2015-07-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/07/31/gdal-ogr-per-accedere-a-cataloghi-geografici-csw/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06-150x95.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06.png" medium="image">
+			<media:title type="html">2015-07-31_11h57_06</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/07/2015-07-31_11h57_06-150x95.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

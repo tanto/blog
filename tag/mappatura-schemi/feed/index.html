@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; mappatura schemi</title>
+	<atom:link href="http://blog.spaziogis.it/tag/mappatura-schemi/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Parlando di INSPIRE: di Humboldt &amp; Hale</title>
+		<link>http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/</link>
+		<comments>http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/#comments</comments>
+		<pubDate>Mon, 18 Feb 2013 07:00:32 +0000</pubDate>
+		<dc:creator>Andrea Antonello</dc:creator>
+				<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[dati]]></category>
+		<category><![CDATA[hale]]></category>
+		<category><![CDATA[humboldt]]></category>
+		<category><![CDATA[inspire]]></category>
+		<category><![CDATA[mappatura schemi]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5480</guid>
+		<description><![CDATA[La mappatura dei dati fra i propri schemi (se esistono) e quelli di INSPIRE e' a poco dall'essere dichiarata magia nera. A livello europeo sono state create soluzioni atte a facilitarne la comprensione e supportarne l'implementazione. Hale e' una di queste soluzioni. ]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parlando+di+INSPIRE%3A+di+Humboldt+%26amp%3B+Hale&amp;rft.aulast=Antonello&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Nel corso del 2012 ho avuto il piacere di collaborare al progetto <a href="http://www.freegis.net" target="_blank">FreeGIS</a>. Il mio compito è stato quello di testare l&#8217;usabilità di un particolare software di <strong>mappatura di schemi di dati</strong> per mappare e successivamente convertire un set di dati della provincia di Bolzano verso lo schema di dati <strong>INSPIRE</strong>.</p>
+	<p>Considerato che ogni volta che scrivo la parola INSPIRE mi tremano le mani e ogni volta che ne parlo mi trema la voce, è stata un&#8217;esperienza interessante, anche al fine di smitizzare e abbattere alcuni muri, nonché confermare alcune assurdità che la complessità degli standard porta inevitabilmente con sé.</p>
+	<p>La certezza che ora ho è che la migrazione di dati verso gli schemi INSPIRE è una procedura molto complessa, ma non impossibile, e che richiede freddezza nella preparazione e personale capace e aggiornato da un punto di vista tecnico.</p>
+	<p><strong>Io in generale non credo ai software dall&#8217;unico pulsante magico.</strong></p>
+	<p>Credo però nel senso di una procedura guidata. Credo in un software che possa semplificare i passaggi importanti di tale procedura, supportando soprattutto la leggibilità degli schemi di dati e la consistenza delle mappature che si vanno ad operare.</p>
+	<p>&nbsp;</p>
+	<h1>Humboldt &amp; Hale</h1>
+	<p>Il software che ho avuto modo di testare (e poi anche estendere) si chiama <strong>Humboldt Alignment Editor</strong> (<strong>Hale</strong> per gli amici) e nasce da un progetto europeo che ha coinvolto 26 partner fra il 2006 e il 2011 (fra i quali gli italiani di <a href="http://milano.irea.cnr.it/" target="_blank">CNR-IREA</a>, <a href="http://www.gisig.it/" target="_blank">GISIG</a>, <a href="http://www.telespazio.it" target="_blank">Telespazio</a> e dell&#8217;<a href="http://www.uniroma1.it/" target="_blank">Università di Roma</a>). Il <strong>progetto Humboldt</strong> si è occupato principalmente <strong>dell&#8217;armonizzazione dei dati a livello europeo</strong>. Data la moltitudine e diversità dei dati presenti nelle varie organizzazioni europee, naturalmente non si trattava di re-inventare la magia nera, bensì di creare strumenti che potessero <strong>supportare il processo</strong> di implementazione.</p>
+	<p>Dal progetto Humboldt è nato il <strong>Data Harmonization Panel </strong>(DHP), una piattaforma di esperti nell&#8217;armonizzazione dei dati spaziali. Lo stesso DHP si pone tutt&#8217;oggi due importanti obiettivi:</p>
+	<ul>
+	<li>lo sviluppo ed il supporto degli strumenti sviluppati in Humboldt</li>
+	<li>il supporto di un framework di formazione</li>
+	</ul>
+	<p>Del progetto Humboldt oggi viene sviluppato in modo attivo praticamente solo la componente Hale. Il progetto è rilasciato con <strong>licenza Free ed Open Source </strong>alla community per facilitarne l&#8217;interazione ed il miglioramento.</p>
+	<p>E&#8217; proprio la natura open del progetto che mi ha portato prima ad avvicinarmi a Hale attraverso FreeGIS e poi, in un secondo momento, quando ho avuto il piacere di essere chiamato a svilupparne alcune funzionalità nel team geospaziale del <a href="http://www.igd.fraunhofer.de/en/Institut/Abteilungen/GEO" target="_blank">Fraunhofer IGD</a> (attuale centro di coordinamento del progetto).<br />
+E&#8217; stata questa collaborazione che mi ha ispirato a scrivere un articolo riguardante Hale in modo da renderlo un pochino più noto al di fuori della cerchia accademica e dei progetti europei.</p>
+	<p>Ma bando alla storia e passiamo alla parte pratica.</p>
+	<p>&nbsp;</p>
+	<h1>Utilizzare Hale</h1>
+	<p>Per mostrare il funzionamento di base di Hale mi rifarò in parte al progetto FreeGIS usando i dati della Provincia di Bolzano e descritti nel eGeo, il geoportale della provincia. Mi riferirò in particolare <a href="http://sdi.provinz.bz.it/geonetwork/srv/de/metadata.show?uuid=597897c6-17c2-48a9-8442-7a89de80c381" target="_blank">al set di dati</a> di quello che è definito in INSPIRE <strong>RoadLink</strong> dello schema dei <strong>TransportNetwork</strong>.</p>
+	<p>Per chi volesse cimentarsi, è possibile scaricare Hale <a href="http://www.esdi-community.eu/projects/hale/files" target="_blank">dall&#8217;area di download</a> del sito del progetto per i sistemi operativi più diffusi.</p>
+	<p>Una volta lanciato, Hale si presenta in questo modo:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main.png"><img class="aligncenter size-medium wp-image-5492" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main-300x225.png" alt="01_hale_main" width="300" height="225" /></a></p>
+	<p>&nbsp;</p>
+	<p>Le parti più importanti sono indubbiamente le viste dello <strong>Schema explorer</strong> e dell&#8217;<strong>Alignment</strong>.</p>
+	<p>Hale è stato concepito per mappatura di strutture di dati molto complesse, fra schemi di dati xml come lo possono essere ad esempio gli schemi CityGML. Il nostro esempio non renderà onore a questo potenziale, in questa sede si vuole piuttosto introdurre lo strumento in generale.</p>
+	<p>&nbsp;</p>
+	<h2>Definire lo schema di arrivo</h2>
+	<p>La prima cosa da definire, è lo <strong>schema verso il quale si desidera mappare</strong> lo schema dei dati originali. Nel nostro caso si parla di dati del TransportNetwork, quindi è necessario caricare lo schema xml del <strong>RoadTransportNetwork</strong> di INSPIRE. Tale schema <a href="http://inspire.jrc.ec.europa.eu/index.cfm/pageid/541/downloadid/1698" target="_blank">è scaricabile qui</a>.</p>
+	<p>Una volta scaricato sul proprio disco rigido, è possibile importarne la definizione dal menu di import attraverso l&#8217;operazione <strong>target schema</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema.png"><img class="aligncenter size-medium wp-image-5493" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema-300x132.png" alt="01_import_target_schema" width="300" height="132" /></a></p>
+	<p>definendo poi nella procedura guidata il file da importare:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard.png"><img class="aligncenter size-medium wp-image-5494" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard-300x175.png" alt="02_import_target_schema_wizard" width="300" height="175" /></a></p>
+	<p>per poi trovarsi lo schema visualizzato nella sua struttura ad albero in Hale:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork.png"><img class="aligncenter size-medium wp-image-5496" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork-300x209.png" alt="03_target_schema_roadnetwork" width="300" height="209" /></a></p>
+	<p>Da poco sono stati aggiunti alcuni schemi preconfigurati legati a INSPIRE, che si possono trovare nella tab denominata <strong>presets</strong>. Nel nostro caso lo schema di interesse è presente:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset.png"><img class="aligncenter size-medium wp-image-5495" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset-300x225.png" alt="02_import_target_schema_wizard_preset" width="300" height="225" /></a></p>
+	<h2></h2>
+	<h2>Definire lo schema di partenza</h2>
+	<p>La <strong>definizione dello schema di partenza </strong>può essere una procedura semplice o molto complessa, dipendentemente dal formato in cui si sono mantenuti i propri dati (e questa è indubbiamente una scienza a parte). Hale <strong>permette l&#8217;import dello schema da file</strong>, ma anche da servizi WFS. Per set di dati molto semplici è possibile generare uno schema <strong>estraendolo da shapefile</strong>.</p>
+	<p>Come per il <strong>target schema</strong>, partendo nuovamente dal menu di import, procediamo ad importare il <strong>source schema</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file.png"><img class="aligncenter size-medium wp-image-5497" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file-300x187.png" alt="11_import_source_schema_file" width="300" height="187" /></a></p>
+	<p>per trovarci con la seguente situazione:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported.png"><img class="aligncenter size-medium wp-image-5498" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported-300x211.png" alt="12_source_schema_imported" width="300" height="211" /></a></p>
+	<p>Nell&#8217;immagine la selezione è stata poi posizionata sui due tipi da mappare.</p>
+	<p>&nbsp;</p>
+	<h2>Come mappare gli schemi</h2>
+	<h3>Mappatura del tipo</h3>
+	<p>La prima operazione da fare, è quella della <strong>mappatura dei tipi principali</strong>, in questo caso V_WEGE_IMS_TUN_FREEGIS verso il RoadLink INSPIRE.<br />
+Il dato di partenza pero&#8217; contiene tutto il transport network (strade, ferrovie, etc), quindi bisogna procedere a creare una regola per estrarre solo le strade.</p>
+	<p>Con un GIS questa operazione è abbastanza triviale. In <a href="http://udig.refractions.net&gt;" target="_blank">uDig</a> l&#8217;operazione può essere fatta con il linguaggio CQL (<a href="http://udig.refractions.net/confluence/display/EN/Constraint+Query+Language" target="_blank">Constraint Query Language</a>).</p>
+	<p>Ad esempio ponendo delle condizioni sul campo giusto possiamo isolare le ferrovie:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails.png"><img class="aligncenter size-medium wp-image-5500" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails-300x213.png" alt="14_cql_select_rails" width="300" height="213" /></a></p>
+	<p>oppure, cosa necessaria al nostro esempio, le strade:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads.png"><img class="aligncenter size-medium wp-image-5499" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads-300x213.png" alt="13_cql_select_roads" width="300" height="213" /></a></p>
+	<p>Il motivo per il quale vi cito uDig è duplice. Perché è il GIS con il quale lavoro e che supporto in modo attivo, ma anche perché Hale supporta lo stesso identico linguaggio CQL.</p>
+	<p>E&#8217; quindi possibile creare un <strong>condition context</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu.png"><img class="aligncenter size-medium wp-image-5501" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu-300x128.png" alt="16_main_retype_filter_menu" width="300" height="128" /></a><a href="16_main_retype_filter_menu" target="_blank"><br />
+</a></p>
+	<p>usando come condizione esattamente la stringa testata in uDig:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel.png"><img class="aligncenter size-medium wp-image-5502" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel-300x184.png" alt="17_main_retype_filter_panel" width="300" height="184" /></a></p>
+	<p>A questo punto Hale crea un nuovo tipo in base alla condizione imposta e sarà quello che verrà mappato attraverso un&#8217;operazione di <strong>Retype</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu.png"><img class="aligncenter size-medium wp-image-5503" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu-300x208.png" alt="19_main_retype_menu" width="300" height="208" /></a></p>
+	<p>Una volta conclusa la procedura guidata, la mappatura sarà visualizzata nello schema explorer e nella vista dell&#8217;Alignment:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment.png"><img class="aligncenter size-medium wp-image-5504" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment-300x300.png" alt="22_main_retype_alignment" width="300" height="300" /></a></p>
+	<h3>Mappatura degli attributi</h3>
+	<p>Non voglio tediarvi con la descrizione dei vari attributi, quindi riassumerò solo alcune operazioni che si possono applicare per la mappatura degli attributi</p>
+	<h4>Formattazione di stringhe</h4>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu.png"><img class="aligncenter size-medium wp-image-5505" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu-300x225.png" alt="23_mapp_id_menu" width="300" height="225" /></a></p>
+	<p>Permette di concatenare le stringhe dei diversi campi dello schema di partenza e delle costanti aggiunte manualmente per creare una stringa nello schema di arrivo:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2.png"><img class="aligncenter size-medium wp-image-5506" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2-300x258.png" alt="25_mapp_id_wizard2" width="300" height="258" /></a></p>
+	<p>Appena applicata la mappatura, viene visualizzata nella <em>Alignment View </em>e la vista delle proprietà ci fornisce una descrizione dell&#8217;operazione applicata:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result.png"><img class="aligncenter size-medium wp-image-5481" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result-300x262.png" alt="26_mapp_id_result" width="300" height="262" /></a></p>
+	<h4>Classificazione</h4>
+	<p>La classificazione è forse una delle operazioni più importanti, permette di mappare classi di valori.</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu.png"><img class="aligncenter size-medium wp-image-5482" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu-300x227.png" alt="27_mapp_fictitious_menu" width="300" height="227" /></a></p>
+	<p>Un esempio molto semplice è la mappature fra dei valori interi 0/1 al loro booleano nello schema di arrivo:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result.png"><img class="aligncenter size-medium wp-image-5483" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result-300x225.png" alt="32_mapp_fictitious_result" width="300" height="225" /></a></p>
+	<h4>Mappatura della geometria</h4>
+	<p>E&#8217; possibile eseguire la mappatura di geometrie:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu.png"><img class="aligncenter size-medium wp-image-5484" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu-300x227.png" alt="33_mapp_geometry_menu" width="300" height="227" /></a></p>
+	<p>Il tipo nel nostro caso è lo stesso, quindi una operazione di <strong>rename</strong> è sufficiente:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result.png"><img class="aligncenter size-medium wp-image-5485" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result-300x180.png" alt="35_mapp_geometry_result" width="300" height="180" /></a></p>
+	<p>Non mi spingo oltre con la descrizione del processo di mappatura. Accenno solo al fatto che <strong>è possibile utilizzare anche degli script</strong>, cioè dei frammenti semplificati di programmi, che rendono possibili trasformazioni personalizzate molto complesse.</p>
+	<h3>Controllo mappatura e trasformazione dati</h3>
+	<p>Una volta conclusa la mappatura, la <strong>vista delle trasformazioni</strong> è quello che fa per noi. Ci permette di dare una <strong>controllata finale al grafico della trasformazione</strong></p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view.png"><img class="aligncenter size-medium wp-image-5486" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view-300x257.png" alt="42_transform_main_view" width="300" height="257" /></a></p>
+	<p>e la possibilità di caricare un set di dati per eseguire una trasformazione secondo la mappatura precedentemente prodotta.</p>
+	<p>La procedura di import dei dati è simile a quella degli schemi, selezionando <strong>source data</strong> come tipo di import:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu.png"><img class="aligncenter size-medium wp-image-5487" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu-300x95.png" alt="43_transform_import_menu" width="300" height="95" /></a></p>
+	<p>Il file da importare nel caso di questo esempio è lo stesso usato per definire lo schema:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard.png"><img class="aligncenter size-medium wp-image-5488" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard-300x169.png" alt="44_transform_import_wizard" width="300" height="169" /></a></p>
+	<p>Una volta importato il dato, viene visualizzato nella parte bassa dell&#8217;applicativo un <strong>set di esempio di dati originali e trasformati</strong>. Questo è molto utile per avere un <strong>idea dell&#8217;effettiva bontà della mappatura</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result.png"><img class="aligncenter size-medium wp-image-5489" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result-300x137.png" alt="45_transform_import_result" width="300" height="137" /></a></p>
+	<p>E&#8217; infine possibile esportare il dato trasformato <strong>in formato GML</strong>, come richiesto da INSPIRE. Dal menu di export</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu.png"><img class="aligncenter size-medium wp-image-5490" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu-300x117.png" alt="46_transform_export_menu" width="300" height="117" /></a></p>
+	<p>è possibile accedere alla procedura guidata che definisce il formato di output e poi esegue <strong>l&#8217;operazione di export</strong>:</p>
+	<p style="text-align: center"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard.png"><img class="aligncenter size-medium wp-image-5491" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard-300x257.png" alt="47_transform_export_wizard" width="300" height="257" /></a></p>
+	<h1>Conclusioni</h1>
+	<p>Non è facile scrivere un breve articolo riguardante strumenti così complessi. Me ne sono reso conto in modo sempre più decisivo durante la stesura di questo articolo.</p>
+	<p>Spero comunque di essere riuscito a suscitare <strong>interesse per Hale</strong>.</p>
+	<p>Spero che sia evidente l&#8217;importanza di avere uno <strong>strumento aperto e trasparente in processi di questo tipo.</strong> Personalmente starei attento a generare dipendenze da software chiusi e proprietari in processi complessi quali la migrazione dei dati. Queste procedure infatti si protraggono anche per parecchio tempo; non di rado passano per sperimentazioni, tentativi e possibili cambi di attori. Un software aperto a tutti &#8211; invece &#8211; permette maggiore autonomia e dà la possibilità, volendo, di seguire i processi a tutti i livelli desiderati. Non va dimenticato che in questi contesti è spesso necessario adattare lo strumento a casi specifici, quindi <strong>avere la possibilità di estenderlo e modificarlo</strong> può essere una carta vincente.</p>
+	<p>Spero infine che sia chiaro che la<strong> trasformazione di dati fra schemi non è una cosa impossibile</strong> (in caso la fatica sta nell&#8217;apprendere gli schemi INSPIRE). Ci sono <strong>strumenti validi a supporto e Hale - </strong>a mio avviso -<strong> è uno fra questi</strong>. Esorto le amministrazioni a cercare gli esperti dei dati sul proprio territorio e non affidarsi a softwarehouse che promettono il fatidico pulsante magico&#8230; non è realistico. I professionisti locali del settore conoscono bene lo stato dei dati e le reali problematiche ad essi legati e nessuno più di loro desidera che i dati migrati siano della giusta qualità.</p>
+	<p>Infine, ai temerari e amanti del genere lascio il <a href="http://www.dhpanel.eu/humboldt-framework/hale-tutorial.html" target="_blank">link al video informativo</a> reso disponibile dal DHP, nel quale vengono introdotti i tutorial inseriti dentro a Hale sotto forma di procedure guidate, che ne facilitano l&#8217;apprendimento.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/">Parlando di INSPIRE: di Humboldt &amp; Hale</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parlando+di+INSPIRE%3A+di+Humboldt+%26amp%3B+Hale&amp;rft.aulast=Antonello&amp;rft.aufirst=Andrea&amp;rft.subject=osgeo&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/18/parlando-di-inspire-di-humboldt-hale/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main.png" medium="image">
+			<media:title type="html">01_hale_main</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_hale_main-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema.png" medium="image">
+			<media:title type="html">01_import_target_schema</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/01_import_target_schema-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard.png" medium="image">
+			<media:title type="html">02_import_target_schema_wizard</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork.png" medium="image">
+			<media:title type="html">03_target_schema_roadnetwork</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/03_target_schema_roadnetwork-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset.png" medium="image">
+			<media:title type="html">02_import_target_schema_wizard_preset</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/02_import_target_schema_wizard_preset-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file.png" medium="image">
+			<media:title type="html">11_import_source_schema_file</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/11_import_source_schema_file-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported.png" medium="image">
+			<media:title type="html">12_source_schema_imported</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/12_source_schema_imported-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails.png" medium="image">
+			<media:title type="html">14_cql_select_rails</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/14_cql_select_rails-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads.png" medium="image">
+			<media:title type="html">13_cql_select_roads</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/13_cql_select_roads-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu.png" medium="image">
+			<media:title type="html">16_main_retype_filter_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/16_main_retype_filter_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel.png" medium="image">
+			<media:title type="html">17_main_retype_filter_panel</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/17_main_retype_filter_panel-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu.png" medium="image">
+			<media:title type="html">19_main_retype_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/19_main_retype_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment.png" medium="image">
+			<media:title type="html">22_main_retype_alignment</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/22_main_retype_alignment-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu.png" medium="image">
+			<media:title type="html">23_mapp_id_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/23_mapp_id_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2.png" medium="image">
+			<media:title type="html">25_mapp_id_wizard2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/25_mapp_id_wizard2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result.png" medium="image">
+			<media:title type="html">26_mapp_id_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/26_mapp_id_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu.png" medium="image">
+			<media:title type="html">27_mapp_fictitious_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/27_mapp_fictitious_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result.png" medium="image">
+			<media:title type="html">32_mapp_fictitious_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/32_mapp_fictitious_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu.png" medium="image">
+			<media:title type="html">33_mapp_geometry_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/33_mapp_geometry_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result.png" medium="image">
+			<media:title type="html">35_mapp_geometry_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/35_mapp_geometry_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view.png" medium="image">
+			<media:title type="html">42_transform_main_view</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/42_transform_main_view-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu.png" medium="image">
+			<media:title type="html">43_transform_import_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/43_transform_import_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard.png" medium="image">
+			<media:title type="html">44_transform_import_wizard</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/44_transform_import_wizard-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result.png" medium="image">
+			<media:title type="html">45_transform_import_result</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/45_transform_import_result-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu.png" medium="image">
+			<media:title type="html">46_transform_export_menu</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/46_transform_export_menu-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard.png" medium="image">
+			<media:title type="html">47_transform_export_wizard</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/47_transform_export_wizard-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

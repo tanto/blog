@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Didattica</title>
+	<atom:link href="http://blog.spaziogis.it/categoria/didattica/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Guardian Datastore Explorer: per costruire query su fogli elettronici Google Drive</title>
+		<link>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/</link>
+		<comments>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/#comments</comments>
+		<pubDate>Tue, 06 Oct 2015 06:44:38 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[gdrive]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[umap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6753</guid>
+		<description><![CDATA[Questo post per presentare Guardian Datastore Explorer, uno strumento per costruire query su fogli elettronici Google Drive, sfruttando il linguaggio di interrogazione messo a disposizione dalle API di GDrive. E ci facciamo pure una mappa.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Guardian+Datastore+Explorer%3A+per+costruire+query+su+fogli+elettronici+Google+Drive&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2015-10-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: questo è stato pubblicato originariamente sul sito della <strong><a href="http://school.dataninja.it/welcome/" rel="nofollow"  target="_blank">dataninjaschool</a></strong>.</p>
+	<h2 id="introduzione">Introduzione</h2>
+	<p>Tra gli strumenti esposti da Google Drive c&#8217;è <strong><a href="https://www.google.com/intl/it_it/sheets/about/" rel="nofollow" >Sheet</a></strong>, un foglio elettronico online ricco di funzioni, molto usato per le professioni e gli utilizzi più svariati.</p>
+	<p>I fogli creati fungono spesso da &#8220;<strong>contenitori</strong>&#8221; di dati, che fanno da sorgente a grafici, mappe, infografiche e applicazioni di svariata natura</p>
+	<p>L&#8217;accesso a Sheet si può eseguire tramite le <strong>API</strong> ufficiali di interrogazione. Nella <a href="https://developers.google.com/chart/interactive/docs/querylanguage" rel="nofollow" >documentazione ufficiale</a> è indicato come generare un output, come generarne uno filtrato, come impostare i formati di output, come usarlo come un database relazionale su cui fare delle query SQL con aggregazione, calcoli, ecc.. Sul web, oltre alla guida dedicata, numerosi tutorial ed esempi.</p>
+	<p>Si tratta di operazioni semplici, con possibilità di uso molto ricche, per uno strumento che è comunque &#8220;<strong>per tutti</strong>&#8220;. Nella mia esperienza da formatore ho riscontrato però che per alcuni, la costruzione di una query non è di immediato apprendimento.<br />
+Questo post nasce proprio allo scopo di presentare uno strumento che consente di superare questi ostacoli: il buon vecchio <strong>Guardian Datastore Explorer</strong> di <a href="https://twitter.com/psychemedia" rel="nofollow" >Tony Hirst</a>.</p>
+	<h2 id="lo-strumento">Lo strumento</h2>
+	<p>Il <strong>Guardian Datastore Explorer</strong> è un vecchietto arzillo: fa la sua prima apparizione nel lontanissimo <strong><a href="http://blog.ouseful.info/2009/05/22/first-steps-towards-a-generic-google-spreadsheets-query-tool/" rel="nofollow" >2009</a></strong>, un&#8217;altra era (non c&#8217;era ad esempio Instagram).<br />
+Sono due le caratteristiche principali che lo rendono molto interessante:</p>
+	<ul>
+	<li>consente facilmente di <strong>costruire in modo guidato</strong> un&#8217;interrogazione su uno Sheet di GDrive;</li>
+	<li>è molto <strong>didattico</strong>. Utilizzandolo si impara ad usare il linguaggio di <em>query</em> e dopo poco tempo si impareranno a <strong>scrivere stringhe di interrogazione in autonomia</strong> con un semplice editor di testo.</li>
+	</ul>
+	<p>E&#8217; uno strumento web ed il suo URL è <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php" rel="nofollow" >http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php</a>.</p>
+	<h2 id="come-si-usa">Come si usa</h2>
+	<h3 id="predisposizione-del-foglio-google-drive-sheet">Predisposizione del foglio Google Drive Sheet</h3>
+	<p>E&#8217; propedeutico avere un account su Google Drive. E poi è necessario avere un foglio elettronico con cui testare il Guardian Datastore Explorer: per le spiegazioni successive verrà utilizzato <a href="https://docs.google.com/spreadsheets/d/1LCAOTXWC5ExNWxFPtMimlG_jdSLgGwRAgrEYgq9iiRc/edit?usp=sharing" rel="nofollow" >questo</a>, con i <strong>musei</strong> del <strong>territorio comunale fiorentino</strong>.</p>
+	<p>Si tratta di dati aperti presenti sul portate <a href="http://www.dati.gov.it/dataset/comune-di-firenze_0038" rel="nofollow" >dati.gov.it</a>. Lo sottolineo perché un&#8217;altra cosa abilitata dagli <strong>open data</strong> è la <strong>didattica</strong>.</p>
+	<p>La prima cosa da fare con il foglio elettronico, è crearne una <strong>copia</strong>:</p>
+	<p><img class="aligncenter" src="http://i.imgur.com/6qWgYXq.png" alt="" /></p>
+	<p style="text-align: center;">Fatta la &#8220;vostra&#8221; copia, è necessario impostarne la <strong>condivisione</strong> (tasto &#8220;Condividi&#8221; o &#8220;Share&#8221; in alto a destra), e fare in modo che (<strong>1</strong>) chiunque abbia l&#8217;URL del foglio, (<strong>2</strong>) possa visualizzarlo.<br />
+<img class="aligncenter" src="http://i.imgur.com/49N1sAZ.png" alt="" width="500" height="361" /></p>
+	<p>Poi si dovrà pubblicare sul web:<br />
+<img class="aligncenter" src="http://i.imgur.com/OOtNPHu.png" alt="" /></p>
+	<p style="text-align: center;">In questo <strong>video</strong> la sequenza della procedura sopra descritta:<br />
+<a href="https://www.youtube.com/watch?v=NPNTDa2YCqk&amp;feature=youtu.be&amp;hd=1" rel="nofollow" ><img class="aligncenter" src="http://i.imgur.com/yeelFlg.png" alt="" width="500" height="281" /></a></p>
+	<p>La condivisione e la pubblicazione sul web sono necessarie perché il Guardian Datastore Explorer è utilizzabile soltanto con fogli pubblicamente accessibili.</p>
+	<h3 id="costruzione-della-query-sul-del-foglio-elettronico">Costruzione della query sul del foglio elettronico</h3>
+	<p>La prima cosa da fare è ricavare il <strong>codice identificativo</strong> del foglio. Si trova all&#8217;interno dell&#8217;URL dello sheet ed è facilmente indetificabile.<br />
+Ad esempio nell&#8217;URL sottostante l&#8217;ID del foglio è quello in grassetto:</p>
+	<p>http://docs.google.com/spreadsheets/d/<strong>1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</strong>/edit#gid=108845820</p>
+	<p>Quindi in questo caso è &#8220;<strong>1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</strong>&#8220;.</p>
+	<p>Poi c&#8217;è aprire la pagina web del <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php" rel="nofollow" >Guardian Datastore Explorer</a> e (<strong>1</strong>) inserire l&#8217;ID del foglio e (<strong>2</strong>) fare click su &#8220;Preview table headings&#8221;. In questo modo l&#8217;interrogazione è stata attivata e come risultato vengono visualizzate le (<strong>3</strong>) intestazione delle colonne del foglio.</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/uwi9QC9.png" alt="" width="500" height="200" /></p>
+	<p>Subito dopo si può andare a <strong>pescare dati</strong> (&#8220;Go Fish&#8221; scrive l&#8217;autore) e iniziare a imparare come usare questo linguaggio di interrogazione, tramite la tabella di esempi riportata sul sito. Leggendola si vede che a tutti gli effetti si tratta un classico <strong>SQL</strong> (Structured Query Language). Qualche esempio:</p>
+	<table>
+	<thead>
+	<tr>
+	<th>Obiettivo</th>
+	<th>Comando</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>Selezionare tutti i record</td>
+	<td>SELECT *</td>
+	</tr>
+	<tr>
+	<td>Selezionare le colonne A e B (ovvero la prima e la seconda) per tutti i record</td>
+	<td>SELECT A,B</td>
+	</tr>
+	<tr>
+	<td>Selezionare tutti record per le colonne A e B, dove il valore della colonna I è uguale a &#8220;3467&#8243;</td>
+	<td>SELECT A,B WHERE I = 3467</td>
+	</tr>
+	<tr>
+	<td>Selezionare tutti record delle colonne C e D, in cui la colonna F non assume il valore di 42043</td>
+	<td>SELECT C,D WHERE F != 3467</td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Nella pagina trovate molti altri esempi.</p>
+	<p>Un&#8217;interrogazione che si potrebbe fare sul foglio dei musei di Firenze potrebbe essere quella per cui applichiamo questi filtri:</p>
+	<ul>
+	<li>Soltanto le colonne A, B, E, F, G, H, I e K;</li>
+	<li>i soli musei a Est della &#8220;Cappella Brancacci&#8221;;</li>
+	<li>solo quelli Statali;</li>
+	<li>solo quelli che hanno un numero di telefono associato;</li>
+	<li>ordinati da Nord verso Sud.</li>
+	</ul>
+	<p>Prima di costruirla, un breve <strong>video</strong> che illustra una prima query più semplice, in modo da prendere confidenza con lo strumento: le sole colonne &#8220;latitude&#8221; e &#8220;longitude&#8221;, dove la &#8220;latitude&#8221; è maggiore di 43.77 e tutto ordinato per longitudine crescente.</p>
+	<p style="text-align: center;"><a href="https://www.youtube.com/watch?v=dQ_ngLlYMTI&amp;feature=youtu.be&amp;hd=1" rel="nofollow" ><img class="aligncenter" src="http://i.imgur.com/HNMrxLL.png" alt="" width="500" height="281" /></a></p>
+	<p>Fatta la query, poco sopra i risultati di output, <strong>tre righe</strong> di testo molto interessanti:</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/p5kjlTV.png" alt="" width="500" height="57" /></p>
+	<p>La <strong>prima</strong> è proprio la query che abbiamo costruito, secondo il linguaggio delle API di Google Drive:</p>
+	<pre><code>select%20A%2CB where B%20%3E%2043.77 order by A asc </code></pre>
+	<p>Nella stringa ci sono dei caratteri che ne rendono poco &#8220;leggibili&#8221; alcune parti: <code>select A,B where B &gt; 43.77 order by A asc</code> si comprende meglio. In realtà la prima è il risultato dell&#8217;<em>encoding</em> dei caratteri della seconda. Questa è una procedura necessaria perché l&#8217;interrogazione viene lanciata tramite un URL, e in questo alcuni caratteri non sono consentiti. Nel nostro caso lo spazio deve essere codificato in &#8220;%20&#8243;, la &#8220;,&#8221; in &#8220;%2C&#8221;, il &#8220;&lt;&#8221; in &#8220;%3E&#8221;.</p>
+	<p>La <strong>seconda</strong> contiene due <em>hyperlink</em>, a due dei formati di <strong>output</strong> possibili di una query fatta su Google Drive Sheet: l&#8217;<strong><a href="http://spreadsheets.google.com/tq?tqx=out:html&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg" rel="nofollow" >HTML</a></strong> e il <strong><a href="http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg" rel="nofollow" >CSV</a></strong>. Il secondo è forse il formato più comodo per chi dovrà utilizzare i risultati di un&#8217;interrogazione per creare grafici, mappe e infografiche.</p>
+	<p>Questo ad esempio l&#8217;<em>hyperlink</em> per l&#8217;output in CSV:</p>
+	<pre>http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</pre>
+	<p>Se lo separiamo in blocchi, si evidenziano elementi interessanti:</p>
+	<ul>
+	<li><code>tqx=out:csv</code>serve per impostare il formato di output;</li>
+	<li><code>tq=select%20A%2CB%20where%20B%20%3E%2043.77%20order%20by%20A%20asc</code> per dichiarare la query;</li>
+	<li><code>key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</code> per dichiarare l&#8217;ID del foglio.</li>
+	</ul>
+	<p>La <strong>terza riga</strong> un <a href="http://ouseful.open.ac.uk/datastore/gspreadsheetdb4.php?run=true&amp;gsKey=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg&amp;gqc=A%2CB&amp;gqw=B%20%3E%2043.77&amp;gqoA" rel="nofollow" >segnalibro</a> che consente di aprire il Guardian Data Explorer con e fargli lanciare la <em>query</em> appena eseguita. E&#8217; un modo per <strong>salvare </strong>l&#8217;<strong>interrogazione</strong> costruita.</p>
+	<p>Adesso siamo in grado di costruire la query indicata a inizio paragrafo:</p>
+	<ul>
+	<li>Soltanto le colonne A, B, E, F, G, H, I e K -&gt; <code>select A,B,E,F,G,H,I,K</code></li>
+	<li>i soli musei a Est della &#8220;Cappella Brancacci&#8221; -&gt; <code>where B &gt; 11.2438292167895</code></li>
+	<li>solo quelli Statali -&gt; <code>AND I matches 'Statale'</code></li>
+	<li>solo quelli che hanno un numero di telefono associato -&gt; <code>AND H !=""</code></li>
+	<li>ordinati da Nord verso Sud -&gt; <code>order by A desc</code></li>
+	</ul>
+	<pre><code>select A,B,E,F,G,H,I,K where B &gt; 11.2438292167895 AND I matches 'Statale' AND H !=\"\" order by B desc </code></pre>
+	<p>Per potere usare questa query è necessario eseguire la codifica dei caratteri in modo che possa essere inserita in un URL. Il risultato (mille strumenti online per farlo, uno è <a href="http://meyerweb.com/eric/tools/dencoder/" rel="nofollow" >questo</a>) dell&#8217;<em>endoding</em> è:</p>
+	<pre><code>select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc </code></pre>
+	<p>E&#8217; possibile usare allora questa stringa per creare l&#8217;URL che esegue l&#8217;interrogazione di sopra e che produce come un risultato un file CSV:</p>
+	<pre><a href=\"http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg\">http://spreadsheets.google.com/tq?tqx=out:csv&amp;tq=select%20A%2CB%2CE%2CF%2CG%2CH%2CI%2CK%20where%20B%20%3E%2011.2438292167895%20AND%20I%20matches%20%27Statale%27%20AND%20H%20!%3D%22%22%20order%20by%20B%20desc&amp;key=1nS167pnytroD9SQWi0BUa_eFaeCwuWOk1_0GvsBFmsg</a></pre>
+	<p>Il file scaricato sarà apribile con qualsiasi editor di testo, e qualsiasi foglio elettronico.</p>
+	<p style="text-align: center;"><img class="aligncenter" src="http://i.imgur.com/tSenfEr.png" alt="" width="500" height="259" /></p>
+	<h1 id="usare-l-output-di-una-query-per-costruire-una-mappa-online">Usare l&#8217;output di una query per costruire una mappa online</h1>
+	<p>Come già scritto sopra, il risultato di una di queste query può essere usata per visualizzare i dati in differenti modi. Uno è una <strong>mappa</strong> online (deformazione professionale).</p>
+	<p>Il dataset di esempio si presta, perché contiene la latitudine e la longitudine di ogni museo. Uno strumento <em>free</em> e <em>open-source</em> molto comodo per generare mappe da output di questo tipo è <strong><a href="http://umap.openstreetmap.fr/it/" rel="nofollow" >uMap</a></strong>. Tra i formati di input supportati proprio il CSV; l&#8217;unico requisito è che nel file CSV siano presenti le colonne denominate &#8220;<em>latitude</em>&#8221; e &#8220;<em>longitude</em>&#8220;.</p>
+	<p>La cosa interessante è che la <strong>mappa</strong> online sarà <strong><em>live</em></strong> e ogni aggiornamento fatto nel foglio elettronico, produrrà un aggiornamento della mappa. Questo avviene perché tutte le volte che verrà visualizzata, verrà lanciata una nuova query.</p>
+	<p>Nel <strong>video</strong> sottostante è illustrato come creare una mappa <em>online live</em> a partire proprio dall&#8217;URL soprastante, che produce in output un CSV.</p>
+	<p style="text-align: center;"><a href="https://www.youtube.com/watch?v=bU7XtYo-w4M&amp;feature=youtu.be&amp;hd=1" rel="nofollow" ><img class="aligncenter" src="http://i.imgur.com/PeOCcTp.png" alt="" width="500" height="281" /></a></p>
+	<h1 id="considerazioni-finali">Considerazioni finali</h1>
+	<p>Il Guardian Datastore Explorer non è un <em>query builder</em> particolarmente potente ed elegante, ma è sicuramente uno strumento che rende semplice l&#8217;avvicinamento al Query Language di Google Drive Sheet.</p>
+	<p>Sopratutto fa comprendere che si tratta di un linguaggio semplice, e dopo poco tempo anche i novizi scriveranno le query &#8220;a mano&#8221; senza più usarlo. Bastano concetti di base di SQL, sapere fare l&#8217;encoding dei caratteri e leggersi la documentazione <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/">Guardian Datastore Explorer: per costruire query su fogli elettronici Google Drive</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Guardian+Datastore+Explorer%3A+per+costruire+query+su+fogli+elettronici+Google+Drive&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2015-10-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/10/06/guardian-datastore-explorer-per-costruire-query-su-fogli-elettronici-google-drive/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://i.imgur.com/6qWgYXq.png" />
+		<media:content url="http://i.imgur.com/6qWgYXq.png" medium="image" />
+		<media:content url="http://i.imgur.com/49N1sAZ.png" medium="image" />
+		<media:content url="http://i.imgur.com/OOtNPHu.png" medium="image" />
+		<media:content url="http://i.imgur.com/yeelFlg.png" medium="image" />
+		<media:content url="http://i.imgur.com/uwi9QC9.png" medium="image" />
+		<media:content url="http://i.imgur.com/HNMrxLL.png" medium="image" />
+		<media:content url="http://i.imgur.com/p5kjlTV.png" medium="image" />
+		<media:content url="http://i.imgur.com/tSenfEr.png" medium="image" />
+		<media:content url="http://i.imgur.com/PeOCcTp.png" medium="image" />
+	</item>
+		<item>
+		<title>Take the best, use the REST</title>
+		<link>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/</link>
+		<comments>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/#comments</comments>
+		<pubDate>Mon, 29 Dec 2014 14:00:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[dati]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[gdal/ogr]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[rest]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6507</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del catalogo dei dataset (come quella del geoportale della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite servizi OGC standard come WMS, WFS e WCS. Ma ci [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del <strong>catalogo</strong> dei dataset (come quella del <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.sitr.regione.sicilia.it%2Fgeoportale&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG7RUw_DCXDDpf6kHOLLKGZrZnT0Q" rel="nofollow"  target="_blank">geoportale</a> della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite <strong>servizi OGC</strong> standard come WMS, WFS e WCS.</p>
+	<p>Ma ci sono diverse altre caratteristiche interessanti rese disponibili da queste tecnologie e che molto spesso ignoriamo, la cui conoscenza ci consente di accedere ad un numero molto più ampio di informazioni e dati. Tutto questo oggi è a maggior forza interessante, grazie alle politiche Open Data realizzate da molte Pubbliche Amministrazioni e anche perché dal <strong>19 marzo 2013</strong>i &#8221;tutti i dati e documenti che le pubbliche amministrazioni pubblicano con qualsiasi modalità, senza l’espressa adozione di una licenza d’uso, si intendono rilasciati come dati aperti (<strong>open data by default</strong>)&#8221; (cit. dati.gov.it, mentre dal punto di vista normativo si tratta dell&#8217;<strong>articolo 52, comma 2</strong> del <strong><a href="http://www.agid.gov.it/cad/accesso-telematico-riutilizzo-dati-pubbliche-amministrazioni" rel="nofollow"  target="_blank">CAD</a></strong>).</p>
+	<p>In questo post sottolineerò alcuni elementi relativi all&#8217;accesso ai dati tramite <em>query</em> via interfaccia <strong>REST</strong> (più propriamente tramite API REST).</p>
+	<h2 id="introduzione">Introduzione</h2>
+	<p>Le API REST di ArcGIS &#8211; REST è l&#8217;acronimo di <em>Representational State Transfer</em> - forniscono una semplice <strong>interfaccia</strong> di <strong>accesso web</strong> ai server cartografici di questa casa software, sia ai dati/servizi che ad alcuni processi. Il tutto è quindi accessibile tramite una serie di URL gerarchici, che identificano ciò a cui si vuole accedere. L&#8217;URL di default di accesso ha di _default _questa struttura:</p>
+	<pre>http://&lt;host&gt;:/arcgis/rest/services</pre>
+	<p>Ad esempio quello della Regione Siciliana è questo:</p>
+	<p><a href="http://map.sitr.regione.sicilia.it/ArcGIS/rest/services" rel="nofollow"  target="_blank">http://map.sitr.regione.sicilia.it/ArcGIS/rest/services</a></p>
+	<p>E aprendo l&#8217;indirizzo sono elencati dati e servizi disponibili in questo server.</p>
+	<p><img class="alignnone size-full wp-image-6513 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" alt="sicilia_rest" width="500" height="285" /></p>
+	<p>La <strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" rel="nofollow"  target="_blank">documentazione</a></strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" rel="nofollow"  target="_blank"> ufficiale</a> generale è molto ricca e vasta e non aggiungerò altri dettagli generici.</p>
+	<p>A seguire invece alcuni esempi di <strong>query</strong>  via ArcGIS REST API, in modo da apprezzarne la ricchezza e le modalità di accesso.</p>
+	<h2 id="interroghiamo-una-risorsa">Interroghiamo una risorsa</h2>
+	<p>Per gli esempi di questo articolo farò riferimento alla <strong>Regione Umbria</strong>, che ha aperto <a href="http://www.google.com/url?q=http%3A%2F%2Fagendadigitale.regione.umbria.it%2Fcartografia-umbria%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGh7oXngcnvcK4DvFY_uBWgTYXftw" rel="nofollow"  target="_blank">da poco</a> i suoi dati cartografici. Dal suo portale open data possiamo leggere l&#8217;URL pubblico del server ArcGIS.</p>
+	<p><img class="alignnone size-full wp-image-6514 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" alt="url_umbria" width="500" height="232" /></p>
+	<p>Si legge</p>
+	<pre>http://geo.umbriaterritorio.it/arcgis/</pre>
+	<p>Bisogna aggiungere (vedi sopra) &#8220;rest/services/&#8221; e abbiamo</p>
+	<p><a href="http://geo.umbriaterritorio.it/arcgis/rest/services/" rel="nofollow"  target="_blank">http://geo.umbriaterritorio.it/arcgis/rest/services/</a></p>
+	<p>A questo punto non resta che sfogliare un po&#8217; la <em>directory</em> pubblica e scegliere un <em>layer</em> su cui eseguire una <em>query</em>. Userò il dataset dei &#8220;NUMERI CIVICI&#8221;, che si raggiunge facendo click su <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGsOAQrrPu5ImWNlAL_d8H3zDdhtQ" rel="nofollow"  target="_blank">Public &gt; ECOGRAFICO_CATASTALE_WGS84 (MapServer) &gt; NUMERI CIVICI</a>.</p>
+	<p>Scorrendo la pagina verso il basso è visibile il tasto &#8220;<em>Query</em>&#8220;, tramite il quale è possibile interrogare il dataset.</p>
+	<p><img class="alignnone size-full wp-image-6512 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" alt="query" width="500" height="370" /></p>
+	<p>Per lanciare la prima interrogazione devo inserire almeno un criterio di ricerca. Ad esempio <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%3D1%26where%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH6iLFbjBb4YxEY1dKVGuFrZBhiMQ" rel="nofollow"  target="_blank">il numero civico con &#8220;ID=1&#8243;</a> (ogni elemento ha sempre un identificativo numerico associato). La pagina html con il risultato dell&#8217;interrogazione mi fornisce informazioni sia sugli attributi che sulla geometria dell&#8217;elemento.</p>
+	<p><img class="alignnone size-full wp-image-6509 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" alt="attributi" width="382" height="212" /></p>
+	<p>Posso fare allora una query per <strong>attributo</strong>: <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&#038;geometryType=esriGeometryPoint&#038;inSR=&#038;spatialRel=esriSpatialRelIntersects&#038;relationParam=&#038;objectIds=&#038;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&#038;time=&#038;returnCountOnly=false&#038;returnIdsOnly=false&#038;returnGeometry=true&#038;maxAllowableOffset=&#038;outSR=&#038;outFields=*&#038;f=html" rel="nofollow"  target="_blank">tutti gli elementi</a> che contengono nel campo &#8220;DESCR_S49&#8243; la stringa &#8220;CORPOSANO&#8221;. Nell&#8217;interfaccia leggiamo che ci sono 47 record che soddisfano questa condizione e l&#8217;output è in HTML. Ci sono però altri formati di output tra cui <strong>KML</strong> e <strong>JSON</strong>; <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DDESCR_S49%2BLIKE%2B'%2525CORPOSANO%2525'%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dpjson&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHS-5eXTUQRW6lngrc9W3yzjDYWZg" rel="nofollow"  target="_blank">questo</a> l&#8217;output in JSON della stessa query.</p>
+	<p><img class="alignnone size-full wp-image-6511 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" alt="output" width="500" height="116" /></p>
+	<p>Questi due formati quindi mostrano nei fatti, come una query REST su server ArcGIS sia un&#8217;ulteriore modalità di accesso al dato grezzo.</p>
+	<h2>Query spaziale</h2>
+	<p>E&#8217; possibile eseguire anche delle interrogazioni spaziali di complessità variabile. Ad esempio posso estrarre tutti i civici che ricadono tra queste coordinate <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=12.384356%2C+43.108511%2C12.388869%2C43.110765&amp;geometryType=esriGeometryEnvelope&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=html" rel="nofollow"  target="_blank">12.384356,43.108511,12.388869,43.110765</a> (&lt;xmin&gt;,&lt;ymin&gt;,&lt;xmax&gt;,&lt;ymax&gt;).</p>
+	<p><img class="alignnone size-full wp-image-6542 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" alt="spatial_query" width="496" height="118" /></p>
+	<p>Posso farne il download con GDAL/OGR (vedi sotto) e ottenere rapidamente i dati in formato spaziale e al contempo visualizzarne rapidamente una loro rappresentazione.</p>
+	<p><img class="alignnone size-full wp-image-6543 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" alt="spatial_query_map" width="500" height="394" /></p>
+	<h2 id="accesso-tramite-gdal/ogr-a-una-query">Accesso tramite GDAL/OGR a una query</h2>
+	<p>La libreria <strong>GDAL/OGR</strong> ha i driver di accesso in lettura e scrittura al <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.gdal.org%2Fdrv_geojson.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEYFJK4I_iIh-CbRFHchaL-132kJg" rel="nofollow"  target="_blank">formato GeoJSON</a>. Uno degli output delle query di sopra è proprio JSON e questa libreria lo riesce a leggere nativamente proprio come GeoJSON.</p>
+	<p>L&#8217;ultima query si effettua chiamando <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson" rel="nofollow"  target="_blank">questo lungo URL</a>:</p>
+	<pre>http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;<strong>where</strong>=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;<strong>f</strong>=pjson</pre>
+	<p>Nell&#8217;indirizzo di sopra sono visibili tutti i parametri disponibili per effettuare un’interrogazione, ma sopra abbiamo valorizzato soltanto la stringa di testo da ricercare in un determinato campo (parametro &#8220;where&#8221;) e il formato di output (parametro &#8220;f&#8221;). Questo URL fa da <em>source</em> per GDAL/OGR. Se voglio avere tutte le <strong>informazioni</strong> su questa sorgente di dati vettoriali userò il classico ogrinfo:</p>
+	<pre>ogrinfo -ro &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>&#8220;OGRGeoJSON&#8221; è per GDAL/OGR il nome predefinito del layer di una sorgente GeoJSON. &#8220;-ro&#8221; perché imposto l’accesso in sola lettura.</p>
+	<p>Se voglio <strong>convertire</strong> in ArcView Shapefile l&#8217;output di questa query userò ogr2ogr:</p>
+	<pre>ogr2ogr CORPOSANO.shp &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>Come esempio, riporto qui il <a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/CORPOSANO.zip" target="_blank"><strong>download</strong></a> fatto con GDAL/OGR nei formati ArcView Shapefile, GeoJSON e KML.</p>
+	<h2 id="web-mapping-a-partire-da-query">Web mapping a partire da query</h2>
+	<p>Queste query possono essere visualizzate in maniera molto efficace anche in un&#8217;interfaccia di <em>web mapping</em>. Sia a partire dal salvataggio dell&#8217;output, che tramite chiamata diretta in <em>realtime</em>. La cosa è inoltre resa semplice da una bella libreria rilasciata in <em>open source</em> da ESRI e basata su <strong>Leaflet</strong>: <a href="http://www.google.com/url?q=http%3A%2F%2Fesri.github.io%2Fesri-leaflet&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFHs50dsXaxLd9Jq6RYR_VlXnnM2A" rel="nofollow"  target="_blank">http://esri.github.io/esri-leaflet</a>.</p>
+	<p>La query di sopra (quella sulla stringa &#8220;CORPOSANO&#8221;) ad esempio si può rappresentare rapidamente come sotto (click <strong><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" rel="nofollow"  target="_blank">qui</a></strong> per aprire a <strong>schermo intero</strong>).</p>
+	<p><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" rel="nofollow"  target="_blank"><img class="alignnone size-full wp-image-6510 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" alt="leaflet" width="500" height="378" border="0" /></a></p>
+	<p>Il codice lo trovate qui: <a href="https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Ftanto%2Farcgisqueryrest%2Fblob%2Fgh-pages%2Findex.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG4onJJ1-fhQ16rPu3V_R3aFE0ofw" rel="nofollow"  target="_blank">https://github.com/tanto/arcgisqueryrest/blob/gh-pages/index.html</a></p>
+	<h2 id="alcune-note-in-conclusione">Alcune note in conclusione</h2>
+	<p>Sono rimasto molto in superficie, ma l&#8217;intento è quello di mostrare un punto di ingresso poco noto e utile, visto il sempre maggior numero di dati spaziali oggi disponibili e aperti. Di default l&#8217;<em>output</em> di queste _query _è limitato a 1000 risultati, quindi è necessario &#8220;ciclare&#8221; le chiamate. Ad esempio per ID a gruppi di 1000 record:</p>
+	<ul id="draft_check_box_list_0">
+	<li>inizio con la condizione <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DOBJECTID%253E%253D1%2Band%2B%2BOBJECTID%253C%253D1000%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNESchVZwiY-eDtZyqQ-tWo3yZyDuw" rel="nofollow"  target="_blank">OBJECTID&gt;=1 and OBJECTID&lt;=1000</a>;</li>
+	<li>poi OBJECTID&gt;=1001 and OBJECTID&lt;=2000;</li>
+	<li>e così via &#8230;</li>
+	</ul>
+	<p>Il totale (190140 record), da conoscere prima di fare partire il ciclo, si ricava ad esempio con <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3D1%253D1%26time%26returnCountOnly%3Dtrue%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGXetugfKd8MZId4F4iV-3NJOsWhg" rel="nofollow"  target="_blank">questa query</a>. Ci sono altri modi per ciclare tra i record, questo è solo un esempio.</p>
+	<p>L&#8217;accesso REST è molto utile anche con sorgenti di tipo <em>raster</em>, ma magari lo scrive qualcun altro, in un altro post <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  .</p>
+	<p>L&#8217;URL con struttura &#8220;http://&lt;host&gt;:/arcgis/rest/services&#8221; è quello di <em>default</em>. Chi gestisce il server potrebbe usare uno schema diverso.</p>
+	<p>Questo post è dedicato al giovane Padawan &#8220;<strong><a href="https://plus.google.com/u/0/114313445728286224740/posts" rel="nofollow"  target="_blank">Flavio</a></strong>&#8220;, che mi ha fatto scoprire <a href="https://www.google.com/url?q=https%3A%2F%2Fhub.qgis.org%2Fwiki%2F17%2FArcgis_rest&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEmBzX8cx7Y0rkxiZXreebrdHQWVw" rel="nofollow"  target="_blank">questa pagina</a> e ha dato la stura alla stesura di questo testo.</p>
+	<p>Non mi <strong>REST</strong>a che augurarvi un <strong>buon 2015</strong>!
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/">Take the best, use the REST</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" medium="image">
+			<media:title type="html">sicilia_rest</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" medium="image">
+			<media:title type="html">url_umbria</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" medium="image">
+			<media:title type="html">query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" medium="image">
+			<media:title type="html">attributi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" medium="image">
+			<media:title type="html">output</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output-150x116.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" medium="image">
+			<media:title type="html">spatial_query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query-150x118.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" medium="image">
+			<media:title type="html">spatial_query_map</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" medium="image">
+			<media:title type="html">leaflet</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>QGIS, relazioni, moduli e widget, illustrati con un semplice caso d&#8217;uso</title>
+		<link>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/</link>
+		<comments>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/#comments</comments>
+		<pubDate>Mon, 28 Apr 2014 06:23:31 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[moduli]]></category>
+		<category><![CDATA[qgis]]></category>
+		<category><![CDATA[relazioni]]></category>
+		<category><![CDATA[widget]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6277</guid>
+		<description><![CDATA[Le relazioni in QGIS consentono di sviluppare dei casi d’uso applicativi molto interessanti; una delle ragioni del post è quella di contribuire alla diffusione della conoscenza del tema.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS%2C+relazioni%2C+moduli+e+widget%2C+illustrati+con+un+semplice+caso+d%26%238217%3Buso&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-04-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Le <strong>relazioni </strong>in <strong>QGIS </strong>consentono di sviluppare dei casi d’uso applicativi molto interessanti; una delle ragioni del post è quella di contribuire alla diffusione della conoscenza del tema.</p>
+	<h2>Il caso d’uso: le strade e la loro manutenzione</h2>
+	<p>Immaginate di essere i gestori del network della rete stradale della vostra città e di volere utilizzare QGIS (insieme ad altri strumenti) per farlo. Avete quindi un layer cartografico con tutte le strade (e i relativi attributi) e la necessità di associare a questo il dataset delle manutenzioni che vengono realizzate nei vari componenti della rete.</p>
+	<p>A seguire vedremo come gestire la cosa con QGIS, le relazioni e con il comodo supporto delle <strong>maschere </strong>di input personalizzabili.</p>
+	<h2>Chiavi e relazione</h2>
+	<p>Per mettere in relazione il dataset delle manutenzioni con quello delle strade, potrete usare il meccanismo classico delle <strong>chiavi</strong>.</p>
+	<p>Il layer delle strade sarà caratterizzato da un campo con un codice identificativo numerico univoco per ogni strada &#8211; la <strong>chiave primaria</strong> - denominato nell’esempio di questo post “pkuid”.</p>
+	<p>Il database delle manutenzioni &#8211; che è una semplice tabella senza alcun attributo spaziale &#8211; è composto dai campi &#8220;PK_UID&#8221;, &#8220;data&#8221;, &#8220;responsabile&#8221;, &#8220;compagnia&#8221;, &#8220;note&#8221;; aggiungeremo un campo che contenga il codice identificativo della strada a cui la manutezione è riferita. Questo campo farà da <strong>chiave esterna</strong> e si chiamerà &#8220;ce_pkuid&#8221;.</p>
+	<p>Il nostro modello prevede, per semplicità, che ad ogni strada sia possibile associare una o più manutenzioni; una classica <strong>relazione </strong>1:N impostata sulle due chiavi numeriche di cui sopra.</p>
+	<h2>Layer</h2>
+	<p>Il layer delle strade ha la struttura sottostante, in cui sono stati introdotti dei campi per raccogliere il nome della Via, il relativo tipo (Corso, Viale, Via, ecc.) e il codice identificativo comunale.</p>
+	<p><img class="alignnone size-full wp-image-6280 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02.png" alt="image02" width="339" height="141" /></p>
+	<p>Quello delle manutenzioni conterrà un codice identificativo numerico univoco per ogni elemento, un campo in cui inserire la data dell’intervento di manutenzione, il nome del responsabile, il nome della compagnia incaricata e un campo per le note.</p>
+	<p><img class="alignnone size-full wp-image-6288 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10.png" alt="image10" width="425" height="201" /></p>
+	<h2>Definire la relazione</h2>
+	<p>La relazione tra i due dataset si definisce a livello di “<strong>Proprietà di progetto</strong>”. Aperto il tab <strong>Relations </strong>si farà click su “Add Relation” e si imposteranno i seguenti parametri:</p>
+	<ul>
+	<li><strong>Name</strong>, per dare un nome alla relazione;</li>
+	<li><strong>Referencing Layer (Child)</strong>,<strong> </strong>per il nome del layer che contiene la chiave esterna;</li>
+	<li><strong>Referencing Field</strong>,<strong> </strong>per il nome della chiave esterna;</li>
+	<li><strong>Referencing Layer (Parent)</strong>, per il nome del layer che contiene la chiave primaria;</li>
+	<li><strong>Referencing Field</strong>,<strong> </strong>per il nome della chiave primaria;</li>
+	<li><strong>Id</strong>, che viene usato internamente da QGIS, deve essere univoco e fa da indice della tabella di relazione tra chiave primaria e chiave esterna.</li>
+	</ul>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image00.png" alt="image00" width="500" height="288" /></p>
+	<p>A relazione definita, questa apparirà nella finestra di dialogo:</p>
+	<p><img class="alignnone size-full wp-image-6281 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03.png" alt="image03" width="500" height="243" /></p>
+	<h2>Moduli</h2>
+	<p>Una volta definita la relazione, se ne avrà evidenza anche nel <strong>modulo </strong>di inserimento/modifica degli attributi del dataset delle strade. La visualizzazione a moduli in QGIS è molto utile per alcuni task di verifica ed inserimento dei dati, ed è molto <a href="http://www.qgis.org/it/docs/training_manual/create_vector_data/forms.html" rel="nofollow"  target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">personalizzabile</span></span></a>.</p>
+	<p><img class="alignnone size-full wp-image-6283 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05.png" alt="image05" width="500" height="278" /></p>
+	<p>La tabella della manutenzioni sarà visibile in un <strong>widget </strong>del modulo dello strade, e sopra questa saranno visibili cinque <strong>pulsanti</strong>:</p>
+	<ol>
+	<li>la <strong>matita</strong>, per attivare la modifica della tabella delle manutenzioni;</li>
+	<li>il “<strong>+</strong>” per aggiungere un nuovo record alla tabella, che di default verrà associato all’elemento attivo del layer “strade”;</li>
+	<li>il tasto “<strong>x</strong>” per cancellare il record selezionato della tabella “manutenzioni”;</li>
+	<li>il tasto “<strong>catenella</strong>” che aprirà una nuova finestra di dialogo con il quale associare qualsiasi manutenzione presente alla strada corrente;</li>
+	<li>il tasto “<strong>rompi</strong> <strong>catenella</strong>” che rimuoverà l’associazione tra la manutenzione selezionata e la strada corrente;</li>
+	<li>ed infine, a destra, ci sono due pulsanti per passare dalla vista “tabella” a quella modulo.</li>
+	</ol>
+	<p>Anche per il dataset delle manutenzioni è possibile attivare il modulo di inserimento/modifica degli attributi, in modo che dia conto visivamente della relazione con il layer delle strade.</p>
+	<p>A partire dalle proprietà del layer manutenzioni, bisognerà modificare il widget del campo che fa da chiave esterna.</p>
+	<p><img class="alignnone size-full wp-image-6282 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04.png" alt="image04" width="500" height="244" /></p>
+	<p>E scegliere come tipo di widget “Relation Reference”, utilizzando i parametri visibili nella figura sottostante:</p>
+	<p><img class="alignnone size-full wp-image-6286 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08.png" alt="image08" width="500" height="433" /></p>
+	<p>Una volta scelto questo speciale widget, sarà possibile leggere la relazione tra i due layer anche nel modulo delle manutezioni:</p>
+	<p style="text-align: center;"><img src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image06.png" alt="image06" width="500" height="537" /></p>
+	<h2>Note finali (riferimenti, file esempio e video demo)</h2>
+	<p>Questo articolo è quasi una traduzione di <a href="http://blog.vitu.ch/10112013-1201/qgis-relations" rel="nofollow"  target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">questo</span></span></a> di Matthias Kuhn. Sono caduto nel suo bel blog, perché tra i tipi di widget accessibili nelle proprietà dei campi di un layer ho scoperto il tipo “Relation Reference”. A me era completamente ignoto; ho provato a cercare nella <a href="http://www.qgis.org/en/docs/user_manual/working_with_vector/vector_properties.html#fields-menu" rel="nofollow"  target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">documentazione</span></span></a>, senza però trovarne traccia. Il post di Matthias mi è sembrata una piccola perla e ho creduto utile clonarlo.</p>
+	<p>Da <a href="http://blog.spaziogis.it/wp-content/uploads//2014/04/qgis_e_le_relazioni.zip"><span style="color: #1155cc;"><span>qui</span></span></a> potrete scaricare un <strong>file di progetto</strong> d’esempio basato su QGIS 2.2 e come formato dati su SpatiaLite. Questo ultimo farà da contenitore unico sia del file spaziale (le strade), che della tabella delle manutenzioni.</p>
+	<p>Nel progetto, per i due moduli, ho impostato altri widget diversi da quello di default (“Line edit”); alcuni sono di grande comodità come quello per il campo “data” delle manutenzioni (widget di tipo “Calendar”), o l’elenco controllato del campo “Tipo” (widget di tipo “Value map”) del layer delle strade.</p>
+	<p><img class="alignnone size-full wp-image-6294 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011.png" alt="image01" width="497" height="243" /></p>
+	<p>Per chi vuole vedere la cosa in azione ho preparato un <a href="https://www.youtube.com/watch?v=KzLL0npcUN4&amp;feature=youtu.be&amp;hd=1" rel="nofollow"  target="_blank"><span style="color: #1155cc;"><span><strong>piccolo video</strong></span></span></a>, che non ha alcuna pretesa didattica. Vuole essere soltanto una carrelata visuale rapida di alcune delle cose descritte in questo post.</p>
+	<p><a href="https://www.youtube.com/watch?v=KzLL0npcUN4&amp;feature=youtu.be&amp;hd=1" rel="nofollow"  target="_blank"><img class="alignnone size-full wp-image-6285 aligncenter" style="border: 0px;" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07.png" alt="image07" width="500" height="305" /></a></p>
+	<p>Un’ultima annotazione finale: il <strong>caso d’uso</strong> descritto è <strong>molto semplificato</strong> e non tiene conto di tutte i requisiti di un’applicazione complessa come la gestione di un network stradale. Mi è stato utile come esempio per scrivere di QGIS, relazioni, moduli e widget.</p>
+	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: <strong>Salvatore Fiandaca</strong>, prendendo spunto da questo post, ne ha creato una sorta di versione aggiornata che trovate <strong><a href="https://pigrecoinfinito.wordpress.com/2016/01/02/qgis-relazioni-moduli-widget-e-report/" rel="nofollow"  target="_blank">qui</a></strong>. Ringraziamo Totò e consigliamo la lettura <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/">QGIS, relazioni, moduli e widget, illustrati con un semplice caso d&#8217;uso</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/feed/</wfw:commentRss>
+		<slash:comments>20</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS%2C+relazioni%2C+moduli+e+widget%2C+illustrati+con+un+semplice+caso+d%26%238217%3Buso&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-04-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02-150x141.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02.png" medium="image">
+			<media:title type="html">image02</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02-150x141.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10.png" medium="image">
+			<media:title type="html">image10</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image00.png" medium="image">
+			<media:title type="html">image00</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03.png" medium="image">
+			<media:title type="html">image03</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05.png" medium="image">
+			<media:title type="html">image05</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04.png" medium="image">
+			<media:title type="html">image04</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08.png" medium="image">
+			<media:title type="html">image08</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image06.png" medium="image">
+			<media:title type="html">image06</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011.png" medium="image">
+			<media:title type="html">image01</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07.png" medium="image">
+			<media:title type="html">image07</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</title>
+		<link>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/</link>
+		<comments>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/#comments</comments>
+		<pubDate>Thu, 03 Oct 2013 05:53:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[open source]]></category>
+		<category><![CDATA[spatialite]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[sqlite]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5837</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+MySQL è uno dei più diffusi database server, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di default). Mi stupisce però che le funzioni per testare le relazioni spaziali tra oggetti siano limitate. Mi spiego con un esempio classico: selezionare tutti i punti di un layer che cadono all&#8217;interno del perimetro di un poligono [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>MySQL</strong> è uno dei più diffusi <em>database server</em>, e non deve stupire che abbia un&#8217;estensione spaziale (peraltro attiva di <em>default</em>). Mi stupisce però che le funzioni per testare le<strong> relazioni spaziali</strong> tra oggetti siano limitate.</p>
+	<p>Mi spiego con un esempio classico: selezionare tutti i punti di un <em>layer</em> che cadono all&#8217;interno del perimetro di un poligono presente in un altro <em>layer</em>. E&#8217; un&#8217;operazione tipica dei GIS, e presente in tutti database con estensione spaziale.</p>
+	<p>In MySQL basta lanciare una <em>query </em>spaziale<em> </em>di questo tipo:</p>
+	<pre class="brush: css; ">
+SELECT * FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1
+</pre>
+	<p>Purtroppo però l&#8217;<em>output</em> non è costituito da tutti i punti contenuti nel perimetro di mio interesse, ma da tutti quelli contenuti nel rettangolo che lo include. Quest&#8217;ultimo è il classico <strong><em>Bounding</em> <em>Box</em></strong>, o come si definisce in ambiente MySQL<em> Minimal Bounding Rectangles </em>(MBR)<span style="color: #000000;">.</span> Nel manuale online è riportato:</p>
+	<blockquote><p>The OpenGIS specification defines the following functions. They test the relationship between two geometry values g1 and g2.</p></blockquote>
+	<p>Questo dovrebbe garantire che l&#8217;output della funzione <em>Contains() </em>sia relativo al perimetro dell&#8217;oggetto &#8220;target&#8221;, ma poco più avanti si legge:</p>
+	<blockquote><p>Currently, <strong>MySQL does not implement these functions according to the specification</strong>. Those that are implemented return the same result as the corresponding MBR-based functions.</p></blockquote>
+	<p>Immagino che i <em>GeoSpatial Developers </em>abbiano diverse frecce al loro arco per superare questo problema, così come ne esisteranno diverse lato utente. Una potrebbe essere quella di non usare questo <em>database server</em> e fare tutto con <em>PostGIS</em>, <em>Oracle Spatial, Spatialite</em>, ecc., ma è troppo facile e non sempre si può scegliere.</p>
+	<p>Io ho pensato a <strong>GDAL/OGR</strong> ed alle sue <a href="http://www.gdal.org/ogr_utilities.html" rel="nofollow" title="OGR Utility Programs"  target="_blank">utility</a> per oggetti vettoriali, ed alla possibilità (che esiste dalla versione 1.10 della libreria) di usare il <a href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" rel="nofollow" title="SQLite SQL dialect"  target="_blank">dialetto </a><strong><a href="http://www.gdal.org/ogr/ogr_sql_sqlite.html" rel="nofollow" title="SQLite SQL dialect"  target="_blank">SQLite/Spatialite</a></strong>. Questo dialetto estende di molto quello che queste utility fanno (egregiamente) di default, ovvero eseguire delle <em>query</em> sql all&#8217;interno di un comando; ad esempio:</p>
+	<pre>ogrinfo province.shp province -sql &quot;SELECT nome FROM province WHERE ID_PRO = 2&quot;</pre>
+	<p>Con il dialetto SQLite/Spatialite ho a disposizione anche le <a href="http://www.gaia-gis.it/gaia-sins/spatialite-sql-4.0.0.html#p12" rel="nofollow" title="SQL functions that test spatial relationships"  target="_blank">funzioni</a> per verificare relazioni spaziali tra oggetti, anche per quelle basi dati che non prevedono intrinsecamente la possibilità di farlo, proprio come MySQL <em>spatial</em>.</p>
+	<p>Andando nel concreto dovrei scrivere una cosa di questo tipo:</p>
+	<pre>ogrinfo MYSQL:&quot;mydb,user=myuse,password=mypwd,port=3306&quot; -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>La sorpresa è che, nonostante si dichiari nella stringa il &#8220;dialetto&#8221; <em>sqlite</em>, si ottiene sempre come output quello relativo ai punti contenuti nel <em>bounding box</em> del perimetro di interesse. E&#8217; un baco? Nella <a href="http://www.gdal.org/ogr/ogr_sql.html" rel="nofollow"  target="_blank">documentazione</a> di OGR si legge:</p>
+	<blockquote><p><strong>All OGR drivers for database systems</strong>: MySQL, PostgreSQL and PostGIS (PG), Oracle (OCI), SQLite, ODBC, ESRI Personal Geodatabase (PGeo) and MS SQL Spatial (MSSQLSpatial), <strong>override the OGRDataSource::ExecuteSQL() function</strong> with dedicated implementation and, by default, pass the SQL statements directly to the underlying RDBMS. In these cases the SQL syntax varies in some particulars from OGR SQL. Also, anything possible in SQL can then be accomplished for these particular databases. Only the result of SQL WHERE statements will be returned as layers.</p></blockquote>
+	<p>Ma si legge anche:</p>
+	<blockquote><p><strong>The SQLite dialect may be used with any OGR datasource</strong>, like the OGR SQL dialect. It is available through the OGRDataSource::ExecuteSQL() method by specifying the pszDialect to &#8220;SQLITE&#8221;. For the ogrinfo or ogr2ogr utility, you must specify the &#8220;-dialect SQLITE&#8221; option.</p></blockquote>
+	<p>La soluzione l&#8217;ho trovata in un test stupido che ho voluto fare: accedere alla fonte MySQL non direttamente, ma tramite il <a href="http://www.gdal.org/ogr/drv_vrt.html" rel="nofollow"  target="_blank"><strong>Virtual Format</strong></a> di OGR, che in qualche modo astrae l&#8217;accesso al formato di input.</p>
+	<p>A partire quindi da una fonte MySQL costruita secondo le specifiche del Virtual Format e salvata come &#8220;test.vrt&#8221;:</p>
+	<pre class="brush: xml; ">
+&lt;ogrvrtdatasource&gt;
+&lt;ogrvrtlayer name=&quot;poligoni&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;poligoni&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPolygon&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;ogrvrtlayer name=&quot;punti&quot;&gt;
+&lt;srcdatasource&gt;MYSQL:mydb,user=myuser,
+password=mypwd,port=3306,host=127.0.0.1
+&lt;/srcdatasource&gt;
+&lt;srclayer&gt;punti&lt;/srclayer&gt;
+&lt;geometrytype&gt;wkbPoint&lt;/geometrytype&gt;
+&lt;layersrs&gt;epsg:4326&lt;/layersrs&gt;
+&lt;/ogrvrtlayer&gt;
+&lt;/ogrvrtdatasource&gt;
+</pre>
+	<p>Posso ad esempio lanciare:</p>
+	<pre>ogrinfo test.vrt -dialect sqlite -sql &quot;SELECT *FROM poligoni as g1, punti as g2 WHERE Contains(g1.geometry,g2.geometry) = 1&quot;</pre>
+	<p>Il risultato ottenuto sarà così quello desiderato e l&#8217;output corrisponderà a tutti i punti che ricadono nel perimetro di interesse. Nell&#8217;immagine di sotto, ho raccontato il tutto in modo visuale.</p>
+	<p>Concludo sottolineando  quanto siano interessanti, utili, belle e di al<span style="color: #ff0000;"><span style="color: #000000;">t</span></span>o livello professionale alcune delle dinamiche delle <strong>comunità <em>open source</em></strong>. Ho <a href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-td5080909.html" rel="nofollow" title="GDAL - Dev mailing list"  target="_blank">segnalato</a> quello che a me sembrava un baco alla lista GDAL &#8211; DEV. Non solo ho ottenuto subito delle risposte che mi hanno consentito di capirne molto di più, ma si sono messi già al lavoro sia in termini di codice che di documentazione. Un semplice &#8220;grazie&#8221; sembra veramente poco.</p>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" alt="sqlite dialect vs MySQL source" width="496" height="514" /></p>
+	<p>Questo post è dedicato a <strong>Flaviano</strong>, un mio amico che grazie anche ad alcuni <em>tips &amp; tricks</em> su GDAL/OGR ha trovato un bel posto di lavoro in Qatar <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p><div class="note"><div class="noteclassic"></p>
+	<p><strong>NDR</strong>: Jukka Rahkonen, uno sviluppatore di GDAL/OGR, mi fa <a href="http://osgeo-org.1560.x6.nabble.com/sqlite-dialect-and-MySQL-spatial-input-tp5080909p5081551.html" rel="nofollow"  target="_blank">notare</a> che dalla release in trunk r26506 di GDAL e a partire dalle future release stabili ufficiali, non sarà necessario creare alcun file virtuale. Si potrà accedere direttamente alla sorgente MySQL e impostare la proprietà &#8220;-dialect&#8221; al valore &#8220;SQLITE&#8221;.</p>
+	<p></div></div>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/">Laddove non può MySQL spatial, arriva la coppia GDAL &#8211; Spatialite</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Laddove+non+pu%C3%B2+MySQL+spatial%2C+arriva+la+coppia+GDAL+%26%238211%3B+Spatialite&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-10-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/10/03/laddove-non-puo-mysql-spatial-arriva-la-coppia-gdal-spatialite/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/10/sqlite-dialect-vs-MySQL-source.gif" medium="image">
+			<media:title type="html">sqlite dialect vs MySQL source</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Quanto è bello parlare di didattica, condivisione, esperienza e voglia di apprendere</title>
+		<link>http://blog.spaziogis.it/2013/09/25/quanto-e-bello-parlare-di-didattica-condivisione-esperienza-e-voglia-di-apprendere/</link>
+		<comments>http://blog.spaziogis.it/2013/09/25/quanto-e-bello-parlare-di-didattica-condivisione-esperienza-e-voglia-di-apprendere/#comments</comments>
+		<pubDate>Wed, 25 Sep 2013 06:00:16 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[GRP]]></category>
+		<category><![CDATA[hangout]]></category>
+		<category><![CDATA[mooc]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5830</guid>
+		<description><![CDATA[In questo post il link alla registrazione dell'hangout in cui abbiamo parlato del primo corso del Coursera dedicato alle mappe e alla cartografia. Giuseppe Borruso, Fabio Malfatti, Lucio Beltrami e Gianluca Calabretta ci raccontano la loro esperienza.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quanto+%C3%A8+bello+parlare+di+didattica%2C+condivisione%2C+esperienza+e+voglia+di+apprendere&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-09-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/09/25/quanto-e-bello-parlare-di-didattica-condivisione-esperienza-e-voglia-di-apprendere/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ieri io, <a href="http://www.linkedin.com/pub/giuseppe-borruso/15/62a/7b" rel="nofollow" >Giuseppe Borruso</a>, <a href="http://www.fabiomalfatti.it/index.php" rel="nofollow" >Fabio Malfatti</a>, <a href="https://twitter.com/zioluc" rel="nofollow" >Lucio Beltrami</a> e <a href="http://www.linkedin.com/pub/gianluca-calabretta/14/b40/19a" rel="nofollow" >Gianluca Calabretta</a> abbiamo fatto e  registrato l’<em>hangout</em> sul corso del <strong>Coursera </strong>dedicato alle mappe: “<strong>Maps and the Geospatial Revolution</strong>“.</p>
+	<p>E’ stata per me &#8211; che facevo purtroppo soltanto il bravo presentatore &#8211; un’esperienza entusiasmante. I “fantastici 4” di cui sopra sono riusciti a descrivere la loro esperienza di didattica in un <strong>MOOC</strong> (<em>massive open online course</em>) in modo interessante e molto variegato. La buona riuscita si deve a tre aspetti principali:</p>
+	<ul>
+	<li>la <strong>passione </strong> (in questo caso per la geomatica)</li>
+	<li>le <strong>storie</strong> professionali profondamente diverse di ognuno dei quattro</li>
+	<li>la prorompente bella <strong>umanità</strong> dei protagonisti</li>
+	</ul>
+	<p style="text-align: center;"><a href="http://bit.ly/geomooc" rel="nofollow" title="Hangout su corso del Coursera - Maps and the Geospatial Revolution"  target="_blank"><img class="alignnone size-full wp-image-5831 aligncenter" style="border: 0px; margin-top: 2px; margin-bottom: 2px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/09/hangout_mooc_geospatial.jpg" alt="hangout_mooc_geospatial" width="464" height="284" /></a></p>
+	<p>E’ un video un po’ lungo (poco più di un’ora), ma è un crescendo che è una delle migliore testimonianze che io abbia visto su questo tipo di corsi <em>online</em> (lo so, il mio giudizio in questo caso vale poco). Averli ascoltati prima, ed avendo avuto in testa alcune delle loro parole dopo, mi è venuta una gran voglia di mettermi in gioco, di imparare, di condividere quanto appreso e di passare questo entusiasmo a qualcun altro.</p>
+	<p>Sembra sia stato un corso veramente ben pensato, e questo ovviamente è in qualche modo propedeutico. Ma le modalità di fruizione, l’interazione “massiva” con gli altri utenti da tutto il mondo, i criteri di valutazione e i tempi di fruizione sono altri aspetti importanti che rendono questo tipo di didattica molto soddisfacente.</p>
+	<p>Per preparare bene l’intervista è stata creata una piccola rassegna stampa, resa disponibile a tutti i partecipanti. Fornisce altri spunti di riflessione e dati sulla valutazione dei MOOC (non soltanto di natura geomatica). La trovate <a href="http://bitly.com/bundles/aborruso/p" rel="nofollow" >qui</a>.</p>
+	<p>Oggi un amico &#8211; che l’ha visto in diretta &#8211; mi ha scritto che questo hangout “poteva tranquillamente essere preso per un servizio RAI (Storia)”. E’un giudizio molto di parte, ma più passano le ore, più sento di avere contribuito a creare qualcosa d&#8217;importante e non soltanto per questo settore.</p>
+	<p>In ultimo, un grosso grazie ai “fantastici 4”, ed al loro essere persone. E’ la cosa che personalmente mi ha arricchito di più.</p>
+	<p>Buona <a href="http://bit.ly/geomooc" rel="nofollow"  target="_blank">visione</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/09/25/quanto-e-bello-parlare-di-didattica-condivisione-esperienza-e-voglia-di-apprendere/">Quanto è bello parlare di didattica, condivisione, esperienza e voglia di apprendere</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/09/25/quanto-e-bello-parlare-di-didattica-condivisione-esperienza-e-voglia-di-apprendere/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Quanto+%C3%A8+bello+parlare+di+didattica%2C+condivisione%2C+esperienza+e+voglia+di+apprendere&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-09-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/09/25/quanto-e-bello-parlare-di-didattica-condivisione-esperienza-e-voglia-di-apprendere/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/09/hangout_mooc_geospatial-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/09/hangout_mooc_geospatial.jpg" medium="image">
+			<media:title type="html">hangout_mooc_geospatial</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/09/hangout_mooc_geospatial-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Parliamo del primo MOOC su mappe e cartografia?</title>
+		<link>http://blog.spaziogis.it/2013/09/16/parliamo-del-primo-mooc-su-mappe-e-cartografia/</link>
+		<comments>http://blog.spaziogis.it/2013/09/16/parliamo-del-primo-mooc-su-mappe-e-cartografia/#comments</comments>
+		<pubDate>Mon, 16 Sep 2013 09:12:37 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[corsi]]></category>
+		<category><![CDATA[GRP]]></category>
+		<category><![CDATA[mooc]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5795</guid>
+		<description><![CDATA[Lunedì 23 settembre alle 21:00 faremo un hangout con Giuseppe Borruso, Fabio Malfatti e Lucio Beltrami, che racconteranno la loro esperienza del primo corso su Coursera dedicato alle mappe: “Maps and the Geospatial Revolution“. Sarà trasmesso sulla comunity GEO+ http://goo.gl/JTpfb]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parliamo+del+primo+MOOC+su+mappe+e+cartografia%3F&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-09-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/09/16/parliamo-del-primo-mooc-su-mappe-e-cartografia/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In un <a href="http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/">post di luglio</a> avevo scritto del primo corso su <strong>Coursera</strong> dedicato alle mappe: “<a href="https://www.coursera.org/course/maps" rel="nofollow" title="Maps and the Geospatial Revolution"  target="_blank"><strong>Maps and the Geospatial Revolution</strong></a>“. Ma cosa dico corso, questo è un <strong>MOOC</strong>, un <em>Massive Open Online Course</em>.</p>
+	<p>Avrei voluto partecipare e prendermi il &#8220;pezzo di carta&#8221;, ma non ci sono riuscito. Dai commenti al post, e da altri segnali, ho capito di essere riuscito a stimolare l&#8217;interesse di altri. In particolare mi sono caduti sotto gli occhi <a href="https://www.facebook.com/gborruso/posts/10201809543070145" rel="nofollow"  target="_blank">questo</a> lungo pezzo di <strong>Giuseppe</strong>, <a href="http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/comment-page-1/#comment-8490" target="_blank">questo</a> commento di <strong>Fabio</strong> ed il tweet di sotto di <strong>Lucio</strong>.</p>
+	<blockquote class="twitter-tweet"><p><a href="https://twitter.com/MapRevolution" rel="nofollow" >@MapRevolution</a> class has been great, looking forward to other similar experiences. Have fun &amp; beer in Germany</p>
+	<p>— Lucio (@zioluc) <a href="https://twitter.com/zioluc/statuses/371918443387158528" rel="nofollow" >August 26, 2013</a></p></blockquote>
+	<p>Ho pensato allora di scrivergli, e proporgli di fare una piccola <strong>tavola rotonda online</strong>, in cui racconteranno la loro esperienza e si confronteranno su questa. Mi hanno risposto da subito in modo positivo e <strong>lunedì 23 settembre</strong> alle <strong>21:00</strong> faremo un <em>hangout </em>in realtime, che verrà ospitato su <a href="https://plus.google.com/u/0/communities/100473976195153342745" rel="nofollow"  target="_blank"><strong>GEO+</strong></a>, la bella comunità sulla geomatica che si sta sviluppando in modo molto interessante su Google+ (ma questo è un altro post <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> ).</p>
+	<p>Sarà qualcosa di molto informale, che nasce da questi belli e inaspettati &#8220;effetto domino&#8221; che nascono facilmente in rete. Giuseppe, Fabio e Lucio, il &#8220;pezzo di carta&#8221; se lo sono presi, ma la cosa per me più interessante è avere constatato come tre persone diverse per formazione, professione e interessi siano &#8220;caduti&#8221; dentro lo stesso corso. Questo avviene in tutte le aule (virtuali e non),  ed a maggior forza in MOOC, ma i tre punti di vista differenti saranno un bel valore aggiunto per la narrazione dell&#8217;esperienza.</p>
+	<p>Ma chi sono Giuseppe, Fabio e Lucio?</p>
+	<table>
+	<tbody>
+	<tr>
+	<td><a href="http://blog.spaziogis.it/wp-content/uploads//2013/09/Fabio-Malfatti_s.jpg"><img class="alignleft" style="border: 1px solid black; margin: 2px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/09/Giuseppe-Borruso_s.jpg" alt="Giuseppe Borruso_s" width="60" height="60" /></a><a href="http://www.linkedin.com/pub/giuseppe-borruso/15/62a/7b" rel="nofollow"  target="_blank"><strong>Giuseppe Borruso</strong></a>, ricercatore universitario in Geografia Economica appassionato di Scienza dell&#8217;Informazione Geografica, co-fondatore di Geog-An-Mod (Geographical Analysis, Urban Modeling, Spatial Statistics). Appasionato di Mountain Bike, Nuoto e Sax.</td>
+	</tr>
+	<tr>
+	<td><a href="http://blog.spaziogis.it/wp-content/uploads//2013/09/Fabio-Malfatti_s.jpg"><img class="size-full wp-image-5800 alignleft" style="border: 1px solid black; margin: 2px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/09/Fabio-Malfatti_s.jpg" alt="Fabio Malfatti_s" width="60" height="60" /></a><a href="http://www.fabiomalfatti.it/index.php" rel="nofollow"  target="_blank"><strong>Fabio Malfatti</strong></a>, etnoantropologo specializzato in storia orale, saperi tradizionali e gestione sostenibile del territorio. Geografia e mappe sono una passione e uno strumento di ricerca. Speleologo e alpinista.</td>
+	</tr>
+	<tr>
+	<td><a href="http://blog.spaziogis.it/wp-content/uploads//2013/09/Lucio-Beltrami_s.jpg"><img class="size-full wp-image-5802 alignleft" style="border: 1px solid black; margin: 2px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/09/Lucio-Beltrami_s.jpg" alt="Lucio Beltrami_s" width="60" height="60" /></a><a href="https://twitter.com/zioluc" rel="nofollow"  target="_blank"><strong>Lucio Beltrami</strong></a>, laurea in architettura, gestore di dati per Seat Pagine Gialle a Torino. Interessi: Cartography, Camera, Cinema, Comics, (urban) Cycling.</td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Sarà l&#8217;occasione anche per testare una modalità di comunicazione, che speriamo possa dare la stura ad atri incontri di questo tipo. Sarebbe bello infatti replicare tanti <a href="http://spatiallyadjusted.com/category/hangouts/" rel="nofollow"  target="_blank">James Fee</a>, e fare i <strong>geohangout </strong>anche in Italia.<br />
+Sarà in <em>real-time</em> e sarà possibile anche ricevere domande e commenti. L&#8217;orario forse non è dei migliori, ma era l&#8217;unico che mettesse d&#8217;accordo gli studenti del corso. In ogni caso verrà tutto registrato e sarà visibile successivamente in qualsiasi momento.</p>
+	<p>Ci &#8220;vediamo&#8221; allora il 23!</p>
+	<p><div class="note"><div class="noteclassic"></p>
+	<p><strong>NDR</strong>: si è aggiunto in corsa un altro &#8220;studente&#8221; del corso,  che si è preso ‘il pezzo di carta’ <strong>with distiction</strong>. E&#8217; Gianluca Calabretta e sotto trovate la sua <em>short-bio</em>.<strong><br />
+</strong></p>
+	<p></div></div></p>
+	<p><img class="size-full wp-image-5826 alignleft" style="border: 1px solid black; margin: 2px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/09/gianluca_calabretta.jpg" alt="gianluca_calabretta" width="60" height="60" /></p>
+	<p><a href="http://www.linkedin.com/pub/gianluca-calabretta/14/b40/19a" rel="nofollow"  target="_blank"><strong>Gianluca Calabretta</strong></a>: ingegnere ambientale alla ricerca della mappa perfetta. Attualmente si aggira circospetto tra enti pubblici, ed istituti di ricerca. Triste caso di avvelenamento neonatale da cartografia. Segue con disincanto tecnologia e fumetti. Fuori orario e&#8217; possibile che lo vediate correre.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/09/16/parliamo-del-primo-mooc-su-mappe-e-cartografia/">Parliamo del primo MOOC su mappe e cartografia?</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/09/16/parliamo-del-primo-mooc-su-mappe-e-cartografia/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parliamo+del+primo+MOOC+su+mappe+e+cartografia%3F&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-09-16&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/09/16/parliamo-del-primo-mooc-su-mappe-e-cartografia/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/09/Giuseppe-Borruso_s.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/09/Giuseppe-Borruso_s.jpg" medium="image">
+			<media:title type="html">Giuseppe Borruso_s</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/09/Fabio-Malfatti_s.jpg" medium="image">
+			<media:title type="html">Fabio Malfatti_s</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/09/Lucio-Beltrami_s.jpg" medium="image">
+			<media:title type="html">Lucio Beltrami_s</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/09/gianluca_calabretta.jpg" medium="image">
+			<media:title type="html">gianluca_calabretta</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Le &#8220;Mappe e la Rivoluzione Geospaziale&#8221;: mi sento di nuovo un ventenne</title>
+		<link>http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/</link>
+		<comments>http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/#comments</comments>
+		<pubDate>Wed, 17 Jul 2013 11:47:18 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[corso]]></category>
+		<category><![CDATA[GRP]]></category>
+		<category><![CDATA[mappe]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5763</guid>
+		<description><![CDATA[Un corso su Mappe e Rivoluzione Geospaziale su Coursera a cura della Penn State University.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+%26%238220%3BMappe+e+la+Rivoluzione+Geospaziale%26%238221%3B%3A+mi+sento+di+nuovo+un+ventenne&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-07-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Poco più di due anni fa pubblicammo il primo post che introduceva il <strong><a href="http://blog.spaziogis.it/geospatial-revolution-project/"title="Geospatial Revolution Project"  target="_blank">Geospatial Revolution Project</a></strong>,  un ambizioso progetto della <strong>Penn State University</strong> nato con l’obiettivo di ampliare la conoscenza sulla storia, le applicazioni, le questioni legate alla privacy ed alla giurisprudenza e il futuro potenziale delle tecnologie spaziali. Ne nacque una delle esperienze più belle fatte come TANTO, la traduzione in Italiano dei sottotitoli dei 4 episodi, in collaborazione con Penn State University.</p>
+	<p>Oggi parte il primo corso su <strong>Coursera </strong>dedicato alle mappe, dal titolo &#8220;<a href="https://www.coursera.org/course/maps" rel="nofollow" title="Maps and the Geospatial Revolution"  target="_blank"><strong>Maps and the Geospatial Revolution</strong></a>&#8220;, il cui docente - Anthony C. Robinson - è (guarda caso) della stessa università.</p>
+	<p>&#8220;Coursera&#8221; non credo abbia bisogno di presentazioni, è una di quelle cose che capita di citare quando si vuole evidenziare il bello del web. E&#8217;  una società di formazione in partnership con le migliori università e organizzazioni di tutto il mondo, per offrire corsi on-line gratuiti e per tutti. Sul loro sito si legge:</p>
+	<blockquote><p>We envision a future where everyone has access to a world-class education that has so far been available to a select few. We aim to empower people with education that will improve their lives, the lives of their families, and the communities they live in.</p></blockquote>
+	<p>Qualche giorno fa ho fatto 40 anni e mi sembra un momento della vita molto bello. Questo corso mi fa tornare indietro di 20 anni, alla voracità di conoscenza un po&#8217; irrazionale e poco analitica, ma anche alla bocca amara fatta per certi brutti sapori e ai crampi per mancanza di materia prima (parlo solo di conoscenza <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':D' class='wp-smiley' />  ).<br />
+L&#8217;andy di 20 anni fa sarebbe stato felice di poter disporre di un corso di questo tipo e di avere una banda internet che consentisse di usufruire di servizi di questo tipo; l&#8217;Andrea di oggi si iscrive sapendo di non avere il tempo libero e leggero di quegli anni, e spera di poter arrivare in fondo.</p>
+	<p>Non so dirvi quanta qualità ci sarà, ma mi sembrava utile darne notizia e seguire la <strong>Rivoluzione Geospaziale</strong>.</p>
+	<div align="center"><iframe title="YouTube video player" src="http://www.youtube.com/embed/9lCwGxEt28w?rel=0" frameborder="0" width="500" height="311"></iframe></div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/">Le &#8220;Mappe e la Rivoluzione Geospaziale&#8221;: mi sento di nuovo un ventenne</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/feed/</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+%26%238220%3BMappe+e+la+Rivoluzione+Geospaziale%26%238221%3B%3A+mi+sento+di+nuovo+un+ventenne&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-07-17&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/07/17/le-mappe-e-la-rivoluzione-geospaziale-mi-sento-di-nuovo-un-ventenne/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Cosa è l&#8217;OGC? (di ritorno dalla conferenza OpenGeoData)</title>
+		<link>http://blog.spaziogis.it/2013/03/01/cosa-e-logc-di-ritorno-dalla-conferenza-opengeodata/</link>
+		<comments>http://blog.spaziogis.it/2013/03/01/cosa-e-logc-di-ritorno-dalla-conferenza-opengeodata/#comments</comments>
+		<pubDate>Fri, 01 Mar 2013 22:01:06 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[italia]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[opengeodata]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5529</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Cosa+%C3%A8+l%26%238217%3BOGC%3F+%28di+ritorno+dalla+conferenza+OpenGeoData%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/03/01/cosa-e-logc-di-ritorno-dalla-conferenza-opengeodata/&amp;rft.language=English"></span>
+Ieri sono stato uno dei relatori della sessione &#8220;Servizi di download e di interoperabilità&#8221; della conferenza OpenGeoData Italia, Istruzioni per l&#8217;uso. Ero presente in un ruolo che ho vestito per la prima volta in un conferenza: il redattore di TANTO (tra di noi scherzando diciamo &#8220;uno dei TANTI&#8221; ). E&#8217; stato bello &#8220;interpretarlo&#8221;. Della conferenza vi [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Cosa+%C3%A8+l%26%238217%3BOGC%3F+%28di+ritorno+dalla+conferenza+OpenGeoData%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/03/01/cosa-e-logc-di-ritorno-dalla-conferenza-opengeodata/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ieri sono stato uno dei relatori della sessione &#8220;<strong>Servizi di download e di interoperabilità&#8221;</strong> della conferenza<a href="http://www.opengeodata.it/" rel="nofollow"  target="_blank"><strong> OpenGeoData Italia, Istruzioni per l&#8217;uso</strong></a>. Ero presente in un ruolo che ho vestito per la prima volta in un conferenza: il redattore di TANTO (tra di noi scherzando diciamo &#8220;uno dei TANTI&#8221; <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':D' class='wp-smiley' />  ). E&#8217; stato bello &#8220;interpretarlo&#8221;.<br />
+Della conferenza vi scriverò in un&#8217;altra occasione, probabilmente a 4 mani con <a href="http://blog.spaziogis.it/author/sfarruggia/"title="Sergio Farruggia"  target="_blank"><strong>Sergio Farruggia</strong></a> che invece è stato il moderatore della sessione  &#8221;<strong>Riuso e feedback per gli enti&#8221;</strong>.  Lo stesso vale per l&#8217;intervento che ho fatto, di cui comunque a breve troverete pubblicate slide e registrazione video (insieme a quelle di tutti gli altri).</p>
+	<p>Voglio invece presentarvi subito e in modo sintetico, un lavoro che abbiamo fatto alcune settimane fa, e che ci ha dato lo spunto per l&#8217;intervento presentato a Roma. Si tratta di un lavoro di sottotitolazione e traduzione in italiano di un video semplice, breve ed efficace che illustra cosa sia l&#8217;<strong>OGC</strong>. Un lavoro simile a quello fatto per <a href="http://blog.spaziogis.it/geospatial-revolution-project/"title="geospatial revolution project"  target="_blank"><strong>Geospatial Revolution Project</strong></a>, ma in quel caso ci occupammo soltanto della traduzione. Stavolta invece, a partire da un file senza correlazione tra testi e tempo, abbiamo prima sottotitolato in lingua originale il video, e poi lo abbiamo tradotto. Tutto questo si deve anche ad un bel dialogo instaurato con l&#8217;OGC, che ringraziamo anche per i toni e i modi con cui si è rivolto a noi. </p>
+	<p>Farlo è stato ancora una volta molto divertente. Il risultato è visibile facendo prima click sull&#8217;immagine sottostante e selezionando poi &#8220;Italiano&#8221; tra i sottotitoli.</p>
+	<p><a href="http://bit.ly/what_is_ogc" rel="nofollow" title="What is OGC"  target="_blank"><img class="alignnone size-full wp-image-5548 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2013/03/what_is_ogc.jpg" alt="what_is_ogc" width="500" height="323" /></a></p>
+	<p>In ultimo un doveroso grazie anche a <a href="http://blog.spaziogis.it/author/afalciano/" target="_blank"><strong>Antonio Falciano</strong></a> che è stato essenziale per realizzare il lavoro sul video.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/03/01/cosa-e-logc-di-ritorno-dalla-conferenza-opengeodata/">Cosa è l&#8217;OGC? (di ritorno dalla conferenza OpenGeoData)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/03/01/cosa-e-logc-di-ritorno-dalla-conferenza-opengeodata/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Cosa+%C3%A8+l%26%238217%3BOGC%3F+%28di+ritorno+dalla+conferenza+OpenGeoData%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2013-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/03/01/cosa-e-logc-di-ritorno-dalla-conferenza-opengeodata/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/03/what_is_ogc-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/03/what_is_ogc.jpg" medium="image">
+			<media:title type="html">what_is_ogc</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/03/what_is_ogc-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>O che bel tassello marcondirondirondello &#8230;</title>
+		<link>http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/</link>
+		<comments>http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/#comments</comments>
+		<pubDate>Mon, 28 Jan 2013 07:00:00 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[gdal]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[standard]]></category>
+		<category><![CDATA[tiling]]></category>
+		<category><![CDATA[tms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5392</guid>
+		<description><![CDATA[In questo articolo viene mostrato come leggere una sorgente di dati a tasselli, generata secondo standard TMS, e convertirla in un'unica immagine georeferenziata.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=O+che+bel+tassello+marcondirondirondello+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-01-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignright size-full wp-image-5398" src="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello.png" alt="indici_tassello" width="200" height="200" />La cartografia digitale è ormai da tempo invasa da milioni di <strong>tasselli</strong>. I <em>layer</em> di Virtual Earth (che sono vecchio!), OpenStreetMap, Yahoo! Maps, Google Maps, ecc. sono da tempo distribuiti a pezzetti da 256&#215;256 pixel e poi ricomposti nei nostri browser. Le modalità con cui la cosa viene realizzata sono &#8220;abbastanza&#8221; standard; se si prova però ad approfondire un po&#8217;, si scopre ad esempio una grande varietà nel definire l&#8217;indice numerico associato ad un dato tassello, di una certa zona del mondo, ad uno specifico livello di zoom. La mia amata/odiata Sicilia ad esempio, a livello di ingrandimento &#8220;6&#8243;, la posso richiamare nei modi diversi che vedete qui accanto, per tre dei più diffusi indici di tassellamento. Per approfondire il tema vi consiglio di partire da <a href="http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/" rel="nofollow"  target="_blank">qui</a>.</p>
+	<p>Nel tempo queste mattonelle cartografiche sono aumentate a dismisura e ce le troviamo anche in tasca. Penso ai nostri <em><strong>smartphone</strong></em> e al fatto che la quasi totalità delle basi cartografiche delle applicazioni che installiamo in questi sono distribuite a tasselli.</p>
+	<p>E nel prossimo futuro la diffusione sarà ancora più pervasiva, in quanto passeranno dall&#8217;essere consultati quasi esclusivamente tramite servizi/server web, all&#8217;essere letti direttamente da un file residente sul nostro terminale. Un esempio per tutti è quello del <a href="http://www.opengeospatial.org/projects/groups/geopackageswg" rel="nofollow"  target="_blank"><strong>GeoPackage</strong></a>, un formato standard che l&#8217;<strong>OGC</strong> sta definendo, in cui le basi <em>raster</em> potranno essere archiviate proprio a tasselli. Un po&#8217; come <a href="http://www.gaia-gis.it/gaia-sins/" rel="nofollow"  target="_blank"><em>rasterlite</em></a> di Sandro Furieri, che credo sia in qualche modo lo scheletro portante di questo <strong>nuovo formato</strong> OGC.</p>
+	<p>I tasselli sono talmente tanti che ormai spesso trovo negli <em>hard-disk</em>, <em>pen-drive</em> USB, DVD (come sono vecchio!), schede SD, ecc. quelle strane cartelle a loro volta suddivise in decine e decine (nel caso migliore) di sottocartelle, tipiche della struttura di archiviazione su <em>file system</em> di basi dati tassellate e piramidate.</p>
+	<p>Proprio per questo ho pensato di scrivere un articolo su come accedere ad un archivio cartografico di questo tipo, che in qualche modo è il complementare ad un <a href="http://blog.spaziogis.it/2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/" target="_blank"> altro</a> scritto nel lontanissimo 2008 e in cui viene illustrato come tassellare un&#8217;immagine.</p>
+	<h2>Come accedere ad un archivio cartografico a tasselli e ricomporlo in un unica immagine georeferenziata?</h2>
+	<p>In sé la cosa sembra ovvia, in quanto si tratta di formati file leggibili da qualsiasi terminale con qualsiasi sistema operativo: parliamo infatti nella stragrande maggioranza dei casi di .jpg e .png. Sfoglio le cartelle, faccio doppio click su una delle immagini e le visualizzo in un attimo. E dove è finita l&#8217;<strong>informazione geografica</strong>?</p>
+	<p>Se le apro infatti con un visualizzatore di immagini è normale che le uniche coordinate riconosciute siano i pixel, ma se provate ad aprire lo stesso tassello con una applicazione GIS, il risultato non cambia. L&#8217;informazione geografica infatti non è presente nemmeno in qualche <em>tag</em> nascosto internamente ai file e quindi non può essere letta. Per assurdo tutti i tasselli sembrano sovrapposti nello stesso punto della terra, ad una sola risoluzione.</p>
+	<p>L&#8217;arcano si risolve proprio nella lettura della struttura della cartella in cui sono archiviati e quindi nella conoscenza dell&#8217;indice utilizzato per generare tutti i pezzetti di mondo alle varie scale di ingrandimento. Data infatti una certa modalità di tassellamento, ogni punto della terra è associato ad una certa tessera di questo enorme mosaico, per un certo livello di zoom.</p>
+	<p><img class="alignright size-full wp-image-5399" style="margin: 2px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/01/struttura.png" alt="struttura" width="259" height="148" />Ma sporchiamoci un po&#8217; le mani. Nell&#8217;immagine accanto una cartella di <em>output</em> di un tassellamento, con le sue sottocartelle, che potete scaricare da <a href="http://blog.spaziogis.it/static/tassello/NE2_50M_SR_W.zip" target="_blank">qui</a>. Se la si sfoglia un po&#8217; e si provano ad aprire i singoli file che troviamo all&#8217;interno delle varie cartelle, è evidente che quello che varia per ogni tassello è l&#8217;ingrandimento e/o l&#8217;area della Terra rappresentata. Posizione e zoom, ovvero x, y e z.</p>
+	<p>In questo esempio, ed è facile verificarlo in modo empirico, il primo livello di sottocartelle è legato all&#8217;ingrandimento: dalla cartella &#8220;0&#8243; con la risoluzione più bassa a quella &#8220;4&#8243; con quella più alta. All&#8217;interno di queste invece le eventuali sottocartelle rappresentano spostamenti lungo l&#8217;asse x. Nella figura di sopra quindi le cartelle &#8220;NE2_50M_SR_W\1&#8243; e &#8220;NE2_50M_SR_W\1\1&#8243; contengono, per il livello di zoom &#8220;1&#8243;, porzioni di Terra affiancate. La variazione lungo l&#8217;asse y è invece resa, per ogni cartella, dal nome del file: il tassello &#8220;1.png&#8221; sta a Nord di quello &#8220;0.png&#8221;.</p>
+	<p>Nella figura sottostante ho schematizzato la cosa, per rendere ancora più leggibile e chiara questa struttura.</p>
+	<p><img class="alignnone size-full wp-image-5400 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2013/01/dettaglio_web.png" alt="dettaglio_web" width="498" height="533" /></p>
+	<p>Conoscere tutto questo ovviamente non basta a posizionare queste immagini nello spazio, ma soltanto in modo relativo. Per fortuna però il tassellamento viene fatto secondo <strong>standard</strong>, magari diversi, ma definiti. Quindi se conosciamo (o riconosciamo) lo standard con cui sono state generate le nostre tessere, basterà essere in possesso di un <em>client</em> che sappia leggere questo standard e queste verranno posizionate correttamente nello spazio cartografico. Un po&#8217; come quando accediamo ad un servizio WMS.</p>
+	<p>La cartella di esempio che sto usando per questo esercizio contiene al suo interno (per fortuna c&#8217;è quasi sempre qualcosa di simile) il seguente file .xml.</p>
+	<pre class="brush: xml; ">
+&lt; ?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;tilemap version=&quot;1.0.0&quot; tilemapservice=&quot;http://tms.osgeo.org/1.0.0&quot;&gt;
+&lt;title&gt;NE2_50M_SR_W&lt;/title&gt;
+&lt;abstract&gt;&lt;/abstract&gt;
+&lt;srs&gt;EPSG:900913&lt;/srs&gt;
+&lt;boundingbox minx=&quot;-85.05112878000000&quot; miny=&quot;-180.00000000000000&quot; maxx=&quot;85.05112878000000&quot; maxy=&quot;179.99871994141003&quot;&gt;&lt;/boundingbox&gt;
+&lt;origin x=&quot;-85.05112878000000&quot; y=&quot;-180.00000000000000&quot;&gt;&lt;/origin&gt;
+&lt;tileformat width=&quot;256&quot; height=&quot;256&quot; mime-type=&quot;image/png&quot; extension=&quot;png&quot;&gt;&lt;/tileformat&gt;
+&lt;tilesets profile=&quot;mercator&quot;&gt;
+&lt;tileset href=&quot;0&quot; units-per-pixel=&quot;156543.03390000000945&quot; order=&quot;0&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;1&quot; units-per-pixel=&quot;78271.51695000000473&quot; order=&quot;1&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;2&quot; units-per-pixel=&quot;39135.75847500000236&quot; order=&quot;2&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;3&quot; units-per-pixel=&quot;19567.87923750000118&quot; order=&quot;3&quot;&gt;&lt;/tileset&gt;
+&lt;tileset href=&quot;4&quot; units-per-pixel=&quot;9783.93961875000059&quot; order=&quot;4&quot;&gt;&lt;/tileset&gt;
+&lt;/tilesets&gt;
+&lt;/tilemap&gt;
+</pre>
+	<p>E&#8217; un piccolo tesoro che ci dice quasi tutto della struttura a tasselli che stiamo analizzando:</p>
+	<ul>
+	<li>la specifica sul formato di tassellamento, ovvero il <a href="Tile%20Map%20Service%20Specification" rel="nofollow" >TMS 1.0</a> (<strong>Tile Map Service</strong>) di OSGeo;</li>
+	<li>lo <em>Spatial Reference System</em> usato;</li>
+	<li>il <em>Bounding Box</em>;</li>
+	<li>l&#8217;origine del mosaico dei tasselli;</li>
+	<li>formato e dimensioni dei tasselli;</li>
+	<li>e la risoluzione per ogni livello di zoom.</li>
+	</ul>
+	<p>Non ci resta che trovare un <em>client</em> compatibile con lo standard TMS e provare a leggere questa struttura dati. La scelta va ancora una volta verso il Victorinox delle librerie spaziali, ovvero <strong>GDAL/OGR</strong>. Sfruttando infatti i <em><strong>minidriver</strong></em> di GDAL, descritti in fondo nella <a href="http://www.gdal.org/frmt_wms.html" rel="nofollow"  target="_blank">pagina</a> di accesso ai servizi WMS, è possibile accedere direttamente a dati esposti in TMS; sia come <em>che su</em> file system. Prima è però necessario definire un file di configurazione, come descritto nella documentazione di cui sopra e di cui si riporta a seguire un esempio, basato sui dati che sto usando per questo post.</p>
+	<pre class="brush: xml; ">
+&lt;gdal_wms&gt;
+&lt;service name=&quot;TMS&quot;&gt;
+&lt;serverurl&gt;
+file://C:/tmp/NE2_50M_SR_W/${z}/${x}/${y}.png
+&lt;/serverurl&gt;
+&lt;/service&gt;
+&lt;imageformat&gt;image/png&lt;/imageformat&gt;
+&lt;datawindow&gt;
+&lt;upperleftx&gt;-20037508.34&lt;/upperleftx&gt;
+&lt;upperlefty&gt;20037508.34&lt;/upperlefty&gt;
+&lt;lowerrightx&gt;20037508.34&lt;/lowerrightx&gt;
+&lt;lowerrighty&gt;-20037508.34&lt;/lowerrighty&gt;
+&lt;tilelevel&gt;4&lt;/tilelevel&gt;
+&lt;tilecountx&gt;1&lt;/tilecountx&gt;
+&lt;tilecounty&gt;1&lt;/tilecounty&gt;
+&lt;/datawindow&gt;
+&lt;projection&gt;EPSG:900913&lt;/projection&gt;
+&lt;blocksizex&gt;256&lt;/blocksizex&gt;
+&lt;blocksizey&gt;256&lt;/blocksizey&gt;
+&lt;bandscount&gt;3&lt;/bandscount&gt;
+&lt;maxconnections&gt;10&lt;/maxconnections&gt;
+&lt;cache&gt;&lt;/cache&gt;
+&lt;/gdal_wms&gt;
+</pre>
+	<p>Il file contiene, in modo differente, quasi le stesse informazioni descritte prime per il file .xml. Tra queste:</p>
+	<ul>
+	<li>il tipo di servizio - &lt;service name&gt;</li>
+	<li>l&#8217;indirizzo per accedere ai dati - &lt;serverurl&gt;</li>
+	<li>il formato immagine della sorgente dati - &lt;imageformat&gt;</li>
+	<li>il <em>Bounding Box </em>- &lt;upperleftx&gt;, &lt;upperlefty&gt;, &#8230;</li>
+	<li>il livello di Zoom con la risoluzione più alta, che ricavo proprio dal file.xml di sopra - &lt;tilelevel&gt;</li>
+	<li>lo <em>Spatial Reference System -</em> &lt;projection&gt;</li>
+	<li>la dimensione in pixel dei tasselli - &lt;blocksizex&gt;, &lt;blocksizey&gt;</li>
+	</ul>
+	<p>Il valore del parametro ServerUrl &#8211; ovvero l&#8217;indirizzo della sorgente dati &#8211; è di solito quello di un servizio web con una forma di questo tipo: http://myserver.it/NE2_50M_SR_W/${z}/${x}/${y}.png.</p>
+	<p>Nel caso descritto i dati sono su un <em>hard-disk</em> di un PC e quindi, l&#8217;accesso non è in HTTP ma secondo lo schema URI di accesso a file: file://C:/tmp/NE2_50M_SR_W/${z}/${x}/${y}.png (in questo esempio la cartella dei dati è all&#8217;interno di &#8220;C:\tmp&#8221;).<br />
+Nell&#8217;URI è necessario indicare come è realizzata, in termini di struttura e nomi dei file, la mappatura di x, y e z. Nel caso in esame abbiamo visto che è resa come z/x/y.png, e cosi è stata riportata nel file di configurazione. Bisogna soltanto fare attenzione alla sintassi che prevede l&#8217;utilizzo di alcuni caratteri speciali.</p>
+	<p>Creato il file di configurazione e salvato con nome (ad esempio &#8220;input.txt&#8221;), non resta che provare a leggere i dati. Il primo passo, un po&#8217; per fare <em>debug</em> è aprire la shell e digitare:</p>
+	<pre>gdalinfo input.txt</pre>
+	<p>Come risultato, se tutto è correttamente configurato, si otterrà:</p>
+	<pre>Driver: WMS/OGC Web Map Service
+Files: input.txt
+Size is 4096, 4096
+Coordinate System is:
+PROJCS[\"Google Maps Global Mercator\",
+    GEOGCS[\"WGS 84\",
+        DATUM[\"WGS_1984\",
+            SPHEROID[\"WGS 84\",6378137,298.257223563,
+                AUTHORITY[\"EPSG\",\"7030\"]],
+            AUTHORITY[\"EPSG\",\"6326\"]],
+        PRIMEM[\"Greenwich\",0,
+            AUTHORITY[\"EPSG\",\"8901\"]],
+        UNIT[\"degree\",0.01745329251994328,
+            AUTHORITY[\"EPSG\",\"9122\"]],
+        AUTHORITY[\"EPSG\",\"4326\"]],
+    PROJECTION[\"Mercator_2SP\"],
+    PARAMETER[\"standard_parallel_1\",0],
+    PARAMETER[\"latitude_of_origin\",0],
+    PARAMETER[\"central_meridian\",0],
+    PARAMETER[\"false_easting\",0],
+    PARAMETER[\"false_northing\",0],
+    UNIT[\"Meter\",1],
+    EXTENSION[\"PROJ4\",\"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs\"],
+    AUTHORITY[\"EPSG\",\"900913\"]]
+Origin = (-20037508.340000000000000,20037508.340000000000000)
+Pixel Size = (9783.939619140624900,-9783.939619140624900)
+Image Structure Metadata:
+  INTERLEAVE=PIXEL
+Corner Coordinates:
+Upper Left  (-20037508.340,20037508.340) (180d 0' 0.00\"W, 85d 3' 4.06\"N)
+Lower Left  (-20037508.340,-20037508.340) (180d 0' 0.00\"W, 85d 3' 4.06\"S)
+Upper Right (20037508.340,20037508.340) (180d 0' 0.00\"E, 85d 3' 4.06\"N)
+Lower Right (20037508.340,-20037508.340) (180d 0' 0.00\"E, 85d 3' 4.06\"S)
+Center      (   0.0000000,   0.0000000) (  0d 0' 0.01\"E,  0d 0' 0.01\"N)
+Band 1 Block=256x256 Type=Byte, ColorInterp=Red
+  Overviews: 2048x2048, 1024x1024, 512x512, 256x256
+Band 2 Block=256x256 Type=Byte, ColorInterp=Green
+  Overviews: 2048x2048, 1024x1024, 512x512, 256x256
+Band 3 Block=256x256 Type=Byte, ColorInterp=Blue
+  Overviews: 2048x2048, 1024x1024, 512x512, 256x256</pre>
+	<p>Siamo riusciti a leggere correttamente le informazioni sui nostri dati e non abbiamo avuto nessun errore. A questo punto il comando per la ricomposizione in un&#8217;unica immagine georeferenziata è la cosa più ovvia, è gdal_translate:</p>
+	<pre>gdal_translate input.txt output.tif</pre>
+	<p>L&#8217;output sarà un unico file geotiff, <em>Mission Accomplished!</em></p>
+	<p>Questo ovviamente è un caso semplice, costruito in modo che sia replicabile e didatticamente valido. Nella pratica quotidiana è tutto un po&#8217; più complicato, ma leggendo i riferimenti indicati nell&#8217;articolo, documentandosi un po&#8217;, sarà possibile replicare la cosa con i propri dati.<br />
+La carta di base da cui ho generato i tasselli (che poi ho ricomposto) è la bella &#8220;<em>Natural Earth II with Shaded Relief and Water</em>&#8220;. E&#8217; rilasciata sotto <strong>pubblico dominio</strong> e scaricabile da <a href="http://www.naturalearthdata.com/downloads/50m-natural-earth-2/50m-natural-earth-ii-with-shaded-relief-and-water/" rel="nofollow"  target="_blank">qui</a>.</p>
+	<p>Con i <em>minidriver</em> di GDAL/OGR si possono fare tante altre cose, come accedere e quindi (volendo) scaricare, i tasselli di Bing Maps e Google Maps, facendo però la giusta attenzione ai termini legali imposti. Inoltre il file di testo di input creato sopra, può essere trascinato in <em>drag &amp; drop</em> su <strong>Quantum GIS</strong> e visualizzato pochi secondi dopo. Questo sempre grazie all&#8217;esistenza degli standard e di GDAL/OGR.</p>
+	<p>Questo articolo diverrà magari presto &#8220;superato&#8221; proprio perché l&#8217;invasione dei tasselli sarà probabilmente peggiore di un <strong>attacco <em>zombie</em></strong>, e saranno pertanto sviluppate modalità di accesso, procedure e interfacce ancora più semplici e trasparenti. Il fatto di poter accedere al basso livello descritto in questo articolo, offre comunque una potenza e una libertà di impieghi che difficilmente si potrà ottenere tramite strumenti di livello più alto.</p>
+	<p>In ultimo ringrazio <a href="http://blog.spaziogis.it/author/lorenzop/" target="_blank"><strong>Lorenzo Perone</strong></a> che mi ha dato gli stimoli per mettere in linea questi pensieri e questo processo.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/">O che bel tassello marcondirondirondello &#8230;</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=O+che+bel+tassello+marcondirondirondello+%26%238230%3B&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-01-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/01/28/o-che-bel-tassello-marcondirondirondello/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello.png" medium="image">
+			<media:title type="html">indici_tassello</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/indici_tassello-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/01/struttura.png" medium="image">
+			<media:title type="html">struttura</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/struttura-150x148.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/01/dettaglio_web.png" medium="image">
+			<media:title type="html">dettaglio_web</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/01/dettaglio_web-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Lezioni online per spiegare scienza e tecnologia</title>
+		<link>http://blog.spaziogis.it/2011/10/10/lezioni-online-per-spiegare-scienza-e-tecnologia/</link>
+		<comments>http://blog.spaziogis.it/2011/10/10/lezioni-online-per-spiegare-scienza-e-tecnologia/#comments</comments>
+		<pubDate>Mon, 10 Oct 2011 20:54:37 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[scuola]]></category>
+		<category><![CDATA[tecnologia]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4264</guid>
+		<description><![CDATA[Oilproject organizza con l'Istituto Italiano di Tecnologia una serie di lezioni divulgative su neuroscienze, nanotecnologie, farmacologia e macchine intelligenti, per raccontare al grande pubblico lo stato dell'arte della ricerca di base e applicata. <a href="http://www.oilproject.org/press/10102011">Qui</a> tutti i dettagli.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Lezioni+online+per+spiegare+scienza+e+tecnologia&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-10-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/10/lezioni-online-per-spiegare-scienza-e-tecnologia/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[<strong>Oilproject </strong>organizza con l&#8217;<strong>Istituto Italiano di Tecnologia</strong> una serie di lezioni divulgative su neuroscienze, nanotecnologie, farmacologia e macchine intelligenti, per raccontare al grande pubblico lo stato dell&#8217;arte della ricerca di base e applicata. <a href="http://www.oilproject.org/press/10102011" rel="nofollow" title="Scuola d'Attualità"  target="_blank">Qui</a> tutti i dettagli.<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/10/10/lezioni-online-per-spiegare-scienza-e-tecnologia/">Lezioni online per spiegare scienza e tecnologia</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/10/10/lezioni-online-per-spiegare-scienza-e-tecnologia/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Lezioni+online+per+spiegare+scienza+e+tecnologia&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-10-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/10/10/lezioni-online-per-spiegare-scienza-e-tecnologia/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

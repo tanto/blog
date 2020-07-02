@@ -1,0 +1,88 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family:tahoma,arial,helvetica;
+	font-size:12px;
+}
+
+
+/*Stile zoom box */
+/*****************/
+
+.olHandlerBoxZoomBox {
+    border: 2px solid #336633 !important;
+    position: absolute !important;
+    background-color: white !important;
+    opacity: 0.50 !important;
+    font-size: 1px !important;
+    filter: alpha(opacity=50) !important;
+}
+
+/* Icone per la UI      */
+/************************/
+.drawpoint {background-image:url(../Images/editToolbar/draw_point_off.png) !important;}
+.drawline {background-image:url(../Images/editToolbar/draw_line_off.png) !important;}
+.drawpolygon {background-image:url(../Images/editToolbar/draw_polygon_off.png) !important;}
+.editdraw {background-image:url(../Images/editToolbar/move_vertex_off.png) !important;}
+.selectdraw {background-image:url(../Images/editToolbar/element_selection.png) !important;}
+.erasedraw {background-image:url(../Images/editToolbar/eraser.png) !important;}
+.edit {background-image:url(../Images/tab/pencil.png) !important;}
+.selection {background-image:url(../Images/tab/magic_wand.png) !important;}
+.tree {background-image:url(../Images/text_tree.png) !important;}
+.info {background-image:url(../Images/tab/information.png) !important;}
+.manual {background-image:url(../Images/tab/book_blue_open.png) !important;}
+.import {background-image:url(../Images/tab/import.png) !important;}
+.check {background-image:url(../Images/table/check.png) !important;}
+.brush {background-image:url(../Images/table/brush.png) !important;}
+
+
+/* Icone toolbar navigazione */
+/*****************************/
+.zoomfull {
+	background-image:url(../Images/icon_zoomfull.png) !important;
+	height:20px !important;
+	width:20px !important;
+}
+
+.zoomin {
+	background-image:url(../Images/icon_zoombox.png) !important;
+	height:20px !important;
+	width:20px !important;
+}
+
+.zoomout {
+	background-image:url(../Images/icon_zoomout.png) !important;
+	height:20px !important;
+	width:20px !important;
+}
+
+
+.pan {
+	background-image:url(../Images/icon_pan.png) !important;
+	height:20px !important;
+	width:20px !important;
+}
+
+
+
+.prev {
+	background-image:url(../Images/resultset_previous.png) !important;
+	height:20px !important;
+	width:20px !important;
+}
+
+.next {
+	background-image:url(../Images/resultset_next.png) !important;
+	height:20px !important;
+	width:20px !important;
+}
+
+
+
+/* Regole layer tree */
+/*********************/
+
+#tree {
+	height: 100%;
+	width: 100%;
+}

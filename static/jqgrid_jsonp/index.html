@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jqGrid ArcGIS Server</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.8.18/css/Aristo/Aristo.css" />
+	<link rel="stylesheet" type="text/css" href="lib/jquery-grid/ui.jqgrid.css" />
+    <style type="text/css">
+        html, body { font-size: 75%; }
+    </style>
+
+    <script type="text/javascript" src="lib/jquery-ui-1.8.18/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.8.18/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-grid/grid.locale-en.js"></script>
+    <script type="text/javascript" src="lib/jquery-grid/jquery.jqGrid.src.js"></script>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        $(function () {
+            'use strict';
+            $('#grid').jqGrid({
+                url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/4/query',
+                datatype: 'jsonp',
+                postData: $.param({
+                    where: "1=1",
+                    returnGeometry: false,
+                    outFields: "ObjectID,NAME,STATE_NAME,CNTY_FIPS",
+                    f: "json"
+                }),
+                colModel: [
+                    {name: 'ObjectID', label: 'ID', width: 60, jsonmap: 'attributes.ObjectID',sorttype:'number'},
+                    {name: 'NAME', label: 'Name', width: 170, jsonmap: 'attributes.NAME'},
+                    {name: 'STATE_NAME', label: 'State', width: 150, jsonmap: 'attributes.STATE_NAME'},
+                    {name: 'CNTY_FIPS', label: 'FIPS', width: 60, jsonmap: 'attributes.CNTY_FIPS'}
+                ],
+                caption:"ArcGIS Server 10 query",
+                toppager: false,
+                pager:"#pager",
+				rowNum: 50,
+                rowList: [50, 100, 250, 1000],
+                jsonReader: {
+                    root: 'features',
+                    repeatitems: false,
+                },
+                loadonce: true,
+                ignoreCase: true,
+                viewrecords: true,
+                height: '300',
+                width:'470'
+            }).jqGrid('navGrid', '#pager', {search:false, add: false, edit: false, del: false});
+        });
+    //]]>
+    </script>
+</head>
+
+<body>
+    <table id="grid"><tr><td></td></tr></table>
+    <div id="pager"></div>
+</body>
+</html>

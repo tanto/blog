@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; GN</title>
+	<atom:link href="http://blog.spaziogis.it/tag/gn/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Sistemi di trasformazione di coordinate e grigliati NTv2</title>
+		<link>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/</link>
+		<comments>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/#comments</comments>
+		<pubDate>Fri, 08 Feb 2013 07:00:05 +0000</pubDate>
+		<dc:creator>Antonio Falciano</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[osgeo]]></category>
+		<category><![CDATA[Basilicata]]></category>
+		<category><![CDATA[coordinate]]></category>
+		<category><![CDATA[GN]]></category>
+		<category><![CDATA[grigliati]]></category>
+		<category><![CDATA[gvSIG]]></category>
+		<category><![CDATA[NTv2]]></category>
+		<category><![CDATA[SEXTANTE]]></category>
+		<category><![CDATA[trasformazioni]]></category>
+		<category><![CDATA[WCTS]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5439</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+Una novità che sta circolando da poco più di un mese a questa parte e che, in pratica, interessa tutta la comunità italiana di fruitori dell&#8217;informazione geografica, consiste nella recentissima attivazione del servizio di trasformazione di coordinate ad opera del Geoportale Nazionale (ex Portale Cartografico Nazionale). Tale tipologia di servizio rientra tra gli adempimenti previsti [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Una novità che sta circolando da poco più di un mese a questa parte e che, in pratica, interessa tutta la comunità italiana di fruitori dell&#8217;informazione geografica, consiste nella <strong>recentissima attivazione del servizio di trasformazione di coordinate ad opera del Geoportale Nazionale</strong> (ex Portale Cartografico Nazionale). Tale tipologia di servizio rientra tra gli adempimenti previsti dalle <a title="INSPIRE Implementing Rules" href="http://inspire.jrc.ec.europa.eu/index.cfm/pageid/47" target="_blank"><em>Implementing Rules</em></a> della <a title="Direttiva 2007/2/CE" href="http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2007:108:0001:01:IT:HTML" target="_blank"><strong>Direttiva europea INSPIRE (2007/2/EC)</strong></a>, al fine di assicurare la condivisione e l&#8217;interoperabilità di dataset e servizi, adottando formati e specifiche comuni, tra tutti i nodi dell&#8217;infrastruttura di dati spaziali europea. In particolare, l&#8217;implementazione di tale servizio da parte del GN consiste in:</p>
+	<ul>
+	<li>un&#8217;applicazione web: <a href="http://www.pcn.minambiente.it/wctsclient/">http://www.pcn.minambiente.it/wctsclient/</a></li>
+	<li>un servizio WCTS: <a href="http://www.pcn.minambiente.it/GN/wps.php?lan=it">http://www.pcn.minambiente.it/GN/wps.php?lan=it</a></li>
+	</ul>
+	<p>Per ulteriori approfondimenti circa le premesse e i dettagli tecnici, si consiglia la lettura di <a title="Interoperabilità dei dati territoriali: il GN si dota di un nuovo servizio per la trasformazione di coordinate per l’intero territorio italiano" href="http://www.rivistageomedia.it/201212314770/GEOmedia-No-5-2012/interoperabilita-dei-dati-territoriali-il-gn-si-dota-di-un-nuovo-servizio-per-la-trasformazione-di-coordinate-per-lintero-territorio-italiano.html" target="_blank">questo articolo</a> sulla rivista Geomedia.</p>
+	<p>Benissimo! “<em>Lasciamoci INSPIR(ar)E</em>” dunque, parafrasando il titolo di un gran bel <a title="Lasciamo INSPIR(ar)E" href="http://blog.planetek.it/2010/04/13/lasciamoci-inspirare/" target="_blank">post</a> di Pietro Blu Giandonato di qualche anno fa&#8230; E cosa avviene a livello regionale? In verità, esiste già qualche servizio analogo, tra cui:</p>
+	<ul>
+	<li><strong>Regione Lombardia:</strong> <a href="http://www.cartografia.regione.lombardia.it/geoportale/ptk">http://www.cartografia.regione.lombardia.it/geoportale/ptk</a></li>
+	<li><strong>Regione Liguria:</strong> <a href="http://www.cartografia.regione.liguria.it/template4.asp?itemID=4005&amp;level=2&amp;label=Trasformazione%20coordinate">http://www.cartografia.regione.liguria.it/template4.asp?itemID=4005&amp;level=2&amp;label=Trasformazione%20coordinate</a></li>
+	<li><strong>Regione Sardegna:</strong> <a href="http://www.sardegnageoportale.it/strumenti/conversionecoordinate.html">http://www.sardegnageoportale.it/strumenti/conversionecoordinate.html</a></li>
+	<li><strong>Regione Basilicata:</strong> <a href="http://rsdi.regione.basilicata.it/web/guest/servizio-wcts">http://rsdi.regione.basilicata.it/web/guest/servizio-wcts</a></li>
+	<li><strong>Regione Emilia-Romagna:</strong> <a href="http://geoportale.regione.emilia-romagna.it/it/services/servizi%20tecnici/servizio-di-conversione">http://geoportale.regione.emilia-romagna.it/it/services/servizi%20tecnici/servizio-di-conversione</a></li>
+	</ul>
+	<p>Per curiosità, dopo aver letto un <a href="http://gfoss-geographic-free-and-open-source-software-italian-mailing.3056002.n2.nabble.com/Fwd-Il-Geoportale-Nazionale-ha-realizzato-il-servizio-di-trasformazione-WCTS-tp7580861p7580885.html" target="_blank">post</a> nella lista GFOSS in cui erano segnalate delle inaspettate anomalie, ho deciso di impiegare qualche ritaglio di tempo libero per verificare la bontà del servizio WCTS della mia regione, la Basilicata, rispetto a quello appena reso disponibile dal GN. Nel seguito, non mi addentrerò nella descrizione qualitativa dei servizi (della serie &#8230;è più bello, è più brutto, è più veloce, mi chiede l&#8217;indirizzo email, ecc.), poiché esula completamente dai miei scopi.</p>
+	<p>In pratica, ho effettuato le seguenti operazioni:</p>
+	<ul>
+	<li>ho scaricato i confini amministrativi regionali dal <a title="ISTAT - Cartografia: confini amministrativi e dei sistemi locali del lavoro" href="http://www3.istat.it/ambiente/cartografia/" target="_blank">sito dell&#8217;ISTAT</a>, definiti in <a href="http://www.spatialreference.org/ref/epsg/23032/"><strong>EPSG:23032</strong></a>, e li ho caricati in una vista di <strong>gvSIG 1.12</strong>, definita nello stesso sistema;</li>
+	<li>ho poi selezionato solo la mia regione e applicato l&#8217;algoritmo di SEXTANTE <em>“Adjust n points to polygon”</em>, in modo tale da generare un set di 100 punti scelti in maniera casuale contenuti in Basilicata, utilizzando i parametri rappresentati in <em>Figura 1</em> e ottenendo il risultato in <em>Figura 2</em>;</li>
+	</ul>
+	<p><div id="attachment_5453" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5453" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-e1360243542704.png" alt="Figura 1 - Adjust n points to polygon" width="480" height="271" /><p class="wp-caption-text">Figura 1 &#8211; Adjust n points to polygon</p></div></p>
+	<p><div id="attachment_5455" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5455" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-e1360243851330.png" alt="Figura 2 - Layer di punti casuali" width="480" height="274" /><p class="wp-caption-text">Figura 2 &#8211; Layer di punti casuali</p></div></p>
+	<ul>
+	<li>ho quindi trasformato il layer di punti precedentemente ottenuto, utilizzando sia l&#8217;applicazione web del Geoportale Nazionale che quella della Regione Basilicata, rispettivamente dal sistema EPSG:23032 (ereditato dal layer dei confini amministrativi ISTAT) verso <a href="http://www.spatialreference.org/ref/epsg/3004/"><strong>EPSG:3004</strong></a> e <a href="http://www.spatialreference.org/ref/epsg/32633/"><strong>EPSG:32633</strong></a>, assumendo per buona ad occhi chiusi la conversione dovuta al passaggio di fuso/zona contenuta in maniera implicita in entrambe le trasformazioni, in quanto si tratta di un&#8217;operazione di coordinate che i software e le librerie GIS generalmente affrontano in maniera rigorosa e quindi fuori di discussione. Inoltre, ho trasformato &#8211; sempre utilizzando entrambi i servizi &#8211; il layer dei punti definito in EPSG:32633 ottenuto dal GN verso EPSG:3004. In definitiva, ho ottenuto <strong>tre coppie di layer, ognuna corrispondente ad ogni trasformazione possibile tra i tre sistemi citati e definita in un preciso sistema di destinazione</strong>. In <em>Figura 3</em> sono rappresentate schematicamente le singole trasformazioni realizzate.</li>
+	</ul>
+	<p><div id="attachment_5458" class="wp-caption aligncenter" style="width: 388px"><img class="size-full wp-image-5458" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS.png" alt="Figura 3 - Trasformazioni realizzate" width="378" height="352" /><p class="wp-caption-text">Figura 3 &#8211; Trasformazioni realizzate (Autore: Andrea Borruso)</p></div></p>
+	<ul>
+	<li>Il passo successivo è stato quello di definire e calcolare dei nuovi campi nelle tabelle associate ai layer ottenuti al punto precedente, contenenti le coordinate nei rispettivi sistemi di appartenenza (esistono diversi modi di farlo in gvSIG: con il “Calcolatore di campo”, con lo strumento “Aggiungi informazioni geometriche”, con “<em>Add coordinates to points</em>” di SEXTANTE &#8230;e tanti altri). Ho rinominato tali campi di coordinate in modo da poterli rapidamente associare al CRS di appartenenza, oltre che allo specifico servizio utilizzato. Ad esempio, <em>X3004GN</em> rappresenta la coordinata Est nel sistema EPSG:3004 trasformata dal Geoportale Nazionale, mentre <em>X3004BAS</em> è la corrispondente coordinata trasformata tramite il geoportale lucano.</li>
+	<li>A questo punto, essendomi dimenticato di definire un campo identificativo da utilizzare come chiave esterna (in questo caso poco male, essendo i punti reciprocamente abbastanza distanti tra loro), ho eseguito il geoprocesso <em>“Spatial join”</em> per ogni coppia di layer definiti nello stesso CRS, selezionando l&#8217;opzione “Usa la geometria più prossima”, in alternativa al classico join tra tabelle. Il risultato di tale operazione è praticamente equivalente a quello del join, ad eccezione del fatto che gvSIG restituisce un campo DIST delle distanze tra le geometrie poste in relazione e, inoltre, il layer ottenuto è salvato su disco.</li>
+	<li>Dulcis in fundo, ho calcolato le differenze tra coordinate omologhe al fine di verificare la bontà della trasformazione dei due servizi, assumendo quelle del GN come capisaldi in quanto dovrebbero essere quelle “ufficiali”.</li>
+	</ul>
+	<p>I risultati di tutto l&#8217;ambaradan appena descritto, sperando di non avervi fin qui annoiato, sono riportati nella tabella seguente:</p>
+	<p><div id="attachment_5456" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5456" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-e1360245448479.png" alt="Tabella 1 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata" width="480" height="133" /><p class="wp-caption-text">Tabella 1 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN)</p></div></p>
+	<p>A quanto pare, <strong>gli scostamenti tra le trasformazioni operate dai due servizi sono piuttosto importanti e, talvolta, addirittura superano il metro e mezzo!</strong> Se fossi un topografo, nel dubbio, mi guarderei bene dall&#8217;usare uno o l&#8217;altro servizio per trasformare i dati di un rilievo ad alta precisione. Ma anche un operatore GIS potrebbe imbattersi in qualche strana incongruenza topologica accostando dati provenienti da fonti (e quindi trasformazioni) diverse. Personalmente mi sarei aspettato differenze al più dell&#8217;ordine di un paio di decimetri per coordinata, ipotizzando dietro l&#8217;applicazione web del GN l&#8217;utilizzo di un unico grigliato comprendente tutta l&#8217;Italia a maglia più larga rispetto a quella dei singoli grigliati IGM, piuttosto che un numero elevato di griglie a passo fitto, decisamente più oneroso da gestire lato server.</p>
+	<p>Dalle statistiche di <em>Tabella 1</em> chiaramente non si evince quale dei due servizi sia il meno accurato rispetto ai grigliati IGM. Eppure entrambi i servizi dichiarano di utilizzarli! Sarebbe utile, a mio avviso, ripetere lo stesso test con altri servizi WCTS regionali, magari utilizzando i grigliati come termine di confronto.</p>
+	<p>E&#8217; lecito quindi chiedersi come mai la gestione informatica dei grigliati IGM all&#8217;interno di differenti applicazioni web porta a risultati diversi. E&#8217; chiaro che occorrerebbe disporre di un <strong>riferimento ufficiale, unico ed inequivocabile</strong>.</p>
+	<p>A tal fine, per fugare ogni dubbio,<strong> sarebbe auspicabile il rilascio di un grigliato NTv2</strong>, formato ormai gestibile da molti desktop GIS, <strong>per ognuna delle possibili trasformazioni che interessano il nostro territorio nazionale.</strong> Non parlo necessariamente di quelli che utilizzano i topografi, ma anche solo una versione opportunamente semplificata che consenta di riunificare l&#8217;Italia intera, senza perdere eccessivamente in accuratezza. <strong>L&#8217;esempio lungimirante offerto da <a href="http://lambert93.ign.fr/index.php?id=30#c71">Francia</a>, <a href="http://www.ign.es/ign/layoutIn/herramientas.do#DATUM">Spagna</a>, <a href="http://www.igeo.pt/produtos/geodesia/Grelhas_NTv2.htm">Portogallo</a>, <a href="http://www.swisstopo.admin.ch/internet/swisstopo/en/home/products/software/products/chenyx06.html">Svizzera</a> e <a href="http://crs.bkg.bund.de/crseu/crs/descrtrans/BeTA/de_dhdn2etrs_beta.php">Germania</a> dovrà pur significare qualcosa nell&#8217;epoca di INSPIRE!</strong></p>
+	<p>&nbsp;</p>
+	<h2>Aggiornamento del 09/02/2013</h2>
+	<p>A seguito dell&#8217;aggiornamento ufficioso del servizio di trasformazione di coordinate del GN di cui si è avuta notizia ieri, i contenuti di questo post sono già obsoleti (forse, si tratta di un record per questo blog&#8230; ma siam contenti così! )<br />
+Ho quindi ricalcolato le medie degli scostamenti tra le trasformazioni dei due geoportali utilizzando lo stesso set di punti casuali. Il risultato è che le medie degli scostamenti sono stavolta sempre inferiori ai 3 cm. Restano tuttavia degli scostamenti max e min ancora consistenti (fino a 85 cm) per la coordinata Est. I valori estremi della coordinata Nord si aggirano invece attorno ai 20 cm, fatta eccezione per la trasformazione da EPSG:23032 a EPSG:32633, dove si superano i 30 cm.</p>
+	<p><div id="attachment_5476" class="wp-caption aligncenter" style="width: 490px"><img class="size-full wp-image-5476" src="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-e1360406215995.png" alt="Tabella 2 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) - agg. 09/02/2013" width="480" height="132" /><p class="wp-caption-text">Tabella 2 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) &#8211; agg. 09/02/2013</p></div></p>
+	<p>Resta, a mio modesto avviso, la necessità di dover rendere congruenti e quindi interoperabili i vari servizi di trasformazione di coordinate regionali con quello nazionale, evitando così l&#8217;eventuale disorientamento degli utenti. Inoltre, eviterei l&#8217;ulteriore proliferazione di servizi WCTS regionali, a questo punto ridondanti, e favorirei il rilascio e la diffusione dei grigliati NTv2, standard de facto a livello internazionale, almeno relativamente alla componente planimetrica.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/">Sistemi di trasformazione di coordinate e grigliati NTv2</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/feed/</wfw:commentRss>
+		<slash:comments>16</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sistemi+di+trasformazione+di+coordinate+e+grigliati+NTv2&amp;rft.aulast=Falciano&amp;rft.aufirst=Antonio&amp;rft.subject=Dati&amp;rft.subject=osgeo&amp;rft.source=TANTO&amp;rft.date=2013-02-08&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/02/08/sistemi-di-trasformazione-di-coordinate-e-grigliati-ntv2/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-e1360243542704.png" medium="image">
+			<media:title type="html">Figura 1 &#8211; Adjust n points to polygon</media:title>
+			<media:description type="html">Figura 1 - Adjust n points to polygon</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-e1360243851330.png" medium="image">
+			<media:title type="html">Figura 2 &#8211; Layer di punti casuali</media:title>
+			<media:description type="html">Figura 2 - Layer di punti casuali</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/fig2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS.png" medium="image">
+			<media:title type="html">Figura 3 &#8211; Trasformazioni realizzate</media:title>
+			<media:description type="html">Figura 3 - Trasformazioni realizzate</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/WCTS-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-e1360245448479.png" medium="image">
+			<media:title type="html">Tabella 1 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata</media:title>
+			<media:description type="html">Tabella 1 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale Nazionale e della Basilicata</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-e1360406215995.png" medium="image">
+			<media:title type="html">Tabella 2 &#8211; Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) &#8211; agg. 09/02/2013</media:title>
+			<media:description type="html">Tabella 2 - Statistiche degli scostamenti delle trasformazioni di coordinate del Geoportale della Basilicata (RSDI) rispetto a quelle del Geoportale Nazionale (GN) - agg. 09/02/2013</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/02/tab2-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

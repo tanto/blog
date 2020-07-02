@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>FreeEarth Javascript API Example</title>
+    <script type="text/javascript" src="http://freeearth.poly9.com/api.js"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    function onMapLoad() {
+       var rss = new FE.GeoRSS('http://www.mapserver.it/openlayers/examples/reuter.xml');
+       this.addOverlay(rss);
+       this.panTo(new FE.LatLng(40, -100));
+    }
+
+    function load() {
+        var map = new FE.Map(document.getElementById("map"));
+        map.onLoad = onMapLoad;
+        map.load();
+    }
+
+    //]]>
+    </script>
+	<style type="text/css">
+<!--
+body {
+	background-color: #000000;
+}
+-->
+</style>
+  </head>
+
+  <body onload="load()">
+    <div id="map" style="width: 480px; height: 480px"></div>
+  </body>
+</html>

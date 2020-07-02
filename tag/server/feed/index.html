@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; server</title>
+	<atom:link href="http://blog.spaziogis.it/tag/server/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>E&#8217; uscito GeoServer 1.6.0</title>
+		<link>http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/</link>
+		<comments>http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/#comments</comments>
+		<pubDate>Tue, 12 Feb 2008 18:05:05 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[geoserver]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[webmapping]]></category>
+		<category><![CDATA[wfs]]></category>
+		<category><![CDATA[wms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=E%26%238217%3B+uscito+GeoServer+1.6.0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-02-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/&amp;rft.language=English"></span>
+E&#8217; con tanto piacere ed entusiasmo che do notizia dell&#8217;uscita di GeoServer 1.6.0. Queste le novità principali: un grosso aumento di performance nelle renderizzazione di mappe tramite WMS supporto per il versioning: sarà possibile modificare dati spaziali come dentro un wiki, e mantenere le varie versioni modificate dai vari utenti nel tempo. Il versioning è [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=E%26%238217%3B+uscito+GeoServer+1.6.0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-02-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>E&#8217; con tanto piacere ed entusiasmo che do notizia dell&#8217;uscita di <a href="http://blog.geoserver.org/2008/02/12/geoserver-160/" title="GeoServer" target="_blank">GeoServer 1.6.0</a>.</p>
+	<p>Queste le novità principali:</p>
+	<ul>
+	<li>un grosso aumento di <a href="http://www.foss4g2007.org/presentations/view.php?abstract_id=120">performance</a> nelle renderizzazione di mappe tramite WMS</li>
+	<li>supporto per il versioning: sarà possibile modificare dati spaziali come dentro un wiki, e mantenere le varie versioni modificate dai vari utenti nel tempo. Il versioning è possibile al momento soltanto con PostGIS come base dati. Due demo <a href="http://sigma.openplans.org/%7Etschaub/wfsv/feature-editor.html">qui</a> e <a href="http://artois.openplans.org/annotation_demo/">qui</a></li>
+	<li>supporto per <a href="http://geoserver.org/display/GEOSDOC/2.+WFS">WFS</a>  1.1</li>
+	<li>aggiunta di un sistema di gestione della sicurezza basato su <a href="http://www.acegisecurity.org/">Acegi</a> con la possibilità di gestire ruoli</li>
+	<li>migliore integrazione con <a href="http://geoserver.org/display/GEOSDOC/Google+Maps">Google Maps/Virtual Earth/Yahoo! Maps</a></li>
+	<li>migliore integrazione con <a href="http://openlayers.org/">OpenLayers</a></li>
+	<li>possibilità di modificare via web un database ArcSDE tramite OpenLayers</li>
+	<li>erogazione di dati in modalità di Cascading WFS e <a href="http://portal.opengeospatial.org/files/?artifact_id=12637">Component WMS</a></li>
+	</ul>
+	<p>Da <a href="http://geoserver.org/display/GEOS/GeoServer+1.6.0" title="GeoServer Download" target="_blank">qui</a> il download.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/">E&#8217; uscito GeoServer 1.6.0</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=E%26%238217%3B+uscito+GeoServer+1.6.0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-02-12&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/02/12/e-uscito-geoserver-160/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>MapServer 5: un piacere per gli occhi</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/</link>
+		<comments>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comments</comments>
+		<pubDate>Fri, 10 Aug 2007 07:42:08 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[mapser]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MapServer+5%3A+un+piacere+per+gli+occhi&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/&amp;rft.language=English"></span>
+Non è la prima che lo scrivo in questo Blog: se non avessi &#8220;incontrato&#8221; MapServer, non avrei avuto la possibilità di aquisire certe conoscenze ed una certa cultura. E&#8217; un ottimo prodotto, che non ti &#8220;abbondona&#8221; mai. Quello che mi ha sempre colpito è la qualità della mailing list: è ricca di entusiasmo, di competenza [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MapServer+5%3A+un+piacere+per+gli+occhi&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Non è la prima che lo scrivo in questo Blog: se non avessi &#8220;incontrato&#8221; <a href="http://mapserver.gis.umn.edu/" title="MapServer Homepage" target="_blank">MapServer</a>, non avrei avuto la possibilità di aquisire certe conoscenze ed una certa cultura. E&#8217; un ottimo prodotto, che non ti &#8220;abbondona&#8221; mai. Quello che mi ha sempre colpito è la qualità della mailing list: è ricca di entusiasmo, di competenza e disponibilità, grazie sia ai novizi che agli sviluppatori di MapServer. Non dico nulla del prodotto, perché è da tempo celebre.</p>
+	<p>Vi voglio solo fare guardare le nuove capacit� di rendering della prossima futura <a href="http://mapserver.gis.umn.edu/download/beta" title="MapServer 5 Beta" target="_blank">versione 5</a>. Magari vi sembrerà qualcosa di poco sostanziale, ma date un&#8217;occhiata alle due immagini di sotto, ad esempio a come viene renderizzata la linea rossa &#8230;</p>
+	<p><img src="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver4.png" alt="Rendering in MapServer 4" /><br />
+<a href="http://boston.freemap.in/kamap.html?lat=901381&amp;lon=232542&amp;zoom=7&amp;layers=B" title="Rendering in MapServer 4" target="_blank">Mapserver 4</a></p>
+	<p><img src="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver5.png" alt="Rendering in MapServer 5" /><br />
+<a href="http://boston.freemap.in/?lat=901381&amp;lon=232542&amp;zoom=7&amp;layers=B" title="Rendering in MapServer 5" target="_blank">Mapserver 5</a></p>
+	<p>La differenza è sostanziale ed è dovuta principalmente ad <a href="http://www.antigrain.com/about/index.html" title="AGG library" target="_blank">AGG</a>, la nuova libreria di rendering.</p>
+	<p>Queste le principali novità:</p>
+	<ul>
+	<li>Added Style and Label attribute binding</li>
+	<li>Raster Color Correction via color lookup table</li>
+	<li>Added label priority</li>
+	<li>Added dynamic charting (pie and bar charts)</li>
+	<li>New mechanism to load/set objects via URL using mapfile syntax</li>
+	<li>Added support for map rendering using the AGG library for better output quality</li>
+	</ul>
+	<p>Le immagini di sopra sono screenshot del lavoro fatto da <a href="http://crschmidt.net/blog" title="Christopher Schmidt Blog" target="_blank">Christopher Schmidt</a>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/">MapServer 5: un piacere per gli occhi</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=MapServer+5%3A+un+piacere+per+gli+occhi&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-08-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver4.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver4.png" medium="image">
+			<media:title type="html">Rendering in MapServer 4</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/08/mapserver5.png" medium="image">
+			<media:title type="html">Rendering in MapServer 5</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>La prossima versione di GeoServer supporterà il GeoRSS</title>
+		<link>http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/</link>
+		<comments>http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/#comments</comments>
+		<pubDate>Wed, 20 Jun 2007 22:21:33 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[georss]]></category>
+		<category><![CDATA[geoserver]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+prossima+versione+di+GeoServer+supporter%C3%A0+il+GeoRSS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-20&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/&amp;rft.language=English"></span>
+Sul Blog degli sviluppatori di GeoServer c&#8217;è una gran notizia: la futura release di GeoServer, la 1.5.2, supporterà il formato GeoRSS come output. E&#8217; una gran cosa, in quando renderà la pubblicazione di basi dati sul web una cosa banale; basterà ad esempio sfruttare le funzioni native di lettura di file GeoRSS di Yahoo! Maps, [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+prossima+versione+di+GeoServer+supporter%C3%A0+il+GeoRSS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-20&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Sul <a href="http://blog.geoserver.org/2007/06/20/georss-coming-soon/" title="GeoServer Blog" target="_blank">Blog</a> degli sviluppatori di GeoServer c&#8217;è una gran notizia: la futura release di GeoServer, la 1.5.2, supporterà il formato <a href="http://georss.org/" title="georss format" target="_blank">GeoRSS</a> come output. E&#8217; una gran cosa, in quando renderà la pubblicazione di basi dati sul web una cosa banale; basterà ad esempio sfruttare le funzioni native di lettura di file GeoRSS di Yahoo! Maps, Google Maps e Microsoft Virtual Earth.</p>
+	<p><a href="http://docs.codehaus.org/display/GEOSDOC/GeoRSS" title="geoserver georss support" target="_blank">Qui</a> i dettagli tecnici.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/">La prossima versione di GeoServer supporterà il GeoRSS</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+prossima+versione+di+GeoServer+supporter%C3%A0+il+GeoRSS&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-20&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/20/la-prossima-versione-di-geoserver-supportera-il-georss/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Sempre GeoServer: è uscita la release 1.5.1</title>
+		<link>http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/</link>
+		<comments>http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/#comments</comments>
+		<pubDate>Wed, 06 Jun 2007 22:24:05 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[geoserver]]></category>
+		<category><![CDATA[kml]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[wms]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sempre+GeoServer%3A+%C3%A8+uscita+la+release+1.5.1&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/&amp;rft.language=English"></span>
+E&#8217; uscita la release 1.5.1 di GeoServer. Lo segnalo perché è una release in cui sono state introdotti diversi miglioramenti: OpenLayers è il nuovo viewer di defaut la generazione di Tile non crea più strani effetti sulle etichette a cavallo tra due tasselli (hanno usato la stessa tecnica di TileCache) è stato introdotto OpenLayers come [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sempre+GeoServer%3A+%C3%A8+uscita+la+release+1.5.1&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>E&#8217; uscita la release 1.5.1 di <a href="http://geoserver.org/" title="GeoServer Homepage" target="_blank">GeoServer</a>. Lo segnalo perché è una release in cui sono state introdotti diversi miglioramenti:</p>
+	<ul>
+	<li><a href="http://openlayers.org/">OpenLayers</a> è il nuovo viewer di defaut</li>
+	<li>la generazione di Tile non crea più strani effetti sulle etichette a cavallo tra due tasselli (hanno usato la stessa tecnica di <a href="http://labs.metacarta.com/wms-c">TileCache</a>)</li>
+	<li>è stato introdotto OpenLayers come formato di <em>output</em>. Basterà integrare ad una qualsiasi richiesta WMS una stringa come questa <em><strong>Format=application/openlayers</strong></em></li>
+	<li>è possibile creare dei template personalizzati per i pop-up dei file .kml in Google Earth (<a href="http://docs.codehaus.org/display/GEOSDOC/KML+Placemark+Templates" title="KML Placemark Templates geoserver tutorial" target="_blank">qui</a> un tutorial)</li>
+	</ul>
+	<p><a href="http://blog.geoserver.org/2007/06/06/geoserver-151-ready-for-download/" title="Geoserver 1.5.1" target="_blank">Qui</a> maggiori dettagli.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/">Sempre GeoServer: è uscita la release 1.5.1</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sempre+GeoServer%3A+%C3%A8+uscita+la+release+1.5.1&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-06&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/06/sempre-geoserver-e-uscita-la-release-151/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>FeatureServer: per archiviare i layer che disegnate on-line</title>
+		<link>http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/</link>
+		<comments>http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/#comments</comments>
+		<pubDate>Thu, 24 May 2007 21:23:51 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FeatureServer%3A+per+archiviare+i+layer+che+disegnate+on-line&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-05-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/&amp;rft.language=English"></span>
+Ne so ancora poco, ma la notizia è molto interessante. Quelli del Metacarta Labs hanno annunciato oggi il rilascio di FeatureServer, un server che consetirà l&#8217;archiviazione di punti, linee e poligoni ed anche la loro restituzione in formato KML, JSON, GeoRSS, GML/WFS ed anche HTML. E&#8217; stato progettato a supporto delle nuove capacità vettoriali di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FeatureServer%3A+per+archiviare+i+layer+che+disegnate+on-line&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-05-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Ne so ancora poco, ma la notizia è molto interessante. Quelli del <a href="http://labs.metacarta.com" title="Metacarta Labs" target="_blank"><em>Metacarta Labs</em></a> hanno annunciato oggi il rilascio di <a href="http://labs.metacarta.com/blog/16.entry" title="FeatureServer" target="_blank">FeatureServer</a>, un server che consetirà l&#8217;archiviazione di punti, linee e poligoni ed anche la loro restituzione in formato KML, JSON, GeoRSS, GML/WFS ed anche HTML.</p>
+	<p>E&#8217; stato progettato a supporto delle nuove capacità vettoriali di OpenLayers: <a href="http://featureserver.org/demo.html" title="FeatureServer OpenLayers Demo" target="_blank">qui</a> una demo.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/">FeatureServer: per archiviare i layer che disegnate on-line</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=FeatureServer%3A+per+archiviare+i+layer+che+disegnate+on-line&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-05-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/05/24/featureserver-per-archiviare-i-layer-che-disegnate-on-line/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>E&#8217; uscito GeoServer 1.5.0</title>
+		<link>http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/</link>
+		<comments>http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/#comments</comments>
+		<pubDate>Wed, 18 Apr 2007 21:53:48 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[geoserver]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=E%26%238217%3B+uscito+GeoServer+1.5.0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-04-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/&amp;rft.language=English"></span>
+Leggo sul Blog di GeoServer che è uscita la versione stabile 1.5.0 di GeoServer. E&#8217; un eccellente server Open Source per la gestione e la distribuzione di dati spaziali, secondo gli standard OGC di interoperabilità. E&#8217; basato su Geotools, un toolkit Java su cui si basa anche udig. Questa è una release molto importante del [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=E%26%238217%3B+uscito+GeoServer+1.5.0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-04-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Leggo sul <a href="http://blog.geoserver.org/" title="GeoServer Blog" target="_blank">Blog</a> di GeoServer che è uscita la versione stabile 1.5.0 di GeoServer. E&#8217; un eccellente server Open Source per la gestione e la distribuzione di dati spaziali, secondo gli standard OGC di interoperabilità. E&#8217; basato su <span class="nobr"></span><a href="http://www.geotools.org/" target="_blank" title="Geotools" rel="nofollow">Geotools</a>, un toolkit Java su cui si basa anche <a href="http://udig.refractions.net/confluence/display/UDIG/Home" target="_blank" title="uDig" rel="nofollow"><span class="nobr"></span>udig</a>.</p>
+	<p>Questa è una release molto importante del prodotto, in quanto adesso consente di distribuire qualsiasi tipo di dato spaziale: la più grossa novità è infatti il supporto per formati raster (GeoTiff, ArcGrid, World Images, GTOPO3), sia tramite <a href="http://www.opengeospatial.org/standards/wms" title="WMS" target="_blank">WMS </a>che come <a href="http://www.opengeospatial.org/standards/wcs" title="WCS" target="_blank">WCS</a>. Altre novità importanti sono la semplificazione della procedura di inserimento di nuovi dati,  il supporto migliorato per il formato KML di Google Earth, scalabilità e prestazioni migliori.</p>
+	<p>Il download si esegue da <a href="http://docs.codehaus.org/display/GEOS/Latest" title="Download GeoServer" target="_blank">qui</a>, ed è di facile installazione su qualsiasi piattaforma.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/">E&#8217; uscito GeoServer 1.5.0</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=E%26%238217%3B+uscito+GeoServer+1.5.0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-04-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/04/18/e-uscito-geoserver-150/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Installare MapServer su Windows con Apache</title>
+		<link>http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/</link>
+		<comments>http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/#comments</comments>
+		<pubDate>Sat, 18 Feb 2006 09:55:12 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[wamp]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/&amp;rft.language=English"></span>
+Aggiornamento: è stato scritto un post che funge da aggiornamento di questo. Lo trovate qui. MapServerè l&#8217;applicazione di webmapping opensource oggi più diffusa e con una lunga storia alle spalle; a mio avviso è anche la migliore. Per portare a buon fine questo tutorial avremo bisogno anche di un&#8217;installazione di Apache funzionante e configurata. Questo [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><span style="color: #ff6600;"><strong>Aggiornamento:</strong> è stato scritto un post che funge da aggiornamento di questo. Lo trovate <a title="Installare MapServer su Windows con Apache (riveduto e corretto)" href="http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/">qui</a>.</span></p>
+	<hr size="1/" />
+	<p><a title="MapServer" href="http://mapserver.gis.umn.edu/">MapServer</a>è l&#8217;applicazione di webmapping opensource oggi più diffusa e con una lunga storia alle spalle; a mio avviso è anche la migliore.</p>
+	<p>Per portare a buon fine questo tutorial avremo bisogno anche di un&#8217;installazione di Apache funzionante e configurata.</p>
+	<p>Questo è il primo piccolo tutorial che sto inserendo nel mio Blog, sperando che sia il primo di molti. E&#8217; dedicato all&#8217;installazione di MapServer in un ambiente Windows; lo so, sembra un controsenso, ma è la prima cosa che ho imparato a fare e da qui voglio iniziare.</p>
+	<p><span id="more-127"></span></p>
+	<h2>Guida passo passo</h2>
+	<ul>
+	<li>scaricate dal sito <a title="MapTools" href="http://www.maptools.org/php_mapscript/index.phtml?page=downloads.html">MapTools</a> il file zip che contiene il binario dell&#8217;ultima versione stabile di MapServer per piattaforma Win32 (oggi è la 4.8.1)</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb3ptf6jznh" alt="" border="0" hspace="5" /></p>
+	<ul>
+	<li>scaricate il web server Apache o dal <a title="sito ufficiale" href="http://httpd.apache.org/">sito ufficiale</a> , o scaricate un pacchetto <a title="WAMP" href="http://en.wikipedia.org/wiki/WAMP">WAMP</a> – con Apache, MySQL e PHP – come <a title="Uniform Server" href="http://www.uniformserver.com/">Uniform Server</a>. Un pacchetto “completo” come questo vi darà la possibilità di testare anche funzioni più avanzate di MapServer (i.e. phpmapscritpt)</li>
+	<li>Assicuratevi che il web server sia attivo (do per scontato che lo sappiate fare)</li>
+	<li>Estraete il file mapserv.exe (è un&#8217;applicazione cgi) contenuto nel file zip scaricato dal sito MapTools (vedi sotto), nella cartella “cgi” del web-server (se avrete installato Uniform Server, la cartella sarà “W:\cgi-bin”). La cartella cgi è “speciale”, in quanto è una cartella in cui i file possono essere “eseguiti”</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb3swd8p22c" alt="" border="0" hspace="5" /></p>
+	<ul>
+	<li>Estraete il contenuto dei file zip evidenziati nella figura sottostante, in una cartella presente nel PATH del vostro sistema operativo. Se avete Windows XP, potrete estrarre il tutto in &#8220;C:\WINDOWS\system32&#8243;. Questi file zip contengono delle DLL necessarie al corretto funzionamento di MapServer</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb3wdnvmhxb" alt="" hspace="5" /></p>
+	<ul>
+	<li>Non vi resta che lanciare il vostro browser e puntare al file &#8220;mapserv.exe&#8221;: tipicamente &#8220;http://localhost/cgi-bin/mapserv.exe&#8221;. Se avrete come risposta &#8220;No query information to decode. QUERY_STRING is set, but empty&#8221;, vorrà dire che l&#8217;installazione è andata a buon fine. Il messaggio che vi ha restituito MapServer, è una segnalazione del fatto che non avete fornito a MapServer alcun file da processare</li>
+	</ul>
+	<p><img src="http://www.writely.com/File.aspx?id=bccb4w7k6bbhs" alt="" hspace="5" />Un&#8217;altra verifica che potrete fare, al fine di accertarvi della correttezza dell&#8217;installazione di MapServer, è quella di aprire il prompt dei comandi sulla cartella cgi e scrivere la seguente stringa: &#8220;mapserv.exe -v&#8221;. Se tutto va bene avrete un risultato come quello sottostante, in cui potrete leggere quale versione di MapServer state utilizzando (in questo caso la 4.8.1) ma anche con quali feature è stato compilato (i.e. supporto in output di jpeg, png, svg, etc etc)<br />
+<img src="http://www.writely.com/File.aspx?id=bccb4jfd6wc5d" alt="" hspace="5" /></p>
+	<h2>Riassumendo</h2>
+	<p>Se siete arrivati sino a qui, probabilmente avete un sistema con mapserver 4.8.1 installato e configurato in ambiente Windows sotto un web server Apache. Se il server web fosse IIS, cambierebbe poco: dovrete estrarre il file mapserv.exe nella cartella cgi che avete configurato in IIS, ed assicurarvi che lo IUSR abbia il permesso di esecuzione del file mapserv.exe.<br />
+Nel prossimo tutorial (lontano nelle mie previsioni), creeremo una semplicissima applicazione MapServer.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/">Installare MapServer su Windows con Apache</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/feed/</wfw:commentRss>
+		<slash:comments>29</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2006-02-18&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://www.writely.com/File.aspx?id=bccb3ptf6jznh" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb3ptf6jznh" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb3swd8p22c" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb3wdnvmhxb" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb4w7k6bbhs" medium="image" />
+		<media:content url="http://www.writely.com/File.aspx?id=bccb4jfd6wc5d" medium="image" />
+	</item>
+		<item>
+		<title>Il futuro sito di MapServer</title>
+		<link>http://blog.spaziogis.it/2005/07/25/il-futuro-sito-di-mapserver/</link>
+		<comments>http://blog.spaziogis.it/2005/07/25/il-futuro-sito-di-mapserver/#comments</comments>
+		<pubDate>Mon, 25 Jul 2005 14:43:16 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[server]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2005/07/24/il-futuro-sito-di-mapserver/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+futuro+sito+di+MapServer&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2005-07-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2005/07/25/il-futuro-sito-di-mapserver/&amp;rft.language=English"></span>
+Il sito di MapServer cambia indirizzo e struttura. Questo è il nuovo link (già visitabile), ed è basato su Plone; il sito sarà quindi per forza di cose ben strutturarto e più adatto a gestire una comunità grande e sfaccettata come quella di MapServer. [ luvox 100mg pills $319.00 &#124; mesterolone 20mg pills $107.00 &#124; [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+futuro+sito+di+MapServer&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2005-07-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2005/07/25/il-futuro-sito-di-mapserver/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il sito di MapServer cambia indirizzo e struttura. <a href="http://ms.gis.umn.edu/">Questo</a> è il nuovo link (già visitabile), ed è basato su <a href="http://plone.org/">Plone</a>; il sito sarà quindi per forza di cose ben strutturarto e più adatto a gestire una comunità grande e sfaccettata come quella di MapServer.</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2005/07/25/il-futuro-sito-di-mapserver/">Il futuro sito di MapServer</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2005/07/25/il-futuro-sito-di-mapserver/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+futuro+sito+di+MapServer&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2005-07-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2005/07/25/il-futuro-sito-di-mapserver/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

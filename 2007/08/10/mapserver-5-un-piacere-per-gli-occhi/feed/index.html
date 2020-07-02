@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+		>
+<channel>
+	<title>Commenti a: MapServer 5: un piacere per gli occhi</title>
+	<atom:link href="http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Fri, 04 Nov 2016 08:49:24 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/comment-page-1/#comment-3801</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Sun, 16 Nov 2008 22:46:18 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comment-3801</guid>
+		<description><![CDATA[Ciao Edmondo,
+inizio da un consiglio: cerca di fornire il maggior numero di dettagli, utili a replicare il tuo problema.
+Ad esempio sarebbe stato utile qualche informazione in più su quale plug-in hai provato ad installare. Penso tu ti stia riferendo a quelli di questa pagina:
+http://snipurl.com/5nh01
+
+Non mi prendere per &quot;precisino&quot;. Non si tratta di plugin, ma di applicazioni (Applications Packaged for MS4W); utilizzare i termini giusti è utile per capirsi.
+
+Ma andiamo alle tue difficoltà. Ho fatto un test partendo da zero ed ho scaricato &quot;ms4w_2.3.0.zip&quot; e l&#039;ho estratto in C:. Come risultato ho ottenuto una cartella &quot;C:\ms4w&quot;.
+
+Dopodiché ho aperto il prompt del dos, ed ho lanciato &quot;c:\ms4w\apache-install.bat&quot;. Questo comando installa il server web Apache come servizio, e lo fa partire. Se tutto va a buon fine, avrai un messaggio di conferma. Come ulteriore prova puoi aprire il browser sull&#039;indirizzo &quot;http://localhost/&quot;. Se ti appare una lunga pagina web con in &quot;testa&quot; la scritta &quot;MS4W - MapServer 4 Windows - version 2.3.0&quot;, tutto è andato bene.
+
+Installiamo adesso una delle applicazioni. Io ho scaricato per il mio test OpenLayers ed in particolare il file &quot;http://www.maptools.org/dl/ms4w/openlayers-2.5_ms4w.zip&quot;. L&#039;ho estratto in &quot;C:\&quot; accertandomi che venisse mantenuta la struttura interna del file zip. Cosi facendo ho nella cartella &quot;C:\ms4w\apps&quot;, la nuova cartella &quot;openlayers-2.5&quot;; quindi la seguente struttura &quot;C:\ms4w\apps\openlayers-2.5&quot;. Se dopo l&#039;estrazione del file zip, non hai questa cartella, vuol dire che hai estratto il file .zip in modo scorretto.
+
+Se hai superato questo problema della cartella, non ti resta che riavviare Apache. Apri ancora una volta il prompt del dos, scrivi &quot;c:\ms4w\apache-restart.bat&quot; e clicca su INVIO.
+
+Apri il browser e vai su:
+&quot;http://localhost/openlayers/examples/&quot;
+
+Ti si dovrebbe aprire un elenco di numerosi esempi basati sull&#039;eccezionale OpenLayers. Clicca su &quot;baseLayers.html&quot; e se ti si apre una mappa centrata (quasi) sull&#039;Italia, vuol dire che tutto è andato a buon fine.
+
+Così facendo però avrai imparato poco di MapServer (quasi nulla). Non è difficile mettere su un&#039;applicazione basata su MapServer, ma gli devi dedicare un po&#039; di studio. Magari puoi tralasciare all&#039;inizio la parte di gestione e configurazione di un server web, ma approfondisci i temi legati ai mapfile ed al linguaggio html.
+
+Ti raccomando la documentazione ufficiale, e questo eccellente e famoso tutorial:
+http://biometry.gis.umn.edu/tutorial/
+
+Ciao e buono studio ;-)
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Edmondo,<br />
+inizio da un consiglio: cerca di fornire il maggior numero di dettagli, utili a replicare il tuo problema.<br />
+Ad esempio sarebbe stato utile qualche informazione in più su quale plug-in hai provato ad installare. Penso tu ti stia riferendo a quelli di questa pagina:<br />
+<a href="http://snipurl.com/5nh01" rel="nofollow">http://snipurl.com/5nh01</a></p>
+<p>Non mi prendere per &#8220;precisino&#8221;. Non si tratta di plugin, ma di applicazioni (Applications Packaged for MS4W); utilizzare i termini giusti è utile per capirsi.</p>
+<p>Ma andiamo alle tue difficoltà. Ho fatto un test partendo da zero ed ho scaricato &#8220;ms4w_2.3.0.zip&#8221; e l&#8217;ho estratto in C:. Come risultato ho ottenuto una cartella &#8220;C:\ms4w&#8221;.</p>
+<p>Dopodiché ho aperto il prompt del dos, ed ho lanciato &#8220;c:\ms4w\apache-install.bat&#8221;. Questo comando installa il server web Apache come servizio, e lo fa partire. Se tutto va a buon fine, avrai un messaggio di conferma. Come ulteriore prova puoi aprire il browser sull&#8217;indirizzo &#8220;http://localhost/&#8221;. Se ti appare una lunga pagina web con in &#8220;testa&#8221; la scritta &#8220;MS4W &#8211; MapServer 4 Windows &#8211; version 2.3.0&#8243;, tutto è andato bene.</p>
+<p>Installiamo adesso una delle applicazioni. Io ho scaricato per il mio test OpenLayers ed in particolare il file &#8220;http://www.maptools.org/dl/ms4w/openlayers-2.5_ms4w.zip&#8221;. L&#8217;ho estratto in &#8220;C:\&#8221; accertandomi che venisse mantenuta la struttura interna del file zip. Cosi facendo ho nella cartella &#8220;C:\ms4w\apps&#8221;, la nuova cartella &#8220;openlayers-2.5&#8243;; quindi la seguente struttura &#8220;C:\ms4w\apps\openlayers-2.5&#8243;. Se dopo l&#8217;estrazione del file zip, non hai questa cartella, vuol dire che hai estratto il file .zip in modo scorretto.</p>
+<p>Se hai superato questo problema della cartella, non ti resta che riavviare Apache. Apri ancora una volta il prompt del dos, scrivi &#8220;c:\ms4w\apache-restart.bat&#8221; e clicca su INVIO.</p>
+<p>Apri il browser e vai su:<br />
+&#8220;http://localhost/openlayers/examples/&#8221;</p>
+<p>Ti si dovrebbe aprire un elenco di numerosi esempi basati sull&#8217;eccezionale OpenLayers. Clicca su &#8220;baseLayers.html&#8221; e se ti si apre una mappa centrata (quasi) sull&#8217;Italia, vuol dire che tutto è andato a buon fine.</p>
+<p>Così facendo però avrai imparato poco di MapServer (quasi nulla). Non è difficile mettere su un&#8217;applicazione basata su MapServer, ma gli devi dedicare un po&#8217; di studio. Magari puoi tralasciare all&#8217;inizio la parte di gestione e configurazione di un server web, ma approfondisci i temi legati ai mapfile ed al linguaggio html.</p>
+<p>Ti raccomando la documentazione ufficiale, e questo eccellente e famoso tutorial:<br />
+<a href="http://biometry.gis.umn.edu/tutorial/" rel="nofollow">http://biometry.gis.umn.edu/tutorial/</a></p>
+<p>Ciao e buono studio <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Edmondo</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/comment-page-1/#comment-3800</link>
+		<dc:creator>Edmondo</dc:creator>
+		<pubDate>Sat, 15 Nov 2008 21:38:39 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comment-3800</guid>
+		<description><![CDATA[ciao, provo a sintetizzare le problematiche che mi hannno bloccato.
+ho installato MS in Win (MS4W) e pare che tutto sia andato liscio. la prima difficoltà che ho incontrato è stata nell&#039;installazione di plugin: per lo più pare che basti decompattarli nella directory radice per trovarle già bell&#039;e pronte ma a me non ha funzionato.
+Vorrei sapere anche se ci sono template pronti da utilizzare.
+Perdonami, tutto deve sembrare assolutamente confuso, ma rispecchia fedelmente il mio livello di conoscenza sui webgis.
+
+Grazie
+
+Buona domenica]]></description>
+		<content:encoded><![CDATA[<p>ciao, provo a sintetizzare le problematiche che mi hannno bloccato.<br />
+ho installato MS in Win (MS4W) e pare che tutto sia andato liscio. la prima difficoltà che ho incontrato è stata nell&#8217;installazione di plugin: per lo più pare che basti decompattarli nella directory radice per trovarle già bell&#8217;e pronte ma a me non ha funzionato.<br />
+Vorrei sapere anche se ci sono template pronti da utilizzare.<br />
+Perdonami, tutto deve sembrare assolutamente confuso, ma rispecchia fedelmente il mio livello di conoscenza sui webgis.</p>
+<p>Grazie</p>
+<p>Buona domenica</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Andrea Borruso</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/comment-page-1/#comment-3799</link>
+		<dc:creator>Andrea Borruso</dc:creator>
+		<pubDate>Sat, 15 Nov 2008 17:46:32 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comment-3799</guid>
+		<description><![CDATA[Ciao Edmondo,
+scusami per il ritardo con cui ti rispondo.
+
+Per farlo al meglio ho bisogno di qualche informazione in più. 
+Su che sistema operativo vuoi fare questi test?
+Hai difficoltà ad impostare un webserver con MapServer, oppure lo hai già configurato e vuoi imparare a gestire un mapfile e le pagine web necessarie per creare un applicazione di webmapping?
+
+Fammi capire un po&#039; meglio e (stavolta) ti risponderò subito.
+
+Ciao e grazie per la visita,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>Ciao Edmondo,<br />
+scusami per il ritardo con cui ti rispondo.</p>
+<p>Per farlo al meglio ho bisogno di qualche informazione in più.<br />
+Su che sistema operativo vuoi fare questi test?<br />
+Hai difficoltà ad impostare un webserver con MapServer, oppure lo hai già configurato e vuoi imparare a gestire un mapfile e le pagine web necessarie per creare un applicazione di webmapping?</p>
+<p>Fammi capire un po&#8217; meglio e (stavolta) ti risponderò subito.</p>
+<p>Ciao e grazie per la visita,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Ed</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/comment-page-1/#comment-3796</link>
+		<dc:creator>Ed</dc:creator>
+		<pubDate>Wed, 05 Nov 2008 09:53:11 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comment-3796</guid>
+		<description><![CDATA[SAlve a tutti, uso già da qualche tempo gis desktop open source (grass - QGis) e vorrei implementare qualcosa sul web. ho dato un&#039;occhiata a mapserver, ma sembra davvero ostico iniziare. C&#039;è abvbondanza di documentazione, però la trovo troppo per iniziati. Qualche consiglio?
+
+Grazie]]></description>
+		<content:encoded><![CDATA[<p>SAlve a tutti, uso già da qualche tempo gis desktop open source (grass &#8211; QGis) e vorrei implementare qualcosa sul web. ho dato un&#8217;occhiata a mapserver, ma sembra davvero ostico iniziare. C&#8217;è abvbondanza di documentazione, però la trovo troppo per iniziati. Qualche consiglio?</p>
+<p>Grazie</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Marco</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/comment-page-1/#comment-3364</link>
+		<dc:creator>Marco</dc:creator>
+		<pubDate>Sat, 11 Aug 2007 23:43:10 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comment-3364</guid>
+		<description><![CDATA[Bene, non sembra problematica la migrazione. Anche io avevo l&#039;idea del post per FGI, ma sto aspettando che la versione 5 esca dalle varie beta/RC e diventi ufficiale ... Le vacanze sono già finite purtroppo, una settimana sola. Poi qualcuno potrebbe obiettare che fare consulenza per la pubblica amministrazione sia una continua vacanza ...]]></description>
+		<content:encoded><![CDATA[<p>Bene, non sembra problematica la migrazione. Anche io avevo l&#8217;idea del post per FGI, ma sto aspettando che la versione 5 esca dalle varie beta/RC e diventi ufficiale &#8230; Le vacanze sono già finite purtroppo, una settimana sola. Poi qualcuno potrebbe obiettare che fare consulenza per la pubblica amministrazione sia una continua vacanza &#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: andrea</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/comment-page-1/#comment-3363</link>
+		<dc:creator>andrea</dc:creator>
+		<pubDate>Sat, 11 Aug 2007 13:53:23 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comment-3363</guid>
+		<description><![CDATA[ciao marco,
+&lt;a href=&quot;http://mapserver.gis.umn.edu/development/release_plans/mapserver_5_0/migration_guide_410_50/?searchterm=mapserver%205&quot; rel=&quot;nofollow&quot;&gt;qui&lt;/a&gt; trovi un draft della Migration Guide dalla 4.10 alla 5. Io spero di fare una prova prima di fine Agosto e di scriverci un post.
+
+Ma non eri in vacanza??
+
+ciao,
+
+a]]></description>
+		<content:encoded><![CDATA[<p>ciao marco,<br />
+<a href="http://mapserver.gis.umn.edu/development/release_plans/mapserver_5_0/migration_guide_410_50/?searchterm=mapserver%205" rel="nofollow">qui</a> trovi un draft della Migration Guide dalla 4.10 alla 5. Io spero di fare una prova prima di fine Agosto e di scriverci un post.</p>
+<p>Ma non eri in vacanza??</p>
+<p>ciao,</p>
+<p>a</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Di: Marco</title>
+		<link>http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/comment-page-1/#comment-3362</link>
+		<dc:creator>Marco</dc:creator>
+		<pubDate>Sat, 11 Aug 2007 11:17:52 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/08/10/mapserver-5-un-piacere-per-gli-occhi/#comment-3362</guid>
+		<description><![CDATA[Interessante, io per un primo progettino MS4W sono fermo alla 4.10.0, per la 5 siamo ancora alla RC vero? Perché per nuovi progetti passerei volentieri a questa nuova versione.
+
+Mi preoccupano un po&#039; cambi nella sintassi del mapfile. Notizie in proposito?]]></description>
+		<content:encoded><![CDATA[<p>Interessante, io per un primo progettino MS4W sono fermo alla 4.10.0, per la 5 siamo ancora alla RC vero? Perché per nuovi progetti passerei volentieri a questa nuova versione.</p>
+<p>Mi preoccupano un po&#8217; cambi nella sintassi del mapfile. Notizie in proposito?</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

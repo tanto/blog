@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; trend</title>
+	<atom:link href="http://blog.spaziogis.it/tag/trend/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>sRPA and Geomatics: why small drones are mapping tools</title>
+		<link>http://blog.spaziogis.it/2012/04/10/srpa-and-geomatics-why-small-drones-are-mapping-tools/</link>
+		<comments>http://blog.spaziogis.it/2012/04/10/srpa-and-geomatics-why-small-drones-are-mapping-tools/#comments</comments>
+		<pubDate>Tue, 10 Apr 2012 06:08:32 +0000</pubDate>
+		<dc:creator>Antonio D'Argenio</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[LARS]]></category>
+		<category><![CDATA[remote sensing]]></category>
+		<category><![CDATA[sUAV]]></category>
+		<category><![CDATA[trend]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4834</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=sRPA+and+Geomatics%3A+why+small+drones+are+mapping+tools&amp;rft.aulast=D%27Argenio&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-04-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/10/srpa-and-geomatics-why-small-drones-are-mapping-tools/&amp;rft.language=English"></span>
+A short story Some years ago I was working for my company together with my colleagues Andrea and Fabio. That was one of the rare times we had some money to use to integrate our equipment. We work in GIS, mostly web-mapping and numeric cartography, and at that time we were lucky people with new [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=sRPA+and+Geomatics%3A+why+small+drones+are+mapping+tools&amp;rft.aulast=D%27Argenio&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-04-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/10/srpa-and-geomatics-why-small-drones-are-mapping-tools/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h1>A short story</h1>
+	<p>Some years ago I was working for my company together with my colleagues Andrea and Fabio. That was one of the rare times we had some money to use to integrate our equipment. We work in GIS, mostly web-mapping and numeric cartography, and at that time we were lucky people with new graphic workstations, a small sized but new brand server farm and all we needed to do our job at the best. We had just completed a project related to some environmental issues and one of the problems we collided with was the lack of geodata at the scale we were looking for. At that time, public Italian geographic data, especially those referred to the region where we live and operate, were not so easily available nor frequently updated. This is a well known problem for people working with GI so Fabio told us “<em>Why don’t we buy a small airship to collect our own information?</em>”</p>
+	<p>Starting from this moment we spent about one month looking for the right aircraft.</p>
+	<p>At the beginning we had rough and confused ideas of what to do. Obvious constraints were: affordability, reliability and ease of use. But we were also looking for GPS control, flight planning and everything could be connected with mapping. With our surprise we easily found a number of carriers (not only airships but also planes, helicopters, paragliders, multi-copters and so on). Some solutions were of industrial type, other substantially homemade but we were looking also for a partner, someone who could help us to start and this item became part of our “requirements list”. We also found that our budget allowed to buy more than one aircraft so we decided to concentrate on two different kinds of vehicles: a paraglider to be used in photogrammetric surveys of large areas and a small quadricopter which we planned to employ on smaller areas. In those weeks we also found Daniele, a colleague and a friend that introduced us to aerial mapping with small, <strong>Remotely Piloted Aircrafts</strong>.</p>
+	<h1>What sRPA are</h1>
+	<p><strong>RPA </strong>means <strong>Remotely Piloted Aircraft</strong>. An “s” at the beginning stands for small.</p>
+	<p>Remote control implies that the pilot is not sitting on-board but generally remains on the ground surface, controlling the flight using a radio device.There are a number of equivalent ways to call this kind of aircrafts. Probably the most common are <strong>UAV </strong>(<strong>Unmanned Aerial Vehicles</strong>) and <strong>drone </strong>(even if this last term originally indicated military targets<sup class='footnote'><a href='#fn-4834-1' id='fnref-4834-1' onclick='return fdfootnote_show(4834)'>1</a></sup>). Other diffused English abbreviations are <strong>UAS </strong>(<strong>Unmanned Aerial Systems</strong>), <strong>RPV </strong>(<strong>Remotely Piloted Vehicles</strong>), <strong>ROA </strong>(<strong>Remotely Operated Aircrafts</strong>). In Italy, <a title="ENAC" href="http://www.enac.gov.it" target="_blank">ENAC</a><sup><sup class='footnote'><a href='#fn-4834-2' id='fnref-4834-2' onclick='return fdfootnote_show(4834)'>2</a></sup> </sup>recently introduced  the acronym  <strong>APR </strong>(<strong>Aeromobile a Pilotaggio Remoto</strong>).</p>
+	<p>Since remote control is a base characteristic to define an RPA, there are a lot of crafts kinds falling in this category. Beside obvious differences (such as those between fixed and rotary wings) other important parameters to take in account are: size, weight, range, maximum altitude and endurance. These last parameters are those commonly used to classify unmanned aircrafts. The table below illustrates an old classification of the <strong>UAV Association</strong> that uses the above mentioned parameters to define classes and, even if not the most updated, can be used as guide.</p>
+	<table border="0" cellspacing="0">
+	<tbody>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" bgcolor="#83CAFF" height="30"><strong><span style="font-size: xx-small;">Class</span></strong></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Abbr.</span></strong></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Range<br />
+(km)</span></strong></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Altit.<br />
+(m)</span></strong></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">End.<br />
+(h)</span></strong></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Mass<br />
+(kg)</span></strong></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="18"><span style="font-size: xx-small;">Micro</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">µ           </span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&lt; 10</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">250</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">1</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&lt;5</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="18"><span style="font-size: xx-small;">Mini</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">Mini</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&lt; 10</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">150 to 300</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&lt; 2</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">150</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="18"><span style="font-size: xx-small;">Close Range</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">CR</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">10 to 30</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">3000</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">2 to 4</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">150</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="18"><span style="font-size: xx-small;">Short Range</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">SR</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">30 to 70</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">3000</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">3 to 6</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">200</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="31"><span style="font-size: xx-small;">Medium Range</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">MR</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">70 to 200</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">5000</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">6 to 10</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">1250</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="45"><span style="font-size: xx-small;">Medium Range Endurance</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">MRE</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&gt; 500</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">8000</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">10 to 18</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">1250</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="45"><span style="font-size: xx-small;">Low Altitude<br />
+Deep Penetration</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">LADP</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&gt; 250</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">50 to 9000</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">0.5 to 1</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">350</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="45"><span style="font-size: xx-small;">Low Altitude<br />
+Long Endurance</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">LALE</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&gt; 500</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">3000</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&gt;24</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&lt; 30</span></td>
+	</tr>
+	<tr>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" height="60"><span style="font-size: xx-small;">Medium Altitude<br />
+Long Endurance</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">MALE</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">&gt; 500</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">14000</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">24 to 48</span></td>
+	<td style="border: 0px solid #c0c0c0;" align="LEFT" valign="TOP"><span style="font-size: xx-small;">1500</span></td>
+	</tr>
+	</tbody>
+	</table>
+	<p>Small RPA are those falling within the <strong>micro </strong>and <strong>mini classes</strong>. If you look at the table, you easily understand why they are so attractive for professionals and SMEs working on mapping of small areas (up to tens of hectares). They are often so lightweight and small that you can carry them in the back of your car, but they can fly high and far enough to be employed to work. Furthermore they are enough safe. For instance:  most of the small RPA are equipped with electric engines, which means that there is no fuel flying over your heads. Some RPA, such as multicopters, are <strong>VTOL </strong>(<strong>Vertical Take Off and Landing</strong>) aircrafts so they don’t need runways and can start to fly from very small surfaces.</p>
+	<p>On the other hand, it’s important to notice that these objects have specific limitations that you must never forget. You should never fly over people or lose the sight of your drone. Wind, obstacles (such as electric cables or poles), electromagnetic interferences are enemies. You should also remember that, even if most of these objects are smaller and lighter than models and ultralight crafts, when you use them to work they are considered in all respects aircrafts.</p>
+	<p>I’m not an engineer, so I cannot deepen into technical issues but there are few important tech notions that you must have in mind if you want to deal with small drones. The most relevant are those related to some subsystems that are barely common to every UAV: GPS, IMU, communication and guide systems.</p>
+	<p><strong>GPS </strong>measures the drone position during the flight. Some small drones also use the GPS for safety issues. For example, if you lose the radio contact with him, the drone can use the GPS to maintain its position until communication is restored.</p>
+	<p><strong>IMU </strong>stands for <strong>Inertial Measurement Unit</strong>. An IMU is an electronic system that, using accelerometers and gyroscopes, measures speed and attitude of the aircraft during the flight. All the information you receive about the yaw, pitch and roll angles of your UAV came from its IMU.</p>
+	<p><div id="attachment_4839" class="wp-caption aligncenter" style="width: 488px"><img class=" wp-image-4839  " title="Yaw, Pitch and Roll" src="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_m1293c1fb.png" alt="" width="478" height="217" /><p class="wp-caption-text">From left to right: Yaw, Pitch and Roll angles. These angles define the aircraft attitude and information about them is provided by IMU.</p></div></p>
+	<p>This information reaches you thanks to a communication system that continuously transmits flight data to the ground. Generally these data are received by a ground base station and displayed along with other telemetry data<sup class='footnote'><a href='#fn-4834-3' id='fnref-4834-3' onclick='return fdfootnote_show(4834)'>3</a></sup> using a software application.</p>
+	<p>Since you need to pilot the aircraft, <strong>communication </strong>between you and your drone is always bidirectional. The drone talks with you through telemetry, you talk with him using a radio control. Some small drones are also able to fly autonomously since they are capable to automatically execute <strong>planned flights</strong>. This last characteristic is an essential requirement if you want use them for mapping purposes.</p>
+	<h1>Application to civil purposes</h1>
+	<p>RPA technology has been originally developed for military purposes. This is the reason why the word “drone” often evokes war scenarios. When I did my first web survey to choose which drone to buy, I was impressed by the number of military sites related to drones.</p>
+	<p>Nevertheless, civil use of UAVs, especially the small ones, is growing. This is essentially due to the reliability achieved by these systems along with their cheapness and ease of use (if compared with conventional manned aircrafts).</p>
+	<p>Besides the applications in which they are used as point of view<sup class='footnote'><a href='#fn-4834-4' id='fnref-4834-4' onclick='return fdfootnote_show(4834)'>4</a></sup>, there are a lot of technical fields where the use of a sRPA is helpful. The table below lists some of them.</p>
+	<table border="0" cellspacing="0">
+	<tbody>
+	<tr>
+	<td align="LEFT" valign="TOP" bgcolor="#83CAFF" height="30"><strong><span style="font-size: xx-small;">Scientific<br />
+Applications</span></strong></td>
+	<td align="LEFT" valign="TOP" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Civil<br />
+Engineering</span></strong></td>
+	<td align="LEFT" valign="TOP" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Industry and<br />
+Utilities</span></strong></td>
+	<td align="LEFT" valign="TOP" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Public<br />
+Administration</span></strong></td>
+	<td align="LEFT" valign="TOP" bgcolor="#83CAFF"><strong><span style="font-size: xx-small;">Civil<br />
+Protection</span></strong></td>
+	</tr>
+	<tr>
+	<td align="LEFT" valign="TOP" height="74"><span style="font-size: xx-small;">Precision Farming</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Photographic surveys on buildings, bridges, dams, etc.</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Preventive inspection of energy infrastructures</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Monitoring of construction and mining abuses</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Emergency monitoring</span></td>
+	</tr>
+	<tr>
+	<td align="LEFT" valign="TOP" height="45"><span style="font-size: xx-small;">Archaeology</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">2D and 3D modeling</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Monitoring of utilities infrastructures </span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Illegal dumping monitoring</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Prevention of critical events</span></td>
+	</tr>
+	<tr>
+	<td align="LEFT" valign="TOP" height="45"><span style="font-size: xx-small;">Geology</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Energy performance of buildings</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;"><br />
+</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Monitoring of construction sites and public works</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;"><br />
+</span></td>
+	</tr>
+	<tr>
+	<td align="LEFT" valign="TOP" height="31"><span style="font-size: xx-small;">Environmental Studies</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;"><br />
+</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;"><br />
+</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;">Documentation</span></td>
+	<td align="LEFT" valign="TOP"><span style="font-size: xx-small;"><br />
+</span></td>
+	</tr>
+	</tbody>
+	</table>
+	<p>In all these fields, your drone is not simply an eye in the sky but can be used to <strong>collect measures</strong>. If you use a camera as payload, you can collect the right number of images to realize a photogrammetric survey. If you change the camera with a multispectral device you can collect Remote Sensing data. You could also use active sensors, such as LIDAR, but due to the low load capacity of small UAVs (typically ranging between 0.2 and 5 kg) and high power requirements, is not so easy to find the right payload.</p>
+	<h1>Geomatics</h1>
+	<p>Spatial information is a pervasive content and geomatics entered in different ways in most of the aspects of our life. With reference to the technical use of small drones, geomatics is both a way and a scope.</p>
+	<p>As I said before, flight plans are important if you want to retrieve data for mapping (e.g. photogrammetric data) and spatial tools can be efficiently integrated in flight plan design process. This happens because flight plans are based on carrier (and target) position, so all the details of the flight plan (route, acquisition points, etc.) can be correctly set or calculated starting from a GIS environment. Better: the whole planning process could be confined within a dedicated geospatial platform. Even better: geospatial applications represent the right environment to display and analyze most of the data you have collected.</p>
+	<p>Since when you plan a flight is because you have some goal, this goal shapes planning activities. If I want to measure the concentrations of some chemical compounds, probably I just need to define flight route and altitude. If I want to realize a photogrammetric survey, my needs will extend to camera parameters or images overlap and sidelap.</p>
+	<p><div id="attachment_4840" class="wp-caption aligncenter" style="width: 488px"><img class=" wp-image-4840 " title="Overlap and Sidelap" src="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_46be48d.png" alt="" width="478" height="417" /><p class="wp-caption-text">When you define Overlap and Sidelap of a flight plan you are setting the front and side superposition of frames.</p></div></p>
+	<p>These examples are not randomly chosen, because both can lead to mapping:</p>
+	<ul>
+	<li>spatialized chemical measurements easily lead to thematic mapping,</li>
+	<li>photogrammetric survey can be used to generate orthophotos.</li>
+	</ul>
+	<p>It is important to know that not all the drones allow automatic flights and not all the drones allow the same degree of automation. For example, our quadricopter is a very sophisticated tool that permit to define all the flight details (takeoff and landing points, route, trigger points or trigger frequency, camera zoom, camera pitch and roll angles and so on). On the other hand, our paraglider just allows to define 12 waypoints and we are forced to manually trigger the camera (is up to you to decide which is my favourite &#8230;).</p>
+	<h2>Geomatics &amp; Photogrammetry</h2>
+	<p>Photogrammetry is probably the most diffuse technique used in combination with small drones.</p>
+	<p>In my experience, the photogrammetric approach is a swiss knife for a number of application fields. You can use variations of the same basic techniques to realize metric images and 3D models of the ground surface, models of buildings, bridges, quarry fronts.</p>
+	<p>If you want to use aerial photos for mapping purposes, one of the key issues is <strong>DSM </strong>generation. <strong>Digital Surface Models</strong> are three-dimensional representation analog to DTM. Differences between them are related to the inclusion (DSM) or exclusion (DTM) in the model of objects, such as buildings, located on the ground surface. Since to produce orthophotos you need to project your images on a model of the ground surface, if you want to employ your aerial pictures to generate orthophotos, you need to pass through a DSM (the good news are that, if you have collected your pictures following the right scheme, you have all the information needed to DSM generation). Once you have processed your images in order to obtain a DSM, there are other things you can do besides generating orthophotos. For instance, you can drape your images onto the model to obtain useful (and also beautiful) photorealistic <strong>3D metric models</strong>.</p>
+	<p><div id="attachment_4841" class="wp-caption aligncenter" style="width: 488px"><img class=" wp-image-4841 " title="Orthomosaic draped on a DSM" src="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_66f0e5a.png" alt="" width="478" height="237" /><p class="wp-caption-text">Orthomosaic draped on a DSM. This image refers to an archaeological site in Western Sicily. From Borruso et al. (2011) Atti 15a Conf. Naz. ASITA, pp. 471-478</p></div></p>
+	<p>Models based on image processing can be <strong>integrated </strong>with those produced with other methods.</p>
+	<p>For instance, in some applications, coupling low altitude aerial photogrammetry with La<strong>ser Scanning</strong>, helps to complete high resolution and precision measurements of buildings with those parts (such as roofs) that are inaccessible from the ground.</p>
+	<p>In some workflows, you could need to integrate <strong>satellite data </strong>with data acquired with sUAV. This happens because of the higher resolution needed or since clouds mask some part of the satellite image or because you need to record a time series with frequencies not allowed by satellite return time.</p>
+	<h2>Low Altitude Remote Sensing</h2>
+	<p>Aerial images can be considered a special case of use of sUAV in the more general <strong>Low Altitude Remote Sensing</strong> (<strong>LARS</strong>) scenario so, even if photogrammetry is probably the most diffuse technique connected with sUAV usage, there is a lot of space for other employments.</p>
+	<p>Infrared imagery (both near and thermal) are good examples in this direction.</p>
+	<p><strong>Near Infrared </strong>(<strong>NIR</strong>) is the region of the electromagnetic spectrum falling between 0.75-1.4 µm. A number of objects reflects (i.e. plants chlorophyll) or adsorb (i.e. water) the incoming solar radiation in this region. NIR data can be acquired using dedicated sensors or modifying commercial cameras<sup class='footnote'><a href='#fn-4834-5' id='fnref-4834-5' onclick='return fdfootnote_show(4834)'>5</a></sup> (including compact cameras). Thermal cameras record information in the <strong>Thermal Infrared </strong>(<strong>TIR</strong>), mostly between 7–14 µm. These cameras don’t use CCD or CMOS sensors, but a special kind of detector called <a href="http://en.wikipedia.org/wiki/Microbolometer"><span style="text-decoration: underline;"><strong>microbolometer</strong></span></a><strong> </strong>that is capable to identify differences in temperature and, if correctly calibrated, to measure temperature values.</p>
+	<p>If you combine NIR data with images collected within the <strong>visible </strong>(<strong>VIS</strong>) range<sup class='footnote'><a href='#fn-4834-6' id='fnref-4834-6' onclick='return fdfootnote_show(4834)'>6</a></sup>, you can use this <strong><a title="Multispectral" href="http://en.wikipedia.org/wiki/Multispectral" target="_blank">multispectral</a></strong> dataset for various applications. Precision Farming, Preventive Archaeology, water pipeline monitoring or environmental studies are examples correctly scaled on the operational capabilities of sUAV.</p>
+	<p>TIR data can be used alone or in association to multispectral information to perform more complex analysis. For instance, you can use a thermal camera mounted on a UAV to measure energy performance of buildings or you can combine thermal and multispectral information to carry out surveys on illegal dumping.</p>
+	<h1>Legal and tech issues</h1>
+	<p>The examples we did since now represent the most common cases of use of sUAV for technical and scientific purposes.</p>
+	<p>The most natural question that we can do now is: if they are so reliable, quick, flexible and cheap, <strong>why sUAV are still relatively uncommon</strong>?</p>
+	<p>There is more than one answer to this question and the most relevant are related to some legal and technical issues.</p>
+	<p>The first critical issue is the <strong>poor definition of a general regulatory frame focused on the UAV</strong> <strong>use</strong>, that disadvantages also the diffusion of small drones. As we said before, these carriers are often lighter and safer than aeromodels or ultralight aircrafts but, even if these crafts can fly in conventional aerial space without limitations, sUAV cannot. This prohibition is related to their use. Roughly: if you do fly something with purposes other than your pleasure, you are doing <strong>aerial work </strong>and you must be subjected to rules. Most small companies interpreted the lack of rules as an implicit permit and this worked until small drones were unknown objects. This not correspond to the present situation, where an increasing number of potential players has tested the utility of light drones in the generation of services and sUAV increasingly appear on newspapers and TV. Due to this interest national and international authorities are trying to define a frame and a set of rules which recognize the special nature of these crafts.</p>
+	<p><strong>Circular 328 &#8211; </strong><em><strong>Unmanned Aircraft Systems (UAS)</strong></em><sup class='footnote'><a href='#fn-4834-7' id='fnref-4834-7' onclick='return fdfootnote_show(4834)'>7</a></sup> published on March 2011 by the <strong><a title="ICAO" href="http://www.icao.int/" target="_blank">International Civil Aviation Organization</a></strong>(<strong>ICAO</strong>), is devoted to inform national authorities about the ICAO perspective on the integration of UAS into non-segregated airspace and to underline the basic differences between manned and unmanned aviation. The circular addresses a wide range of topics (such as <strong>collision avoidance</strong>, <strong>air traffic services</strong>, <strong>airworthiness </strong>and <strong>certification</strong>, <strong>personnel licensing </strong>and so on) and aims to provide guiding material for future developments of regulatory frames. The <strong><a title="FAA" href="http://www.faa.gov/" target="_blank">US Federal Aviation Administration</a></strong> (<strong>FAA</strong>) recognizes that small UAS could “experience the greatest near-term growth in civil and commercial operations because of their versatility and relatively low initial cost and operating expenses”<sup class='footnote'><a href='#fn-4834-8' id='fnref-4834-8' onclick='return fdfootnote_show(4834)'>8</a></sup> but, until now, no rules about commercial use of small drone have been released<sup class='footnote'><a href='#fn-4834-9' id='fnref-4834-9' onclick='return fdfootnote_show(4834)'>9</a></sup>.</p>
+	<p><strong>European countries </strong>generally do not allow commercial use of small UAS with the exception of the <strong>United Kingdom</strong>, where <strong>Civil Aviation Authority </strong>(<strong>CAA</strong>)<strong> </strong>grants some permisions<sup class='footnote'><a href='#fn-4834-10' id='fnref-4834-10' onclick='return fdfootnote_show(4834)'>10</a></sup>.</p>
+	<p>There are also a number of technical issues the first of which is the <strong>lack of dedicated sensors</strong>. Load capacity of small drones is a hard constraint that limits the employ of professional tools. Even if miniaturization of aeronautical devices is a constant process, most of the <strong>active sensors</strong>, such as LIDAR, are still too heavy to be mounted on a small drone. For this reason <strong>passive sensors</strong>, such as optical and thermal cameras, are the most diffused in daily practice. Other kind of tools, like electronic noses, even if already available are relatively rare.</p>
+	<p>Other topics belonging to this line are connected to future technical development that in a next future will improve the sUAV capabilities. Just to report a list of the most interesting:</p>
+	<ul>
+	<li><strong>sense and avoid </strong>obstacles in autonomous flight</li>
+	<li>ability to cooperate in <strong>formation flight</strong></li>
+	<li>increasing of <strong>endurance</strong></li>
+	<li>enhancing <strong>intelligence </strong>on board.</li>
+	</ul>
+	<h1>Communities and information</h1>
+	<p>If reading this article has somehow intrigued, perhaps may interest you to know that there are a number of <strong>discussion groups </strong>centered on sUAS. If you want an access point, I suggest to write one of the <span style="text-decoration: underline;"><a>RPA</a><a>synonyms</a></span> in the group search of <strong>Linkedin</strong>.</p>
+	<p>There also <strong>associations </strong>focused on UAV. Among the most relevant, is important to cite <span style="text-decoration: underline;"><strong><a href="http://www.uvs-international.org/">UVS</a><a href="http://www.uvs-international.org/">International</a></strong></span>,<strong> </strong>a non-profit association which includes unmanned vehicle systems (so, in this case, not only UAV) manufacturers, service companies and researchers. In these months it is also being founded the <strong>Associazione Italiana UAS </strong>which, as UVS International, is open to the all the players of the UAV chain that operate in Italy.</p>
+	<p>If you want to find more information on the topics covered in this article there are some specialized web sites that you can refer to. One of my favourite is <span style="text-decoration: underline;"><strong><a href="http://www.suasnews.com/">suasnews</a><a href="http://www.suasnews.com/">.</a><a href="http://www.suasnews.com/">com</a></strong></span><strong> </strong>which provides a daily updated information on UAS world.</p>
+	<p>Because of the strong relation between drones and geomatics, UAV news appear on various websites focused on spatial topics (try to search for UAV in <span style="text-decoration: underline;"><strong><a href="http://www.geospatialworld.net/">Geospatial</a><a href="http://www.geospatialworld.net/">World</a></strong></span>, which also published an interesting <span style="text-decoration: underline;"><a href="http://www.geospatialworld.net/index.php?option=com_content&amp;view=article&amp;id=23671">review</a> <a href="http://www.geospatialworld.net/index.php?option=com_content&amp;view=article&amp;id=23671">on</a> <a href="http://www.geospatialworld.net/index.php?option=com_content&amp;view=article&amp;id=23671">UAVs</a></span>).</p>
+	<p>Relation between UAV and Geomatics have been also the key topic of an international conference which was taken in Zurich in September 2011. The conference title was <strong>UAV-g 2011 &#8211; Unmanned Aerial Vehicle in Geomatics </strong> and <a href="http://www.geometh.ethz.ch/uav_g/proceedings"><span style="text-decoration: underline;">here</span></a> you can access to the proceedings.</p>
+	<p>___________________</p>
+	<div class='footnotes' id='footnotes-4834'>
+<div class='footnotedivider'></div>
+	<ol>
+<li id='fn-4834-1'>Thanks to Prof. Caterina Grillo of the University of Palermo for underling me this issue <span class='footnotereverse'><a href='#fnref-4834-1'>&#8617;</a></span></li>
+	<li id='fn-4834-2'>ENAC (Ente Nazionale Aviazione Civile) is the Italian authority for civil aviation <span class='footnotereverse'><a href='#fnref-4834-2'>&#8617;</a></span></li>
+	<li id='fn-4834-3'>Telemetry should include GPS and IMU data along with information about craft status (battery charge, engine efficiency and so on). <span class='footnotereverse'><a href='#fnref-4834-3'>&#8617;</a></span></li>
+	<li id='fn-4834-4'>Intelligence and security, broadcasting, advertising, etc. <span class='footnotereverse'><a href='#fnref-4834-4'>&#8617;</a></span></li>
+	<li id='fn-4834-5'>Most of the CMOS sensor are sensitive to the near infrared radiation so, broadly speaking, you just need to remove the IRcut filter to record IR data. <span class='footnotereverse'><a href='#fnref-4834-5'>&#8617;</a></span></li>
+	<li id='fn-4834-6'>0.390 – 0.750 µm <span class='footnotereverse'><a href='#fnref-4834-6'>&#8617;</a></span></li>
+	<li id='fn-4834-7'>For a synthesis of ICAO Circular 328 you can see this document: <a href="http://goo.gl/aEBDr" target="_blank">http://goo.gl/aEBDr</a> <span class='footnotereverse'><a href='#fnref-4834-7'>&#8617;</a></span></li>
+	<li id='fn-4834-8'><a href="http://goo.gl/kHGYT" target="_blank">http://goo.gl/kHGYT</a> <span class='footnotereverse'><a href='#fnref-4834-8'>&#8617;</a></span></li>
+	<li id='fn-4834-9'><a href="http://goo.gl/HNHa8" target="_blank">http://goo.gl/HNHa8</a>. In the meanwhile if you give a look to specialized web groups you find polls and discussions with titles like “Just how many people are operating commercial sUAS illegally in the USA?” <span class='footnotereverse'><a href='#fnref-4834-9'>&#8617;</a></span></li>
+	<li id='fn-4834-10'><a href="http://goo.gl/VjLDN" target="_blank">http://goo.gl/VjLDN</a>, see also CAP 722: Unmanned Aircraft System Operations in UK Airspace – Guidance (<a href="http://www.caa.co.uk/docs/33/CAP722.pdf" target="_blank">http://www.caa.co.uk/docs/33/CAP722.pdf</a>) <span class='footnotereverse'><a href='#fnref-4834-10'>&#8617;</a></span></li>
+</ol>
+</div>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/04/10/srpa-and-geomatics-why-small-drones-are-mapping-tools/">sRPA and Geomatics: why small drones are mapping tools</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/04/10/srpa-and-geomatics-why-small-drones-are-mapping-tools/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=sRPA+and+Geomatics%3A+why+small+drones+are+mapping+tools&amp;rft.aulast=D%27Argenio&amp;rft.aufirst=Antonio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-04-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/10/srpa-and-geomatics-why-small-drones-are-mapping-tools/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_m1293c1fb-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_m1293c1fb.png" medium="image">
+			<media:title type="html">Yaw, Pitch and Roll</media:title>
+			<media:description type="html">From left to right: Yaw, Pitch and Roll angles. These angles define the aircraft attitude and information about them is provided by IMU.</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_m1293c1fb-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_46be48d.png" medium="image">
+			<media:title type="html">Overlap and Sidelap</media:title>
+			<media:description type="html">When you define Overlap and Sidelap of a flight plan you are setting the front and side superposition of frames.</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_46be48d-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_66f0e5a.png" medium="image">
+			<media:title type="html">Orthomosaic draped on a DSM</media:title>
+			<media:description type="html">Orthomosaic draped on a DSM. This image refers to an archaeological site in Western Sicily. Image processing realized by Vincenzo Pampalone.</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2012/04/AllcomesfromdataneedsRPAandGeomatics_html_66f0e5a-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>La carta degli andamenti del world wide web (terza edizione)</title>
+		<link>http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/</link>
+		<comments>http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/#comments</comments>
+		<pubDate>Thu, 24 Jan 2008 21:19:51 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[Cartografia]]></category>
+		<category><![CDATA[map]]></category>
+		<category><![CDATA[trend]]></category>
+		<category><![CDATA[web]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+carta+degli+andamenti+del+world+wide+web+%28terza+edizione%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-01-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/&amp;rft.language=English"></span>
+Anche quest&#8217;anno è stata presentata la carta degli andamenti del web. Siamo già alla terza versione, ed è sempre un piacere darne notizia. E&#8217; un po&#8217; una sintesi di due miei interessi: la cartografia ed il world wide web. C&#8217;è sempre qualcosa da imparare da questa carta, specie in due aspetti importanti per chi produce [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+carta+degli+andamenti+del+world+wide+web+%28terza+edizione%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-01-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Anche quest&#8217;anno è stata presentata la carta degli andamenti del web. Siamo già alla terza versione, ed è sempre un piacere darne notizia. E&#8217; un po&#8217; una sintesi di due miei interessi: la cartografia ed il world wide web.</p>
+	<p>C&#8217;è sempre qualcosa da imparare da questa carta, specie in due aspetti importanti per chi produce cartografia: la leggibilità di una carta, e la capacità di sintetizzare il mondo che ci circonda.</p>
+	<p>La mappa questa volta è in prospettiva, ha al centro (che caso) Google e sempre più in periferia Yahoo (purtroppo); pezzi di Yahoo (come Flickr) sono comunque in zone importanti della mappa, come quella in cui troviamo &#8220;<a href="http://dataportability.org/" title="DataPortability.org - Share and remix data using open standards:" target="_blank">dataportability.org</a>&#8220;.</p>
+	<p>Il lavoro degli autori è ispirato al <a href="http://www.evoq.ch/aktuell/sbb/bhf_gallery_3.html" title="Adrian Schaffner Swiss train stations" target="_blank">fantastico lavoro</a> fatto da Adrian Schaffner per le ferrovie Svizzere.</p>
+	<p><a href="http://www.informationarchitects.jp/web-trend-map-v30-countdown-new-layers" title="Web Trend Map v3.0" target="_blank">Qui</a> e <a href="http://www.informationarchitects.jp/trendmap3-countdown-sneak-peak" title="Web Trend Map v3.0" target="_blank">qui</a> trovate maggiori dettagli. E&#8217; una buona lettura.</p>
+	<p align="center"><a href="http://www.formforce.com/webtrendmap2008A3.pdf" title="La mappa in pdf" target="_blank"><img src="http://blog.spaziogis.it/wp-content/uploads/2008/01/trendmap3-google.png" style="border: 0px none " alt="trendmap3-google" border="0" height="276" width="494" /></a></p>
+	<p>via <a href="http://www.visualcomplexity.com/vc/project.cfm?id=547" title="visualcomplexity" target="_blank">visualcomplexity</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/">La carta degli andamenti del world wide web (terza edizione)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+carta+degli+andamenti+del+world+wide+web+%28terza+edizione%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-01-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/01/24/la-carta-degli-andamenti-del-world-wide-web-terza-edizione/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/01/trendmap3-google.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/01/trendmap3-google.png" medium="image">
+			<media:title type="html">trendmap3-google</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

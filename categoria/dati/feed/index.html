@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Dati</title>
+	<atom:link href="http://blog.spaziogis.it/categoria/dati/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>GeoCetus: la banca dati italiana aperta sugli spiaggiamenti di cetacei e tartarughe marine</title>
+		<link>http://blog.spaziogis.it/2015/06/03/geocetus-la-banca-dati-italiana-aperta-sugli-spiaggiamenti-di-cetacei-e-tartarughe-marine/</link>
+		<comments>http://blog.spaziogis.it/2015/06/03/geocetus-la-banca-dati-italiana-aperta-sugli-spiaggiamenti-di-cetacei-e-tartarughe-marine/#comments</comments>
+		<pubDate>Wed, 03 Jun 2015 06:06:50 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[geocetus]]></category>
+		<category><![CDATA[open data]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6665</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoCetus%3A+la+banca+dati+italiana+aperta+sugli+spiaggiamenti+di+cetacei+e+tartarughe+marine&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2015-06-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/06/03/geocetus-la-banca-dati-italiana-aperta-sugli-spiaggiamenti-di-cetacei-e-tartarughe-marine/&amp;rft.language=English"></span>
+La Genesi Verso la fine del 2011 nella mia casella di posta elettronica trovai un invito per una conferenza dal titolo “Gli squali nel Mediterraneo”, che si sarebbe tenuta di lì a pochi giorni a Pescara. Ormai non ricordo più se il titolo fosse davvero quello, né chi fosse il mittente della mail, fatto sta [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoCetus%3A+la+banca+dati+italiana+aperta+sugli+spiaggiamenti+di+cetacei+e+tartarughe+marine&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2015-06-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/06/03/geocetus-la-banca-dati-italiana-aperta-sugli-spiaggiamenti-di-cetacei-e-tartarughe-marine/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h2>La Genesi</h2>
+	<p>Verso la fine del 2011 nella mia casella di posta elettronica trovai un invito per una conferenza dal titolo “Gli squali nel Mediterraneo”, che si sarebbe tenuta di lì a pochi giorni a Pescara.<br />
+Ormai non ricordo più se il titolo fosse davvero quello, né chi fosse il mittente della mail, fatto sta che decisi di andare, spinto in gran parte dalla voglia di passare &#8211; dopo anni &#8211; una giornata ad ascoltare discorsi di biologia marina “pura” e prendermi una pausa dalle solite cose: gis, json, rest, php, cors, script, sql, ecc.<br />
+Dell’intervento principale sugli squali ricordo poco o nulla, non mi colpì granché, ma ricordo bene l’intervento del dottor <strong>Vincenzo Olivieri</strong>, veterinario e presidente della Onlus “<a href="http://centrostudicetacei.it" rel="nofollow"  target="_blank">Centro Studi Cetacei</a>” (CSC), che non parlò di squali, ma di <strong>spiaggiamenti</strong> di cetacei, dei casi di studio più interessanti che aveva incontrato, di indagini sul campo e metodologie analitiche, del lavoro svolto dalla sua associazione e di tanto altro. Ciò che mi fece <em>drizzare le orecchie</em>, man mano che andava avanti, fu pensare alla <strong>quantità di dati</strong> &#8211; <strong>dati spaziali</strong>, probabilmente &#8211; che il Centro Studi Cetacei poteva (e doveva!) aver raccolto.<br />
+Le domande che avevo in testa erano: “<strong>Dove</strong> li terranno questi dati?”, “In che <strong>formato</strong> saranno conservati?”, “Saranno <strong>disponibili</strong>?”, “Saranno <strong>accessibili</strong>?”.<br />
+Al termine della conferenza andai dritto da Olivieri, parlammo una decina di minuti e venne fuori un accordo, direi uno scambio: il Centro Studi Cetacei mi avrebbe fornito i dati sugli spiaggiamenti dopo averli riordinati e organizzati il meglio possibile, visto che erano sparsi in vari fogli Excel, documenti PDF e addirittura qualche scheda cartacea e io avrei sviluppato, senza costi per il CSC, uno strumento informatico per consultarli in maniera semplice e veloce sul web. In cambio chiesi che il risultato di questo nostro sforzo congiunto fosse messo a disposizione come open data.<br />
+Ci tengo a sottolineare che questa mia richiesta venne accolta immediatamente e con entusiasmo, segno di un’apertura mentale da parte del mio interlocutore che, ancora oggi, non so quanto sia facile trovare tra i non addetti ai lavori.</p>
+	<h2>Pronti, si comincia!</h2>
+	<p>La primissima fase consistette in una serie di incontri con Vincenzo e con altre persone del CSC; il nostro obiettivo era individuare un minimo comune denominatore nelle informazioni in loro possesso e, partendo da qui, organizzare lo storico in maniera coerente e il più possibile ordinata.<br />
+Successivamente fu la volta di scegliere gli strumenti informatici da usare per dare vita al nostro progetto e, non avendo vincoli se non mantenere a zero i costi dell’operazione, decisi per uno stack tecnologico collaudato e completamente open source: PostGIS, GeoServer e OpenLayers. A dire il vero penso che questa sarebbe stata la mia scelta anche se avessimo avuto un budget da spendere!<br />
+Scelto lo stack, restava però il problema di mettere in piedi un server. Come molti di voi sapranno, anche se installato con solo software libero, un server ha comunque dei costi legati all’hardware e alla connettività, il che cozzava non poco con il vincolo del costo zero.<br />
+Ebbene, senza <strong>TANTO</strong> e <a href="http://blog.spaziogis.it/author/andreaborruso-2/" target="_blank">Andrea</a>, al quale parlai del progetto il giorno dopo la conferenza, l’idea sarebbe rimasta nella mia testa, inespressa nella pratica o, al massimo, sarebbe diventata l’ennesima demo in “localhost” sul mio computer.<br />
+Il server, alla fine, ce lo ha messo TANTO! Un hosting non da poco, con PostGIS e GeoServer belli e pronti, Apache e PHP per creare pagine web e, soprattutto, persone competenti a gestire l’infrastruttura.<br />
+A questo punto, con i dati che iniziavano a prendere forma ed il server pronto ad accogliere l’applicazione, per me era finalmente ora di entrare nel vivo e tirarmi su le maniche per produrre qualcosa di tangibile da mostrare a Vincenzo e al CSC che, nel ripulire, organizzare e armonizzare i dati storici, avevano passato parecchi giorni a lavorare.<br />
+Così all’inizio del 2012 venne fuori il primo output, un’applicazione di web mapping strutturata in maniera abbastanza classica e in grado di mostrare i punti dove erano stati effettuati i rilievi sugli animali spiaggiati e le informazioni ad essi associate su una mappa, una griglia ordinabile e dei grafici. Scegliemmo di chiamarla <strong>GeoCetus</strong>.</p>
+	<p><img class="aligncenter size-large wp-image-6672" src="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_webmap-1024x674.png" alt="GC_webmap" width="500" height="329" /></p>
+	<p>I dati potevano essere filtrati su base annuale, adeguando le tre viste di conseguenza. Selezionando un punto, come lecito aspettarsi, compariva una scheda con tutte le informazioni di dettaglio ed era possibile scaricare tutti i dati disponibili in formato KML e CSV, ovviamente sotto <a href="http://creativecommons.org/licenses/by-sa/3.0/it/" rel="nofollow"  target="_blank">licenza CC BY-SA</a>. Nulla di eclatante, insomma, ma funzionale.<br />
+Questa prima versione si basava su una sola tabella PostGIS, denominata “spiaggiamenti”, un po’ di codice PHP per tirare fuori un GeoJSON &#8211; preferii non scomodare GeoServer in prima battuta &#8211; e la mia collaudata cassetta degli attrezzi JavaScript composta da <a href="http://openlayers.org/two" rel="nofollow"  target="_blank">OpenLayers 2.12</a>, <a href="http://www.trirand.com/blog/" rel="nofollow"  target="_blank">jqGrid</a> e <a href="https://developers.google.com/chart/" rel="nofollow"  target="_blank">Google Charts</a>.</p>
+	<h2>Un buon inizio, ma serve sempre qualcosa in più</h2>
+	<p>L’applicazione di web mapping prodotta non era male, nel senso che faceva quello che doveva fare in base ai requisiti concordati con il CSC e lo faceva discretamente: mostrava i dati e consentiva di interrogarli e scaricarli.<br />
+Ben presto, però, sorse la necessità di aggiornare la banca dati in modo che fosse sempre attuale ed utile, così pensai di ricorrere ad un foglio di calcolo su Google Drive. I nuovi dati sarebbero stati inseriti lì e poi, tramite uno script Python, trasferiti in PostGIS con una query SQL.<br />
+Lo script funzionava senza particolari problemi, però lasciava irrisolte due questioni importanti:</p>
+	<ul>
+	<li>vincolare alcuni campi ad un <strong>dominio</strong> specifico di <strong>valori</strong>;</li>
+	<li>calcolare automaticamente il codice identificativo di ogni evento registrato, il quale doveva seguire uno <strong>schema</strong> preciso per non violare il vincolo di univocità.</li>
+	</ul>
+	<p>Probabilmente lavorando un po’ di più allo striminzito script Python che avevo prodotto si sarebbe potuta trovare la soluzione ad entrambi i problemi, ma ho preferito creare qualcosa che girasse completamente sul nostro server e sviluppare un modulo gestionale in PHP con interfaccia basata sull’ottimo <strong>Twitter Bootstrap</strong> (all’epoca la versione stabile era la 2.3.2). Dopo qualche giorno di lavoro venne fuori il prototipo del <strong>modulo gestionale</strong>:</p>
+	<p><img class="aligncenter size-large wp-image-6684" src="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_manager-1024x572.png" alt="GC_manager" width="500" height="280" /></p>
+	<p>Questo modulo, accessibile solo agli utenti registrati sul database, costituiva uno strumento di facile utilizzo, tramite il quale chiunque poteva registrare un nuovo spiaggiamento senza incappare in errori grossolani, di distrazione e senza doversi preoccupare del codice di registrazione, che veniva compilato in automatico dal modulo stesso, sulla base delle regole stabilite.<br />
+Problema risolto? Certo che no! Le esigenze, man mano che GeoCetus e il suo modulo gestionale venivano utilizzati, divenivano ben maggiori del semplice consultazione e inserimento di nuovi dati. Occorreva spesso <strong>correggere</strong> o <strong>cancellare</strong> qualcosa e sarebbe stato bello anche poter <strong>allegare</strong> dei file per caratterizzare meglio i rilievi registrati.<br />
+Inoltre, nel frattempo, era saltata fuori anche la necessità di gestire i dati sulle tartarughe marine.<br />
+Come spesso accade, <em>l’appetito viene mangiando</em>.</p>
+	<h2>GeoCetus diventa un portale</h2>
+	<p>Per organizzare al meglio tutti le funzioni e i moduli previsti la cosa migliore era, sicuramente, ripensare l’applicazione in forma di un portale, così, dopo qualche mese di lavoro e svariati aggiornamenti a librerie e script vari, il risultato è quello che tutti possono vedere puntando il browser a questo indirizzo: <a href="http://geocetus.spaziogis.it " rel="nofollow"  target="_blank">http://geocetus.spaziogis.it</a>.</p>
+	<p><img class="aligncenter size-large wp-image-6688" src="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_portal-1024x679.png" alt="GC_portal" width="500" height="332" /></p>
+	<p>Il portale prevede diverse tipologie di utenti, che hanno prerogative diverse sulla gestione dei dati e degli allegati. Ad ogni evento inserito sotto forma di punto è possibile associare fino a 3 foto e 3 documenti in formato PDF relativi a necroscopie ed analisi di laboratorio; a breve sarà possibile collegare anche dei filmati. Tutti i contenuti sono aperti, distribuiti sotto <a href="http://creativecommons.org/licenses/by-sa/3.0/it/" rel="nofollow"  target="_blank">licenza CC BY-SA</a> e messi a disposizione degli interessati sia sotto forma di servizi OGC che dei più comuni formati di file usati in ambito di geodati.<br />
+Ora, piuttosto che annoiarvi con l’elenco particolareggiato delle caratteristiche del portale, vi invito a consultare lo slideshow in calce al post e, soprattutto, a visitarlo in prima persona.<br />
+Piuttosto, mi preme dire che, per quanto ne so, ad oggi, quella di GeoCetus è <strong>la più completa banca dati</strong> sugli <strong>spiaggiamenti di cetacei</strong> e <strong>tartarughe marine</strong> dell’intero panorama <strong>nazionale</strong>, che si tratta di una banca dati libera ed accessibile e che, questo risultato, per quanto sia ancora passibile di miglioramenti, è stato raggiunto da un <strong>gruppo di volontari</strong>. Abbiamo investito parte del nostro tempo libero per dare vita a un progetto che, speriamo, diventi un riferimento per gli addetti ai lavori e, soprattutto, contribuisca ad innescare un clima virtuoso di collaborazione e condivisione delle informazioni anche da parte di altri soggetti.</p>
+	<p><object width="500" height="375" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><br />
+<param name="flashvars" value="offsite=true&amp;lang=it-it&amp;page_show_url=%2Fphotos%2Falessiodl%2Fsets%2F72157653574359092%2Fshow%2F&amp;page_show_back_url=%2Fphotos%2Falessiodl%2Fsets%2F72157653574359092%2F&amp;set_id=72157653574359092&amp;jump_to=" />
+<param name="allowFullScreen" value="true" />
+<param name="src" value="https://www.flickr.com/apps/slideshow/show.swf?v=1811922554" />
+<param name="allowfullscreen" value="true" /><embed width="500" height="375" type="application/x-shockwave-flash" src="https://www.flickr.com/apps/slideshow/show.swf?v=1811922554" flashvars="offsite=true&amp;lang=it-it&amp;page_show_url=%2Fphotos%2Falessiodl%2Fsets%2F72157653574359092%2Fshow%2F&amp;page_show_back_url=%2Fphotos%2Falessiodl%2Fsets%2F72157653574359092%2F&amp;set_id=72157653574359092&amp;jump_to=" allowFullScreen="true" allowfullscreen="true" /></object>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2015/06/03/geocetus-la-banca-dati-italiana-aperta-sugli-spiaggiamenti-di-cetacei-e-tartarughe-marine/">GeoCetus: la banca dati italiana aperta sugli spiaggiamenti di cetacei e tartarughe marine</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2015/06/03/geocetus-la-banca-dati-italiana-aperta-sugli-spiaggiamenti-di-cetacei-e-tartarughe-marine/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoCetus%3A+la+banca+dati+italiana+aperta+sugli+spiaggiamenti+di+cetacei+e+tartarughe+marine&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2015-06-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/06/03/geocetus-la-banca-dati-italiana-aperta-sugli-spiaggiamenti-di-cetacei-e-tartarughe-marine/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_webmap-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_webmap.png" medium="image">
+			<media:title type="html">GC_webmap</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_webmap-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_manager.png" medium="image">
+			<media:title type="html">GC_manager</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_manager-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_portal.png" medium="image">
+			<media:title type="html">GC_portal</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2015/05/GC_portal-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il database topografico di Regione Piemonte in #opendata</title>
+		<link>http://blog.spaziogis.it/2015/02/14/il-database-topografico-di-regione-piemonte-in-opendata/</link>
+		<comments>http://blog.spaziogis.it/2015/02/14/il-database-topografico-di-regione-piemonte-in-opendata/#comments</comments>
+		<pubDate>Sat, 14 Feb 2015 07:30:01 +0000</pubDate>
+		<dc:creator>redazione</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[Piemonte]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6619</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+database+topografico+di+Regione+Piemonte+in+%23opendata&amp;rft.aulast=TANTO&amp;rft.aufirst=Redazione&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2015-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/02/14/il-database-topografico-di-regione-piemonte-in-opendata/&amp;rft.language=English"></span>
+Abbiamo ricevuto questa notizia da Regione Piemonte (che ringraziamo), e ci limitiamo semplicemente a rigirarla per darne diffusione: la &#8220;Base Dati Territoriale di Riferimento degli Enti - BDTRE&#8221; è stata pubblicata con  licenza Creative Commons 2.5 BY. Sotto tutti i dettagli Il database topografico di Regione Piemonte è OPEN! Regione Piemonte promuove la costruzione di un insieme comune [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+database+topografico+di+Regione+Piemonte+in+%23opendata&amp;rft.aulast=TANTO&amp;rft.aufirst=Redazione&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2015-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/02/14/il-database-topografico-di-regione-piemonte-in-opendata/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Abbiamo ricevuto questa notizia da <strong>Regione Piemonte </strong>(che ringraziamo)<strong>,</strong> e ci limitiamo semplicemente a rigirarla per darne diffusione: la &#8220;Base Dati Territoriale di Riferimento degli Enti - <strong>BDTRE</strong>&#8221; è stata pubblicata con  licenza <a href="https://creativecommons.org/licenses/by/2.5/it/" rel="nofollow"  target="_blank">Creative Commons 2.5 BY</a>.</p>
+	<p>Sotto tutti i dettagli</p>
+	<hr /><br />
+	<h2 dir="ltr">Il database topografico di Regione Piemonte è OPEN!</h2>
+	<p dir="ltr">Regione Piemonte promuove la costruzione di un insieme comune di dati geografici (BDTRE: Base Dati Territoriale di Riferimento degli Enti), integrati in una infrastruttura che ne permette la condivisione tra i vari soggetti che gestiscono il territorio.</p>
+	<p dir="ltr">Nucleo portante di tale infrastruttura è il database topografico regionale, realizzato secondo le <a href="http://www.gazzettaufficiale.biz/atti/2012/20120048/12A01800.htm" rel="nofollow"  target="_blank">Specifiche di contenuto dei database geotopografici</a> (G.U. n. 48 del 27-2-2012, Suppl. ord. 37) e contenente gli elementi tipici della cartografia tecnica alla grande scala. I contenuti del database topografico sono resi disponibili in varie forme, dati e servizi, tra cui l&#8217;edizione annuale aggiornata della Base Cartografica di Riferimento della Regione Piemonte, che supera la CTR ( L.R. 1/2014 art 10).</p>
+	<h2 dir="ltr">BDTRE è Open!</h2>
+	<p dir="ltr">Gli utenti del database topografico sono Enti locali, professionisti, enti universitari e di ricerca, imprese e i cittadini che necessitano di dati topografici per interagire con la Pubblica Amministrazione. Per consentire loro la piena fruizione, Regione Piemonte rende disponibile la BDTRE in modalità open attraverso il <a href="http://www.geoportale.piemonte.it/cms" rel="nofollow"  target="_blank">GeoPortale Piemonte</a>, con licenza <a href="https://creativecommons.org/licenses/by/2.5/it/" rel="nofollow"  target="_blank">Creative Commons 2.5 BY</a>: gli utilizzatori sono liberi di utilizzare per propria utilità, anche commerciale, i dati della BDTRE riconoscendone la paternità in modo esplicito.</p>
+	<h2 dir="ltr">Usiamo BDTRE!</h2>
+	<p dir="ltr">Il data base topografico, l&#8217;allestimento raster derivato e i servizi aggiornati all&#8217;edizione 2015 sono facilmente raggiungibili dal GeoPortale Piemonte ( <a href="http://www.geoportale.piemonte.it/" rel="nofollow"  target="_blank">www.geoportale.piemonte.it</a>) utilizzando &#8220;BDTRE 2015&#8243; come chiave di ricerca nel catalogo.</p>
+	<p dir="ltr">Sono sempre disponibili, inoltre, i servizi relativi all&#8217;edizione 2014.</p>
+	<div dir="ltr">
+	<table>
+<colgroup> <col width="95" /> <col width="84" /> <col width="413" /> </colgroup><br />
+	<tbody>
+	<tr>
+	<td>
+	<p dir="ltr"><strong>EDIZIONE</strong></p>
+	</td>
+	<td>
+	<p dir="ltr"><strong>TIPOLOGIA</strong></p>
+	</td>
+	<td>
+	<p dir="ltr"><strong>TITOLO METADATO</strong></p>
+	</td>
+	</tr>
+	<tr>
+	<td rowspan="6">
+	<p dir="ltr">edizione 2015</p>
+	</td>
+	<td>
+	<p dir="ltr">vettoriale</p>
+	</td>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?uuid=r_piemon:cd682a8f-e85f-40e8-9795-59c2ced08722" target="_blank"><br />
+BDTRE &#8211; Data Base Geotopografico &#8211; 2015<br />
+</a></p>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p dir="ltr">raster</p>
+	</td>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?id=4985&amp;currTab=rndt" target="_blank"><br />
+BDTRE &#8211; Base Cartografica di Riferimento &#8211; 2015 &#8211; Raster B/N 1:10.000<br />
+</a></p>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p dir="ltr">WMS</p>
+	</td>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?uuid=r_piemon:43d07685-4799-478f-aef2-78c60b67a266" target="_blank"><br />
+BDTRE &#8211; Base Cartografica di Riferimento &#8211; 2015 &#8211; WMS (Raster 1:10.000)<br />
+</a></p>
+	</td>
+	</tr>
+	<tr>
+	<td rowspan="2">
+	<p dir="ltr">WMS a livelli separati</p>
+	</td>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?id=2753&amp;currTab=rndt" rel="nofollow"  target="_blank">BDTRE &#8211; </a><br />
+<a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?uuid=r_piemon:43d07685-4799-478f-aef2-78c60b67a266" target="_blank"><br />
+Base Cartografica di Riferimento &#8211; 2015<br />
+</a><br />
+<a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?id=2753&amp;currTab=rndt" rel="nofollow"  target="_blank"> &#8211; WMS B/N</a></p>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?id=2754&amp;currTab=rndt" target="_blank"><br />
+BDTRE &#8211; Base Cartografica di Riferimento &#8211; 2015 &#8211; WMS colori<br />
+</a></p>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p dir="ltr">WMTS</p>
+	</td>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?uuid=r_piemon:84b4fe46-ee8c-467a-aa1c-feaa05d2fada" target="_blank"><br />
+BDTRE &#8211; Base Cartografica di Riferimento &#8211; 2015 &#8211; WMTS (Raster 1:10.000)<br />
+</a></p>
+	</td>
+	</tr>
+	<tr>
+	<td rowspan="2">
+	<p dir="ltr">edizione 2014</p>
+	</td>
+	<td>
+	<p dir="ltr">WMS</p>
+	</td>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?id=4991&amp;currTab=rndt" target="_blank"><br />
+BDTRE &#8211; Base Cartografica di Riferimento &#8211; 2014 &#8211; WMS (Raster 1:10.000)<br />
+</a></p>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p dir="ltr">WMTS</p>
+	</td>
+	<td>
+	<p dir="ltr"><a href="http://www.geoportale2.piemonte.it/geonetworkrp/srv/ita/metadata.show?id=4992&amp;currTab=rndt" target="_blank"><br />
+BDTRE &#8211; Base Cartografica di Riferimento &#8211; 2014 &#8211; WMTS (Raster 1:10.000)<br />
+</a></p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	<hr /><br />
+	<h2>Come fare il download del dato grezzo</h2>
+	<p><iframe width="500" height="281" src="https://www.youtube.com/embed/1q6fUYD4Tww?rel=0" frameborder="0" allowfullscreen></iframe>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2015/02/14/il-database-topografico-di-regione-piemonte-in-opendata/">Il database topografico di Regione Piemonte in #opendata</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2015/02/14/il-database-topografico-di-regione-piemonte-in-opendata/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+database+topografico+di+Regione+Piemonte+in+%23opendata&amp;rft.aulast=TANTO&amp;rft.aufirst=Redazione&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2015-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2015/02/14/il-database-topografico-di-regione-piemonte-in-opendata/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>I dati sismici di ISIDE adesso hanno un web service</title>
+		<link>http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/</link>
+		<comments>http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/#comments</comments>
+		<pubDate>Tue, 30 Dec 2014 08:00:06 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Dati]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6559</guid>
+		<description><![CDATA[Un web service per interrogare gli eventi sismici rilevati ed elaborati dalla rete sismologica dell'INGV]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=I+dati+sismici+di+ISIDE+adesso+hanno+un+web+service&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-12-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416.jpg"><img class="alignleft  wp-image-6560" style="margin-bottom: 5px; margin-right: 10px;" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416-300x202.jpg" alt="earthquake" width="240" height="162" /></a><a href="http://iside.rm.ingv.it/iside/standard/index.jsp" rel="nofollow" title="ISIDE"  target="_blank">ISIDE</a>, il repository dei dati sismologici dell&#8217;INGV (Isituto Nazionale di Geofisica e Vulcanologia), si è arricchito di un web service tramite il quale è possibile interrogare ed ottenere tutti i dati rilevati ed elaborati dalla rete sismologica nazionale. Si tratta di un servizio <a href="http://www.fdsn.org/webservices/" rel="nofollow" title="International Federation of Digital Seismograph Networks"  target="_blank">FDSN</a>, specifica della federazione internazionale delle reti di sismografi digitali che definisce le modalità per interrogare, e il formato con cui ritornare, i dati esposti tramite questo tipo di web service.</p>
+	<p>All&#8217;<a href="http://webservices.rm.ingv.it/fdsnws/event/1/" rel="nofollow" title="ISIDE FDSN Web Service"  target="_blank">URL del servizio</a> è possibile vedere in forma tabellare gli ultimi dati registrati nel DB di ISIDE, e alcune query di esempio. I risultati sono forniti in XML secondo lo schema <a href="https://quake.ethz.ch/quakeml" rel="nofollow" title="QuakeML"  target="_blank">QuakeML</a>, che è un formato standard per la rappresentazione di dati sismologici. Tramite questo formato non vengono veicolate soltanto le informazioni standard quali coordinate e magnitudo dell&#8217;evento, ma anche molti altri metadati relativi alla registrazione, l&#8217;elaborazione e la gestione dei dati dell&#8217;evento (es. dati sull&#8217;incertezza e sulla qualità del dato, informazioni sulla stazione che lo ha registrato, ecc.).</p>
+	<p>I dati sono interrogabili in base ad:</p>
+	<ul>
+	<li><span style="line-height: 13px;">area geografica (filtro rettangolare o radiale)</span></li>
+	<li>finestra temporale</li>
+	<li>range di intensità</li>
+	<li>profondità dell&#8217;ipocentro</li>
+	</ul>
+	<p>Ad esempio, per visualizzare lo sciame sismico dello scorso 19/20 dicembre nell&#8217;area del Chianti (Toscana), possiamo interrogare il servizio con la seguente query: <a href="http://webservices.rm.ingv.it/fdsnws/event/1/query?lat=43.587007&amp;lon=11.316179&amp;maxradiuskm=30&amp;starttime=2014-12-19T00:00:00&amp;endtime=2014-12-20T23:59:59&amp;minmag=2&amp;maxmag=5" rel="nofollow" title="Query sciame sismico Chianti"  target="_blank">http://webservices.rm.ingv.it/fdsnws/event/1/query?lat=43.587007&amp;lon=11.316179&amp;maxradiuskm=30&amp;starttime=2014-12-19T00:00:00&amp;endtime=2014-12-20T23:59:59&amp;minmag=2&amp;maxmag=5</a></p>
+	<p>dove cerchermo gli eventi nel raggio di 30 km (maxradiuskm) dal centro di Greve in Chianti (lat/lon), tra il 19 e il 20 dicembre 2014 (starttime/endtime) filtrando solo gli eventi con magnitudo compresa tra 3 e 5 (minmag/maxmag). Al&#8221;interno dei risultati è possibile identificare l&#8217;<a href="http://webservices.rm.ingv.it/fdsnws/event/1/query?eventId=4694251" rel="nofollow" title="Evento magniudo 4.1"  target="_blank">evento principale</a>, di magnitudo 4.1, che ha fatto scricchiolare le finestre e i mobili del mio studio <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p>Non sono al corrente di strumenti di pubblico dominio per la visualizzazione diretta di dati in formato QuakeML all&#8217;interno dei più comuni software GIS, ma non sarebbe molto oneroso fare un convertitore verso formati GIS standard, magari in Python usando <a href="https://github.com/obspy/obspy/wiki" rel="nofollow" title="OBSPY"  target="_blank">ObsPy</a>, una libreria che offre funzionalità anche per <a href="http://docs.obspy.org/master/packages/obspy.fdsn.html" rel="nofollow"  target="_blank">interrogare direttamente i servizi FDSN</a>, generare plot delle onde sismiche o mappe della localizzazione degli eventi.</p>
+	<p>E&#8217; tuttavia possibile ottenere i risultati in formato testuale (un csv con il carattere pipe (&#8220;|&#8221;) come separatore dei campi) aggiungendo alla chiamata il formato di output &#8220;text&#8221;. L&#8217;<a href="http://webservices.rm.ingv.it/fdsnws/event/1/query?lat=43.587007&amp;lon=11.316179&amp;maxradiuskm=30&amp;starttime=2014-12-19T00:00:00&amp;endtime=2014-12-20T23:59:59&amp;minmag=2&amp;maxmag=5&amp;format=text" rel="nofollow" title="I dati in formato testuale" >output</a> sarà simile al seguente:</p>
+	<pre>#EventID|Time|Latitude|Longitude|Depth/Km|Author|Catalog|Contributor|ContributorID|MagType|Magnitude|MagAuthor|EventLocationName|web_id_locator(deprecated)
+4730151|2014-12-20T22:37:25.350000|43.6097|11.2563|6.7|SURVEY-INGV||||ML|2.6|SURVEY-INGV|Firenze|4004730151
+4730041|2014-12-20T22:35:09.980000|43.5848|11.2553|10.2|SURVEY-INGV||||ML|2.0|SURVEY-INGV|Firenze|4004730041
+4729881|2014-12-20T22:25:33.310000|43.6218|11.2432|7.4|SURVEY-INGV||||ML|2.2|SURVEY-INGV|Firenze|4004729881
+4729581|2014-12-20T21:39:40.560000|43.6218|11.2445|5.7|SURVEY-INGV||||ML|2.3|SURVEY-INGV|Firenze|4004729581
+(...)</pre>
+	<p>e potrà essere aperto e visualizzato in un qualsiasi software GIS che supporti il caricamento di dati CSV (ad esempio QGIS Desktop):</p>
+	<p><div id="attachment_6570" class="wp-caption aligncenter" style="width: 462px"><a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti.jpg"><img class=" wp-image-6570   " src="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti.jpg" alt="terremoti" width="452" height="369" /></a><p class="wp-caption-text">Localizzazione degli eventi visualizzati in base al valore di magnitudo (QGIS Desktop &#8211; Base OpenStreetMap)</p></div></p>
+	<p>La nota dolente del servizio è il copyright, che vincola al solo utilizzo personale e non commerciale, e non permette alcuno riutilizzo dei dati se non espressamente permesso dall&#8217;INGV. La domanda sorge spontanea: perché?</p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/">I dati sismici di ISIDE adesso hanno un web service</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/feed/</wfw:commentRss>
+		<slash:comments>14</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=I+dati+sismici+di+ISIDE+adesso+hanno+un+web+service&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-12-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416.jpg" medium="image">
+			<media:title type="html">earthquake</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti.jpg" medium="image">
+			<media:title type="html">terremoti</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il rischio idrogeologico, la Regione Siciliana e l&#8217;informazione civica</title>
+		<link>http://blog.spaziogis.it/2014/10/27/il-rischio-idrogeologico-la-regione-siciliana-e-linformazione-civica/</link>
+		<comments>http://blog.spaziogis.it/2014/10/27/il-rischio-idrogeologico-la-regione-siciliana-e-linformazione-civica/#comments</comments>
+		<pubDate>Mon, 27 Oct 2014 07:38:26 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[comunicazione]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[pubblica-amministrazione]]></category>
+		<category><![CDATA[rischio]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6425</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+rischio+idrogeologico%2C+la+Regione+Siciliana+e+l%26%238217%3Binformazione+civica&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-10-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/10/27/il-rischio-idrogeologico-la-regione-siciliana-e-linformazione-civica/&amp;rft.language=English"></span>
+Preso dalle tante sollecitazioni arrivate dall&#8217;emergenza maltempo a Genova, Parma e Alessandria, ho pensato di iniziare a raccogliere dati e informazioni legate al Rischio idrogeologico in terra di Sicilia. Ho constatato una barriera di accesso alle informazioni sui siti ufficiali della Pubblica Amministrazione, e anche le notizie reperibili attraverso articoli giornalistici, non riescono a dare una [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+rischio+idrogeologico%2C+la+Regione+Siciliana+e+l%26%238217%3Binformazione+civica&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-10-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/10/27/il-rischio-idrogeologico-la-regione-siciliana-e-linformazione-civica/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Preso dalle tante sollecitazioni arrivate dall&#8217;emergenza maltempo a Genova, Parma e Alessandria, ho pensato di iniziare a raccogliere dati e informazioni legate al <strong>Rischio</strong> idrogeologico in terra di Sicilia.<br />
+Ho constatato una barriera di accesso alle informazioni sui siti ufficiali della Pubblica Amministrazione, e anche le notizie reperibili attraverso articoli giornalistici, non riescono a dare una risposta chiara ad una domanda semplice: <strong>sono in pericolo</strong>?</p>
+	<p>Fornire gli strumenti per dare una risposta, significa fare una buona <strong>informazione civica</strong>, un obiettivo alto e stimolante per chi gestisce la cosa pubblica, ma che alle volte non è nemmeno abbozzato.</p>
+	<p>Per valutare il mio rischio devo rispondere almeno ad altre due domande:</p>
+	<ul id="draft_check_box_list_0">
+	<li>vivo <strong>vicino</strong> ad un rischio naturale?</li>
+	<li>se sì, <strong>quanto</strong> è elevato?</li>
+	</ul>
+	<p>I contenuti utili a definire la cosa sono disponibili, ma non permettono di passare dalla propria e personale conoscenza del territorio alla sua <strong>rappresentazione istituzionale</strong>.</p>
+	<p>Ho concentrato la mia ricerca sul rischio idrogeologico e sono &#8220;caduto&#8221; in <a href="http://gds.it/2014/10/12/a-rischio-frane-quasi-tutta-la-sicilia-solo-lesperto-di-zona-puo-dare-subito-lsos_245280/" rel="nofollow" >questo articolo</a> del Giornale di Sicilia: nella mia regione ci sarebbero <strong>22 mila aree a rischio</strong>.<br />
+Il progetto di riferimento è il <strong>PAI</strong> (Piano di Assetto Idrogeologico), &#8220;<em>lo strumento conoscitivo, normativo e tecnico-operativo mediante il quale sono pianificate e programmate le azioni, gli interventi e le norme d’uso riguardanti la  difesa dal rischio idrogeologico</em><em> del territorio siciliano</em>&#8220;.<br />
+Il <strong>sito web ufficiale</strong> è <a href="http://www.sitr.regione.sicilia.it/pai/" rel="nofollow" >http://www.sitr.regione.sicilia.it/pai/</a>, tenuto aggiornato nel tempo e ricco di pagine contenenti numerosi allegati (essenzialmente file PDF, compressi in file .zip). Mi aiuta a rispondere alle questioni poste sopra?</p>
+	<p>Non credo, salvo non conoscere ad esempio i nomi dei bacini idrografici locali, cosa ignota al 99 % delle persone che frequento. Ma anche sapendo il nome del bacino &#8211; ad esempio &#8220;Torrente Saponara, Area Territoriale tra i bacini T.te Saponara e F.ra Niceto&#8221; &#8211; ci si trova davanti a <strong>barriere di comunicazione</strong> come quella dell&#8217;immagine di sotto.</p>
+	<p><img class="aligncenter size-full wp-image-6427" src="http://blog.spaziogis.it/wp-content/uploads//2014/10/pai_folder.png" alt="pai_folder" width="277" height="163" /></p>
+	<p>Qual è il significato del nome di questi file? Ne apro qualcuno, guardo un po&#8217; dentro e cerco di capire? Non credo possa essere così, e sicuramente non può essere solo così.</p>
+	<p>Dati come questi devono essere pubblicati anche in maniera <strong>immediatamente comprensibile</strong> e <strong>leggibile</strong> da tutti: me, mia mamma, un giornalista, un pittore, un tecnico comunale, mio nipote il grande, il vicino di casa e financo da Gerlando.<br />
+Solo come esempio, per quell&#8217;insieme di persone che ha accesso al web, una semplice <strong>mappa</strong> come <strong><a href="http://siciliahub.github.io/mappe/rischio_frane/" rel="nofollow" >questa</a></strong> dà un&#8217;informazione che è subito comprensibile ad una platea vasta: dovo sono le aree a <strong>rischio frana</strong> in <strong>Sicilia</strong>, e qual è il grado di rischio.</p>
+	<p><a href="http://siciliahub.github.io/mappe/rischio_frane/" rel="nofollow" target="_blank" ><img border="0" class="aligncenter size-full wp-image-6428" src="http://blog.spaziogis.it/wp-content/uploads//2014/10/sicilia_rischio_frane_pai_t.jpg" alt="sicilia_rischio_frane_pai_t" width="500" height="288" /></a></p>
+	<p>Non scrivo tutto questo per fare una critica al PAI, è un progetto che non conosco e che immagino essere di qualità.</p>
+	<p>La barriera non è la presenza/assenza delle informazioni ma il loro scarso grado di <strong>utilizzabilità civica</strong>. Sarebbe auspicabile una collaborazione con la cittadinanza per trovare le modalità per superarla. Il risultato può essere proprio una mappa facilmente comprensibile da tutti.<br />
+Si tratta di un problema molto più semplice di quello del rischio idrogeologico, cionondimeno affrontarlo e risolverlo sarebbe una <strong>scelta politica</strong> con benefici a catena per tutti.</p>
+	<p>Invito la Regione Siciliana a costruire sul tema del rischio idrogeologico (e sul rischio in generale) una strategia di comunicazione e di informazione civica di qualità, senza barriere e ad ampio spettro.<br />
+Ad <strong>aprire</strong> di più e meglio i <strong>dati</strong> relativi, in modo che possano essere realizzate analisi e rappresentazioni del tema che oggi nemmeno immaginiamo. La carta interattiva di sopra, è stata implementata grazie a 2 servizi aperti: quello messo a disposizione dal <a href="http://www.sitr.regione.sicilia.it/geoportale/it/metadata/details/159" rel="nofollow" >Geoportale Regione Siciliana</a> (<em>special thanks</em> ad <a href="https://twitter.com/4g0st1n0" rel="nofollow" >Agostino</a>) e l&#8217;ortofoto <a href="http://www.realvista.it/website/Joomla/" rel="nofollow" >RealVista</a>.</p>
+	<p>Una delle conseguenze dell&#8217;apertura dei dati è proprio quella di creare le precondizioni per <strong>raccontare meglio il proprio il territorio</strong>, in ciò per cui brilla e in ciò per cui è a rischio.<br />
+E io di queste storie vorrei poterne leggere tante.</p>
+	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: questo articolo è pubblicato anche sul blog di <a href="http://opendatasicilia.it/" rel="nofollow"  target="_blank">Open Data Sicilia</a>.</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/10/27/il-rischio-idrogeologico-la-regione-siciliana-e-linformazione-civica/">Il rischio idrogeologico, la Regione Siciliana e l&#8217;informazione civica</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/10/27/il-rischio-idrogeologico-la-regione-siciliana-e-linformazione-civica/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+rischio+idrogeologico%2C+la+Regione+Siciliana+e+l%26%238217%3Binformazione+civica&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-10-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/10/27/il-rischio-idrogeologico-la-regione-siciliana-e-linformazione-civica/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/10/pai_folder-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/10/pai_folder.png" medium="image">
+			<media:title type="html">pai_folder</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/10/pai_folder-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/10/sicilia_rischio_frane_pai_t.jpg" medium="image">
+			<media:title type="html">sicilia_rischio_frane_pai_t</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/10/sicilia_rischio_frane_pai_t-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>La Regione Siciliana autorizza il ricalco in OpenStreetMap sulle ortofoto di sua proprietà</title>
+		<link>http://blog.spaziogis.it/2014/09/15/la-regione-siciliana-autorizza-il-ricalco-in-openstreetmap-sulle-ortofoto-di-sua-proprieta/</link>
+		<comments>http://blog.spaziogis.it/2014/09/15/la-regione-siciliana-autorizza-il-ricalco-in-openstreetmap-sulle-ortofoto-di-sua-proprieta/#comments</comments>
+		<pubDate>Mon, 15 Sep 2014 13:38:20 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[Cartografia]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+		<category><![CDATA[ortofoto]]></category>
+		<category><![CDATA[sicilia]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6396</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+Regione+Siciliana+autorizza+il+ricalco+in+OpenStreetMap+sulle+ortofoto+di+sua+propriet%C3%A0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-09-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/09/15/la-regione-siciliana-autorizza-il-ricalco-in-openstreetmap-sulle-ortofoto-di-sua-proprieta/&amp;rft.language=English"></span>
+Questo post non avrebbe bisogno di un testo o di un commento. E&#8217; in fondo una comunicazione di servizio. Le cose avvengono grazie al tempo che spendiamo per queste, alla crescita personale, all&#8217;evoluzione del contesto, agli incontri fatti, alla qualità delle persone. E questo è un anno che non dimenticherò. Ringrazio l&#8217;Ing. Salvatore Cirone (dirigente [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+Regione+Siciliana+autorizza+il+ricalco+in+OpenStreetMap+sulle+ortofoto+di+sua+propriet%C3%A0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-09-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/09/15/la-regione-siciliana-autorizza-il-ricalco-in-openstreetmap-sulle-ortofoto-di-sua-proprieta/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Questo post non avrebbe bisogno di un testo o di un commento. E&#8217; in fondo una comunicazione di servizio.</p>
+	<p>Le cose avvengono grazie al tempo che spendiamo per queste, alla <strong>crescita</strong> personale, all&#8217;<strong>evoluzione</strong> del contesto, agli <strong>incontri</strong> fatti, alla qualità delle <strong>persone</strong>. E questo è un anno che non dimenticherò.</p>
+	<p>Ringrazio l&#8217;Ing. <strong>Salvatore Cirone</strong> (dirigente dell&#8217;&#8221;Area 2 Interdipartimentale Sistemi Informativi Geografici, Infrastruttura Dati Territoriali Regionali e Cartografia&#8221;) e l&#8217;Ing. <strong>Agostino Cirasa</strong> (funzionario presso gli stessi uffici) per il dialogo di queste settimane e per l’immediata disponibilità all’autorizzazione, e <strong>Simone Cortesi</strong> che mi ha insegnato a passare la cera.</p>
+	<p><img class="aligncenter" src="https://draftin.com:443/images/20927?token=EG-VP9B3-5etBlrZlCoOcPBUlcCnRWAsZ_NZ2d84sz9y9pQJbZlSU_cIM90h6Ob7BePoatRkctP3nZi_0rfkXaE" alt="2014-09-15_14h50_47.png" /></p>
+	<p>I servizi <strong>WMS</strong> da sfruttare per il ricalco, e i relativi metadati, dovrebbero essere quelle elencati qui: <a href="http://goo.gl/Hefwor" rel="nofollow"  target="_blank">http://goo.gl/Hefwor</a></p>
+	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2014/09/Autorizzazione_OpenStreeMap.pdf" target="_blank">Qui</a> invece la copia della lettera di <strong>autorizzazione</strong>. Tutto questo si innesta in un percorso iniziato proprio con <strong><a href="http://wiki.openstreetmap.org/wiki/Sicilia/Comunit%C3%A0#Derivazione_dati" rel="nofollow"  target="_blank">OpenStreetMap</a></strong> qualche anno fa, e che sarà probabilmente soltanto una delle tappe previste in termini di <strong>apertura</strong> dei <strong>dati geografici</strong> da parte della <strong>Regione Siciliana</strong>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/09/15/la-regione-siciliana-autorizza-il-ricalco-in-openstreetmap-sulle-ortofoto-di-sua-proprieta/">La Regione Siciliana autorizza il ricalco in OpenStreetMap sulle ortofoto di sua proprietà</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/09/15/la-regione-siciliana-autorizza-il-ricalco-in-openstreetmap-sulle-ortofoto-di-sua-proprieta/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+Regione+Siciliana+autorizza+il+ricalco+in+OpenStreetMap+sulle+ortofoto+di+sua+propriet%C3%A0&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-09-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/09/15/la-regione-siciliana-autorizza-il-ricalco-in-openstreetmap-sulle-ortofoto-di-sua-proprieta/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it443/images/20927?token=EG-VP9B3-5etBlrZlCoOcPBUlcCnRWAsZ_NZ2d84sz9y9pQJbZlSU_cIM90h6Ob7BePoatRkctP3nZi_0rfkXaE" />
+		<media:content url="http://blog.spaziogis.it443/images/20927?token=EG-VP9B3-5etBlrZlCoOcPBUlcCnRWAsZ_NZ2d84sz9y9pQJbZlSU_cIM90h6Ob7BePoatRkctP3nZi_0rfkXaE" medium="image">
+			<media:title type="html">2014-09-15_14h50_47.png</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Si avverte la gentile clientela che c&#8217;è da spostare un&#8217;isola</title>
+		<link>http://blog.spaziogis.it/2014/09/03/si-avverte-la-gentile-clientela-che-ce-da-spostare-unisola/</link>
+		<comments>http://blog.spaziogis.it/2014/09/03/si-avverte-la-gentile-clientela-che-ce-da-spostare-unisola/#comments</comments>
+		<pubDate>Wed, 03 Sep 2014 17:06:54 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[Bing]]></category>
+		<category><![CDATA[Cartografia]]></category>
+		<category><![CDATA[Linosa]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+		<category><![CDATA[sicilia]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6377</guid>
+		<description><![CDATA[Durante una vacanza nella meravigliosa Linosa scopro che l'isola si è spostata. Un breve post che vola rapidamente sulla tecnologia, le basi cartografiche, la propagazione dell'errore, i dati aperti e la cartografia partecipata.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Si+avverte+la+gentile+clientela+che+c%26%238217%3B%C3%A8+da+spostare+un%26%238217%3Bisola&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-09-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/09/03/si-avverte-la-gentile-clientela-che-ce-da-spostare-unisola/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Sei anni fa scrissi un <a href="http://blog.spaziogis.it/2008/08/20/mobile-gmaps-unapplicazione-per-andare-in-vacanza-con-le-proprie-basi-cartografiche-web/" target="_blank">post</a>, prima di partire per una settimana di piacere a <strong>Linosa</strong>; stavolta questo paradiso terrestre mi ha ispirato un post di ritorno.</p>
+	<p>Lo spunto di partenza di oggi è lo stesso di allora: creare per il mio <em>smartphone</em> una copia della <strong>cartografia digitale</strong> dell&#8217;isola, in modo che sia disponibile anche <em><strong>offline</strong></em>, visto che in loco la connettività è scarsa.<br />
+Sono passati sei anni, un&#8217;enormità dal punto di vista tecnologico, e le modalità per farlo sono adesso davvero tante. Anche per questa ragione non parlerò di soluzioni, ma darò spazio a quello che è un vero e proprio scoop giornalistico: <strong>l&#8217;isola di Linosa deve essere spostata</strong>!</p>
+	<p>Scopro questa cosa incredibile il 18 agosto, data del mio arrivo sul posto. Nelle prime ore noleggio uno <em>scooter</em>, sistemo i bagagli in casa e subito voglio fare il punto mappa. Perché l&#8217;alloggio è in una zona per me nuova, perché voglio scegliere dove fare il primo bagno, perché mi voglio fare un&#8217;idea della viabilità, ecc.<br />
+Accendo il ricevitore GPS del mio <em>smartphone</em>, aspetto che venga calcolata la mia posizione, faccio partire la mia <em>app</em> e mi rendo subito conto di essere stato spostato a est di diverse decine di metri. Perché &#8220;carta canta&#8221;, non ci sono dubbi, e se il mio <em>smartphone</em> mi fa vedere il pallino in una certa posizione, sarà il mio maledetto telefonino &#8220;<a href="http://en.wikipedia.org/wiki/Rooting_(Android_OS)" rel="nofollow"  target="_blank">roottato</a>&#8221; che funziona male. Ho pensato anche che il problema fosse della mia cartografia, ma avevo generato di proposito due basi <em>offline</em>, da due fonti diverse (<strong>Bing Maps</strong> di Microsoft e <strong>OpenStreetMap</strong>, e su entrambe riscontravo lo stesso problema.<br />
+Riavvio il telefonino, salgo sulla moto per fare un primo giro, arrivo sul lungo mare, rifaccio il test precedente e non cambia nulla.</p>
+	<p style="text-align: center;"><img class="aligncenter" src="https://draftin.com:443/images/20220?token=UwZMuDwTij407bCMjQR-9Y75MmQ1MiyYTwAO_bOzAGrLicCWGuwFMfhl0kNPLFWsqbUCdKj9-91UQlmud5UABVU" alt="PANO_20140825_104228.jpg" width="500" height="219" /></p>
+	<p>Preso dalla sconforto decido di fare una passeggiata e <strong>registrare</strong> un tracciato GPS, in modo che di ritorno a Palermo possa fare con calma un po&#8217; di verifiche e capire che strani dati produce il mio cellulare (si usa più questa parola?). A registrazione terminata, voglio essere sicuro che tutto sia stato archiviato correttamente, apro la mia<em> app</em> di <em>tracking</em> in una zona coperta da connessione <em>web</em> e scopro che tutto sembra tornare a funzionare. Ma c&#8217;è una differenza, la mappa di base stavolta è <a href="http://www.sitr.regione.sicilia.it/geoportale/it/metadata/details/255" rel="nofollow" >quella</a> del <strong>Geoportale della Regione Siciliana</strong>: che siano le altre basi il problema?</p>
+	<p>Ho potuto verificare la cosa, alcuni giorni fa, al ritorno da Linosa. Avevo infatti bisogno di una connessione e di un <em>personal computer</em>.<br />
+Ho creato una vista cartografica (<a href="http://leafletjs.com/" rel="nofollow"  target="_blank">leaflet.js</a> + <a href="https://github.com/shramov/leaflet-plugins" rel="nofollow"  target="_blank">Plugins by Pavel Shramov</a> + <a href="https://github.com/turban/Leaflet.Sync" rel="nofollow"  target="_blank">Leaflet.Sync</a>) in cui mettere a confronto i tre <em>layer</em> cartografici citati, sui quali ho sovrapposto la registrazione del mio percorso GPS, che ho usato un po&#8217; come cartina al tornasole.</p>
+	<p><img class="aligncenter" src="https://draftin.com:443/images/20221?token=0Gxg3iNV7FL9G70Ye7ov7NfF4OFAC-taNkiK3oQxfqt0ONPnl9YJAMT165qeRnSw-d_ghDHeU1KeCM1YGQJWzj0" alt="2014-08-29_21h31_29.jpg" width="500" height="261" /></p>
+	<p>Come si vede dallo <em>screenshot</em> di sopra, la traccia GPS (in blu) è correttamente posizionata sul base della Regione Siciliana, mentre è spostata di diverse decine di metri a est su Bing Maps. E lo stesso (vedi sotto) vale per OpenStreetMap.<br />
+<img class="aligncenter" src="https://draftin.com:443/images/20222?token=nJr3_UgYE4S9euaVmNp24u3z3rSZevs7TzlYhrfIbRnX7dcBUtjVnARXQxlkwK9SWoc1NtJzhQm3jNSI4U2MZlE" alt="2014-08-29_23h08_31.jpg" width="500" height="261" /></p>
+	<p>Non poteva essere diversamente perché i dati OpenStreetMap derivano (almeno per la gran parte) probabilmente da un tracciamento sulla base Bing. La Microsoft infatti ha concesso da tempo il ricalco sul proprio layer satellitare per l&#8217;arricchimento del database OSM, ma qui purtroppo è entrato in gioco la propagazione dell&#8217;errore: la base Bing è (qui a Linosa) &#8220;registrata&#8221; male, e qualsiasi prodotto derivato erediterà questo problema.</p>
+	<p>La vista cartografica dinamica interattiva con cui potrete testare la cosa in autonomia è accessibile qui: <a href="http://tanto.github.io/spostalinosa/" rel="nofollow"  target="_blank">http://tanto.github.io/spostalinosa/</a><br />
+Ho inserito anche un <em>pinpoint</em> fisso a centro mappa, in modo da fare anche confronti a occhio tra un elemento individuato sulle due tavole.</p>
+	<p>Non ho idea di come sia possibile che i dati della multinazionale contengano questo errore, ma di certo &#8220;c&#8217;è da spostare Linosa&#8221;. A chi mi posso rivolgere per segnalare la cosa?<br />
+I dati OpenStreetMap saranno corretti in pochissimo tempo, per quelli di Bing temo ci vorrà più tempo: che grande cosa che è la &#8220;<strong>mappa liberamente modificabile dell&#8217;intero pianeta</strong>&#8220;!</p>
+	<p>Ho fatto leggere il post in bozza a questa redazione e a qualche altro amico. Sono usciti molti spunti &#8220;vicini&#8221; al bel <a href="http://blog.spaziogis.it/2014/09/01/follia-di-mezza-estate/" target="_blank">post</a> di <strong>Sergio</strong>, di cui un po&#8217; questo è un figlio casuale, e anche uno dei mille &#8220;casi d&#8217;uso&#8221;.<br />
+Voglio concludere proprio con tre elementi che ho raccolto:</p>
+	<ul id="draft_check_box_list_0">
+	<li>la mappa non è il <strong>territorio<em> </em></strong>(me l&#8217;ha detto tempo fa Franco Farinelli e me l&#8217;ha ripetuto in questi giorni napo);</li>
+	<li>la <strong>cartografia della PA italiana</strong> è spesso di alto livello, è una grande risorsa e bisogna liberarla. Alla mia regione chiedo di lavorare sul passaggio ad una licenza che consenta pienamente il <strong>riuso dei dati</strong>, dalla attuale <a href="https://creativecommons.org/licenses/by-sa/3.0/it/" rel="nofollow"  target="_blank">CC BY-SA 3.0 IT</a> a una <a href="https://creativecommons.org/licenses/by/4.0/deed.it" rel="nofollow"  target="_blank">CC BY 4.0</a>;</li>
+	<li>in ultimo l&#8217;invito a non credere acriticamente né ai nostri strumenti, né ai dati a cui accediamo tramite questi, ad alzare la testa dallo <em>smartphone</em> e camminare un po&#8217; più con lo <strong>sguardo aperto</strong> e rivolto in tutte le direzioni (lo so, lo so, si vede che è un&#8217;autocritica <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  ).</li>
+	</ul>
+	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: questo di Linosa non &egrave; un caso unico e isolato. Sembra che anche <strong><a href="http://gis.19327.n5.nabble.com/Shift-massivo-Sassi-di-Matera-td5816104.html" rel="nofollow"  target="_blank">Matera</a></strong> sia da spostare.</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/09/03/si-avverte-la-gentile-clientela-che-ce-da-spostare-unisola/">Si avverte la gentile clientela che c&#8217;è da spostare un&#8217;isola</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/09/03/si-avverte-la-gentile-clientela-che-ce-da-spostare-unisola/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Si+avverte+la+gentile+clientela+che+c%26%238217%3B%C3%A8+da+spostare+un%26%238217%3Bisola&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-09-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/09/03/si-avverte-la-gentile-clientela-che-ce-da-spostare-unisola/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it443/images/20220?token=UwZMuDwTij407bCMjQR-9Y75MmQ1MiyYTwAO_bOzAGrLicCWGuwFMfhl0kNPLFWsqbUCdKj9-91UQlmud5UABVU" />
+		<media:content url="http://blog.spaziogis.it443/images/20220?token=UwZMuDwTij407bCMjQR-9Y75MmQ1MiyYTwAO_bOzAGrLicCWGuwFMfhl0kNPLFWsqbUCdKj9-91UQlmud5UABVU" medium="image">
+			<media:title type="html">PANO_20140825_104228.jpg</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it443/images/20221?token=0Gxg3iNV7FL9G70Ye7ov7NfF4OFAC-taNkiK3oQxfqt0ONPnl9YJAMT165qeRnSw-d_ghDHeU1KeCM1YGQJWzj0" medium="image">
+			<media:title type="html">2014-08-29_21h31_29.jpg</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it443/images/20222?token=nJr3_UgYE4S9euaVmNp24u3z3rSZevs7TzlYhrfIbRnX7dcBUtjVnARXQxlkwK9SWoc1NtJzhQm3jNSI4U2MZlE" medium="image">
+			<media:title type="html">2014-08-29_23h08_31.jpg</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>L&#8217;Osservatorio Carburanti ed una missione per la trasparenza</title>
+		<link>http://blog.spaziogis.it/2014/07/28/losservatorio-carburanti-ed-una-missione-per-la-trasparenza/</link>
+		<comments>http://blog.spaziogis.it/2014/07/28/losservatorio-carburanti-ed-una-missione-per-la-trasparenza/#comments</comments>
+		<pubDate>Mon, 28 Jul 2014 09:40:52 +0000</pubDate>
+		<dc:creator>Stefano Sabatini</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[benzina]]></category>
+		<category><![CDATA[mise]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+		<category><![CDATA[prezzi]]></category>
+		<category><![CDATA[trasparenza]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6329</guid>
+		<description><![CDATA[Il mercato dei carburanti è tenuto sotto controllo dal Ministero dello Sviluppo Economico, e questo ha prodotto un dataset con grande potenziale. ]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=L%26%238217%3BOsservatorio+Carburanti+ed+una+missione+per+la+trasparenza&amp;rft.aulast=Sabatini&amp;rft.aufirst=Stefano&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-07-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/07/28/losservatorio-carburanti-ed-una-missione-per-la-trasparenza/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>L’<strong>Osservatorio Carburanti</strong>, introdotto con una legge del 2009 (art. 51, legge 99/2009), vuole essere uno strumento di trasparenza e garanzia della concorrenza tutelato e gestito dal Ministero dello Sviluppo Economico. Dal 2013 é obbligatorio per tutti i distributori sul territorio italiano comunicare e tenere aggiornati i prezzi praticati sul portale ministeriale (<a href="https://carburanti.mise.gov.it/OssPrezziSearch/" rel="nofollow" >https://carburanti.mise.gov.it/OssPrezziSearch/</a>): il decreto ministeriale del 15 Ottobre 2010 prescrive l’obbligo di comunicare il prezzo iniziale, il ritocco dei prezzi al rialzo e comunque un aggiornamento ogni 8 giorni dall’ultima comunicazione, e suggerisce una serie di dati da trasmettere su base volontaria. Le sanzioni previste dalla legge, convertite in euro, variano tra 516 e 3098 euro.</p>
+	<p>La comunicazione al Ministero avviene in tre modi:</p>
+	<ul id="draft_check_box_list_0">
+	<li>tramite portale web</li>
+	<li>tramite sistemi convenzionati (gestiti dai concessionari autostradali o da imprese accreditate)</li>
+	<li>tramite gestionali conformi alle specifiche ministeriali</li>
+	</ul>
+	<p>Lato consumatore si dovrebbero aprire enormi possibilità per il monitoraggio dell’andamento dei prezzi e quindi del rispetto della concorrenza, poiché diventa sufficiente avere accesso alla rete per poter avere informazioni puntuali sui prezzi praticati dalle stazioni di rifornimento. Il mercato è attualmente composto dal portale ministeriale e dalle applicazioni create dalle imprese accreditate: il ministero tramite Infocamere contribuisce con <strong>OsservaPrezzi</strong>, una sorta di applicazione demo che mostra il potenziale di questo dataset  (2.6 valutazione media sul <a href="https://play.google.com/store/apps/details?id=it.gov.mise.ossprezziapp" rel="nofollow" >Play Store</a>), mentre tra le varie proposte permane ancora la storica PrezziBenzina (4.4 valutazione media sul <a href="https://play.google.com/store/apps/details?id=org.vernazza.androidfuel" rel="nofollow" >Play Store</a>).</p>
+	<p>La domanda che ci siamo posti quando abbiamo iniziato l&#8217;analisi del portale è la seguente: se il database dei prezzi è nato a garanzia di <strong>trasparenza</strong> e <strong>concorrenza,</strong> perché la piattaforma non prevede ancora il rispetto dei criteri stabiliti ad esempio dall&#8217;<a href="http://www.marcosbox.org/2014/05/agenda-nazionale-2014-per-il-patrimonio.html" rel="nofollow" >Agenda Digitale italiana</a>? Possiamo fare qualcosa per contribuire al suo miglioramento?</p>
+	<p>La prima azione compiuta è stata l&#8217;analisi di come funziona dietro le quinte il portale del MiSE: con sommo piacere questo è costruito con tecnologie web al passo coi tempi ed il frontend (il &#8220;lato utente&#8221;) utilizza il framework Bootstrap. Questo teoricamente potrebbe garantire la navigabilità da piattaforme mobili, ma evidentemente si è lasciato che l&#8217;utente trovasse necessario l&#8217;utilizzo delle app.<br />
+L&#8217;API che fa dialogare la parte utente con il server è stata esplorata facilmente, permettendo perfino di documentarla parzialmente: l&#8217;unica azione per rendere il servizio disponibile in chiaro alla comunità sarebbe documentare le modalità di interrogazione e fornire l&#8217;accesso tramite chiavi agli sviluppatori interessati.</p>
+	<p>L&#8217;azione successiva si è svolta su due fronti: il primo è stato provare a fornire servizi utente facilmente fruibili, mentre il secondo è stato ricavare un dump completo del database in un dato momento per permetterne l&#8217;analisi a mo&#8217; di big data.</p>
+	<p>Se l&#8217;API fosse ufficiale sarebbe utile che fornisse anche metodi per utilizzare i dati direttamente via JavaScript (JSONP) ma, purtroppo, ciò non è possibile al momento: si è reso necessario creare un &#8216;proxy&#8217; fra i nostri esperimenti ed il servizio trasformando le nostre richieste da GET a POST via PHP, superando contemporaneamente le limitazioni di sicurezza che i nostri browser mettono in atto nei confronti delle richieste a domini diversi (cross-domain).<br />
+L&#8217;endpoint <em>position</em>, ad esempio, permette di ottenere tutti i distributori nell&#8217;intorno di un dato punto per un raggio di 10 chilometri: l&#8217;applicazione contenuta nella pagina <a href="http://toolserver.openstreetmap.it/carburantiMiSE/distributori.html" rel="nofollow" ><em>distributori.html</em></a> permette di consultare su mappa tutti i distributori intorno alla posizione scelta dall&#8217;utente (via doppio clic o tramite geolocalizzazione), mentre quella della pagina <a href="http://toolserver.openstreetmap.it/carburantiMiSE/cheap.html" rel="nofollow" ><em>cheap.html</em></a> evidenzia il distributore più conveniente nella stessa area.</p>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/07/TrovaPrezzi-Benzina.png" alt="TrovaPrezzi Benzina" width="500" height="252" /></p>
+	<p>Il dump ottenuto tramite simulazione delle richieste all&#8217;API copre tutti i distributori disponibili e viene trasformato in automatico dalla risposta JSON ad un database costituito di due parti: una tabella raccoglie la descrizione del distributore (marca, posizione, indirizzo,&#8230;), mentre l&#8217;altra raccoglie i prezzi di ognuno di essi. Le due tabelle sono legate tra loro da un identificatore trovato all&#8217;interno della risposta (il quale andrebbe a sua volta standardizzato e reso ufficiale per permettere incroci con altre basi di dati). Questo database è reso disponibile sia come file SQLITE sia come file SPATIALITE: quest&#8217;ultimo viene anche purificato dei distributori con coordinate non valide e può essere utilizzato per analisi spaziali con Qgis.</p>
+	<p>Noi continueremo ad estrarre informazione e valutarla per mostrare cosa può significare la disponibilità aperta dei dati: più persone ci saranno a consultare ed utilizzare i dati dell&#8217;Osservatorio, maggiore trasparenza ci sarà nella gestione e nel monitoraggio del mercato dei carburanti. I segnali che provengono ci fanno credere di stare seguendo una strada giusta e con pochi accorgimenti in una fase futura di apertura tutti ne potranno trarre beneficio.</p>
+	<p>Il repository GitHub è localizzato all&#8217;indirizzo <a href="https://github.com/sabas/carburantiMiSE" rel="nofollow" >https://github.com/sabas/carburantiMiSE</a>; l&#8217;istanza corrispondente, dalla quale scaricare anche i dump più recenti, è all&#8217;indirizzo <a href="http://toolserver.openstreetmap.it/carburantiMiSE/" rel="nofollow" >http://toolserver.openstreetmap.it/carburantiMiSE/</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/07/28/losservatorio-carburanti-ed-una-missione-per-la-trasparenza/">L&#8217;Osservatorio Carburanti ed una missione per la trasparenza</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/07/28/losservatorio-carburanti-ed-una-missione-per-la-trasparenza/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=L%26%238217%3BOsservatorio+Carburanti+ed+una+missione+per+la+trasparenza&amp;rft.aulast=Sabatini&amp;rft.aufirst=Stefano&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-07-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/07/28/losservatorio-carburanti-ed-una-missione-per-la-trasparenza/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/07/TrovaPrezzi-Benzina.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/07/TrovaPrezzi-Benzina.png" medium="image">
+			<media:title type="html">TrovaPrezzi Benzina</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Un post di 50 centimentri</title>
+		<link>http://blog.spaziogis.it/2014/03/03/un-post-di-50-centimentri/</link>
+		<comments>http://blog.spaziogis.it/2014/03/03/un-post-di-50-centimentri/#comments</comments>
+		<pubDate>Mon, 03 Mar 2014 07:00:11 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[ortofoto]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6179</guid>
+		<description><![CDATA[e-GEOS e il Ministero dell’Ambiente e della Tutela del Territorio e del Mare e l’Agenzia per le Erogazioni in Agricoltura (AGEA), hanno pubblicato due nuovi dataset: ortofoto a 50 cm. per tutto il territorio nazionale. Quelle di e-GEOS sono rilasciate in CC BY.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+post+di+50+centimentri&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-03-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/03/03/un-post-di-50-centimentri/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>50 centimentri</strong> sono abbastanza per un post a risoluzione schermo (largo circa 500 px), più o meno la lunghezza del passo di un uomo, il diametro di un canestro di basket, poco più del lato lungo di un foglio A3. Tutto è relativo.</p>
+	<p>Se si tratta della risoluzione di <strong>ortofoto</strong> è sicuramente un piccolo grande numero, che consente di osservare il territorio con un buon dettaglio, di supervisionare virtualmente un&#8217;area prima di fare un volo con un drone, di derivare delle informazioni vettoriali, di guardare con occhio languido la cala in cui si andava in vacanza da bambini, di verificare la modifica di un versante di frana nel tempo. E tanto, tanto altro di più. Ma <strong>le dimensioni non sono tutto</strong>.</p>
+	<p><strong>e-GEOS</strong> e il<strong> Ministero dell’Ambiente e della Tutela del Territorio e del Mare e l’Agenzia per le Erogazioni in Agricoltura (AGEA) </strong>hanno rilasciato da pochi giorni proprio delle ortofoto a 50 cm., accessibili in <strong>WMS</strong> (WMTS quelle di e-GEOS). Non si tratta di riprese con presa obliqua e sono accessibili in diversi sistemi di coordinate; due elementi &#8220;classici&#8221; per questo tipo di dataset, di cui trovo importante rimarcare la differenza con i layer cartografici dei grossi provider web. Ma <strong>la &#8220;tecnica&#8221; non è tutto</strong>.</p>
+	<p>Il dataset di e-GEOS, così come annunciato nel corso della Conferenza OpenGeoData &#8220;Istruzioni per il RI-uso&#8221;, è rilasciato con una <strong>licenza aperta</strong>; anzi per la precisione con due tipi di licenze (<a href="http://www.realvista.it/website/Joomla/index.php?option=com_content&amp;view=article&amp;id=13:realvista1-0-tile-open&amp;catid=24&amp;Itemid=128" rel="nofollow"  target="_blank">qui</a> e <a href="http://www.realvista.it/website/Joomla/index.php?option=com_content&amp;view=article&amp;id=12:realvista1-0-wms-open&amp;catid=24&amp;Itemid=128" rel="nofollow"  target="_blank">qui</a>). Questo tipo di accesso ai dati, li trasforma subito in <strong>ingredienti di base</strong>, con cui ognuno potrà realizzare la propria ricetta. E&#8217; una gran bella cosa.<br />
+Del dato AGEA non ho invece trovato ((ma sono certo che ci saranno) i termini di utilizzo.</p>
+	<p>Per puro diletto ho realizzato un &#8220;<strong>confronto all&#8217;americana</strong>&#8221; tra i due dataset; lo trovate <a href="http://tanto.github.io/50centimetri/" rel="nofollow" title="Confronto e-GEOS, AGEA 2009-2012"  target="_blank"><strong>qui</strong></a>. Noterete che il <em>layer</em> AGEA è molto più lento a caricarsi, ma non si tratta di un dato sottoposto a <em>tile caching</em> come quello di e-GEOS.</p>
+	<p>Sotto la mappa altre informazioni utili sui dati, comprese le &#8220;<strong><em>Capabilities</em></strong>&#8221; dei rispettivi servizi WMS.</p>
+	<p style="text-align: center;"><a href="http://tanto.github.io/50centimetri/" rel="nofollow"  target="_blank"><img class="alignnone size-full wp-image-6180" style="border: 0px; margin: 0px;" src="http://blog.spaziogis.it/wp-content/uploads//2014/03/real_vista-agea.jpg" alt="real_vista-agea" width="496" height="355" /></a></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/03/03/un-post-di-50-centimentri/">Un post di 50 centimentri</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/03/03/un-post-di-50-centimentri/feed/</wfw:commentRss>
+		<slash:comments>11</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Un+post+di+50+centimentri&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-03-03&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/03/03/un-post-di-50-centimentri/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/03/real_vista-agea-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/03/real_vista-agea.jpg" medium="image">
+			<media:title type="html">real_vista-agea</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/03/real_vista-agea-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il valore dell&#8217;esperienza: le linee guida sugli #OpenData della città di Palermo e il potere delle licenze</title>
+		<link>http://blog.spaziogis.it/2014/01/31/il-valore-dellesperienza-le-linee-guida-sugli-opendata-della-citta-di-palermo-e-il-potere-delle-licenze/</link>
+		<comments>http://blog.spaziogis.it/2014/01/31/il-valore-dellesperienza-le-linee-guida-sugli-opendata-della-citta-di-palermo-e-il-potere-delle-licenze/#comments</comments>
+		<pubDate>Fri, 31 Jan 2014 07:00:17 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[licenze]]></category>
+		<category><![CDATA[opendata]]></category>
+		<category><![CDATA[palermo]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6101</guid>
+		<description><![CDATA[Le esperienza dalla costruzione delle linee guida Open Data delle città di Palermo e la personale elaborazione del valore abilitante delle licenze.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+valore+dell%26%238217%3Besperienza%3A+le+linee+guida+sugli+%23OpenData+della+citt%C3%A0+di+Palermo+e+il+potere+delle+licenze&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-01-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/01/31/il-valore-dellesperienza-le-linee-guida-sugli-opendata-della-citta-di-palermo-e-il-potere-delle-licenze/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignnone size-full wp-image-6105 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/01/11072243544_aee17577fa_oaaa.jpg" alt="11072243544_aee17577fa_oaaa" width="498" height="313" /></p>
+	<p>Quando lo scorso maggio &#8211; con Ciro, Gerlando, Marco, Giulio, Davide e Francesco &#8211; ho iniziato il lavoro che ha portato alla redazione de &#8221; <strong>le linee guida sugli #OpenData della città di Palermo</strong>&#8221; avevo tantissimo entusiasmo, un po&#8217; di conoscenza di dominio e pochissima esperienza su obiettivi di questo tipo.<br />
+Mi sentivo forte di entusiasmo e di conoscenze: in dipendenza del momento, le usavo ora come spade, ora come scudi. Mi dovevo prendere cura di un lavoro &#8221;mio&#8221;, che mi sembrava di valore per la società.<br />
+Oggi, alla luce dell&#8217;<strong>esperienza </strong>fatta, mi sembra inutile brandeggiare qualsiasi arnese e quel lavoro è della comunità, non mi appartiene più.</p>
+	<p>Questa bella evoluzione si deve essenzialmente a un&#8217;intuizione: avere compreso il <strong>valore </strong>che una <strong>licenza </strong>fornisce all&#8217;opera a cui viene applicata.<br />
+Ai più sembrerà una concetto scontato, e confesso che anche io avrei pensato allo stesso modo prima di aver vissuto questa vicenda. Soprattutto per le licenze che danno maggiore &#8220;libertà&#8221;:</p>
+	<p><em>La persona che ha associato un&#8217;opera con questo atto ha dedicato l&#8217;opera al pubblico dominio attraverso la rinuncia a tutti i suoi diritti al lavoro in </em><em>tutto il mondo dalle leggi sul copyright, inclusi tutti i diritti connessi e vicini, nei limiti consentiti dalla legge </em><em>(<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.it" rel="nofollow" >licenza CC0</a>)</em><em>.</em></p>
+	<p>Associare una licenza di questo tipo ad un proprio elaborato lo rende evidentemente &#8220;indipendente&#8221;, a disposizione di chiunque lo voglia utilizzare, nelle maniere più inaspettate e geniali.<br />
+Ma anche il semplice fatto che ad un oggetto sia associata una licenza chiaramente definita è parte del valore di cui sopra. Proprio quest&#8217;ultima cosa, l&#8217;ho imparata lavorando su queste linee guida.</p>
+	<p>Quando abbiamo iniziato a scriverle siamo partiti dai contenuti, e durante tutto il processo di elaborazione non abbiamo mai pensato ai diritti sul documento. Se non nei termini classici: ma sto trasgredendo qualche norma? Se copio questo testo ci denunciano? C&#8217;è una multa da pagare?</p>
+	<p><strong>Ma il bello di una licenza è ciò che ti abilita a fare, non quello che ti vieta</strong>: ho apprezzato questo concetto e l&#8217;ho fatto mio recentemente. A fine dicembre infatti <span style="text-decoration: underline;"><a href="https://twitter.com/piersoft" rel="nofollow" >Francesco</a> <a href="https://twitter.com/piersoft" rel="nofollow" >Piero</a> <a href="https://twitter.com/piersoft" rel="nofollow" >Paolicelli</a> </span>mi scrive un&#8217;email e mi chiede di inviargli copia in formato modificabile delle linee guida di Palermo, perché sul web c&#8217;era soltanto la meno &#8220;comoda&#8221; e accessibile copia in formato PDF. Allora, visto che il documento era mio, di Ciro, Gerlando, Marco, Giulio, Davide e Francesco, dovevo prima condividere con tutti loro la scelta e all&#8217;unanimità. Scrivo loro un&#8217;email e nasce uno scambio da cui &#8211; non senza sane incomprensioni evolute in soluzioni &#8211; ci rendiamo conto che il documento non era veramente libero e che stava perdendo il valore (quello che sia) che aveva.<br />
+Per liberarlo, dargli superpoteri e farlo diventare virale è bastato applicargli una licenza. Le &#8220;linee guida sugli #OpenData della città di Palermo&#8221; sono state pubblicate quindi in <strong>CC BY-SA </strong>e tutti sono liberi di:</p>
+	<ul>
+	<li><strong>Condividere </strong>- riprodurre, distribuire, comunicare al pubblico, esporre in pubblico, rappresentare, eseguire e recitare questo materiale con qualsiasi mezzo e formato</li>
+	<li><strong>Modificare </strong>- remixare, trasformare il materiale e basarti su di esso per le tue opere per qualsiasi fine, anche commerciale.</li>
+	</ul>
+	<p>Ai seguenti termini:</p>
+	<ul>
+	<li><strong>Attribuzione </strong>- Si deve attribuire adeguatamente la paternità sul materiale, fornire un link alla licenza e indicare se sono state effettuate modifiche. E&#8217; possibile realizzare questi termini in qualsiasi maniera ragionevolmente possibile, ma non in modo tale da suggerire che il licenziante avalli te o il modo in cui usi il materiale.</li>
+	<li><strong>Stessa Licenza </strong>- Se si remixa, trasforma il materiale o ci si basi su di esso, bisogna distribuirne i contributi con la stessa licenza del materiale originario.</li>
+	</ul>
+	<p>E&#8217; bastato questo per renderlo un documento <strong>utile</strong>, <strong>abilitante </strong>e <strong>virale </strong>e sono felice che le linee guida sugli Open Data approvate in queste ore dal <a href="http://dati.comune.matera.it/dataset/linee-guida-opendata" rel="nofollow" title="Linee Guida OpenData Comune di Matera"  target="_blank"><strong>Comune di Matera</strong></a> siano basate sull&#8217;entusiasmo, sulla conoscenza e sull&#8217;esperienza che hanno portato alla pubblicazione del documento della città di Palermo, che trovate qui <a href="http://bit.ly/opendatacomune" rel="nofollow" >http://bit.ly/opendatacomune</a>.</p>
+	<p>La licenza applicata non è la migliore, ma alcuni testi utilizzati per la sua stesura sono pubblicati in CC BY-SA e quindi è stato necessario imporre la stessa licenza.</p>
+	<p>E&#8217; la prima versione del documento, e difatti gli abbiamo assegnato un numero di release e scelto un nome. Per il nome abbiamo deciso di iniziare dalla lettera &#8220;a&#8221; e di usare una parola che &#8220;localizzi&#8221; un po&#8217; il documento (è un&#8217;idea di Gerlando). E&#8217; la prima release, e quindi dovremo prendercene cura anche in futuro, migliorarla, snellirla, uniformarla nello stile, ristrutturarla e completarla.<br />
+Migliorarla ad esempio proprio in termini di licenza e passare da CC BY-SA a CC BY, in modo che sia ancora più riutilizzabile. Oppure renderla neutra rispetto ai Comuni di Italia, e rimuovere i riferimenti a Palermo.<br />
+Il documento è aperto ai commenti, così che si possano costruire le versioni successive in modo partecipato, e raccogliere correzioni, note e integrazioni di chicchessia.</p>
+	<p>E&#8217; stata ed è una bella esperienza e mi sembra utile condividerla. Il documento pubblicato ora in CC BY-SA non vuole essere però una &#8220;terra di mezzo&#8221; tra l&#8217;esigenza di chi deve redarre delle linee guida sugli Open Data e la loro realizzazione, ma la definizione di <strong>una frontiera da superare</strong>.</p>
+	<p style="text-align: left;"><span style="color: #808080;"><em><strong>NdR</strong>: la bella immagine in testa è una delle tante di pubblico dominio della <span style="text-decoration: underline;"><strong><a href="http://britishlibrary.typepad.co.uk/digital-scholarship/2013/12/a-million-first-steps.html" rel="nofollow" ><span style="color: #808080; text-decoration: underline;">British</span></a> <a href="http://britishlibrary.typepad.co.uk/digital-scholarship/2013/12/a-million-first-steps.html" rel="nofollow" ><span style="color: #808080; text-decoration: underline;">Library</span></a></strong></span>.</em></span></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/01/31/il-valore-dellesperienza-le-linee-guida-sugli-opendata-della-citta-di-palermo-e-il-potere-delle-licenze/">Il valore dell&#8217;esperienza: le linee guida sugli #OpenData della città di Palermo e il potere delle licenze</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/01/31/il-valore-dellesperienza-le-linee-guida-sugli-opendata-della-citta-di-palermo-e-il-potere-delle-licenze/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+valore+dell%26%238217%3Besperienza%3A+le+linee+guida+sugli+%23OpenData+della+citt%C3%A0+di+Palermo+e+il+potere+delle+licenze&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-01-31&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/01/31/il-valore-dellesperienza-le-linee-guida-sugli-opendata-della-citta-di-palermo-e-il-potere-delle-licenze/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/01/11072243544_aee17577fa_oaaa-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/01/11072243544_aee17577fa_oaaa.jpg" medium="image">
+			<media:title type="html">11072243544_aee17577fa_oaaa</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/01/11072243544_aee17577fa_oaaa-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>#OpenData #Palermo christmas carol</title>
+		<link>http://blog.spaziogis.it/2013/12/23/opendata-palermo-christmas-carol/</link>
+		<comments>http://blog.spaziogis.it/2013/12/23/opendata-palermo-christmas-carol/#comments</comments>
+		<pubDate>Mon, 23 Dec 2013 08:31:36 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[open data]]></category>
+		<category><![CDATA[palermo]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6037</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=%23OpenData+%23Palermo+christmas+carol&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2013-12-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/12/23/opendata-palermo-christmas-carol/&amp;rft.language=English"></span>
+Questo post è dedicato a Francesco, il mio nipotino più grande, all&#8217;uomo che sarà nel futuro. Caro Franci, la mamma mi ha appena scritto che da te piove e che stai scrivendo &#8211; tanto per cambiare &#8211; del codice. Allora mi è venuto in mente che, anche se hai da poco compiuto vent&#8217;anni, è arrivato il momento [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=%23OpenData+%23Palermo+christmas+carol&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2013-12-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/12/23/opendata-palermo-christmas-carol/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p style="text-align: center;"><img class="size-full wp-image-6049 alignnone" style="border: 0px; margin: 2px 0px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/12/DSC_6595lr3.jpg" alt="DSC_6595lr3" width="498" height="205" /></p>
+	<p><em>Questo post è dedicato a Francesco, il mio nipotino più grande, all&#8217;uomo che sarà nel futuro.</em></p>
+	<p><a>Caro </a>Franci,<br />
+la mamma mi ha appena scritto che da te piove e che stai scrivendo &#8211; tanto per cambiare &#8211; del codice. Allora mi è venuto in mente che, anche se hai da poco compiuto vent&#8217;anni, è arrivato il momento di raccontarti una storia, che non voglio si perda nella mia memoria e rimanga <strong>anonima</strong>. Metti da parte le tue incomprensibili stringhe di testo, spegni un attimo il tuo strano &#8220;coso&#8221; informatico (io sono nato nel millennio precedente e continuerò ad usare il mio vecchio tablet), stampala e leggila con calma.</p>
+	<p>Poco più di dieci anni fa lo zio Andrea, insieme ad altre 5 persone, ha scritto le &#8221; <strong>Linee Guida per le attività sugli Open Data della Città di Palermo</strong>&#8220;. E&#8217; proprio grazie (anche) a questo, che oggi dal tuo tavolo di Berlino puoi connetterti ai <em>Linked Open Data </em>del Comune di Palermo, incrociarli con i dati ISTAT e OpenStreetMap e scrivere la tua applicazione &#8221;Il bello di Palermo&#8221; (come farei senza la tua <em>app</em>!). Lo so, non ci crederai, perché &#8220;lo zio è bravo soltanto a mettere pallini su mappe e a perseverare a usare twitter&#8221;.</p>
+	<p>Tutto inizia nel febbraio del 2013 quando, con un altro degli autori delle linee guida &#8211; <strong>Gerlando Gibilaro</strong> il mio amico avvocato che crede di sapere usare il PC (noi li chiamiamo ancora così) &#8211; decidemmo di partecipare all&#8217;<a href="http://opendataday.it/" rel="nofollow"  target="_blank">Open Data Day</a> di Palermo (eravamo una trentina, mica i tremila di Berlino di #oddit25), in cui fu presentata per la prima volta la <a href="http://www.comune.palermo.it/opendata.php" rel="nofollow"  target="_blank">sezione Open Data</a> del sito del Comune. Eravamo come sempre con penna e carta in mano, e a manifestazione finita tornammo a casa abbastanza scoraggiati e con i nostri appunti in tasca. Rimanemmo con atteggiamento &#8220;monitorante&#8221; &#8211; un giorno ti racconterò di Luigi e di <a href="http://www.monithon.it/" rel="nofollow"  target="_blank">Monithon</a> &#8211; e a distanza di pochi mesi insieme decidemmo di scrivere un <a href="http://blog.spaziogis.it/2013/05/07/opendata-palermo-alcune-osservazioni-dopo-due-mesi/" target="_blank">post</a> su TANTO (a proposito quando me lo sistemi il widget social?), in cui evidenziammo come dal giorno della presentazione tutto fosse inalterato sia in termini di quantità, sia &#8211; soprattutto &#8211; di qualità. Fu un post molto letto (nei limiti ovviamente della piccola nicchia interessata) specie a livello nazionale; a Palermo ebbe un po&#8217; di eco, principalmente perché pubblicato da <strong>Giulio Di Chiara</strong> &#8211; un altro degli autori delle linee guida &#8211; sul tuo amato <a href="http://www.mobilitapalermo.org/mobpa/2013/05/07/opendata-palermo-alcune-osservazioni-dopo-due-mesi/" rel="nofollow"  target="_blank">mobilitapalermo</a>. Aldilà del numero dei lettori, continuo a pensare che quel post fu una delle cause che portò <strong>Marco Alfano </strong>(anche lui un autore) &#8211; consulente del Comune sul tema &#8211; a telefonarmi ed invitarmi alla prima riunione ufficiale sugli Open Data. A questa erano presenti circa una quindicina di persone, ma di molte si persero rapidamente le tracce; così come avvenne del cosiddetto &#8220;gruppo opendata&#8221; &#8211; aperto sul mitico Google Groups &#8211; che si dissolse dopo poco tempo.</p>
+	<p>Di incontro in incontro, fatti in orari ed in giorni improbabili, e di email in email (per darti un&#8217;idea di quei mesi di lavoro ho fatto <a href="http://blog.spaziogis.it/wp-content/uploads//2013/12/opendata_pa_3.png" target="_blank">questo screenshot</a> per te) si decise di concentrarsi sulla redazione di un documento di <em>linee guida</em>, in quanto ritenuto uno strumento strategico e propedeutico alla corretta realizzazione di un&#8217;azione Open Data. Un testo che non definisse soltanto la strategia che avrebbe dovuto tenere la nostra istituzione cittadina, ma che definisse anche gli aspetti tecnici (processo di pubblicazione dei dati e loro riutilizzo), l&#8217;organizzazione interna, gli obiettivi, le azioni e i tempi. L&#8217;obiettivo era arduo e probabilmente non lo raggiungemmo in pieno, ma per fortuna ci potemmo appoggiare &#8220;sulle spalle dei giganti&#8221; e fare riferimento in modo chiaro ad altre pubblicazioni già fatte sulla materia (una tra tutte &#8220;Linee guida nazionali per la valorizzazione del patrimonio informativo pubblico&#8221; dell&#8217;Agenzia per l&#8217;Italia Digitale); i riferimenti chiari furono &#8211; non so perché &#8211; rimossi dal documento originale da noi scritto, e quello ufficiale pubblicato sembra in alcune parti una di quelle (rare per fortuna) tesi di laurea con porzioni di testo copiate senza citare la fonte (ok, non ti faccio la solita ramanzina sul fatto che la forma è sostanza, e sulla Creative Commons 8).</p>
+	<p>Con tutti gli autori del documento &#8211; non ti ho citato ancora <strong>Davide Taibi</strong>, <strong>Ciro Spataro</strong> e <a><strong>Francesco Passantino </strong></a>- ci lanciammo in una difficile e lunga scrittura a più a mani che portò alla stesura di un documento che per alcuni aspetti fu (per quei tempi) speciale.</p>
+	<p>La cosa più bella e interessante &#8211; scusami se mi sparo un po&#8217; di pose &#8211; fu la modalità con la quale furono realizzate. Io conoscevo bene soltanto uno degli autori del documento, altri due erano per me degli sconosciuti, e dei restanti avevo una conoscenza superficiale. Ci tenne insieme la voglia di arrivare all&#8217;obiettivo.</p>
+	<p>Fu una cosa fatta totalmente dal basso, da cittadini volontari, in modo informale, senza budget ed in tempi che si possono considerare rapidi, considerato (questo) il contesto. Questo ovviamente grazie anche all&#8217;azione del Comune di Palermo che, ricevuto da noi il documento, lo approvò in poche settimane. Ne approfitto per citarti altre persone che ebbero un ruolo in questa storia: Giusto Catania, Giuseppe Meli e Sergio Maneri, che con vari ruoli - per il Comune di Palermo &#8211; sono stati i nostri interlocutori principali e gli attuatori della cosa.</p>
+	<p>Un altro aspetto unico nel suo genere (per l&#8217;Italia) di quel documento fu la presenza di pietre miliari temporali, che fissavano dei paletti per la realizzazione di determinati obiettivi. <a>Il Comune mostrò coraggio e recepì questa sezione del documento senza alcuna variazione. </a>A proposito di variazioni voglio sottolinearti quanto venne ben considerato il nostro lavoro e come non venne fatta dalla Pubblica Amministrazione alcuna integrazione, estensione o modifica del testo che consegnammo. Furono effettuate soltanto alcune cancellazioni (consentimi, ma non le posso mettere alla stregua di modifiche) così come puoi vedere in <a href="https://drive.google.com/file/d/0B6ILXbOb66_kTnR1UnhXUjlKejN1YnR3SWJQUlBzUkJOYVVj/edit?usp=sharing" rel="nofollow"  target="_blank">questo documento</a> in cui sono evidenziate le differenze tra il testo da noi consegnato e quello approvato.</p>
+	<p>Lo so, la sto facendo lunga, e sono il solito &#8220;zio Andrea noioso&#8221;. Volevo però fissare la cosa, e dargli i giusti contorni. Avrei potuto scrivere dell&#8217;altro, e di come quell&#8217;esperienza mi lasciò anche dell&#8217;amaro in bocca. Ma è Natale e confido nella tua sensibilità di lettore <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+	<p>Sono passati circa dodici anni, e l&#8217;orgoglio per essere stato parte attiva di questa cosa è immutato. Anzi forse è maggiore, perché vedere un nipotone che dopo anni ne raccoglie alcune delle conseguenze mi riempie il cuore di gioia. Adesso fai riposare un po&#8217; gli occhi e vai a farti una bella passeggiata in Alexplatz, (tu che puoi)!</p>
+	<p>Buon Natale dalla zia Annalisa e da me</p>
+	<p style="text-align: center;">_____________________________________________________</p>
+	<p style="text-align: center;"><strong>E auguri a tutti voi dalla redazione di TANTO!</strong></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/12/23/opendata-palermo-christmas-carol/">#OpenData #Palermo christmas carol</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/12/23/opendata-palermo-christmas-carol/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=%23OpenData+%23Palermo+christmas+carol&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2013-12-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/12/23/opendata-palermo-christmas-carol/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/12/DSC_6595lr3-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/12/DSC_6595lr3.jpg" medium="image">
+			<media:title type="html">DSC_6595lr3</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/12/DSC_6595lr3-150x150.jpg" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

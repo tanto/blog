@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; GPRA</title>
+	<atom:link href="http://blog.spaziogis.it/tag/gpra/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Architettura dei geoportali: GPRA e SOA</title>
+		<link>http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/</link>
+		<comments>http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/#comments</comments>
+		<pubDate>Fri, 26 Jan 2007 17:54:03 +0000</pubDate>
+		<dc:creator>Antonio D'Argenio</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[geoportal]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[GPRA]]></category>
+		<category><![CDATA[ogc]]></category>
+		<category><![CDATA[SOA]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Architettura+dei+geoportali%3A+GPRA+e+SOA&amp;rft.aulast=D%27Argenio&amp;rft.aufirst=Antonio&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2007-01-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/&amp;rft.language=English"></span>
+Un Geoportale è un portale dedicato alla consultazione di cataloghi online di risorse geospaziali. Si tratta di un sito web che consente l’accesso a risorse distribuite presso un gran numero di fornitori a partire da un punto di ingresso unico. Da questo punto di vista i geoportali sono assimilabili a grandi indici di dati associati [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Architettura+dei+geoportali%3A+GPRA+e+SOA&amp;rft.aulast=D%27Argenio&amp;rft.aufirst=Antonio&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2007-01-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Un Geoportale è un portale dedicato alla consultazione di cataloghi online di risorse geospaziali. Si tratta di un sito web che consente l’accesso a risorse distribuite presso un gran numero di fornitori a partire da un punto di ingresso unico. Da questo punto di vista i geoportali sono assimilabili a grandi indici di dati associati agli strumenti necessari alla loro ricerca e consultazione. Poiché il portale rappresenta un indice più che un contenitore, i documenti distribuiti in rete non devono necessariamente risiedere su di esso. Piuttosto esso agisce da mediatore tra gli utenti ed i fornitori di risorse, abilitando una serie di funzionalità che consentono la transazione di dati.<br />
+In questo post vi proponiamo una presentazione delle principali caratteristiche architetturali di questa particolare specie di sito web.</p>
+	<p><strong>Architettura dei Geoportali</strong><br />
+Un Geoportale è un sito web dedicato alla consultazione di cataloghi online di risorse geospaziali (dati e servizi).<br />
+Il primo passo nella costruzione di un geoportale è la definizione dei requisiti dell’architettura che sarà adottata nella sua realizzazione. La funzione dell’architettura è definire scopi, obiettivi e caratteristiche di un portale ed identificarne le componenti funzionali. Uno degli standard architetturali interoperabili di riferimento è rappresentato dalla <a title="Scarica il draft in PDF" href="https://portal.opengeospatial.org/files/?artifact_id=6669" target="_blank">Geospatial Portal Reference Architecture </a><a title="Scarica il draft in PDF" href="https://portal.opengeospatial.org/files/?artifact_id=6669" target="_blank">(GPRA)</a>, un nucleo di accordi sull’interoperabilità proposte dall’<a title="Open  Geospatial Consortium" href="http://www.opengeospatial.org/" target="_blank">OpenGIS Consortium</a> che fornisce le istruzioni destinate a colmare le distanze tra differenti organizzazioni ed a semplificare lo scambio di informazioni spaziali. La GPRA fornisce le basi per la realizzazione di portali aperti e “tecnologicamente neutri” ed è stata sviluppata in modo da essere compatibile con altri modelli di riferimento ad alta complessità architetturale. Uno schema della GPRA è illustrato in Figura 1<strong>.</strong></p>
+	<p><img title="Schema concettuale della GPRA" src="http://blog.spaziogis.it/wp-content/uploads/2007/01/schema-portale_rev2.gif" alt="Schema concettuale della GPRA" /></p>
+	<p><em>Figura 1 &#8211; Schema concettuale della GPRA applicato ad un esempio di geoportale.  Cittadini ed istituzioni accedono ai dati attraverso gli strumenti messi a disposizione dal sistema e pubblicati in un portale web. L’accesso è garantito da una serie di servizi, messi a disposizione dal portale dai fornitori di dati, che consentono la ricerca, la rappresentazione, l’elaborazione ed il download delle informazioni di interesse per l’utente. Il portale non contiene necessariamente informazioni ma agisce da mediatore tra utenti e fornitori.</em></p>
+	<p>Questa architettura di riferimento si basa su 4 classi di servizi  che esplicano le funzioni essenziali di un portale geospaziale. Le 4 classi di servizi sono:</p>
+	<ul>
+	<li>Servizi del portale – forniscono un punto di accesso unico all’informazione geospaziale in un portale; includono la gestione e la amministrazione del portale;</li>
+	<li>Catalogo – usato per individuare servizi ed informazioni geospaziali e restituire i risultati di ricerche agli utenti;</li>
+	<li>Servizi di rappresentazione – usati per elaborare le informazioni geospaziali e preparale per la presentazione all’utente;</li>
+	<li>Servizi di dati – forniscono contenuti geospaziali e elaborazione dei dati.</li>
+	</ul>
+	<p>I Servizi del Portale sono gli unici a dover risiedere sulla piattaforma HW/SW su cui risiede il portale. Tutti gli altri servizi possono essere distribuiti su internet e possono essere eseguiti e registrati dinamicamente. Si noti che il portale non è il luogo di archiviazione dei dati geospaziali elaborati dai servizi distribuiti.<br />
+La GPRA è un esempio di architettura software orientata ai servizi. Le caratteristiche di questo tipo di architetture sono descritte di seguito.</p>
+	<p><strong>Le architetture orientate ai servizi (Service Oriented Architecture &#8211; SOA)</strong><br />
+Un architettura orientata ai servizi consente di rendere disponibili in rete differenti risorse IT (software e dati) richiamabili come servizi a richiesta.<br />
+Con la locuzione inglese di Service Oriented Architecture si indica un&#8217;architettura software che soddisfa le richieste degli utenti usando servizi e consentendo l&#8217;utilizzo delle singole applicazioni come componenti di un processo. Le architetture di tipo SOA semplificano la modifica delle modalità di interazione tra i servizi o della combinazione nella quale i servizi vengono utilizzati nel processo. Esse inoltre agevolano l’aggiunta di nuovi servizi o la modifica di processi in risposta a specifiche esigenze.<br />
+E’ importante ricordare come in tale tipo di architettura i processi non sono più vincolati ad una specifica piattaforma o ad un&#8217;applicazione ma possono essere intesi come componenti di un processo più ampio, e quindi riutilizzati o modificati.<br />
+Nel caso particolare di un geoportale, il tipo di servizio distribuito dalla SOA  è rappresentato da servizi web che forniscono interfacce standard per l’erogazione di funzionalità software.<br />
+Le applicazioni basate su SOA forniscono le stesse funzionalità che è possibile trovare in architetture monolitiche con l’aggiunta dei seguenti vantaggi:</p>
+	<ul>
+	<li>semplicità nell’aggiornamento della logica di processo;</li>
+	<li>semplicità di modifica senza necessità di riconfigurare l’architettura complessiva.</li>
+	</ul>
+	<p>La logica SOA si adatta alla realizzazione di portali concepiti come punti unici di distribuzione di dati e servizi web forniti da differenti organizzazioni. In questa visione i portali possono non immagazzinare alcun contenuto. Dati e servizi rimangono sotto la responsabilità ed il controllo delle organizzazioni competenti che ne garantiscono affidabilità e manutenzione. Il portale diventa quindi una sorta di distributore di contenuti e servizi che possono essere tra loro estremamente diversificati.<br />
+Come già accennato particolare rilievo assume l’architettura di riferimento proposta dall’OGC. Si tratta di un’architettura orientata ai servizi che ha il suo nucleo nei percorsi di  pubblicazione e ricerca e che supporta la raccolta dinamica di documenti distribuiti da differenti servizi e fornitori.</p>
+	<p><strong>La negoziazione dei servizi: il paradigma Publish – Find – Bind<br />
+</strong>Il metodo centrale di comunicazione interno di un portale basato su architetture orientate ai servizi segue il paradigma della negoziazione dei servizi. La negoziazione dei servizi è un concetto fondamentale che regola la ricerca delle istanze di servizio disponibili e si compone di tre elementi fondamentali:</p>
+	<ul>
+	<li>Esportazione – l’offerta di un servizio;</li>
+	<li>Importazione – la ricerca di un servizio tra quelli offerti;</li>
+	<li>Interazione – il collegamento di un client o di un utenza ad un servizio.</li>
+	</ul>
+	<p>Questi tre elementi costituiscono il noto paradigma “Publish – Find – Bind” (Pubblica – Cerca – Lega), che è alla base dei percorsi nella negoziazione dei servizi (Figura 2).<br />
+Per realizzare una negoziazione di servizi è essenziale che nell’architettura di riferimento del portale siano definiti tre ruoli fondamentali: il registro dei servizi, il fornitore dei servizi e l’utente.<br />
+Il Registro dei servizi (o Broker) registra l’offerta dei servizi offerti dai fornitori e restituisce le offerte dietro richiesta dell’utente. Il Fornitore di servizi (Provider) registra i servizi offerti presso un registro e fornisce servizi ai client o agli utenti. L’Utente (Requestor) ottiene i servizi offerti da un registro e si lega ai servizi erogati dai fornitori.</p>
+	<p><img title="La struttura della negoziazione dei servizi" src="http://blog.spaziogis.it/wp-content/uploads/2007/01/schema-relazione-servizi_re.gif" alt="La struttura della negoziazione dei servizi" /></p>
+	<p><em>Figura 2 – La struttura della negoziazione dei servizi. Per esportare un servizio il fornitore ne invia al registro una descrizione, inclusa quella dell’interfaccia a cui l’istanza del servizio è disponibile. Per importare un servizio si inoltra al registro una richiesta con le caratteristiche del servizio cercato. Il registro esegue la ricerca  e risponde con un rapporto che include tutte le informazioni necessarie a legarsi all’istanza di servizio cercata. E’ inoltre possibile definire alcune preferenze di ricerca che influenzano l’ordine in cui i servizi trovati vengono restituiti nel rapporto.</em></p>
+	<p><strong>Auto descrizione dei Servizi</strong><br />
+Per consentire una efficiente operatività delle architetture orientate ai servizi, questi ultimi devono essere in grado di auto-descriversi. In altre parole, ciascun servizio deve fornire una descrizione delle sue capacità e della sua posizione nella rete. Questa auto-descrizione è registrata nel catalogo del portale e consente al servizio di essere invocato dinamicamente senza necessità di modificare il software del portale. La descrizione di norma è scritta in  eXtensible Markup Language (XML).
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/">Architettura dei geoportali: GPRA e SOA</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Architettura+dei+geoportali%3A+GPRA+e+SOA&amp;rft.aulast=D%27Argenio&amp;rft.aufirst=Antonio&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2007-01-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/01/26/architettura-dei-geoportali-gpra-e-soa/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/01/schema-portale_rev2.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/01/schema-portale_rev2.gif" medium="image">
+			<media:title type="html">Schema concettuale della GPRA</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/01/schema-relazione-servizi_re.gif" medium="image">
+			<media:title type="html">La struttura della negoziazione dei servizi</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

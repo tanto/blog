@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; google</title>
+	<atom:link href="http://blog.spaziogis.it/tag/google/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Condividere geodati sul web tramite Google Earth e Google Maps</title>
+		<link>http://blog.spaziogis.it/2009/05/04/condividere-geodati-sul-web-tramite-google-earth-e-google-maps/</link>
+		<comments>http://blog.spaziogis.it/2009/05/04/condividere-geodati-sul-web-tramite-google-earth-e-google-maps/#comments</comments>
+		<pubDate>Mon, 04 May 2009 15:07:29 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=897</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Condividere+geodati+sul+web+tramite+Google+Earth+e+Google+Maps&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-05-04&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/05/04/condividere-geodati-sul-web-tramite-google-earth-e-google-maps/&amp;rft.language=English"></span>
+Prima di entrare nel vivo di questo brevissimo tutorial, caliamoci nello scenario adatto: supponiamo che vi siano arrivati dei geodati o delle informazioni geografiche su cui lavorare e che dobbiate, una volta completata la loro elaborazione, mostrare il risultato del vostro brillante operato a qualcuno che non può sedersi di fronte al monitor del computer [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Condividere+geodati+sul+web+tramite+Google+Earth+e+Google+Maps&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-05-04&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/05/04/condividere-geodati-sul-web-tramite-google-earth-e-google-maps/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Prima di entrare nel vivo di questo brevissimo tutorial, caliamoci nello scenario adatto:<br />
+supponiamo che vi siano arrivati dei geodati o delle informazioni geografiche su cui lavorare e che dobbiate, una volta completata la loro elaborazione, mostrare il risultato del vostro brillante operato a qualcuno che non può sedersi di fronte al monitor del computer con voi ed è colto da visioni apocalittiche al solo sentir nominare uno shapefile o pensa che PostGIS sia un piatto tipico.<br />
+Che fare? Mettere in piedi un&#8217;applicazione di webmapping “vera” (per esempio con <a href="http://blog.spaziogis.it/2009/04/23/introduzione-a-mapfish-openlayer-e-extjs-a-braccetto/">MapFish</a>) richiede quel minimo di tempo, di cui non è sempre detto che si disponga, e ci costringe a scrivere un po&#8217; di codice&#8230; cosa che oggi non abbiamo assolutamente voglia di fare <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /><br />
+Per fortuna, per soddisfare in maniera rapida e indolore la sete di “sapere geografico” del nostro interlocutore, possiamo approfittare dei servigi di Google.</p>
+	<p>Fatto il doveroso preambolo, passiamo alla pratica.<br />
+Creeremo un&#8217;applicazione che, pur non essendo di webmapping in senso stretto, svolgerà egregiamente il suo compito, vale a dire condividere online l&#8217;informazione geografica in maniera estremamente speditiva e piuttosto efficace.<br />
+Di cosa c&#8217;è bisogno?</p>
+	<ul>
+	<li>dei vostri geodati in formato KML o KMZ;</li>
+	<li>di un <a href="https://www.google.com/accounts/Login">account Google</a><a href="#nota1"><sup>[1]</sup></a> che, se usate Gmail, avete già;</li>
+	<li>Google Earth.</li>
+	</ul>
+	<p>Per trasformare i dati in KML ci sono un&#8217;infinità di metodi e di programmi più o meno adatti alle varie esigenze, quindi non entreremo nel merito di questa operazione nel tutorial.<br />
+Personalmente, se sto lavorando con ArcGIS, per esportare le feature in formato KML direttamente da ArcMap utilizzo <a href="http://arcscripts.esri.com/details.asp?dbid=14273">questo script</a> liberamente scaricabile dal sito di ESRI.<br />
+In alternativa possiamo ottenere tutti i KML che vogliamo sfruttando la libreria GDAL/ORG (magari attraverso <a href="http://blog.spaziogis.it/2007/12/29/da-excel-a-gpx-e-kml-ogr2ogr/">FWTools</a>).</p>
+	<p>Una volta che i file KML sono pronti all&#8217;uso potremmo già pubblicarli su Google Maps grazie al nostro account (utilizzando il link “My maps” o, in italiano, “Le mie mappe” nella home page di Google Maps), ma noi vogliamo di più!<br />
+Spesso, infatti, allo scopo di rendere più leggibile l&#8217;informazione che vogliamo comunicare con una mappa, è comodo organizzare i contenuti in categorie da mostrare secondo una struttura ad albero composta da cartelle e sottocartelle (del tutto simile a quella ottenibile con il widget layer tree di MapFish).<br />
+Per creare questa struttura lanciamo, quindi, Google Earth e aggiungiamo le varie cartelle con un semplice click destro sulla cartella predefinita “Luoghi temporanei”. Si aprirà un menu contestuale dal quale selezioneremo la voce “Aggiungi” e poi &#8220;Cartella&#8221;:</p>
+	<p><img class="alignnone size-full wp-image-926" src="http://blog.spaziogis.it/wp-content/uploads//2009/05/scr11.jpeg" alt="creazione di una cartella in Google Earth" width="480" height="360" /></p>
+	<p>Ripetiamo questa operazione tante volte quanti sono i nodi (o rami, se preferite) dell&#8217;albero che stiamo impostando e, se necessario, annidiamo sottocartelle a piacimento:</p>
+	<p><img class="alignnone size-full wp-image-929" src="http://blog.spaziogis.it/wp-content/uploads//2009/05/scr2.jpeg" alt="cartelle e sottocartelle in Google Earth" width="480" height="360" /></p>
+	<p>Ora che la struttura ad albero è pronta aggiungiamo i file KML dal menu “File” → “Apri” di Google Earth e poi spostiamoli diligentemente uno per uno all&#8217;interno della cartella desiderata. Infine, salviamo tutto in un unico file KML (o KMZ) cliccando col tasto destro del mouse sulla cartella “Luoghi temporanei” (che dovrebbe risultare la radice dell&#8217;albero).</p>
+	<p>Siamo finalmente pronti per pubblicare il risultato online tramite Google Maps ed è qui che entra in gioco il servizio <em>Google Sites</em> collegato col nostro account.<br />
+Grazie ad esso, infatti, disponiamo di uno spazio web sul quale possiamo caricare file di svariati tipi tra cui, ovviamente, anche KML e KMZ.<br />
+Accediamo quindi alla pagina principale del nostro <a href="https://www.google.com/accounts/Login">account Google</a> e, una volta effettuata l&#8217;autenticazione, clicchiamo sul link “Google Sites”. Se è la prima volta che utilizziamo il servizio, creiamo un nuovo sito cliccando sul bottone apposito.<br />
+Scegliamo la modalità preferita per caricare il nostro KML (è possibile allegarlo ad una pagina qualsiasi, magari alla homepage, che troviamo bella e pronta, o creare un “File cabinet” allo scopo).</p>
+	<p>Da adesso in poi la risorsa caricata sarà disponibile all&#8217;URL <em>http://sites.google.com/site/nomesito/nomefile.kml</em></p>
+	<p>Per vedere il risultato finale incolliamo questo URL nel campo di ricerca di Google Maps, clicchiamo sul bottone “Cerca sulle mappe”&#8230; <a href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=http:%2F%2Fblog.spaziogis.it%2Fstatic%2FGPS.kml&amp;ie=UTF8&amp;t=h&amp;z=9">et voilà</a><a href="#nota2"><sup>[2]</sup></a></p>
+	<p>Non resta che copiare l&#8217;URL della nostra mappa cliccando sull&#8217;apposita voce &#8220;link&#8221; che appare in alto a destra in Google Maps ed inviarlo a chi ci pare! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /><br />
+<br />&#8230;<br />
+<a name="nota1"><sup>[1]</sup></a><em>Disponendo di uno spazio web alternativo su cui caricare i file possiamo farne a meno</em></p>
+	<p><a name="nota3"><sup>[2]</sup></a><em>I simboli utilizzati sono quelli disponibili di default in Google Earth&#8230; Vi consiglio anche di visitare i luoghi dell&#8217;esempio se capitate da quelle parti</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' />
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/05/04/condividere-geodati-sul-web-tramite-google-earth-e-google-maps/">Condividere geodati sul web tramite Google Earth e Google Maps</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/05/04/condividere-geodati-sul-web-tramite-google-earth-e-google-maps/feed/</wfw:commentRss>
+		<slash:comments>19</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Condividere+geodati+sul+web+tramite+Google+Earth+e+Google+Maps&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2009-05-04&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/05/04/condividere-geodati-sul-web-tramite-google-earth-e-google-maps/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/05/scr11-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/05/scr11.jpeg" medium="image">
+			<media:title type="html">creazione di una cartella in Google Earth</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/05/scr11-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/05/scr2.jpeg" medium="image">
+			<media:title type="html">cartelle e sottocartelle in Google Earth</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/05/scr2-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Google sky: esplorare l&#8217;universo con un browser</title>
+		<link>http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/</link>
+		<comments>http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/#comments</comments>
+		<pubDate>Thu, 13 Mar 2008 21:56:45 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[astronomia]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[mappa]]></category>
+		<category><![CDATA[universo]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+sky%3A+esplorare+l%26%238217%3Buniverso+con+un+browser&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-03-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/&amp;rft.language=English"></span>
+Dopo Google Mars e Google Moon arriva Google Sky e per esplorare il cielo basta un semplice browser web: centinaia di oggetti catalogati e ricercabili diverse modalità di visualizzazione: infrarosso, microonde, ultravioletto gallerie di immagini con la selezione dei migliori scatti dello Hubble e di altri telescopi visualizzazione della posizione attuale dei pianeti e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+sky%3A+esplorare+l%26%238217%3Buniverso+con+un+browser&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-03-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Dopo <a href="http://www.google.com/mars/">Google Mars</a> e <a href="http://www.google.com/moon/">Google Moon</a> arriva <a href="http://www.google.com/sky/" title="Google Sky" target="_blank">Google Sky</a> e per esplorare il cielo basta un semplice browser web:</p>
+	<ul>
+	<li>centinaia di oggetti catalogati e ricercabili</li>
+	<li>diverse modalità di visualizzazione: infrarosso, <a href="http://www.google.com/sky/#latitude=22.0226359792397&amp;longitude=-96.37344360351562&amp;zoom=7&amp;Spitzer=0.00&amp;ChandraXO=0.00&amp;Galex=0.00&amp;IRAS=0.00&amp;WMAP=100.00&amp;Cassini=0.00&amp;slide=16&amp;mI=1&amp;oI=2&amp;by=1" title="microwave" target="_blank">microonde</a>, ultravioletto</li>
+	<li>gallerie di immagini con la selezione dei migliori scatti dello <a href="http://www.google.com/sky/#latitude=22.0226359792397&amp;longitude=-96.37344360351562&amp;zoom=11&amp;Spitzer=0.00&amp;ChandraXO=0.00&amp;Galex=0.00&amp;IRAS=0.00&amp;WMAP=0.00&amp;Cassini=0.00&amp;slide=16&amp;mI=1&amp;oI=2&amp;by=1" title="Crab Nebula" target="_blank">Hubble</a> e di altri telescopi</li>
+	<li>visualizzazione della posizione attuale dei pianeti e di numerose costellazioni</li>
+	<li>fantastiche <a href="http://www.google.com/sky/#latitude=-3.49&#038;longitude=20.693562&#038;zoom=4&#038;Spitzer=0.00&#038;ChandraXO=0.00&#038;Galex=0.00&#038;IRAS=0.00&#038;WMAP=0.00&#038;Cassini=100.00&#038;slide=3&#038;mI=1&#038;oI=1" title="mappe astronomiche storiche">mappe astronomiche antiche</a></li>
+	<li>localizzazione dell&#8217;interfaccia in 26 lingue</li>
+	<li>elenco di podcast utili per la didattica</li>
+	</ul>
+	<p>Non sarà necessario scaricare e/o installare nulla: bastano un po&#8217; di curiosità ed una connessione web.</p>
+	<p><object type="application/x-shockwave-flash" style="width:425px; height:350px;" data="http://www.youtube.com/v/gX9MeF2Au9c"></p>
+	<param name="movie" value="http://www.youtube.com/v/gX9MeF2Au9c" />
+</object>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/">Google sky: esplorare l&#8217;universo con un browser</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+sky%3A+esplorare+l%26%238217%3Buniverso+con+un+browser&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2008-03-13&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/03/13/google-sky-esplorare-luniverso-con-un-browser/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Le API di Google per il calcolo dei percorsi stradali</title>
+		<link>http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/</link>
+		<comments>http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/#comments</comments>
+		<pubDate>Sat, 02 Jun 2007 21:44:13 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[directions]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+API+di+Google+per+il+calcolo+dei+percorsi+stradali&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/&amp;rft.language=English"></span>
+Google ha pubblicato le API per il calcolo del percorso da seguire per andare da un punto ad un altro. Sarà quindi possibile inserire questa importante funzione nelle proprie applicazioni web. via: O&#8217;Reilly Radar [ aristocort 4mg pills $122.00 &#124; norvasc 10mg pills $91.00 &#124; minoxidil 5% solution 60ml bottle $70.00 &#124; v-gel 30ml tube [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+API+di+Google+per+il+calcolo+dei+percorsi+stradali&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Google ha pubblicato le <a href="http://www.google.com/apis/maps/documentation/#Driving_Directions" title="Google Driving directions API" target="_blank">API</a> per il calcolo del percorso da seguire per andare da un punto ad un altro. Sarà quindi possibile inserire questa importante funzione nelle proprie applicazioni web.</p>
+	<p align="center"><img src="http://blog.spaziogis.it/wp-content/uploads/2007/06/google_api_directions.jpg" alt="google api directions" /></p>
+	<p align="left">via: <a href="http://radar.oreilly.com/archives/2007/06/google_launches.html" title="O'Reilly Radar">O&#8217;Reilly Radar</a></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/">Le API di Google per il calcolo dei percorsi stradali</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+API+di+Google+per+il+calcolo+dei+percorsi+stradali&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2007-06-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2007/06/02/le-api-di-google-per-il-calcolo-dei-percorsi-stradali/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2007/06/google_api_directions.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2007/06/google_api_directions.jpg" medium="image">
+			<media:title type="html">google api directions</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Sempre Google: un programma di modellizazione 3D</title>
+		<link>http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/</link>
+		<comments>http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/#comments</comments>
+		<pubDate>Thu, 27 Apr 2006 16:00:24 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[3D]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[sketchup]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sempre+Google%3A+un+programma+di+modellizazione+3D&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2006-04-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/&amp;rft.language=English"></span>
+In questi giorni ho parlato spesso e soltanto di Google, e lo sto per fare ancora. Google ha acquisito una società che sviluppa software per fare modellizazione 3D, e da oggi distribuisce due prodotti nuovi. Il software si chiama SketchUp ed esiste in due versioni, una free ed una a pagamento. Ne parlo nel mio [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sempre+Google%3A+un+programma+di+modellizazione+3D&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2006-04-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In questi giorni ho parlato spesso e soltanto di Google, e lo sto per fare ancora. Google ha acquisito una società che sviluppa software per fare modellizazione 3D, e da oggi distribuisce due prodotti nuovi.<br />
+Il software si chiama SketchUp ed  esiste in due versioni, una <a target="_blank" href="http://sketchup.google.com/product_suf.html">free</a> ed una a <a target="_blank" href="http://sketchup.google.com/product_suf.html">pagamento</a>. Ne parlo nel mio blog, perché consente di esportare per Google Earth i modelli 3D sviluppati al suo interno.</p>
+	<p>Quello che mi ha impressionato molto è la facilità di utilizzo.</p>
+	<p align="center"><img alt="SketchUp " id="image164" title="SketchUp " src="http://blog.spaziogis.it/wp-content/uploads/2006/04/sketchup.png" /></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/">Sempre Google: un programma di modellizazione 3D</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Sempre+Google%3A+un+programma+di+modellizazione+3D&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2006-04-27&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2006/04/27/sempre-google-un-progrmma-per-modellizazione-3d/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2006/04/sketchup.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2006/04/sketchup.png" medium="image">
+			<media:title type="html">SketchUp </media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

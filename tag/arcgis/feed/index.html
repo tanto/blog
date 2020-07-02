@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; ArcGIS</title>
+	<atom:link href="http://blog.spaziogis.it/tag/arcgis/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>Take the best, use the REST</title>
+		<link>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/</link>
+		<comments>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/#comments</comments>
+		<pubDate>Mon, 29 Dec 2014 14:00:56 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[dati]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[gdal/ogr]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[rest]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6507</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del catalogo dei dataset (come quella del geoportale della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite servizi OGC standard come WMS, WFS e WCS. Ma ci [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Diversi geoportali, piccoli e grandi, di Pubbliche Amministrazioni da ogni parte del mondo, sono basati su tecnologia ESRI ArcGIS. All&#8217;utente di solito viene esposta un&#8217;interfaccia di consultazione del <strong>catalogo</strong> dei dataset (come quella del <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.sitr.regione.sicilia.it%2Fgeoportale&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG7RUw_DCXDDpf6kHOLLKGZrZnT0Q" target="_blank">geoportale</a> della Regione Siciliana) e/o l&#8217;accesso diretto ai dati e alla loro rappresentazione tramite <strong>servizi OGC</strong> standard come WMS, WFS e WCS.</p>
+	<p>Ma ci sono diverse altre caratteristiche interessanti rese disponibili da queste tecnologie e che molto spesso ignoriamo, la cui conoscenza ci consente di accedere ad un numero molto più ampio di informazioni e dati. Tutto questo oggi è a maggior forza interessante, grazie alle politiche Open Data realizzate da molte Pubbliche Amministrazioni e anche perché dal <strong>19 marzo 2013</strong>i &#8221;tutti i dati e documenti che le pubbliche amministrazioni pubblicano con qualsiasi modalità, senza l’espressa adozione di una licenza d’uso, si intendono rilasciati come dati aperti (<strong>open data by default</strong>)&#8221; (cit. dati.gov.it, mentre dal punto di vista normativo si tratta dell&#8217;<strong>articolo 52, comma 2</strong> del <strong><a href="http://www.agid.gov.it/cad/accesso-telematico-riutilizzo-dati-pubbliche-amministrazioni" target="_blank">CAD</a></strong>).</p>
+	<p>In questo post sottolineerò alcuni elementi relativi all&#8217;accesso ai dati tramite <em>query</em> via interfaccia <strong>REST</strong> (più propriamente tramite API REST).</p>
+	<h2 id="introduzione">Introduzione</h2>
+	<p>Le API REST di ArcGIS &#8211; REST è l&#8217;acronimo di <em>Representational State Transfer</em> - forniscono una semplice <strong>interfaccia</strong> di <strong>accesso web</strong> ai server cartografici di questa casa software, sia ai dati/servizi che ad alcuni processi. Il tutto è quindi accessibile tramite una serie di URL gerarchici, che identificano ciò a cui si vuole accedere. L&#8217;URL di default di accesso ha di _default _questa struttura:</p>
+	<pre>http://&lt;host&gt;:/arcgis/rest/services</pre>
+	<p>Ad esempio quello della Regione Siciliana è questo:</p>
+	<p><a href="http://map.sitr.regione.sicilia.it/ArcGIS/rest/services" target="_blank">http://map.sitr.regione.sicilia.it/ArcGIS/rest/services</a></p>
+	<p>E aprendo l&#8217;indirizzo sono elencati dati e servizi disponibili in questo server.</p>
+	<p><img class="alignnone size-full wp-image-6513 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" alt="sicilia_rest" width="500" height="285" /></p>
+	<p>La <strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" target="_blank">documentazione</a></strong><a href="http://www.google.com/url?q=http%3A%2F%2Fresources.arcgis.com%2Fen%2Fhelp%2Farcgis-rest-api%2Findex.html%23%2FThe_ArcGIS_REST_API&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHuezGAZ5-mzV-FZry6S5ZmvV-AAA" target="_blank"> ufficiale</a> generale è molto ricca e vasta e non aggiungerò altri dettagli generici.</p>
+	<p>A seguire invece alcuni esempi di <strong>query</strong>  via ArcGIS REST API, in modo da apprezzarne la ricchezza e le modalità di accesso.</p>
+	<h2 id="interroghiamo-una-risorsa">Interroghiamo una risorsa</h2>
+	<p>Per gli esempi di questo articolo farò riferimento alla <strong>Regione Umbria</strong>, che ha aperto <a href="http://www.google.com/url?q=http%3A%2F%2Fagendadigitale.regione.umbria.it%2Fcartografia-umbria%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGh7oXngcnvcK4DvFY_uBWgTYXftw" target="_blank">da poco</a> i suoi dati cartografici. Dal suo portale open data possiamo leggere l&#8217;URL pubblico del server ArcGIS.</p>
+	<p><img class="alignnone size-full wp-image-6514 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" alt="url_umbria" width="500" height="232" /></p>
+	<p>Si legge</p>
+	<pre>http://geo.umbriaterritorio.it/arcgis/</pre>
+	<p>Bisogna aggiungere (vedi sopra) &#8220;rest/services/&#8221; e abbiamo</p>
+	<p><a href="http://geo.umbriaterritorio.it/arcgis/rest/services/" target="_blank">http://geo.umbriaterritorio.it/arcgis/rest/services/</a></p>
+	<p>A questo punto non resta che sfogliare un po&#8217; la <em>directory</em> pubblica e scegliere un <em>layer</em> su cui eseguire una <em>query</em>. Userò il dataset dei &#8220;NUMERI CIVICI&#8221;, che si raggiunge facendo click su <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGsOAQrrPu5ImWNlAL_d8H3zDdhtQ" target="_blank">Public &gt; ECOGRAFICO_CATASTALE_WGS84 (MapServer) &gt; NUMERI CIVICI</a>.</p>
+	<p>Scorrendo la pagina verso il basso è visibile il tasto &#8220;<em>Query</em>&#8220;, tramite il quale è possibile interrogare il dataset.</p>
+	<p><img class="alignnone size-full wp-image-6512 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" alt="query" width="500" height="370" /></p>
+	<p>Per lanciare la prima interrogazione devo inserire almeno un criterio di ricerca. Ad esempio <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%3D1%26where%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH6iLFbjBb4YxEY1dKVGuFrZBhiMQ" target="_blank">il numero civico con &#8220;ID=1&#8243;</a> (ogni elemento ha sempre un identificativo numerico associato). La pagina html con il risultato dell&#8217;interrogazione mi fornisce informazioni sia sugli attributi che sulla geometria dell&#8217;elemento.</p>
+	<p><img class="alignnone size-full wp-image-6509 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" alt="attributi" width="382" height="212" /></p>
+	<p>Posso fare allora una query per <strong>attributo</strong>: <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&#038;geometryType=esriGeometryPoint&#038;inSR=&#038;spatialRel=esriSpatialRelIntersects&#038;relationParam=&#038;objectIds=&#038;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&#038;time=&#038;returnCountOnly=false&#038;returnIdsOnly=false&#038;returnGeometry=true&#038;maxAllowableOffset=&#038;outSR=&#038;outFields=*&#038;f=html" target="_blank">tutti gli elementi</a> che contengono nel campo &#8220;DESCR_S49&#8243; la stringa &#8220;CORPOSANO&#8221;. Nell&#8217;interfaccia leggiamo che ci sono 47 record che soddisfano questa condizione e l&#8217;output è in HTML. Ci sono però altri formati di output tra cui <strong>KML</strong> e <strong>JSON</strong>; <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DDESCR_S49%2BLIKE%2B'%2525CORPOSANO%2525'%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dpjson&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHS-5eXTUQRW6lngrc9W3yzjDYWZg" target="_blank">questo</a> l&#8217;output in JSON della stessa query.</p>
+	<p><img class="alignnone size-full wp-image-6511 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" alt="output" width="500" height="116" /></p>
+	<p>Questi due formati quindi mostrano nei fatti, come una query REST su server ArcGIS sia un&#8217;ulteriore modalità di accesso al dato grezzo.</p>
+	<h2>Query spaziale</h2>
+	<p>E&#8217; possibile eseguire anche delle interrogazioni spaziali di complessità variabile. Ad esempio posso estrarre tutti i civici che ricadono tra queste coordinate <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=12.384356%2C+43.108511%2C12.388869%2C43.110765&amp;geometryType=esriGeometryEnvelope&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=html" target="_blank">12.384356,43.108511,12.388869,43.110765</a> (&lt;xmin&gt;,&lt;ymin&gt;,&lt;xmax&gt;,&lt;ymax&gt;).</p>
+	<p><img class="alignnone size-full wp-image-6542 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" alt="spatial_query" width="496" height="118" /></p>
+	<p>Posso farne il download con GDAL/OGR (vedi sotto) e ottenere rapidamente i dati in formato spaziale e al contempo visualizzarne rapidamente una loro rappresentazione.</p>
+	<p><img class="alignnone size-full wp-image-6543 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" alt="spatial_query_map" width="500" height="394" /></p>
+	<h2 id="accesso-tramite-gdal/ogr-a-una-query">Accesso tramite GDAL/OGR a una query</h2>
+	<p>La libreria <strong>GDAL/OGR</strong> ha i driver di accesso in lettura e scrittura al <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.gdal.org%2Fdrv_geojson.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEYFJK4I_iIh-CbRFHchaL-132kJg" target="_blank">formato GeoJSON</a>. Uno degli output delle query di sopra è proprio JSON e questa libreria lo riesce a leggere nativamente proprio come GeoJSON.</p>
+	<p>L&#8217;ultima query si effettua chiamando <a href="http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson" target="_blank">questo lungo URL</a>:</p>
+	<pre>http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;<strong>where</strong>=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;<strong>f</strong>=pjson</pre>
+	<p>Nell&#8217;indirizzo di sopra sono visibili tutti i parametri disponibili per effettuare un’interrogazione, ma sopra abbiamo valorizzato soltanto la stringa di testo da ricercare in un determinato campo (parametro &#8220;where&#8221;) e il formato di output (parametro &#8220;f&#8221;). Questo URL fa da <em>source</em> per GDAL/OGR. Se voglio avere tutte le <strong>informazioni</strong> su questa sorgente di dati vettoriali userò il classico ogrinfo:</p>
+	<pre>ogrinfo -ro &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>&#8220;OGRGeoJSON&#8221; è per GDAL/OGR il nome predefinito del layer di una sorgente GeoJSON. &#8220;-ro&#8221; perché imposto l’accesso in sola lettura.</p>
+	<p>Se voglio <strong>convertire</strong> in ArcView Shapefile l&#8217;output di questa query userò ogr2ogr:</p>
+	<pre>ogr2ogr CORPOSANO.shp &quot;http://geo.umbriaterritorio.it/ArcGIS/rest/services/Public/ECOGRAFICO_CATASTALE1_WGS84/MapServer/0/query?geometry=&amp;geometryType=esriGeometryPoint&amp;inSR=&amp;spatialRel=esriSpatialRelIntersects&amp;relationParam=&amp;objectIds=&amp;where=DESCR_S49+LIKE+%27%25CORPOSANO%25%27&amp;time=&amp;returnCountOnly=false&amp;returnIdsOnly=false&amp;returnGeometry=true&amp;maxAllowableOffset=&amp;outSR=&amp;outFields=*&amp;f=pjson&quot; OGRGeoJSON</pre>
+	<p>Come esempio, riporto qui il <a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/CORPOSANO.zip" target="_blank"><strong>download</strong></a> fatto con GDAL/OGR nei formati ArcView Shapefile, GeoJSON e KML.</p>
+	<h2 id="web-mapping-a-partire-da-query">Web mapping a partire da query</h2>
+	<p>Queste query possono essere visualizzate in maniera molto efficace anche in un&#8217;interfaccia di <em>web mapping</em>. Sia a partire dal salvataggio dell&#8217;output, che tramite chiamata diretta in <em>realtime</em>. La cosa è inoltre resa semplice da una bella libreria rilasciata in <em>open source</em> da ESRI e basata su <strong>Leaflet</strong>: <a href="http://www.google.com/url?q=http%3A%2F%2Fesri.github.io%2Fesri-leaflet&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFHs50dsXaxLd9Jq6RYR_VlXnnM2A" target="_blank">http://esri.github.io/esri-leaflet</a>.</p>
+	<p>La query di sopra (quella sulla stringa &#8220;CORPOSANO&#8221;) ad esempio si può rappresentare rapidamente come sotto (click <strong><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" target="_blank">qui</a></strong> per aprire a <strong>schermo intero</strong>).</p>
+	<p><a href="http://www.google.com/url?q=http%3A%2F%2Ftanto.github.io%2Farcgisqueryrest%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGBS69DEWt-ac8Wj8EnLjQfdhWKfQ" target="_blank"><img class="alignnone size-full wp-image-6510 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" alt="leaflet" width="500" height="378" border="0" /></a></p>
+	<p>Il codice lo trovate qui: <a href="https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Ftanto%2Farcgisqueryrest%2Fblob%2Fgh-pages%2Findex.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG4onJJ1-fhQ16rPu3V_R3aFE0ofw" target="_blank">https://github.com/tanto/arcgisqueryrest/blob/gh-pages/index.html</a></p>
+	<h2 id="alcune-note-in-conclusione">Alcune note in conclusione</h2>
+	<p>Sono rimasto molto in superficie, ma l&#8217;intento è quello di mostrare un punto di ingresso poco noto e utile, visto il sempre maggior numero di dati spaziali oggi disponibili e aperti. Di default l&#8217;<em>output</em> di queste _query _è limitato a 1000 risultati, quindi è necessario &#8220;ciclare&#8221; le chiamate. Ad esempio per ID a gruppi di 1000 record:</p>
+	<ul id="draft_check_box_list_0">
+	<li>inizio con la condizione <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3DOBJECTID%253E%253D1%2Band%2B%2BOBJECTID%253C%253D1000%26time%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNESchVZwiY-eDtZyqQ-tWo3yZyDuw" target="_blank">OBJECTID&gt;=1 and OBJECTID&lt;=1000</a>;</li>
+	<li>poi OBJECTID&gt;=1001 and OBJECTID&lt;=2000;</li>
+	<li>e così via &#8230;</li>
+	</ul>
+	<p>Il totale (190140 record), da conoscere prima di fare partire il ciclo, si ricava ad esempio con <a href="http://www.google.com/url?q=http%3A%2F%2Fgeo.umbriaterritorio.it%2FArcGIS%2Frest%2Fservices%2FPublic%2FECOGRAFICO_CATASTALE1_WGS84%2FMapServer%2F0%2Fquery%3Fgeometry%26geometryType%3DesriGeometryPoint%26inSR%26spatialRel%3DesriSpatialRelIntersects%26relationParam%26objectIds%26where%3D1%253D1%26time%26returnCountOnly%3Dtrue%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%26outSR%26outFields%3D*%26f%3Dhtml&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGXetugfKd8MZId4F4iV-3NJOsWhg" target="_blank">questa query</a>. Ci sono altri modi per ciclare tra i record, questo è solo un esempio.</p>
+	<p>L&#8217;accesso REST è molto utile anche con sorgenti di tipo <em>raster</em>, ma magari lo scrive qualcun altro, in un altro post <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  .</p>
+	<p>L&#8217;URL con struttura &#8220;http://&lt;host&gt;:/arcgis/rest/services&#8221; è quello di <em>default</em>. Chi gestisce il server potrebbe usare uno schema diverso.</p>
+	<p>Questo post è dedicato al giovane Padawan &#8220;<strong><a href="https://plus.google.com/u/0/114313445728286224740/posts" target="_blank">Flavio</a></strong>&#8220;, che mi ha fatto scoprire <a href="https://www.google.com/url?q=https%3A%2F%2Fhub.qgis.org%2Fwiki%2F17%2FArcgis_rest&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEmBzX8cx7Y0rkxiZXreebrdHQWVw" target="_blank">questa pagina</a> e ha dato la stura alla stesura di questo testo.</p>
+	<p>Non mi <strong>REST</strong>a che augurarvi un <strong>buon 2015</strong>!
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/">Take the best, use the REST</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Take+the+best%2C+use+the+REST&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-12-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/29/take-the-best-use-the-rest/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest.png" medium="image">
+			<media:title type="html">sicilia_rest</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/sicilia_rest-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria.png" medium="image">
+			<media:title type="html">url_umbria</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/url_umbria-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query.png" medium="image">
+			<media:title type="html">query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/query-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi.png" medium="image">
+			<media:title type="html">attributi</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/attributi-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output.png" medium="image">
+			<media:title type="html">output</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/output-150x116.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query.png" medium="image">
+			<media:title type="html">spatial_query</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query-150x118.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map.jpg" medium="image">
+			<media:title type="html">spatial_query_map</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/spatial_query_map-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet.jpg" medium="image">
+			<media:title type="html">leaflet</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/leaflet-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>jqGrid, ArcGIS Server e JSONP</title>
+		<link>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/</link>
+		<comments>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/#comments</comments>
+		<pubDate>Wed, 28 Mar 2012 06:00:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jqGrid]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4785</guid>
+		<description><![CDATA[Quando si parla di applicazioni GIS, siano esse desktop o web, spesso occorre dedicare alla visualizzazione degli attributi alfanumerici un'attenzione pari a quella prestata alla realizzazione della mappa. In questo post, quindi, vediamo come ottenere una tabella ricca e interattiva con i dati estratti da una query verso i servizi ReST di ArcGIS Server 10. Inoltre, per sfruttare la nostra fonte di dati (uno dei server di esempio di ESRI) ci avvarremo di JSONP, una strategia che consente di aggirare i limiti imposti dalla same origini policy.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Su TANTO abbiamo scritto in varie occasioni di <a title="jQuery" href="http://jquery.com/" target="_blank">jQuery</a> e abbiamo visto vari esempi delle sue potenzialità nella creazione di interfacce efficaci ed esteticamente valide per le applicazioni web.<br />
+Esistono tantissime estensioni per questo popolare framework ed una delle mie preferite è sicuramente <a title="jqGrid homepage" href="http://www.trirand.com/blog/" target="_blank"><strong>jqGrid</strong></a>, utilissima per chi sviluppa applicazioni web in ambito geospaziale.<br />
+La sua utilità nel nostro campo è presto detta: un’applicazione GIS, che sia desktop o web, non consiste solo della mappa, ma deve dare anche la possibilità a chi la usa di esplorare le informazioni associate agli elementi visualizzati, cioè gli attributi. jqGrid assolve benissimo il compito.<br />
+Gli <a title="Esempi jqGrid" href="http://www.trirand.com/blog/jqgrid/jqgrid.html" target="_blank">esempi</a> sul sito ufficiale offrono una buona carrellata delle possibilità del plugin e, insieme al dettagliato <a title="Wiki jqGrid" href="http://www.trirand.com/jqgridwiki/doku.php" target="_blank">wiki</a>, permettono di produrre le prime griglie in tempi brevi.<br />
+I <a title="Formati dati supportati" href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:retrieving_data" target="_blank">formati</a> di dati che jqGrid è in grado di importare e rappresentare sono molti e, tra questi, quello che ci interessa in particolar modo oggi è <a title="JSONP" href="http://en.wikipedia.org/wiki/JSONP" target="_blank"><strong>JSONP</strong></a> (JavaScript Object Notation with Padding).<br />
+In breve, si tratta di una tecnica che supera le restrizioni della <a title="Same Origin Policy" href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">same origin policy</a> e permette di effettuare chiamate tra domini differenti. E’ bene sapere, comunque, che questa è una regola di sicurezza che, impedendo di eseguire script provenienti da siti esterni e “non fidati”, protegge l’utente da attacchi informatici detti <a title="Attacchi XSS" href="http://it.wikipedia.org/wiki/Cross-site_scripting" target="_blank">XSS</a> (Cross Site Scripting).<br />
+Ricorrere a JSONP è una delle strategie disponibili per aggirare questa politica, che risulta parecchio limitante per le applicazioni web che, come i Mash-up spaziali spesso citati su TANTO, fanno uso di dati provenienti da più fonti.<br />
+Il trucco si basa sulla capacità del tag html <em>script</em> di caricare file javascript, anche esterni e, all&#8217;occorrenza, eseguire del codice. Non mi dilungo oltre sull’argomento e rimando a wikipedia e a <a title="JSONP" href="http//javascript.html.it/articoli/leggi/2957/jsonp-e-le-richieste-cross-domain/" target="_blank">questo articolo</a> su HTML.it per eventuali approfondimenti.</p>
+	<p>Vediamo subito un esempio. Come fonte di dati prendiamo il risultato di un query task lanciato verso un <a title="MapService di esempio" href="http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/4" target="_blank">MapService ReST</a> di <strong>ArcGIS Server</strong>. Il codice per ottenere la griglia di attributi è molto semplice e il risultato di sicuro effetto.</p>
+	<pre class="brush: javascript; ">
+	
+$(&#039;#grid&#039;).jqGrid({
+url: &#039;http://sampleserver1.arcgisonline.com/ArcGIS/rest/&#039;+
+     &#039;services/Demographics/ESRI_Census_USA/MapServer/4/query&#039;,
+datatype: &#039;jsonp&#039;,
+postData: $.param({
+where: &quot;1=1&quot;,
+returnGeometry: false,
+outFields: &quot;ObjectID,NAME,STATE_NAME,CNTY_FIPS&quot;,
+f: &quot;json&quot;
+}),
+colModel: [
+{name: &#039;ObjectID&#039;, label: &#039;ID&#039;, width: 60, jsonmap: &#039;attributes.ObjectID&#039;,sorttype:&#039;number&#039;},
+{name: &#039;NAME&#039;, label: &#039;Name&#039;, width: 170, jsonmap: &#039;attributes.NAME&#039;},
+{name: &#039;STATE_NAME&#039;, label: &#039;State&#039;, width: 150, jsonmap: &#039;attributes.STATE_NAME&#039;},
+{name: &#039;CNTY_FIPS&#039;, label: &#039;FIPS&#039;, width: 60, jsonmap: &#039;attributes.CNTY_FIPS&#039;}
+],
+caption:&quot;ArcGIS Server 10 query&quot;,
+toppager: false,
+pager:&quot;#pager&quot;,
+rowList: [50, 100, 250, 1000],
+rowNum: 50,
+jsonReader: {
+root: &#039;features&#039;,
+repeatitems: false,
+},
+loadonce: true,
+ignoreCase: true,
+viewrecords: true,
+height: &#039;300&#039;,
+width:&#039;500&#039;
+}).jqGrid(&#039;navGrid&#039;, &#039;#pager&#039;, {search:false, add: false, edit: false, del: false});
+});
+	</pre>
+	<p>Il codice è volutamente semplice e ovviamente si può sostituire il valore della clausola <em>where</em>, qui passata come parametro e valorizzata con <em>1=1</em>, con qualcosa di più utile (o dinamico).<br />
+Qui sotto potete vedere l&#8217;output della query in una tabella dinamica che offre la possibilità di consultare in modo ricco ed interattivo la nostra sorgente di dati spaziali d&#8217;esempio</p>
+	<p><iframe style="width: 480px; height: 410px; border: none;" src="http://blog.spaziogis.it/static/jqgrid_jsonp/index.html" width="320" height="240"></iframe>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/">jqGrid, ArcGIS Server e JSONP</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>ArcGIS.com il cloud GIS secondo ESRI</title>
+		<link>http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/</link>
+		<comments>http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/#comments</comments>
+		<pubDate>Thu, 22 Jul 2010 08:00:23 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Recensioni]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[cloud computing]]></category>
+		<category><![CDATA[cloud gis]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[webgis]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2328</guid>
+		<description><![CDATA[ESRI entra nel mondo dei "GIS in the cloud", ma la sua scelta di "blindare" ArcGIS.com dal punto di vista dell'interoperabilità dei dati e servizi di mappa via web è quanto meno discutibile.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS.com+il+cloud+GIS+secondo+ESRI&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2010-07-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><span id="internal-source-marker_0.40328169893473387" style="background-color: transparent; vertical-align: baseline;">E’ ormai da qualche mese che ESRI, con <a href="http://arcgis.com" target="_blank">ArcGIS.com</a> è ufficialmente con la testa tra le nuvole. Giovanni Allegri ha già dato notizia di </span><a href="http://www.giscloud.com/"><span style="color: #000000;">GISCloud</span></a><span style="background-color: transparent; vertical-align: baseline;"> in un </span><a href="http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/"><span style="color: #000000;">precedente articolo</span></a><span style="background-color: transparent; vertical-align: baseline;">, in effetti il primo servizio applicativo di GIS “evoluto” e abbastanza maturo totalmente utilizzabile via web.</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;">I tempi, la tecnologia e il mercato per parlare di GIS in the cloud &#8211; </span><a href="http://www.vector1media.com/vectorone/?p=624"><span style="color: #000000;">come aveva teorizzato Vector One</span></a><span style="background-color: transparent; vertical-align: baseline;"> due anni fa &#8211; sono dunque ormai maturi, e la scelta di ESRI di lanciare la sua applicazione webGIS quasi assieme alla prossima release di ArcGIS 10 è quindi “dovuta”. Tanto più che la stessa ESRI ha stretto una </span><a href="http://www.esri.com/partners/alliances/amazon/index.html"><span style="color: #000000;">partnership con Amazon Web Services</span></a><span style="background-color: transparent; vertical-align: baseline;">grazie alla quale è possibile “affittare” ArcGIS Server sulla piattaforma di cloud computing di Amazon.</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;">A mio avviso però, <strong>ArcGIS.com va in totale controtendenza</strong> con le strategie alla base di progetti come appunto </span><a href="http://www.giscloud.com/"><span style="color: #000000;">GISCloud</span></a><span style="background-color: transparent; vertical-align: baseline;"> o anche </span><a href="http://cloudmade.com/"><span style="color: #000000;">CloudMade</span></a><span style="background-color: transparent; vertical-align: baseline;"> e </span><a href="http://geocommons.com/"><span style="color: #000000;">GeoCommons</span></a><span style="background-color: transparent; vertical-align: baseline;"> e in genere quelli basati su svariate soluzioni tecnologiche, volte a garantire l’interoperabilità tra i dati seguendo le specifiche dell’</span><a href="http://www.opengeospatial.org/"><span style="color: #000000;">Open Geospatial Consortium</span></a><span style="background-color: transparent; vertical-align: baseline;">.</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;"><strong>Un GIS “in the cloud” dovrebbe essere “aperto” per definizione</strong>, almeno per quanto riguarda la possibilità per l’utente di utilizzare dati e servizi di mappa via web provenienti da svariate fonti. Certo, può non esserlo per la parte applicativa, come proprio GISCloud, mentre invece <a href="http://developers.cloudmade.com/projects">CloudMade offre risorse di sviluppo</a>, e ancora GeoCommons offre servizi business <em>ad-hoc</em>. Bene, <strong>ArcGIS.com non lo è</strong> nè dal punto di vista dei dati utilizzabili, nè tanto meno applicativo (avevamo dubbi?), anzi è “ESRIcentrico” in una maniera oserei dire “ottusa”. Gli unici </span><a>contenuti che è possibile caricare</a><span style="background-color: transparent; vertical-align: baseline;"> nel proprio account non sono, tanto per dire, nemmeno shapefile (sic!) ma formati proprietari ESRI come ad esempio Map Package e Layer Package, mentre tra i servizi di mappa via web si possono importare solo quelli erogati mediante ArcGIS Server&#8230; e non certo con formati OGC (WMS, WFS, ecc)!</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;">Qui sotto potete “ammirare” una mappa che ho realizzato utilizzando esclusivamente </span><a href="http://www.provincia.trapani.sitr.it:8080/joomla/index.php?option=com_content&amp;view=article&amp;id=40&amp;Itemid=40"><span style="color: #000000;">dati erogati dalla Provincia di Trapani</span></a><span style="background-color: transparent; vertical-align: baseline;"> e dalla </span><a href="http://www.sitr.regione.sicilia.it/content/view/101/121/"><span style="color: #000000;">Regione Siciliana</span></a><span style="background-color: transparent; vertical-align: baseline;">, ovviamente mediante ArcGIS Server. In realtà i dati della Provincia sono esposti in maniera un pò confusa, e lo si può notare consultando i singoli servizi nella </span><a href="http://www.provincia.trapani.sitr.it/ArcGIS/rest/services"><span style="color: #000000;">relativa pagina di ArcGIS Server</span></a><span style="background-color: transparent; vertical-align: baseline;">. In sostanza sono stati messi troppi layer assieme, spesso ripetendoli da servizio a servizio. </span><a href="http://88.53.214.52/sitr/rest/services"><span style="color: #000000;">Quelli della Regione</span></a><span style="background-color: transparent; vertical-align: baseline;"> invece sono organizzati con un singolo layer per ogni singolo servizio, e dunque meglio utilizzabili in ArcGIS.com. In realtà mettere più layer insieme in un solo servizio non è affatto sbagliato, anzi, a patto che lo si faccia seguendo il criterio di realizzare una “vista” o mappa, ovvero rendendo gli strati visivamente compatibili (trasparenze, ordine di sovrapposizione, ecc).</span></p>
+	<p><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.arcgis.com/home/webmap/embedViewer.html?webmap=399a583dc48e44d69cc053525eb0952d&amp;zoom=true&amp;scale=true"></iframe><br /><small><a href="http://www.arcgis.com/home/webmap/viewer.html?webmap=399a583dc48e44d69cc053525eb0952d" style="color:#0000FF;text-align:left" target="_blank">Visualizza mappa più grande</a></small></p>
+	<p>La mappa, incorporabile in pagine web mediante &lt;iframe&gt;, risulta estremamente scarna, con la possibilità di impostare solo la dimensione e metterci o meno un tool di zoom. L’obiettivo è quello di indurre l’utente a visualizzarla direttamente su ArcGIS.com cliccando sul link “Visualizza una mappa più grande”. E magari fargli aprire un account&#8230;</p>
+	<p>Insomma, <strong>il cloud GIS secondo ESRI è chiuso</strong>, sia dal punto di vista applicativo (e questo ci può pure stare) sia dell’interoperabilità con i dati. E di questo francamente non ne vedo proprio la necessità, visto che la sua posizione dominante &#8211; almeno nei segmenti business e pubblico &#8211; è sempre molto salda, e non sarebbe di certo stata intaccata dando la possibilità di utilizzare dati vettoriali come shapefile (non dico PostGIS) e importare servizi di mappa via web con standard OGC.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/">ArcGIS.com il cloud GIS secondo ESRI</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS.com+il+cloud+GIS+secondo+ESRI&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2010-07-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>

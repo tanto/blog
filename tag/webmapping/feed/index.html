@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; webmapping</title>
+	<atom:link href="http://blog.spaziogis.it/tag/webmapping/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>jqGrid, ArcGIS Server e JSONP</title>
+		<link>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/</link>
+		<comments>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/#comments</comments>
+		<pubDate>Wed, 28 Mar 2012 06:00:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jqGrid]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4785</guid>
+		<description><![CDATA[Quando si parla di applicazioni GIS, siano esse desktop o web, spesso occorre dedicare alla visualizzazione degli attributi alfanumerici un'attenzione pari a quella prestata alla realizzazione della mappa. In questo post, quindi, vediamo come ottenere una tabella ricca e interattiva con i dati estratti da una query verso i servizi ReST di ArcGIS Server 10. Inoltre, per sfruttare la nostra fonte di dati (uno dei server di esempio di ESRI) ci avvarremo di JSONP, una strategia che consente di aggirare i limiti imposti dalla same origini policy.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Su TANTO abbiamo scritto in varie occasioni di <a title="jQuery" href="http://jquery.com/" target="_blank">jQuery</a> e abbiamo visto vari esempi delle sue potenzialità nella creazione di interfacce efficaci ed esteticamente valide per le applicazioni web.<br />
+Esistono tantissime estensioni per questo popolare framework ed una delle mie preferite è sicuramente <a title="jqGrid homepage" href="http://www.trirand.com/blog/" target="_blank"><strong>jqGrid</strong></a>, utilissima per chi sviluppa applicazioni web in ambito geospaziale.<br />
+La sua utilità nel nostro campo è presto detta: un’applicazione GIS, che sia desktop o web, non consiste solo della mappa, ma deve dare anche la possibilità a chi la usa di esplorare le informazioni associate agli elementi visualizzati, cioè gli attributi. jqGrid assolve benissimo il compito.<br />
+Gli <a title="Esempi jqGrid" href="http://www.trirand.com/blog/jqgrid/jqgrid.html" target="_blank">esempi</a> sul sito ufficiale offrono una buona carrellata delle possibilità del plugin e, insieme al dettagliato <a title="Wiki jqGrid" href="http://www.trirand.com/jqgridwiki/doku.php" target="_blank">wiki</a>, permettono di produrre le prime griglie in tempi brevi.<br />
+I <a title="Formati dati supportati" href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:retrieving_data" target="_blank">formati</a> di dati che jqGrid è in grado di importare e rappresentare sono molti e, tra questi, quello che ci interessa in particolar modo oggi è <a title="JSONP" href="http://en.wikipedia.org/wiki/JSONP" target="_blank"><strong>JSONP</strong></a> (JavaScript Object Notation with Padding).<br />
+In breve, si tratta di una tecnica che supera le restrizioni della <a title="Same Origin Policy" href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">same origin policy</a> e permette di effettuare chiamate tra domini differenti. E’ bene sapere, comunque, che questa è una regola di sicurezza che, impedendo di eseguire script provenienti da siti esterni e “non fidati”, protegge l’utente da attacchi informatici detti <a title="Attacchi XSS" href="http://it.wikipedia.org/wiki/Cross-site_scripting" target="_blank">XSS</a> (Cross Site Scripting).<br />
+Ricorrere a JSONP è una delle strategie disponibili per aggirare questa politica, che risulta parecchio limitante per le applicazioni web che, come i Mash-up spaziali spesso citati su TANTO, fanno uso di dati provenienti da più fonti.<br />
+Il trucco si basa sulla capacità del tag html <em>script</em> di caricare file javascript, anche esterni e, all&#8217;occorrenza, eseguire del codice. Non mi dilungo oltre sull’argomento e rimando a wikipedia e a <a title="JSONP" href="http//javascript.html.it/articoli/leggi/2957/jsonp-e-le-richieste-cross-domain/" target="_blank">questo articolo</a> su HTML.it per eventuali approfondimenti.</p>
+	<p>Vediamo subito un esempio. Come fonte di dati prendiamo il risultato di un query task lanciato verso un <a title="MapService di esempio" href="http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/4" target="_blank">MapService ReST</a> di <strong>ArcGIS Server</strong>. Il codice per ottenere la griglia di attributi è molto semplice e il risultato di sicuro effetto.</p>
+	<pre class="brush: javascript; ">
+	
+$(&#039;#grid&#039;).jqGrid({
+url: &#039;http://sampleserver1.arcgisonline.com/ArcGIS/rest/&#039;+
+     &#039;services/Demographics/ESRI_Census_USA/MapServer/4/query&#039;,
+datatype: &#039;jsonp&#039;,
+postData: $.param({
+where: &quot;1=1&quot;,
+returnGeometry: false,
+outFields: &quot;ObjectID,NAME,STATE_NAME,CNTY_FIPS&quot;,
+f: &quot;json&quot;
+}),
+colModel: [
+{name: &#039;ObjectID&#039;, label: &#039;ID&#039;, width: 60, jsonmap: &#039;attributes.ObjectID&#039;,sorttype:&#039;number&#039;},
+{name: &#039;NAME&#039;, label: &#039;Name&#039;, width: 170, jsonmap: &#039;attributes.NAME&#039;},
+{name: &#039;STATE_NAME&#039;, label: &#039;State&#039;, width: 150, jsonmap: &#039;attributes.STATE_NAME&#039;},
+{name: &#039;CNTY_FIPS&#039;, label: &#039;FIPS&#039;, width: 60, jsonmap: &#039;attributes.CNTY_FIPS&#039;}
+],
+caption:&quot;ArcGIS Server 10 query&quot;,
+toppager: false,
+pager:&quot;#pager&quot;,
+rowList: [50, 100, 250, 1000],
+rowNum: 50,
+jsonReader: {
+root: &#039;features&#039;,
+repeatitems: false,
+},
+loadonce: true,
+ignoreCase: true,
+viewrecords: true,
+height: &#039;300&#039;,
+width:&#039;500&#039;
+}).jqGrid(&#039;navGrid&#039;, &#039;#pager&#039;, {search:false, add: false, edit: false, del: false});
+});
+	</pre>
+	<p>Il codice è volutamente semplice e ovviamente si può sostituire il valore della clausola <em>where</em>, qui passata come parametro e valorizzata con <em>1=1</em>, con qualcosa di più utile (o dinamico).<br />
+Qui sotto potete vedere l&#8217;output della query in una tabella dinamica che offre la possibilità di consultare in modo ricco ed interattivo la nostra sorgente di dati spaziali d&#8217;esempio</p>
+	<p><iframe style="width: 480px; height: 410px; border: none;" src="http://blog.spaziogis.it/static/jqgrid_jsonp/index.html" width="320" height="240"></iframe>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/">jqGrid, ArcGIS Server e JSONP</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Parliamo di webmapping</title>
+		<link>http://blog.spaziogis.it/2011/02/14/parliamo-di-webmapping/</link>
+		<comments>http://blog.spaziogis.it/2011/02/14/parliamo-di-webmapping/#comments</comments>
+		<pubDate>Mon, 14 Feb 2011 08:13:34 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[divulgazione]]></category>
+		<category><![CDATA[geomatica]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2798</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parliamo+di+webmapping&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/02/14/parliamo-di-webmapping/&amp;rft.language=English"></span>
+Questo articolo nasce dall&#8217;idea di aprire una finestra su quella branca della geomatica che si occupa della condivisione e diffusione in rete dell&#8217;informazione geografica, comunemente indicata col termine webmapping e spesso protagonista su questo blog. Prima di entrare nel vivo del discorso, però, vorrei precisare che quello proposto è il mio personale punto di vista, [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parliamo+di+webmapping&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/02/14/parliamo-di-webmapping/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Questo articolo nasce dall&#8217;idea di aprire una finestra su quella branca della geomatica che si occupa della <strong>condivisione e diffusione in rete dell&#8217;informazione geografica</strong>, comunemente indicata col termine <em>webmapping</em> e spesso protagonista su questo blog.<br />
+Prima di entrare nel vivo del discorso, però, vorrei precisare che quello proposto è il mio personale punto di vista, costruito nel tempo in base alla mia esperienza professionale in questo campo. Esistono altri strumenti e approcci diversi rispetto a quello che vedremo nel corso dell&#8217;articolo, quindi, come sempre, ogni commento sarà ben accetto e spunto di ulteriore riflessione.</p>
+	<p>Sicuramente si parla di una delle specializzazioni dei Sistemi Informativi Geografici che negli ultimi anni si sono trasformate più velocemente, complice l&#8217;evoluzione del World Wide Web e delle tecnologie legate ad esso. Si tratta, inoltre, di una materia fortemente interdisciplinare in quanto, a prescindere dall&#8217;ambito nel quale l&#8217;applicazione di webmapping verrà impiegata (turismo, analisi ambientale, monitoraggi di vario genere, ecc.), a monte ci sono le competenze di almeno quattro figure professionali differenti che comprendono l&#8217;esperto di GIS, il Database administrator, lo sviluppatore e il sistemista.</p>
+	<p>Ho pensato di scrivere un articolo come questo perché spesso mi capita di avere a che fare con persone interessate ad avvicinarsi a questo mondo o semplicemente curiose di sapere &#8220;cosa c&#8217;è sotto&#8221; ma messe in seria difficoltà dalla quantità, eterogeneità e frammentazione delle informazioni disponibili in rete.<br />
+Tutto ciò, insieme all&#8217;esistenza di una moltitudine di soluzioni software, di tanti standard reali e <em>de facto</em>, di moltissime filosofie e approcci diversi, crea un labirinto intricato in cui è facile smarrirsi specialmente se si è agli inizi.</p>
+	<h2>La cartografia su internet diventa popolare</h2>
+	<p>Un grande contributo all&#8217;esplosione della cartografia su internet è arrivato da alcune applicazioni web basate su mappe, come <strong>Google Maps</strong>, <strong>Google Earth</strong>, <strong>Yahoo! Maps</strong>, Virtual Earth (ora noto come <strong>Bing Maps</strong>), comparse relativamente pochi anni fa e divenute <em>di massa</em> nel giro di pochissimo tempo.<br />
+Lungi dall&#8217;essere delle applicazioni GIS in senso stretto, hanno comunque il merito di saper mostrare la forza del <strong>punto di vista spaziale</strong>: ogni oggetto, se collocato nello spazio geografico, viene arricchito con nuove informazioni intrinseche nella sua localizzazione e nella relazione con gli altri oggetti che si trovano nelle sue vicinanze.<br />
+La potenza espressiva della cartografia su internet, per la prima volta sotto gli occhi di tutti e non dei soli addetti ai lavori, ha dato un importante input per il cambio di passo che ha condotto alle moderne applicazioni di webmapping.<br />
+Certamente questa direzione si è potuta intraprendere anche grazie all’aumento delle capacità di elaborazione dei browser e alla crescita degli strumenti e delle tecnologie per lo sviluppo delle applicazioni web, alcuni dei quali ideati e rilasciati dagli stessi soggetti titolari delle famose mappe online (si pensi, ad esempio, alle API di Google Maps).<br />
+Le vecchie <em>cartografie web</em>, oltre ad essere accessibili a pochi, richiedevano spesso tempi di caricamento lunghi o l&#8217;installazione di plug-in sulla macchina dell’utente. Le recenti applicazioni di webmapping, invece, beneficiano di uno spiccato livello di interattività e reattività, caratteristiche tipiche delle applicazioni <strong>Web 2.0</strong> che sfruttano tecnologie come <strong>AJAX</strong> e si integrano alla perfezione nell&#8217;ecosistema del web moderno, composto da social network, feed RSS e servizi di varia natura.</p>
+	<h2>Standard è bello&#8230; e pratico</h2>
+	<p>Una ulteriore spinta alla diffusione di questa nuova generazione di applicazioni di webmapping è venuta dall’affermarsi di <strong>standard aperti, documentati e condivisi</strong> messi a punto dall’<a href="http://www.opengeospatial.org/" target="_blank">Open Geospatial Consortium</a> (<strong>OGC</strong>).<br />
+Le maggiori case produttrici di software GIS, nonché le comunità open source con i loro innumerevoli progetti, hanno implementato nei loro prodotti il supporto ai principali standard OGC (<a href="http://it.wikipedia.org/wiki/Web_Map_Service" target="_blank">WMS</a>, <a href="http://it.wikipedia.org/wiki/Web_Feature_Service" target="_blank">WFS</a>, <a href="http://it.wikipedia.org/wiki/Web_Coverage_Service" target="_blank">WCS</a>, ecc.) favorendo l’<strong>interoperabilità</strong>. Chi progetta e sviluppa applicazioni di webmapping oggi ha la possibilità di mescolare risorse disponibili in rete e risorse locali, di utilizzare tecnologie e piattaforme differenti in grado, però, di scambiare informazioni grazie al rispetto degli standard e di ottenere così degli efficacissimi <strong>mash-up</strong> tramite i quali diffondere l&#8217;informazione spaziale.</p>
+	<h2>Lato server</h2>
+	<p>A prescindere dai dati, preferibilmente mantenuti in un RDBMS spaziale (come <a href="http://postgis.refractions.net/" target="_blank">PostGIS</a> o <a href="http://wiki.oracle.com/page/Spatial" target="_blank">Oracle Spatial</a>), salvo situazioni particolari un&#8217;applicazione di webmapping ha generalmente bisogno di due componenti che operano sul server: il <strong>web server</strong> e il <strong>map server</strong>.<br />
+Il web server, come <a href="http://www.apache.org/" target="_blank">Apache</a>, solo per citare il più diffuso e più famoso, è l&#8217;ambiente che renderà possibile la pubblicazione del lavoro e accoglierà le richieste provenienti dall&#8217;applicazione client (quella con cui l&#8217;utente interagisce) per passarle al map server. Quest&#8217;ultimo, per dirla in maniera molto sintetica, interpreta tali richieste e produce di conseguenza degli output (le <em>mappe</em>) che vengono spedite al client di nuovo attraverso il web server. Ovviamente questo è uno schema generale ed anche se formalmente corretto (ricalca il funzionamento di <a href="http://www.mapserver.org" target="_blank">UMN-MapServer</a>, che è uno dei map server più validi e versatili), occorre tenere presente che ogni software appartenente a questa categoria ha le proprie modalità specifiche di azione. Geoserver ed ArcGIS Server sono altri due ottimi esempi, il primo è gratuito ed <em>open source</em>, come lo è anche UMN-MapServer, mentre l&#8217;altro è un prodotto proprietario distribuito da ESRI.<br />
+Prima di chiudere la breve panoramica sugli strumenti lato server, è bene ricordare che nel caso delle applicazioni di webmapping più avanzate è necessario avere a disposizione anche un <strong>linguaggio di programmazione</strong> (Java, PHP, Python, ecc.) per organizzare la logica di business, cioè l&#8217;insieme degli algoritmi che gestiscono lo scambio di informazioni tra il client e la banca dati. UMN-Mapserver, ad esempio, è completo di <a href="http://mapserver.org/mapscript/index.html" target="_blank">API</a> (Application Programming Interface) per i principali linguaggi di programmazione, mentre ArcGIS Server propone due ADF (Advanced Development Framework) per <a href="http://help.arcgis.com/en/sdk/10.0/java_ao_adf/adf_home.html" target="_blank">Java</a> e <a href="http://help.arcgis.com/en/sdk/10.0/serveradf_net/adf_home.html" target="_blank">.Net</a>.<br />
+<center><img src="http://blog.spaziogis.it/wp-content/uploads//2011/02/webmapping_diagramma.png" alt="Diagramma Webmapping" title="webmapping_diagramma" style="margin-top:15px;"/></center></p>
+	<h2>Lato client</h2>
+	<p>Il client, come anticipato nel precedente paragrafo, è quella parte dell&#8217;applicazione con cui l&#8217;utente finale interagisce. Questo &#8220;strato&#8221; ha, perciò, un ruolo fondamentale nel decretare il successo o insuccesso dell&#8217;intera applicazione. Senza un client <strong>efficace</strong> che metta in risalto gli strumenti più importanti offerti all&#8217;utente e lo prenda quanto più possibile per mano nel compiere le operazioni che lo porteranno ad ottenere la risposta desiderata (un&#8217;estrazione di dati tramite interrogazione, l&#8217;analisi di una determinata variabile ambientale, ecc.), si rischia seriamente di vanificare gli sforzi profusi nella progettazione e implementazione del database e degli algoritmi lato server.<br />
+E&#8217; ovvio che, pur progettando un client ideale, non è sempre possibile raggiungere la massima facilità di utilizzo, poiché tutto è influenzato dal numero delle funzionalità offerte, dalla loro complessità, dal tipo di utenti a cui ci si rivolge e da diversi altri fattori. Tuttavia un&#8217;interfaccia utente intuitiva è il risultato a cui si dovrebbe tendere quando si inizia a progettarla.</p>
+	<p>Come si realizza il client? Le soluzioni sono tantissime, dai <a href="http://demo.mapserver.org/tutorial/section2.html" target="_blank">template html di UMN-Mapserver</a>, ai framework in PHP come <a href="http://www.pmapper.net/" target="_blank">p.Mapper</a> (sempre per UMN-Mapserver) che mettono a disposizione un client con dei moduli dinamici lato server (<a href="http://www.maptools.org/php_mapscript/" target="_blank">PHP MapScript</a>), a librerie Javascript come <a href="http://openlayers.org" target="_blank">OpenLayers</a>, di cui si è spesso parlato qui su TANTO.<br />
+Personalmente preferisco l&#8217;ultima soluzione in quanto costruire il proprio client da zero usando una libreria Javascript (OpenLayers non è l&#8217;unica), sebbene possa essere inizialmente più laborioso rispetto alla configurazione di un framework come p.Mapper, presenta degli indubbi vantaggi.<br />
+Sorvolando sulla valenza didattica del costruire una ad una le funzioni attivate dai vari tasti di una toolbar, ci si rende conto della bontà della scelta quando quello che offre un framework <em>out of the box</em> non basta più e si deve procedere ad un lavoro di personalizzazione/integrazione. Spesso modificare il comportamento di un software complesso, legato ad una specifica piattaforma (UMN-MapServer e PHP MapScript, nel caso di p.Mapper), che comprende numerosi script interconnessi tra loro richiede uno sforzo ben superiore a quello necessario per scrivere da zero una nuova funzione che faccia uso di una classe della libreria OpenLayers (oppure delle <a href="http://code.google.com/apis/maps/index.html" target="_blank">API di Google Maps</a> o <a href="http://resources.arcgis.com/content/web/web-apis" target="_blank">ArcGIS Server</a>).<br />
+Un altro vantaggio &#8211; sempre nel caso in cui si scelga di lavorare con Javascript &#8211; è che si semplifica di molto l&#8217;integrazione nell&#8217;interfaccia di librerie per la costruzione di <strong>Rich Internet Application</strong> (RIA), come <a href="http://jquery.com" target="_blank">jQuery</a>, <a href="http://www.dojotoolkit.org/" target="_blank">Dojo</a>, <a href="http://www.mootools.net/" target="_blank">Mootools</a>, <a href="http://developer.yahoo.com/yui/" target="_blank">YUI</a> o <a href="http://www.sencha.com/products/js/" target="_blank">ExtJS</a>, ottime per la creazione di tutti quei piccoli espedienti che rendono il client efficace (nell&#8217;accezione usata in precedenza). C&#8217;è davvero l&#8217;imbarazzo della scelta.</p>
+	<h2>Considerazioni conclusive</h2>
+	<p>Come dicevo in apertura, ci si può discostare anche di molto da quasi tutti gli strumenti elencati e da questo approccio senza per questo sbagliare. Tuttavia nelle prime fasi è utile individuare e chiarire dei concetti specifici, imparare a padroneggiare gli strumenti per muoversi con disinvoltura e poi, in seguito, avventurarsi e testare soluzioni alternative e sempre più originali. In ogni caso alcuni punti, come la creazione di un client intuitivo o il rispetto degli standard, hanno una valenza generale e andrebbero sempre tenuti in debita considerazione a prescindere dalle scelte che si opereranno. Non mi resta che augurare buon divertimento a tutti.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/02/14/parliamo-di-webmapping/">Parliamo di webmapping</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/02/14/parliamo-di-webmapping/feed/</wfw:commentRss>
+		<slash:comments>28</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Parliamo+di+webmapping&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2011-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/02/14/parliamo-di-webmapping/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2011/02/webmapping_diagramma.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2011/02/webmapping_diagramma.png" medium="image">
+			<media:title type="html">webmapping_diagramma</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>ArcGIS.com il cloud GIS secondo ESRI</title>
+		<link>http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/</link>
+		<comments>http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/#comments</comments>
+		<pubDate>Thu, 22 Jul 2010 08:00:23 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Recensioni]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[cloud computing]]></category>
+		<category><![CDATA[cloud gis]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[webgis]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2328</guid>
+		<description><![CDATA[ESRI entra nel mondo dei "GIS in the cloud", ma la sua scelta di "blindare" ArcGIS.com dal punto di vista dell'interoperabilità dei dati e servizi di mappa via web è quanto meno discutibile.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS.com+il+cloud+GIS+secondo+ESRI&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2010-07-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><span id="internal-source-marker_0.40328169893473387" style="background-color: transparent; vertical-align: baseline;">E’ ormai da qualche mese che ESRI, con <a href="http://arcgis.com" target="_blank">ArcGIS.com</a> è ufficialmente con la testa tra le nuvole. Giovanni Allegri ha già dato notizia di </span><a href="http://www.giscloud.com/"><span style="color: #000000;">GISCloud</span></a><span style="background-color: transparent; vertical-align: baseline;"> in un </span><a href="http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/"><span style="color: #000000;">precedente articolo</span></a><span style="background-color: transparent; vertical-align: baseline;">, in effetti il primo servizio applicativo di GIS “evoluto” e abbastanza maturo totalmente utilizzabile via web.</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;">I tempi, la tecnologia e il mercato per parlare di GIS in the cloud &#8211; </span><a href="http://www.vector1media.com/vectorone/?p=624"><span style="color: #000000;">come aveva teorizzato Vector One</span></a><span style="background-color: transparent; vertical-align: baseline;"> due anni fa &#8211; sono dunque ormai maturi, e la scelta di ESRI di lanciare la sua applicazione webGIS quasi assieme alla prossima release di ArcGIS 10 è quindi “dovuta”. Tanto più che la stessa ESRI ha stretto una </span><a href="http://www.esri.com/partners/alliances/amazon/index.html"><span style="color: #000000;">partnership con Amazon Web Services</span></a><span style="background-color: transparent; vertical-align: baseline;">grazie alla quale è possibile “affittare” ArcGIS Server sulla piattaforma di cloud computing di Amazon.</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;">A mio avviso però, <strong>ArcGIS.com va in totale controtendenza</strong> con le strategie alla base di progetti come appunto </span><a href="http://www.giscloud.com/"><span style="color: #000000;">GISCloud</span></a><span style="background-color: transparent; vertical-align: baseline;"> o anche </span><a href="http://cloudmade.com/"><span style="color: #000000;">CloudMade</span></a><span style="background-color: transparent; vertical-align: baseline;"> e </span><a href="http://geocommons.com/"><span style="color: #000000;">GeoCommons</span></a><span style="background-color: transparent; vertical-align: baseline;"> e in genere quelli basati su svariate soluzioni tecnologiche, volte a garantire l’interoperabilità tra i dati seguendo le specifiche dell’</span><a href="http://www.opengeospatial.org/"><span style="color: #000000;">Open Geospatial Consortium</span></a><span style="background-color: transparent; vertical-align: baseline;">.</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;"><strong>Un GIS “in the cloud” dovrebbe essere “aperto” per definizione</strong>, almeno per quanto riguarda la possibilità per l’utente di utilizzare dati e servizi di mappa via web provenienti da svariate fonti. Certo, può non esserlo per la parte applicativa, come proprio GISCloud, mentre invece <a href="http://developers.cloudmade.com/projects">CloudMade offre risorse di sviluppo</a>, e ancora GeoCommons offre servizi business <em>ad-hoc</em>. Bene, <strong>ArcGIS.com non lo è</strong> nè dal punto di vista dei dati utilizzabili, nè tanto meno applicativo (avevamo dubbi?), anzi è “ESRIcentrico” in una maniera oserei dire “ottusa”. Gli unici </span><a>contenuti che è possibile caricare</a><span style="background-color: transparent; vertical-align: baseline;"> nel proprio account non sono, tanto per dire, nemmeno shapefile (sic!) ma formati proprietari ESRI come ad esempio Map Package e Layer Package, mentre tra i servizi di mappa via web si possono importare solo quelli erogati mediante ArcGIS Server&#8230; e non certo con formati OGC (WMS, WFS, ecc)!</span></p>
+	<p><span style="background-color: transparent; vertical-align: baseline;">Qui sotto potete “ammirare” una mappa che ho realizzato utilizzando esclusivamente </span><a href="http://www.provincia.trapani.sitr.it:8080/joomla/index.php?option=com_content&amp;view=article&amp;id=40&amp;Itemid=40"><span style="color: #000000;">dati erogati dalla Provincia di Trapani</span></a><span style="background-color: transparent; vertical-align: baseline;"> e dalla </span><a href="http://www.sitr.regione.sicilia.it/content/view/101/121/"><span style="color: #000000;">Regione Siciliana</span></a><span style="background-color: transparent; vertical-align: baseline;">, ovviamente mediante ArcGIS Server. In realtà i dati della Provincia sono esposti in maniera un pò confusa, e lo si può notare consultando i singoli servizi nella </span><a href="http://www.provincia.trapani.sitr.it/ArcGIS/rest/services"><span style="color: #000000;">relativa pagina di ArcGIS Server</span></a><span style="background-color: transparent; vertical-align: baseline;">. In sostanza sono stati messi troppi layer assieme, spesso ripetendoli da servizio a servizio. </span><a href="http://88.53.214.52/sitr/rest/services"><span style="color: #000000;">Quelli della Regione</span></a><span style="background-color: transparent; vertical-align: baseline;"> invece sono organizzati con un singolo layer per ogni singolo servizio, e dunque meglio utilizzabili in ArcGIS.com. In realtà mettere più layer insieme in un solo servizio non è affatto sbagliato, anzi, a patto che lo si faccia seguendo il criterio di realizzare una “vista” o mappa, ovvero rendendo gli strati visivamente compatibili (trasparenze, ordine di sovrapposizione, ecc).</span></p>
+	<p><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.arcgis.com/home/webmap/embedViewer.html?webmap=399a583dc48e44d69cc053525eb0952d&amp;zoom=true&amp;scale=true"></iframe><br /><small><a href="http://www.arcgis.com/home/webmap/viewer.html?webmap=399a583dc48e44d69cc053525eb0952d" style="color:#0000FF;text-align:left" target="_blank">Visualizza mappa più grande</a></small></p>
+	<p>La mappa, incorporabile in pagine web mediante &lt;iframe&gt;, risulta estremamente scarna, con la possibilità di impostare solo la dimensione e metterci o meno un tool di zoom. L’obiettivo è quello di indurre l’utente a visualizzarla direttamente su ArcGIS.com cliccando sul link “Visualizza una mappa più grande”. E magari fargli aprire un account&#8230;</p>
+	<p>Insomma, <strong>il cloud GIS secondo ESRI è chiuso</strong>, sia dal punto di vista applicativo (e questo ci può pure stare) sia dell’interoperabilità con i dati. E di questo francamente non ne vedo proprio la necessità, visto che la sua posizione dominante &#8211; almeno nei segmenti business e pubblico &#8211; è sempre molto salda, e non sarebbe di certo stata intaccata dando la possibilità di utilizzare dati vettoriali come shapefile (non dico PostGIS) e importare servizi di mappa via web con standard OGC.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/">ArcGIS.com il cloud GIS secondo ESRI</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS.com+il+cloud+GIS+secondo+ESRI&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2010-07-22&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/07/22/arcgis-com-il-cloud-gis-secondo-esri/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>GIS Cloud &#8211; il cloud computing per il webgis</title>
+		<link>http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/</link>
+		<comments>http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/#comments</comments>
+		<pubDate>Wed, 26 May 2010 13:12:59 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[cloud computing]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[webgis]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2150</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GIS+Cloud+%26%238211%3B+il+cloud+computing+per+il+webgis&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-05-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/&amp;rft.language=English"></span>
+Il sistema GIS Cloud (beta) comincia a far parlare di sé. GIS Cloud &#8211; General from GIS Cloud on Vimeo. Si tratta di un sistema di cloud computing dedicato a servizi webgis che, in linea col concetto di &#8220;software as a service&#8221; , permette di sfruttare risorse hardware a software distribuite per realizzare servizi GIS [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GIS+Cloud+%26%238211%3B+il+cloud+computing+per+il+webgis&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-05-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Il sistema <a href="http://www.giscloud.com/" target="_blank">GIS Cloud</a> (beta) comincia a far parlare di sé.<br />
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="400" height="300" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><br />
+<param name="allowfullscreen" value="true" />
+<param name="allowscriptaccess" value="always" />
+<param name="src" value="http://vimeo.com/moogaloop.swf?clip_id=11382138&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed type="application/x-shockwave-flash" width="400" height="300" src="http://vimeo.com/moogaloop.swf?clip_id=11382138&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" allowscriptaccess="always" allowfullscreen="true"></embed></object></p>
+	<p><a href="http://vimeo.com/11382138">GIS Cloud &#8211; General</a> from <a href="http://vimeo.com/giscloud">GIS Cloud</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+	<p>Si tratta di un sistema di <a id="aptureLink_ybD0aMpiYx" href="http://en.wikipedia.org/wiki/Cloud%20computing">cloud computing</a> dedicato a servizi webgis che, in linea col concetto di &#8220;<a id="aptureLink_XfkefKqZlu" href="http://en.wikipedia.org/wiki/Software%20as%20a%20service" target="_blank">software as a service</a>&#8221; , permette di sfruttare risorse hardware a software distribuite per realizzare servizi GIS online.<br />
+Tra le numerose <a href="http://www.giscloud.com/about/features/" target="_blank">funzionalità</a>, offre la possibilità di creare progetti online, di caricare, gestire, editare, esportare, ecc. dati raster e vector di tutti i principali formati noti. Oltre a diverse librerie proprietarie, GIS Cloud si appoggia anche a GDAL e OGR, a garanzia di un&#8217;alta interoperabilità.</p>
+	<p>I layer, una volta caricati e impostati,  possono essere pubblicati sia tramite il loro flash viewer, che coe servizi WMS/WFS, nonché di fungere da client di servizi OGC, offrendo così la possibilità di realizzare anche mashup e servizi a cascata. Non poteva mancare il supporto ai servizi Openstreetmap, Google Maps, e simili.</p>
+	<p>Sono presenti inoltre alcuni semplici strumenti di analisi GIS e statistica, come esempio delle ulteriori funzioni che saranno rese disponibili in futuro&#8230;</p>
+	<p>Insomma, un oggetto da tenere d&#8217;occhio. In attesa di ricevere il vostro Free Account (che offre tutte le funzionalità ma in un ambiente non dedicato, con risorse condivise tra tutti gli utenti gratuiti e quindi non garantite) vi invito a fare un giro tra i video della loro sua <a href="http://www.giscloud.com/about/gallery/" target="_blank">gallery</a>.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/">GIS Cloud &#8211; il cloud computing per il webgis</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GIS+Cloud+%26%238211%3B+il+cloud+computing+per+il+webgis&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-05-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/05/26/gis-cloud-il-cloud-computing-per-il-webgis/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>ArcGIS Server e Google Maps: come misurare correttamente le distanze</title>
+		<link>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/</link>
+		<comments>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/#comments</comments>
+		<pubDate>Sun, 25 Apr 2010 22:29:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[ESRI]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[projection]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1997</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+Tempo fa scrissi un articolo su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps. Ultimamente ho lavorato un po&#8217; con le prime e ne ho avuto complessivamente una buona [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Tempo fa scrissi <a href="http://blog.spaziogis.it/2009/08/02/arcgis-server-93-impressioni-di-utilizzo/">un articolo</a> su ArcGIS Server 9.3 soffermandomi sui servizi REST e le API Javascript ed accennando al fatto che ESRI mette a disposizione delle estensioni per le API di Google Maps e per quelle di Bing Maps.<br />
+Ultimamente ho lavorato un po&#8217; con <a href="http://resources.esri.com/arcgisserver/apis/javascript/gmaps/index.cfm?fa=home" target="_blank">le prime</a> e ne ho avuto complessivamente una buona impressione. Tuttavia, durante lo sviluppo, ho riscontrato un problema nella misurazione delle distanze e delle aree che merita di essere messo in evidenza, soprattutto perché gli esempi della documentazione ESRI non lo fanno a dovere ed anzi, secondo me, risultano leggermente fuorvianti.<br />
+Terminata la premessa, prima di andare avanti con l&#8217;articolo, voglio ringraziare <a href="http://www.nicogis.blogspot.com/" target="_blank">Domenico Ciavarella</a>, che mi ha dato un supporto fondamentale per arrivare ad una soluzione che altrimenti starei ancora cercando.</p>
+	<h2>La proiezione di Google Maps</h2>
+	<p><div id="attachment_2018" class="wp-caption alignright" style="width: 273px"><br />
+<img class="size-full wp-image-2018" style="border: 0pt none;" title="mercator" src="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" alt="mercator" width="263" height="244" /><p class="wp-caption-text">Effetto di distorsione delle aree</p></div></p>
+	<p>Google Maps, Bing Maps ed altri provider (come OpenStreetMap, Yahoo e, di recente, <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2009/11/20/ArcGIS-Online-moving-to-Google-_2F00_-Bing-tiling-scheme_3A00_-What-does-this-mean-for-you_3F00_.aspx" target="_blank">la stessa ESRI</a>) utilizzano una proiezione nota come <strong>Spherical Mercator</strong>, derivata dalla proiezione di <a href="http://it.wikipedia.org/wiki/Proiezione_cilindrica_centrografica_modificata_di_Mercatore" target="_blank">Mercatore</a>. Il codice <a href="http://www.epsg.org/" target="_blank">EPSG</a> ufficiale è 3785, anche se prima della sua definizione molti software hanno utilizzato l&#8217;ufficioso 900913. L&#8217;identificativo per i software ESRI, tra cui ovviamente ArcGIS Server, è invece 102113.<br />
+Questa proiezione considera la Terra come una sfera e consente di includerne completamente la superficie all&#8217;interno di un quadrato.<br />
+Quando però si rappresenta una superficie curva su di un piano, come un foglio di carta o il monitor di un computer, si introducono delle deformazioni. In questo caso, man mano che ci si allontana dall&#8217;equatore le aree cartografate subiscono un pesante stiramento sia in senso verticale che orizzontale e diventano, quindi, via via più esagerate verso i poli (la Groenlandia, per esempio, sembra più grande dell&#8217;Africa). Questa proiezione evidentemente non è fatta per minimizzare la deformazione delle aree (la proiezione di Mercatore è <a href="http://it.wikipedia.org/wiki/Proiezione_conforme" target="_blank">conforme</a> infatti), ma risulta vantaggiosa per l&#8217;uso attraverso il web perché consente di applicare un modello efficiente di tassellamento e caching.</p>
+	<h2>Il problema&#8230;</h2>
+	<p>Ammettiamo di voler creare un&#8217;applicazione di webmapping con le sopracitate estensioni delle API Javascript di ArcGIS Server per Google Maps.<br />
+La prima cosa da fare è creare un mapservice in grado di esporre i nostri dati spaziali con la medesima proiezione delle basi cartografiche di Google. Come spiegato nel post dedicato ad ArcGIS Server (linkato all&#8217;inizio di questo articolo) un mapservice &#8220;aggancia&#8221; e pubblica un progetto redatto in ArcMap (il classico .mxd), quindi basta assegnare al dataframe del progetto il sistema di riferimento appropriato (che si trova nella lista dei sistemi proiettati, alla voce WGS 84 Web Mercator, con identificativo 102113), salvare il tutto e pubblicarlo con ArcGIS Server. Niente di difficile insomma.<br />
+Focalizziamoci ora sullo sviluppo del client: tra i tanti strumenti che oggi ci si aspetta di trovare in una applicazione WebGIS ci sono i &#8220;righelli&#8221; che consentono di disegnare spezzate e poligoni e di misurarne poi lunghezza ed area. ESRI lo sa, ed ha giustamente incluso un <a href="http://resources.esri.com/help/9.3/arcgisserver/apis/javascript/gmaps/samples/utilities/util_measureline.html" target="_blank">esempio</a> per mostrare come creare questi tool nella documentazione delle sue API.<br />
+Abbiamo detto però che l&#8217;uso della proiezione Spherical Mercator provoca una deformazione crescente man mano che ci si spinge verso i poli e, tracciando una spezzata per misurare un oggetto al suolo di dimensioni note, come uno stadio di calcio, ci si accorge dell&#8217;inghippo: è più lungo di quanto dovrebbe essere (circa 146 metri invece di 105-110).<br />
+L&#8217;esempio fornito da ESRI non considera la deformazione e può indurre gli sviluppatori all&#8217;errore. E&#8217; vero che una persona con le adeguate conoscenze di geomatica può arrivare ad intuire il rischio insito nell&#8217;uso della proiezione di Google, ma è anche vero che il webmapping è terra di confine tra &#8220;gissologi&#8221; e sviluppatori informatici &#8220;puri&#8221;, senza particolari cognizioni tipiche del mondo gis. Non è per nulla detto, quindi, che chi sviluppa abbia i mezzi per immaginare il problema prima di averci sbattuto il muso e personalmente credo che aver pubblicato un esempio del genere nella documentazione ufficiale, senza neanche accennare alla questione della deformazione, sia stata una leggerezza.</p>
+	<h2>&#8230;e la soluzione</h2>
+	<p>Non molto tempo fa sul blog di ArcGIS Server è comparso un interessante <a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2010/03/05/Measuring-distances-and-areas-when-your-map-uses-the-Mercator-projection.aspx">post</a> che mette in evidenza il problema della misurazione delle distanze e spiega come comportarsi per risolverlo.<br />
+Il servizio che in ArcGIS Server è incaricato di calcolare lunghezze ed aree, il <a href="http://webhelp.esri.com/arcgisserver/9.3/Java/index.htm#geometry_service.htm">Geometry Service</a>, è in grado di svolgere diverse altre operazioni, tra cui la <strong>proiezione al volo</strong> delle geometrie.<br />
+Il &#8220;trucco&#8221; consiste nel riproiettare la geometria tracciata dall&#8217;utente nel sistema di riferimento più adatto alla zona mappata prima di effettuarne la misurazione e stampare a schermo il risultato.<br />
+Purtroppo lo snippet di codice fornito da ESRI è pronto all&#8217;uso solo per le API Javascript, mentre per le estensioni di Google Maps bisogna fare da soli e il discorso è un po&#8217; meno semplice.<br />
+Al posto di questa funzione:</p>
+	<pre class="brush: javascript; ">
+var sr = new esri.SpatialReference({wkid:32610});
+geometryService.project([graphic], sr, function(projectedGraphic) {
+geometryService.areasAndLengths(projectedGraphic, function(result) {
+var perimeter = result.lengths[0];
+var area = result.areas[0];
+});
+});
+</pre>
+	<p>abbiamo bisogno di questa:</p>
+	<pre class="brush: javascript; ">
+var geometryService = new esri.arcgis.gmaps.Geometry(&quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer&quot;);
+function calculateLengths() {
+//Parametri per la riproiezione
+var params = new esri.arcgis.gmaps.ProjectParameters();
+params.geometries = [polyline];
+params.inSpatialReference  = 4326;
+params.outSpatialReference = 3004; //Gauss-Boaga fuso Est
+//Riproiezione e funzione di callback
+geometryService.project(params, getLengths);
+}
+function getLengths(projectResults){
+var url = &quot;http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/lengths&quot;;
+var parameters = {
+polylines: projectResults.geometries,
+sr: 3004
+};
+esri.arcgis.gmaps.JSONRequest(url, test, parameters);
+}
+function test(result) {
+alert(result.lengths[0]+&quot; m&quot;);
+}
+</pre>
+	<p>Ho realizzato un veloce <a href="http://dl.dropbox.com/u/1070973/Riproiezione_e_misura/index.html" target="blank">esempio</a> che mostra i risultati ottenuti dal codice proposto da ESRI nella propria documentazione a confronto con quelli ottenuti dalla riproiezione con il Geometry Service e dalle semplici API di Google Maps, che hanno dei metodi propri per la misura di linee e poligoni.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/">ArcGIS Server e Google Maps: come misurare correttamente le distanze</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=ArcGIS+Server+e+Google+Maps%3A+come+misurare+correttamente+le+distanze&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-04-25&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/25/arcgis-server-e-google-maps-come-misurare-correttamente-le-distanze/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1.png" medium="image">
+			<media:title type="html">mercator</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/mercator1-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Zoomify e le novità di Openlayers 2.9</title>
+		<link>http://blog.spaziogis.it/2010/04/24/zoomify-e-le-novita-di-openlayers-2-9/</link>
+		<comments>http://blog.spaziogis.it/2010/04/24/zoomify-e-le-novita-di-openlayers-2-9/#comments</comments>
+		<pubDate>Sat, 24 Apr 2010 09:24:11 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1968</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Zoomify+e+le+novit%C3%A0+di+Openlayers+2.9&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-04-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/24/zoomify-e-le-novita-di-openlayers-2-9/&amp;rft.language=English"></span>
+Come atteso, le novità dell&#8217;ultima versione di Openlayers sono numerose e, molte, di largo interesse. L&#8217;elenco completo delle funzionalità aggiunte, dei miglioramente e dei bug risolti è lunga, ma la sintesi riportata nell&#8217;annuncio su Osgeo-Announce è già indicativa del valore di questa release: Controllo Graticule, per la rappresentazione della griglia delle coordinate Supporto per il [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Zoomify+e+le+novit%C3%A0+di+Openlayers+2.9&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-04-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/24/zoomify-e-le-novita-di-openlayers-2-9/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Come atteso, le novità dell&#8217;ultima versione di <a href="http://openlayers.org/" target="_blank">Openlayers</a> sono numerose e, molte, di largo interesse. L&#8217;<a href="http://trac.openlayers.org/wiki/Release/2.9/Notes" target="_blank">elenco</a> completo delle funzionalità aggiunte, dei miglioramente e dei bug risolti è lunga, ma la sintesi riportata nell&#8217;<a href="http://lists.osgeo.org/pipermail/announce/2010-April/000150.html" target="_blank">annuncio su Osgeo-Announce</a> è già indicativa del valore di questa release:</p>
+	<ul>
+	<li>Controllo Graticule, per la rappresentazione della griglia delle coordinate</li>
+	<li>Supporto per il formato delle immagini prodotte con Zoomify, e su questo mi soffermerò dopo</li>
+	<li>Gestione degli AtomFeed</li>
+	<li>Formato di supporto per i servizi OGC CS-W (Catalog Service for the Web)</li>
+	<li>Aggiunta una modalità (Strategy) che permette il refresh dei layer vettoriali, anche temporizzato</li>
+	<li>Supporto di base al protocoloo <a href="http://www.opengeospatial.org/standards/sos" target="_blank">SOS</a> (Sensor Observation Service)</li>
+	<li>Controllo TransformFeature: l&#8217;<a href="http://dev.openlayers.org/releases/OpenLayers-2.9/examples/transform-feature.html" target="_blank">esempio</a> è esplicativo</li>
+	<li>Supporto alla versione 1.3 del protocollo WMS</li>
+	<li>Risolti molti problemi della gestione della memoria (memory leaks)</li>
+	</ul>
+	<p>Un&#8217;aggiunta, di interesse anche per chi non si occupa di webgis vero e proprio, è il supporto a <a href="http://www.zoomify.com/" target="_blank">Zoomify</a>.<br />
+Zoomify è un software gratuituo (non Open Source) che permette una visualizzazione efficiente via web di immagini anche ad alta risoluzione, grazie al metodo della tassellatura (tiling). L&#8217;immagine originale viene ingrandita a diverse livelli di zoom, e ad ogni livello viene suddivisa in &#8220;mattonelle&#8221; di grandezza predefinita, che vengono disposte in una struttura gerarchica di cartelle. Per potere riottenere l&#8217;immagine originale, il client deve andarsi a  pescare i diversi pezzi e ricomporre il mosaico.<br />
+Questo sistema non è certo una novità per il mondo GIS, che lo impiega già da molto tempo (vedi <a href="2008/04/22/pubblicare-facilmente-una-carta-raster-sul-web/" target="_blank">gdal2tiles</a>, <a href="tilecache.org/" target="_blank">tilecache</a>, <a href="http://geowebcache.org/trac" target="_blank">geowebcache</a>, ecc.), e Openlayers offriva già il supporto a servizi di webmapping basati sul tiling (come <a href="http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification" target="_blank">TMS</a>). Tuttavia il supporto per Zoomify offre il vantaggio della semplicità di utilizzo di questo software, per il cui impiego non sono necessarie competenze GIS, e la possibilità di distribuire facilmente scansioni non georiferite di carte geografiche storiche.<br />
+Tra gli <a href="http://dev.openlayers.org/releases/OpenLayers-2.9/examples/" target="_blank">esempi</a> distribuiti con la nuova release di Openlayers è stato replicato lo stesso esempio usato per mostrare il viewer Flash di Zoomify in azione. Eccoli a confronto:</p>
+	<p><div id="attachment_1975" class="wp-caption aligncenter" style="width: 310px"><a href="http://dev.openlayers.org/releases/OpenLayers-2.9/examples/zoomify.html" target="_blank"><img class="size-medium wp-image-1975 " style="border: 0pt none;" title="Openlayers vieer per Zoomify" src="http://blog.spaziogis.it/wp-content/uploads//2010/04/zoomify_OL2-300x185.jpg" alt="Openlayers viewer per Zoomify" width="300" height="185" /></a><p class="wp-caption-text">Openlayers viewer per Zoomify</p></div></p>
+	<p><div id="attachment_1970" class="wp-caption aligncenter" style="width: 310px"><a style="border-style: none;" href="http://almor.mzk.cz/moll/AA22/103.html" target="_blank"><img class="size-medium wp-image-1970  " style="border: 0pt none;" title="Zoomify Flash Viewer" src="http://blog.spaziogis.it/wp-content/uploads//2010/04/zoomify_flash-300x259.jpg" alt="Zoomify Flash Viewer" width="300" height="259" /></a><p class="wp-caption-text">Zoomify Flash Viewer</p></div></p>
+	<p>Buon divertimento!!!
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/04/24/zoomify-e-le-novita-di-openlayers-2-9/">Zoomify e le novità di Openlayers 2.9</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/04/24/zoomify-e-le-novita-di-openlayers-2-9/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Zoomify+e+le+novit%C3%A0+di+Openlayers+2.9&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-04-24&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/04/24/zoomify-e-le-novita-di-openlayers-2-9/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/zoomify_OL2-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/04/zoomify_OL2.jpg" medium="image">
+			<media:title type="html">Openlayers vieer per Zoomify</media:title>
+			<media:description type="html">Openlayers vieer per Zoomify</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/zoomify_OL2-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/04/zoomify_flash.jpg" medium="image">
+			<media:title type="html">Zoomify Flash Viewer</media:title>
+			<media:description type="html">Zoomify Flash Viewer</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/04/zoomify_flash-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>jQuery e OpenLayers: agitare prima dell’uso…</title>
+		<link>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/</link>
+		<comments>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/#comments</comments>
+		<pubDate>Mon, 01 Mar 2010 08:40:35 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[Geosilk]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1747</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da Linfiniti – sono riuscito nell&#8217;intento. Per chi non lo sapesse, jQuery è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da <a href="http://linfiniti.com/2010/02/fancy-map-toolbar-for-openlayers/" target="_blank">Linfiniti</a> – sono riuscito nell&#8217;intento.</p>
+	<p>Per chi non lo sapesse, <a href="http://jquery.org/" target="_blank">jQuery</a> è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di facile comprensione.<br />
+Il framework è rilasciato con doppia licenza: MIT e GPL.<br />
+I motivi per usare jQuery nei propri progetti non mancano di certo: comunità attiva, disponibilità di molti temi e ottimi plugin, compatibilità e leggerezza sono i primi che mi vengono in mente.</p>
+	<p>In questo articolo vedremo come costruire una mappa online sfruttando jQuery UI e OpenLayers.<br />
+Il <a href="http://blog.spaziogis.it/static/jquerymap/" target="_blank">risultato</a> della &#8220;fusione&#8221; è un client dotato di funzionalità di base come zoom, pan, misurazione delle distanze e vari layer di sfondo intercambiabili.<br />
+Si tratta, in pratica, di un template da cui partire per sviluppare applicazioni di web-mapping vere e proprie.</p>
+	<p style="text-align: center;"><a title="Demo JQuery UI | OpenLayers di Alessio Di Lorenzo" href="http://blog.spaziogis.it/static/jquerymap/" target="_blank"><img class="aligncenter size-full wp-image-1801" style="border: 0pt none;" title="jquery_openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" alt="jquery_openlayers" width="500" height="375" /></a></p>
+	<p>Per  creare il client dell&#8217;esempio abbiamo bisogno di:</p>
+	<ul>
+	<li><a href="http://openlayers.org" target="_blank">OpenLayers</a></li>
+	<li><a href="http://jqueryui.com" target="_blank">jQuery UI</a>, pensato per creare widget personalizzati con jQuery</li>
+	<li><a href="http://layout.jquery-dev.net/index.cfm" target="_blank">jQuery UI.Layout</a>, un plugin ispirato al <a href="http://extjs.com/deploy/dev/examples/layout/complex.html" target="_blank">border layout</a> di ExtJs</li>
+	<li><a href="http://craigsworks.com/projects/qtip/" target="_blank">qTip</a>, un plugin per modellare dei tooltip avanzati</li>
+	</ul>
+	<p>Ho già raccolto il tutto in <a href="http://blog.spaziogis.it/static/jquerymap/jquerymap.zip" target="_blank">questo</a> archivio .zip. Qui dentro, oltre alle librerie, si trova la totalità dei file che compongono il client. Vi basta quindi cliccare sul link per avere il template sul vostro computer, pronto all&#8217;uso e/o ad essere trasformato come volete.<br />
+Vi invito però a dare lo stesso un&#8217;occhiata alla <a href="http://jqueryui.com/download" target="_blank">pagina di download</a> di jQuery UI: noterete che è possibile modificare radicalmente il pacchetto prima di scaricarlo. Potete includere le sole componenti utili ai vostri scopi e scegliere tra vari temi già pronti o uno composto da voi con <a href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a>.<br />
+Io ho fatto solo qualche semplice modifica al tema UI-Darkness (in questo periodo non mi piacciono i bordi arrotondati&#8230;) ma, come dicevo, si può fare molto di più. Provare per credere.</p>
+	<p>Ora un po&#8217; di anatomia.<br />
+Scompattato l&#8217;esempio, è bene posare lo sguardo su alcune delle directory e dei file compresi al suo interno.</p>
+	<h3>jsLib</h3>
+	<p>E&#8217; la directory contenente tutte le librerie elencate in precedenza, necessarie al funzionamento del template.</p>
+	<h3>index.html</h3>
+	<p>Nella sezione <strong>header</strong> sono referenziate le librerie utilizzate, i fogli di stile e i file javascript.<br />
+Nel <strong>body</strong> è possibile notare che l&#8217;attributo class di molti degli elementi della pagina (div, button, span, ecc.) è parecchio popolato. Questo è il metodo con cui jQuery UI e jQueryUI.Layout si &#8220;ancorano&#8221; alla pagina web.<br />
+Per comprendere meglio vi rimando alla <a href="http://layout.jquery-dev.net/demos.cfm" target="_blank">pagina degli esempi</a> di jQuery UI.Layout e a <a href="http://www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/" target="_blank">questo articolo</a> che spiega in maniera egregia la composizione della toolbar e dei suoi pulsanti.</p>
+	<h3>jsFunc/mappa.js</h3>
+	<p>Contiene la mappa realizzata con OpenLayers.<br />
+Nella funzione di inizializzazione (initMap) richiamata al caricamento della pagina, ci sono, tra le altre cose, i controlli collegati ai bottoni della toolbar.</p>
+	<h3>jsFunc/layout.js</h3>
+	<p>In questo script, con poco più di 40 righe di codice, jQuery UI e i suoi plugin definiscono Il layout dell&#8217;applicazione, il tema, il comportamento e l&#8217;aspetto di bottoni e tooltip.</p>
+	<h3>Css/style.css</h3>
+	<p>A parte qualche piccola &#8220;frivolezza&#8221;  come <a href="http://projects.opengeo.org/geosilk" target="_blank">queste</a> (a mio giudizio) bellissime icone, in questo foglio di stile sono descritte le regole fondamentali per la corretta presentazione del layout e della toolbar creati tramite jQuery UI.</p>
+	<p>Ecco, questo è grossomodo ciò che bisogna sapere per iniziare a studiare i mille modi di mescolare le potenzialità di jQuery a quelle di OpenLayers.<br />
+Fondamentale, come sempre, è il ricorso alla documentazione ufficiale dei vari progetti e al supporto offerto dalla comunità.<br />
+Per chiudere segnalo anche due guide in italiano, estremamente ben fatte ed utilissime per avvicinarsi a jQuery e jQuery UI. Entrambe sono firmate <a href="http://html.it" target="_blank">HTML.it</a>:<br />
+<a href="http://javascript.html.it/guide/leggi/168/guida-jquery/" target="_blank">Guida a jQuery</a><br />
+<a href="http://javascript.html.it/guide/leggi/179/guida-jquery-ui/" target="_blank">Guida a jQuery UI</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/">jQuery e OpenLayers: agitare prima dell’uso…</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" medium="image">
+			<media:title type="html">jquery_openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>GeoMAPpalermo &#124; esprimi il tuo parere sulle azioni di trasformazione urbane</title>
+		<link>http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/</link>
+		<comments>http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/#comments</comments>
+		<pubDate>Sun, 14 Feb 2010 18:19:37 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[blog]]></category>
+		<category><![CDATA[città]]></category>
+		<category><![CDATA[mashup]]></category>
+		<category><![CDATA[mobilità]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1707</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoMAPpalermo+%7C+esprimi+il+tuo+parere+sulle+azioni+di+trasformazione+urbane&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/&amp;rft.language=English"></span>
+Ho ricevuto questo contributo da Claudio Schifani e Giulio Di Chiara, e lo pubblico molto volentieri perché parla di temi a me molto vicini; sia in coordinate, che &#8220;con il cuore e con la mente&#8221;  Claudio ha &#8220;conosciuto&#8221; questo blog tempo fa per le imprevedibili vie del web, e ci siamo incontrati al GISDay (che [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoMAPpalermo+%7C+esprimi+il+tuo+parere+sulle+azioni+di+trasformazione+urbane&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<div class="ndr">Ho ricevuto questo contributo da <strong>Claudio Schifani</strong> e <strong>Giulio Di Chiara</strong>, e lo pubblico molto volentieri perché parla di temi a me molto vicini; sia in coordinate, che &#8220;con il cuore e con la mente&#8221;  <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_biggrin.gif' alt=':-D' class='wp-smiley' /><br />
+Claudio ha &#8220;conosciuto&#8221; questo blog tempo fa per le imprevedibili vie del web, e ci siamo incontrati al <a title="GISDay 2009 Palermo" href="http://gisday.consorzioarca.it/index.html" target="_blank">GISDay</a> (che ho contribuito ad organizzare) nel Novembre del 2009. E&#8217; stato un incontro emozionante in cui mi ha fatto i complimenti per la giornata e per questo blog di cui mi prendo cura insieme ad Alessio, Antonio, Gerlando, Pietro e Sergio (presto delle new entry). Mi ha raccontato che per realizzare <strong>GeoMAPpalermo</strong> (il progetto di cui si parla in questo post) gli è stato utile leggere gli articoli di TANTO; queste cose sono tra quelle che mi danno più piacere e soddisfazione, e che conservo come &#8220;armi emotive segrete&#8221; da usare nei momenti di difficoltà.<br />
+Giulio l&#8217;ho conosciuto tramite Claudio. E&#8217; uno dei creatori di <em>Mobilita Palermo</em>, &#8220;un comitato di sostegno verso quelle opere e progetti che possano incentivare lo sviluppo del capoluogo siciliano, con particolare attenzione al miglioramento della viabilità e della mobilità cittadina&#8221;. Anche con lui siamo prima &#8220;incontrati&#8221; digitalmente e poi per fortuna analogicamente. Con Giulio e Claudio ci siamo infatti riuniti attorno ad un tavolo, per cercare di fare insieme qualcosa per la nostra città, a partire dalle nostre professionalità. Abbiamo iniziato a discuterne e Giulio, oltre ad essere un cittadino che si spende per il bene della propria città, è energia pura  <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> .</p>
+	<p>Mi fermo qui e vi auguro una piacevole lettura.</div>
+	<p>Il 27 ottobre scorso,<br />
+“<span><span><span><em><strong>Mobilita Palermo</strong>” (<a title="Mobilita Palermo" href="http://www.mobilitapalermo.org" target="_blank">http://www.mobilitapalermo.org</a>), riconosciuto portale-blog su progetti, infrastrutture e mobilità nel capoluogo siciliano</em></span><span><span style="font-style: normal;">, in collaborazione con <a title="claudio schifani homepage" href="http://www.claudioschifani.it/cs/Home.html" target="_blank"><em><strong>C</strong></em></a></span></span><span><a title="claudio schifani homepage" href="http://www.claudioschifani.it/cs/Home.html" target="_blank"><em><strong>laudio Schifani</strong></em></a> (Assegnista di ricerca presso lo IUAV di Venezia), ha pubblicato on line un nuovo servizio per la cittadinanza palermitana che desidera interagire e “dire la sua” in tema di mobilità urbana. </span></span></span></p>
+	<h2><span><span>Presentazione</span></span></h2>
+	<p><span><span><span>Mobilita Palermo </span><span><span lang="it-IT">è un</span></span><span><span lang="it-IT"><strong> </strong></span></span><span><span lang="it-IT"><span style="font-weight: normal;">comitato cittadino</span></span></span><span><span lang="it-IT"> che nasce ufficialmente dalla rete, una collaborazione prima virtuale e in seguito tangibile tra persone che nutrono un profondo rispetto per la propria città, con un forte senso civico e voglia di cambiamento.</span></span><span> Uno scopo importante del comitato è quello di monitorare l’avanzamento dei cantieri e “sollecitare” il rispetto delle tempistiche, segnalando un’eventuale cattiva gestione dei lavori o del denaro pubblico stanziato per gli stessi. Basando la sua </span><span><em>mission</em></span><span> sulla forza della community e sul “potere comunicativo” della rete, ha individuato Word Press come la soluzione 2.0 per aprirsi alla condivisione delle informazioni, collaborazione ed integrazione di tutti i cittadini interessati. </span></span></span></p>
+	<p><span><span><span>Claudio Schifani ha svolto una ricerca per l’Università IUAV di Venezia sul tema “Modelli di conoscenza e processi decisionali” presso la scuola di dottorato nel corso in Nuove Tecnologie Informazione Territoriale &amp; Ambiente (</span><a title="corso in Nuove Tecnologie Informazione Territoriale &amp; Ambiente" href="http://www.didatticaericercasit.it" target="_blank"><span><em>http://www.didatticaericercasit.it</em></span></a><span>). La ricerca si è inquadrata nello scenario ormai noto come “Web 2.0” in cui l’informazione geografica assume sempre più carattere di pervasività e di condivisione delle conoscenze, sia esse esperte che locali. Informazione geografica e web rappresentano le componenti del recente scenario caratterizzato dalla sinergia di tre parole chiave, ovvero: territorio/conoscenza/web. Tra i casi di studio analizzati nel corso dell’indagine c’è il progetto ideato e sviluppato dall’Agenzia Europea dell’Ambiente e noto con il nome di “<a title="EyeOnEarth homepage" href="http://eyeonearth.cloudapp.net/" target="_blank">EyeOnEarth</a>”. “Occhio sulla terra” evoca un’azione che è al contempo conoscitiva e collaborativa grazie all’obiettivo dichiarato d’integrazione delle conoscenze “esperte e scientifiche” (dati rilevati dalla EEA) e informazioni rilevate “dal basso”, ovvero dalla comunità che vive o conosce quei luoghi, il tutto aggregato con modalità di </span><span><em>rating</em></span><span> in interfaccia </span><span><em>friendly</em></span><span>. Ciò costituisce un&#8217;interessante rivoluzione culturale e metodologica che ci apre nuove strade per studiare ed approfondire lo sviluppo di quadri di conoscenza del territorio che siano non soltanto condivisi (Web), ma anche integrati (a livello di conoscenze).</span></span></span></p>
+	<h2><span><span><span>Perché GeoMAPpalermo</span></span></span></h2>
+	<p><span><span><span>L’iniziativa è nata e sviluppata totalmente dal basso (Comitato di Cittadini e non un Ente Istituzionale) e pone tra gli obiettivi quello di “testare” la sensibilità della comunità locale nel valutare gli interventi attuati o in programma, in tema di mobilità, da parte dell’Amministrazione Comunale. </span></span></span></p>
+	<p><span><span>Ecco cosa si legge nel Blog di Mobilita Palermo a proposito dello strumento “<a title="geomappalermo" href="http://www.mobilitapalermo.org/mobpa/mobilita_guest.html" target="_blank"><strong>GeoMapPalermo</strong></a>”:</span></span></p>
+	<p style="text-align: center;"><img class="size-full wp-image-1717 aligncenter" title="1" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/1.png" alt="1" width="311" height="183" /></p>
+	<p><span><span>«Voi sarete la voce di Palermo, voi farete parlare la città. Dai vostri interventi sulla mappa, traspariranno le priorità, gli aspetti positivi e quelli negativi di Palermo. Il vostro intervento si traduce in una georeferenziazione, ovvero in un’etichetta localizzata all&#8217;interno di un areale di progetto presente sulla mappa, attraverso la quale potrete esprimere il vostro parere e fornire una breve motivazione, allargando così la conoscenza globale all’interno del “tessuto urbano”.»</span></span></p>
+	<h2><span><span>Come</span></span></h2>
+	<p><span><span><span>GeoMapPalermo è un servizio 2.0 in cui “l’immagine” del territorio ne costituisce il minimo comun denominatore attraverso cui veicolare una duplice informazione</span>:<span> da un lato i progetti urbani (restituiti come areali corredati da link, che puntano a informazioni dettagliate opportunamente aggiornate nel blog ), dall’altro i cittadini che esprimono una valutazione (da molto positiva a negativa). Ecco cosa si legge nel Blog di Mobilita Palermo a proposito dello strumento “GeoMapPalermo”:</span></span></span></p>
+	<p><span><span><span>GeoMapPalermo è un Mashup di Google Maps le cui mappe sono state scelte sia perché costituiscono un “linguaggio geografico” noto anche a soggetti non esperti sia perché TANTO è stato un eccellente “supporto didattico” con i suoi interessantissimi tutorial di implementazione di codice javascript con le mappe di Google. La piattaforma si basa sull’interazione tra un codice javascript per la consultazione ed inserimento di GeoTag e due script PHP per la connessione ad un DB in MySQL. Ciò che ha richiesto maggiore attenzione nello sviluppo dell’applicativo è stata la definizione della struttura dell’unica tabella presente nel DB che avrebbe raccolto le informazioni provenienti dalla comunità, al fine di rispettare lo schema logico delle connessioni tra i temi, i progetti, i soggetti e le valutazioni. La compilazione della scheda allegata a ciascun tag è, pertanto, guidata attraverso l’inserimento di valori preformattati che consentono la restituzione tematica delle informazioni in mappa.</span></span></span></p>
+	<p><span><span><span>Inoltre, è stato posto un importante “vincolo” (non a livello di codice ma di vidimazione del geotag da parte degli amministratori di Mobilita Palermo) di appartenenza ad un areale di progetto sul tema “Mobilità” ed in particolare: Tram, Parcheggi e Passante ferroviario.</span></span></span></p>
+	<p style="text-align: center;"><span><span><span><img class="size-full wp-image-1714 alignnone" title="2" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/2.png" alt="2" width="490" height="265" /></span></span><span><span> </span></span></span></p>
+	<p><span><span><span>Con questo strumento, Mobilita Palermo ha inteso perseguire gli obiettivi che si era posta per l’implementazione nel suo blog del nuovo servizio geografico 2.0: sensibilizzare l’opinione pubblica alla emergente cultura del territorio 2.0 – “territorio parlante” ed esprimere la volontà di testare un sistema di valutazione partecipata “bottom-up” sulle azioni di trasformazione della città. È interessante notare come nel primo mese di vita, la GeoMapPalermo abbia ricevuto oltre 40 geotag (alcuni dei quali sono stati rimossi perché non rispettavano il “vincolo” necessario alla loro accettazione) ed abbia incoraggiato il Comitato “Mobilita Palermo” ad interessarsi nel porre alcuni quesiti a Enti gestori e decisionali (in materia di mobilità) riguardo ad alcune segnalazioni emerse in mappa su questioni relative al progetto Tram ed alla gestione dei nuovi parcheggi urbani.</span></span></span></p>
+	<p><span><span>Un modo innovativo di affrontare tematiche a scala urbana e stimolare l’interesse collettivo sfruttando i moderni strumenti che internet mette a disposizione.</span></span></p>
+	<p style="margin-bottom: 0cm;">
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/">GeoMAPpalermo | esprimi il tuo parere sulle azioni di trasformazione urbane</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=GeoMAPpalermo+%7C+esprimi+il+tuo+parere+sulle+azioni+di+trasformazione+urbane&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-02-14&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/02/14/geomappalermo-esprimi-il-tuo-parere-sulle-azioni-di-trasformazione-urbane/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/1.png" medium="image">
+			<media:title type="html">1</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/1-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/2.png" medium="image">
+			<media:title type="html">2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/2-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Google Street View sbarca con forza in Italia</title>
+		<link>http://blog.spaziogis.it/2010/01/21/google-street-view-sbarca-con-forza-in-italia/</link>
+		<comments>http://blog.spaziogis.it/2010/01/21/google-street-view-sbarca-con-forza-in-italia/#comments</comments>
+		<pubDate>Thu, 21 Jan 2010 14:13:18 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[google street view]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1662</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+Street+View+sbarca+con+forza+in+Italia&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2010-01-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/21/google-street-view-sbarca-con-forza-in-italia/&amp;rft.language=English"></span>
+Google Street View è presente da diverso tempo in Italia, ma oggi ho scoperto che la copertura è decisamente aumentata, specie per due aspetti: la copertura nel meridione d&#8217;Italia (finalmente anche nella mia Palermo) la copertura in zone non soltanto cittadine Il secondo punto è quello che mi sembra più interessante, in quanto sarà possibile [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+Street+View+sbarca+con+forza+in+Italia&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2010-01-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/21/google-street-view-sbarca-con-forza-in-italia/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><strong>Google Street View</strong> è presente da diverso tempo in Italia, ma oggi ho scoperto che la copertura è decisamente aumentata, specie per due aspetti:</p>
+	<ul>
+	<li>la copertura nel meridione d&#8217;Italia (finalmente anche nella mia Palermo)</li>
+	<li>la copertura in zone non soltanto cittadine</li>
+	</ul>
+	<p>Il secondo punto è quello che mi sembra più interessante, in quanto sarà possibile vedere luoghi meravigliosi lungo strade abbandonate da Dio e dagli uomini. Io ho provato ad andare a spiare il <a title="tempio di Segesta su Google Street View" href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=segesta&amp;sll=41.442726,12.392578&amp;sspn=23.612531,39.506836&amp;ie=UTF8&amp;hq=segesta&amp;hnear=Segesta,+91013+Calatafimi-Segesta+TP&amp;ll=37.942708,12.835808&amp;spn=0,359.845676&amp;z=13&amp;layer=c&amp;cbll=37.942217,12.836054&amp;panoid=3MS3Johurrk8d7Rnrn8S5A&amp;cbp=12,253.39,,1,-5.45">Tempio di Segesta</a>, ma lo scatto non è un granché.</p>
+	<p>Qui sotto, in azzurro, la copertura ad oggi. Vado a farmi una passeggiata in campagna  <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+	<p style="text-align: center;"><a title="Un esempio meraviglioso a Mozia (TP)" href="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=37.846664,12.465019&amp;sll=37.838259,12.596512&amp;sspn=0.101677,0.222988&amp;ie=UTF8&amp;ll=37.847435,12.46488&amp;spn=0.006354,0.013937&amp;z=17&amp;layer=c&amp;cbll=37.847513,12.464924&amp;panoid=Hy_bEzgM_2ltTWtEJuPu0w&amp;cbp=12,332.4,,0,-0.94" target="_blank"><img class="size-full wp-image-1664 aligncenter" title="google_street_view_italia" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/google_street_view_italia1.png" alt="google_street_view_italia" width="480" height="506" /></a></p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/01/21/google-street-view-sbarca-con-forza-in-italia/">Google Street View sbarca con forza in Italia</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/01/21/google-street-view-sbarca-con-forza-in-italia/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Google+Street+View+sbarca+con+forza+in+Italia&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2010-01-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/21/google-street-view-sbarca-con-forza-in-italia/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/google_street_view_italia1-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/google_street_view_italia1.png" medium="image">
+			<media:title type="html">google_street_view_italia</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/google_street_view_italia1-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Installare MapServer su Windows con Apache (riveduto e corretto)</title>
+		<link>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/</link>
+		<comments>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/#comments</comments>
+		<pubDate>Sat, 09 Jan 2010 12:58:43 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[fwtools]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1602</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+Introduzione A Febbraio del 2006 &#8211; tantissimo tempo fa &#8230; &#8211; ho scritto un piccolo post sull&#8217;installazione di MapServer in ambiente Windows su un sistema in cui fosse già installato un webserver (Apache in particolare). E&#8217; stato un post che ha ricevuto molte letture, ma che ha anche subito qualche &#8220;legnata tecnologica&#8221;. Lo avevo scritto [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<h2>Introduzione</h2>
+	<p>A Febbraio del 2006 &#8211; tantissimo tempo fa &#8230; &#8211; ho scritto un <a title="Installare MapServer su Windows con Apache" href="http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache/" target="_blank">piccolo post</a> sull&#8217;installazione di <strong>MapServer</strong> in ambiente <strong>Windows </strong> su un sistema in cui fosse già installato un webserver (<strong>Apache</strong> in particolare).</p>
+	<p>E&#8217; stato un post che ha ricevuto molte letture, ma che ha anche subito qualche &#8220;legnata tecnologica&#8221;. Lo avevo scritto infatti non dentro il motore di questo blog (WordPress), ma dentro <strong>Writely</strong>.<br />
+Cosa è Writely? E&#8217; nientepopodimeno che l&#8217;applicazione online su cui è basato l&#8217;editor di testo di <a title="Google Docs" href="http://docs.google.com/" target="_blank">Google Docs</a>, comprata per l&#8217;appunto da Google proprio in quell&#8217;anno.<br />
+Ho scritto l&#8217;articolo, ho inserito anche delle immagini d&#8217;aiuto alla comprensione del testo, ed ho pubblicato tutto su questo blog con un click; il testo è stato contestualmente archiviato sui server di TANTO, mentre le immagini sono rimaste sui server di Writely. Questi non sono stati spenti subito e, per diverso tempo, questo vecchio glorioso articolo non ha subito alcuna conseguenza dal passaggio di Writely a Google. Spenti i server, sono sparite le immagini ed in qualche modo anche la leggibilità del post in oggetto. Ho provato a ripescarle dall&#8217;<a title="Internet Archive Wayback Machine" href="http://web.archive.org/web/*/http://blog.spaziogis.it/2006/02/18/installare-mapserver-su-windows-con-apache" target="_blank"><em><strong>Internet Archive Wayback Machine</strong></em></a>, ma senza fortuna.</p>
+	<p>In ogni caso dovevo rimediare da tempo. Avevo rimosso dalla memoria il problema (<em>sorry</em> <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  ), e un commento recente mi ha messo nuovamente davanti alla cruda realtà (grazie riccardo). L&#8217;articolo inoltre è datato anche nei contenuti, e valeva la pena dargli una rinfrescata.</p>
+	<h2><span id="more-1602"></span>MapServer su Windows</h2>
+	<p>Installare MapServer è cosa semplice in qualsiasi ambiente (forse il massimo è su Linux); può sembrare meno semplice farlo su server in produzione con diversi servizi già installati e configurati, specie se vogliamo usare degli <em>installer</em> grafici e magari chiudere gli occhi.</p>
+	<p>I file binari per Windows sono contenuti in questi tre pacchetti:</p>
+	<ul>
+	<li><a href="http://trac.osgeo.org/osgeo4w/">OSGeo4W</a></li>
+	<li><a href="http://maptools.org/ms4w/">MS4W</a></li>
+	<li><a href="http://fwtools.maptools.org/">FWTools</a></li>
+	</ul>
+	<p>In questa guida sfrutteremo <strong>FWTools</strong>, di cui abbiamo parlato <a title="FWTools su TANTO" href="http://www.google.com/cse?cx=015822840187590198668%3Advzakmzb60k&amp;ie=UTF-8&amp;q=fwtools&amp;sa=Cerca&amp;siteurl=www.google.com%2Fcse%2Fhome%3Fcx%3D015822840187590198668%3Advzakmzb60k" target="_blank">diverse volte</a>.</p>
+	<h2>Installazione passo passo di MapServer</h2>
+	<p>Il prerequisito è quello di installare e scaricare FWTools per Windows dal <a title="FWTools homepage" href="http://fwtools.maptools.org/" target="_blank">sito ufficiale</a>, e poi lanciarne l&#8217;installazione. Io di solito lo faccio scegliendo le opzioni visibili in figura.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1609 aligncenter" title="install fwtools on windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows.png" alt="install fwtools on windows" width="426" height="295" /></p>
+	<p style="text-align: left;">I file vengono estratti di default nella cartella &#8220;<strong><span style="color: #000000;">C:\Programmi\FWToolsx.x.x</span></strong>&#8220;. L&#8217;eseguibile di MapServer &#8211; mapserv.exe &#8211; è uno dei file a corredo di FWTools e lo troverete nella cartella &#8220;<span style="color: #000000;"><strong>C:\Programmi\FWToolsx.x..x\bin</strong></span>&#8220;.<br />
+Copiatelo nella<strong> cartella CGI di Apache</strong> (o in una qualsiasi cartella in cui il web server può lanciare applicazioni di questo tipo). Sul PC da cui scrivo la cartella è &#8220;C:\Programmi\Apache Software Foundation\Apachex.x\cgi-bin&#8221;
+</p>
+	<p style="text-align: left;">Copiare l&#8217;eseguibile non basta perché ci sono diverse dipendenze da rispettare. Per soddisfarle basterebbe copiare tutti i file contenuti in &#8220;<span style="color: #000000;">C:\Programmi\FWToolsx.x..x\bin</span>&#8221; nella cartella CGI, ma non è una procedura &#8220;pulita&#8221;. E&#8217; più corretto impostare delle <strong>variabili d&#8217;ambiente</strong>.</p>
+	<p style="text-align: left;">La prima è il PATH, in cui inseriremo proprio la cartella &#8220;<span style="color: #000000;">C:\Programmi\FWToolsx.x..x\bin</span>&#8220;. Per farlo basta aprire le &#8220;Proprietà del sistema&#8221; di Windows  e cliccare su &#8220;Variabili d&#8217;ambiente&#8221;.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1612 aligncenter" title="variabili ambiente windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows.png" alt="variabili ambiente windows" width="419" height="534" /></p>
+	<p style="text-align: left;">Tra quelle già definite troverete proprio PATH. Modificatela inserendo nel campo &#8220;Valore variabile&#8221;, a fine riga, il percorso della cartella bin di FWTools: <strong>inserite prima un &#8220;;&#8221;</strong>.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1614 aligncenter" title="windows path variabile 2" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2.png" alt="windows path variabile 2" width="384" height="430" /></p>
+	<p><span style="color: #000000;">C&#8217;è da impostare ancora una variabile d&#8217;ambiente in quanto MapServer deve &#8220;sapere&#8221; dove sono i file in cui sono definiti i sistemi di proiezione. La cartella in questo caso è </span>&#8220;<strong>C:\Programmi\FWToolsx.x.x\proj_lib</strong>&#8221; e la variabile  è <strong>PROJ_LIB</strong>.</p>
+	<p>Questa (di solito) non è &#8211; come PATH &#8211; già esistente e la dovrete creare cliccando sul tasto &#8220;Nuovo&#8221; ed inserire i valori come nella figura sottostante.</p>
+	<p style="text-align: center;"><img class="size-full wp-image-1615 aligncenter" title="PROJ_LIB MapServer Windows" src="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows.png" alt="PROJ_LIB MapServer Windows" width="384" height="430" /></p>
+	<p style="text-align: left;">A questo punto riavviate il PC, aprite il <em>browser</em> e lanciate un URL di questo tipo: <strong>http://vostrosito/cgi-bin/mapserv.exe</strong></p>
+	<p style="text-align: left;">Se avrete come risposta la stringa &#8220;<strong>No query information to decode. QUERY_STRING is set, but empty.</strong>&#8220;, vorrà dire che tutto è andato a buon fine.</p>
+	<p style="text-align: left;">Non vi resta che creare delle belle applicazioni di web-mapping.</p>
+	<p style="text-align: left;">
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/">Installare MapServer su Windows con Apache (riveduto e corretto)</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/feed/</wfw:commentRss>
+		<slash:comments>21</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Installare+MapServer+su+Windows+con+Apache+%28riveduto+e+corretto%29&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-01-09&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/01/09/installare-mapserver-su-windows-con-apache-riveduto-e-corretto/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows.png" medium="image">
+			<media:title type="html">install fwtools on windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/install_fwtools_windows-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows.png" medium="image">
+			<media:title type="html">variabili ambiente windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/variabili-ambiente-windows-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2.png" medium="image">
+			<media:title type="html">windows path variabile 2</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/windows-path-variabile-2-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows.png" medium="image">
+			<media:title type="html">PROJ_LIB MapServer Windows</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/01/PROJ_LIB-MapServer-Windows-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

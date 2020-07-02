@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; relazioni</title>
+	<atom:link href="http://blog.spaziogis.it/tag/relazioni/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>QGIS, relazioni, moduli e widget, illustrati con un semplice caso d&#8217;uso</title>
+		<link>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/</link>
+		<comments>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/#comments</comments>
+		<pubDate>Mon, 28 Apr 2014 06:23:31 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[moduli]]></category>
+		<category><![CDATA[qgis]]></category>
+		<category><![CDATA[relazioni]]></category>
+		<category><![CDATA[widget]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6277</guid>
+		<description><![CDATA[Le relazioni in QGIS consentono di sviluppare dei casi d’uso applicativi molto interessanti; una delle ragioni del post è quella di contribuire alla diffusione della conoscenza del tema.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS%2C+relazioni%2C+moduli+e+widget%2C+illustrati+con+un+semplice+caso+d%26%238217%3Buso&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-04-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Le <strong>relazioni </strong>in <strong>QGIS </strong>consentono di sviluppare dei casi d’uso applicativi molto interessanti; una delle ragioni del post è quella di contribuire alla diffusione della conoscenza del tema.</p>
+	<h2>Il caso d’uso: le strade e la loro manutenzione</h2>
+	<p>Immaginate di essere i gestori del network della rete stradale della vostra città e di volere utilizzare QGIS (insieme ad altri strumenti) per farlo. Avete quindi un layer cartografico con tutte le strade (e i relativi attributi) e la necessità di associare a questo il dataset delle manutenzioni che vengono realizzate nei vari componenti della rete.</p>
+	<p>A seguire vedremo come gestire la cosa con QGIS, le relazioni e con il comodo supporto delle <strong>maschere </strong>di input personalizzabili.</p>
+	<h2>Chiavi e relazione</h2>
+	<p>Per mettere in relazione il dataset delle manutenzioni con quello delle strade, potrete usare il meccanismo classico delle <strong>chiavi</strong>.</p>
+	<p>Il layer delle strade sarà caratterizzato da un campo con un codice identificativo numerico univoco per ogni strada &#8211; la <strong>chiave primaria</strong> - denominato nell’esempio di questo post “pkuid”.</p>
+	<p>Il database delle manutenzioni &#8211; che è una semplice tabella senza alcun attributo spaziale &#8211; è composto dai campi &#8220;PK_UID&#8221;, &#8220;data&#8221;, &#8220;responsabile&#8221;, &#8220;compagnia&#8221;, &#8220;note&#8221;; aggiungeremo un campo che contenga il codice identificativo della strada a cui la manutezione è riferita. Questo campo farà da <strong>chiave esterna</strong> e si chiamerà &#8220;ce_pkuid&#8221;.</p>
+	<p>Il nostro modello prevede, per semplicità, che ad ogni strada sia possibile associare una o più manutenzioni; una classica <strong>relazione </strong>1:N impostata sulle due chiavi numeriche di cui sopra.</p>
+	<h2>Layer</h2>
+	<p>Il layer delle strade ha la struttura sottostante, in cui sono stati introdotti dei campi per raccogliere il nome della Via, il relativo tipo (Corso, Viale, Via, ecc.) e il codice identificativo comunale.</p>
+	<p><img class="alignnone size-full wp-image-6280 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02.png" alt="image02" width="339" height="141" /></p>
+	<p>Quello delle manutenzioni conterrà un codice identificativo numerico univoco per ogni elemento, un campo in cui inserire la data dell’intervento di manutenzione, il nome del responsabile, il nome della compagnia incaricata e un campo per le note.</p>
+	<p><img class="alignnone size-full wp-image-6288 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10.png" alt="image10" width="425" height="201" /></p>
+	<h2>Definire la relazione</h2>
+	<p>La relazione tra i due dataset si definisce a livello di “<strong>Proprietà di progetto</strong>”. Aperto il tab <strong>Relations </strong>si farà click su “Add Relation” e si imposteranno i seguenti parametri:</p>
+	<ul>
+	<li><strong>Name</strong>, per dare un nome alla relazione;</li>
+	<li><strong>Referencing Layer (Child)</strong>,<strong> </strong>per il nome del layer che contiene la chiave esterna;</li>
+	<li><strong>Referencing Field</strong>,<strong> </strong>per il nome della chiave esterna;</li>
+	<li><strong>Referencing Layer (Parent)</strong>, per il nome del layer che contiene la chiave primaria;</li>
+	<li><strong>Referencing Field</strong>,<strong> </strong>per il nome della chiave primaria;</li>
+	<li><strong>Id</strong>, che viene usato internamente da QGIS, deve essere univoco e fa da indice della tabella di relazione tra chiave primaria e chiave esterna.</li>
+	</ul>
+	<p><img class="aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image00.png" alt="image00" width="500" height="288" /></p>
+	<p>A relazione definita, questa apparirà nella finestra di dialogo:</p>
+	<p><img class="alignnone size-full wp-image-6281 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03.png" alt="image03" width="500" height="243" /></p>
+	<h2>Moduli</h2>
+	<p>Una volta definita la relazione, se ne avrà evidenza anche nel <strong>modulo </strong>di inserimento/modifica degli attributi del dataset delle strade. La visualizzazione a moduli in QGIS è molto utile per alcuni task di verifica ed inserimento dei dati, ed è molto <a href="http://www.qgis.org/it/docs/training_manual/create_vector_data/forms.html" target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">personalizzabile</span></span></a>.</p>
+	<p><img class="alignnone size-full wp-image-6283 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05.png" alt="image05" width="500" height="278" /></p>
+	<p>La tabella della manutenzioni sarà visibile in un <strong>widget </strong>del modulo dello strade, e sopra questa saranno visibili cinque <strong>pulsanti</strong>:</p>
+	<ol>
+	<li>la <strong>matita</strong>, per attivare la modifica della tabella delle manutenzioni;</li>
+	<li>il “<strong>+</strong>” per aggiungere un nuovo record alla tabella, che di default verrà associato all’elemento attivo del layer “strade”;</li>
+	<li>il tasto “<strong>x</strong>” per cancellare il record selezionato della tabella “manutenzioni”;</li>
+	<li>il tasto “<strong>catenella</strong>” che aprirà una nuova finestra di dialogo con il quale associare qualsiasi manutenzione presente alla strada corrente;</li>
+	<li>il tasto “<strong>rompi</strong> <strong>catenella</strong>” che rimuoverà l’associazione tra la manutenzione selezionata e la strada corrente;</li>
+	<li>ed infine, a destra, ci sono due pulsanti per passare dalla vista “tabella” a quella modulo.</li>
+	</ol>
+	<p>Anche per il dataset delle manutenzioni è possibile attivare il modulo di inserimento/modifica degli attributi, in modo che dia conto visivamente della relazione con il layer delle strade.</p>
+	<p>A partire dalle proprietà del layer manutenzioni, bisognerà modificare il widget del campo che fa da chiave esterna.</p>
+	<p><img class="alignnone size-full wp-image-6282 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04.png" alt="image04" width="500" height="244" /></p>
+	<p>E scegliere come tipo di widget “Relation Reference”, utilizzando i parametri visibili nella figura sottostante:</p>
+	<p><img class="alignnone size-full wp-image-6286 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08.png" alt="image08" width="500" height="433" /></p>
+	<p>Una volta scelto questo speciale widget, sarà possibile leggere la relazione tra i due layer anche nel modulo delle manutezioni:</p>
+	<p style="text-align: center;"><img src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image06.png" alt="image06" width="500" height="537" /></p>
+	<h2>Note finali (riferimenti, file esempio e video demo)</h2>
+	<p>Questo articolo è quasi una traduzione di <a href="http://blog.vitu.ch/10112013-1201/qgis-relations" target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">questo</span></span></a> di Matthias Kuhn. Sono caduto nel suo bel blog, perché tra i tipi di widget accessibili nelle proprietà dei campi di un layer ho scoperto il tipo “Relation Reference”. A me era completamente ignoto; ho provato a cercare nella <a href="http://www.qgis.org/en/docs/user_manual/working_with_vector/vector_properties.html#fields-menu" target="_blank"><span style="color: #1155cc;"><span style="text-decoration: underline;">documentazione</span></span></a>, senza però trovarne traccia. Il post di Matthias mi è sembrata una piccola perla e ho creduto utile clonarlo.</p>
+	<p>Da <a href="http://blog.spaziogis.it/wp-content/uploads//2014/04/qgis_e_le_relazioni.zip"><span style="color: #1155cc;"><span>qui</span></span></a> potrete scaricare un <strong>file di progetto</strong> d’esempio basato su QGIS 2.2 e come formato dati su SpatiaLite. Questo ultimo farà da contenitore unico sia del file spaziale (le strade), che della tabella delle manutenzioni.</p>
+	<p>Nel progetto, per i due moduli, ho impostato altri widget diversi da quello di default (“Line edit”); alcuni sono di grande comodità come quello per il campo “data” delle manutenzioni (widget di tipo “Calendar”), o l’elenco controllato del campo “Tipo” (widget di tipo “Value map”) del layer delle strade.</p>
+	<p><img class="alignnone size-full wp-image-6294 aligncenter" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011.png" alt="image01" width="497" height="243" /></p>
+	<p>Per chi vuole vedere la cosa in azione ho preparato un <a href="https://www.youtube.com/watch?v=KzLL0npcUN4&amp;feature=youtu.be&amp;hd=1" target="_blank"><span style="color: #1155cc;"><span><strong>piccolo video</strong></span></span></a>, che non ha alcuna pretesa didattica. Vuole essere soltanto una carrelata visuale rapida di alcune delle cose descritte in questo post.</p>
+	<p><a href="https://www.youtube.com/watch?v=KzLL0npcUN4&amp;feature=youtu.be&amp;hd=1" target="_blank"><img class="alignnone size-full wp-image-6285 aligncenter" style="border: 0px;" src="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07.png" alt="image07" width="500" height="305" /></a></p>
+	<p>Un’ultima annotazione finale: il <strong>caso d’uso</strong> descritto è <strong>molto semplificato</strong> e non tiene conto di tutte i requisiti di un’applicazione complessa come la gestione di un network stradale. Mi è stato utile come esempio per scrivere di QGIS, relazioni, moduli e widget.</p>
+	<p style="background-color: #eeeeff; border-radius: 5px 5px; -moz-border-radius: 5px 5px; -webkit-border-radius: 5px 5px; padding: 8px 8px 8px 8px; margin: 5px 0px 5px 0px; border: 1px solid #999999; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%;"><strong>NdR</strong>: <strong>Salvatore Fiandaca</strong>, prendendo spunto da questo post, ne ha creato una sorta di versione aggiornata che trovate <strong><a href="https://pigrecoinfinito.wordpress.com/2016/01/02/qgis-relazioni-moduli-widget-e-report/" target="_blank">qui</a></strong>. Ringraziamo Totò e consigliamo la lettura <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/">QGIS, relazioni, moduli e widget, illustrati con un semplice caso d&#8217;uso</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/feed/</wfw:commentRss>
+		<slash:comments>20</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=QGIS%2C+relazioni%2C+moduli+e+widget%2C+illustrati+con+un+semplice+caso+d%26%238217%3Buso&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2014-04-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/04/28/qgis-relazioni-e-widget-illustrati-con-un-semplice-caso-duso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02-150x141.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02.png" medium="image">
+			<media:title type="html">image02</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image02-150x141.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10.png" medium="image">
+			<media:title type="html">image10</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image10-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image00.png" medium="image">
+			<media:title type="html">image00</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03.png" medium="image">
+			<media:title type="html">image03</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image03-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05.png" medium="image">
+			<media:title type="html">image05</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image05-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04.png" medium="image">
+			<media:title type="html">image04</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image04-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08.png" medium="image">
+			<media:title type="html">image08</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image08-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image06.png" medium="image">
+			<media:title type="html">image06</media:title>
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011.png" medium="image">
+			<media:title type="html">image01</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image011-150x150.png" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07.png" medium="image">
+			<media:title type="html">image07</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/04/image07-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il piacere grande di essere arrivati sino a qui</title>
+		<link>http://blog.spaziogis.it/2011/09/19/il-piacere-grande-di-essere-arrivati-sino-a-qui/</link>
+		<comments>http://blog.spaziogis.it/2011/09/19/il-piacere-grande-di-essere-arrivati-sino-a-qui/#comments</comments>
+		<pubDate>Mon, 19 Sep 2011 19:46:36 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[compleanno]]></category>
+		<category><![CDATA[comunità]]></category>
+		<category><![CDATA[persone]]></category>
+		<category><![CDATA[relazioni]]></category>
+		<category><![CDATA[tanto]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4141</guid>
+		<description><![CDATA[In un post di alcuni fa in cui davo il benvenuto a Pietro, sostenevo che il successo di un Blog fosse avere un nuovo autore. Adesso con noi c'è anche Andrea Antonello: sarà una grande risorsa per i nostri lettori, e quindi (per me) una conferma di questa tesi. Ma la cosa più bella, il successo che per ora mi sembra il più grande, è che questo gruppo ha creato le condizioni che portassero ]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+piacere+grande+di+essere+arrivati+sino+a+qui&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/19/il-piacere-grande-di-essere-arrivati-sino-a-qui/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>In questo post parlerò un po’ di TANTO, dei suoi autori e di come stanno <strong>insieme</strong>. Non sarà un contributo dei “nostri”, ma è in un certo senso <strong>necessario</strong>.<br />
+A giugno del 2011 questo spazio ha festeggiato il suo <strong>sesto compleanno</strong> e, come ho detto in altre occasioni, non avrei nemmeno immaginato di arrivare alla prima candelina; figuriamoci la sesta. Ogni anno, in corrispondenza della ricorrenza, vorrei sempre scrivere un post celebrativo, perché mi piacciono le cerimonie e soprattutto i rituali, perché fanno “un giorno diverso dagli altri giorni, un&#8217;ora dalle altre ore”. Ma non sono quasi mai riuscito a rispettare le date; almeno quelle ufficiali.<br />
+Per (mia) fortuna, almeno una volta all’anno, per una ragione o per un’altra, viene sempre un momento, in cui riesco a fissare sulla “nuvola” alcuni pensieri su questo cammino iniziato più di sei anni fa.<br />
+Non vi parlerò di TANTO come blog, delle sue statistiche di accesso, delle soddisfazioni professionali e personali che ci siamo tolti utilizzandolo come interfaccia con il mondo esterno. Non è poco, ma è riduttivo rispetto a quanto gli autori di TANTO hanno acquisito e costruito insieme: essere soprattutto una (piccola e sgangherata) <strong>comunità</strong>, un insieme di persone che hanno comunione di vita sociale (purtroppo soprattutto virtuale) e che condividono alcuni comportamenti e interessi. In questa ho avuto l&#8217;opportunità di crescere professionalmente e soprattutto umanamente, e continuo sempre a stupirmi di quanto siano robuste le cose che ci uniscono e di quanto mi stimolino quelle che ci dividono.<br />
+In questi sei anni siamo cresciuti in numero,  soprattutto siamo diventati un gruppo più sano e più maturo. Questo stato di salute ci da l’opportunità di avere una certa facilità nel creare bei <strong>rapporti con le persone</strong>, perché il benessere e il benestare sono in qualche modo contagiosi e magnetici. E anche noi siamo ovviamente sensibili al magnetismo.<br />
+Una di queste persone, con la quale da diverso tempo in qualche modo ci specchiamo, quest’estate &#8211; parlando della sua azienda &#8211; ci ha scritto:</p>
+	<blockquote><p>L’ho costruita con questa idea, la <strong>condivisione</strong>, la <strong>libertà</strong> e il <strong>rispetto</strong>. Nella speranza di costruire una rete di persone delle quali fidarsi. Che non si muovano solo per una fattura, ma anche per un &#8220;bene&#8221; comune, senza pressioni, ognuno dando quello che sa fare meglio, quando può. E ancora oggi, nello scriverlo, sembra una cosa così semplice. E&#8217; per quello che ci credo. E&#8217; un &#8220;motto&#8221; semplice e incredibilmente potente.</p></blockquote>
+	<p>Non si “vive” di queste frasi, ma incontrare questo tipo di persone, scambiare con loro idee e provare a creare insieme qualcosa di concreto, sicuramente fa stare meglio.<br />
+Abbiamo allora deciso di invitarla a fare parte della nostra tavola e ha accettato. Si tratta di <a title="Andrea Antonello" href="http://www.linkedin.com/in/andreaantonello" target="_blank"><strong>Andrea Antonello</strong></a> e questo post vale anche come benvenuto ufficiale da parte di tutta la redazione.<br />
+Andrea non ha bisogno di presentazioni, è uno dei guru della geomatica italiana (e oltre), una “cintura nera” di Java, specializzato nello sviluppo di applicazioni spaziali. E’ il creatore (tra le altre cose) di <a title="JGrass homepage" href="http://code.google.com/p/jgrass/" target="_blank">JGrass</a> e <a title="Geopaparazzo homepage" href="https://market.android.com/details?id=eu.hydrologis.geopaparazzi" target="_blank">Geopaparazzi</a>, ed uno dei soci di <a title="hydrologis homepage" href="http://www.hydrologis.com" target="_blank">HydroloGIS</a>.<br />
+Siamo in contatto da alcuni anni: al primo incontro “intenso” che abbiamo avuto (purtroppo soltanto una video conferenza di un’ora), mi colpì per una grandissima disponibilità e competenza. Con lui c’era la sua socia <a title="Silvia Franceschi" href="http://www.linkedin.com/profile/view?id=47968893&amp;trk=tyah" target="_blank"><strong>Silvia Franceschi</strong></a>, ed anche lei mostrò le medesime virtù.</p>
+	<p>In un post di alcuni fa in cui davo il benvenuto a <strong><a title="Il successo di un blog, un nuovo autore" href="http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/" target="_blank">Pietro</a></strong>, sostenevo che il successo di un Blog fosse avere un nuovo autore. Avere Andrea con noi sarà una grande risorsa per i nostri lettori, e quindi (per me) una conferma di questa tesi. Ma la cosa più bella, il successo che per ora mi sembra il più grande, è che questo gruppo ha creato le condizioni per cui tutto questo accadesse.</p>
+	<p>Tutto qui, poco, ma tanto.
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/09/19/il-piacere-grande-di-essere-arrivati-sino-a-qui/">Il piacere grande di essere arrivati sino a qui</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/09/19/il-piacere-grande-di-essere-arrivati-sino-a-qui/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+piacere+grande+di+essere+arrivati+sino+a+qui&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2011-09-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/09/19/il-piacere-grande-di-essere-arrivati-sino-a-qui/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>La mappa delle Scienze</title>
+		<link>http://blog.spaziogis.it/2009/03/23/la-mappa-delle-scienze/</link>
+		<comments>http://blog.spaziogis.it/2009/03/23/la-mappa-delle-scienze/#comments</comments>
+		<pubDate>Mon, 23 Mar 2009 05:00:36 +0000</pubDate>
+		<dc:creator>Pietro Blu Giandonato</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[clickstream]]></category>
+		<category><![CDATA[relazioni]]></category>
+		<category><![CDATA[reti]]></category>
+		<category><![CDATA[scienze]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=748</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+mappa+delle+Scienze&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2009-03-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/23/la-mappa-delle-scienze/&amp;rft.language=English"></span>
+Come ci raccontano gli autori nell&#8217;articolo pubblicato su PLoS ONE, è stata realizzata attraverso l&#8217;implementazione di un &#8220;modello clickstream&#8221; &#8211; una Catena di Markov di primo ordine &#8211; estraendo le sequenze di più di un miliardo di interazioni degli utenti dai log di siti web, biblioteche e riviste che si occupano a vario titolo di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+mappa+delle+Scienze&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2009-03-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/23/la-mappa-delle-scienze/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<div class="mceTemp">
+<dl id="attachment_749" class="wp-caption alignnone" style="width: 490px;">
+<dt class="wp-caption-dt"><a title="Map of science derived from clickstream data" href="http://blog.spaziogis.it/wp-content/uploads//2009/03/map-of-science-derived-from-clickstream-data.png" target="_blank"><img class="size-full wp-image-749" title="journalpone0004803g005" src="http://blog.spaziogis.it/wp-content/uploads//2009/03/journalpone0004803g005.png" alt="La mappa delle Scienze" width="480" height="457" /></a></dt>
+</dl>
+</div>
+	<p>Come ci raccontano gli autori nell&#8217;articolo pubblicato su <a href="http://www.plosone.org/article/info:doi/10.1371/journal.pone.0004803" target="_blank">PLoS ONE</a>, è stata realizzata attraverso l&#8217;implementazione di un &#8220;<a href="http://en.wikipedia.org/wiki/Clickstream" target="_blank"><span>modello </span></a><span><a href="http://en.wikipedia.org/wiki/Clickstream" target="_blank">clickstream</a>&#8221; &#8211; un</span><span>a <a href="http://en.wikipedia.org/wiki/Markov_process" target="_blank">Catena di Markov</a></span><span> di primo ordine &#8211; estraendo le sequenze di più di un miliardo di interazioni degli utenti dai log di siti web, biblioteche e riviste che si occupano a vario titolo di Scienze umane, mediche, matematiche, fisiche e naturali. L&#8217;interrelazione tra le varie discipline è stata ricostruita catalogando le citazioni esterne delle singole pubblicazioni.</span></p>
+	<p><span>Il modello </span><span>clickstream </span><span>è stato validato mediante confronto con il </span><span>thesaurus </span><span>di architettura e arte </span><span>del <a href="http://www.getty.edu/research/conducting_research/vocabularies/" target="_blank">Getty Research Institute</a>. Il risultato è visualizzato come una rete che descrive le relazioni intercorrenti tra i vari settori scientifici e chiarisce le connessioni tra le scienze sociali, quelle umanistiche passando per le scienze naturali.</span></p>
+	<p>Ogni pallino della mappa rappresenta le singole riviste scientifiche, mentre i colori le grandi branche delle scienze, rosa e azzurro per fisica e chimica, verde biologia, rosso medicina, giallo e bianco invece scienze sociali ed umane, dulcis in fundo ocra scienze della terra e geografia.</p>
+	<p><span>Le cose che personalmente mi colpiscono sono innanzitutto il grande &#8220;ammasso stellare&#8221; centrale, ricco di citazioni indistinte che non è possibile far afferire a gruppi specifici, anche se ha come &#8220;satelliti&#8221; quelli delle scienze umane (in giallo e bianco). L&#8217;ammasso denota una grande vivacità di scritti e pubblicazioni proprio attorno a questa categoria scientifica, con la musica leggermente distante ma fortemente connessa.</span></p>
+	<p><span>Fisica e chimica (rosa e azzurro) costituiscono una galassia a sè, con grandi intrecci e numerose correlazioni tra esse, legata in qualche modo attraverso la biochimica (verde-azzurro) alle altre discipline, soprattutto le scienze ambientali (in verde), altro gruppo molto prolifico che ha grandeimportanza nel garantire l&#8217;interconnessione più trasversale tra tutte, con legami verso le altre grandi scienze.<br />
+</span></p>
+	<p><span>Interessante invece notare come le svariate branche mediche (in rosso) risultino tra loro molto differenziate, dislocate in maniera più diffusa ai margini della &#8220;sciencesphere&#8221;, con frequenti connessioni con le scienze umane e sociali.</span></p>
+	<p><span>In un remoto angolino, con relazioni essenzialmente verso le scienze ambientali, sono relegate le scienze della terra, rappresentate da poco più di una decina di riviste.</span></p>
+	<p><span>Per quel che riguarda la geografia, la troviamo a metà strada proprio tra la geologia, le scienze naturali e collegata con la sua propaggine della geografia umana all&#8217;antropologia.</span></p>
+	<p><span>Concludo riflettendo come mappe di questo tipo siano una miniera enorme di informazioni, e meritino attente e ponderate riflessioni, che possono portare davvero verso strade difficilmente percorribili con altri strumenti.</span>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2009/03/23/la-mappa-delle-scienze/">La mappa delle Scienze</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2009/03/23/la-mappa-delle-scienze/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=La+mappa+delle+Scienze&amp;rft.aulast=Giandonato&amp;rft.aufirst=Pietro+Blu&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2009-03-23&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2009/03/23/la-mappa-delle-scienze/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/journalpone0004803g005-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2009/03/journalpone0004803g005.png" medium="image">
+			<media:title type="html">journalpone0004803g005</media:title>
+			<media:description type="html">La mappa delle Scienze</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2009/03/journalpone0004803g005-150x150.png" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il successo di un Blog? Un nuovo autore</title>
+		<link>http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/</link>
+		<comments>http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/#comments</comments>
+		<pubDate>Sat, 19 Apr 2008 15:36:03 +0000</pubDate>
+		<dc:creator>Andrea Borruso</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[blog]]></category>
+		<category><![CDATA[compleanno]]></category>
+		<category><![CDATA[persone]]></category>
+		<category><![CDATA[relazioni]]></category>
+		<category><![CDATA[successo]]></category>
+		<category><![CDATA[tanto]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/2008/04/15/il-successo-di-un-blog-un-nuovo-autore/</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+successo+di+un+Blog%3F+Un+nuovo+autore&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-04-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/&amp;rft.language=English"></span>
+Questo Blog è nato quasi tre anni fa, per la voglia di testare questo mezzo di comunicazione e per quella di condividere esperienze. TANTO nel tempo si è evoluto (spero in meglio), ha aumentato il suo numero di lettori ed è ancora in vita; questo per me è già un successo. Quando questo blog farà [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+successo+di+un+Blog%3F+Un+nuovo+autore&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-04-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Questo Blog è nato quasi tre anni fa, per la voglia di testare questo mezzo di comunicazione e per quella di condividere esperienze.<br />
+TANTO nel tempo si è evoluto (spero in meglio), ha aumentato il suo numero di lettori ed è ancora in vita; questo per me è già un successo.</p>
+	<p>Quando questo blog farà il suo terzo compleanno, vorrei dedicargli un post, con la sua storia, le sue statistiche, i commenti più interessanti, l&#8217;email ricevute, i link in ingresso, e tutto quello che serve a valutare il successo di un sito. Ma più passa il tempo, più alcune di queste cose, mi sembrano meno importanti per la definizione di un successo &#8220;vero&#8221;.</p>
+	<p>La vita di un Blog è semplice: ha bisogno di un po&#8217; di passione, di un po&#8217; di tempo, di buoni contenuti e di lettori fidelizzati. E&#8217; semplice definirla, ma non praticarla, specie se gli autori sono pochi e magari hanno giornate dense di impegni e di scadenze. I commenti dei lettori, i suggerimenti e le critiche, le citazioni dei contenuti, tutto ciò che è relazione e scambio con gli altri è linfa. Quando dopo una giornata di lavoro impegnativa, leggi un&#8217;email con un lettore che ti ringrazia e ti mette in difficoltà con una domanda inaspettata, passa la stanchezza e ti ritrovi a scrivere un post su FWtools all&#8217;alba. Ma c&#8217;è di meglio, e torniamo alle relazioni.</p>
+	<p>Otto mesi fa sono &#8220;caduto&#8221; dentro <a title="Portale Cartografico Nazionale e ArcIMS" href="http://www.nabble.com/Portale-Cartografico-Nazionale-e-ArcIMS-td12354725.html" target="_blank">questo thread</a> della mailing list italiana dedicata al software geografico libero e a codice sorgente aperto: <a title="il sito della comunità italiana utenti e sviluppatori di software geografico libero e a codice sorgente aperto" href="http://gfoss.it/drupal/" target="_blank">GFOSS.it</a>. L&#8217;autore era un tale PietroBlu (ho pensato il classico nick da smanettone informatico), ed il suo messaggio evidenziava come fosse sconveniente che un portale cartografico nazionale fosse aperto quasi esclusivamente all&#8217;accesso effettuato con software proprietario. Di quel messaggio mi piacquero i toni, la forma ed i contenuti. La cosa più bella fu a mio avviso, come spesso avviene nelle mailing list, lo sviluppo della discussione: si mescolarono argomentazioni tecniche ed etiche, che portarono all&#8217;invio di una lettera  ai gestori del portale cartografico citato nei vari messaggi. <a title="Lettera al Portale Cartografico Nazionale" href="http://www.nabble.com/Re%3A-Portale-Cartografico-Nazionale-e-ArcIMS-p12374654.html" target="_blank">Questa lettera</a> fu redatta proprio da PietroBlu, che ancora una volta mi colpì per stile, contenuti ed energia; pensai &#8220;tosto questo PietroBlu&#8221;.<br />
+Da quella discussione ne &#8220;gemmarono&#8221; altre, e lungo questo percorso io e Pietro ci siamo conosciuti un po&#8217; meglio: dalla mailing list, a qualche commento su questo blog, dalla chat alle email.</p>
+	<p>Pietro nel tempo è diventato uno dei lettori più attenti di TANTO, sempre prodigo di complimenti e di stimoli. Chiude quasi sempre le email che mi scrive con un saluto antico e molto benaugurale: <em>ad maiora</em>. Nelle ultime settimane mi ha segnalato due prodotti molto interessanti, ed io &#8211; ringraziandolo &#8211; gli ho promesso che ci avrei scritto un post, non appena avessi avuto un po&#8217; di tempo libero. Ma quando?</p>
+	<p>Il tempo passa e PietroBlu, allora mi tratta come il portale cartografico nazionale, e mi scrive un&#8217;email di &#8220;protesta&#8221;: &#8220;lo scrivo io il post su <a title="Comunicare dati geografici" href="http://blog.spaziogis.it/2008/04/14/comunicare-dati-geografici/">UUorld</a>? lo scrivo io il post su <a title="Condividere… geograficamente parlando" href="http://blog.spaziogis.it/2008/04/17/condividere-geograficamente-parlando/">TITAN</a>?&#8221;. Questo è per me il successo di un blog: un lettore che stimo come persona e come professionista, e che nel tempo è diventato un amico, mi chiede di scrivere un post.</p>
+	<p><img style="border: 0px none;" src="http://blog.spaziogis.it/wp-content/uploads/2008/04/pietroblu.jpg" alt="pietroblu" width="114" height="116" align="left" border="0" /> Tutto questo per dire che dal 14 Aprile questo blog ha un nuovo autore: <a title="Il sito web di Pietro Blu Giandonato" href="http://p.giandonato.googlepages.com/home" target="_blank">Pietro Blu Giandonato</a> (è quello nella foto accanto). Magari ve ne eravate accorti, ma ci tenevo a evidenziarlo.</p>
+	<p>E come direbbe Pietro: <em><strong>ad maiora</strong></em> a tutti!!
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/">Il successo di un Blog? Un nuovo autore</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+successo+di+un+Blog%3F+Un+nuovo+autore&amp;rft.aulast=Borruso&amp;rft.aufirst=Andrea&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2008-04-19&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2008/04/19/il-successo-di-un-blog-un-nuovo-autore/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads/2008/04/pietroblu.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads/2008/04/pietroblu.jpg" medium="image">
+			<media:title type="html">pietroblu</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

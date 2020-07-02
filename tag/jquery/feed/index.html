@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; jquery</title>
+	<atom:link href="http://blog.spaziogis.it/tag/jquery/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>jqGrid, ArcGIS Server e JSONP</title>
+		<link>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/</link>
+		<comments>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/#comments</comments>
+		<pubDate>Wed, 28 Mar 2012 06:00:46 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[ArcGIS]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jqGrid]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4785</guid>
+		<description><![CDATA[Quando si parla di applicazioni GIS, siano esse desktop o web, spesso occorre dedicare alla visualizzazione degli attributi alfanumerici un'attenzione pari a quella prestata alla realizzazione della mappa. In questo post, quindi, vediamo come ottenere una tabella ricca e interattiva con i dati estratti da una query verso i servizi ReST di ArcGIS Server 10. Inoltre, per sfruttare la nostra fonte di dati (uno dei server di esempio di ESRI) ci avvarremo di JSONP, una strategia che consente di aggirare i limiti imposti dalla same origini policy.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Su TANTO abbiamo scritto in varie occasioni di <a title="jQuery" href="http://jquery.com/" target="_blank">jQuery</a> e abbiamo visto vari esempi delle sue potenzialità nella creazione di interfacce efficaci ed esteticamente valide per le applicazioni web.<br />
+Esistono tantissime estensioni per questo popolare framework ed una delle mie preferite è sicuramente <a title="jqGrid homepage" href="http://www.trirand.com/blog/" target="_blank"><strong>jqGrid</strong></a>, utilissima per chi sviluppa applicazioni web in ambito geospaziale.<br />
+La sua utilità nel nostro campo è presto detta: un’applicazione GIS, che sia desktop o web, non consiste solo della mappa, ma deve dare anche la possibilità a chi la usa di esplorare le informazioni associate agli elementi visualizzati, cioè gli attributi. jqGrid assolve benissimo il compito.<br />
+Gli <a title="Esempi jqGrid" href="http://www.trirand.com/blog/jqgrid/jqgrid.html" target="_blank">esempi</a> sul sito ufficiale offrono una buona carrellata delle possibilità del plugin e, insieme al dettagliato <a title="Wiki jqGrid" href="http://www.trirand.com/jqgridwiki/doku.php" target="_blank">wiki</a>, permettono di produrre le prime griglie in tempi brevi.<br />
+I <a title="Formati dati supportati" href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:retrieving_data" target="_blank">formati</a> di dati che jqGrid è in grado di importare e rappresentare sono molti e, tra questi, quello che ci interessa in particolar modo oggi è <a title="JSONP" href="http://en.wikipedia.org/wiki/JSONP" target="_blank"><strong>JSONP</strong></a> (JavaScript Object Notation with Padding).<br />
+In breve, si tratta di una tecnica che supera le restrizioni della <a title="Same Origin Policy" href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">same origin policy</a> e permette di effettuare chiamate tra domini differenti. E’ bene sapere, comunque, che questa è una regola di sicurezza che, impedendo di eseguire script provenienti da siti esterni e “non fidati”, protegge l’utente da attacchi informatici detti <a title="Attacchi XSS" href="http://it.wikipedia.org/wiki/Cross-site_scripting" target="_blank">XSS</a> (Cross Site Scripting).<br />
+Ricorrere a JSONP è una delle strategie disponibili per aggirare questa politica, che risulta parecchio limitante per le applicazioni web che, come i Mash-up spaziali spesso citati su TANTO, fanno uso di dati provenienti da più fonti.<br />
+Il trucco si basa sulla capacità del tag html <em>script</em> di caricare file javascript, anche esterni e, all&#8217;occorrenza, eseguire del codice. Non mi dilungo oltre sull’argomento e rimando a wikipedia e a <a title="JSONP" href="http//javascript.html.it/articoli/leggi/2957/jsonp-e-le-richieste-cross-domain/" target="_blank">questo articolo</a> su HTML.it per eventuali approfondimenti.</p>
+	<p>Vediamo subito un esempio. Come fonte di dati prendiamo il risultato di un query task lanciato verso un <a title="MapService di esempio" href="http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/4" target="_blank">MapService ReST</a> di <strong>ArcGIS Server</strong>. Il codice per ottenere la griglia di attributi è molto semplice e il risultato di sicuro effetto.</p>
+	<pre class="brush: javascript; ">
+	
+$(&#039;#grid&#039;).jqGrid({
+url: &#039;http://sampleserver1.arcgisonline.com/ArcGIS/rest/&#039;+
+     &#039;services/Demographics/ESRI_Census_USA/MapServer/4/query&#039;,
+datatype: &#039;jsonp&#039;,
+postData: $.param({
+where: &quot;1=1&quot;,
+returnGeometry: false,
+outFields: &quot;ObjectID,NAME,STATE_NAME,CNTY_FIPS&quot;,
+f: &quot;json&quot;
+}),
+colModel: [
+{name: &#039;ObjectID&#039;, label: &#039;ID&#039;, width: 60, jsonmap: &#039;attributes.ObjectID&#039;,sorttype:&#039;number&#039;},
+{name: &#039;NAME&#039;, label: &#039;Name&#039;, width: 170, jsonmap: &#039;attributes.NAME&#039;},
+{name: &#039;STATE_NAME&#039;, label: &#039;State&#039;, width: 150, jsonmap: &#039;attributes.STATE_NAME&#039;},
+{name: &#039;CNTY_FIPS&#039;, label: &#039;FIPS&#039;, width: 60, jsonmap: &#039;attributes.CNTY_FIPS&#039;}
+],
+caption:&quot;ArcGIS Server 10 query&quot;,
+toppager: false,
+pager:&quot;#pager&quot;,
+rowList: [50, 100, 250, 1000],
+rowNum: 50,
+jsonReader: {
+root: &#039;features&#039;,
+repeatitems: false,
+},
+loadonce: true,
+ignoreCase: true,
+viewrecords: true,
+height: &#039;300&#039;,
+width:&#039;500&#039;
+}).jqGrid(&#039;navGrid&#039;, &#039;#pager&#039;, {search:false, add: false, edit: false, del: false});
+});
+	</pre>
+	<p>Il codice è volutamente semplice e ovviamente si può sostituire il valore della clausola <em>where</em>, qui passata come parametro e valorizzata con <em>1=1</em>, con qualcosa di più utile (o dinamico).<br />
+Qui sotto potete vedere l&#8217;output della query in una tabella dinamica che offre la possibilità di consultare in modo ricco ed interattivo la nostra sorgente di dati spaziali d&#8217;esempio</p>
+	<p><iframe style="width: 480px; height: 410px; border: none;" src="http://blog.spaziogis.it/static/jqgrid_jsonp/index.html" width="320" height="240"></iframe>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/">jqGrid, ArcGIS Server e JSONP</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jqGrid%2C+ArcGIS+Server+e+JSONP&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2012-03-28&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/03/28/jqgrid-arcgis-server-e-jsonp/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>jQuery e OpenLayers: agitare prima dell’uso…</title>
+		<link>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/</link>
+		<comments>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/#comments</comments>
+		<pubDate>Mon, 01 Mar 2010 08:40:35 +0000</pubDate>
+		<dc:creator>Alessio Di Lorenzo</dc:creator>
+				<category><![CDATA[Didattica]]></category>
+		<category><![CDATA[Geosilk]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[Sviluppo]]></category>
+		<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Web 2.0]]></category>
+		<category><![CDATA[webmapping]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=1747</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da Linfiniti – sono riuscito nell&#8217;intento. Per chi non lo sapesse, jQuery è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>Era da un po&#8217; che avevo in mente di dedicare un articolo a jQuery, finalmente – complici l&#8217;influenza che mi ha tenuto a riposo forzato e l&#8217;ispirazione tratta da <a href="http://linfiniti.com/2010/02/fancy-map-toolbar-for-openlayers/" target="_blank">Linfiniti</a> – sono riuscito nell&#8217;intento.</p>
+	<p>Per chi non lo sapesse, <a href="http://jquery.org/" target="_blank">jQuery</a> è un framework Javascript open source molto potente, caratterizzato da una sintassi snella e di facile comprensione.<br />
+Il framework è rilasciato con doppia licenza: MIT e GPL.<br />
+I motivi per usare jQuery nei propri progetti non mancano di certo: comunità attiva, disponibilità di molti temi e ottimi plugin, compatibilità e leggerezza sono i primi che mi vengono in mente.</p>
+	<p>In questo articolo vedremo come costruire una mappa online sfruttando jQuery UI e OpenLayers.<br />
+Il <a href="http://blog.spaziogis.it/static/jquerymap/" target="_blank">risultato</a> della &#8220;fusione&#8221; è un client dotato di funzionalità di base come zoom, pan, misurazione delle distanze e vari layer di sfondo intercambiabili.<br />
+Si tratta, in pratica, di un template da cui partire per sviluppare applicazioni di web-mapping vere e proprie.</p>
+	<p style="text-align: center;"><a title="Demo JQuery UI | OpenLayers di Alessio Di Lorenzo" href="http://blog.spaziogis.it/static/jquerymap/" target="_blank"><img class="aligncenter size-full wp-image-1801" style="border: 0pt none;" title="jquery_openlayers" src="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" alt="jquery_openlayers" width="500" height="375" /></a></p>
+	<p>Per  creare il client dell&#8217;esempio abbiamo bisogno di:</p>
+	<ul>
+	<li><a href="http://openlayers.org" target="_blank">OpenLayers</a></li>
+	<li><a href="http://jqueryui.com" target="_blank">jQuery UI</a>, pensato per creare widget personalizzati con jQuery</li>
+	<li><a href="http://layout.jquery-dev.net/index.cfm" target="_blank">jQuery UI.Layout</a>, un plugin ispirato al <a href="http://extjs.com/deploy/dev/examples/layout/complex.html" target="_blank">border layout</a> di ExtJs</li>
+	<li><a href="http://craigsworks.com/projects/qtip/" target="_blank">qTip</a>, un plugin per modellare dei tooltip avanzati</li>
+	</ul>
+	<p>Ho già raccolto il tutto in <a href="http://blog.spaziogis.it/static/jquerymap/jquerymap.zip" target="_blank">questo</a> archivio .zip. Qui dentro, oltre alle librerie, si trova la totalità dei file che compongono il client. Vi basta quindi cliccare sul link per avere il template sul vostro computer, pronto all&#8217;uso e/o ad essere trasformato come volete.<br />
+Vi invito però a dare lo stesso un&#8217;occhiata alla <a href="http://jqueryui.com/download" target="_blank">pagina di download</a> di jQuery UI: noterete che è possibile modificare radicalmente il pacchetto prima di scaricarlo. Potete includere le sole componenti utili ai vostri scopi e scegliere tra vari temi già pronti o uno composto da voi con <a href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a>.<br />
+Io ho fatto solo qualche semplice modifica al tema UI-Darkness (in questo periodo non mi piacciono i bordi arrotondati&#8230;) ma, come dicevo, si può fare molto di più. Provare per credere.</p>
+	<p>Ora un po&#8217; di anatomia.<br />
+Scompattato l&#8217;esempio, è bene posare lo sguardo su alcune delle directory e dei file compresi al suo interno.</p>
+	<h3>jsLib</h3>
+	<p>E&#8217; la directory contenente tutte le librerie elencate in precedenza, necessarie al funzionamento del template.</p>
+	<h3>index.html</h3>
+	<p>Nella sezione <strong>header</strong> sono referenziate le librerie utilizzate, i fogli di stile e i file javascript.<br />
+Nel <strong>body</strong> è possibile notare che l&#8217;attributo class di molti degli elementi della pagina (div, button, span, ecc.) è parecchio popolato. Questo è il metodo con cui jQuery UI e jQueryUI.Layout si &#8220;ancorano&#8221; alla pagina web.<br />
+Per comprendere meglio vi rimando alla <a href="http://layout.jquery-dev.net/demos.cfm" target="_blank">pagina degli esempi</a> di jQuery UI.Layout e a <a href="http://www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/" target="_blank">questo articolo</a> che spiega in maniera egregia la composizione della toolbar e dei suoi pulsanti.</p>
+	<h3>jsFunc/mappa.js</h3>
+	<p>Contiene la mappa realizzata con OpenLayers.<br />
+Nella funzione di inizializzazione (initMap) richiamata al caricamento della pagina, ci sono, tra le altre cose, i controlli collegati ai bottoni della toolbar.</p>
+	<h3>jsFunc/layout.js</h3>
+	<p>In questo script, con poco più di 40 righe di codice, jQuery UI e i suoi plugin definiscono Il layout dell&#8217;applicazione, il tema, il comportamento e l&#8217;aspetto di bottoni e tooltip.</p>
+	<h3>Css/style.css</h3>
+	<p>A parte qualche piccola &#8220;frivolezza&#8221;  come <a href="http://projects.opengeo.org/geosilk" target="_blank">queste</a> (a mio giudizio) bellissime icone, in questo foglio di stile sono descritte le regole fondamentali per la corretta presentazione del layout e della toolbar creati tramite jQuery UI.</p>
+	<p>Ecco, questo è grossomodo ciò che bisogna sapere per iniziare a studiare i mille modi di mescolare le potenzialità di jQuery a quelle di OpenLayers.<br />
+Fondamentale, come sempre, è il ricorso alla documentazione ufficiale dei vari progetti e al supporto offerto dalla comunità.<br />
+Per chiudere segnalo anche due guide in italiano, estremamente ben fatte ed utilissime per avvicinarsi a jQuery e jQuery UI. Entrambe sono firmate <a href="http://html.it" target="_blank">HTML.it</a>:<br />
+<a href="http://javascript.html.it/guide/leggi/168/guida-jquery/" target="_blank">Guida a jQuery</a><br />
+<a href="http://javascript.html.it/guide/leggi/179/guida-jquery-ui/" target="_blank">Guida a jQuery UI</a>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/">jQuery e OpenLayers: agitare prima dell’uso…</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=jQuery+e+OpenLayers%3A+agitare+prima+dell%E2%80%99uso%E2%80%A6&amp;rft.aulast=Di+Lorenzo&amp;rft.aufirst=Alessio&amp;rft.subject=Didattica&amp;rft.source=TANTO&amp;rft.date=2010-03-01&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/03/01/jquery-e-openlayers-agitare-prima-delluso/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol.png" medium="image">
+			<media:title type="html">jquery_openlayers</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2010/02/jquery_ol-150x150.png" />
+		</media:content>
+	</item>
+	</channel>
+</rss>

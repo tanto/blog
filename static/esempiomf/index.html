@@ -1,0 +1,67 @@
+<html>
+  <head>
+
+
+  <meta name="author" content="Alessio Di Lorenzo">
+<meta name="description" content="Un'applicazione d'esempio realizzata per per un tutorial su MapFish" /> 
+<meta name="keywords" content="mapfish, tutorial, openlayers" /> 
+
+  
+    <title>Esempio MapFish</title>
+    
+    <link rel="stylesheet" type="text/css" href="MapFish-1.1/client/mfbase/ext/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="http://blog.spaziogis.it/static/esempiomf/MapFish-1.1/client/mfbase/ext/resources/css/default.css" />
+
+    <script type="text/javascript" src="MapFish-1.1/client/mfbase/openlayers/lib/OpenLayers.js"></script>
+    <script type="text/javascript" src="MapFish-1.1/client/mfbase/ext/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="MapFish-1.1/client/mfbase/ext/ext-all.js"></script>
+    <script type="text/javascript" src="MapFish-1.1/client/mfbase/mapfish/MapFish.js"></script>
+
+    <script type="text/javascript" src="myMapFish.js"></script>
+  </head>
+
+  <body onload="init();">
+    <div id="map"></div>
+    <div id="buttonbar"></div>
+    <div id="tree"></div>
+
+<!-- google analytics -->	
+	<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-90058-29");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- google analytics -->
+	
+  </body>
+
+</html>
+
+<style type="text/css">
+        .zoomin {
+          background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_zoomin.png) !important;
+          height:20px !important;
+          width:20px !important;
+        }
+        .zoomout {
+          background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_zoomout.png) !important;
+          height:20px !important;
+          width:20px !important;
+        }
+
+        .pan {
+          background-image:url(MapFish-1.1/client/mfbase/mapfish/img/icon_pan.png) !important;
+          height:20px !important;
+          width:20px !important;
+        }
+
+	#tree {
+	  height: 100%;
+	  width: 100%;
+	}
+</style>
+

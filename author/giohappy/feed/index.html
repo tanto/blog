@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml"
+
+	xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>TANTO &#187; Giovanni Allegri</title>
+	<atom:link href="http://blog.spaziogis.it/author/giohappy/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.spaziogis.it</link>
+	<description>le cose che ci piacciono ...</description>
+	<lastBuildDate>Mon, 07 Nov 2016 09:59:24 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" />
+		<item>
+		<title>I dati sismici di ISIDE adesso hanno un web service</title>
+		<link>http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/</link>
+		<comments>http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/#comments</comments>
+		<pubDate>Tue, 30 Dec 2014 08:00:06 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Dati]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6559</guid>
+		<description><![CDATA[Un web service per interrogare gli eventi sismici rilevati ed elaborati dalla rete sismologica dell'INGV]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=I+dati+sismici+di+ISIDE+adesso+hanno+un+web+service&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-12-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416.jpg"><img class="alignleft  wp-image-6560" style="margin-bottom: 5px; margin-right: 10px;" src="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416-300x202.jpg" alt="earthquake" width="240" height="162" /></a><a title="ISIDE" href="http://iside.rm.ingv.it/iside/standard/index.jsp" target="_blank">ISIDE</a>, il repository dei dati sismologici dell&#8217;INGV (Isituto Nazionale di Geofisica e Vulcanologia), si è arricchito di un web service tramite il quale è possibile interrogare ed ottenere tutti i dati rilevati ed elaborati dalla rete sismologica nazionale. Si tratta di un servizio <a title="International Federation of Digital Seismograph Networks" href="http://www.fdsn.org/webservices/" target="_blank">FDSN</a>, specifica della federazione internazionale delle reti di sismografi digitali che definisce le modalità per interrogare, e il formato con cui ritornare, i dati esposti tramite questo tipo di web service.</p>
+	<p>All&#8217;<a title="ISIDE FDSN Web Service" href="http://webservices.rm.ingv.it/fdsnws/event/1/" target="_blank">URL del servizio</a> è possibile vedere in forma tabellare gli ultimi dati registrati nel DB di ISIDE, e alcune query di esempio. I risultati sono forniti in XML secondo lo schema <a title="QuakeML" href="https://quake.ethz.ch/quakeml" target="_blank">QuakeML</a>, che è un formato standard per la rappresentazione di dati sismologici. Tramite questo formato non vengono veicolate soltanto le informazioni standard quali coordinate e magnitudo dell&#8217;evento, ma anche molti altri metadati relativi alla registrazione, l&#8217;elaborazione e la gestione dei dati dell&#8217;evento (es. dati sull&#8217;incertezza e sulla qualità del dato, informazioni sulla stazione che lo ha registrato, ecc.).</p>
+	<p>I dati sono interrogabili in base ad:</p>
+	<ul>
+	<li><span style="line-height: 13px;">area geografica (filtro rettangolare o radiale)</span></li>
+	<li>finestra temporale</li>
+	<li>range di intensità</li>
+	<li>profondità dell&#8217;ipocentro</li>
+	</ul>
+	<p>Ad esempio, per visualizzare lo sciame sismico dello scorso 19/20 dicembre nell&#8217;area del Chianti (Toscana), possiamo interrogare il servizio con la seguente query: <a title="Query sciame sismico Chianti" href="http://webservices.rm.ingv.it/fdsnws/event/1/query?lat=43.587007&amp;lon=11.316179&amp;maxradiuskm=30&amp;starttime=2014-12-19T00:00:00&amp;endtime=2014-12-20T23:59:59&amp;minmag=2&amp;maxmag=5" target="_blank">http://webservices.rm.ingv.it/fdsnws/event/1/query?lat=43.587007&amp;lon=11.316179&amp;maxradiuskm=30&amp;starttime=2014-12-19T00:00:00&amp;endtime=2014-12-20T23:59:59&amp;minmag=2&amp;maxmag=5</a></p>
+	<p>dove cerchermo gli eventi nel raggio di 30 km (maxradiuskm) dal centro di Greve in Chianti (lat/lon), tra il 19 e il 20 dicembre 2014 (starttime/endtime) filtrando solo gli eventi con magnitudo compresa tra 3 e 5 (minmag/maxmag). Al&#8221;interno dei risultati è possibile identificare l&#8217;<a title="Evento magniudo 4.1" href="http://webservices.rm.ingv.it/fdsnws/event/1/query?eventId=4694251" target="_blank">evento principale</a>, di magnitudo 4.1, che ha fatto scricchiolare le finestre e i mobili del mio studio <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p>Non sono al corrente di strumenti di pubblico dominio per la visualizzazione diretta di dati in formato QuakeML all&#8217;interno dei più comuni software GIS, ma non sarebbe molto oneroso fare un convertitore verso formati GIS standard, magari in Python usando <a title="OBSPY" href="https://github.com/obspy/obspy/wiki" target="_blank">ObsPy</a>, una libreria che offre funzionalità anche per <a href="http://docs.obspy.org/master/packages/obspy.fdsn.html" target="_blank">interrogare direttamente i servizi FDSN</a>, generare plot delle onde sismiche o mappe della localizzazione degli eventi.</p>
+	<p>E&#8217; tuttavia possibile ottenere i risultati in formato testuale (un csv con il carattere pipe (&#8220;|&#8221;) come separatore dei campi) aggiungendo alla chiamata il formato di output &#8220;text&#8221;. L&#8217;<a title="I dati in formato testuale" href="http://webservices.rm.ingv.it/fdsnws/event/1/query?lat=43.587007&amp;lon=11.316179&amp;maxradiuskm=30&amp;starttime=2014-12-19T00:00:00&amp;endtime=2014-12-20T23:59:59&amp;minmag=2&amp;maxmag=5&amp;format=text">output</a> sarà simile al seguente:</p>
+	<pre>#EventID|Time|Latitude|Longitude|Depth/Km|Author|Catalog|Contributor|ContributorID|MagType|Magnitude|MagAuthor|EventLocationName|web_id_locator(deprecated)
+4730151|2014-12-20T22:37:25.350000|43.6097|11.2563|6.7|SURVEY-INGV||||ML|2.6|SURVEY-INGV|Firenze|4004730151
+4730041|2014-12-20T22:35:09.980000|43.5848|11.2553|10.2|SURVEY-INGV||||ML|2.0|SURVEY-INGV|Firenze|4004730041
+4729881|2014-12-20T22:25:33.310000|43.6218|11.2432|7.4|SURVEY-INGV||||ML|2.2|SURVEY-INGV|Firenze|4004729881
+4729581|2014-12-20T21:39:40.560000|43.6218|11.2445|5.7|SURVEY-INGV||||ML|2.3|SURVEY-INGV|Firenze|4004729581
+(...)</pre>
+	<p>e potrà essere aperto e visualizzato in un qualsiasi software GIS che supporti il caricamento di dati CSV (ad esempio QGIS Desktop):</p>
+	<p><div id="attachment_6570" class="wp-caption aligncenter" style="width: 462px"><a href="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti.jpg"><img class=" wp-image-6570   " src="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti.jpg" alt="terremoti" width="452" height="369" /></a><p class="wp-caption-text">Localizzazione degli eventi visualizzati in base al valore di magnitudo (QGIS Desktop &#8211; Base OpenStreetMap)</p></div></p>
+	<p>La nota dolente del servizio è il copyright, che vincola al solo utilizzo personale e non commerciale, e non permette alcuno riutilizzo dei dati se non espressamente permesso dall&#8217;INGV. La domanda sorge spontanea: perché?</p>
+	<p>&nbsp;
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/">I dati sismici di ISIDE adesso hanno un web service</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/feed/</wfw:commentRss>
+		<slash:comments>14</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=I+dati+sismici+di+ISIDE+adesso+hanno+un+web+service&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2014-12-30&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/12/30/i-dati-sismici-di-iside-adesso-hanno-un-web-service/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416.jpg" medium="image">
+			<media:title type="html">earthquake</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/earthquake-617x416-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti.jpg" medium="image">
+			<media:title type="html">terremoti</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2014/12/terremoti-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Perché abbiamo bisogno di OpenStreetMap</title>
+		<link>http://blog.spaziogis.it/2014/01/10/perche-abbiamo-bisogno-di-openstreetmap/</link>
+		<comments>http://blog.spaziogis.it/2014/01/10/perche-abbiamo-bisogno-di-openstreetmap/#comments</comments>
+		<pubDate>Fri, 10 Jan 2014 08:00:03 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[Cartografia]]></category>
+		<category><![CDATA[dati]]></category>
+		<category><![CDATA[mappe]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=6077</guid>
+		<description><![CDATA[Nel mezzo ai potenti che si spartiscono il mercato delle mappe, perché c'è bisogno di un progetto come OpenStreetMap? Trasparenza del dato e privacy sono due buone motivi.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Perch%C3%A9+abbiamo+bisogno+di+OpenStreetMap&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2014-01-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/01/10/perche-abbiamo-bisogno-di-openstreetmap/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><img class="alignleft" style="margin-top: 20px;" src="http://blog.osmfoundation.org/wp-content/uploads/2011/05/newosmlogo.png" alt="Logo di OpenStreetMap" width="200" height="200" /></p>
+	<p>Abbiamo deciso di pubblicare la traduzione di un recente articolo di Serge Wroclawski, &#8220;<a title="Whi the world needs OpenStreetMap" href="http://blog.emacsen.net/blog/2014/01/04/why-the-world-needs-openstreetmap/" target="_blank">Why the World Needs OpenStreetMap</a>&#8220;, perché ci sembra importante riconoscere e sottolineare il valore di OSM al di là della sua utilità pratica e della sua gratuità. Ci scusiamo per eventuali inesattezze, non siamo traduttori professionisti! <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+	<p>&nbsp;</p>
+	<h2>Perché abbiamo bisogno di OpenStreetMap</h2>
+	<p>Ogni volta che parlo con qualcuno di OpenStreetMap, inevitabilmente mi viene chiesto “Perché non usi Google Maps?”. Da un punto di vista strettamente pratico si tratta di una domanda ragionevole, però la questione non riguarda solo l&#8217;utilità (di tale scelta), ma che tipo di società vogliamo. Ne ho parlato nel 2008 in una conferenza su OpenStreetMap che ho tenuto al primo convegno MappingDC. I concetti che riporto qui sono gli stessi, ma trattati in maniera più estesa.</p>
+	<p>Nell’800 le persone avevano il problema del tempo, non in termini di tempo a disposizione, ma di che ora fosse. Gli orologi esistevano già, ma ogni città aveva il suo “tempo locale”, che si sincronizzava sugli orologi della città, o più spesso, le campane delle chiese. L’orario delle ferrovie, e infine il Tempo Medio di Greenwhich, ha soppiantanto gli orari locali e oggi la maggior parte della gente considera il tempo come qualcosa di universale. Negli Stati Uniti questo è avvenuto inizialmente grazie all&#8217;adozione del tempo standard da parte delle Ferrovie e successivamente delle università e delle grandi imprese.</p>
+	<p><strong>L’equivalente attuale del dilemma del tempo è la posizione geografica</strong>, e diversi soggetti stanno cercando di diventarne il riferimento assoluto. Google spende <a href="http://www.asymco.com/2012/12/18/how-much-to-maps-cost-and-what-are-they-worth/" target="_blank">un miliardo di dollari</a> l’anno per mantenere le proprie mappe, senza considerare il miliardo e mezzo speso per comprare Waze. Non è certo l’unica azienda che sta cercando di prendersi tutto lo spazio, visto che anche Nokia si è comprata Navtek e TomTom e Tele Atlas stanno cercando di fondersi (in realtà TomTom ha già acquisito TeleAtlas, N.d.T.). Tutte queste aziende vogliono diventare il riferimento assoluto di ciò che è posizionato sulla Terra. Questo perché ciò che ha una posizione geografica è diventato un grande business. Con i GPS in ogni auto, ed uno smartphone in ogni tasca il &#8220;mercato&#8221; di chi vuole dirti dove sei e dove devi andare è diventato feroce.</p>
+	<p>Con tutte queste aziende perché c’è bisogno di un progetto come OpenStreetMap? La risposta è semplice, perché in una società nessuna azienda dovrebbe avere il monopolio sui luoghi, così come nessuna azienda ha avuto il monopolio del tempo nell’800. I luoghi sono un bene comune, e dando ad una singola entità tutto questo potere gli viene dato non solo il potere di dirti la tua posizione, ma anche di poterla manipolare. <strong>Ci sono tre aspetti in questione: chi decide cosa deve essere visualizzato sulla mappa, chi decide dove ti trovi e dove dovresti andare, e la privacy personale</strong>.</p>
+	<p>Chi decide cosa debba essere visualizzato su una mappa di Google? Ovviamente la risposta è Google. Mi è capitato di affrontare la questione durante un incontro con un’amministrazione locale nel 2009: erano preoccupati all’idea di usare Google Maps sul loro sito web perché Google decide quali aziende/attività commerciali mostrare. Avevano ragione ad essere preoccupati dal momento che un’amministrazione pubblica deve rimanere imparziale, e delegando le proprie mappe ad un soggetto terzo si trovano a cederne anche il controllo. E’ inevitabile, se non lo stanno già facendo, che Google cerchi di <strong>monetizzare le ricerche geografiche, dando priorità a certi risultati rispetto ad altri</strong>. Ad esempio, sarà una coincidenza ma se provo a cercare “colazione” vicino a casa mia, il primo risultato è Ristoranti SUBWAY®. Google non è certo l’unico distributore di mappe, è solo un esempio. Il punto è che quando si usa un qualsiasi provider di mappe, gli viene dato il potere di decidere quali siano gli elementi a cui dare risalto, o quali non debbano essere proprio mostrati.</p>
+	<p>La seconda questione riguarda il posizionamento. Chi definisce cosa sia “vicino”, o se sia meglio andare in una certa direzione piuttosto che un&#8217;altra? Questo problema è stato argomento di un <a href="https://www.aclu.org/blog/racial-justice-criminal-law-reform-technology-and-liberty/your-turn-turn-navigation-application" target="_blank">articolo dell’ ACLU</a> (n.t.: Unione americana per le libertà civili) dove veniva discusso l’algoritmo utilizzato da un certo servizio di mappe, il quale nel calcolo di un percorso (in auto, in bici o a piedi) prendeva in considerazione la pericolosità o la sicurezza del contesto. C&#8217;è da chiedersi chi stabilisce se un luogo sia sicuro o meno, o se piuttosto la parole “sicuro” sia soltanto un termine in codice per riferirsi a qualcosa di più sinistro. Ad oggi, Flickr colleziona informazioni relative agli spazi geografici sulla base delle fotografie, che vengono esposte tramite un’API pubblica. Utilizzando queste informazioni possono suggerire tags per le nostre fotografie, ma i cluster geografici ottenuti dalle loro elaborazioni potrebbero essere usati per controllare e manipolare qualsiasi altra informazione, dai pattern del traffico ai prezzi degli immobili, perché <strong>quando un provider di mappe diventa sufficientemente grande, diventa una fonte di “verità”</strong>.</p>
+	<p>Infine, queste società sono incentivate a raccogliere informazioni su di noi con modalità che potrebbero non piacerci. Quando utilizziamo i loro servizi, sia Google che Apple acquisiscono informazioni sulla nostra posizione. Possono usare questi dati per migliorare l’accuratezza delle mappe, ma Google ha già annunciato che intende usarla per analizzare la correlazione tra le ricerche che facciamo e i luoghi dove ci dirigiamo. Con 500 milioni di telefoni Android si tratta di un enorme quantità di informazioni, ottenute a livello individuale, sulle abitudini della gente sia che stia facendo una passeggiata, che stia andando a lavoro, dal dottore o, magari, che stia partecipando ad una protesta. E’ evidente che <strong>non si possono ignorare le implicazioni sociale che comporta la disponibilità di così tanti dati in mano ad una singola azienda</strong>, indipendentemente da quanto si dichiari <a href="http://it.wikipedia.org/wiki/Don%27t_Be_Evil" target="_blank">benevola</a>. Aziende come Foursquare utilizzano il mezzo della “gamification” per coprire quello che di fatto è un’opera di acquisizione di dati, e anche Google è entrata nella partita della “gamification” con Ingress, un gioco che sovrappone un mondo virtuale a quello reale e porta gli utenti a raccogliere foto e informazioni stradali con l’obiettivo di combattere, o favorire, un’invasione aliena.</p>
+	<p><iframe style="border: 1px solid black;" src="http://www.openstreetmap.org/export/embed.html?bbox=12.111740112304688%2C41.66624388281502%2C12.853317260742188%2C42.11095834849246&amp;layer=mapnik" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="500" height="350"></iframe><br />
+<small><a href="http://www.openstreetmap.org/#map=11/41.8890/12.4825">Visualizza mappa ingrandita</a></small></p>
+	<p>Ora che abbiamo identificato i problemi, possiamo esaminare come OpenStreetMap li risolva tutti. <strong>In termini di contenuti geografici, OpenStreetMap è sia neutrale che trasparente</strong>. OpenStreetMap è una sorta di wiki che chiunque al mondo può editare. Se un negozio manca da una mappa, può essere aggiunto dallo stesso esercente o magari da un cliente. Per quanto riguarda la visualizzazione cartografica, ogni persona o azienda può crearsi la mappa come vuole, tuttavia la principale mappa su <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap.org</a> utilizza software cartografico <a href="http://it.wikipedia.org/wiki/Free_and_Open_Source_Software" target="_blank">FLOSS</a> (Free/Libre and Open Source Software) e un foglio di stile (per la vestizione cartografica, N.d.T.) disponibile con una licenza di pubblico dominio, da cui chiunque può partire per costruirsene uno proprio. In altre parole, chiunque ne abbia bisogno può crearsi la propria mappa basandosi sugli stessi dati.</p>
+	<p>Analogamente, mentre i router (i software per il calcolo dei percorsi ottimali, N.d.T.) più popolari di OpenStreetMap sono FLOSS, se un’azienda decidesse di usare un’altra tecnologia, <strong>un utente può sempre utilizzare il proprio software e potrebbe facilmente confrontare i risultati, ottenuti dagli stessi dati, per verificare eventuali anomalie</strong>.</p>
+	<p>Infine, un utente può scaricare liberamente tutti o parte dei dati di OpenStreetMap per utilizzarli offline. Questo significa che<strong> è possibile usare i dati di OpenStreetMap per navigare senza dover comunicare ad alcuno la propria posizione</strong>.</p>
+	<p>OpenStreetMap rispetta le comunità e rispetta le persone. Se non stai già contribuendo a OSM, valuta la possibilità di farlo. Se già contribuisci, grazie.</p>
+	<p>(Serge Wroclawski &#8220;<a title="Whi the world needs OpenStreetMap" href="http://blog.emacsen.net/blog/2014/01/04/why-the-world-needs-openstreetmap/" target="_blank">Why the World Needs OpenStreetMap</a>&#8220;, <a title="Licenza CC-BY-SA" href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC-BY-SA</a>)
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2014/01/10/perche-abbiamo-bisogno-di-openstreetmap/">Perché abbiamo bisogno di OpenStreetMap</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2014/01/10/perche-abbiamo-bisogno-di-openstreetmap/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Perch%C3%A9+abbiamo+bisogno+di+OpenStreetMap&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2014-01-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2014/01/10/perche-abbiamo-bisogno-di-openstreetmap/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.osmfoundation.org/wp-content/uploads/2011/05/newosmlogo.png" />
+		<media:content url="http://blog.osmfoundation.org/wp-content/uploads/2011/05/newosmlogo.png" medium="image">
+			<media:title type="html">Logo di OpenStreetMap</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Landsat 8, ancora immagini dallo spazio per tutti</title>
+		<link>http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/</link>
+		<comments>http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/#comments</comments>
+		<pubDate>Fri, 07 Jun 2013 07:00:33 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Dati]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[quantumgis]]></category>
+		<category><![CDATA[remote sensing]]></category>
+		<category><![CDATA[telerilevamento]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5711</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Landsat+8%2C+ancora+immagini+dallo+spazio+per+tutti&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2013-06-07&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/&amp;rft.language=English"></span>
+L&#8217;11 Febbraio 2013 sarà una data passata inosservata ai più, ma per chiunque operi nel campo della geomatica segna una tappa importante per l&#8217;osservazione dallo spazio: il programma Landsat entra in una nuova fase della sua storia con il Landsat Data Continuity Mission (LCDM) . Sulla spinta di un vettore Atlas-V, un nuovo satellite per l&#8217;osservazione [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Landsat+8%2C+ancora+immagini+dallo+spazio+per+tutti&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2013-06-07&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/landsat_8_launch/" rel="attachment wp-att-5712"><img class="alignleft size-full wp-image-5712" style="margin-left: 10px; margin-right: 10px;" src="http://blog.spaziogis.it/wp-content/uploads//2013/06/Landsat_8_launch.jpg" alt="foto lancio Landsat 8" width="192" height="240" /></a>L&#8217;11 Febbraio 2013 sarà una data passata inosservata ai più, ma per chiunque operi nel campo della geomatica segna una tappa importante per l&#8217;osservazione dallo spazio: il programma <strong><a title="Programma Landsat" href="http://en.wikipedia.org/wiki/Landsat" target="_blank">Landsat</a></strong> entra in una nuova fase della sua storia con il <a title="LCDM" href="https://directory.eoportal.org/web/eoportal/satellite-missions/l/landsat-8-ldcm">Landsat Data Continuity Mission</a> (<strong>LCDM</strong>) . Sulla spinta di un vettore Atlas-V, un nuovo satellite per l&#8217;osservazione terrestre  è stato lanciato dalla base americana di Vandenberg, diretto nella sua <a title="Orbita eliosincrona" href="http://it.wikipedia.org/wiki/Orbita_eliosincrona" target="_blank">orbita eliosincrona</a>, a 705 km dalla Terra, pronto ad inondarci e ad affascinarci con nuove immagini del nostro pianeta.</p>
+	<p><p><a href="http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/"><em>Clicca qui per vedere il video incorporato.</em></a></p></p>
+	<p>Le immagini ottenute dai Landsat sono, probabilmente, le più note ed utilizzate a livello mondiale. Oltre agli impieghi scientifici e militari, sono derivate dal Landsat 7 anche le immagini impiegate nei più noti servizi di web mapping. L&#8217;esempio più noto e popolare è senz&#8217;altro <strong>Google</strong>, che nei prodotti Maps e Earth impiega la rielaborazione <a title="TrueEarth" href="http://www.truearth.com/" target="_blank">TrueEarth</a>, realizzata da Terrametrics. Altri grandi nomi sono MSN, Yahoo, il progetto NASA World-Wind e, più recentemente <strong><a title="Cloudless Atlas with Landsat" href="http://www.mapbox.com/blog/cloudless-atlas-with-landsat/" target="_blank">MapBox</a></strong> che ha realizzato autonomamente una copertura d&#8217;immagini mondiale, che prossimamente potrà essere impiegata come base nelle mappe realizzate tramite i loro servizi cloud.</p>
+	<p><strong>Dal 30 Maggio l&#8217;LCDM</strong>, gestito da NASA e USGS, ha iniziato ad acquisire le prime immagini ed è stato rinominato in <strong>Landsat 8</strong>, proseguendo la numerazione iniziata nel 1972 con il lancio del Landsat 1, dotato di sensore MSS (Multispectral Scanner System) che acquisiva dati nelle bande del rosso e del verde e due nell&#8217;infrarosso, con una risoluzione spaziale di 68m x 83m. Ne hanno fatta di strada i sensori da allora!</p>
+	<p>I due &#8220;occhi&#8221;, a bordo del Landsat 8, sono composti dai nuovi sensori <strong>OLI</strong> (Operational Land Imager) e <strong>TIRS</strong> (Thermal Infrared Sensor), che garantiranno prestazioni e qualità di ripresa superiori al precedente ETM+, grazie anche ad un numero maggiore di bande, 11 contro le precedenti 8. In particolare sono state aggiunte due bande ottimizzate per lo studio dei cirri (1360/1380 nm) e dell&#8217;aerosol (430-450 nm) e il range nell&#8217;infrarosso termico è stato suddiviso in due bande, contro l&#8217;unica grande banda dell&#8217;ETM+</p>
+	<p><div id="attachment_5720" class="wp-caption aligncenter" style="width: 460px"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/06/ETM+vOLI-TIRS-web.jpg"><img class="wp-image-5720   " src="http://blog.spaziogis.it/wp-content/uploads//2013/06/ETM+vOLI-TIRS-web.jpg" alt="ETM+vOLI-TIRS-web" width="450" height="225" /></a><p class="wp-caption-text">Confronto tra le bande dei sensori ETM+ e OLI+TIRS (fonte USGS)</p></div></p>
+	<p>Come si può vedere nell&#8217;immagine, è stato inoltre ampliato il range spettrale del canale <strong><a title="Canale pancromatico" href="http://it.wikipedia.org/wiki/Pancromatico">pancromatico</a></strong> (banda 8), che come il suo predecessore continuerà ad acquisire con una <strong>risoluzione spaziale di 15m</strong>. Per le immagini nel visibile si tratta di una risoluzione sufficiente per le scale medie; se non vi basta preparatevi a sborsare come minimo 500$  per 25 Kmq d&#8217;immagini d&#8217;archivio QuickBird a 60cm, o un po&#8217; di più per i GeoEye-1/2 (di proprietà NASA e <strong>Google</strong>)</p>
+	<p>Le <a title="Dati tecnici prodotto" href="http://landsat.usgs.gov/LDCM_DataProduct.php">immagini elaborate</a> dai dati Landsat saranno distribuite in formato Geotiff a 16 bit, georiferite rispetto al sistema di riferimento WGS84, con proiezione UTM, ortorettificate e corrette tramite un processamento Level 1T &#8211;  Terrain Correction (ovvero sono già corrette radiometricamente e geometricamente,  ed inoltre sono corretti/minimizzati gli errori di parallasse dovuti al rilievo del terreno). Per il sensore OLI viene garantita un&#8217;<strong>accuratezza</strong> <strong>CE90 di 12 metri</strong> (la reale posizione geografica di un elemento si trova, al 90% di probabilità, entro un un cerchio di 12 metri di diametro rispetto alla sua posizione nell&#8217;immagine), e di 41 m per il TIRS.</p>
+	<p>Ogni 8 giorni il Landsat 8 ci offrirà una copertura completa della Terra, e <strong>le immagini ottenute dal sensore OLI potranno essere visualizzate e scaricate liberamente</strong> tramite il <a title="LandsatLook viewer" href="http://landsatlook.usgs.gov/" target="_blank">LandsatLook Viewer</a> dell&#8217;USGS. Sarà possibile scaricare sia l&#8217;immagine visualizzata nel viewer, come JPEG, PNG o TIFF georiferita, oppure eseguire un &#8220;bulk download&#8221;, ovvero scaricare i dati originali della scena richiesta, più l&#8217;immagine in colori naturali e nel termico. Ciò significa, mediamente, 1 GB di dati.</p>
+	<p>Nel seguente breve <strong>videotutorial</strong> vi mostro quanto sia semplice ottenere i dati Landsat e delle immagine pronte per essere usate in un qualsiasi ambiente GIS. Nell&#8217;esempio sovrapporrò un&#8217;immagine dell&#8217;Etna, del 4 Giugno, su una base OpenStreetMap all&#8217;interno di QuantumGIS.</p>
+	<p><p><a href="http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/"><em>Clicca qui per vedere il video incorporato.</em></a></p></p>
+	<p>Buona esplorazione.</p>
+	<p><em>Giovanni Allegri</em><br />
+<a class="twitter-follow-button" href="https://twitter.com/_giohappy_" data-show-count="false" data-lang="it">Segui @_giohappy_</a><br />
+<script type="text/javascript">// < ![CDATA[<br />
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');<br />
+// ]]&gt;</script>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/">Landsat 8, ancora immagini dallo spazio per tutti</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Landsat+8%2C+ancora+immagini+dallo+spazio+per+tutti&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Dati&amp;rft.source=TANTO&amp;rft.date=2013-06-07&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/06/07/landsat-8-ancora-immagini-dallo-spazio-per-tutti/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/06/Landsat_8_launch-150x150.jpg" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/06/Landsat_8_launch.jpg" medium="image">
+			<media:title type="html">Lancio del Landsat 8</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/06/Landsat_8_launch-150x150.jpg" />
+		</media:content>
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/06/ETM+vOLI-TIRS-web.jpg" medium="image">
+			<media:title type="html">ETM+vOLI-TIRS-web</media:title>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/06/ETM+vOLI-TIRS-web-150x150.jpg" />
+		</media:content>
+	</item>
+		<item>
+		<title>Il nuovo editor per OpenStreetMap, esempio di un processo virtuoso</title>
+		<link>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/</link>
+		<comments>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/#comments</comments>
+		<pubDate>Tue, 21 May 2013 07:00:28 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[crowdsourcing]]></category>
+		<category><![CDATA[mapping]]></category>
+		<category><![CDATA[openstreetmap]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5758</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+Da alcuni giorni, come reso noto dalla notizia di lancio, sulle pagine di OpenStreetMap è attivo un nuovo strumento per l’editing online delle mappe. L’ultimo arrivato, nella grande famiglia degli editor per OSM, sia chiama iD e andrà ad affiancare il buon vecchio Potlach, noto a chiunque abbia fatto un po’ di inserimenti e di [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><div id="attachment_5702" class="wp-caption aligncenter" style="width: 460px"><a href="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif"><img class=" wp-image-5702 " src="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif" alt="iD Editor" width="450" height="256" /></a><p class="wp-caption-text">iD Editor</p></div></p>
+	<p>Da alcuni giorni, come reso noto dalla <a href="http://blog.openstreetmap.org/2013/05/07/openstreetmap-launches-all-new-easy-map-editor-and-announces-funding-appeal/" target="_blank">notizia</a> di lancio, sulle pagine di <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> è attivo un nuovo strumento per l’editing online delle mappe. L’ultimo arrivato, nella grande <a href="http://wiki.openstreetmap.org/wiki/Editing" target="_blank">famiglia degli editor</a> per OSM, sia chiama <a href="http://wiki.openstreetmap.org/wiki/ID" target="_blank">iD</a> e andrà ad affiancare il buon vecchio Potlach, noto a chiunque abbia fatto un po’ di inserimenti e di modifiche sui dati OSM.</p>
+	<p>Si tratta di uno strumento che, a fronte della leggerezza e della chiarezza a livello di interfaccia utente, nasconde una discreta dose di tecnologia, tutta <a href="https://github.com/systemed/iD" target="_blank">Open Source</a>, nata dal lavoro volontario di alcuni sviluppatori, e proseguita con un notevole sostegno economico (parte dei 545.000 $ offerti dalla <a href="http://www.knightfoundation.org/press-room/press-release/six-ventures-bring-data-public-winners-knight-news/" target="_blank">Knight Foundation</a>), sotto il coordinamento di <a href="http://mapbox.com/" target="_blank">MapBox</a>.</p>
+	<p>L’aspetto più evidente di iD, e che ne ha motivato la realizzazione, è un approccio “assistito” all’editing. Ogni azione viene guidata tramite suggerimenti e le scelte degli oggetti, e delle relative proprietà, da associare agli elementi geometrici inseriti, viene semplificata con l’ausilio di moduli d’inserimento intuitivi e facilmente comprensibile anche ai meno esperti, lasciando tuttavia la libertà di integrare le informazioni di base con <a href="http://wiki.openstreetmap.org/wiki/Tags" target="_blank">tag</a> più avanzati.</p>
+	<p>Ma cos’è che ha spinto la Knight Foundation e MapBox a finanziare questo progetto? La notizia ha colto l’attenzione anche di testate giornalistiche non del settore quali <a href="http:///mashable.com/2013/05/07/openstreetmap/" target="_blank">Mashable</a> e <a href="http:///techcrunch.com/2013/05/07/openstreetmap-to-give-google-maps-a-run-for-its-money-by-launching-its-new-id-editor/" target="_blank">TechCrunch</a>, ed entrambi hanno voluto sottolineare la sfida alle altre realtà commerciale del mapping online, Google in primis. In effetti la mossa operata con l’introduzione di iD ha reso ancor più evidente il mix di qualità del progetto OpenStreetMap : open data, strumenti tecnologici efficaci e robusti, crowdsourcing a scala globale, opportunità commerciali. Le ho elencate in quest’ordine non per caso.</p>
+	<p>La scelta, operata fin dall’inizio, di associare al dato OSM una licenza aperta (inizialmente CC-BY-SA, poi <a href="http://www.osmfoundation.org/wiki/License/About_The_License_Change" target="_blank">trasformata</a> in ODbL) è stata senz’altro il carburante che ha dato il via al tam-tam globale, garantendo agli utenti una totale trasparenza sull’impiego dei dati liberamente forniti. Questa caratteristica, oltre ad essere motivante per molti utenti, è unica tra i progetti di mapping crowdsourced a scala globale (Google Map Maker, per dirne uno, i dati se li tiene ben stretti!).<br />
+La totale trasparenza e il pubblico dominio hanno fornito una forte spinta motivazionale, tanto all’utente amatore quanto agli sviluppatori e ai sistemisti. Lo sviluppo di un set di tecnologie ben focalizzate ed efficaci in grado di gestire tutte le fasi di vita del dato, e di intercettare e rispondere ad un’utenza estremamente variegata (dall’azienda, all’operatore in aree di emergenza, al byker appassionato), ha avviato il circuito virtuoso. Ecco che dal computer di <a href="http://it.wikipedia.org/wiki/Steve_Coast" target="_blank">Steve Coast</a>, OSM ha invaso il mondo.<br />
+Con quali soldi è stato possibile realizzare tutto ciò, e chi sostiene oggi OSM? Qui sta l’emblematicità di OSM, e che io ritrovo esemplificata nella nascita di iD: un progetto nel quale tutti possono trarre benefici, dagli utenti appassionati alle aziende (fino alla scala di <a href="http://blog.foursquare.com/2012/02/29/foursquare-is-joining-the-openstreetmap-movement-say-hi-to-pretty-new-maps/" target="_blank">Foursquare</a>, <a href="http://mapbox.com/blog/evernote-geocoding-custom-maps/" target="_blank">Evernote</a>, <a href="http://mapquest-openstreetmap-europe/" target="_blank">MapQuest</a>, la stessa MapBox e tante altre). E più tutti ne traggono beneficio, più ognuno è disposto a contribuire: l’utente a mappare, l’azienda a fare il proprio business col supporto dei dati OSM e a sostenere il progetto (se l’azienda è saggia e lungimirante!). OSM sarà un caso un po’ unico, soprattutto di questa portata, ma dimostra, insieme ad altri progetti simili (basta pensare a Wikipedia) che è un processo realizzabile e sostenibile, con un modello di business non utopico.</p>
+	<p>In sintesi, e semplificando un po’, un buon editor rende la vita più semplice all’utente, e magari ne attrae di nuovi -&gt; MapBox può contare su una maggiore base di contributori e di dati -&gt; MapBox sostiene lo sviluppo di iD</p>
+	<p>Chissà se un giorno riusciremo a innescare un processo virtuoso simile anche per gli Open Data in Italia</p>
+	<p>Buona <a href="http://www.openstreetmap.org/edit?editor=id" target="_blank">mappatura</a> a tutti con iD!</p>
+	<p><em>Giovanni Allegri</em><br />
+<a href="https://twitter.com/_giohappy_" class="twitter-follow-button" data-show-count="false" data-lang="it">Segui @_giohappy_</a><br />
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><br />
+
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/">Il nuovo editor per OpenStreetMap, esempio di un processo virtuoso</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Il+nuovo+editor+per+OpenStreetMap%2C+esempio+di+un+processo+virtuoso&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2013-05-21&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2013/05/21/il-nuovo-editor-per-openstreetmap-esempio-di-un-processo-virtuoso-2/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated-150x150.gif" />
+		<media:content url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated.gif" medium="image">
+			<media:title type="html">id_animated</media:title>
+			<media:description type="html">iD Editor</media:description>
+			<media:thumbnail url="http://blog.spaziogis.it/wp-content/uploads//2013/05/id_animated-150x150.gif" />
+		</media:content>
+	</item>
+		<item>
+		<title>Spatialite sbarca su Android</title>
+		<link>http://blog.spaziogis.it/2012/11/26/spatialite-sbarca-su-android/</link>
+		<comments>http://blog.spaziogis.it/2012/11/26/spatialite-sbarca-su-android/#comments</comments>
+		<pubDate>Mon, 26 Nov 2012 17:25:57 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[News]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5299</guid>
+		<description><![CDATA[Da oggi disponibile il porting di Spatialite per Android.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Spatialite+sbarca+su+Android&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2012-11-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/11/26/spatialite-sbarca-su-android/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[Ne ha dato <a title="notizia spatialite su android in gfoss.it" href="http://lists.gfoss.it/pipermail/gfoss/2012-November/025409.html" target="_blank">notizia ufficiale</a> Sandro Furieri, sviluppatore e mantainer di Spatialite: da oggi è disponibile il porting di <a href="https://www.gaia-gis.it/fossil/libspatialite/wiki?name=splite-android" target="_blank">Spatialite per Android</a>.
+
+Grazie al finanziamento dello US Army Geospatial Center, al lavoro di sviluppo di Sandro e di testing di <a href="http://blog.spaziogis.it/author/aantonello/" target="_blank">Andrea Antonello</a>, adesso la comunità ha a disposizione una distribuzione binaria di Spatialite, basata su Sqlite 3.0.1, rilasciata con licenza LGPLv2. La distribuzione comprende le librerie PROJ 4.7.0 e le GEOS 3.2.2.
+
+Buon divertimento a tutti gli sviluppatori Android <img src='http://blog.spaziogis.it/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> <p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/11/26/spatialite-sbarca-su-android/">Spatialite sbarca su Android</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/11/26/spatialite-sbarca-su-android/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Spatialite+sbarca+su+Android&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2012-11-26&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/11/26/spatialite-sbarca-su-android/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Raccontare la ricerca, l&#8217;esempio dell&#8217;USGS</title>
+		<link>http://blog.spaziogis.it/2012/06/29/raccontare-la-ricerca-lesempio-dellusgs/</link>
+		<comments>http://blog.spaziogis.it/2012/06/29/raccontare-la-ricerca-lesempio-dellusgs/#comments</comments>
+		<pubDate>Fri, 29 Jun 2012 07:30:36 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Recensioni]]></category>
+		<category><![CDATA[scienze]]></category>
+		<category><![CDATA[usgs]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=5027</guid>
+		<description><![CDATA[Il video sulla storia e l'attività dell'USGS]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccontare+la+ricerca%2C+l%26%238217%3Besempio+dell%26%238217%3BUSGS&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2012-06-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/06/29/raccontare-la-ricerca-lesempio-dellusgs/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://www.usgs.gov/" target="_blank"><img class="alignleft" style="margin-left: 10px; margin-right: 10px;" title="Logo USGS" src="http://www.usgs.gov/images/header_graphic_usgsIdentifier_white.jpg" alt="" width="178" height="72" /></a>“Science for a Changing World”, la scienza per un mondo che sta cambiando. E’ con un video di sette minuti e mezzo che il servizio geologico nazionale statunitense (<a href="http://www.usgs.gov/">USGS</a>) ha deciso, con una sintesi narrativa eccellente, di raccontare le sue attività e i suoi onorevoli 133 anni di storia. Rimbalzato rapidamente tra i nostri tweet, ha incuriosito noi tutti di TANTO, fino a spingere Andrea Borruso a <a href="https://www.facebook.com/USGeologicalSurvey/posts/190985067695595" target="_blank">domandare</a> sulla pagina di Facebook dell’USGS, se fossero disponibili i sottotitoli per poterlo tradurre in italiano, così come avevamo fatto per i quattro episodi di <a href="http://blog.spaziogis.it/tag/grp/">Geospatial Revolution</a>. Poco meno di un giorno (il tempo del fuso orario) ed arriva la risposta col link ai sottotitoli. Con un tempismo da fuga in maglia rosa, Antonio Falciano inizia la traduzione con <a href="http://www.universalsubtitles.org" target="_blank">Amara</a>, il servizio di traduzione sottotitoli online fornito da Universal subtitles, che poi concludo io con qualche ritocco e correzione di refusi qua e là. Et voilà, ecco che nel giro di due giorni il video è a disposizione anche per chi avesse meno dimestichezza con la lingua inglese.<br />
+Ma perché abbiamo desiderato tradurlo e pubblicarlo? Al di là dei contenuti del video e del fascino che le attività dell’USGS hanno da sempre esercitato su professionisti e ricercatori dell’ambito naturalistico, personalmente la sua visione mi ha suscitato suggestioni e riflessioni che penso possano essere sintetizzate in tre aspetti.</p>
+	<p>Anzitutto, mi stupisce l’attenzione che l’USGS, come anche altri istituti ed enti federali statunitensi, dedica alla comunicazione e alla divulgazione delle proprie attività. La volontà di rendere partecipi e consapevoli i cittadini di cosa succede tra i muri di istituti di ricerca pubblici come il servizio geologico, è sicuramente alimentata dall’interesse, da parte delle istituzioni federali, di mostrare l’efficacia ed il ritorno degli ingenti investimenti, sostenuti dalla fiscalità pubblica, che ogni anno vengono riversati in tali enti. Avvicinare i cittadini al mondo della ricerca, raccontare &#8211; ed uso specificatamente questo termine &#8211; il lavoro dei ricercatori, nelle forme di volta in volta più opportune ed efficaci, ritengo debba essere considerata una delle componenti fondamentali e prioritarie per ogni ente, perché oltre ad essere un esercizio di trasparenza, è un’attività che aiuta ad alimentare nelle persone la consapevolezza dell’importanza della ricerca, pura e applicata, e a sfatare l’immaginario di un mondo astratto, perso tra teorie, libri e formule, poco attinenti alla realtà quotidiana della gente. Questo video mi offre l’occasione di augurare anche ai nostri enti di coltivare sempre di più questa pratica e di curarla particolarmente anche come occasione per riacquisire un po’ del credito che, molte gestioni economiche e scelte politiche disastrose e poco lungimiranti degli ultimi anni, hanno contribuito a logorare. A questo proposito mi complimento con i vari enti dell’area fiorentina per la due giorni di “<a href="http://www.musesplorando.it/allegati/scienzestate2012_120607125145.pdf" target="_blank">Scienzaestate</a>”, recentemente realizzata presso il Polo Scientifico dell’Università di Firenze.</p>
+	<p>Un altro aspetto che mi ha particolarmente colpito è la modalità con cui l’USGS gestisce le sue pubblicazioni. Mi soffermo soltanto su un aspetto specifico, relativo a questo video. Alla nostra richiesta di poter avere le trascrizioni dei testi, hanno potuto rispondere immediatamente grazie al fatto che tutti i video presenti nella loro galleria multimediale, oltre ad essere scaricabili in vari formati, sono corredati anche dai testi trascritti disponibili nel formato standard <a href="http://www.w3.org/TR/2009/WD-ttaf1-dfxp-20090602/" target="_blank">W3C Timed Text (TT) Authoring Format V1.0</a>, grazie al quale è stato possibile impiegare gli strumenti offerti da Amara per creare i sottotitoli tradotti. Sembrerà poco, ma è anche attraverso queste “raffinatezze” che si coglie una reale volontà di condividere e promuovere un prodotto, così come viene affermato anche dalla mission del gruppo <a href="http://pubs.usgs.gov/fs/2012/3009/contents/FS12-3009.pdf" target="_blank">Core Science</a> dello stesso USGS.</p>
+	<p>Concludendo, vorrei sottolineare un aspetto che ritengo importante, e spesso sottovalutato, per l&#8217;efficacia della comunicazione istituzionale. Sottolineo nuovamente il verbo &#8220;Raccontare&#8221;. Comunicare l&#8217;attività di un ente significa riuscire a trasmettere, parallelamente ad un contenuto puramente informativo, sensazioni, suggestioni ed emozioni, che permettono di condividere non soltanto il lato tecnico e funzionale dell&#8217;attività ma anche- e forse, soprattutto – il “cuore” che anima e muove tanti operatori e ricercatori. Conoscere è sì un’attività analitica, ma alla base è alimentata dalla capacità di lasciarsi affascinare, di fermarsi ad ammirare, di alimentarsi di stupore, ma anche di affrontare il fallimento, di attendere il momento giusto, di superare fatiche e attese… E&#8217; insomma un’esperienza profondamente umana, e come tale dovrebbe essere raccontata.</p>
+	<p>(Qui sotto il video sottotitolato in italiano, a questo <a href="http://gallery.usgs.gov/videos/546" target="_blank">link</a> il video originale)</p>
+	<p><iframe src="http://blog.spaziogis.it/static/video_usgs.html" frameborder="0" width="490" height="450"></iframe>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/06/29/raccontare-la-ricerca-lesempio-dellusgs/">Raccontare la ricerca, l&#8217;esempio dell&#8217;USGS</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/06/29/raccontare-la-ricerca-lesempio-dellusgs/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Raccontare+la+ricerca%2C+l%26%238217%3Besempio+dell%26%238217%3BUSGS&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2012-06-29&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/06/29/raccontare-la-ricerca-lesempio-dellusgs/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://www.usgs.gov/images/header_graphic_usgsIdentifier_white.jpg" />
+		<media:content url="http://www.usgs.gov/images/header_graphic_usgsIdentifier_white.jpg" medium="image">
+			<media:title type="html">Logo USGS</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Tante novità con PostGIS 2.0!</title>
+		<link>http://blog.spaziogis.it/2012/04/04/tante-novita-con-postgis-2-0/</link>
+		<comments>http://blog.spaziogis.it/2012/04/04/tante-novita-con-postgis-2-0/#comments</comments>
+		<pubDate>Wed, 04 Apr 2012 07:58:54 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Entropia]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[gis]]></category>
+		<category><![CDATA[PostGIS]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=4855</guid>
+		<description><![CDATA[Annunciato il rilascio di PostGIS 2.0. Molte le novità di grande interesse.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Tante+novit%C3%A0+con+PostGIS+2.0%21&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2012-04-04&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/04/tante-novita-con-postgis-2-0/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[Ieri è stato ufficializzato il rilascio della nuova versione di <a href="http://postgis.refractions.net/news/20120403/" target="_blank">PostGIS 2.0</a>.
+Nell&#8217;annuncio vengono elencate alcune delle più importanti novità, alcune delle quali rese finora disponibili soltanto come estensioni sperimentali:
+<ul>
+	<li>Gestione di dati raster e analisi raster/vettoriali su DB</li>
+	<li>Gestione di modelli topologici, permettendo così di gestire vettoriali con limiti condivisi (grazie al magnifico lavoro di Sandro Santilli!)</li>
+	<li>Integrazione dei &#8220;type modifier&#8221; di Postgresql, come descritto chiaramente in questo <a href="http://blog.opengeo.org/2012/03/06/postgis-2-0-new-features-typmod/" target="_blank">articolo</a></li>
+	<li>Possibilità di costruire indici 3D e 4D</li>
+	<li>Ricerca &#8220;nearest neighbor&#8221; con performance elevate grazie all&#8217;impiego degli indici spaziali</li>
+	<li>Aggiunte molte funzioni di grande utilità, tra cui:
+<ul>
+	<li>ST_Split</li>
+	<li>ST_Node</li>
+	<li>ST_MakeValid</li>
+	<li>ST_OffsetCurve</li>
+	<li>ST_ConcaveHull</li>
+	<li>ST_AsX3D</li>
+	<li>ST_GeomFromGeoJSON</li>
+	<li>ST_3DDistance</li>
+</ul>
+</li>
+	<li>Integrazione col sistema d&#8217;estensioni di PostgreSQL 9.1</li>
+	<li>Migliorata l&#8217;utilità d&#8217;importazione/esportazione shapefile da riga di comando</li>
+	<li>Possibilità di eseguire importazione di file multiple tramite l&#8217;interfaccia grafica per l&#8221;importazione/esportazione di shapefile</li>
+	<li>Possibilità di eseguire esportazione di tabelle multiple tramite la stessa interfaccia grafica</li>
+	<li>Un geocoder ottimizzato per i dati dell&#8217;US Census TIGER (2010)</li>
+</ul>
+Buon lavoro e buon divertimento col nuovo PostGIS!<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2012/04/04/tante-novita-con-postgis-2-0/">Tante novità con PostGIS 2.0!</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2012/04/04/tante-novita-con-postgis-2-0/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Tante+novit%C3%A0+con+PostGIS+2.0%21&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Entropia&amp;rft.source=TANTO&amp;rft.date=2012-04-04&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2012/04/04/tante-novita-con-postgis-2-0/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Novità in Mapserver 6.0.0-beta1</title>
+		<link>http://blog.spaziogis.it/2011/03/10/novita-in-mapserver-6-0-0-beta1/</link>
+		<comments>http://blog.spaziogis.it/2011/03/10/novita-in-mapserver-6-0-0-beta1/#comments</comments>
+		<pubDate>Thu, 10 Mar 2011 09:12:31 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Recensioni]]></category>
+		<category><![CDATA[mapserver]]></category>
+		<category><![CDATA[ogc]]></category>
+		<category><![CDATA[openlayers]]></category>
+		<category><![CDATA[webgis]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=3500</guid>
+		<description><![CDATA[Le importanti novità nella prima release beta di Mapserver 6]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Novit%C3%A0+in+Mapserver+6.0.0-beta1&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2011-03-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/10/novita-in-mapserver-6-0-0-beta1/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[Importanti novità nella prima release beta di Mapserver 6!
+<ul>
+	<li>Output in formato Kml</li>
+	<li>Migliorata l&#8217;etichettatura: le etichette con la proprietà ANGLE FOLLOW a volte portavano ad avere lebal con angoli strettissimi e diventavano illeggibili. Adesso è possibile chiedere di evitarle, lasciando spazio ad etichette in posizioni più favorevoli.</li>
+	<li>Migliorato il supporto al Feature Style</li>
+	<li>Cresciuti i formati di output per le richieste WFS GetFeature</li>
+	<li>Map viewer integrato con Openlayers</li>
+	<li>Migliorata la gestione dei file temporanei</li>
+	<li>Possibilità di abilitare/disabilitare i singoli layer nei servizi OGC</li>
+	<li>Possibilità di combinare feature provenienti da layer differenti</li>
+	<li>Supporto al clustering delle feature nei layer puntuali</li>
+</ul>
+Release note originale: <a href="http://lists.osgeo.org/pipermail/mapserver-users/2011-March/068125.html">http://lists.osgeo.org/pipermail/mapserver-users/2011-March/068125.html</a><p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2011/03/10/novita-in-mapserver-6-0-0-beta1/">Novità in Mapserver 6.0.0-beta1</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2011/03/10/novita-in-mapserver-6-0-0-beta1/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Novit%C3%A0+in+Mapserver+6.0.0-beta1&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Recensioni&amp;rft.source=TANTO&amp;rft.date=2011-03-10&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2011/03/10/novita-in-mapserver-6-0-0-beta1/&amp;rft.language=English"></span>
+
+	</item>
+		<item>
+		<title>Le novità di Geoserver 2.1-beta1</title>
+		<link>http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/</link>
+		<comments>http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/#comments</comments>
+		<pubDate>Sun, 14 Nov 2010 23:48:36 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[Strumenti]]></category>
+		<category><![CDATA[geoserver]]></category>
+		<category><![CDATA[web]]></category>
+		<category><![CDATA[webgis]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2963</guid>
+		<description><![CDATA[Le novità di Geoserver 2.1beta. WMS a cascta, servizi virtuali, layer SQL e tante altre novità per un'importante release.]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+novit%C3%A0+di+Geoserver+2.1-beta1&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-11-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p><a href="http://geoserver.org/" target="_blank"><img class="alignleft" style="margin-left: 10px; margin-right: 10px; border: 0pt none;" title="Geoserver" src="http://geoserver.org/s/1518/25/0.1/_/download/resources/com.atlassian.confluence.themes.geoserver%3Ageoserver/chrome/geoserver-logo.png" alt="" width="212" height="67" /></a></p>
+	<p>Da un po&#8217; di tempo, all&#8217;interno dei miei lavori, ho la fortuna di lavorare con Geoserver. Finora, in ambiente di produzione, ho sempre utilizzato la versione Stable (ad oggi la 2.0.2), ma avendo dovuto aggiornare il sistema per ovviare ad un piccolo problema con il salvataggio di alcune configurazioni tramite l&#8217;interfaccia web, risolto nelle nighlty builds successive, non ho potuto resistere alla tentazione di farmi un giro sulla nuova 2.1-beta1.<br />
+Andando in giro per il web in cerca di recensioni su questo rilascio, non ho trovato notizie in italiano riguardo le sue grandi ed importanti novità della nuova release, nonostante il la notizia sia di Settembre. Ho pensato quindi di riportarne qui una traduzione sintetica e commentata, credendo di fare cosa gradita a chi non avesse avuto modo di seguire gli aggiornamenti di questo software.</p>
+	<p>Sul blog di Geoserver potete leggere la <a href="http://blog.geoserver.org/2010/09/04/geoserver-21-beta-released/" target="_blank">nota di rilascio ufficiale</a>.</p>
+	<h2>WMS a cascata</h2>
+	<p>Fino alla precedente release Geoserver non permetteva di creare un servizio WMS che a suo volta andasse a interrogare altri server WMS. Questa novità permette di connettere, in cascata appunto, un&#8217;istanza di Geoserver con un qualsiasi altro server WMS compliant (es. Mapserver, ArcGIS Server, o un&#8217;altro Geoserver). All&#8217;amministratore del software, questa funzionalità appare come una nuova tipologia di datastore, configurabile da interfaccia web come le altre tipologie di sorgenti dati.</p>
+	<h2>Servizi virtuali</h2>
+	<p>Altra novità di grande importanza sono i servizi virtuali. Finora una singola istanza di Geoserver poteva servire un unico servizio globale. Per il servizio WMS si poteva ovviare usando i gruppi di layer e i layer innestati, ma il servizio appariva sempre come un unico endpoint. Con la 2.1 , sulla stessa singola istanza del server, potranno essere creati più servizi virtuali, che verranno esposti ai client come endpoint diversi.</p>
+	<h2>Livelli SQL</h2>
+	<p>Molto spesso si ha la necessità di esporre i dati presenti nel DB prefiltrati, o messi in join con altre tabelle dati, ecc. La soluzione più comunemente adottata è quella della creazione di viste, e di indirizzare Geoserer a queste piuttosto che alle tabelle originali. Le viste tuttavia richiedono un carico di lavoro aggiunto alla mantunzione dei dati originali. I livelli SQL sollevano l&#8217;utente da questo &#8220;overhead&#8221; offrendo la possibilità di definire, tramite una query SQL, la vista che si vuole avere sui dati.<br />
+La query si selezione (una classica SELECT&#8230;) può essere definita staticamente oppure parametrizzata, ovvero a meno di uno o più parametri che il client potrà passare come chiavi aggiuntive ad una classica richiesta WMS. Per evitare problemi di sicurezza (es. sql injections) o errori nel caso in cui i parametri non siano compatibili con la query, è possibile configurare, tramite la sintassi delle <a id="aptureLink_echgoBdpGs" href="http://en.wikipedia.org/wiki/Regular%20expression">regular expression</a>, un validatore per ogni parametro richiesto.<br />
+Per maggiori informazioni <a href="http://gridlock.openplans.org/geoserver/trunk/doc/en/user/data/sqlview.html" target="_blank">qua</a> trovate una spiegazione estesa.</p>
+	<h2>WPS (Web Processing Service)</h2>
+	<p>Per chi non la conoscesse, la specifica <a id="aptureLink_72Py6j8ea5" href="http://en.wikipedia.org/wiki/Web%20Processing%20Service">WPS</a> definisce un protocollo per i servizi che espongono funzionalità di processamento dati. Tramite questi servizi un client, inviando richieste esprese secondo la sintassi definita dalla specifica, può richiedere al server di eseguire un&#8217;operazione, tra quelle esposte dal servizio, su dati localizzati sul server stesso o raggiungibili via rete.<br />
+Tra le più note implementazioni della specifica troviamo <a href="http://www.zoo-project.org/" target="_blank">Zoo</a>, <a href="http://52north.org/maven/project-sites/wps/52n-wps-webapp/" target="_blank"><span class="external text">52 North WPS</span></a><span class="external text"> e </span><a href="http://pywps.wald.intevation.org/" target="_blank">PyWPS</a>.<br />
+Grazie al lavoro congiunto di Andrea Aime e Victor Olaya, per permettere l&#8217;integrazione di <a href="http://www.sextantegis.com/" target="_blank">SEXTANTE</a> con Geotools, dalla 2.1 anche Geoserver integrerà un servizio WPS.<br />
+Si tratta ancora di un work in progress, ma già funzionante, di cui è disponibile una <a href="http://geoserver.org/display/GEOSDOC/4.+WPS+-+Web+Processing+Service" target="_blank">bozza di documentazione</a>.</p>
+	<h2>Unità di misura</h2>
+	<p>Questa funzionalità potrà sembrare secondaria ma invece risolve tanti problemi nella definizione degli stili tramite SLD. Finora l&#8217;unica unità di misura disponibile era il pixel, per cui ogni valore di misura in un SLD era considerato relativo alla risoluzione dell&#8217;immagine, con la conseguenza di dover, spesso, definire più stilizzazione dipendenti dalla scala. Adesso è possibile indicare nel foglio di stile l&#8217;unità a cui si riferiscono i valori di misura presenti nell&#8217;SLD, come ad esempio la larghezza del tratto con cui disegnare una certa linea.  Anche per questa novità c&#8217;è la relativa <a href="http://docs.geoserver.org/latest/en/user/styling/sld-extensions/uom.html" target="_blank">pagina</a>.</p>
+	<h2>Risoluzione delle immagini</h2>
+	<p>Sempre in tema di renderizzazione, è possibile definire la risoluzione delle immagini generate dal server. Di default Geoserver usa 90 DPI, e finora non era possibile configurarlo diversamente. La possibilità di gestire la risoluzione  è di grande utilità, ad es., per gli output di &#8220;stampa&#8221;, che in genere richiede risoluzioni più elevate. <a href="http://docs.geoserver.org/latest/en/user/services/wms/vendor.html#format-options" target="_blank">Ecco qua come farlo</a>.</p>
+	<p>Queste le principali novità, ma il lavoro alle spalle di questa beta comprende anche  molti bug fix (una cinquantina) e tanti altri miglioramenti minori, che contribuiscono alla crescita di uno dei software più importanti e robusti del panorama GFOSS.  <strong><br />
+Colgo l&#8217;occasione per ringraziare tutto il gruppo di sviluppo di Geoserver ed i vari soggetti finanziatori che hanno reso possibile il rilascio di questa nuova versione.<br />
+</strong>
+</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/">Le novità di Geoserver 2.1-beta1</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Le+novit%C3%A0+di+Geoserver+2.1-beta1&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=Strumenti&amp;rft.source=TANTO&amp;rft.date=2010-11-15&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/11/15/le-novita-di-geoserver-2-1-beta1/&amp;rft.language=English"></span>
+
+		<media:thumbnail url="http://geoserver.org/s/1518/25/0.1/_/download/resources/com.atlassian.confluence.themes.geoserver%3Ageoserver/chrome/geoserver-logo.png" />
+		<media:content url="http://geoserver.org/s/1518/25/0.1/_/download/resources/com.atlassian.confluence.themes.geoserver%3Ageoserver/chrome/geoserver-logo.png" medium="image">
+			<media:title type="html">Geoserver</media:title>
+		</media:content>
+	</item>
+		<item>
+		<title>Novità: GIS Stack Exchange. Domande e risposte libere sul mondo dei GIS</title>
+		<link>http://blog.spaziogis.it/2010/08/02/novita-gis-stack-exchange-domande-e-risposte-libere-sul-mondo-dei-gis/</link>
+		<comments>http://blog.spaziogis.it/2010/08/02/novita-gis-stack-exchange-domande-e-risposte-libere-sul-mondo-dei-gis/#comments</comments>
+		<pubDate>Mon, 02 Aug 2010 07:37:11 +0000</pubDate>
+		<dc:creator>Giovanni Allegri</dc:creator>
+				<category><![CDATA[News]]></category>
+
+		<guid isPermaLink="false">http://blog.spaziogis.it/?p=2402</guid>
+		<description><![CDATA[	
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Novit%C3%A0%3A+GIS+Stack+Exchange.+Domande+e+risposte+libere+sul+mondo+dei+GIS&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2010-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/08/02/novita-gis-stack-exchange-domande-e-risposte-libere-sul-mondo-dei-gis/&amp;rft.language=English"></span>
+E&#8217; in versione Beta, ma sembra promettere bene. GIS Stack Exchange: Domande e&#160; risposte sui GIS, fuori dai canali classici delle community e delle mailing-list, hanno a disposizione un nuovo canale. Fuoriuscito dal calderone di Q&#38;A dell&#8217; Area 51, si propone come un&#8217;alternativa agile e reattiva allle richieste più varie del vasto mondo GIS. L&#8217;aspetto [...]]]></description>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Novit%C3%A0%3A+GIS+Stack+Exchange.+Domande+e+risposte+libere+sul+mondo+dei+GIS&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2010-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/08/02/novita-gis-stack-exchange-domande-e-risposte-libere-sul-mondo-dei-gis/&amp;rft.language=English"></span>
+			<content:encoded><![CDATA[	<p>E&#8217; in versione Beta, ma sembra promettere bene. <a href="http://gis.stackexchange.com/" mce_href="http://gis.stackexchange.com/" target="_blank">GIS Stack Exchange</a>: Domande e&nbsp; risposte sui GIS, fuori dai canali classici delle community e delle mailing-list, hanno a disposizione un nuovo canale. Fuoriuscito dal calderone di Q&amp;A dell&#8217; <a href="http://area51.stackexchange.com/" mce_href="http://area51.stackexchange.com/" target="_blank">Area 51</a>, si propone come un&#8217;alternativa agile e reattiva allle richieste più varie del vasto mondo GIS.</p>
+	<p>L&#8217;aspetto che ritengo particolarmente interessante, è la sua natura (almeno a prima vista) libera da schieramenti di gusto o culturali (proprietario vs free/open source, esri vs resto_del_mondo, ecc.). Una sorta di &#8220;duty free&#8221; della conoscenza, che offre un luogo di scambio&nbsp; e di aggiornamento su pratiche e tecnologie che magari non abbiamo modo (o interesse) di utilizzare, ma che sono sempre una fonte di arricchimento.</p>
+	<p>A mio modesto vedere, GIS Stack Exchange dovrebbe rimanere uno strumento per richieste rapide e circoscritte e, spero, che non si limitino solo agli aspetti strettamente tecnicistici. Del resto esistono già community e canali dedicati, che offrono il supporto più adatto ai prodotto specifici e&nbsp; un&#8217;utenza specialistica più vasta di quanta, probabilmente, ne potrà attrarre questo canale.</p>
+	<p>Insomma, staremo a vedere come evolverà. Intanto mi sono fatto un giretto tra le ultime domande, e mi sembra che l&#8217;attività comincia a entrare a regime&#8230;</p>
+<p style="border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#ddd;border:1px solid #ccc;padding:5px;">L'articolo <a href="http://blog.spaziogis.it/2010/08/02/novita-gis-stack-exchange-domande-e-risposte-libere-sul-mondo-dei-gis/">Novità: GIS Stack Exchange. Domande e risposte libere sul mondo dei GIS</a> &egrave; apparso originariamente su <a href="http://blog.spaziogis.it">TANTO</a>. Rispettane le <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/it/">condizioni di licenza</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://blog.spaziogis.it/2010/08/02/novita-gis-stack-exchange-domande-e-risposte-libere-sul-mondo-dei-gis/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		
+	<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.title=Novit%C3%A0%3A+GIS+Stack+Exchange.+Domande+e+risposte+libere+sul+mondo+dei+GIS&amp;rft.aulast=Allegri&amp;rft.aufirst=Giovanni&amp;rft.subject=News&amp;rft.source=TANTO&amp;rft.date=2010-08-02&amp;rft.type=blogPost&amp;rft.format=text&amp;rft.identifier=http://blog.spaziogis.it/2010/08/02/novita-gis-stack-exchange-domande-e-risposte-libere-sul-mondo-dei-gis/&amp;rft.language=English"></span>
+
+	</item>
+	</channel>
+</rss>
