@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Piano Regolatore di Palermo</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:image" content="http://blog.spaziogis.it/static/palermo_prg/share.jpg" />
+  <meta property="og:title" content="Open Data Sicilia - Il Piano Regolatore Vigente di Palermo" />
+  <meta property="og:url" content="http://opendatasicilia.it/2015/02/23/il-piano-regolatore-di-palermo-opendata/" />
+
+  <link rel="stylesheet" href="./css/leaflet-sidebar.css" />
+
+  <style>
+  body { 
+    margin:0; 
+    padding:0;
+    font: 10pt 'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+
+  #map-ui {
+    position: absolute;
+    top: 2px;
+    right: 42px;
+    z-index: 100;
+    border-width: 1px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    background: #EB593C;
+    border-color: #EB593C;
+    border-top-color: #FFF;
+    padding: 2px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 60px;
+    font-size: 10px;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+  #map-ui p {
+    padding: 0px;
+    margin: 0px 2px 0px 2px;
+    color: #DAE0F1;
+    font-size: 10px;
+  }
+  #map-ui img {
+    padding: 0px;
+    margin: 0px;
+  }
+  #map-ui a:link { 
+    color: #FFF;
+  }
+  #map-ui a:visited { 
+    color: #FFF;
+  }
+  #map-ui a:hover {
+    color: #FFF;
+  }
+  #map-ui a:active { 
+    color: #FFF;
+  }
+  </style>
+
+
+</head>
+<body>
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css' rel='stylesheet' />
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+   <!--[if lt IE 9]>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+  <![endif]-->
+
+  <div id="sidebar" class="sidebar collapsed">
+    <!-- Nav tabs -->
+    <ul class="sidebar-tabs" role="tablist">
+      <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+      <li><a href="#settings" role="tab"><i class="fa fa-info"></i></a></li>
+      <li><a href="#tools" role="tab"><i class="fa fa-wrench"></i></a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="sidebar-content active">
+      <div class="sidebar-pane" id="home">
+        <h2>Piano regolatore del Comune di Palermo</h2>
+        Il <strong>Comune di Palermo</strong> ha pubblicato a febbraio del 2015 nel suo portale Open Data due dataset di indubbio interesse:
+        <ol>
+          <li>la "<a href="http://www.comune.palermo.it/opendata_dld.php?id=320" target="_blank">Perimetrazione Zonizzazione P.R.G. vigente</a>"</li>
+          <li>i "<a href="http://www.comune.palermo.it/opendata_dld.php?id=321" target="_blank">Vincoli vigenti della variante generale al P.R.G.</a>"</li>
+        </ol>
+        Il 21 febbraio 2015, in occasione dell'<a href="http://opendatasicilia.it/2015/02/19/lopen-data-day-2015-sicilia-le-attivita-programma-oddit15/" target="_blank"><strong>Open Data Day</strong></a>, &egrave; stata prodotta questa prima elaborazione dei dati.
+        <p><a href="./data/Variante generale PRG.pdf" target="_blank">Qui</a> le descrizioni delle Zone Territoriali Omogenee (ZTO) di questo PRG</p>
+        <p>Questa pagina ha solo <strong>valore informativo</strong>.</p>
+        <p><a href="#" onclick="sidebar.close()">Chiudi</a></p>
+      </div>
+      <div class="sidebar-pane" id="settings">
+        <h2>Informazioni</h2>
+        <!-- <p>Le basi cartografiche usate sono:</p>
+        <ul>
+          <li>l'&quot;<a href="http://map.sitr.regione.sicilia.it/ArcGIS/rest/services/CACHED/ortofoto_ata20122013_webmercatore/MapServer" target="_blank">Ortofoto ATA 2012-2013 WGS84 Web Mercatore</a>&quot; del SITR della Regione Siciliana;</li>
+          <li>il rendering di <a><a href="http://www.mapquest.com/" target="_blank">MapQuest</a> delle basi <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>;</li>
+          <li>e appunto la &quot;<a href="http://www.comune.palermo.it/opendata_dld.php?id=320" target="_blank">Perimetrazione Zonizzazione P.R.G. vigente</a>&quot;.</li>
+        </ul> -->
+        <p>L'elaborazione è a cura di <a href="http://twitter.com/aborruso"><strong>Andrea Borruso</strong></a> e <a href="https://www.facebook.com/pigreco314?fref=ts" target="_blank"><strong>Salvatore Fiandaca</strong></a> e realizzata per <a href="http://opendatasicilia.it/2015/02/23/il-piano-regolatore-di-palermo-opendata/" target="_blank"><strong>OpenDataSicilia</strong></a>.</p>
+        <p>Tutte le <strong>informazioni</strong> sul <strong>PRG</strong> del Comune di Palermo si trovano <a href="http://www.comune.palermo.it/amministrazione_trasparente.php?sel=19&amp;asel=103&amp;bsel=111" target="_blank">qui</a>.</p>
+        <p><a href="#" onclick="sidebar.close()">Chiudi</a></p>
+      </div>
+      <div class="sidebar-pane" id="tools">
+        <h2>Strumenti</h2>
+        <p>Questi gli strumenti usati:</p>
+        <ul>
+          <li>
+            <a href="https://www.mapbox.com/mapbox.js/">mapbox.js</a> come web framework cartografico e questi plugin
+            <ul>
+              <li><a href="https://www.mapbox.com/mapbox.js/plugins/#leaflet-hash" target="_blank">hash</a></li>
+              <!-- <li><a href="https://www.mapbox.com/mapbox.js/plugins/#leaflet-locatecontrol" target="_blank">locate</a></li> -->
+              <li><a href="https://www.mapbox.com/mapbox.js/plugins/#leaflet-minimap" target="_blank">minimap</a></li>
+            </ul>
+          </li>
+          <li><a href="https://www.mapbox.com/tilemill/" target="_blank">TileMill</a> per il prerendering dei tasselli cartografici</li>
+          <li><a href="https://github.com/infostreams/mbtiles-php/" target="_blank">PHP TileServer</a> per leggere e distribuire tasselli in formato mbtiles e creati da TileMill</li>
+          <li><strong>un po' di neuoroni, e un po' di tempo</strong></li>
+        </ul>
+        <p><a href="#" onclick="sidebar.close()">Chiudi</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div id='map' class="sidebar-map"></div>
+  <div id="map-ui">
+    <p><a href="http://twitter.com/aborruso" target="_blank">@aborruso</a> e <a href="https://www.facebook.com/pigreco314?fref=ts" target="_blank">@pigreco</a> per <a href="http://opendatasicilia.it/2015/02/23/il-piano-regolatore-di-palermo-opendata/" target="_blank"><strong>OpenDataSicilia</strong></a></p>
+  </div>
+
+  <script src="./lib/sidebar/leaflet-sidebar.js"></script>
+
+  <script>
+  L.mapbox.accessToken = 'pk.eyJ1IjoiYWJvcnJ1c28iLCJhIjoibFpOMXpEZyJ9.HNHxWxDvvFz5i2mgMEll7Q';
+  var map = L.mapbox.map('map','',{maxZoom:18,minZoom:11}).addControl(L.mapbox.shareControl());
+
+  map.setView([38.1167,13.3563], 11);
+
+  map.fitBounds([
+  	[38.04750,13.23245],
+  	[38.22744,13.45752]
+  	]);
+
+  L.control.layers({
+    'Foto aerea': L.tileLayer.wms("http://213.215.135.196/reflector/open/service?", {
+        layers: 'rv1',
+        format: 'image/jpeg',
+        attribution: "RealVista1.0 e-GEOS SpA | &copy; OpenStreetMap contributors",
+        minZoom: 10,
+        maxZoom: 20
+    }),
+    'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map)
+  }, "").addTo(map);
+
+  var prgTiles = L.mapbox.tileLayer('./prg_4.tilejson',{opacity:0.7,attribution: '<a href="http://www.comune.palermo.it/opendata_dld.php?id=320" target="_blank">Comune di Palermo</a>',zIndex: 200}).addTo(map)
+  /*	.on('ready', function() {
+    new L.Control.MiniMap(L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {subdomains: ['otile1','otile2','otile3','otile4']
+    }))
+    .addTo(map);
+  })*/;
+
+  var prgGrid = L.mapbox.gridLayer('./prg_4.tilejson').addTo(map);
+
+
+  prgGrid.on('click', function(e) {
+    if (!e.data) return;
+    var popup = L.popup()
+    .setLatLng(e.latLng)
+    .setContent('<strong>Zona: </strong>' + e.data.zone + '<br>' +
+      '<strong>ZTO: </strong>' + e.data.ZTO + '<br>' +
+      '<strong>Descrizione: </strong>' + e.data.descrizion)
+    .openOn(map);
+  });
+
+  /*L.control.locate().addTo(map);*/
+
+  var hash = L.hash(map);
+
+  var sidebar = L.control.sidebar('sidebar').addTo(map);
+  </script>
+
+
+</body>
+</html>

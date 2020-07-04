@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Piano Regolatore di Palermo</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:image" content="http://blog.spaziogis.it/static/palermo_prg/share.jpg" />
+  <meta property="og:title" content="Open Data Sicilia - Il Piano Regolatore Vigente di Palermo" />
+  <meta property="og:url" content="http://opendatasicilia.it/2015/02/22/il-piano-regolatore-di-palermo-in-opendata" />
+
+  <link rel="stylesheet" href="./css/leaflet-sidebar.css" />
+
+  <style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+
+  #map-ui {
+    position: absolute;
+    top: 2px;
+    right: 42px;
+    z-index: 100;
+    border-width: 1px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    background: #EB593C;
+    border-color: #EB593C;
+    border-top-color: #FFF;
+    padding: 2px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 60px;
+    font-size: 10px;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+  #map-ui p {
+    padding: 0px;
+    margin: 0px 2px 0px 2px;
+    color: #DAE0F1;
+    font-size: 10px;
+  }
+  #map-ui img {
+    padding: 0px;
+    margin: 0px;
+  }
+  #map-ui a:link { 
+    color: #FFF;
+  }
+  #map-ui a:visited { 
+    color: #FFF;
+  }
+  #map-ui a:hover {
+    color: #FFF;
+  }
+  #map-ui a:active { 
+    color: #FFF;
+  }
+  </style>
+
+
+</head>
+<body>
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css' rel='stylesheet' />
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+   <!--[if lt IE 9]>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+  <![endif]-->
+
+  <div id='map'></div>
+  <div id="map-ui">
+    <p><a href="http://twitter.com/aborruso" target="_blank">@aborruso</a> e <a href="https://www.facebook.com/pigreco314?fref=ts" target="_blank">@pigreco</a> per <a href="http://opendatasicilia.it/" target="_blank"><strong>OpenDataSicilia</strong></a></p>
+  </div>
+
+  <script>
+  L.mapbox.accessToken = 'pk.eyJ1IjoiYWJvcnJ1c28iLCJhIjoibFpOMXpEZyJ9.HNHxWxDvvFz5i2mgMEll7Q';
+  var map = L.mapbox.map('map','',{maxZoom:17,minZoom:11}).addControl(L.mapbox.shareControl());
+
+  map.setView([38.1167,13.3563], 11);
+
+  map.fitBounds([
+  	[38.04750,13.23245],
+  	[38.22744,13.45752]
+  	]);
+
+  L.control.layers({
+    'SITR Sicilia': L.tileLayer("http://map.sitr.regione.sicilia.it/ArcGIS/rest/services/CACHED/ortofoto_ata20122013_webmercatore/MapServer/tile/{z}/{y}/{x}.png", {
+      attribution: 'Dati | <a href="http://www.sitr.regione.sicilia.it/geoportale" target="_blank">SITR Regione Siciliana</a>'
+    }).addTo(map),
+    'MapQuest': L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors | Tiles Courtesy of <a href="http://www.mapquest.com/" title="MapQuest" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" width="16" height="16">',
+    subdomains: ['otile1','otile2','otile3','otile4']
+})
+  }, "").addTo(map);
+
+  /*var sitr = L.tileLayer("http://map.sitr.regione.sicilia.it/ArcGIS/rest/services/CACHED/ortofoto_ata20122013_webmercatore/MapServer/tile/{z}/{y}/{x}.png", {
+  	attribution: 'Dati | <a href="http://www.sitr.regione.sicilia.it/geoportale" target="_blank">SITR Regione Siciliana</a>'
+  }).addTo(map);*/
+
+var prgTiles = L.mapbox.tileLayer('./prg_4.tilejson',{opacity:0.7,attribution: '<a href="http://www.comune.palermo.it/opendata_dld.php?id=320" target="_blank">Comune di Palermo</a>',zIndex: 200}).addTo(map)
+.on('ready', function() {
+  new L.Control.MiniMap(L.mapbox.tileLayer('examples.map-i86nkdio'))
+  .addTo(map);
+});
+
+var prgGrid = L.mapbox.gridLayer('./prg_4.tilejson').addTo(map);
+
+prgGrid.on('click', function(e) {
+  if (!e.data) return;
+  var popup = L.popup()
+  .setLatLng(e.latLng)
+  .setContent('<strong>Zona: </strong>' + e.data.zone + '<br>' +
+    '<strong>ZTO: </strong>' + e.data.ZTO + '<br>' +
+    '<strong>Descrizione: </strong>' + e.data.descrizion)
+  .openOn(map);
+});
+
+L.control.locate().addTo(map);
+
+var hash = L.hash(map);
+</script>
+
+
+</body>
+</html>
